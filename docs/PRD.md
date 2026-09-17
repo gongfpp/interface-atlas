@@ -6,6 +6,7 @@
 英文名称：Interface Atlas（MVP 使用工作名，域名后定，改名成本 = 文案 + 301）
 
 > v0.4 变更摘要（2026-09 开发期）：① 新增灵感图库模块（§43）——AI 生成的设计参考图集 + 可复现生图 Prompt；② 竞品对标改进落地：机器可读层 `/api/concept/*.json` + `llms.txt`、搜索空态引导示例、首页数字概览（详见 `docs/competitor-research.md`）；③ 部署说明 `docs/deploy.md`。
+> v0.5 变更摘要（平台收口，基于外部审计）：① 搜索弹窗 Hook 违规修复；② 内容校验器重写（全量加载→统一校验；compare 组 CI 严格）；③ 构建管线统一为 prebuild 链（content:check → api:build → search:build → astro build），YAML 成为唯一事实源；④ CI 增加 astro check + ESLint(react-hooks) + Playwright 搜索闭环 smoke test；⑤ 搜索日志隐私化：只记录无结果/弱命中查询 + PII 清洗 + 30 天 TTL（§9.3）；⑥ Astro 升级 7.x（消除 critical XSS 通告）；⑦ embedding 事实源统一为 multilingual-e5-small（§9.1）；⑧ Prompt 生产方式决策：人工在 YAML 中结构化维护，生成器推迟（§17）；⑨ README + AGPL-3.0 + sitemap/robots；⑩ 全库 YAML 规范化为块样式（消灭 flow mapping 静默拆键缺陷）并修复 196 处历史数据截断。
 > v0.3 变更摘要（2026-09 会话确认）：① 站点视觉定调 Editorial Minimal（§42）；② 内容文案定调词典风（§42）；③ Embedding 选型本地 BGE-M3（§9.1）；④ 里程碑定义 M1/M2（§42）；⑤ 内容生产模式 = 主 Agent 建平台与规范 + 子 Agent 并行生产 + CI 把关（§42）。
 > v0.2 变更摘要（基于 2026-09 会话确认的决策）：
 > ① 搜索方案升级并量化验收（§9）；② 确认 90 条目全量最高质量、首批 5 样板（§25/§26）；③ Prompt 4 层由模板生成（§17）；④ 上线即中英双语（§7a）；⑤ 新增非功能性需求章节（§41）；⑥ 数据 Schema 修订 + CI 校验（§33）；⑦ Motion 播放器全量（§22）；⑧ 随机按钮进 P0（§8/§28）；⑨ 埋点进 P0（§27a）；⑩ 技术栈定 Astro + React Islands。
@@ -150,7 +151,7 @@ MVP 不建立社区、商城和复杂账户体系。
 ## 9.1 检索方案（两层）
 
 1. **基线层**：中英名称 + Alias + Tags + Keywords + Related Terms + Description Keywords 的加权匹配（结构化数据见 §33）。
-2. **增强层**：构建时对每个条目的 description + aliases 生成 embedding；运行时对全库（约 90 条）做内存余弦检索。不训练模型、不依赖运行时 LLM，兜住"按钮点下去缩一下"这类与维护词表不重合的口语查询。**选型（v0.3 确认）：本地 transformers.js + BGE-M3**，构建脚本生成索引，无 API key、无持续费用、结果可复现；模型要求中英双语。
+2. **增强层**：构建时对每个条目的 description + aliases 生成 embedding；运行时对全库（约 90 条）做内存余弦检索。不训练模型、不依赖运行时 LLM，兜住"按钮点下去缩一下"这类与维护词表不重合的口语查询。**选型（v0.5 更正）：本地 transformers.js + Xenova/multilingual-e5-small（q8 量化）**，构建脚本生成索引，无 API key、无持续费用、结果可复现；中英双语。模型仅在关键词弱命中时于浏览器端懒加载（约 27MB WASM），90 条规模下优先做好 alias 运营，语义层贡献待实测后再评估增减。
 
 搜索结果页按五大类型（Component / Pattern / Style / Page / Motion）分组展示。
 
@@ -161,7 +162,7 @@ MVP 不建立社区、商城和复杂账户体系。
 
 ## 9.3 查询日志回流
 
-- 所有搜索查询原文匿名落库（配合 §27a 埋点，部署在 Cloudflare，用 KV/D1 承载）。
+- **只记录无结果 / 弱命中查询**（强命中原文不入库）；客户端与服务端双重 PII 清洗（邮箱、连续数字）；KV 原文保留 30 天，聚合后的 alias 结论长期保存。配合 §27a 埋点，部署在 Cloudflare，用 KV/D1 承载。
 - 高频未命中查询定期补充进条目的 aliases / keywords——这是内容运营飞轮的一部分（§32）。
 
 ---
@@ -244,7 +245,7 @@ MVP 不建立社区、商城和复杂账户体系。
 完成后运行现有检查，并说明修改文件。
 ```
 
-**生产方式**：4 层 Prompt 由模板 + 条目结构化字段（名称、分类、variants、use_when、avoid_when、风格要求）自动组装，人工审核把关质量与口径。Basic / Design 层基本全自动；Agent Task 层统一骨架 + 条目特殊约束。Prompt 是派生物而非逐篇手写——目的在于 90 × 4 = 360 篇的口径一致性，而非节省工作量。
+**生产方式（v0.5 决策）**：4 层 Prompt 作为结构化内容由人工直接维护在各条目 YAML 中（与 description/use_when 同级，同为数据资产），不设生成器。理由：双语 × 4 层的语义质量门槛高，模板生成的口径收益低于人工维护成本；结构化存储已保证机器可读与 CI 校验。若未来条目规模超过 300 条，再评估模板化生成 + 人工审核的流水线。
 
 ---
 
@@ -274,7 +275,7 @@ Style 页面结构：简介、视觉特征、Typography、Color、Border、Shado
 
 # 22. Motion 页面（v0.2 修订）
 
-Motion 必须真实运行，不能静态截图描述动画。**播放器全量能力（v0.2 确认）：Play、Replay、Slow Motion、Before/After 对比。** 播放器是一块独立前置基础设施，在首批 Motion 条目动工前完成。
+Motion 必须真实运行，不能静态截图描述动画。**播放器全量能力（v0.2 确认）：Play、Replay、Slow Motion、Before/After 对比。** 运行时契约（v0.5 固化，见 docs/content-guide.md）：所有 Motion Demo 的动画时长写法统一为 `calc(时长 * var(--demo-speed, 1))`；慢速 = 调大系数（1→3）；暂停 = `.motion-paused` 类对全部后代生效；重播 = key 重挂载复位内部状态。
 
 ---
 

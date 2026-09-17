@@ -27,18 +27,31 @@ const TYPE_LABEL: Record<string, { zh: string; en: string }> = {
   gallery: { zh: '灵感图库', en: 'Gallery' },
 };
 
+/** PII 清洗：去除邮箱、连续数字（手机号/单号等），截断到 120 字符 */
+function scrubQuery(q: string) {
+  return q
+    .replace(/[\w.+-]+@[\w-]+\.[\w.]+/g, '[email]')
+    .replace(/\d{6,}/g, '[digits]')
+    .slice(0, 120);
+}
+
 function logSearch(q: string) {
-  if (!q.trim()) return;
+  const cleaned = scrubQuery(q).trim();
+  if (!cleaned) return;
   try {
-    navigator.sendBeacon?.('/api/log-search', JSON.stringify({ q, t: Date.now() }));
+    navigator.sendBeacon?.('/api/log-search', JSON.stringify({ q: cleaned, t: Date.now() }));
   } catch { /* 埋点失败不影响搜索 */ }
 }
 
 export default function SearchDialog({ locale }: { locale: 'zh' | 'en' }) {
-  const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState('');
+  // /search?q=xxx 落地页：初始即打开并预填（lazy initializer，避免 effect 内同步 setState）
+  // SSR 预渲染无 window，守卫后回退到默认值
+  const initialQuery =
+    typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('q') : null;
+  const [open, setOpen] = useState(() => Boolean(initialQuery));
+  const [query, setQuery] = useState(() => initialQuery ?? '');
   const [index, setIndex] = useState<IndexPayload | null>(null);
-  const [results, setResults] = useState<Array<{ doc: SearchDoc; score: number }>>([]);
+  const [results, setResults] = useState<Array<{ doc: SearchDoc; score: number; kw: number }>>([]);
   const [active, setActive] = useState(0);
   const [loadingModel, setLoadingModel] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -54,17 +67,7 @@ export default function SearchDialog({ locale }: { locale: 'zh' | 'en' }) {
   }, [open, index]);
 
   useEffect(() => {
-    // 支持 /search?q=xxx 落地页：自动打开并预填
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const q = params.get('q');
-    if (q) {
-      setOpen(true);
-      setQuery(q);
-    }
-  }, []);
-
-  const onOpen = () => {
+    const onOpen = () => {
       setOpen(true);
       requestAnimationFrame(() => inputRef.current?.focus());
     };
@@ -113,16 +116,26 @@ export default function SearchDialog({ locale }: { locale: 'zh' | 'en' }) {
 
   useEffect(() => {
     if (!index) return;
-    runSearch(query, index);
+    // 延迟到下一个宏任务执行搜索，避免 effect 内同步 setState 触发级联渲染
+    const t = setTimeout(() => runSearch(query, index), 0);
+    return () => clearTimeout(t);
+  }, [query, index, runSearch]);
+
+  // 查询日志回流（PRD §9.3）：只记录无结果 / 弱命中查询，防止把强命中原文全部入库
+  useEffect(() => {
+    if (!query.trim() || loadingModel) return;
+    const top = results[0];
+    const weak = !top || top.kw < 30;
+    if (!weak) return;
     if (logTimer.current) clearTimeout(logTimer.current);
     logTimer.current = setTimeout(() => logSearch(query), 900);
     return () => {
       if (logTimer.current) clearTimeout(logTimer.current);
     };
-  }, [query, index, runSearch]);
+  }, [query, results, loadingModel]);
 
   const grouped = useMemo(() => {
-    const groups = new Map<string, Array<{ doc: SearchDoc; score: number }>>();
+    const groups = new Map<string, Array<{ doc: SearchDoc; score: number; kw: number }>>();
     for (const r of results) {
       const list = groups.get(r.doc.type) ?? [];
       list.push(r);
@@ -133,7 +146,16 @@ export default function SearchDialog({ locale }: { locale: 'zh' | 'en' }) {
     );
   }, [results]);
 
-  const flat = grouped.flatMap(([, items]) => items);
+  // 扁平列表 + id→全局下标映射（避免渲染期可变计数器）
+  const { flat, indexById } = useMemo(() => {
+    const flatItems: Array<{ doc: SearchDoc; score: number; kw: number }> = [];
+    const idxMap = new Map<string, number>();
+    for (const r of results) {
+      idxMap.set(r.doc.id, flatItems.length);
+      flatItems.push(r);
+    }
+    return { flat: flatItems, indexById: idxMap };
+  }, [results]);
 
   const go = (doc: SearchDoc) => {
     const base = `/${doc.type}/${doc.id}`;
@@ -142,7 +164,6 @@ export default function SearchDialog({ locale }: { locale: 'zh' | 'en' }) {
 
   if (!open) return null;
 
-  let flatIndex = -1;
   return (
     <div
       className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 px-4 pt-[12vh] backdrop-blur-sm"
@@ -202,8 +223,7 @@ export default function SearchDialog({ locale }: { locale: 'zh' | 'en' }) {
                 {TYPE_LABEL[type]?.[locale] ?? type}
               </p>
               {items.map((r) => {
-                flatIndex += 1;
-                const i = flatIndex;
+                const i = indexById.get(r.doc.id) ?? 0;
                 return (
                   <button
                     key={r.doc.id}

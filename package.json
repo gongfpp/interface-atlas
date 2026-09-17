@@ -11,25 +11,35 @@
     "content:check": "node scripts/validate-content.mjs",
     "search:build": "node scripts/build-search-index.mjs",
     "search:test": "node scripts/test-golden-queries.mjs",
-    "prompts:build": "node scripts/build-prompts.mjs",
     "api:build": "node scripts/build-api-layer.mjs",
-    "postbuild": "node scripts/build-api-layer.mjs"
+    "prebuild": "npm run content:check && node scripts/build-api-layer.mjs && node scripts/build-search-index.mjs",
+    "gen:registry": "node scripts/gen-registry.mjs",
+    "build:fast": "node scripts/build-api-layer.mjs && astro build",
+    "lint": "eslint src --max-warnings 200",
+    "test:smoke": "playwright test"
   },
   "dependencies": {
-    "@astrojs/react": "^4.2.0",
+    "@astrojs/react": "^6.0.6",
+    "@astrojs/sitemap": "^3.7.4",
     "@huggingface/transformers": "^4.3.0",
-    "@tailwindcss/vite": "^4.1.0",
-    "astro": "^5.7.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.3",
     "js-yaml": "^5.4.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwindcss": "^4.1.0"
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.63.0",
     "@types/js-yaml": "^4.0.9",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "typescript": "^5.7.0"
+    "eslint": "^10.10.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.70.0"
   },
   "allowScripts": {
     "esbuild@0.27.7": true,

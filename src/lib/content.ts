@@ -1,5 +1,6 @@
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 import { CONCEPT_TYPES, type ConceptType } from '@/content.config';
+export type { ConceptType };
 
 export type Concept = CollectionEntry<(typeof CONCEPT_TYPES)[number]> & {
   /** 所属 collection 名，即条目类型 */

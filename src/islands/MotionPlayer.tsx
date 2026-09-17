@@ -1,9 +1,14 @@
 import { useState } from 'react';
 
 /**
- * Motion 播放器（PRD §22 全量）：Play / Replay / Slow Motion / Before-After。
- * 原理：容器设置 --demo-speed 速度系数（Demo 动画时长写法见生产规范），
- *       重播通过 key 重挂载；Before 实例禁用全部动画。
+ * Motion 播放器（PRD §22）：Play / Replay / Slow Motion / Before-After。
+ *
+ * 运行时契约（所有 Motion Demo 必须遵守，见 docs/content-guide.md）：
+ * - 动画时长写法固定为 `calc(<时长> * var(--demo-speed, 1))`；
+ *   播放器通过调大 --demo-speed（1 = 常速，3 = 慢速）实现慢放，而不是改小系数。
+ * - 暂停通过容器上的 .motion-paused 类实现（CSS 对全部后代 animation-play-state: paused）。
+ * - 重播通过 key 重挂载整棵 Demo 子树，内部状态随之复位。
+ * - Before 实例用 .no-motion 冻结全部动画。
  */
 export default function MotionPlayer({
   render,
@@ -12,7 +17,7 @@ export default function MotionPlayer({
   render: () => React.ReactNode;
   locale: 'zh' | 'en';
 }) {
-  const [speed, setSpeed] = useState(1);
+  const [speed, setSpeed] = useState<1 | 3>(1);
   const [running, setRunning] = useState(true);
   const [replayKey, setReplayKey] = useState(0);
   const [compare, setCompare] = useState(false);
@@ -34,8 +39,10 @@ export default function MotionPlayer({
   const stage = (frozen: boolean, key: number) => (
     <div
       key={key}
-      className={`demo-stage-checker overflow-hidden rounded-xl border border-line p-6 ${frozen ? 'no-motion' : ''}`}
-      style={{ '--demo-speed': frozen ? 1 : speed, animationPlayState: frozen || running ? 'running' : 'paused' } as React.CSSProperties}
+      className={`demo-stage-checker overflow-hidden rounded-xl border border-line p-6 ${frozen ? 'no-motion' : ''} ${
+        !frozen && !running ? 'motion-paused' : ''
+      }`}
+      style={{ '--demo-speed': speed } as React.CSSProperties}
     >
       {render()}
     </div>
@@ -50,7 +57,7 @@ export default function MotionPlayer({
         <button className={btn} onClick={() => { setReplayKey((k) => k + 1); setRunning(true); }}>
           ↻ {label.replay[locale]}
         </button>
-        <button className={speed !== 1 ? btnOn : btn} onClick={() => setSpeed((s) => (s === 1 ? 0.3 : 1))}>
+        <button className={speed !== 1 ? btnOn : btn} onClick={() => setSpeed((s) => (s === 1 ? 3 : 1))}>
           🐢 {speed !== 1 ? label.normal[locale] : label.slow[locale]}
         </button>
         <button className={compare ? btnOn : btn} onClick={() => setCompare((c) => !c)}>

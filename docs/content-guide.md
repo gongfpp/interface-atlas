@@ -40,10 +40,13 @@ compare:                             # 仅当同组 ≥2 成员才写（组名�
 
 ### 1.3 YAML 安全规则（踩过的坑，违反即解析失败）
 
-1. flow mapping `{ zh: ..., en: ... }` 的值含 ASCII 逗号 `,` 或冒号+空格 `: ` 时**必须双引号**。
-2. 列表项含冒号（如 `- position: fixed`）必须写成 `- "position: fixed"`。
-3. prompts 各层一律用块标量：`zh: >-` 换行缩进两格写正文，最稳。
-4. 破折号 `—`、中文标点安全；`#` 出现在值中间要引号。
+**全库已规范化为块样式（js-yaml dump），禁止再写 flow mapping `{ zh: ..., en: ... }`**：
+plain 标量里的 ASCII 逗号会让解析器**静默拆键**（值截断 + 产生 null 键），不报错但数据损坏，
+校验脚本 `scripts/validate-content.mjs` + 全量 null 值扫描负责拦截。新写内容时：
+
+1. 双语字段用块样式：`zh:` / `en:` 各占一行，长文本用 `>-` 块标量。
+2. 列表项含冒号（如 `- "position: fixed"`）仍需双引号。
+3. 破折号 `—`、中文标点安全；`#` 出现在值中间要引号。
 
 ### 1.4 词典风文案口径
 
@@ -74,7 +77,9 @@ export default XDemo;
 - `mode`：`default` 展示主形态；`dark` 深色形态；`variants` 展示多变体并列；`loading`（如适用）。
 - **必须可交互**：按钮能点、开关能拨、tab 能切（用 useState）。Motion 类 demo 需要可反复触发（按钮触发动画）。
 - Anatomy 高亮：给关键区域加 `data-anatomy="1"` `"2"` …（与 YAML `anatomy` 列表顺序对应）。
-- 动画写法：keyframes 用 `<style>` 内联定义，时长乘 `var(--demo-speed, 1)`（播放器慢速需要）。
+- 动画写法：keyframes 用 `<style>` 内联定义，时长一律写 `calc(<时长> * var(--demo-speed, 1))`。
+  播放器契约（MotionPlayer）：慢速 = 把 --demo-speed 调大到 3（时长变长），暂停 = `.motion-paused` 类
+  （对全部后代 animation-play-state: paused），重播 = key 重挂载。Demo 要么循环播放，要么自带触发按钮。
 - 不引入任何新依赖；不写测试文件。
 - 尺寸克制：演示画布高度 ≤ 320px，内容居中。
 

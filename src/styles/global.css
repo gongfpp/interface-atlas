@@ -93,3 +93,10 @@ html {
   animation: none !important;
   transition: none !important;
 }
+
+/* Motion 播放器暂停态：对全部后代生效（animation-play-state 不可继承，用选择器覆盖） */
+.motion-paused *,
+.motion-paused *::before,
+.motion-paused *::after {
+  animation-play-state: paused !important;
+}
