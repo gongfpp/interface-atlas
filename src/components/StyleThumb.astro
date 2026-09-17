@@ -1,0 +1,341 @@
+---
+import type { StyleThumbSpec } from '@/lib/style-thumbs';
+
+interface Props {
+  spec: StyleThumbSpec;
+  /** 缩略模式更紧凑（首页墙） */
+  compact?: boolean;
+}
+const { spec, compact = false } = Astro.props;
+const t = spec.tokens;
+const titleStyle = `${t.upper ? 'text-transform:uppercase;' : ''}${t.italic ? 'font-style:italic;' : ''}letter-spacing:.01em;`;
+const scale = compact ? 0.94 : 1;
+const fs = (px: number) => `${(px * scale).toFixed(1)}px`;
+const pill = `background:${t.accent};color:${t.accentFg};border-radius:${t.radius === '0px' ? '2px' : '999px'};box-shadow:${t.shadow ?? 'none'};`;
+const cardCss = `background:${t.card};border:1px solid ${t.cardBorder};border-radius:${t.radius};backdrop-filter:${t.blur ?? 'none'};`;
+const ICONS = ['◆', '▲', '●'];
+---
+
+<div class="overflow-hidden border" style={`background:#fff;border-color:${t.cardBorder};border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.09)`}>
+  <!-- 浏览器 chrome -->
+  <div class="flex items-center gap-1.5 border-b px-3 py-2" style={`background:${t.bg};border-color:${t.cardBorder}`}>
+    <span class="h-2.5 w-2.5 rounded-full" style="background:#FF5F57"></span>
+    <span class="h-2.5 w-2.5 rounded-full" style="background:#FEBC2E"></span>
+    <span class="h-2.5 w-2.5 rounded-full" style="background:#28C840"></span>
+    <span class="mx-auto flex w-1/2 items-center justify-center gap-1 truncate rounded-md px-3 py-1 text-[9px]" style={`background:${t.card};border:1px solid ${t.cardBorder};color:${t.sub};backdrop-filter:${t.blur ?? 'none'}`}>⌄ {spec.url}</span>
+    <span class="w-10 text-right text-[10px]" style={`color:${t.sub}`}>⋮</span>
+  </div>
+
+  <div class="relative overflow-hidden" style={`background:${t.bg};color:${t.fg};font-family:${t.font}`}>
+
+    {spec.scene === 'lumo' && (
+      <!-- ============ MINIMALISM · LUMO ============ -->
+      <div class={`p-4 ${compact ? '' : 'md:p-5'}`}>
+        <div class="flex items-center gap-3">
+          <span class="text-[11px] font-semibold tracking-[.25em]">{spec.brand}</span>
+          <span class="mx-auto flex gap-3">
+            {spec.nav.map((n) => <span class="hidden text-[9px] sm:inline" style={`color:${t.sub}`}>{n}</span>)}
+          </span>
+          <span class="text-[10px]" style={`color:${t.sub}`}>⌕</span>
+          <span class="rounded-full px-3 py-1.5 text-[9px] font-semibold" style={`background:${t.accent};color:${t.accentFg}`}>立即购买</span>
+        </div>
+        <div class="relative mt-5 grid grid-cols-2 items-center gap-4" style={`min-height:${compact ? 120 : 150}px`}>
+          <p class="absolute right-0 top-0 text-right text-[8px] leading-relaxed" style={`color:${t.sub}`}>让专注成为<br/>一种日常</p>
+          <div>
+            <p class="font-bold leading-[1.12]" style={`font-size:${fs(28)}px;${titleStyle}`}>{spec.heroTitle}<br/>{spec.heroTitle2}</p>
+            <p class="mt-2.5 text-[10.5px]" style={`color:${t.sub}`}>{spec.heroSub}</p>
+            <span class="mt-4 inline-block rounded-full px-4 py-2 text-[9.5px] font-semibold" style={pill}>{spec.cta}</span>
+          </div>
+          <!-- 产品：圆角设备悬浮在石台上 -->
+          <div class="relative mx-auto h-full w-full max-w-[190px]">
+            <div class="absolute left-1/2 top-3 h-16 w-16 -translate-x-1/2 rounded-[18px]" style="background:linear-gradient(150deg,#FFFFFF 20%,#E6E6E1 100%);box-shadow:0 16px 28px rgba(0,0,0,.14), inset 0 1px 0 #fff">
+              <span class="absolute right-3.5 top-3.5 h-2 w-2 rounded-full" style="background:radial-gradient(circle at 35% 35%,#F5F5F3,#C9C9C4)"></span>
+            </div>
+            <div class="absolute bottom-2 left-1/2 h-10 w-24 -translate-x-1/2" style="background:linear-gradient(170deg,#EDEDEA 0%,#D6D6D1 60%,#C4C4BF 100%);clip-path:polygon(8% 0,92% 0,100% 100%,0 100%);transform:translateX(-50%)"></div>
+            <div class="absolute bottom-0 left-1/2 h-1.5 w-28 -translate-x-1/2 rounded-full" style="background:radial-gradient(ellipse,rgba(0,0,0,.10),transparent 70%)"></div>
+          </div>
+        </div>
+        <div class="mt-1 flex items-center justify-end gap-2 text-[8.5px]" style={`color:${t.sub}`}>
+          <span>01 / 03</span><span class="text-[10px]">→</span>
+        </div>
+      </div>
+    )}
+
+    {spec.scene === 'vertex' && (
+      <!-- ============ SWISS · VERTEX ============ -->
+      <div>
+        <div class="flex items-center gap-2 border-b px-3 py-2.5" style={`border-color:${t.cardBorder}`}>
+          <span class="text-[12px] font-black tracking-wide">{spec.brand}</span>
+          <span class="mx-auto flex gap-4">
+            {spec.nav.map((n) => <span class="hidden text-[8.5px] font-bold tracking-widest sm:inline">{n}</span>)}
+          </span>
+          <span class="text-[8.5px] font-bold">EN / 中文</span>
+          <span class="text-[13px] leading-none">≡</span>
+        </div>
+        <div class="grid grid-cols-3" style={`min-height:${compact ? 140 : 165}px`}>
+          <div class="col-span-1 flex flex-col justify-center p-3.5">
+            <p class="font-black leading-[.95]" style={`font-size:${fs(27)}px;${titleStyle}`}>{spec.heroTitle}<br/>{spec.heroTitle2?.split(' ')[0]}<span class="font-black" style={`color:${t.accent}`}>/</span></p>
+            <div class="mt-3 h-1 w-10" style={`background:${t.accent}`}></div>
+          </div>
+          <div class="col-span-1 flex flex-col justify-center border-x p-3.5" style={`border-color:${t.cardBorder}`}>
+            <p class="text-[13.5px] font-bold leading-snug">用设计<br/>构建更好的未来</p>
+            <p class="mt-2 text-[7.5px] leading-[1.7] text-justify" style={`color:${t.sub}`}>我们是一家专注品牌与数字体验的设计工作室，通过策略、设计与技术，塑造创新未来。</p>
+            <span class="mt-2.5 inline-block w-max border px-2.5 py-1.5 text-[8.5px] font-bold" style={`border-color:${t.fg}`}>{spec.cta}</span>
+          </div>
+          <div class="col-span-1 flex flex-col justify-between p-3.5" style={`background:${t.accent};color:#fff`}>
+            <p class="font-black leading-[1.02]" style={`font-size:${fs(16.5)}px;${titleStyle}`}>DESIGN<br/>FOR A<br/>BRIGHTER<br/>TOMORROW.</p>
+            <p class="text-[7px] font-bold tracking-widest">© 2024 VERTEX STUDIO</p>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {spec.scene === 'paper' && (
+      <!-- ============ EDITORIAL · PAPER ROOM ============ -->
+      <div class={`p-4 ${compact ? '' : 'md:p-5'}`}>
+        <div class="flex items-center gap-2">
+          <span class="text-[11.5px] font-bold" style={titleStyle}>{spec.brand}</span>
+          <span class="mx-auto flex gap-3.5">
+            {spec.nav.map((n) => <span class="hidden text-[9px] sm:inline" style={`color:${t.sub}`}>{n}</span>)}
+          </span>
+          <span class="text-[10px]" style={`color:${t.sub}`}>⌕</span>
+        </div>
+        <div class="mt-4 grid grid-cols-5 gap-4">
+          <div class="col-span-2 flex flex-col justify-center">
+            <p class="font-bold leading-[1.18]" style={`font-size:${fs(20)}px;${titleStyle}`}>{spec.heroTitle}<br/>{spec.heroTitle2}</p>
+            <p class="mt-2.5 whitespace-pre-line text-[8.5px] leading-[1.8]" style={`color:${t.sub}`}>{spec.heroSub}</p>
+            <span class="mt-2.5 text-[9.5px] font-semibold" style={`color:${t.accent}`}>{spec.cta}</span>
+          </div>
+          <div class="col-span-2 overflow-hidden rounded-lg" style="box-shadow:0 6px 14px rgba(0,0,0,.12)">
+            <div class="relative h-full min-h-[120px] w-full" style="background:linear-gradient(180deg,#B7CBDD 0%,#D9CBB2 48%,#9C8A67 100%)">
+              <span class="absolute left-3 top-2.5 h-6 w-6 rounded-full" style="background:radial-gradient(circle,#FFF9E8 30%,#F0D9A0 100%);box-shadow:0 0 12px rgba(255,240,190,.9)"></span>
+              <span class="absolute bottom-6 left-0 h-8 w-full" style="background:linear-gradient(180deg,transparent,#7E6D50)"></span>
+              <span class="absolute bottom-2 left-3 h-5 w-9 rounded-sm" style="background:linear-gradient(160deg,#8A6B4F,#5E4632)"></span>
+              <span class="absolute bottom-2 left-14 h-4 w-4 rounded-full" style="background:#E8E2D4"></span>
+              <p class="absolute right-2 top-2 text-[7.5px] leading-relaxed" style="color:#6E5C3F;font-family:serif;font-style:italic;transform:rotate(-2deg)">生活不在别处，<br/>就在此刻。</p>
+            </div>
+          </div>
+          <div class="col-span-1 flex flex-col justify-between gap-2">
+            {spec.features!.map((f) => (
+              <div class="flex flex-1 items-start gap-1.5 border-b pb-1.5" style={`border-color:${t.cardBorder}`}>
+                <span class="mt-0.5 h-6 w-7 shrink-0 rounded-sm" style="background:linear-gradient(150deg,#C9D5C2,#8FA487)"></span>
+                <span>
+                  <p class="text-[8px] font-semibold leading-tight">{f.t}</p>
+                  <p class="text-[7px]" style={`color:${t.sub}`}>{f.s}</p>
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )}
+
+    {spec.scene === 'aurora' && (
+      <!-- ============ GLASSMORPHISM · AURORA ============ -->
+      <div class={`relative p-4 ${compact ? '' : 'md:p-5'}`} style={`min-height:${compact ? 170 : 200}px`}>
+        <!-- 山景剪影 + 雾 -->
+        <div class="absolute inset-x-0 bottom-0 h-2/3" style="background:linear-gradient(180deg,rgba(30,27,75,.0),rgba(30,27,75,.35));clip-path:polygon(0 100%,0 62%,18% 34%,34% 58%,52% 18%,70% 52%,86% 30%,100% 48%,100% 100%);opacity:.75"></div>
+        <div class="absolute inset-x-0 bottom-0 h-1/3" style="background:linear-gradient(180deg,transparent,rgba(255,255,255,.16))"></div>
+        <div class="relative z-[1]">
+          <div class="flex items-center gap-3">
+            <span class="text-[11.5px] font-bold">{spec.brand}</span>
+            <span class="mx-auto flex gap-3">
+              {spec.nav.map((n) => <span class="hidden text-[9px] sm:inline" style="color:rgba(255,255,255,.8)">{n}</span>)}
+            </span>
+            <span class="rounded-full px-3 py-1.5 text-[8.5px] font-semibold" style="background:rgba(255,255,255,.28);color:#fff;backdrop-filter:blur(8px)">立即体验</span>
+          </div>
+          <div class="mt-4 grid grid-cols-2 items-center gap-4">
+            <div>
+              <p class="font-bold leading-[1.2] text-white" style={`font-size:${fs(25)}px;${titleStyle}text-shadow:0 2px 12px rgba(30,27,75,.35)`}>{spec.heroTitle}<br/>{spec.heroTitle2}</p>
+              <p class="mt-2 whitespace-pre-line text-[9px] leading-[1.8]" style="color:rgba(255,255,255,.8)">{spec.heroSub}</p>
+              <span class="mt-3 inline-block rounded-full bg-white px-4 py-2 text-[9.5px] font-bold" style="color:#3B2E6E;box-shadow:0 6px 18px rgba(30,27,75,.35)">{spec.cta}</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2.5">
+              {spec.features!.slice(0, 3).map((f) => (
+                <div class="rounded-2xl p-2.5" style={`background:${t.card};border:1px solid ${t.cardBorder};backdrop-filter:${t.blur};box-shadow:0 8px 20px rgba(30,27,75,.18)`}>
+                  <span class="mb-1.5 flex h-4 w-4 items-center justify-center rounded-lg text-[8px]" style="background:rgba(255,255,255,.5);color:#3B2E6E">✦</span>
+                  <p class="text-[8.5px] font-semibold text-white">{f.t}</p>
+                  <p class="text-[6.5px]" style="color:rgba(255,255,255,.75)">{f.s}</p>
+                </div>
+              ))}
+              <div class="rounded-2xl p-2.5" style={`background:${t.card};border:1px solid ${t.cardBorder};backdrop-filter:${t.blur};box-shadow:0 8px 20px rgba(30,27,75,.18)`}>
+                <p class="text-[7.5px] font-semibold leading-snug text-white">好的创意<br/>值得被看见。</p>
+                <svg viewBox="0 0 60 18" class="mt-1 w-full"><path d="M0 14 L10 10 L20 12 L30 6 L40 9 L50 3 L60 5" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1.5"/><circle cx="50" cy="3" r="1.6" fill="#fff"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {spec.scene === 'tasko' && (
+      <!-- ============ BENTO · TASKO ============ -->
+      <div class={`p-3.5 ${compact ? '' : 'md:p-4'}`}>
+        <div class="flex items-center gap-2">
+          <span class="text-[10px] font-bold">{spec.brand}</span>
+          <span class="mx-auto flex gap-2.5">
+            {spec.nav.map((n) => <span class="hidden text-[8px] sm:inline" style={`color:${t.sub}`}>{n}</span>)}
+          </span>
+          <span class="text-[8px]" style={`color:${t.sub}`}>登录</span>
+          <span class="rounded-full px-2.5 py-1 text-[8px] font-semibold" style={`background:${t.fg};color:${t.bg}`}>免费注册</span>
+        </div>
+        <div class="mt-3 grid grid-cols-4 gap-2.5" style={`min-height:${compact ? 130 : 150}px`}>
+          <div class="col-span-1 rounded-2xl p-3" style={cardCss}>
+            <p class="text-[12px] font-bold leading-snug">{spec.heroTitle}<br/>{spec.heroTitle2}</p>
+            <p class="mt-1.5 text-[7px] leading-relaxed" style={`color:${t.sub}`}>帮助你管理任务、笔记与日程，让每一天更专注。</p>
+            <span class="mt-2 inline-block rounded-full px-2.5 py-1 text-[7.5px] font-semibold" style={`background:${t.accent};color:${t.accentFg}`}>{spec.cta}</span>
+            <div class="mt-2.5 flex items-center">
+              <span class="-mr-1 h-4 w-4 rounded-full border-2 border-white" style="background:#F59E0B"></span>
+              <span class="-mr-1 h-4 w-4 rounded-full border-2 border-white" style="background:#34D399"></span>
+              <span class="h-4 w-4 rounded-full border-2 border-white" style="background:#60A5FA"></span>
+              <span class="ml-1.5 text-[6.5px] font-semibold" style={`color:${t.sub}`}>+12K 全世界用户的选择</span>
+            </div>
+          </div>
+          <div class="col-span-1 flex flex-col rounded-2xl p-3" style={cardCss}>
+            <p class="text-[7.5px] font-bold" style={`color:${t.sub}`}>◀ 一月 2024 ▶</p>
+            <div class="mt-1 grid grid-cols-7 gap-x-1 gap-y-0.5 text-center">
+              {Array.from({ length: 28 }).map((_, i) => (
+                <span class={`text-[5px] leading-[1.6] ${i === 16 ? 'font-bold' : ''}`} style={`color:${i === 16 ? '#fff' : t.sub};${i === 16 ? `background:${t.accent};border-radius:999px;` : ''}`}>{i + 1}</span>
+              ))}
+            </div>
+            <div class="mt-auto rounded-xl p-1.5" style={`background:${t.bg}`}>
+              <p class="text-[7.5px] font-bold">任务 <span style={`color:${t.accent}`}>5</span></p>
+              <p class="text-[6px]" style={`color:${t.sub}`}>今日待完成 ✓</p>
+            </div>
+          </div>
+          <div class="col-span-1 flex flex-col rounded-2xl p-3" style="background:#E2F4E8;border-radius:16px">
+            <p class="text-[7.5px] font-semibold" style="color:#3E7C5B">⏱ 专注时段</p>
+            <p class="mt-0.5 text-[14px] font-bold" style="color:#1F5C40">3h 24m</p>
+            <span class="mt-0.5 w-max rounded-full px-1.5 py-0.5 text-[6px] font-bold" style="background:#34B37A;color:#fff">+40%</span>
+            <div class="mt-auto flex h-10 items-end gap-1">
+              {[40, 65, 45, 80, 55, 90, 70].map((h, i) => (
+                <span class="flex-1 rounded-sm" style={`height:${h}%;background:${i === 5 ? '#34B37A' : '#B2E0C8'}`}></span>
+              ))}
+            </div>
+          </div>
+          <div class="col-span-1 grid grid-rows-2 gap-2.5">
+            <div class="rounded-2xl p-2.5" style={cardCss}>
+              <p class="text-[8.5px] font-bold">笔记 <span style={`color:${t.accent}`}>12</span></p>
+              <div class="mt-1.5 h-1.5 w-full rounded" style={`background:${t.sub};opacity:.2`}></div>
+              <div class="mt-1 h-1.5 w-2/3 rounded" style={`background:${t.sub};opacity:.2`}></div>
+              <div class="mt-1.5 flex gap-1"><span class="h-2.5 w-2.5 rounded" style={`background:${t.accent};opacity:.35`}></span><span class="h-2.5 w-2.5 rounded" style={`background:${t.accent};opacity:.2`}></span></div>
+            </div>
+            <div class="relative overflow-hidden rounded-2xl p-2.5" style="background:linear-gradient(160deg,#B7CBE0,#7E9BB8 55%,#46648A)">
+              <p class="text-[8.5px] font-bold leading-snug text-white">小小的进步<br/>也是一种伟大</p>
+              <p class="mt-0.5 text-[6.5px] text-white/85">Keep going →</p>
+              <span class="absolute -right-2 -top-2 h-8 w-8 rounded-full" style="background:rgba(255,255,255,.22)"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {spec.scene === 'generic' && (
+      <!-- ============ 通用增强场景 ============ -->
+      <div class={`p-4 ${compact ? '' : 'md:p-5'}`}>
+        <div class="flex items-center gap-2.5">
+          <span class="text-[10.5px] font-bold" style={titleStyle}>{spec.brand}</span>
+          <span class="mx-auto flex gap-3">
+            {spec.nav.map((n) => <span class="hidden text-[9px] sm:inline" style={`color:${t.sub}`}>{n}</span>)}
+          </span>
+          {spec.navExt?.map((n) => <span class="hidden text-[8px] md:inline" style={`color:${t.sub}`}>{n}</span>)}
+          <span class="rounded-full px-3 py-1.5 text-[8.5px] font-semibold" style={pill}>{spec.cta.replace(' →', '')}</span>
+        </div>
+
+        <div class="mt-4 grid grid-cols-5 items-center gap-4">
+          <div class="col-span-2">
+            <p class="font-bold leading-[1.1]" style={`font-size:${fs(Number((t.heroSize ?? '22px').replace('px', '')) + 4)}px;${titleStyle}`}>{spec.heroTitle}<br/>{spec.heroTitle2}</p>
+            <p class="mt-2 text-[9.5px] leading-relaxed" style={`color:${t.sub}`}>{spec.heroSub}</p>
+            {spec.heroCaption && <p class="mt-1.5 text-[7.5px] uppercase tracking-widest" style={`color:${t.sub};opacity:.85`}>{spec.heroCaption}</p>}
+            <span class="mt-3 inline-block rounded-full px-4 py-2 text-[9.5px] font-semibold" style={pill}>{spec.cta} →</span>
+          </div>
+
+          <!-- 右侧视觉面板 -->
+          <div class="col-span-3 relative flex h-[120px] items-center justify-center overflow-hidden" style={`background:${t.card};border:1px solid ${t.cardBorder};border-radius:${t.radius};backdrop-filter:${t.blur ?? 'none'};box-shadow:${t.shadow ?? 'none'}`}>
+            {spec.panel === 'shapes' && (() => {
+              const c = t.triCards ?? [t.accent, t.accent, t.accent];
+              return (
+                <div class="relative flex items-center gap-4">
+                  <span class="h-12 w-12 rounded-full" style={`background:${c[0]};box-shadow:0 8px 16px rgba(0,0,0,.12)`}></span>
+                  <span class="h-0 w-0" style={`border-left:17px solid transparent;border-right:17px solid transparent;border-bottom:30px solid ${c[1]};filter:drop-shadow(0 6px 8px rgba(0,0,0,.12))`}></span>
+                  <span class="h-9 w-14 rotate-3" style={`background:${c[2]};border-radius:${t.radius};box-shadow:0 8px 16px rgba(0,0,0,.12)`}></span>
+                  <span class="absolute -left-5 -top-4 h-2 w-2 rounded-full" style={`background:${c[0]};opacity:.6`}></span>
+                  <span class="absolute -bottom-3 right-2 h-1.5 w-1.5 rounded-full" style={`background:${c[2]};opacity:.6`}></span>
+                </div>
+              );
+            })()}
+            {spec.panel === 'device' && (
+              <div class="relative">
+                <div class="relative h-14 w-24 rounded-2xl" style={`background:linear-gradient(150deg,#fff 25%,color-mix(in srgb,${t.accent} 18%,#fff) 100%);box-shadow:0 12px 22px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.95);border:1px solid ${t.cardBorder}`}>
+                  <span class="absolute right-2.5 top-2.5 h-2.5 w-2.5 rounded-full" style={`background:radial-gradient(circle at 35% 35%,#fff,${t.accent})`}></span>
+                  <span class="absolute bottom-2.5 left-2.5 h-1.5 w-10 rounded" style={`background:${t.accent};opacity:.45`}></span>
+                  <span class="absolute bottom-2.5 right-2.5 h-1.5 w-4 rounded" style={`background:${t.accent};opacity:.25`}></span>
+                </div>
+                <div class="mx-auto h-5 w-16" style={`background:linear-gradient(180deg,${t.accent}33,${t.accent}11);clip-path:polygon(10% 0,90% 0,100% 100%,0 100%)`}></div>
+                <div class="mx-auto mt-0.5 h-1.5 w-20 rounded-full" style="background:radial-gradient(ellipse,rgba(0,0,0,.14),transparent 70%)"></div>
+              </div>
+            )}
+            {spec.panel === 'screen' && (
+              <div class="flex w-5/6 items-center gap-3.5 rounded-xl p-3.5" style="background:linear-gradient(180deg,#3B4754,#222D38);box-shadow:inset 0 2px 8px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.25)">
+                <div class="flex-1">
+                  <div class="h-2 w-full rounded" style="background:rgba(255,255,255,.4)"></div>
+                  <div class="mt-1.5 h-2 w-2/3 rounded" style="background:rgba(255,255,255,.22)"></div>
+                  <div class="mt-2 h-1.5 w-1/2 rounded" style={`background:${t.accent};box-shadow:0 0 8px ${t.accent}66`}></div>
+                </div>
+                <span class="h-8 w-8 rounded-full border-[3px]" style={`border-color:#5B6B7A;background:conic-gradient(${t.accent} 30%, #94A3B8 30% 100%);box-shadow:0 2px 6px rgba(0,0,0,.4)`}></span>
+              </div>
+            )}
+            {spec.panel === 'chart' && (() => {
+              const bars = [35, 60, 45, 85, 55, 95, 70];
+              return (
+                <div class="w-5/6">
+                  <div class="relative flex h-16 items-end gap-1.5" style={`border-bottom:2px solid color-mix(in srgb,${t.sub} 30%,transparent)`}>
+                    {bars.map((h, i) => (
+                      <span class="flex-1 rounded-t" style={`height:${h}%;background:${i === 5 ? t.accent : `color-mix(in srgb, ${t.accent} 32%, transparent)`};box-shadow:${i === 5 ? `0 0 12px ${t.accent}55` : 'none'}`}></span>
+                    ))}
+                  </div>
+                  <div class="mt-1.5 flex justify-between text-[6px]" style={`color:${t.sub}`}><span>MON</span><span>WED</span><span>FRI</span><span>SUN</span></div>
+                </div>
+              );
+            })()}
+            {spec.panel === 'photo' && (
+              <div class="relative h-full w-full overflow-hidden" style="background:linear-gradient(180deg,#9DB6CE 0%,#D6C9A8 55%,#7E8B6E 100%)">
+                <span class="absolute left-4 top-2.5 h-7 w-7 rounded-full" style="background:radial-gradient(circle,#FFF9E8 30%,#F0D9A0 100%);box-shadow:0 0 14px rgba(255,240,190,.95)"></span>
+                <span class="absolute bottom-0 left-0 h-8 w-full" style="background:linear-gradient(180deg,transparent,rgba(50,60,42,.6))"></span>
+                <span class="absolute bottom-2 left-4 h-6 w-11 rounded-sm" style="background:linear-gradient(160deg,#8A6B4F,#5E4632)"></span>
+                <span class="absolute bottom-2 left-16 h-5 w-5 rounded-full" style="background:#E8E2D4"></span>
+              </div>
+            )}
+            {spec.panel === 'mountain' && (
+              <div class="relative h-full w-full">
+                <span class="absolute inset-x-0 bottom-0 h-4/5" style="background:linear-gradient(180deg,rgba(13,15,30,.5),rgba(13,15,30,.85));clip-path:polygon(0 100%,0 55%,22% 20%,40% 60%,58% 8%,78% 50%,100% 30%,100% 100%)"></span>
+                <span class="absolute right-5 top-2.5 h-4 w-4 rounded-full" style="background:radial-gradient(circle,#fff,rgba(255,255,255,.2));box-shadow:0 0 10px rgba(255,255,255,.8)"></span>
+                <span class="absolute left-5 top-3 h-1 w-1 rounded-full bg-white"></span>
+                <span class="absolute left-12 top-6 h-0.5 w-0.5 rounded-full bg-white/70"></span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {spec.features && (
+          <div class="mt-4 grid grid-cols-3 gap-3">
+            {spec.features.map((f, i) => (
+              <div class="p-3" style={`background:${t.triCards ? t.triCards[i] : t.card};border:1px solid ${t.triCards ? 'transparent' : t.cardBorder};border-radius:${t.radius};backdrop-filter:${t.blur ?? 'none'};box-shadow:${t.shadow ?? 'none'};color:${t.triCards ? '#fff' : 'inherit'}`}>
+                <span class="mb-2 flex items-center gap-1.5">
+                  <span class="flex h-4 w-4 items-center justify-center rounded-md text-[7px]" style={`background:${t.triCards ? 'rgba(255,255,255,.85)' : t.accent};color:${t.triCards ? t.fg : t.accentFg}`}>{ICONS[i]}</span>
+                  <span class="text-[9.5px] font-bold" style={titleStyle}>{f.t}</span>
+                </span>
+                <p class="text-[8px]" style={`color:${t.triCards ? 'rgba(255,255,255,.9)' : t.sub}`}>{f.s}</p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div class="mt-3 flex items-center justify-between text-[7px]" style={`color:${t.sub}`}>
+          <span>© 2024 {spec.brand}</span>
+          <span class="flex gap-2"><span>◦</span><span>◦</span><span>◦</span></span>
+        </div>
+      </div>
+    )}
+  </div>
+</div>

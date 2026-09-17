@@ -1,0 +1,39 @@
+---
+import type { StyleThumbSpec } from '@/lib/style-thumbs';
+import StyleThumb from '@/components/StyleThumb.astro';
+import type { Locale } from '@/lib/i18n';
+
+interface Props {
+  spec: StyleThumbSpec;
+  index: number;
+  locale: Locale;
+}
+const { spec, index, locale } = Astro.props;
+const primary = locale === 'zh';
+const nameMain = primary ? spec.nameZh : spec.nameEn;
+const nameSub = primary ? spec.nameEn : spec.nameZh;
+const num = String(index + 1).padStart(2, '0');
+---
+
+<a
+  href={`/${locale === 'zh' ? '' : 'en/'}styles/${spec.slug}`}
+  class="group grid gap-6 rounded-2xl border border-line bg-raised p-5 transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md md:grid-cols-[240px_1fr] md:p-7"
+>
+  <!-- 左：文字 -->
+  <div class="flex flex-row items-start gap-5 md:flex-col md:gap-0">
+    <p class="font-serif text-4xl font-semibold text-ink-3/70 transition-colors group-hover:text-accent md:mb-4">{num}</p>
+    <div>
+      <h2 class="font-serif text-2xl font-semibold leading-tight md:text-3xl">{nameMain}</h2>
+      <p class="mt-1 text-lg text-ink-2 md:text-xl">{nameSub}</p>
+    </div>
+    <div class="ml-auto self-center text-right md:ml-0 md:mt-auto md:self-end md:text-left">
+      <p class="text-[11px] uppercase tracking-wider text-ink-3">{spec.keywords.en}</p>
+      <p class="mt-0.5 text-xs text-ink-3">{spec.keywords.zh}</p>
+    </div>
+  </div>
+
+  <!-- 右：风格实况缩略 -->
+  <div class="transition-transform duration-300 group-hover:scale-[1.01]">
+    <StyleThumb spec={spec} />
+  </div>
+</a>

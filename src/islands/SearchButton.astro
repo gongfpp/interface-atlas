@@ -1,0 +1,25 @@
+---
+import { type Locale } from '@/lib/i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const label = locale === 'zh' ? '搜索' : 'Search';
+---
+
+<button
+  id="search-open"
+  type="button"
+  class="flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-sm text-ink-2 transition-colors hover:border-line-strong hover:text-ink"
+  aria-label={label}
+>
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path>
+  </svg>
+  <span class="hidden sm:inline">{label}</span>
+  <kbd class="hidden rounded border border-line px-1 text-[10px] md:inline">⌘K</kbd>
+</button>
+
+<script is:inline>
+  document.getElementById('search-open')?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('ia:search-open'));
+  });
+</script>

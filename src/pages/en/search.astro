@@ -1,0 +1,16 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Search · Interface Atlas" description="Search frontend design concepts" locale="en">
+  <section class="pt-20 pb-10 text-center">
+    <h1 class="font-serif text-3xl font-semibold">Search</h1>
+    <p class="mx-auto mt-3 max-w-md text-sm text-ink-3">
+      Describe it loosely — e.g. "button squishes on click" or "fixed menu on the left".
+    </p>
+    <noscript><p class="mt-6 text-sm text-accent">Search requires JavaScript.</p></noscript>
+  </section>
+  <script is:inline>
+    window.dispatchEvent(new CustomEvent('ia:search-open'));
+  </script>
+</BaseLayout>

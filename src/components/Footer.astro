@@ -1,0 +1,12 @@
+---
+import { type Locale, t } from '@/lib/i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+---
+
+<footer class="mt-24 border-t border-line py-10 text-sm text-ink-3">
+  <div class="mx-auto flex w-full max-w-6xl flex-col gap-2 px-5 md:px-8">
+    <p class="font-serif text-ink-2">界面图谱 · Interface Atlas</p>
+    <p>{t('footerNote', locale)}</p>
+  </div>
+</footer>

@@ -1,0 +1,42 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ConceptCard from '@/components/ConceptCard.astro';
+import StyleRow from '@/components/StyleRow.astro';
+import { getConcepts, type ConceptType } from '@/lib/content';
+import { TYPE_LABELS, type Locale } from '@/lib/i18n';
+import { STYLE_SPECS } from '@/lib/style-thumbs';
+
+export async function getStaticPaths() {
+  const types = ['components', 'patterns', 'styles', 'pages', 'motion'];
+  return types.map((type) => ({ params: { type } }));
+}
+
+interface Props {
+  type: ConceptType;
+}
+const { type } = Astro.params as { type: ConceptType };
+const locale: Locale = 'en';
+const isStyles = type === 'styles';
+const concepts = (await getConcepts(type)).sort((a, b) => a.id.localeCompare(b.id));
+---
+
+<BaseLayout
+  title={`${TYPE_LABELS[type].en} · Interface Atlas`}
+  description={`All ${TYPE_LABELS[type].en.toLowerCase()} design concepts with runnable demos and copyable prompts.`}
+  locale={locale}
+>
+  <section class="pt-14 pb-8">
+    <h1 class="font-serif text-3xl font-semibold md:text-4xl">{TYPE_LABELS[type].en}</h1>
+    <p class="mt-2 text-sm text-ink-3">{isStyles ? `${STYLE_SPECS.length} styles · click any to see live component demos` : `${concepts.length} concepts`}</p>
+  </section>
+
+  {isStyles ? (
+    <div class="flex flex-col gap-5 pb-20">
+      {STYLE_SPECS.map((spec, i) => <StyleRow spec={spec} index={i} locale={locale} />)}
+    </div>
+  ) : (
+    <div class="grid gap-3 pb-20 sm:grid-cols-2 md:grid-cols-3">
+      {concepts.map((c) => <ConceptCard concept={c} locale={locale} />)}
+    </div>
+  )}
+</BaseLayout>

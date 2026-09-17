@@ -1,0 +1,18 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { t } from '@/lib/i18n';
+---
+
+<BaseLayout title="搜索 · 界面图谱" description="搜索前端设计概念" locale="zh" enPath="/search">
+  <section class="pt-20 pb-10 text-center">
+    <h1 class="font-serif text-3xl font-semibold">搜索</h1>
+    <p class="mx-auto mt-3 max-w-md text-sm text-ink-3">
+      输入模糊描述也可以，比如「按钮点下去缩一下」「左边有菜单的后台」。
+    </p>
+    <noscript><p class="mt-6 text-sm text-accent">搜索需要启用 JavaScript。</p></noscript>
+  </section>
+  <script is:inline>
+    // 落地即打开命令面板式搜索
+    window.dispatchEvent(new CustomEvent('ia:search-open'));
+  </script>
+</BaseLayout>

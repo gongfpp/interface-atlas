@@ -1,0 +1,38 @@
+---
+import type { Concept } from '@/lib/content';
+import { conceptPath } from '@/lib/content';
+import { TYPE_LABELS, type Locale } from '@/lib/i18n';
+import { demos } from '@/islands/demos/registry';
+
+interface Props {
+  concept: Concept;
+  locale: Locale;
+}
+const { concept, locale } = Astro.props;
+const href = conceptPath(concept, locale);
+const Demo = concept.data.demo ? demos[concept.data.demo.component] : undefined;
+---
+
+<a
+  href={href}
+  class="group flex flex-col overflow-hidden rounded-lg border border-line bg-raised transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-sm"
+>
+  {Demo && (
+    <div class="demo-stage-checker relative h-44 overflow-hidden border-b border-line" aria-hidden="true">
+      <div class="pointer-events-none select-none">
+        <Demo mode="default" />
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-t from-transparent to-transparent transition-colors group-hover:bg-accent/5"></div>
+    </div>
+  )}
+  <div class="flex flex-1 flex-col gap-1.5 p-4">
+    <div class="flex items-baseline justify-between gap-3">
+      <span class="font-serif text-base font-semibold">{concept.data.name[locale]}</span>
+      <span class="text-xs text-ink-3">{concept.data.name[locale === 'zh' ? 'en' : 'zh']}</span>
+    </div>
+    <p class="line-clamp-2 text-sm text-ink-2">{concept.data.description[locale]}</p>
+    <span class="mt-auto pt-1 text-[11px] uppercase tracking-wider text-ink-3 transition-colors group-hover:text-accent">
+      {TYPE_LABELS[concept.conceptType][locale]}
+    </span>
+  </div>
+</a>

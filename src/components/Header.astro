@@ -1,0 +1,52 @@
+---
+import { TYPE_LABELS, localePath, type Locale } from '@/lib/i18n';
+import SearchButton from '@/islands/SearchButton.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const types = Object.keys(TYPE_LABELS);
+const otherLocale: Locale = locale === 'zh' ? 'en' : 'zh';
+const switchTo = localePath(Astro.url.pathname.replace(/^\/en(?=\/|$)/, '') || '/', otherLocale);
+---
+
+<header class="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur">
+  <div class="mx-auto flex h-14 w-full max-w-6xl items-center gap-6 px-5 md:px-8">
+    <a href={localePath('/', locale)} class="font-serif text-lg font-semibold tracking-tight">
+      界面图谱<span class="mx-2 text-ink-3 font-sans text-xs font-normal">Interface Atlas</span>
+    </a>
+    <nav class="hidden items-center gap-4 text-sm text-ink-2 md:flex" aria-label="主导航">
+      {types.map((t) => (
+        <a class="transition-colors hover:text-accent" href={localePath(`/${t}`, locale)}>
+          {TYPE_LABELS[t][locale]}
+        </a>
+      ))}
+      <a class="transition-colors hover:text-accent" href={localePath('/gallery', locale)}>
+        {locale === 'zh' ? '图库' : 'Gallery'}
+      </a>
+    </nav>
+    <div class="ml-auto flex items-center gap-3">
+      <SearchButton locale={locale} />
+      <a href={switchTo} class="text-sm text-ink-2 hover:text-accent" lang={otherLocale}>
+        {otherLocale === 'en' ? 'EN' : '中文'}
+      </a>
+      <button
+        id="theme-toggle"
+        type="button"
+        aria-label="切换深色模式"
+        class="rounded-full border border-line p-2 leading-none hover:border-line-strong"
+      >
+        <span class="dark:hidden">🌙</span><span class="hidden dark:inline">☀️</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const el = document.documentElement;
+    const dark = el.classList.toggle('dark');
+    try { localStorage.setItem('ia-theme', dark ? 'dark' : 'light'); } catch {}
+  });
+</script>

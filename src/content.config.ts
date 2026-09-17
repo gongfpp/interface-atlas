@@ -1,0 +1,172 @@
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
+
+/**
+ * 五大 Design Object Collection（PRD §6 / §33）。
+ * 内容为 YAML，双语字段全部必填（PRD §7a）。
+ */
+
+const bilingualText = z.object({
+  zh: z.string().min(1),
+  en: z.string().min(1),
+});
+
+const bilingualList = z.array(bilingualText);
+
+const baseSchema = z
+  .object({
+    status: z.enum(['draft', 'published']).default('draft'),
+
+    name: bilingualText,
+
+    /** 口语描述自由收录，服务搜索（PRD §42.2） */
+    aliases: z.array(z.string()).default([]),
+
+    category: z.array(z.string()).default([]),
+
+    description: bilingualText,
+
+    use_when: bilingualList.min(1),
+    avoid_when: bilingualList.min(1),
+
+    tags: z.array(z.string()).default([]),
+
+    variants: z
+      .array(
+        z.object({
+          id: z.string(),
+          name: bilingualText,
+          note: bilingualText.optional(),
+        }),
+      )
+      .min(1),
+
+    anatomy: z.array(z.string()).default([]),
+
+    applicable_styles: z.array(z.string()).default([]),
+    applicable_components: z.array(z.string()).default([]),
+    applicable_pages: z.array(z.string()).default([]),
+
+    related: z.array(z.string()).default([]),
+
+    compare: z
+      .object({
+        group: z.string(),
+        dimensions: z.record(z.string(), bilingualText),
+      })
+      .optional(),
+
+    demo: z
+      .object({
+        /** Demo 岛在注册表中的键（src/islands/demos） */
+        component: z.string(),
+        modes: z.array(z.enum(['default', 'dark', 'loading', 'variants'])).default(['default']),
+      })
+      .optional(),
+
+    sources: z
+      .array(
+        z.object({
+          name: z.string(),
+          url: z.string().url(),
+        }),
+      )
+      .min(1),
+
+    /** PRD §18：CSS Concept + 实现要点 */
+    implementation: z
+      .object({
+        css: z.array(z.string()).min(1),
+        notes: bilingualText,
+      })
+      .optional(),
+
+    /** PRD §21：Style 条目的开发规格（仅 styles 使用） */
+    style_spec: z
+      .object({
+        typography: bilingualText,
+        color: bilingualText,
+        border: bilingualText,
+        shadow: bilingualText,
+        spacing: bilingualText,
+      })
+      .optional(),
+
+    prompts: z.object({
+      basic: bilingualText,
+      design: bilingualText,
+      implementation: bilingualText,
+      agent: bilingualText,
+    }),
+  })
+  .superRefine((entry, ctx) => {
+    // PRD §26：published 条目必须内容齐全（CI 另有脚本做全量校验）
+    if (entry.status !== 'published') return;
+    const required: Array<[string, unknown]> = [
+      ['description', entry.description],
+      ['use_when', entry.use_when],
+      ['avoid_when', entry.avoid_when],
+      ['variants', entry.variants],
+      ['prompts', entry.prompts],
+      ['sources', entry.sources],
+    ];
+    for (const [field, value] of required) {
+      if (value == null || (Array.isArray(value) && value.length === 0)) {
+        ctx.addIssue({
+          code: 'custom',
+          path: [field],
+          message: `published 条目缺少必填字段: ${field}`,
+        });
+      }
+    }
+  });
+
+export const collections = {
+  components: defineCollection({
+    loader: glob({ pattern: '*.yaml', base: './src/content/components' }),
+    schema: baseSchema,
+  }),
+  patterns: defineCollection({
+    loader: glob({ pattern: '*.yaml', base: './src/content/patterns' }),
+    schema: baseSchema,
+  }),
+  styles: defineCollection({
+    loader: glob({ pattern: '*.yaml', base: './src/content/styles' }),
+    schema: baseSchema,
+  }),
+  pages: defineCollection({
+    loader: glob({ pattern: '*.yaml', base: './src/content/pages' }),
+    schema: baseSchema,
+  }),
+  motion: defineCollection({
+    loader: glob({ pattern: '*.yaml', base: './src/content/motion' }),
+    schema: baseSchema,
+  }),
+  /**
+   * 灵感图库（PRD §43）：AI 生成的组件设计参考图集 + 可复现的生图 Prompt。
+   */
+  gallery: defineCollection({
+    loader: glob({ pattern: '*.yaml', base: './src/content/gallery' }),
+    schema: z.object({
+      status: z.enum(['draft', 'published']).default('published'),
+      name: bilingualText,
+      description: bilingualText,
+      related_component: z.string().optional(),
+      images: z
+        .array(
+          z.object({
+            file: z.string(),
+            title: bilingualText,
+          }),
+        )
+        .min(1),
+      /** 生图 Prompt（skill）：可直接复制到即梦 / Midjourney / DALL-E 等 */
+      prompt: bilingualText,
+      tips: bilingualList.default([]),
+      aliases: z.array(z.string()).default([]),
+    }),
+  }),
+};
+
+export const CONCEPT_TYPES = ['components', 'patterns', 'styles', 'pages', 'motion'] as const;
+export type ConceptType = (typeof CONCEPT_TYPES)[number];

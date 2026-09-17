@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Editorial Minimal 主题令牌（PRD §42.1）
+ * 黑白灰为主 + 单一强调色（朱砂），浅色默认。
+ */
+:root {
+  --color-paper: #fafaf7;
+  --color-paper-raised: #ffffff;
+  --color-ink: #17150f;
+  --color-ink-secondary: #57534a;
+  --color-ink-tertiary: #8a857a;
+  --color-line: #e5e2da;
+  --color-line-strong: #cfccc2;
+  --color-accent: #b4441f;
+  --color-accent-soft: #f6e8e1;
+  --color-code-bg: #f3f1ea;
+  --font-serif: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "Source Han Serif CN", Georgia, "Times New Roman", serif;
+  --font-sans: "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Microsoft YaHei", -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+}
+
+.dark {
+  --color-paper: #121210;
+  --color-paper-raised: #1c1b18;
+  --color-ink: #ecebe6;
+  --color-ink-secondary: #b3afa5;
+  --color-ink-tertiary: #7d786d;
+  --color-line: #2c2b26;
+  --color-line-strong: #454439;
+  --color-accent: #e8845d;
+  --color-accent-soft: #33221b;
+  --color-code-bg: #201f1b;
+}
+
+@theme inline {
+  --color-paper: var(--color-paper);
+  --color-raised: var(--color-paper-raised);
+  --color-ink: var(--color-ink);
+  --color-ink-2: var(--color-ink-secondary);
+  --color-ink-3: var(--color-ink-tertiary);
+  --color-line: var(--color-line);
+  --color-line-strong: var(--color-line-strong);
+  --color-accent: var(--color-accent);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-code-bg: var(--color-code-bg);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+html {
+  font-family: var(--font-sans);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 尊重系统减弱动效偏好（PRD §41 全站标准） */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+/* Demo 舞台底纹：让半透明/毛玻璃类 Demo 可见 */
+.demo-stage-checker {
+  background-image:
+    linear-gradient(45deg, color-mix(in srgb, var(--color-line) 60%, transparent) 25%, transparent 25%),
+    linear-gradient(-45deg, color-mix(in srgb, var(--color-line) 60%, transparent) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, color-mix(in srgb, var(--color-line) 60%, transparent) 75%),
+    linear-gradient(-45deg, transparent 75%, color-mix(in srgb, var(--color-line) 60%, transparent) 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
+
+/* Motion 播放器 Before 实例：冻结全部动效 */
+.no-motion *,
+.no-motion *::before,
+.no-motion *::after {
+  animation: none !important;
+  transition: none !important;
+}

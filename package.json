@@ -1,0 +1,39 @@
+{
+  "name": "interface-atlas",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "content:check": "node scripts/validate-content.mjs",
+    "search:build": "node scripts/build-search-index.mjs",
+    "search:test": "node scripts/test-golden-queries.mjs",
+    "prompts:build": "node scripts/build-prompts.mjs",
+    "api:build": "node scripts/build-api-layer.mjs",
+    "postbuild": "node scripts/build-api-layer.mjs"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.2.0",
+    "@huggingface/transformers": "^4.3.0",
+    "@tailwindcss/vite": "^4.1.0",
+    "astro": "^5.7.0",
+    "js-yaml": "^5.4.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.7.0"
+  },
+  "allowScripts": {
+    "esbuild@0.27.7": true,
+    "esbuild@0.25.12": true,
+    "sharp@0.34.5": true
+  }
+}

@@ -1,0 +1,92 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import type { Locale } from '@/lib/i18n';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('gallery');
+  return entries
+    .filter((e) => e.data.status === 'published')
+    .map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const locale: Locale = 'zh';
+---
+
+<BaseLayout title={`${d.name.zh} · 灵感图库 · 界面图谱`} description={d.description.zh.slice(0, 150)} locale={locale} enPath={`/gallery/${entry.id}`}>
+  <article class="pt-10">
+    <header class="border-b border-line pb-8">
+      <a href="/gallery" class="text-xs uppercase tracking-[0.2em] text-accent">灵感图库</a>
+      <h1 class="mt-3 font-serif text-4xl font-semibold md:text-5xl">{d.name.zh}</h1>
+      <p class="mt-2 text-lg text-ink-2">{d.name.en}</p>
+      <p class="mt-4 max-w-3xl leading-relaxed text-ink-2">{d.description.zh}</p>
+    </header>
+
+    <section class="py-10">
+      <h2 class="mb-4 font-serif text-xl font-semibold">生图 Prompt（可复现整套图）</h2>
+      <div class="rounded-xl border border-line bg-raised">
+        <div class="flex justify-end border-b border-line p-2">
+          <button id="copy-prompt-zh" data-text={d.prompt.zh} class="copy-btn rounded-lg bg-ink px-3 py-1.5 text-xs font-medium text-paper hover:opacity-85">⧉ 复制中文 Prompt</button>
+        </div>
+        <pre class="overflow-x-auto whitespace-pre-wrap p-4 font-mono text-[13px] leading-relaxed text-ink-2">{d.prompt.zh}</pre>
+        <div class="flex justify-end border-t border-line p-2">
+          <button id="copy-prompt-en" data-text={d.prompt.en} class="copy-btn rounded-lg border border-line px-3 py-1.5 text-xs text-ink-2 hover:border-accent hover:text-accent">⧉ Copy English prompt</button>
+        </div>
+        <pre class="overflow-x-auto whitespace-pre-wrap border-t border-line p-4 font-mono text-[13px] leading-relaxed text-ink-3">{d.prompt.en}</pre>
+      </div>
+      {d.tips.length > 0 && (
+        <ul class="mt-4 space-y-1 text-sm text-ink-2">
+          {d.tips.map((tip) => <li>💡 {tip.zh}</li>)}
+        </ul>
+      )}
+    </section>
+
+    <section class="pb-10">
+      <h2 class="mb-4 font-serif text-xl font-semibold">图集（{d.images.length} 张）</h2>
+      <div class="grid gap-5 sm:grid-cols-2">
+        {d.images.map((img, i) => (
+          <figure class="group">
+            <a href={img.file} target="_blank" rel="noopener noreferrer" class="block overflow-hidden rounded-xl border border-line">
+              <img
+                src={img.file}
+                alt={`${d.name.zh} ${img.title.zh}`}
+                loading={i < 2 ? 'eager' : 'lazy'}
+                width="1600"
+                height="2000"
+                class="w-full object-cover transition-transform duration-300 group-hover:scale-[1.01]"
+              />
+            </a>
+            <figcaption class="mt-2 flex items-baseline justify-between text-sm">
+              <span class="font-medium">{img.title.zh}</span>
+              <span class="text-xs text-ink-3">{img.title.en}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    {d.related_component && (
+      <section class="pb-16">
+        <a href={`/components/${d.related_component}`} class="text-sm text-accent hover:underline">
+          → 查看对应概念：{d.related_component}
+        </a>
+      </section>
+    )}
+  </article>
+
+  <script is:inline>
+    document.querySelectorAll('.copy-btn').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(btn.dataset.text);
+          const old = btn.textContent;
+          btn.textContent = '✓ 已复制';
+          try { navigator.sendBeacon?.('/api/log-prompt', JSON.stringify({ concept: 'gallery:' + location.pathname, layer: 'image', t: Date.now() })); } catch {}
+          setTimeout(() => (btn.textContent = old), 1500);
+        } catch {}
+      });
+    });
+  </script>
+</BaseLayout>

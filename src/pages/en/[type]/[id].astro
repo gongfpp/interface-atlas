@@ -1,0 +1,22 @@
+---
+import ConceptDetail from '@/components/ConceptDetail.astro';
+import { getConcepts, type Concept } from '@/lib/content';
+import { CONCEPT_TYPES } from '@/content.config';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const type of CONCEPT_TYPES) {
+    for (const entry of await getConcepts(type)) {
+      paths.push({ params: { type, id: entry.id }, props: { concept: entry as Concept } });
+    }
+  }
+  return paths;
+}
+
+interface Props {
+  concept: Concept;
+}
+const { concept } = Astro.props;
+---
+
+<ConceptDetail concept={concept} locale="en" />
