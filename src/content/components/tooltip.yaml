@@ -1,0 +1,149 @@
+status: published
+
+name:
+  zh: 工具提示
+  en: Tooltip
+
+aliases:
+  - 提示气泡
+  - 悬浮提示
+  - 气泡提示
+  - 悬停提示
+  - 小黑框提示
+  - title 提示
+  - 鼠标放上去显示的小提示
+
+category:
+  - Overlay
+  - Feedback
+
+description:
+  zh: >-
+    悬停在元素上短暂出现的小型文字气泡，用来解释图标按钮、缩写或被截断的文本。
+    纯提示、不可交互，移开即消失；通常延迟约 300ms 出现以避免扫过时闪烁。
+  en: >-
+    A small text bubble that appears briefly on hover, explaining icon buttons,
+    abbreviations or truncated text. Purely informational and non-interactive, it
+    disappears on mouse leave; usually shows after a ~300ms delay to avoid flicker
+    while moving across the screen.
+
+use_when:
+  - { zh: "纯图标按钮需要文字说明", en: "Icon-only buttons need a text label" }
+  - { zh: "文本被截断，需要展示完整内容", en: "Truncated text needs to reveal the full value" }
+  - { zh: "补充不关键的专业术语或快捷键", en: "Explain non-critical jargon or shortcuts" }
+
+avoid_when:
+  - { zh: "信息必须长期可读（改用可见文字或帮助 popover）", en: "The info must stay readable — use visible text or a help popover" }
+  - { zh: "触屏设备没有 hover（禁用或换 long-press）", en: "Touch devices have no hover — disable it or use long-press" }
+  - { zh: "气泡内含链接、按钮等交互元素（改用 popover）", en: "Interactive elements inside — use a popover instead" }
+
+tags:
+  - overlay
+  - hover
+  - hint
+  - accessibility
+
+variants:
+  - id: dark
+    name: { zh: "深色气泡", en: "Dark" }
+    note: { zh: "白字深底，桌面端最常见默认", en: "Light text on dark bubble, the common desktop default" }
+  - id: light
+    name: { zh: "浅色卡片", en: "Light" }
+    note: { zh: "带边框与阴影，可承载稍多信息", en: "Bordered and shadowed, carries a bit more" }
+  - id: rich
+    name: { zh: "富提示", en: "Rich" }
+    note: { zh: "含标题、快捷键或图标，仍不可交互", en: "Title, shortcuts or icons, still non-interactive" }
+
+anatomy:
+  - 触发元素（Trigger）
+  - 气泡（Bubble）
+  - 箭头（Arrow）
+
+related:
+  - popover
+  - modal
+  - toast
+  - button
+
+demo:
+  component: tooltip
+  modes: [default, dark, variants]
+
+implementation:
+  css:
+    - "position: absolute"
+    - "pointer-events: none"
+    - "z-index"
+    - transition
+  notes:
+    zh: >-
+      触发元素 relative，气泡 absolute 按方向偏移；延迟 300~500ms 出现、移开立即消失。
+      气泡加 pointer-events: none 防止移向气泡时闪烁；同时支持 focus 显示以保证键盘可访问
+      （aria-describedby）。触屏端提供替代方案或干脆不显示。
+    en: >-
+      Trigger is relative, the bubble absolute and offset per placement; delay the show
+      by 300–500ms and hide immediately on leave. pointer-events: none on the bubble
+      prevents flicker; also show on focus for keyboard access (aria-describedby).
+      Provide a touch fallback or omit it on touch devices.
+
+sources:
+  - name: WAI-ARIA Authoring Practices — Tooltip
+    url: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
+  - name: Apple HIG — Tooltips
+    url: https://developer.apple.com/design/human-interface-guidelines/tooltips
+
+prompts:
+  basic:
+    zh: >-
+      创建一个工具提示（Tooltip）组件：悬停在按钮上时在上方显示文字气泡，移开消失。
+    en: >-
+      Create a Tooltip component: hovering a button shows a text bubble above it,
+      which disappears on mouse leave.
+  design:
+    zh: >-
+      创建 Tooltip 组件。要求：深色小气泡（圆角、小字号）出现在触发元素上方居中，带向下小箭头；
+      悬停延迟约 300ms 出现、淡入淡出各 150ms；气泡不可选中、不阻挡鼠标；支持四方向放置。
+    en: >-
+      Create a Tooltip. Requirements: a small dark bubble (rounded, small type) centered
+      above the trigger with a downward arrow; appears after ~300ms hover delay with
+      150ms fade in/out; the bubble must not be selectable nor intercept the pointer;
+      support four placements.
+  implementation:
+    zh: >-
+      用 React + Tailwind 实现 Tooltip：触发元素 relative，气泡 absolute 定位在反方向；
+      onMouseEnter 用 setTimeout 延迟显示（存 timer 便于清理），onMouseLeave 立即隐藏；
+      气泡 pointer-events-none + aria-hidden，触发元素加 aria-describedby；
+      出现动画 opacity + 轻微位移，时长乘 var(--demo-speed, 1)；
+      focus 时同样显示；尊重 prefers-reduced-motion。
+    en: >-
+      React + Tailwind Tooltip: relative trigger with the bubble absolutely positioned on
+      the opposite side; onMouseEnter shows after a setTimeout delay (keep the timer for
+      cleanup), onMouseLeave hides immediately; bubble is pointer-events-none + aria-hidden
+      and the trigger gets aria-describedby; fade + small offset animation scaled by
+      var(--demo-speed, 1); also show on focus; respect prefers-reduced-motion.
+  agent:
+    zh: |-
+      在当前项目中实现工具提示（Tooltip）组件。
+
+      先检查现有组件体系与 Design Token，优先复用现有的表面色与圆角变量。
+      用途：图标按钮的文字说明。
+      要求：
+      - 悬停延迟约 300ms 显示，移开立即消失
+      - 气泡 pointer-events: none，支持四方向放置
+      - focus 时同样显示，触发元素加 aria-describedby
+      - 动画尊重 prefers-reduced-motion
+      - 不新增依赖
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Implement a Tooltip component in the current project.
+
+      Inspect the existing component system and design tokens first; reuse existing
+      surface and radius variables.
+      Usage: text labels for icon-only buttons.
+      Requirements:
+      - ~300ms hover delay to show, immediate hide on leave
+      - pointer-events: none bubble, four placements supported
+      - Also shows on focus; trigger carries aria-describedby
+      - Animation respects prefers-reduced-motion
+      - No new dependencies
+      Run existing checks when done and list modified files.

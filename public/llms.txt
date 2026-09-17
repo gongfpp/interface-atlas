@@ -11,8 +11,10 @@
 - [Checkbox / 复选框](/api/concept/components/checkbox.json): 用方形勾选框表示一组可多选的独立开关项，点击在选中与未选中间切换。 父级项可呈现半选态（部分子项选中），常用于批量选择、筛选与同意条款。
 - [Command Palette / 命令面板](/api/concept/components/command-palette.json): 用快捷键（⌘K / Ctrl+K）唤出的浮动搜索面板：输入即筛选命令、页面或内容， 键盘上下选择、回车执行。macOS Spotlight 把它带入大众视野， 
 - [Date Picker / 日期选择器](/api/concept/components/date-picker.json): 用日历网格选择日期的复合控件，通常由输入框触发弹出，也常内嵌展示。 头部提供年月切换，网格按周排列日期并高亮今天与选中日； 范围形态用两个日期夹出区间。避免手输
+- [Drawer / 抽屉](/api/concept/components/drawer.json): 从屏幕边缘（多为右侧或左侧）滑入、通常带遮罩的面板。比模态框轻：能承载较长内容又不离开当前页面， 关闭后原样回到上下文；移动端常以左滑导航或底部抽屉的形式出现。
 - [Dropdown / 下拉菜单](/api/concept/components/dropdown.json): 由触发按钮就近弹出的一组操作菜单，用于收纳次要操作，保持界面整洁。 典型形态是「···」更多按钮；面板带阴影浮于内容之上，点击菜单项即执行并关闭， 危险操作以红
 - [Input / 输入框](/api/concept/components/input.json): 用一条带边框的水平输入区收集单行文本，是表单的基本单元。 占位符提示期望格式，聚焦时高亮边框引导视线，校验失败时切换错误色 并附提示文案；可内嵌前后缀图标与清除
+- [Modal / 模态框](/api/concept/components/modal.json): 覆盖在页面之上、带半透明遮罩的对话框，打断用户当前流程，要求先完成弹窗内的任务或决策。 遮罩阻断与底层页面的交互，焦点被暂时困在弹窗内，是容器类浮层中打断程度最
 - [Navbar / 顶部导航栏](/api/concept/components/navbar.json): 固定在页面顶部的水平导航条：左侧品牌标识，中间主导航链接，右侧搜索、 入口按钮与用户头像。它是网站的"门面导航"，把最重要的三到七个入口压进 一条横向空间，移动
 - [Pagination / 分页](/api/concept/components/pagination.json): 用带页码的控件把长结果集切分为离散页面：用户显式点击页码或上一页 / 下一页 按钮取回对应片段，当前位置永远可知、可分享、可回退。与无限滚动的"失控 漂移"相对
 - [Radio / 单选框](/api/concept/components/radio.json): 用一组圆形按钮表示互斥选项，同组内只能选中一个且不可取消。 与复选框的核心区别是多选与单选；选中圆点用填充动画反馈， 选项少（2～5 个）时平铺展示比下拉选择效
@@ -22,6 +24,7 @@
 - [Switch / 开关](/api/concept/components/switch.json): 用滑轨上的圆形滑块表示二元设置的开与关，拨动立即生效，无需确认。 滑块位移与轨道变色同时反馈状态，右侧或内嵌「开 / 关」文字辅助辨认， 是设置页的标准控件。
 - [Tabs / 标签页](/api/concept/components/tabs.json): 用一排可切换的标签把同一区域的内容分成互斥视图：标签头常驻可点击，仅当前 标签对应的面板可见，其余隐藏。适合把高度相关的几类内容压缩在同一区域内 就地切换，避免
 - [Textarea / 多行输入框](/api/concept/components/textarea.json): 用一块可多行增长的输入区收集长文本，如简介、备注、留言与反馈。 支持手动或自动增高，常配字数统计与提交按钮；超出上限时计数变红提醒， 内容换行显示而非溢出截断。
+- [Tooltip / 工具提示](/api/concept/components/tooltip.json): 悬停在元素上短暂出现的小型文字气泡，用来解释图标按钮、缩写或被截断的文本。 纯提示、不可交互，移开即消失；通常延迟约 300ms 出现以避免扫过时闪烁。
 - [Drag & Drop Sorting / 拖拽排序](/api/concept/patterns/drag-and-drop-sorting.json): 用直接拖动的方式调整列表项的先后顺序：按住条目（或把手）拖到目标位置，其余条目实时让位并给出落点提示。 它把"排序"从抽象的上下移按钮变成所见即所得的空间操作，
 - [Empty State / 空状态](/api/concept/patterns/empty-state.json): 当列表或页面没有数据时，不留一片空白，而是用插图、一句说明和一个明确的下一步操作填充。 它解决的是"用户面对空白不知道发生了什么、也不知道该做什么"的问题—— 
 - [Form Validation / 表单校验](/api/concept/patterns/form-validation.json): 在用户填写表单的过程中或提交时检查输入合法性，并把错误就地显示在对应字段旁边。 目标是让用户在离错误最近的位置、以最小的打断成本知道"哪里错了、怎么改"，而不是

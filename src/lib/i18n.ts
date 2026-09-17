@@ -8,11 +8,11 @@ export function localePath(path: string, locale: Locale): string {
 }
 
 export const TYPE_LABELS: Record<string, Record<Locale, string>> = {
-  components: { zh: '组件', en: 'Components' },
-  patterns: { zh: '模式', en: 'Patterns' },
   styles: { zh: '风格', en: 'Styles' },
-  pages: { zh: '页面', en: 'Pages' },
+  components: { zh: '组件', en: 'Components' },
+  patterns: { zh: '交互模式', en: 'Patterns' },
   motion: { zh: '动效', en: 'Motion' },
+  pages: { zh: '页面', en: 'Pages' },
 };
 
 export const UI = {

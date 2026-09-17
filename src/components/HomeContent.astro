@@ -31,7 +31,7 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
 );
 ---
 
-<section class="pt-20 pb-14 md:pt-28">
+<section class="pt-16 pb-12 md:pt-20">
   <p class="mb-3 text-xs uppercase tracking-[0.2em] text-accent">{t('tagline', locale)}</p>
   <h1 class="font-serif text-4xl font-semibold leading-tight md:text-6xl">{t('heroTitle', locale)}</h1>
   <p class="mt-4 text-sm text-ink-3" data-testid="stats">
@@ -41,7 +41,7 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
   <button
     id="hero-search"
     type="button"
-    class="mt-8 flex w-full max-w-xl items-center gap-3 rounded-xl border border-line bg-raised px-4 py-3 text-left text-ink-3 transition-colors hover:border-line-strong"
+    class="mt-7 flex w-full max-w-xl items-center gap-3 rounded-xl border border-line bg-raised px-4 py-3 text-left text-ink-3 transition-colors hover:border-line-strong"
   >
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
       <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path>
@@ -52,8 +52,36 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
   <p class="mt-3 text-sm text-ink-3">{t('searchHint', locale)}</p>
 </section>
 
-<section class="pb-14">
-  <h2 class="mb-5 font-serif text-xl font-semibold">{t('exploreByType', locale)}</h2>
+<!-- 风格 = 首页主视觉 -->
+<section class="pb-16">
+  <div class="mb-6 flex items-baseline justify-between">
+    <div>
+      <h2 class="font-serif text-2xl font-semibold md:text-3xl">{locale === 'zh' ? '先看风格' : 'Start with a style'}</h2>
+      <p class="mt-1 text-sm text-ink-3">{locale === 'zh' ? '15 种视觉语言，点开就是完整页面示范' : 'Fifteen visual languages — every card is a live page demo'}</p>
+    </div>
+    <a href={localePath('/styles', locale)} class="text-sm text-accent hover:underline">{t('viewAll', locale)} →</a>
+  </div>
+  <div class="grid gap-5 md:grid-cols-2">
+    {STYLE_SPECS.map((spec) => (
+      <a
+        href={localePath(`/styles/${spec.slug}`, locale)}
+        class="group transition-transform duration-300 hover:-translate-y-1"
+        title={`${spec.nameZh} ${spec.nameEn}`}
+      >
+        <StyleThumb spec={spec} />
+        <p class="mt-2.5 flex items-baseline justify-between px-0.5">
+          <span class="font-serif text-lg font-semibold transition-colors group-hover:text-accent">{locale === 'zh' ? spec.nameZh : spec.nameEn}</span>
+          <span class="text-sm text-ink-3">{locale === 'zh' ? spec.nameEn : spec.nameZh}</span>
+        </p>
+      </a>
+    ))}
+  </div>
+</section>
+
+<section class="pb-16">
+  <div class="mb-6 flex items-baseline justify-between">
+    <h2 class="font-serif text-2xl font-semibold md:text-3xl">{t('exploreByType', locale)}</h2>
+  </div>
   <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
     {all.map(({ type, concepts }) => (
       <a
@@ -69,43 +97,12 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
   </div>
 </section>
 
-{popular.length > 0 && (
-  <section class="pb-14">
-    <h2 class="mb-5 font-serif text-xl font-semibold">{t('popularConcepts', locale)}</h2>
-    <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-      {popular.map((c) => <ConceptCard concept={c} locale={locale} />)}
-    </div>
-  </section>
-)}
-
-<section class="pb-14">
+<section class="pb-16">
   <div class="mb-5 flex items-baseline justify-between">
-    <h2 class="font-serif text-xl font-semibold">{locale === 'zh' ? '风格，一眼看全' : 'Every style at a glance'}</h2>
-    <a href={localePath('/styles', locale)} class="text-sm text-accent hover:underline">{t('viewAll', locale)} →</a>
-  </div>
-  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-    {STYLE_SPECS.map((spec) => (
-      <a
-        href={localePath(`/styles/${spec.slug}`, locale)}
-        class="group transition-transform duration-300 hover:-translate-y-1"
-        title={`${spec.nameZh} ${spec.nameEn}`}
-      >
-        <StyleThumb spec={spec} compact />
-        <p class="mt-2 flex items-baseline justify-between px-0.5">
-          <span class="font-serif text-sm font-semibold group-hover:text-accent">{locale === 'zh' ? spec.nameZh : spec.nameEn}</span>
-          <span class="text-xs text-ink-3">{locale === 'zh' ? spec.nameEn : spec.nameZh}</span>
-        </p>
-      </a>
-    ))}
-  </div>
-</section>
-
-<section class="pb-14">
-  <div class="mb-5 flex items-baseline justify-between">
-    <h2 class="font-serif text-xl font-semibold">{locale === 'zh' ? '灵感图库' : 'Gallery'}</h2>
+    <h2 class="font-serif text-2xl font-semibold md:text-3xl">{locale === 'zh' ? '灵感图库' : 'Gallery'}</h2>
     <a href={localePath('/gallery', locale)} class="text-sm text-accent hover:underline">{t('viewAll', locale)} →</a>
   </div>
-  <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
+  <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
     {gallery.slice(0, 5).map((entry) => (
       <a
         href={localePath(`/gallery/${entry.id}`, locale)}
@@ -117,13 +114,22 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
           loading="lazy"
           width="800"
           height="1000"
-          class="aspect-[4/5] w-full object-cover object-top"
+          class="aspect-[4/5] w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
         />
         <p class="truncate p-2.5 text-sm font-medium group-hover:text-accent">{entry.data.name[locale]}</p>
       </a>
     ))}
   </div>
 </section>
+
+{popular.length > 0 && (
+  <section class="pb-16">
+    <h2 class="mb-5 font-serif text-2xl font-semibold md:text-3xl">{t('popularConcepts', locale)}</h2>
+    <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+      {popular.map((c) => <ConceptCard concept={c} locale={locale} />)}
+    </div>
+  </section>
+)}
 
 <section class="pb-20">
   <button

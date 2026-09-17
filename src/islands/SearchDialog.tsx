@@ -17,13 +17,13 @@ interface IndexPayload {
   model: string | null;
 }
 
-const TYPE_ORDER = ['components', 'patterns', 'styles', 'pages', 'motion', 'gallery'];
+const TYPE_ORDER = ['styles', 'components', 'patterns', 'motion', 'pages', 'gallery'];
 const TYPE_LABEL: Record<string, { zh: string; en: string }> = {
-  components: { zh: '组件', en: 'Components' },
-  patterns: { zh: '模式', en: 'Patterns' },
   styles: { zh: '风格', en: 'Styles' },
-  pages: { zh: '页面', en: 'Pages' },
+  components: { zh: '组件', en: 'Components' },
+  patterns: { zh: '交互模式', en: 'Patterns' },
   motion: { zh: '动效', en: 'Motion' },
+  pages: { zh: '页面', en: 'Pages' },
   gallery: { zh: '灵感图库', en: 'Gallery' },
 };
 
