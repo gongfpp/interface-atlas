@@ -1,0 +1,171 @@
+{
+  "id": "search-filtering",
+  "type": "patterns",
+  "status": "published",
+  "name": {
+    "zh": "搜索筛选",
+    "en": "Search Filtering"
+  },
+  "aliases": [
+    "搜索筛选",
+    "列表过滤",
+    "即时搜索",
+    "输入即搜",
+    "关键字过滤",
+    "筛选列表"
+  ],
+  "category": [
+    "Search",
+    "Navigation"
+  ],
+  "description": {
+    "zh": "用即时过滤把大列表缩到与当前输入相关的一小部分：用户在搜索框敲字，列表随之实时收窄， 并显示命中数量与空结果提示。它把\"查找\"变成\"修剪\"，不用提交、不用等跳转，反馈就在眼前。",
+    "en": "Narrows a large list to whatever matches the current input: every keystroke filters the list in place, with hit counts and an empty-state hint. Finding becomes pruning — no submit, no page jump, feedback stays right in front of the user."
+  },
+  "use_when": [
+    {
+      "zh": "列表条目在几十到几百条，一次加载即可全量过滤",
+      "en": "Tens to hundreds of items that can be loaded once and filtered client-side"
+    },
+    {
+      "zh": "用户记得目标的部分名称或标签，扫视比翻页快",
+      "en": "Users recall part of a name or tag — scanning beats paging"
+    },
+    {
+      "zh": "设置、通讯录、组件库等查找型页面",
+      "en": "Lookup-heavy pages such as settings",
+      "contacts": null,
+      "component libraries": null
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "数据在海量服务端集合上，必须走后端搜索",
+      "en": "Huge server-side datasets that require backend search"
+    },
+    {
+      "zh": "条目本身无明显关键词可匹配",
+      "en": "Items with no obvious text or tag to match against"
+    },
+    {
+      "zh": "需要复杂多维条件组合，应交给筛选面板",
+      "en": "Complex multi-facet conditions belong in a filter panel"
+    }
+  ],
+  "tags": [
+    "search",
+    "filter",
+    "lists",
+    "realtime"
+  ],
+  "variants": [
+    {
+      "id": "instant",
+      "name": {
+        "zh": "即时过滤",
+        "en": "Instant"
+      },
+      "note": {
+        "zh": "输入即过滤，无提交按钮",
+        "en": "Filter on every keystroke",
+        "no submit button": null
+      }
+    },
+    {
+      "id": "chip",
+      "name": {
+        "zh": "标签筛选",
+        "en": "Filter chips"
+      },
+      "note": {
+        "zh": "点标签按类目过滤，可与搜索叠加",
+        "en": "Category chips that stack with the query"
+      }
+    },
+    {
+      "id": "highlight",
+      "name": {
+        "zh": "命中高亮",
+        "en": "Highlight"
+      },
+      "note": {
+        "zh": "匹配片段标亮，帮助确认为什么命中",
+        "en": "Highlights the matched fragment to justify each hit"
+      }
+    }
+  ],
+  "anatomy": [
+    "搜索输入框（Search input）",
+    "结果计数（Result count）",
+    "过滤后的列表（Filtered list）",
+    "空结果提示（No-results state）"
+  ],
+  "applicable_styles": [
+    "minimalism"
+  ],
+  "applicable_components": [
+    "input",
+    "filter-panel",
+    "command-palette"
+  ],
+  "applicable_pages": [
+    "search",
+    "settings",
+    "documentation"
+  ],
+  "related": [
+    "filter-panel",
+    "command-palette",
+    "input",
+    "empty-state",
+    "infinite-scroll"
+  ],
+  "demo": {
+    "component": "search-filtering",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "transition",
+      "mark",
+      ":placeholder-shown",
+      "background-color"
+    ],
+    "notes": {
+      "zh": "受控输入 + useMemo 过滤（大小写不敏感的 includes 起步），列表项配 transition 或淡入。 显示命中数；零命中展示空状态与清除按钮；命中片段用 mark 或强调色标亮。输入加 type=\"search\" 与 aria-label，防抖仅在触发远端请求时才需要。尊重 prefers-reduced-motion。",
+      "en": "A controlled input plus useMemo filtering (case-insensitive includes to start) over items rendered with subtle transitions. Show the hit count; render an empty state with a clear button on zero matches; highlight matched fragments with mark or accent color. Use type=\"search\" with an aria-label; debounce only for remote requests. Respect prefers-reduced-motion."
+    }
+  },
+  "sources": [
+    {
+      "name": "Nielsen Norman Group — Filtering",
+      "url": "https://www.nngroup.com/articles/filters-vs-facets/"
+    },
+    {
+      "name": "Material Design — Search",
+      "url": "https://m3.material.io/components/search-bar/overview"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个搜索筛选（Search Filtering）演示，在输入框打字时列表即时过滤并显示命中数量。",
+      "en": "Create a search filtering demo where typing instantly filters a list and shows the match count."
+    },
+    "design": {
+      "zh": "创建搜索筛选演示。要求：搜索框实时过滤组件列表，命中片段高亮；显示\"共 N 条命中\"； 无结果时展示空状态与一键清除；过滤变化有轻微淡入过渡；输入框带清除按钮。",
+      "en": "Create a search filtering demo. Requirements: a search box live-filtering a component list with matched fragments highlighted; a \"N matches\" counter; an empty state with one-tap clear on zero results; a subtle fade on filter changes; a clear button inside the input."
+    },
+    "implementation": {
+      "zh": "用 React 实现 Search Filtering：useState 保存关键词，useMemo 做大小写不敏感过滤， 命中片段用 split + mark 高亮。列表项显示名称与标签，空结果渲染空状态组件。 不引入搜索库，动画尊重 prefers-reduced-motion。",
+      "en": "Implement Search Filtering in React: keep the query in useState, filter in useMemo case-insensitively, and highlight matches via split + mark. Items show name and tags; render an empty state on zero hits. No search library; respect prefers-reduced-motion."
+    },
+    "agent": {
+      "zh": "在当前项目中实现搜索筛选（Search Filtering）。\n\n先检查现有列表与搜索输入组件，优先复用。\n用途：设置页的配置项查找。\n要求：\n- 输入即时过滤，无提交按钮\n- 显示命中数量，空结果给空状态与清除入口\n- 命中片段高亮\n- 不新增搜索类依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement search filtering in the current project.\n\nInspect existing list and search input components first; reuse them.\nUsage: finding settings entries.\nRequirements:\n- Instant filtering on input, no submit button\n- Match count plus an empty state with clear entry on zero hits\n- Matched fragments highlighted\n- No search-specific dependencies\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

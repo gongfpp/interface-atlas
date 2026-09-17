@@ -1,0 +1,165 @@
+{
+  "id": "inline-editing",
+  "type": "patterns",
+  "status": "published",
+  "name": {
+    "zh": "行内编辑",
+    "en": "Inline Editing"
+  },
+  "aliases": [
+    "Inline Editing",
+    "行内编辑",
+    "就地编辑",
+    "点击变输入框",
+    "原地编辑",
+    "即点即改",
+    "单击编辑"
+  ],
+  "category": [
+    "Interaction",
+    "Forms"
+  ],
+  "description": {
+    "zh": "页面上的文本本身即可编辑：单击把文本原位变成输入框，Enter 或失焦确认，Esc 取消， 改完所见即所得。它解决的是\"小改动也要跳转完整编辑页\"的问题—— 把修改成本降到一次点击，特别适合单字段的快速修订场景。",
+    "en": "The text on the page is itself the editor: a click swaps it for an input in place, Enter or blur commits, Escape cancels — what you fix is what you see. It solves the overhead of a full edit page for tiny changes, driving the cost of a correction down to a single click, ideal for quick single-field revisions."
+  },
+  "use_when": [
+    {
+      "zh": "文档标题、昵称等单字段的快速修改",
+      "en": "Quick single-field edits like doc titles and display names"
+    },
+    {
+      "zh": "看板卡片、表格单元格的轻量修订",
+      "en": "Lightweight revisions on kanban cards and table cells"
+    },
+    {
+      "zh": "低风险、易恢复的文本内容",
+      "en": "Low-risk text that is easy to revert"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "字段有复杂校验或多字段联动",
+      "en": "Fields with complex validation or cross-field logic"
+    },
+    {
+      "zh": "误触成本高的区域（缺乏明确编辑入口时）",
+      "en": "Error-prone zones without an explicit edit affordance"
+    },
+    {
+      "zh": "需要草稿、版本等编辑上下文的场景",
+      "en": "Flows needing drafts",
+      "versions or other edit context": null
+    }
+  ],
+  "tags": [
+    "interaction",
+    "forms",
+    "text",
+    "productivity"
+  ],
+  "variants": [
+    {
+      "id": "click-to-edit",
+      "name": {
+        "zh": "点击编辑",
+        "en": "Click to edit"
+      },
+      "note": {
+        "zh": "静态文本与输入框原位切换",
+        "en": "Static text and input swap in place"
+      }
+    },
+    {
+      "id": "hover-affordance",
+      "name": {
+        "zh": "悬停提示",
+        "en": "Hover affordance"
+      },
+      "note": {
+        "zh": "悬停出现虚线下划线或铅笔图标提示可编辑",
+        "en": "A dotted underline or pencil icon appears on hover to signal editability"
+      }
+    },
+    {
+      "id": "commit-cancel",
+      "name": {
+        "zh": "确认与取消",
+        "en": "Commit and cancel"
+      },
+      "note": {
+        "zh": "Enter / 失焦确认，Esc 取消并还原",
+        "en": "Enter or blur commits; Escape reverts and exits"
+      }
+    }
+  ],
+  "anatomy": [
+    "静态文本态（Static text state）",
+    "行内输入框（Inline input）",
+    "确认与取消操作（Commit / cancel affordance）",
+    "编辑提示（Edit affordance）"
+  ],
+  "applicable_components": [
+    "input",
+    "textarea"
+  ],
+  "applicable_pages": [
+    "profile",
+    "settings"
+  ],
+  "related": [
+    "input",
+    "textarea",
+    "form-validation",
+    "optimistic-ui",
+    "button"
+  ],
+  "demo": {
+    "component": "inline-editing",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "contenteditable",
+      "focus outline",
+      "border-accent",
+      "aria-live"
+    ],
+    "notes": {
+      "zh": "双态切换实现：非编辑态渲染 button 或带 role=\"button\" 的文本，编辑态渲染 input/textarea 并自动聚焦、全选。Enter（多行时 Shift+Enter 换行）或失焦提交，Esc 还原； 空值回退为原文。悬停用虚线下划线提示可编辑，切换可加轻微高度过渡。",
+      "en": "Two-state swap: render a button (or role=\"button\" text) when idle, and an auto-focused, select-all input/textarea when editing. Enter (Shift+Enter for newlines) or blur commits, Escape reverts, empty input falls back to the original. A hover dotted underline signals editability; add a subtle height transition if sizes differ."
+    }
+  },
+  "sources": [
+    {
+      "name": "NN/g — In-Page Editing",
+      "url": "https://www.nngroup.com/articles/"
+    },
+    {
+      "name": "MDN — contenteditable",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个行内编辑（Inline Editing）组件：点击文本原位变成输入框， Enter 确认、Esc 取消，常用于标题和昵称修改。",
+      "en": "Create an inline editing component where clicking text swaps it for an input in place; Enter commits, Escape cancels — for titles, names and similar fields."
+    },
+    "design": {
+      "zh": "设计一组行内编辑字段。要求：悬停出现虚线下划线与铅笔图标提示可编辑； 编辑态输入框尺寸与文本接近、边框用强调色；提供确认与取消小按钮； 多行字段支持 Shift+Enter 换行；支持深浅色主题。",
+      "en": "Design a set of inline-editable fields. Requirements: a hover dotted underline and pencil icon signal editability; the editing input matches the text size with an accent border; small commit and cancel buttons are available; multiline fields support Shift+Enter for newlines; light/dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Inline Editing。每个字段维护 value / editing / draft 三个状态； 点击文本进入编辑态并 autoFocus + select；onKeyDown 处理 Enter 提交、Esc 还原， onBlur 提交；空 draft 回退原值。多行用 textarea。编辑态输入框用 border-accent outline-none，静态态用 hover 虚线下划线。",
+      "en": "Implement Inline Editing in React + Tailwind. Keep value / editing / draft per field; clicking the text enters edit mode with autoFocus + select; onKeyDown commits on Enter, reverts on Escape, and onBlur commits; an empty draft falls back to the original. Use textarea for multiline. Editing input gets border-accent outline-none; idle text gets a hover dotted underline."
+    },
+    "agent": {
+      "zh": "在当前项目中实现行内编辑（Inline Editing）。\n\n先检查现有输入组件与表单校验体系，优先复用现有的输入框样式与提交逻辑。\n用途：个人资料页昵称与简介的快速修改。\n要求：\n- 点击文本原位切换为输入框，自动聚焦并全选\n- Enter 或失焦确认，Esc 取消还原，空值回退\n- 悬停有可编辑提示（虚线下划线或铅笔图标）\n- 多行字段支持 Shift+Enter 换行\n- 尊重 prefers-reduced-motion\n- 不新增不必要的依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement Inline Editing in the current project.\n\nInspect the existing input components and validation system first; reuse existing input styles and submit logic.\nUsage: quick edits for name and bio on a profile page.\nRequirements:\n- Click swaps text for an in-place input, auto-focused and select-all\n- Enter or blur commits, Escape reverts, empty input falls back\n- Hover affordance (dotted underline or pencil icon)\n- Multiline fields support Shift+Enter newlines\n- Respect prefers-reduced-motion\n- No unnecessary dependencies\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

@@ -1,0 +1,147 @@
+status: published
+
+name:
+  zh: 定价页
+  en: Pricing Page
+
+aliases:
+  - 价格方案页面
+  - 定价页
+  - 套餐价格页
+  - 收费方案
+  - 花多少钱的页面
+  - 订阅方案页
+  - 价格表
+
+category:
+  - Page
+  - Marketing
+
+description:
+  zh: >-
+    把付费方式讲清楚的商业页面：页面通常以标题与计费周期切换开头，主体是并排的套餐卡
+    （价格、功能清单、行动按钮），推荐档位用视觉强调；下方补功能对比表和 FAQ 兜底疑虑。
+    组织逻辑是"先选周期、再选档位、最后消除犹豫"。
+  en: >-
+    A commercial page that makes the offer legible: it opens with a headline and billing-period
+    toggle, the body is a row of tier cards (price, feature list, action button) with the
+    recommended tier visually emphasized, and a comparison table plus FAQ resolve remaining
+    doubts. The order is fixed — pick a period, pick a tier, remove hesitation.
+
+use_when:
+  - { zh: 订阅制或有多个档位的产品售卖, en: Subscription products or tiered offers }
+  - { zh: 访客需要在购买前比较不同方案, en: Visitors must compare plans before buying }
+  - { zh: 需要引导用户从免费档向付费档升级, en: Guiding upgrades from free to paid tiers }
+
+avoid_when:
+  - { zh: 只有一个固定价格（并入落地页即可）, en: One fixed price — fold it into the landing page }
+  - { zh: 完全定制报价、按项目计费（用联系销售页更合适）, en: Fully custom quoting — a contact-sales page fits better }
+  - { zh: 已登录用户的账户账单管理（属于设置/账单页）, en: Logged-in billing management — that belongs to settings }
+
+tags:
+  - marketing
+  - conversion
+  - pricing
+  - comparison
+
+variants:
+  - id: tiers
+    name: { zh: 简单分层, en: Simple Tiers }
+    note: { zh: 3～4 张套餐卡并排，最经典, en: Three or four tier cards side by side, the classic }
+  - id: billing-toggle
+    name: { zh: 月年切换, en: Billing Toggle }
+    note: { zh: 月付/年付切换并给出折扣提示, en: Monthly/annual toggle with a discount hint }
+  - id: comparison
+    name: { zh: 功能对比, en: Feature Comparison }
+    note: { zh: 套餐卡 + 完整功能对照表, en: Tier cards plus a full feature matrix }
+  - id: freemium
+    name: { zh: 免费增值, en: Freemium }
+    note: { zh: 免费档永久免费，强调付费档价值, en: Free tier forever, paid tiers carry the pitch }
+
+anatomy:
+  - Header 标题区
+  - Billing Toggle 计费周期切换
+  - Tier Cards 套餐卡
+  - Feature Table 功能对比表
+  - FAQ 常见问题
+
+related:
+  - card
+  - badge
+  - switch
+  - accordion
+  - table
+
+demo:
+  component: pricing
+  modes: [default, dark, variants]
+
+implementation:
+  css:
+    - flex
+    - grid
+    - "grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))"
+    - "transform: scale(1.05)"
+  notes:
+    zh: >-
+      套餐卡用等高网格排布，推荐档位以边框强调色 + 轻微放大或徽标突出；
+      月/年切换用受控状态切换价格并做数字过渡；对比表桌面横向滚动、移动端折叠成手风琴；
+      FAQ 用原生 details 或手风琴组件。
+    en: >-
+      Lay tier cards in an equal-height grid; emphasize the recommended tier with an accent
+      border, slight scale or a badge. The billing toggle is controlled state that switches
+      prices with a number transition. The comparison table scrolls horizontally on desktop
+      and collapses into an accordion on mobile; FAQ uses native details or an accordion.
+
+sources:
+  - name: Nielsen Norman Group — Pricing Page Design
+    url: https://www.nngroup.com/articles/pricing-pages/
+  - name: Baymard Institute — Pricing & Plans
+    url: https://baymard.com/blog
+
+prompts:
+  basic:
+    zh: 创建一个定价页，包含三档套餐卡、月付年付切换和功能对比表。
+    en: Create a pricing page with three tier cards, a monthly/annual toggle and a feature comparison table.
+  design:
+    zh: 创建 SaaS 定价页：标题 + 月付/年付分段切换（年付标"省 20%"）；三张等高套餐卡（免费/专业/企业），专业档用强调色边框 + "最受欢迎"徽标 + 轻微放大；每卡含价格、功能清单（勾选样式）、主按钮；下方功能对比表与 4 条 FAQ 手风琴。响应式，移动端卡片纵向堆叠。
+    en: >-
+      Build a SaaS pricing page: headline + monthly/annual segmented toggle ("Save 20%" on annual);
+      three equal-height tier cards (Free / Pro / Enterprise), Pro highlighted with an accent border,
+      "Most popular" badge and slight scale; each card shows price, checklisted features and a primary
+      button; below, a comparison table and a four-item FAQ accordion. Responsive — cards stack on mobile.
+  implementation:
+    zh: >-
+      用 React + Tailwind 实现定价页：billing 周期受控状态驱动价格渲染（带数字过渡）；
+      套餐卡数据驱动（{name, price, features, highlight}）；对比表用 table + 溢出滚动；
+      FAQ 用受控手风琴；勾选图标内联 SVG。深浅色一致；不新增依赖。
+    en: >-
+      React + Tailwind pricing page: billing period as controlled state driving price rendering
+      (with a number transition); data-driven tier cards ({name, price, features, highlight});
+      comparison table with overflow scroll; controlled FAQ accordion; inline SVG checkmarks.
+      Consistent light/dark; no new dependencies.
+  agent:
+    zh: |-
+      在当前项目中实现定价页。
+
+      先检查品牌色、现有卡片/手风琴组件与路由，保持一致。
+      要求：
+      - 月/年切换驱动价格与折扣角标
+      - 推荐档位视觉强调（边框 + 徽标）
+      - 功能对比表（移动端可横向滚动）
+      - FAQ 手风琴
+      - 深浅色一致，响应式
+      - 不新增依赖
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Implement the pricing page in the current project.
+
+      Inspect brand colors, existing card/accordion components and routes first; stay consistent.
+      Requirements:
+      - Monthly/annual toggle drives prices and discount badge
+      - Visual emphasis on the recommended tier (border + badge)
+      - Feature comparison table (horizontal scroll on mobile)
+      - FAQ accordion
+      - Consistent light/dark; responsive
+      - No new dependencies
+      Run existing checks when done and list modified files.

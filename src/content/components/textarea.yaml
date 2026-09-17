@@ -1,0 +1,152 @@
+status: published
+
+name:
+  zh: 多行输入框
+  en: Textarea
+
+aliases:
+  - 多行输入框
+  - 文本域
+  - 大输入框
+  - 留言框
+  - 备注框
+  - 富文本输入区
+
+category:
+  - Form
+  - Input
+
+description:
+  zh: >-
+    用一块可多行增长的输入区收集长文本，如简介、备注、留言与反馈。
+    支持手动或自动增高，常配字数统计与提交按钮；超出上限时计数变红提醒，
+    内容换行显示而非溢出截断。
+  en: >-
+    A growing multi-line field for long text — bios, notes, messages and
+    feedback. It grows manually or automatically, usually paired with a counter
+    and submit button; the count turns red past the limit and content wraps
+    instead of clipping.
+
+use_when:
+  - { zh: 收集简介、备注、留言等多段落长文本, en: Long-form text like bios, notes and messages }
+  - { zh: 用户需要换行组织内容结构, en: Users need line breaks to structure content }
+  - { zh: 字数有限制，需要实时统计反馈, en: Character limits need a live counter }
+
+avoid_when:
+  - { zh: 单行短字段（姓名、邮箱），用 input 更紧凑, en: Short single-line fields — an input is more compact }
+  - { zh: 需要加粗、标题等格式，用富文本编辑器, en: Formatting like bold and headings — use a rich-text editor }
+  - { zh: 结构化输入（键值对、标签），用专用控件, en: Structured data like key-value pairs — use dedicated controls }
+
+tags:
+  - form
+  - input
+  - text
+
+variants:
+  - id: fixed
+    name: { zh: 固定高, en: Fixed }
+    note: { zh: 固定行数内滚动，布局稳定, en: Fixed rows scroll internally — stable layout }
+  - id: autosize
+    name: { zh: 自动增高, en: Autosize }
+    note: { zh: 随内容增长，适合聊天与评论框, en: Grows with content — chat and comment boxes }
+  - id: with-count
+    name: { zh: 带字数, en: With counter }
+    note: { zh: 右下角实时字数，超限变红, en: Live counter bottom-right, red past the limit }
+
+anatomy:
+  - 标签（Label）
+  - 输入区（Input area）
+  - 字数统计（Counter）
+  - 提交 / 操作区（Actions）
+
+applicable_styles:
+  - minimalism
+  - editorial
+
+applicable_components: []
+applicable_pages:
+  - documentation
+  - profile
+  - signup
+
+related:
+  - input
+  - form-validation
+  - inline-editing
+  - toast
+
+demo:
+  component: textarea
+  modes: [default, dark, variants]
+
+implementation:
+  css:
+    - resize
+    - "field-sizing: content"
+    - "max-height: overflow"
+    - "counter: length"
+  notes:
+    zh: >-
+      基础样式与 input 一致但多行：min-h 固定起点，resize-y 允许拖拽增高；
+      自动增高用 field-sizing: content（或 JS 监听 input 设置 scrollHeight）。
+      字数统计用 value.length 对比 maxLength，超限切换红色并阻止继续提交。
+    en: >-
+      Base styling matches input but multi-line: a min-h starting point and
+      resize-y for manual growth; autosize via field-sizing: content (or JS
+      setting height from scrollHeight on input). The counter compares
+      value.length against maxLength, turning red past the limit and blocking
+      submit.
+
+sources:
+  - name: MDN — textarea
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea
+  - name: Apple HIG — Text views
+    url: https://developer.apple.com/design/human-interface-guidelines/text-fields
+
+prompts:
+  basic:
+    zh: 创建一个多行输入框组件，支持标签、字数统计和提交按钮。
+    en: Create a textarea component with a label, character counter and submit button.
+  design:
+    zh: >-
+      创建多行输入框组件。要求：min-h 四行起点、可拖拽纵向增高；右下角实时字数统计
+      （超过上限变红）；下方提交按钮在为空或超限时禁用；聚焦 accent 描边；深浅色一致。
+    en: >-
+      Create a textarea component. Requirements: four-row min height, vertically
+      resizable; live counter bottom-right turning red past the limit; a submit
+      button disabled when empty or over limit; accent focus ring; consistent in
+      light/dark.
+  implementation:
+    zh: >-
+      用 React + Tailwind 实现 Textarea：受控 value + maxLength；自动增高监听 onInput
+      将 height 置为 auto 再取 scrollHeight（或用 field-sizing: content）；计数
+      value.length / maxLength，接近上限预警色、超限红；提交按钮 disabled 条件为
+      空或超限；resize-y + max-h 防止无限增高。
+    en: >-
+      React + Tailwind Textarea: controlled value + maxLength; autosize by setting
+      height to auto then scrollHeight on input (or field-sizing: content); counter
+      of value.length / maxLength with a warning tint near the limit and red past
+      it; submit disabled when empty or over limit; resize-y + max-h to cap growth.
+  agent:
+    zh: |-
+      在当前项目中实现多行输入框组件。
+
+      先检查现有表单组件与 Design Token，保持风格一致。
+      要求：
+      - 受控多行输入，支持自动增高与手动拖拽
+      - 实时字数统计，超限变红并禁用提交
+      - 聚焦描边与无障碍标注（label 关联）
+      - 深浅色主题一致
+      - 不新增依赖
+      完成后运行项目现有检查，并列出修改的文件。
+    en: |-
+      Implement a textarea component in the current project.
+
+      Inspect existing form components and design tokens first; stay consistent.
+      Requirements:
+      - Controlled multi-line input with autosize and manual resize
+      - Live character counter, red past the limit with submit disabled
+      - Focus ring and accessibility labels
+      - Consistent light/dark themes
+      - No new dependencies
+      Run existing project checks when done and list the modified files.

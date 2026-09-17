@@ -1,0 +1,163 @@
+{
+  "id": "radio",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "单选框",
+    "en": "Radio"
+  },
+  "aliases": [
+    "单选框",
+    "单选按钮",
+    "radio 按钮",
+    "圆形单选",
+    "单选项",
+    "单选选择器"
+  ],
+  "category": [
+    "Form",
+    "Input"
+  ],
+  "description": {
+    "zh": "用一组圆形按钮表示互斥选项，同组内只能选中一个且不可取消。 与复选框的核心区别是多选与单选；选中圆点用填充动画反馈， 选项少（2～5 个）时平铺展示比下拉选择效率更高。",
+    "en": "A set of circular buttons for mutually exclusive options — exactly one selected per group, never unset. The core contrast with checkboxes is single versus multi selection; the dot fills with animation on select, and with 2–5 options a visible radio group beats a dropdown."
+  },
+  "use_when": [
+    {
+      "zh": "选项 2～5 个且互斥，需要一眼看全",
+      "en": "2–5 mutually exclusive options that should stay visible"
+    },
+    {
+      "zh": "默认选中项明确、无需取消选择",
+      "en": "A clear default exists and unselecting is not needed"
+    },
+    {
+      "zh": "支付方式、配送方式等并列方案选择",
+      "en": "Parallel plans like payment or delivery methods"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "需要多选，用复选框",
+      "en": "Multiple selections — use checkboxes"
+    },
+    {
+      "zh": "选项多于 5 个，用下拉选择节省空间",
+      "en": "More than 5 options — a select saves space"
+    },
+    {
+      "zh": "开 / 关二元即时切换，用 switch",
+      "en": "Binary on/off toggling — use a switch"
+    }
+  ],
+  "tags": [
+    "form",
+    "input",
+    "selection"
+  ],
+  "variants": [
+    {
+      "id": "default",
+      "name": {
+        "zh": "默认",
+        "en": "Default"
+      },
+      "note": {
+        "zh": "圆点 + 文字的经典排布",
+        "en": "Classic dot-and-text layout"
+      }
+    },
+    {
+      "id": "card",
+      "name": {
+        "zh": "卡片式",
+        "en": "Card"
+      },
+      "note": {
+        "zh": "整卡可点，带描述信息",
+        "en": "Clickable card with descriptions"
+      }
+    },
+    {
+      "id": "inline",
+      "name": {
+        "zh": "行内分段",
+        "en": "Inline segmented"
+      },
+      "note": {
+        "zh": "横向排布，适合密集表单",
+        "en": "Horizontal row for dense forms"
+      }
+    }
+  ],
+  "anatomy": [
+    "圆形框（Circle）",
+    "选中圆点（Dot）",
+    "标签文字（Label）",
+    "描述文字（Description）"
+  ],
+  "applicable_styles": [
+    "minimalism",
+    "flat-design"
+  ],
+  "applicable_components": [],
+  "applicable_pages": [
+    "checkout",
+    "pricing",
+    "settings"
+  ],
+  "related": [
+    "checkbox",
+    "switch",
+    "select",
+    "form-validation"
+  ],
+  "demo": {
+    "component": "radio",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "appearance",
+      "accent-color",
+      "border-radius: 50%",
+      "transition"
+    ],
+    "notes": {
+      "zh": "自定义圆圈用 border 圆形 + 内部小圆点 scale 弹出动画；选中态整组 name 一致保证原生互斥。React 中受控 value 对比实现选中。 整行 label 可点击扩大热区；键盘上下键在组内移动（原生自带）。 卡片式用外框高亮代替圆点强调，但保留 radio 语义。",
+      "en": "Custom circles use a bordered ring with an inner dot scaling in; shared name keeps native exclusivity. In React, controlled value comparison drives selection. Make full rows clickable; arrow keys move within the group natively. Card styles emphasize via outer ring highlight while keeping radio semantics."
+    }
+  },
+  "sources": [
+    {
+      "name": "W3C APG — Radio Group",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/radio/"
+    },
+    {
+      "name": "Material Design — Radio button",
+      "url": "https://m3.material.io/components/radio-button/overview"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个单选框组件，支持默认、卡片式与行内分段三种样式。",
+      "en": "Create a radio group component with default, card and inline segmented styles."
+    },
+    "design": {
+      "zh": "创建单选框组件。要求：圆形框内选中圆点 scale 弹入；卡片式整卡可点、 选中时 accent 描边高亮并展示描述文案；组内互斥且始终有一项选中； 深浅色主题一致。",
+      "en": "Create a radio group component. Requirements: inner dot scaling in inside a circular ring; card style fully clickable with an accent ring and description when selected; mutually exclusive with one always selected; consistent in light/dark."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 RadioGroup：受控 value + onChange，选项数据驱动 （{value, label, description}）；原生 input[type=radio] 隐藏 + 自定义外观， 保留键盘行为；圆点动画 scale 0 → 1，时长乘 --demo-speed；卡片式 aria-checked + 描边切换。",
+      "en": "React + Tailwind RadioGroup: controlled value + onChange with data-driven options ({value, label, description}); hide native inputs but keep their keyboard behavior; dot animation scales 0 to 1 with duration multiplied by --demo-speed; card style toggles aria-checked and ring highlight."
+    },
+    "agent": {
+      "zh": "在当前项目中实现单选框组件。\n\n先检查现有表单组件与 Design Token，保持风格一致。\n要求：\n- 受控单选，组内互斥、始终有选中项\n- 支持默认 / 卡片式两种样式\n- 键盘可达（原生 radio 行为 + label 关联）\n- 深浅色主题一致，动画尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a radio group component in the current project.\n\nInspect existing form components and design tokens first; stay consistent.\nRequirements:\n- Controlled single selection, exclusive, always one selected\n- Default and card styles\n- Keyboard accessible (native radio behavior + label association)\n- Consistent light/dark themes; animation respects prefers-reduced-motion\n- No new dependencies\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

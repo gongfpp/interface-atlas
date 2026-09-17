@@ -1,0 +1,174 @@
+{
+  "id": "documentation",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "文档页",
+    "en": "Documentation Page"
+  },
+  "aliases": [
+    "文档站",
+    "帮助文档",
+    "开发者文档",
+    "使用手册",
+    "说明文档",
+    "API 文档",
+    "帮助中心页面"
+  ],
+  "category": [
+    "Page",
+    "Content"
+  ],
+  "description": {
+    "zh": "以阅读为中心的长驻内容页面：一侧是可折叠的文档树导航，正文栏承载标题层级、段落、 代码块与提示框，宽屏下再加页内目录（TOC）标示当前阅读位置。页面靠永久链接与 上一页/下一页串联成站，搜索是第一入口，结构稳定到可以背下来。",
+    "en": "A long-lived, reading-first content page: a collapsible docs tree on one side, the article column carrying heading hierarchy, paragraphs, code blocks and callouts, and on wide screens a page TOC marking the current position. Permanent links and prev/next links chain pages into a site; search is the primary entry; the structure is stable enough to memorize."
+  },
+  "use_when": [
+    {
+      "zh": "产品文档、API 参考、教程手册",
+      "en": "Product docs",
+      "API references": null,
+      "tutorials": null
+    },
+    {
+      "zh": "内容长期沉淀、需要稳定结构与会深链",
+      "en": "Long-lived content needing stable structure and deep links"
+    },
+    {
+      "zh": "读者边读边操作、需要代码可复制",
+      "en": "Readers follow along and need copyable code"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "时效性强的营销内容（用落地页或博客更合适）",
+      "en": "Time-sensitive marketing — a landing page or blog fits better"
+    },
+    {
+      "zh": "需要频繁协作编辑的内容（用编辑器或知识库工具）",
+      "en": "Content needing collaborative editing — use an editor or wiki"
+    },
+    {
+      "zh": "纯展示型图文页面",
+      "en": "Purely presentational visual pages"
+    }
+  ],
+  "tags": [
+    "content",
+    "reading",
+    "docs",
+    "navigation"
+  ],
+  "variants": [
+    {
+      "id": "three-column",
+      "name": {
+        "zh": "三栏文档",
+        "en": "Three-column Docs"
+      },
+      "note": {
+        "zh": "文档树 + 正文 + 页内目录，桌面端标配",
+        "en": "Tree + article + TOC",
+        "the desktop standard": null
+      }
+    },
+    {
+      "id": "sidebar",
+      "name": {
+        "zh": "侧栏文档",
+        "en": "Sidebar Docs"
+      },
+      "note": {
+        "zh": "文档树 + 正文两栏，中屏友好",
+        "en": "Tree + article",
+        "friendly to mid-size screens": null
+      }
+    },
+    {
+      "id": "api-reference",
+      "name": {
+        "zh": "API 参考",
+        "en": "API Reference"
+      },
+      "note": {
+        "zh": "左描述右代码块的双栏条目式排版",
+        "en": "Description left",
+        "code right — entry-style layout": null
+      }
+    },
+    {
+      "id": "single-page",
+      "name": {
+        "zh": "单页手册",
+        "en": "Single-page Manual"
+      },
+      "note": {
+        "zh": "全部章节纵排一页，靠目录跳转",
+        "en": "All sections on one page",
+        "navigated by TOC": null
+      }
+    }
+  ],
+  "anatomy": [
+    "Sidebar 文档树导航",
+    "Article 正文",
+    "Code Block 代码块",
+    "TOC 页内目录",
+    "Prev/Next 上下篇"
+  ],
+  "related": [
+    "sidebar",
+    "breadcrumb",
+    "command-palette",
+    "tabs",
+    "alert"
+  ],
+  "demo": {
+    "component": "documentation",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "grid",
+      "grid-template-columns: 240px minmax(0, 1fr) 180px",
+      "position: sticky",
+      "overflow-x: auto"
+    ],
+    "notes": {
+      "zh": "三栏用 grid（240px / 1fr / 180px），中屏隐藏 TOC、移动端文档树转为抽屉。 正文最大宽度限制在 70ch 左右保证可读性；代码块横向滚动 + 一键复制按钮； TOC 用 IntersectionObserver 高亮当前章节；每页固定 slug 作为永久链接， 底部渲染 Prev/Next。",
+      "en": "Three columns via grid (240px / 1fr / 180px); hide the TOC on mid screens and turn the tree into a drawer on mobile. Cap article width around 70ch; code blocks scroll horizontally with a copy button; the TOC highlights the current section via IntersectionObserver; each page gets a stable slug permalink and prev/next links."
+    }
+  },
+  "sources": [
+    {
+      "name": "Diátaxis documentation framework",
+      "url": "https://diataxis.fr/"
+    },
+    {
+      "name": "MDN Web Docs — Writing guidelines",
+      "url": "https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个文档页，包含侧栏文档树、正文和页内目录。",
+      "en": "Create a documentation page with a sidebar tree, article body and page TOC."
+    },
+    "design": {
+      "zh": "创建三栏文档页：左侧文档树（分组 + 当前项高亮）；正文含面包屑、H1、段落、带语言标签与复制按钮的代码块、蓝色提示框；右侧 sticky 页内目录（当前节高亮）；底部上一页/下一页卡。移动端文档树收进抽屉、TOC 隐藏。",
+      "en": "Build a three-column docs page: left tree (groups + active item highlight); article with breadcrumb, H1, paragraphs, a code block with language label and copy button, a blue callout; right sticky TOC with current-section highlight; prev/next cards at the bottom. Tree becomes a drawer and TOC hides on mobile."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现文档页：文档树数据驱动（{group, items}）+ 受控展开； Markdown 渲染层产出标题锚点；TOC 用 IntersectionObserver 联动高亮； 代码复制用 navigator.clipboard 并给成功反馈；路由按 slug 深链。不新增依赖。",
+      "en": "React + Tailwind docs page: data-driven tree ({group, items}) with controlled expansion; the markdown layer emits heading anchors; TOC highlights via IntersectionObserver; code copy uses navigator.clipboard with success feedback; routes deep-link by slug. No new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现文档页。\n\n先检查现有路由、Markdown 管线与 sidebar 组件，保持一致。\n要求：\n- 三栏布局（树 / 正文 / TOC），响应式降级\n- 代码块复制按钮、提示框等正文组件\n- TOC 滚动联动高亮\n- Prev/Next 与 slug 深链\n- 深浅色一致，不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the documentation page in the current project.\n\nInspect existing routes, the markdown pipeline and the sidebar component first; stay consistent.\nRequirements:\n- Three-column layout (tree / article / TOC) with responsive degradation\n- Article components: copyable code blocks, callouts\n- Scroll-linked TOC highlighting\n- Prev/next links and slug deep links\n- Consistent light/dark; no new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

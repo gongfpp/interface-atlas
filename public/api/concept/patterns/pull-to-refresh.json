@@ -1,0 +1,179 @@
+{
+  "id": "pull-to-refresh",
+  "type": "patterns",
+  "status": "published",
+  "name": {
+    "zh": "下拉刷新",
+    "en": "Pull to Refresh"
+  },
+  "aliases": [
+    "Pull to Refresh",
+    "下拉刷新",
+    "下拉更新",
+    "拉动刷新",
+    "手势刷新",
+    "下拉加载最新"
+  ],
+  "category": [
+    "Navigation",
+    "Mobile"
+  ],
+  "description": {
+    "zh": "在列表顶部按住并向下拖动，出现随拖动距离变化的加载指示，超过阈值后松手即重新拉取最新数据。 它解决的是\"内容可能已经过期\"的问题——用户主动、可预期地请求更新， 而不是被动等待自动轮询，刷新的时机和结果都由自己掌控。",
+    "en": "Press at the top of a list and drag downward: an indicator tracks the pull distance, and releasing past a threshold refetches the latest data. It solves the \"content may be stale\" problem — the user requests a refresh deliberately and predictably, staying in control of both timing and outcome instead of waiting for background polling."
+  },
+  "use_when": [
+    {
+      "zh": "移动端时间线、消息、动态列表",
+      "en": "Mobile timelines",
+      "inboxes and activity feeds": null
+    },
+    {
+      "zh": "内容有时效性但无需自动轮询",
+      "en": "Content with freshness needs but no polling requirement"
+    },
+    {
+      "zh": "用户已被 iOS / Android 教育过该手势",
+      "en": "Users already trained by iOS / Android conventions"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "桌面鼠标环境，下拉手势不自然",
+      "en": "Desktop mouse environments — the gesture feels unnatural"
+    },
+    {
+      "zh": "顶部有重要吸顶操作，下拉容易误触",
+      "en": "Important sticky top actions that a pull would disrupt"
+    },
+    {
+      "zh": "数据高频变化，应改用自动同步或推送",
+      "en": "High-frequency data — prefer auto-sync or push updates"
+    }
+  ],
+  "tags": [
+    "gesture",
+    "mobile",
+    "refresh",
+    "loading"
+  ],
+  "variants": [
+    {
+      "id": "spinner",
+      "name": {
+        "zh": "指示器跟随",
+        "en": "Tracked spinner"
+      },
+      "note": {
+        "zh": "指示器位置与角度映射下拉距离，过阈值翻转",
+        "en": "Indicator position and rotation track the pull; flips past the threshold"
+      }
+    },
+    {
+      "id": "text-hint",
+      "name": {
+        "zh": "文字提示",
+        "en": "Text hint"
+      },
+      "note": {
+        "zh": "「下拉刷新 / 松手刷新」两段状态文案",
+        "en": "Two-stage copy — pull to refresh / release to refresh"
+      }
+    },
+    {
+      "id": "skeleton-handoff",
+      "name": {
+        "zh": "骨架接管",
+        "en": "Skeleton handoff"
+      },
+      "note": {
+        "zh": "松手后以骨架屏过渡到刷新后的内容",
+        "en": "After release",
+        "a skeleton bridges into the refreshed content": null
+      }
+    }
+  ],
+  "anatomy": [
+    "顶部指示器（Pull indicator）",
+    "状态提示（Threshold hint）",
+    "内容列表（Content list）",
+    "刷新完成反馈（Refresh confirmation）"
+  ],
+  "applicable_components": [],
+  "applicable_pages": [
+    "profile",
+    "dashboard"
+  ],
+  "related": [
+    "infinite-scroll",
+    "pagination",
+    "loading-spinner",
+    "skeleton-loading",
+    "toast"
+  ],
+  "demo": {
+    "component": "pull-to-refresh",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "compare": {
+    "group": "scroll-loading",
+    "dimensions": {
+      "触发方式": {
+        "zh": "用户主动下拉手势触发",
+        "en": "Deliberate pull gesture by the user"
+      },
+      "数据控制": {
+        "zh": "用户主动请求最新数据",
+        "en": "User-initiated request for fresh data"
+      },
+      "适用内容": {
+        "zh": "动态、消息等需要手动更新的内容",
+        "en": "Feeds and messages needing a manual refresh"
+      }
+    }
+  },
+  "implementation": {
+    "css": [
+      "touch-action",
+      "overscroll-behavior",
+      "transform",
+      "transition"
+    ],
+    "notes": {
+      "zh": "在 scrollTop 为 0 时接管下拉手势：监听 touchmove（需 passive: false 才能 preventDefault）， 拖动距离乘阻尼系数映射为指示器位移；超过阈值后松手进入刷新态并锁住， 完成后回弹复位。桌面用 pointer 事件模拟鼠标拖拽。容器加 overscroll-behavior: contain 防止外层页面跟着滚动。",
+      "en": "Take over the gesture only when scrollTop is 0: listen to touchmove with passive: false so preventDefault works, map pull distance through a damping factor to the indicator offset, and on release past the threshold enter the refreshing state with a lock until done, then spring back. Use pointer events for mouse-driven desktop demos. Add overscroll-behavior: contain so the outer page doesn't scroll along."
+    }
+  },
+  "sources": [
+    {
+      "name": "Apple HIG — Pull to Refresh",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/pull-to-refresh"
+    },
+    {
+      "name": "Material Design — Swipe to Refresh",
+      "url": "https://m3.material.io/components/pull-to-refresh/overview"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个下拉刷新（Pull to Refresh）列表：在顶部向下拖动出现指示器， 超过阈值松手触发刷新，完成后内容更新并回弹。",
+      "en": "Create a pull-to-refresh list where dragging down at the top reveals an indicator; releasing past the threshold triggers a refresh, then content updates and the indicator springs back."
+    },
+    "design": {
+      "zh": "设计一个下拉刷新信息流。要求：指示器随下拉距离位移与旋转，过阈值状态翻转提示\"松手刷新\"； 刷新中指示器停在阈值处持续动画；完成后新内容淡入、指示器回弹；支持深浅色主题。",
+      "en": "Design a pull-to-refresh feed. Requirements: the indicator translates and rotates with pull distance and flips past the threshold (\"release to refresh\"); during refresh it holds at the threshold with a continuous animation; on completion new content fades in and the indicator springs back; light/dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Pull to Refresh。容器 ref 上绑定原生 touch 事件 （passive: false）与鼠标 pointer 事件；scrollTop <= 0 且向下拖时计算 (clientY - startY) * 0.45 作为 pull 值并 preventDefault；松手时 pull >= 阈值 则进入 refreshing 态，setTimeout 模拟请求后更新数据并复位。 容器加 overscroll-contain 与 select-none。",
+      "en": "Implement Pull to Refresh in React + Tailwind. Bind native touch listeners (passive: false) plus mouse pointer events on a container ref; when scrollTop <= 0 and dragging down, set pull = (clientY - startY) * 0.45 and preventDefault; on release with pull >= threshold enter the refreshing state, simulate the request with setTimeout, then update data and reset. Add overscroll-contain and select-none on the container."
+    },
+    "agent": {
+      "zh": "在当前项目中实现下拉刷新（Pull to Refresh）。\n\n先检查现有列表与加载指示组件，优先复用现有的旋转指示样式。\n用途：移动端动态列表手动刷新。\n要求：\n- 仅在列表位于顶部时接管下拉手势，不干扰正常滚动\n- 指示器随距离位移旋转，过阈值翻转提示，松手触发刷新\n- 刷新中锁住避免重复触发，完成后回弹并更新内容\n- 触摸与鼠标拖拽均可触发，尊重 prefers-reduced-motion\n- 不新增不必要的依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement Pull to Refresh in the current project.\n\nInspect the existing list and loading indicator components first; reuse the existing spinner styles.\nUsage: manual refresh for a mobile activity list.\nRequirements:\n- Take over the pull gesture only at the top of the list; never interfere with normal scrolling\n- Indicator translates and rotates with distance, flips past the threshold, refresh on release\n- Lock during refresh to prevent re-triggering; spring back and update content when done\n- Works with both touch and mouse dragging; respect prefers-reduced-motion\n- No unnecessary dependencies\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

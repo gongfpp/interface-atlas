@@ -1,0 +1,184 @@
+{
+  "id": "claymorphism",
+  "type": "styles",
+  "status": "published",
+  "name": {
+    "zh": "黏土风",
+    "en": "Claymorphism"
+  },
+  "aliases": [
+    "黏土风",
+    "黏土拟物",
+    "软糖质感设计",
+    "膨胀立体卡片",
+    "3D黏土按钮",
+    "橡皮泥风格",
+    "Clay 3D",
+    "Puffy UI"
+  ],
+  "category": [
+    "Style",
+    "Visual Language"
+  ],
+  "description": {
+    "zh": "把控件捏成软黏土的视觉语言：大圆角、柔和粉彩底色，双重阴影——向内的内 凹阴影加向外的膨胀投影——让元素像充了气的黏土块，圆润 饱满 软乎乎。 它是新拟物与 3D 卡通之间的一种手感化中间态。",
+    "en": "A visual language that molds controls from soft clay: generous radii on pastel grounds, with a double shadow — an inner concave plus an outer inflated drop — so elements feel like air-puffed clay: round, plump, squishable. A tactile middle ground between neumorphism and 3D cartoon."
+  },
+  "use_when": [
+    {
+      "zh": "儿童 教育 休闲游戏类产品，需要亲和与手感",
+      "en": "Kids",
+      "education and casual games that want approachable tactility": null
+    },
+    {
+      "zh": "轻松的社交 消费品牌，传达可爱与松弛感",
+      "en": "Relaxed social and consumer brands signaling cuteness and ease"
+    },
+    {
+      "zh": "强调触觉反馈的移动端轻交互场景",
+      "en": "Mobile touch interactions that want tactile feedback"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "专业 金融 企业级场景，软糖感削弱专业信号",
+      "en": "Professional",
+      "fintech and enterprise contexts — clay reads unserious": null
+    },
+    {
+      "zh": "信息密集的后台界面，膨胀阴影消耗空间与注意力",
+      "en": "Dense dashboards where inflated shadows eat space and focus"
+    },
+    {
+      "zh": "深色重度使用场景，粉彩膨胀感不易维持",
+      "en": "Heavy dark-mode usage where pastel inflation is hard to sustain"
+    }
+  ],
+  "tags": [
+    "claymorphism",
+    "clay",
+    "puffy",
+    "pastel",
+    "tactile"
+  ],
+  "variants": [
+    {
+      "id": "soft-clay",
+      "name": {
+        "zh": "软黏土",
+        "en": "Soft Clay"
+      },
+      "note": {
+        "zh": "经典粉彩加膨胀双影，最常见配方",
+        "en": "Classic pastel with the inflated double shadow"
+      }
+    },
+    {
+      "id": "candy-clay",
+      "name": {
+        "zh": "糖果黏土",
+        "en": "Candy Clay"
+      },
+      "note": {
+        "zh": "更高饱和的果冻色，接近游戏 UI",
+        "en": "Saturated jelly tones close to game UI"
+      }
+    },
+    {
+      "id": "clay-dark",
+      "name": {
+        "zh": "深色黏土",
+        "en": "Dark Clay"
+      },
+      "note": {
+        "zh": "深灰底上的哑光黏土，膨胀感保留",
+        "en": "Matte clay on dark grey",
+        "inflation kept": null
+      }
+    }
+  ],
+  "applicable_components": [
+    "button",
+    "card",
+    "toast",
+    "badge",
+    "switch"
+  ],
+  "related": [
+    "glassmorphism",
+    "neobrutalism",
+    "button",
+    "card",
+    "badge"
+  ],
+  "demo": {
+    "component": "claymorphism",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Hype4 Academy — Claymorphism in design",
+      "url": "https://www.hype4.academy/articles/design/claymorphism-in-web-design"
+    },
+    {
+      "name": "MDN — box-shadow",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "border-radius: 20px",
+      "box-shadow: inset 0 -6px 12px",
+      "box-shadow: 0 12px 24px",
+      "pastel"
+    ],
+    "notes": {
+      "zh": "膨胀公式 = 大圆角（20～32px）+ 三重阴影：外侧大模糊同色系投影（如 0 14px 28px 主色 35%）、内侧下压暗影（inset 0 -8px 16px）、内侧顶部 高光（inset 0 3px 6px 白）。底色与投影必须同色系，投影带色而不发灰。 按下时缩小外投影并加强内凹，形成\"捏下去\"的反馈。深色黏土用深灰底 加更深一号的同色投影。",
+      "en": "Inflation formula = big radii (20–32px) plus three shadows: a large blurred same-hue drop (e.g. 0 14px 28px at 35% of the base color), an inner bottom press (inset 0 -8px 16px), and an inner top light (inset 0 3px 6px white). Tinted shadows must stay in-family — never grey. On press, shrink the drop and deepen the inner shadow to feel squeezed. Dark clay uses deep grey with a darker same-hue drop."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "用黏土风（Claymorphism）设计界面：大圆角粉彩元素，外膨胀投影 + 内凹 阴影的双重质感，控件像充气的软黏土块。",
+      "en": "\"Design an interface in Claymorphism style: big-radius pastel elements with an inflated outer drop plus an inner concave shadow — controls like puffed clay.\""
+    },
+    "design": {
+      "zh": "黏土风设计规范：底色粉彩（#EAF0FF 等浅底或淡粉 淡绿 淡紫）；主色 #6C8CFF 类柔和饱和色；卡片圆角 24px，阴影三重：0 14px 28px 主色 35%、 inset 0 -8px 16px 主色 30%、inset 0 3px 6px 白 70%；按钮按压时外投影 收缩 内凹加强；文字近黑保证对比；深色模式用深灰底 #23252E 加深一号 同色投影。",
+      "en": "\"Claymorphism spec: pastel grounds (#EAF0FF or soft pink/green/lilac); gentle saturated primary like #6C8CFF; cards at 24px radii with triple shadows — 0 14px 28px primary 35%, inset 0 -8px 16px primary 30%, inset 0 3px 6px white 70%; pressed buttons shrink the drop and deepen the concave; near-black text for contrast. Dark mode: deep grey #23252E with a darker same-hue drop.\""
+    },
+    "implementation": {
+      "zh": "用 CSS 实现黏土按钮：.clay-btn { background: #6C8CFF; color: #fff; border: none; border-radius: 18px; padding: 12px 24px; box-shadow: 0 12px 22px rgba(108,140,255,0.4), inset 0 -6px 12px rgba(30,50,150,0.35), inset 0 3px 6px rgba(255,255,255,0.55); } :active { box-shadow: 0 5px 10px rgba(108,140,255,0.35), inset 0 -3px 8px rgba(30,50,150,0.4), inset 0 4px 8px rgba(0,0,0,0.15); }",
+      "en": "\"Implement a clay button in CSS: .clay-btn { background: #6C8CFF; color: #fff; border: none; border-radius: 18px; padding: 12px 24px; box-shadow: 0 12px 22px rgba(108,140,255,0.4), inset 0 -6px 12px rgba(30,50,150,0.35), inset 0 3px 6px rgba(255,255,255,0.55); } :active { box-shadow: 0 5px 10px rgba(108,140,255,0.35), inset 0 -3px 8px rgba(30,50,150,0.4), inset 0 4px 8px rgba(0,0,0,0.15); }\""
+    },
+    "agent": {
+      "zh": "在当前项目中用黏土风（Claymorphism）实现一组膨胀按钮与卡片区块。\n\n先检查现有 Design Token 与阴影变量，膨胀阴影参数做成可配置变量。\n要求：\n- 大圆角 + 三重阴影（外投影带色 内下压 内上高光）模拟黏土膨胀\n- 按下态外投影收缩 内凹加强，形成捏压反馈\n- 投影与底色同色系，避免灰黑阴影显脏\n- 文字对比度达标；支持深色模式（深灰哑光黏土）\n- 若有动效，尊重 prefers-reduced-motion\n- 不新增任何依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement inflated clay buttons and cards in the current project.\n\nInspect the existing design tokens and shadow variables first; express the inflation parameters as configurable variables.\nRequirements:\n- Big radii + triple shadow (tinted drop, inner bottom press, inner top light) for the clay inflation\n- Pressed state shrinks the drop and deepens the concave — a squeezing feel\n- Tinted same-family shadows only, never muddy grey\n- Compliant text contrast; dark mode with matte deep-grey clay\n- Respect prefers-reduced-motion for any motion\n- No new dependencies\nRun existing project checks when done and list the modified files."
+    }
+  },
+  "style_spec": {
+    "typography": {
+      "zh": "圆体无衬线",
+      "en": "Rounded sans"
+    },
+    "color": {
+      "zh": "淡紫底 #EDF0FF × 白卡 × 紫 #6C7BFF",
+      "en": "Lavender base #EDF0FF, white cards, violet #6C7BFF"
+    },
+    "border": {
+      "zh": "几乎无边框，大圆角 22px",
+      "en": "Borderless with 22px+ radius"
+    },
+    "shadow": {
+      "zh": "外投影 + inset 内阴影 = 黏土感",
+      "en": "Outer + inset shadows create the clay feel"
+    },
+    "spacing": {
+      "zh": "蓬松间距，元素相互分离",
+      "en": "Puffy spacing, elements float apart"
+    }
+  }
+}

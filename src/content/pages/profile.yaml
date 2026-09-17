@@ -1,0 +1,145 @@
+status: published
+
+name:
+  zh: 个人主页
+  en: Profile Page
+
+aliases:
+  - 个人主页
+  - 个人资料页
+  - 用户主页
+  - 个人介绍页
+  - 头像主页
+  - 空间主页
+  - 介绍一下自己的页面
+
+category:
+  - Page
+  - Social
+
+description:
+  zh: >-
+    以身份为中心展示"这是谁、有什么、在做什么"的页面：封面与头像建立视觉身份，
+    下方是姓名、简介与统计数字，再用页签切换动态、作品或文章等内容流。
+    他人视角配关注/私信按钮，本人视角配编辑入口，页面结构相同而操作不同。
+  en: >-
+    An identity-centered page answering "who is this, what do they have, what do they do":
+    cover and avatar establish visual identity, name, bio and stats follow, and tabs switch
+    between content streams like posts, works or articles. Visitors see follow/message actions;
+    the owner sees edit entries — same structure, different actions.
+
+use_when:
+  - { zh: 社区、创作者平台展示用户身份与内容, en: Communities and creator platforms showing identity and content }
+  - { zh: 团队成员/作者等人物介绍页, en: Team member or author pages }
+  - { zh: 用户需要查看或管理自己的公开形象, en: Users view or manage their public presence }
+
+avoid_when:
+  - { zh: 纯功能性的账号信息修改（并入设置页）, en: Pure account data editing — fold into settings }
+  - { zh: 无内容流、只留联系方式的极简名片（静态区块即可）, en: Minimal contact cards with no content stream }
+  - { zh: 需要强营销转化的官方品牌页, en: Official brand pages with conversion goals }
+
+tags:
+  - social
+  - identity
+  - profile
+  - content
+
+variants:
+  - id: card
+    name: { zh: 卡片式, en: Card Profile }
+    note: { zh: 信息收在一张圆角卡片内，克制通用, en: Info contained in one card, restrained and universal }
+  - id: cover
+    name: { zh: 封面头图式, en: Cover Profile }
+    note: { zh: 大封面 + 叠放头像，社交平台标准, en: Big cover with overlapping avatar, the social standard }
+  - id: minimal
+    name: { zh: 极简列表式, en: Minimal Profile }
+    note: { zh: 只留头像、一句话与链接，名片风, en: Avatar, one-liner and links — business-card style }
+  - id: portfolio
+    name: { zh: 作品集式, en: Portfolio Profile }
+    note: { zh: 内容以作品网格为主视觉, en: A work grid carries the page }
+
+anatomy:
+  - Cover/Avatar 封面与头像
+  - Identity 身份信息
+  - Stats 统计
+  - Tabs 内容页签
+  - Actions 操作按钮
+
+related:
+  - avatar
+  - tabs
+  - card
+  - button
+  - badge
+
+demo:
+  component: profile
+  modes: [default, dark, variants]
+
+implementation:
+  css:
+    - flex
+    - grid
+    - "transform: translateY(50%)"
+    - "object-fit: cover"
+  notes:
+    zh: >-
+      封面变体：头像用负 margin（translateY 或 -mt）叠在封面下缘，圆环描边避免与封面糊在一起。
+      统计数字用 flex 分列；页签切换内容流且保留滚动位置。关注按钮三态（未关注/已关注/互关）
+      与 hover 状态区分；本人视角用 avatar 菜单替换操作区。
+    en: >-
+      Cover variant: overlap the avatar on the cover's lower edge with a negative margin and a
+      ring stroke to separate it from the image. Stats split across flex columns; tabs switch
+      streams while preserving scroll. Follow button has three states (follow/following/mutual)
+      with distinct hover; owner view swaps actions for an avatar menu.
+
+sources:
+  - name: Nielsen Norman Group — Profile Pages
+    url: https://www.nngroup.com/articles/about-us/
+  - name: Material Design — Cards
+    url: https://m3.material.io/components/cards
+
+prompts:
+  basic:
+    zh: 创建一个个人主页，包含头像、简介、统计数字和内容页签。
+    en: Create a profile page with an avatar, bio, stats and content tabs.
+  design:
+    zh: 创建社交平台个人主页：顶部渐变封面图，圆形头像带白色描边叠在封面下缘；右侧关注/私信按钮（本人视角则显示编辑资料）；姓名 + 认证徽标 + 一句话简介；关注者/关注/作品数三列统计；下方"动态 / 作品 / 关于"页签切换内容列表。
+    en: >-
+      Build a social profile page: gradient cover, round avatar with a white ring overlapping
+      the cover edge; follow/message buttons on the right (edit-profile in owner view); name +
+      verified badge + one-line bio; three-column stats (followers / following / works); tabs
+      switching between Posts / Works / About lists.
+  implementation:
+    zh: >-
+      用 React + Tailwind 实现个人主页：受控 tab 状态切换内容流；关注按钮三态受控；
+      头像叠放用 -mt-8 + ring-2 ring-paper；内容流列表数据驱动并支持空态；
+      移动端统计与按钮换行。深浅色一致；不新增依赖。
+    en: >-
+      React + Tailwind profile page: controlled tab state switching streams; three-state
+      controlled follow button; avatar overlap via -mt-8 + ring-2 ring-paper; data-driven
+      streams with empty states; stats and buttons wrap on mobile. Consistent light/dark;
+      no new dependencies.
+  agent:
+    zh: |-
+      在当前项目中实现个人主页。
+
+      先检查用户数据结构与现有 avatar/tabs 组件，保持一致。
+      要求：
+      - 封面 + 叠放头像 + 身份信息 + 统计
+      - 页签切换内容流（支持空态）
+      - 关注按钮三态；本人/访客视角区分
+      - 深浅色一致，响应式
+      - 不新增依赖
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Implement the profile page in the current project.
+
+      Inspect the user data model and existing avatar/tabs components first; stay consistent.
+      Requirements:
+      - Cover + overlapping avatar + identity info + stats
+      - Tabs switch content streams (with empty states)
+      - Three-state follow button; owner vs visitor views
+      - Consistent light/dark; responsive
+      - No new dependencies
+      Run existing checks when done and list modified files.

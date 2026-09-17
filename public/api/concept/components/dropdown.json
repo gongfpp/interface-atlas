@@ -1,0 +1,180 @@
+{
+  "id": "dropdown",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "下拉菜单",
+    "en": "Dropdown"
+  },
+  "aliases": [
+    "下拉菜单",
+    "下拉选项",
+    "更多菜单",
+    "操作菜单",
+    "溢出菜单",
+    "三个点菜单"
+  ],
+  "category": [
+    "Navigation",
+    "Overlay"
+  ],
+  "description": {
+    "zh": "由触发按钮就近弹出的一组操作菜单，用于收纳次要操作，保持界面整洁。 典型形态是「···」更多按钮；面板带阴影浮于内容之上，点击菜单项即执行并关闭， 危险操作以红色项与分隔线隔离。",
+    "en": "A menu of actions popping near its trigger to tuck away secondary operations and keep the interface tidy — the classic form being a \"···\" more button. The panel floats over content with a shadow; picking an item executes and closes, and destructive actions sit isolated below a divider in red."
+  },
+  "use_when": [
+    {
+      "zh": "次要操作较多但不值得常驻展示",
+      "en": "Secondary actions do not warrant permanent visibility"
+    },
+    {
+      "zh": "列表行的行内操作收纳进「···」按钮",
+      "en": "Row-level actions collected behind a \"···\" button"
+    },
+    {
+      "zh": "工具栏空间有限，需要折叠操作集",
+      "en": "Toolbar space is tight and actions must fold up"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "高频主要操作，直接放按钮更高效",
+      "en": "Frequent primary actions deserve real buttons"
+    },
+    {
+      "zh": "需要在多项输入间选择并提交，用下拉选择",
+      "en": "Picking a value for a form — use a select instead"
+    },
+    {
+      "zh": "触屏端深度超过一层的嵌套菜单，改为抽屉或页面",
+      "en": "Nested menus beyond one level on touch — use a drawer or page"
+    }
+  ],
+  "tags": [
+    "navigation",
+    "overlay",
+    "menu"
+  ],
+  "variants": [
+    {
+      "id": "more",
+      "name": {
+        "zh": "更多按钮",
+        "en": "More button"
+      },
+      "note": {
+        "zh": "「···」触发的行内操作集",
+        "en": "Row actions behind a \"···\" trigger"
+      }
+    },
+    {
+      "id": "hover",
+      "name": {
+        "zh": "悬停展开",
+        "en": "Hover"
+      },
+      "note": {
+        "zh": "指针悬停即展开，适合桌面导航",
+        "en": "Opens on pointer hover — desktop navigation"
+      }
+    },
+    {
+      "id": "with-icons",
+      "name": {
+        "zh": "带图标与分隔",
+        "en": "With icons & divider"
+      },
+      "note": {
+        "zh": "图标辅助识别，危险项用分隔线隔离",
+        "en": "Icons aid scanning; a divider isolates the danger item"
+      }
+    }
+  ],
+  "anatomy": [
+    "触发器（Trigger）",
+    "菜单面板（Menu panel）",
+    "菜单项（Menu item）",
+    "分隔线与危险项（Divider & danger item）"
+  ],
+  "applicable_styles": [
+    "minimalism",
+    "glassmorphism"
+  ],
+  "applicable_components": [],
+  "applicable_pages": [
+    "dashboard",
+    "settings"
+  ],
+  "related": [
+    "menu",
+    "popover",
+    "command-palette",
+    "select",
+    "modal"
+  ],
+  "demo": {
+    "component": "dropdown",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "compare": {
+    "group": "navigation-overlay",
+    "dimensions": {
+      "打断程度": {
+        "zh": "低，小面板就近弹出",
+        "en": "Low — a small panel near the trigger"
+      },
+      "内容容量": {
+        "zh": "低～中，几项到十几项",
+        "en": "Low to medium — a few to a dozen items"
+      },
+      "触发成本": {
+        "zh": "低，一次点击",
+        "en": "Low — a single click"
+      }
+    }
+  },
+  "implementation": {
+    "css": [
+      "position: absolute",
+      "z-index: 10",
+      "box-shadow",
+      "transition"
+    ],
+    "notes": {
+      "zh": "面板绝对定位于触发器下方，展开做轻微 opacity + translateY 过渡（时长乘 --demo-speed）。role=\"menu\" / role=\"menuitem\" 标注，键盘上下移动、 Escape 关闭、点击外部关闭。危险项用红色文字并以分隔线隔离， 防止误点。触发器展开时保持高亮态。",
+      "en": "Absolutely position the panel below the trigger with a subtle opacity + translateY transition (durations multiplied by --demo-speed). Mark up with role=\"menu\" and role=\"menuitem\"; arrow keys move, Escape and outside click close. Isolate the danger item below a divider in red to prevent misclicks, and keep the trigger highlighted while open."
+    }
+  },
+  "sources": [
+    {
+      "name": "W3C APG — Menu Button Pattern",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/"
+    },
+    {
+      "name": "Material Design — Dropdown menu",
+      "url": "https://m3.material.io/components/menus/overview"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个下拉菜单组件，点击按钮弹出操作菜单，选择后自动关闭。",
+      "en": "Create a dropdown component that opens an action menu on click and closes after selection."
+    },
+    "design": {
+      "zh": "创建下拉菜单组件。要求：「···」按钮触发，面板带阴影就近弹出，菜单项带图标， 底部危险项（删除）红色并用分隔线隔离；展开有轻微浮入动画；点击外部与 Escape 关闭；深浅色一致。",
+      "en": "Create a dropdown component. Requirements: triggered by a \"···\" button, a shadowed panel popping just below, menu items with icons, a red danger item (delete) isolated by a divider; a subtle float-in animation; closes on outside click and Escape; consistent in light/dark."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Dropdown：受控 open；面板 absolute right-0 top-full + shadow-lg，过渡 opacity + translateY（时长乘 --demo-speed）；菜单项数据驱动 （{label, icon, danger}）；document 点击与 Escape 关闭；role=\"menu\" + role=\"menuitem\"，上下键移动焦点，Enter 执行并关闭。",
+      "en": "React + Tailwind Dropdown: controlled open; panel absolute right-0 top-full with shadow-lg and an opacity + translateY transition (duration multiplied by --demo-speed); items data-driven ({label, icon, danger}); close on document click and Escape; role=\"menu\" + role=\"menuitem\" with arrow-key focus movement and Enter to execute and close."
+    },
+    "agent": {
+      "zh": "在当前项目中实现下拉菜单组件。\n\n先检查现有弹出层组件与 z-index 约定，保持层级一致。\n要求：\n- 受控 open，触发器就近弹出面板\n- 菜单项带图标，危险项红色 + 分隔线隔离\n- 点击外部 / Escape 关闭，键盘上下选择\n- 深浅色主题一致，动画尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a dropdown component in the current project.\n\nInspect existing overlay components and z-index conventions first; keep layers consistent.\nRequirements:\n- Controlled open, panel pops near the trigger\n- Items with icons; danger item in red isolated by a divider\n- Close on outside click / Escape; arrow-key selection\n- Consistent light/dark themes; animation respects prefers-reduced-motion\n- No new dependencies\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

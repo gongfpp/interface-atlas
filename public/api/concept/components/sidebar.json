@@ -1,0 +1,184 @@
+{
+  "id": "sidebar",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "侧边栏",
+    "en": "Sidebar"
+  },
+  "aliases": [
+    "左侧菜单",
+    "侧栏",
+    "左边菜单",
+    "导航侧栏",
+    "固定菜单",
+    "网页左边固定菜单",
+    "侧边导航"
+  ],
+  "category": [
+    "Navigation"
+  ],
+  "description": {
+    "zh": "固定在页面一侧（通常左侧）的垂直导航区，承载产品的主要层级入口。 后台管理系统的事实标准：顶部放品牌与全局搜索，侧边栏放模块树，内容区专注任务。",
+    "en": "A vertical navigation area pinned to one side of the page (usually the left), carrying the primary hierarchy of a product. The de facto standard of admin systems: brand and global search on top, module tree in the sidebar, content focused on the task."
+  },
+  "use_when": [
+    {
+      "zh": "层级较多的后台、文档站、管理面板",
+      "en": "Deep-hierarchy admin panels",
+      "docs sites": null,
+      "dashboards": null
+    },
+    {
+      "zh": "导航项需要常驻可见、随时切换",
+      "en": "Navigation must stay visible for quick switching"
+    },
+    {
+      "zh": "桌面端为主的宽屏布局",
+      "en": "Desktop-first",
+      "wide-screen layouts": null
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "移动端（改为抽屉或底部导航）",
+      "en": "Mobile — use a drawer or bottom nav instead"
+    },
+    {
+      "zh": "层级极少的简单官网（顶部导航更轻）",
+      "en": "Simple sites with few sections — a top nav is lighter"
+    },
+    {
+      "zh": "内容需要最大化宽度（如阅读、编辑器写作模式）",
+      "en": "Width-hungry content like reading or writing modes"
+    }
+  ],
+  "tags": [
+    "navigation",
+    "layout",
+    "dashboard"
+  ],
+  "variants": [
+    {
+      "id": "fixed",
+      "name": {
+        "zh": "固定宽",
+        "en": "Fixed"
+      },
+      "note": {
+        "zh": "常驻 240px 左右，最经典",
+        "en": "Persistent ~240px",
+        "the classic": null
+      }
+    },
+    {
+      "id": "collapsible",
+      "name": {
+        "zh": "可折叠",
+        "en": "Collapsible"
+      },
+      "note": {
+        "zh": "收成图标条，兼顾密度与空间",
+        "en": "Collapses to icon rail — balances density and space"
+      }
+    },
+    {
+      "id": "floating",
+      "name": {
+        "zh": "浮动",
+        "en": "Floating"
+      },
+      "note": {
+        "zh": "与内容区脱开，卡片式悬浮（Linear 风格）",
+        "en": "Detached",
+        "floating card style (Linear-like)": null
+      }
+    }
+  ],
+  "anatomy": [
+    "品牌 / Logo 区",
+    "全局搜索入口",
+    "分组导航树（Group + Item）",
+    "底部用户 / 设置区"
+  ],
+  "applicable_styles": [
+    "minimalism",
+    "swiss-style"
+  ],
+  "applicable_pages": [
+    "dashboard",
+    "settings",
+    "documentation"
+  ],
+  "related": [
+    "navbar",
+    "drawer",
+    "command-palette",
+    "breadcrumb"
+  ],
+  "demo": {
+    "component": "sidebar",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "compare": {
+    "group": "primary-navigation",
+    "dimensions": {
+      "空间占用": {
+        "zh": "高，常驻占宽",
+        "en": "High — persistent width"
+      },
+      "层级容量": {
+        "zh": "高，树状多级",
+        "en": "High — multi-level tree"
+      },
+      "移动端友好": {
+        "zh": "差，需转抽屉",
+        "en": "Poor — becomes a drawer"
+      }
+    }
+  },
+  "implementation": {
+    "css": [
+      "position: sticky",
+      "flex",
+      "width",
+      "overflow-y: auto"
+    ],
+    "notes": {
+      "zh": "布局用 flex：侧栏固定宽 + 内容区 flex-1；侧栏内部 overflow-y-auto，sticky 顶部。 折叠态用 width 过渡（240px ↔ 64px），图标居中，文字 opacity 隐藏。 移动端断点下转为 fixed 抽屉 + 遮罩。当前项用 accent 色块或左侧竖条标识。",
+      "en": "Flex layout: fixed-width sidebar + flex-1 content; sidebar scrolls internally, sticky top. Collapse animates width (240px ↔ 64px) with icon-centered items and text fading out. On mobile breakpoints it becomes a fixed drawer with backdrop. Mark the active item with an accent block or left bar."
+    }
+  },
+  "sources": [
+    {
+      "name": "Apple HIG — Sidebars",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/sidebars"
+    },
+    {
+      "name": "Atlassian Design System — Navigation",
+      "url": "https://atlassian.design/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个后台侧边栏组件，包含品牌区、分组导航和底部用户区。",
+      "en": "Create an admin sidebar with a brand area, grouped navigation and a bottom user section."
+    },
+    "design": {
+      "zh": "创建固定侧边栏（240px）：顶部 Logo，中部两级分组导航（分组标题小写灰字 + 菜单项），当前项用强调色左侧竖条 + 浅色背景标识；底部头像 + 设置。支持折叠为 64px 图标栏，折叠动画平滑。深浅色主题一致。",
+      "en": "Create a fixed sidebar (240px): logo on top; two-level grouped nav (small grey group labels + items); active item marked with an accent left bar and soft background; bottom avatar + settings. Collapsible to a 64px icon rail with smooth animation. Consistent in light/dark."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Sidebar：aside 固定宽 + 内部 overflow-y-auto；分组数据驱动（{label, items}）；activeId 受控；折叠态通过 width transition 与图标 tooltip；移动端 lg 断点以下转 fixed 抽屉 + 遮罩，受 open 受控。键盘可访问：nav landmark + aria-current。",
+      "en": "React + Tailwind sidebar: fixed-width aside with internal scroll; data-driven groups ({label, items}); controlled activeId; collapsed state via width transition with icon tooltips; below lg it becomes a fixed drawer with backdrop, open state controlled. Accessibility: nav landmark + aria-current."
+    },
+    "agent": {
+      "zh": "在当前项目中实现后台侧边栏。\n\n先检查现有路由结构与导航数据来源，保持一致。\n要求：\n- 固定 240px，可折叠为 64px 图标栏（记忆折叠状态）\n- 分组导航数据驱动，当前路由项高亮（aria-current）\n- 移动端转为抽屉 + 遮罩\n- 深浅色主题一致\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement an admin sidebar in the current project.\n\nCheck the existing routing structure and navigation data source first; stay consistent.\nRequirements:\n- Fixed 240px, collapsible to a 64px icon rail (persist collapsed state)\n- Data-driven grouped nav; active route highlighted (aria-current)\n- Becomes a drawer with backdrop on mobile\n- Consistent light/dark themes\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

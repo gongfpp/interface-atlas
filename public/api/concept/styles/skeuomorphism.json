@@ -1,0 +1,184 @@
+{
+  "id": "skeuomorphism",
+  "type": "styles",
+  "status": "published",
+  "name": {
+    "zh": "拟物化",
+    "en": "Skeuomorphism"
+  },
+  "aliases": [
+    "拟物化",
+    "拟物风格",
+    "仿真质感设计",
+    "苹果早期那种真皮缝线效果",
+    "带纹理立体感的老式UI",
+    "皮革木纹质感界面",
+    "Realistic UI",
+    "Skeuomorphic Design"
+  ],
+  "category": [
+    "Style",
+    "Visual Language"
+  ],
+  "description": {
+    "zh": "用现实世界的材质与物理形态表示数字控件的视觉语言：皮革缝线、木质纹理、拉丝 金属、玻璃光泽，按钮做成可以按压的实体，开关做成拨杆。界面元件拥有高光、 投影与倒角，\"看起来像什么\"直接暗示\"能怎么用\"。",
+    "en": "A visual language that borrows real-world materials and physical forms for digital controls: leather stitching, wood grain, brushed metal, glass gloss. Buttons look pressable, switches look like levers — highlights, shadows and bevels make \"what it looks like\" teach \"how it works\"."
+  },
+  "use_when": [
+    {
+      "zh": "用户不熟悉触屏，需要借助现实隐喻降低学习成本",
+      "en": "Unfamiliar users who learn controls from real-world metaphors"
+    },
+    {
+      "zh": "品牌需要复古 怀旧或高端工艺感（音响 咖啡 笔记本应用）",
+      "en": "Brands seeking vintage",
+      "nostalgic or crafted-premium feel": null
+    },
+    {
+      "zh": "表达物理操作的乐趣，如拨动 按压 旋转",
+      "en": "Playful physical interactions — flipping",
+      "pressing": null,
+      "turning": null
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "信息密度高的工具类界面，装饰会挤压内容与效率",
+      "en": "Dense productivity tools where decoration crowds out content"
+    },
+    {
+      "zh": "需要频繁换肤与多平台适配，重度纹理维护成本高",
+      "en": "Multi-platform products — heavy textures are costly to maintain"
+    },
+    {
+      "zh": "极简品牌语境，拟物会显得过时与俗气",
+      "en": "Minimal brand contexts where skeuomorphism reads as dated"
+    }
+  ],
+  "tags": [
+    "skeuomorphism",
+    "texture",
+    "realism",
+    "depth",
+    "metaphor"
+  ],
+  "variants": [
+    {
+      "id": "leather",
+      "name": {
+        "zh": "皮革缝线",
+        "en": "Leather"
+      },
+      "note": {
+        "zh": "皮革纹理加缝线描边，早期 iOS 日历 记事本",
+        "en": "Leather grain with stitching — early iOS Calendar and Notes"
+      }
+    },
+    {
+      "id": "metal",
+      "name": {
+        "zh": "拉丝金属",
+        "en": "Brushed Metal"
+      },
+      "note": {
+        "zh": "金属渐变与高光倒角，iTunes 老播放器",
+        "en": "Metal gradients with beveled highlights — classic iTunes"
+      }
+    },
+    {
+      "id": "paper",
+      "name": {
+        "zh": "纸质",
+        "en": "Paper"
+      },
+      "note": {
+        "zh": "纸张折角与压印文字，iBooks 书架",
+        "en": "Paper corners and embossed type — the iBooks shelf"
+      }
+    }
+  ],
+  "applicable_components": [
+    "button",
+    "switch",
+    "input",
+    "card"
+  ],
+  "related": [
+    "glassmorphism",
+    "flat-design",
+    "retro-futurism",
+    "button",
+    "switch"
+  ],
+  "demo": {
+    "component": "skeuomorphism",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Nielsen Norman Group — Flat Design and Skeuomorphism",
+      "url": "https://www.nngroup.com/articles/death-of-flat-design/"
+    },
+    {
+      "name": "Apple HIG — Materials",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/materials"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "background-image: url(texture)",
+      "box-shadow: inset 0 1px 0",
+      "linear-gradient",
+      "border-radius",
+      "text-shadow"
+    ],
+    "notes": {
+      "zh": "三层立体感：基础材质层（纹理图或细密渐变），顶部 1px 高光内阴影模拟受光 上缘，底部外投影表现厚度。按钮按下时反转内阴影方向制造\"压下去\"。渐变 范围要窄（3%～8% 明度差），否则像廉价塑料。文字用压印效果：深色投影 1px 加同色 1px 高光。深色模式降低材质明度但保留高光结构。",
+      "en": "Three depth layers: a material base (texture image or a fine gradient), a 1px inset top highlight for the lit upper edge, and an outer bottom shadow for thickness. On press, flip the inset shadow to feel pushed in. Keep gradient bands narrow (3–8% luminance) or it reads as cheap plastic. Emboss text with a 1px dark shadow plus a 1px same-hue highlight. Dark mode darkens the material but keeps the highlight structure."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "用拟物化风格（Skeuomorphism）设计界面：控件采用真实材质质感——皮革 金属 木材， 按钮有立体按压感，开关像实物拨杆。",
+      "en": "\"Design an interface in Skeuomorphism style: controls rendered in real materials — leather, metal, wood — with pressable dimensional buttons and switch-like toggles.\""
+    },
+    "design": {
+      "zh": "拟物化设计规范：底色用皮革纹或木纹材质图；按钮为窄幅线性渐变（上下明度差 8% 以内）+ 1px 顶部高光内阴影 + 底部投影；控件圆角 6～10px；文字用压印 效果（1px 深影 + 1px 高光）；缝线用 dashed 描边模拟；按下态反转内阴影并 下移 1px。深色模式整体降明度 20%，高光保留。",
+      "en": "\"Skeuomorphism design spec: leather-grain or wood texture backgrounds; buttons with a narrow linear gradient (under 8% luminance swing), 1px inset top highlight and a bottom drop shadow; 6–10px radii; embossed type (1px dark shadow + 1px highlight); dashed borders for stitching; pressed state flips the inset shadow and shifts down 1px. Dark mode drops material luminance ~20% and keeps highlights.\""
+    },
+    "implementation": {
+      "zh": "用 CSS 实现拟物化按钮：background: linear-gradient(#f5f0e6, #d8d0c0); box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 3px rgba(0,0,0,0.35); border: 1px solid rgba(0,0,0,0.4); :active 时改为 box-shadow: inset 0 2px 4px rgba(0,0,0,0.4)。材质纹理优先用程序化渐变 或内联 SVG，避免大体积贴图；控件保持可聚焦态与对比度达标。",
+      "en": "\"Implement a skeuomorphic button in CSS: background: linear-gradient(#f5f0e6, #d8d0c0); box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 3px rgba(0,0,0,0.35); border: 1px solid rgba(0,0,0,0.4); on :active use inset 0 2px 4px rgba(0,0,0,0.4). Prefer procedural gradients or inline SVG over heavy texture images; keep focus states and contrast compliant.\""
+    },
+    "agent": {
+      "zh": "在当前项目中用拟物化风格（Skeuomorphism）实现一组立体按钮与开关。\n\n先检查现有 Design Token 与主题变量，材质参数做成可配置变量而非写死。\n要求：\n- 按钮与开关用渐变 + 内高光 + 投影呈现立体按压感，:active 反转内阴影\n- 材质用程序化渐变或内联 SVG，不引入大体积贴图资源\n- 支持键盘聚焦态，对比度满足可读性\n- 深色模式降低材质明度并保留高光结构\n- 若有过渡动画，尊重 prefers-reduced-motion\n- 不新增任何依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement dimensional skeuomorphic buttons and switches in the current project.\n\nInspect the existing design tokens first; express material parameters as configurable variables, not magic values.\nRequirements:\n- Buttons and switches with gradient + inset highlight + drop shadow, :active flips the inset shadow\n- Materials as procedural gradients or inline SVG — no heavy texture assets\n- Keyboard focus states and readable contrast\n- Dark mode lowers material luminance but keeps the highlight structure\n- Respect prefers-reduced-motion for any transitions\n- No new dependencies\nRun existing project checks when done and list the modified files."
+    }
+  },
+  "style_spec": {
+    "typography": {
+      "zh": "系统无衬线，贴近真实印刷",
+      "en": "System sans close to print"
+    },
+    "color": {
+      "zh": "灰铝渐变底 × 蓝色高光",
+      "en": "Aluminium gradients with blue highlights"
+    },
+    "border": {
+      "zh": "金属描边 + 内侧高光线",
+      "en": "Metal outlines with inner highlight lines"
+    },
+    "shadow": {
+      "zh": "外投影 + inset 内高光同时使用",
+      "en": "Outer shadows plus inset highlights"
+    },
+    "spacing": {
+      "zh": "控件内边距模拟实物比例",
+      "en": "Padding mimics physical proportions"
+    }
+  }
+}

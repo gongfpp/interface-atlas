@@ -1,0 +1,155 @@
+status: published
+
+name:
+  zh: 滑块
+  en: Slider
+
+aliases:
+  - 滑块
+  - 滑动条
+  - 拖动条
+  - 调节杆
+  - 滑杆
+  - range 滑块
+
+category:
+  - Form
+  - Input
+
+description:
+  zh: >-
+    用轨道上可拖动的手柄在连续区间内取值，拖动时数值与已填充轨道实时跟随。
+    适合调音量、亮度、价格区间等量级选择，比输入框更直观；
+    可带刻度标记、步进与双端区间形态。
+  en: >-
+    A draggable handle on a track picks a value from a continuous range, with
+    the number and filled track following in real time. Ideal for magnitudes
+    like volume, brightness or price ranges — more intuitive than a text box;
+    supports tick marks, steps and a dual-handle range form.
+
+use_when:
+  - { zh: 在连续区间内选量级（音量、透明度、预算）, en: Picking a magnitude in a range like volume, opacity or budget }
+  - { zh: 精确数值不重要，相对大小即可, en: Exact numbers matter less than relative magnitude }
+  - { zh: 双端选择价格区间等范围场景, en: Range scenarios like dual-handle price bounds }
+
+avoid_when:
+  - { zh: 需要精确输入，用带验证的数字输入框, en: Precise input is required — use a validated number field }
+  - { zh: 离散选项少于 5 个，用 radio 或分段控件, en: Fewer than 5 discrete options — use radios or a segmented control }
+  - { zh: 触控目标过小且无键盘替代，导致拖动困难, en: Tiny touch targets without keyboard fallback make dragging hard }
+
+tags:
+  - form
+  - input
+  - range
+
+variants:
+  - id: single
+    name: { zh: 单值, en: Single }
+    note: { zh: 一个手柄取一个值, en: One handle, one value }
+  - id: with-marks
+    name: { zh: 带刻度, en: With marks }
+    note: { zh: 轨道下方标注刻度点, en: Tick labels under the track }
+  - id: range
+    name: { zh: 双端区间, en: Range }
+    note: { zh: 两个手柄夹出区间, en: Two handles bound an interval }
+
+anatomy:
+  - 轨道（Track）
+  - 已填充轨道（Filled track）
+  - 手柄（Thumb）
+  - 数值显示（Value）
+
+applicable_styles:
+  - minimalism
+  - swiss-style
+
+applicable_components: []
+applicable_pages:
+  - settings
+  - search
+  - checkout
+
+related:
+  - progress-bar
+  - input
+  - number-counter
+  - form-validation
+
+demo:
+  component: slider
+  modes: [default, dark, variants]
+
+implementation:
+  css:
+    - appearance
+    - "::-webkit-slider-thumb"
+    - linear-gradient
+    - transition
+  notes:
+    zh: >-
+      自定义外观时隐藏原生 appearance，轨道用 linear-gradient 两段色实现已填充比例
+      （左 accent 右灰），thumb 用伪元素覆盖并放大触控区。双端区间叠放两个
+      input[type=range]，pointer-events 只留给 thumb。键盘左右箭头步进，
+      aria-valuenow 同步数值。所有过渡时长乘 --demo-speed。
+    en: >-
+      Hide the native appearance; render fill with a two-stop linear-gradient
+      (accent left, grey right) and overlay the thumb via pseudo-elements with a
+      generous hit area. Dual-handle range stacks two input[type=range] with
+      pointer-events reserved for thumbs. Arrow keys step, aria-valuenow mirrors
+      the value, and transition durations multiply by --demo-speed.
+
+sources:
+  - name: W3C APG — Slider
+    url: https://www.w3.org/WAI/ARIA/apg/patterns/slider/
+  - name: Material Design — Slider
+    url: https://m3.material.io/components/sliders/overview
+
+prompts:
+  basic:
+    zh: 创建一个滑块组件，拖动手柄在区间内取值并实时显示数值。
+    en: Create a slider component that picks a value by dragging and shows it live.
+  design:
+    zh: >-
+      创建滑块组件。要求：已填充轨道用 accent 色跟随手柄，右侧或上方显示当前数值；
+      提供单值、带刻度、双端区间三种形态；手柄有 hover 放大与拖动反馈；
+      深浅色主题一致。
+    en: >-
+      Create a slider component. Requirements: accent-filled track following the
+      handle with the current value shown beside or above; single, ticked and
+      dual-handle range forms; hover grow and dragging feedback on the thumb;
+      consistent in light/dark.
+  implementation:
+    zh: >-
+      用 React + Tailwind 实现 Slider：受控 value；单值基于 input[type=range]，轨道
+      background: linear-gradient(to right, accent pct%, grey pct%) 动态计算；
+      双端叠两个 range 输入并做 min/max 联动防交叉；::-webkit-slider-thumb 自定义
+      外观；aria-valuenow 与数值文本同步；键盘步进保留原生行为。
+    en: >-
+      React + Tailwind Slider: controlled value; single input[type=range] with the
+      track as background: linear-gradient(to right, accent pct%, grey pct%)
+      computed live; dual-handle stacks two range inputs with min/max linkage to
+      prevent crossing; custom ::-webkit-slider-thumb; aria-valuenow synced with
+      the value text; native keyboard stepping preserved.
+  agent:
+    zh: |-
+      在当前项目中实现滑块组件。
+
+      先检查现有表单组件与 accent 色变量，保持一致。
+      要求：
+      - 受控 value，拖动实时更新数值与填充轨道
+      - 支持单值与双端区间两种形态
+      - 键盘箭头可步进，aria-valuenow 同步
+      - 深浅色主题一致
+      - 不新增依赖
+      完成后运行项目现有检查，并列出修改的文件。
+    en: |-
+      Implement a slider component in the current project.
+
+      Inspect existing form components and the accent color variable first; stay consistent.
+      Requirements:
+      - Controlled value updating number and filled track while dragging
+      - Single-value and dual-handle range forms
+      - Arrow-key stepping with aria-valuenow in sync
+      - Consistent light/dark themes
+      - No new dependencies
+      Run existing project checks when done and list the modified files.

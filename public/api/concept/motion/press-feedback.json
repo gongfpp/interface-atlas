@@ -1,0 +1,169 @@
+{
+  "id": "press-feedback",
+  "type": "motion",
+  "status": "published",
+  "name": {
+    "zh": "按压反馈",
+    "en": "Press Feedback"
+  },
+  "aliases": [
+    "点击反馈",
+    "按钮缩一下",
+    "按下缩放",
+    "按压缩小",
+    "tap feedback",
+    "active scale"
+  ],
+  "category": [
+    "Feedback",
+    "Interaction"
+  ],
+  "description": {
+    "zh": "用户按下按钮、卡片等可点击元素时，元素轻微缩小（通常 0.95～0.98）， 松开后弹回。一个几十毫秒的细节，让界面\"手感\"立刻从网页变成实体按键。",
+    "en": "When users press a clickable element it scales down slightly (typically 0.95–0.98) and springs back on release. A few tens of milliseconds that make a UI feel like physical buttons instead of flat web pages."
+  },
+  "use_when": [
+    {
+      "zh": "所有可点击元素：按钮、卡片、图标按钮",
+      "en": "All tappable elements — buttons",
+      "cards": null,
+      "icon buttons": null
+    },
+    {
+      "zh": "移动端与触屏界面（按压是最主要操作）",
+      "en": "Touch-first interfaces where pressing is the primary gesture"
+    },
+    {
+      "zh": "需要\"实体感\"的产品调性",
+      "en": "Products aiming for a tactile feel"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "大面积区域点击（整卡缩放会带动文字晃动）",
+      "en": "Very large tap areas — scaling the whole card makes text wobble"
+    },
+    {
+      "zh": "列表行内小操作，避免整行抖动",
+      "en": "Small inline actions inside rows — avoid whole-row jitter"
+    },
+    {
+      "zh": "已有其他强反馈（如下压阴影 + 填充动画）叠加过度",
+      "en": "When stronger feedback already exists — avoid stacking effects"
+    }
+  ],
+  "tags": [
+    "animation",
+    "feedback",
+    "interaction",
+    "micro-interaction"
+  ],
+  "variants": [
+    {
+      "id": "scale-down",
+      "name": {
+        "zh": "缩放",
+        "en": "Scale"
+      },
+      "note": {
+        "zh": "最常用，scale(0.96)",
+        "en": "Most common",
+        "scale(0.96)": null
+      }
+    },
+    {
+      "id": "scale-shadow",
+      "name": {
+        "zh": "缩放 + 阴影收紧",
+        "en": "Scale + shadow"
+      },
+      "note": {
+        "zh": "同时收小阴影，模拟\"按下去\"",
+        "en": "Tighten shadow simultaneously to simulate pressing"
+      }
+    },
+    {
+      "id": "brightness",
+      "name": {
+        "zh": "变暗",
+        "en": "Darken"
+      },
+      "note": {
+        "zh": "不缩放，降低亮度，适合桌面",
+        "en": "No scaling; dim instead — suits desktop"
+      }
+    }
+  ],
+  "applicable_styles": [
+    "minimalism",
+    "neobrutalism",
+    "claymorphism"
+  ],
+  "related": [
+    "hover-lift",
+    "magnetic-button",
+    "ripple",
+    "button"
+  ],
+  "demo": {
+    "component": "press-feedback",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "compare": {
+    "group": "click-feedback",
+    "dimensions": {
+      "强度": {
+        "zh": "中，克制",
+        "en": "Medium",
+        "restrained": null
+      },
+      "移动端友好": {
+        "zh": "好，按压即触发",
+        "en": "Good — triggers on press"
+      },
+      "适合元素": {
+        "zh": "按钮 / 小卡片",
+        "en": "Buttons / small cards"
+      }
+    }
+  },
+  "implementation": {
+    "css": [
+      "transform: scale",
+      "transition",
+      ":active"
+    ],
+    "notes": {
+      "zh": "用 :active 伪类配合 transition: transform 80ms；缩放原点默认中心。 松开的回弹可稍微放缓 transition（150ms）模拟弹簧。纯 CSS 即可实现，无需 JS。 移动端注意 :active 需要 touchstart 监听或 -webkit-tap-highlight 处理才能稳定触发。",
+      "en": "Use the :active pseudo-class with `transition: transform 80ms`; relax to ~150ms on release for a spring feel. Pure CSS suffices. On touch devices, :active can be flaky — add a touchstart listener or handle -webkit-tap-highlight."
+    }
+  },
+  "sources": [
+    {
+      "name": "Material Design — States",
+      "url": "https://m3.material.io/foundations/interaction/states/state-layers"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "给按钮添加按压反馈：按下时轻微缩小，松开弹回。",
+      "en": "Add press feedback to buttons — a slight scale-down on press, springing back on release."
+    },
+    "design": {
+      "zh": "按钮按下时缩放到 0.96 并轻微收紧阴影，80ms 缩下、150ms 回弹，手感接近实体按键；触屏设备同样生效。",
+      "en": "On press, scale the button to 0.96 and tighten its shadow; 80ms down, 150ms spring back — a tactile key feel that also works on touch devices."
+    },
+    "implementation": {
+      "zh": "用 CSS 实现：active:scale-[0.96] + transition-transform duration-75（下压）与恢复 150ms；阴影用 active:shadow-sm。确保触屏上 :active 生效（添加 touchstart 监听或 ontouchstart 属性 hack）。尊重 prefers-reduced-motion。",
+      "en": "CSS-only: `active:scale-[0.96]` with `transition-transform duration-75` down and ~150ms back; `active:shadow-sm`. Make :active reliable on touch (touchstart listener or the ontouchstart hack). Respect prefers-reduced-motion."
+    },
+    "agent": {
+      "zh": "在当前项目中为所有可点击元素统一添加按压反馈。\n\n先检查是否已有全局按钮样式或交互规范，保持一致。\n要求：\n- 按下 scale(0.96) + 阴影收紧，80ms 缩下 150ms 回弹\n- 覆盖 Button 组件与可点击卡片\n- 触屏设备可靠触发\n- 尊重 prefers-reduced-motion\n- 不引入新依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Add unified press feedback to all clickable elements in the current project.\n\nCheck for existing global button styles first and stay consistent.\nRequirements:\n- scale(0.96) + tightened shadow on press; 80ms down, 150ms back\n- Cover the Button component and clickable cards\n- Reliable on touch devices\n- Respect prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "id": "pagination",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "分页",
+    "en": "Pagination"
+  },
+  "aliases": [
+    "分页器",
+    "翻页",
+    "页码",
+    "上一页下一页",
+    "页码条",
+    "pager"
+  ],
+  "category": [
+    "Navigation",
+    "Data"
+  ],
+  "description": {
+    "zh": "用带页码的控件把长结果集切分为离散页面：用户显式点击页码或上一页 / 下一页 按钮取回对应片段，当前位置永远可知、可分享、可回退。与无限滚动的\"失控 漂移\"相对，它是数据浏览中最可控的方式，也是搜索结果与后台表格的默认选择。",
+    "en": "A page-numbered control that slices long result sets into discrete pages: users explicitly click a page number or prev / next to fetch that slice, so the current position is always known, shareable and reversible. The controlled counterpart to infinite scrolling's endless drift — the default for search results and admin tables."
+  },
+  "use_when": [
+    {
+      "zh": "结果集有序、用户需要定位与回溯",
+      "en": "Ordered results where users track and revisit positions"
+    },
+    {
+      "zh": "需要可分享的页码 URL（搜索、后台表格）",
+      "en": "Shareable page URLs — search results",
+      "admin tables": null
+    },
+    {
+      "zh": "需要跳到末页或精确页码",
+      "en": "Jumping to an exact page or the last page matters"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "休闲浏览的无限信息流",
+      "en": "Casual feeds meant for endless browsing"
+    },
+    {
+      "zh": "结果集很小，一页即可容纳",
+      "en": "Tiny result sets that fit on one page"
+    },
+    {
+      "zh": "内容无法均匀切分且顺序常变",
+      "en": "Content that cannot be evenly or stably sliced"
+    }
+  ],
+  "tags": [
+    "navigation",
+    "data",
+    "list"
+  ],
+  "variants": [
+    {
+      "id": "numbered",
+      "name": {
+        "zh": "页码型",
+        "en": "Numbered"
+      },
+      "note": {
+        "zh": "完整页码 + 省略号，可控性最强",
+        "en": "Full numbers + ellipsis",
+        "most control": null
+      }
+    },
+    {
+      "id": "simple",
+      "name": {
+        "zh": "简洁型",
+        "en": "Simple"
+      },
+      "note": {
+        "zh": "仅上一页 / 下一页与计数",
+        "en": "Prev / next with a counter only"
+      }
+    },
+    {
+      "id": "jump",
+      "name": {
+        "zh": "跳页型",
+        "en": "Jump"
+      },
+      "note": {
+        "zh": "页码 + 输入跳转，适合超大结果集",
+        "en": "Numbers + jump input for huge sets"
+      }
+    }
+  ],
+  "anatomy": [
+    "上一页 / 下一页按钮",
+    "页码项（Page items）",
+    "省略号与总数计数（Count）"
+  ],
+  "applicable_styles": [
+    "minimalism",
+    "swiss-style"
+  ],
+  "applicable_pages": [
+    "search",
+    "documentation"
+  ],
+  "related": [
+    "infinite-scroll",
+    "pull-to-refresh",
+    "table",
+    "tabs",
+    "search-filtering"
+  ],
+  "demo": {
+    "component": "pagination",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "compare": {
+    "group": "scroll-loading",
+    "dimensions": {
+      "触发方式": {
+        "zh": "显式点击页码或翻页按钮",
+        "en": "Explicit clicks on page numbers"
+      },
+      "数据控制": {
+        "zh": "强，用户掌握并记住页码位置",
+        "en": "Strong — the user holds the position"
+      },
+      "适用内容": {
+        "zh": "有序、可寻址的结果集",
+        "en": "Ordered",
+        "addressable result sets": null
+      }
+    }
+  },
+  "implementation": {
+    "css": [
+      "flex",
+      "gap",
+      "min-width",
+      "aria-disabled"
+    ],
+    "notes": {
+      "zh": "页码窗口算法：始终显示首末页与当前页 ± 1，中间折叠为省略号。当前页用 aria-current=\"page\" 与强调色块标识；首末页时禁用上一页 / 下一页 （disabled + aria-disabled）。URL 同步用查询参数 ?page=n，保证可分享可回退。",
+      "en": "Windowing algorithm: always show the first and last pages plus current ± 1, folding the middle into ellipses. Mark the current page with aria-current=\"page\" and an accent block; disable prev / next at the edges (disabled + aria-disabled). Sync the URL with ?page=n so positions are shareable and reversible."
+    }
+  },
+  "sources": [
+    {
+      "name": "NN/g — Pagination",
+      "url": "https://www.nngroup.com/articles/pagination/"
+    },
+    {
+      "name": "WAI-ARIA Authoring Practices — Pagination",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/pagination/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个分页组件：上一页、页码列表（带省略号折叠）、下一页，当前页高亮，点击切换。",
+      "en": "Create a pagination control: prev, a page list with ellipsis folding, next, active page highlighted, switching on click."
+    },
+    "design": {
+      "zh": "创建分页：28px 方形页码按钮，当前页用强调色实底反白；页码超过 7 位时中间 折叠为省略号；首末页禁用翻页按钮并用次级色表达；右侧显示\"第 n / m 页\"。 深浅色主题一致。",
+      "en": "Create pagination: 28px square page buttons with the current page in solid accent and reversed text; fold middles into ellipses beyond 7 slots; disable prev/next at the edges in secondary color; show \"page n of m\" on the right. Consistent in light and dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Pagination：total 与 page 受控，onChange 回调； 页码窗口算法（首末页 + 当前页 ± 1 + 省略号）；当前页 aria-current=\"page\"； 边界禁用翻页；提供 simple（仅上下页）与 jump（输入跳页，回车提交）变体。 无新增依赖。",
+      "en": "React + Tailwind pagination: controlled total and page with an onChange callback; windowing algorithm (first/last + current ± 1 + ellipses); aria-current=\"page\" on the active item; prev/next disabled at the edges; simple (prev/next only) and jump (input + Enter) variants. No new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现分页组件。\n\n先检查现有列表 / 表格的数据获取方式，分页状态应与路由查询参数同步。\n要求：\n- page / total 受控，URL 同步（?page=n）\n- 页码窗口折叠省略号，当前页 aria-current=\"page\"\n- 边界正确禁用上一页 / 下一页\n- 切页后列表滚动位置回到顶部\n- 键盘可达（页码为 button，跳页输入回车提交）\n- 不新增不必要的依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement pagination in the current project.\n\nCheck how existing lists or tables fetch data; page state should sync with the route query (?page=n).\nRequirements:\n- Controlled page / total, URL-synced\n- Windowed numbers with ellipses, aria-current=\"page\" on the active one\n- Prev / next correctly disabled at the edges\n- Scroll the list back to the top after switching\n- Keyboard accessible (page buttons; jump input submits on Enter)\n- No unnecessary dependencies\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

@@ -1,0 +1,133 @@
+status: published
+
+name:
+  zh: 悬浮上浮
+  en: Hover Lift
+
+aliases:
+  - 卡片悬浮
+  - hover 浮起
+  - 鼠标放上去浮起来
+  - 上浮效果
+  - 悬停抬升
+  - 卡片浮起来
+
+category:
+  - Feedback
+  - Hover
+
+description:
+  zh: >-
+    鼠标悬停时卡片或按钮轻轻上浮（translateY -2～6px）并加深投影，
+    像被无形的手托起。最常见的"这个可以点"的桌面端暗示，
+    成本极低但立刻让页面有层次和呼吸感。
+  en: >-
+    On hover, a card or button lifts slightly (translateY -2–6px) while its shadow
+    deepens — as if raised by an invisible hand. The most common desktop affordance
+    for "this is clickable": nearly free, instantly adds depth and life.
+
+use_when:
+  - { zh: 卡片网格、商品卡、文章卡等可点击块, en: Card grids, product cards, article cards — clickable blocks }
+  - { zh: 桌面端为主的交互（hover 是桌面专属语言）, en: Desktop-first contexts — hover is a desktop language }
+  - { zh: 平面层级需要区分可交互与静态元素, en: When flat layouts need to separate interactive from static elements }
+
+avoid_when:
+  - { zh: 触屏设备（没有 hover，会粘滞），改用按压反馈, en: Touch devices — no hover, sticky triggers; use press feedback instead }
+  - { zh: 页面上所有元素都上浮（通胀，暗示失效）, en: Everything lifts — the affordance inflates and stops meaning anything }
+  - { zh: 大幅位移（> 8px 会显得跳动）, en: Large offsets — beyond 8px it feels jumpy }
+
+tags:
+  - animation
+  - hover
+  - feedback
+  - card
+
+variants:
+  - id: lift-shadow
+    name: { zh: 上浮 + 投影, en: Lift + shadow }
+    note: { zh: 经典组合，-4px + 阴影加深, en: The classic — -4px + deeper shadow }
+  - id: lift-scale
+    name: { zh: 上浮 + 微放大, en: Lift + scale }
+    note: { zh: 叠加 scale(1.02)，电商感更强, en: Adds scale(1.02) — more e-commerce energy }
+  - id: lift-border
+    name: { zh: 上浮 + 边框着色, en: Lift + border }
+    note: { zh: 投影换成强调色边框，扁平风格适用, en: Swap shadow for accent border — suits flat styles }
+
+applicable_styles:
+  - minimalism
+  - bento-grid
+  - neobrutalism
+
+related:
+  - press-feedback
+  - hover-glow
+  - card
+  - magnetic-button
+
+demo:
+  component: hover-lift
+  modes: [default, dark, variants]
+
+compare:
+  group: hover-feedback
+  dimensions:
+    强度: { zh: 中, en: Medium }
+    适合元素: { zh: 卡片 / 中等尺寸块, en: Cards / medium blocks }
+    移动端友好: { zh: 差，无 hover, en: Poor — no hover on touch }
+
+implementation:
+  css:
+    - "transform: translateY"
+    - box-shadow
+    - transition
+    - :hover
+  notes:
+    zh: >-
+      transition: transform 200ms ease, box-shadow 200ms；hover 时 translateY(-4px) +
+      更大更淡的 box-shadow（如 0 12px 24px rgba(0,0,0,.12)）。注意上浮方向始终向上，
+      阴影随之上移。与 press-feedback 组合时：hover 上浮、active 缩回，层次分明。
+    en: >-
+      `transition: transform 200ms ease, box-shadow 200ms`; on hover translateY(-4px)
+      plus a larger, softer shadow (e.g. 0 12px 24px rgba(0,0,0,.12)). The shadow grows
+      and lifts together with the element. Pairs with press-feedback: lift on hover,
+      scale back on press.
+
+sources:
+  - name: Material Design — Elevation
+    url: https://m3.material.io/styles/elevation/overview
+
+prompts:
+  basic:
+    zh: 给卡片添加 hover 上浮效果：鼠标悬停时轻微上移并加深阴影。
+    en: Add a hover lift to cards — a slight upward shift with a deepening shadow.
+  design:
+    zh: >-
+      卡片 hover 时上移 4px，阴影从 subtle 变为 0 12px 24px rgba(0,0,0,.12)，200ms ease 过渡；上浮方向与阴影一致；不动布局。
+    en: >-
+      On hover, cards rise 4px while the shadow deepens to 0 12px 24px rgba(0,0,0,.12); 200ms ease; shadow follows the lift; no layout shift.
+  implementation:
+    zh: >-
+      "纯 CSS：transition: transform .2s ease", box-shadow .2s ease；hover:-translate-y-1 hover:shadow-lg。触屏设备禁用（@media (hover:hover)）。尊重 prefers-reduced-motion（降级为仅阴影变化）。
+    en: >-
+      "CSS-only: `transition: transform .2s ease", box-shadow .2s ease` with `hover:-translate-y-1 hover:shadow-lg`. Gate behind @media (hover:hover) for touch. Respect prefers-reduced-motion (shadow-only fallback).
+  agent:
+    zh: |-
+      为当前项目的卡片列表添加 hover 上浮反馈。
+
+      先检查现有卡片组件，保持圆角与阴影令牌一致。
+      要求：
+      - hover 上移 4px + 阴影加深，200ms 过渡
+      - 仅在支持 hover 的设备启用（@media hover:hover）
+      - 尊重 prefers-reduced-motion
+      - 不影响布局（transform 实现）
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Add hover lift feedback to the project's card lists.
+
+      Inspect existing card components first; keep radius and shadow tokens consistent.
+      Requirements:
+      - 4px rise + deeper shadow on hover, 200ms transition
+      - Only on hover-capable devices (@media hover:hover)
+      - Respect prefers-reduced-motion
+      - No layout shift (transform-based)
+      Run existing checks when done and list modified files.

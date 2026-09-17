@@ -1,0 +1,178 @@
+{
+  "id": "command-palette",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "命令面板",
+    "en": "Command Palette"
+  },
+  "aliases": [
+    "命令搜索框",
+    "快捷搜索框",
+    "快速操作面板",
+    "spotlight 搜索",
+    "ctrl+k 搜索",
+    "Mac 那种快捷搜索框",
+    "cmd+k"
+  ],
+  "category": [
+    "Navigation",
+    "Search"
+  ],
+  "description": {
+    "zh": "用快捷键（⌘K / Ctrl+K）唤出的浮动搜索面板：输入即筛选命令、页面或内容， 键盘上下选择、回车执行。macOS Spotlight 把它带入大众视野， 现在是效率工具和开发者产品的标配。",
+    "en": "A floating search panel summoned with ⌘K / Ctrl+K: type to filter commands, pages or content, navigate with arrow keys, execute with Enter. Popularized by macOS Spotlight; now standard in power-user products."
+  },
+  "use_when": [
+    {
+      "zh": "功能多、层级深的产品（后台、开发工具、笔记软件）",
+      "en": "Products with many features and deep hierarchies — admin panels",
+      "dev tools": null,
+      "note apps": null
+    },
+    {
+      "zh": "目标用户是高频操作的高阶用户",
+      "en": "Power users performing frequent actions"
+    },
+    {
+      "zh": "想减少导航层级、直达任何地方",
+      "en": "When you want flat navigation — reach anything in one stroke"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "面向大众的浅层应用，用户不知道快捷键文化",
+      "en": "Mass-market shallow apps — users don't know the shortcut culture"
+    },
+    {
+      "zh": "移动端为主要场景（虚拟键盘体验差），改用底部搜索",
+      "en": "Mobile-primary contexts — use a bottom search instead"
+    },
+    {
+      "zh": "命令总数极少（< 10 个），普通菜单就够了",
+      "en": "Very few commands (< 10) — a plain menu suffices"
+    }
+  ],
+  "tags": [
+    "navigation",
+    "search",
+    "keyboard",
+    "productivity"
+  ],
+  "variants": [
+    {
+      "id": "command-only",
+      "name": {
+        "zh": "纯命令",
+        "en": "Command-only"
+      },
+      "note": {
+        "zh": "只列操作命令，VS Code 风格",
+        "en": "Commands only — VS Code style"
+      }
+    },
+    {
+      "id": "universal",
+      "name": {
+        "zh": "万能搜索",
+        "en": "Universal"
+      },
+      "note": {
+        "zh": "命令 + 页面 + 内容 + 最近使用",
+        "en": "Commands",
+        "pages": null,
+        "content and recents": null
+      }
+    },
+    {
+      "id": "ai-enhanced",
+      "name": {
+        "zh": "AI 增强",
+        "en": "AI-enhanced"
+      },
+      "note": {
+        "zh": "自然语言查询 + 建议操作",
+        "en": "Natural language queries with suggested actions"
+      }
+    }
+  ],
+  "anatomy": [
+    "输入框（Input）",
+    "结果分组列表（Grouped results）",
+    "快捷键提示（Key hints）",
+    "页脚导航提示（Footer hints）"
+  ],
+  "applicable_styles": [
+    "minimalism"
+  ],
+  "related": [
+    "search",
+    "dropdown",
+    "sidebar",
+    "menu"
+  ],
+  "demo": {
+    "component": "command-palette",
+    "modes": [
+      "default",
+      "dark"
+    ]
+  },
+  "compare": {
+    "group": "navigation-overlay",
+    "dimensions": {
+      "打断程度": {
+        "zh": "中，覆盖但可快速关闭",
+        "en": "Medium — covers screen but closes fast"
+      },
+      "内容容量": {
+        "zh": "中，列表可虚拟滚动",
+        "en": "Medium — virtualizable list"
+      },
+      "触发成本": {
+        "zh": "低，一组快捷键",
+        "en": "Low — one shortcut"
+      }
+    }
+  },
+  "implementation": {
+    "css": [
+      "position: fixed",
+      "backdrop-filter: blur",
+      "box-shadow",
+      "transform-origin"
+    ],
+    "notes": {
+      "zh": "本质是受控弹层：fixed 居中 + 遮罩模糊；输入过滤用 useMemo 计算分组列表， 焦点锁定在输入框；键盘导航管理 activeIndex。开源实现可参考 cmdk（React）。 注意 aria-role=\"dialog\" 与 focus trap。",
+      "en": "A controlled overlay: fixed centered + blurred backdrop; filter with useMemo into grouped lists; keep focus locked in the input; manage activeIndex for keyboard nav. The cmdk library is a solid React reference. Use role=\"dialog\" and a focus trap."
+    }
+  },
+  "sources": [
+    {
+      "name": "macOS Human Interface Guidelines — Spotlight",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/"
+    },
+    {
+      "name": "cmdk — Command menu for React",
+      "url": "https://cmdk.paco.me/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个命令面板组件：⌘K 唤出，输入即筛选命令列表，键盘上下选择、回车执行。",
+      "en": "\"Create a command palette: summon with ⌘K\", type to filter commands, arrow keys to navigate, Enter to run."
+    },
+    "design": {
+      "zh": "创建命令面板。要求：屏幕居中浮层 + 半透明遮罩模糊；顶部输入框，下方分组结果列表（命令 / 页面 / 最近使用）；选中项高亮；每项右侧显示快捷键提示；弹出有轻微 scale + fade 动画。视觉参考 macOS Spotlight / Linear。",
+      "en": "Create a command palette: centered overlay with translucent blurred backdrop; top input; grouped results below (commands / pages / recents); highlighted selection; key hints on the right; subtle scale + fade entrance. Visual reference: macOS Spotlight / Linear."
+    },
+    "implementation": {
+      "zh": "用 React 实现受控命令面板：全局 keydown 监听 ⌘K/Ctrl+K 开关；role=\"dialog\" + focus trap；输入 useMemo 过滤 + 分组；activeIndex 键盘导航（↑↓ Enter）；点击遮罩关闭。可参考 cmdk 的 API 设计但自行实现，不引入依赖。",
+      "en": "\"Implement a controlled palette in React: global ⌘K/Ctrl+K listener; role=\"dialog\" + focus trap; useMemo filtering + grouping; activeIndex keyboard nav (↑↓ Enter); close on backdrop click. Model the API on cmdk but implement yourself\", no new deps."
+    },
+    "agent": {
+      "zh": "在当前项目中实现命令面板（Command Palette）。\n\n先检查现有弹层 / Dialog 组件与 Design Token，优先复用。\n要求：\n- ⌘K / Ctrl+K 全局唤出，Esc 关闭\n- 输入即筛，结果按「命令 / 页面」分组\n- 完整键盘导航与 aria 属性（dialog、listbox、option）\n- 弹出动画轻微，尊重 prefers-reduced-motion\n- 支持注册自定义命令（提供 useCommands 或类似 API）\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement a Command Palette in the current project.\n\nInspect existing dialog primitives and design tokens first; reuse them.\nRequirements:\n- Global ⌘K / Ctrl+K toggle, Esc to close\n- Filter-as-you-type, grouped results (commands / pages)\n- Full keyboard nav + aria attributes (dialog, listbox, option)\n- Subtle entrance animation, respects prefers-reduced-motion\n- Custom command registration (a useCommands-like API)\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

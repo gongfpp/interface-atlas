@@ -1,0 +1,157 @@
+status: published
+
+name:
+  zh: 日期选择器
+  en: Date Picker
+
+aliases:
+  - 日期选择器
+  - 日历选择
+  - 选日期控件
+  - 日历弹层
+  - 日期输入框
+  - 时间选择
+
+category:
+  - Form
+  - Input
+
+description:
+  zh: >-
+    用日历网格选择日期的复合控件，通常由输入框触发弹出，也常内嵌展示。
+    头部提供年月切换，网格按周排列日期并高亮今天与选中日；
+    范围形态用两个日期夹出区间。避免手输日期的格式错误。
+  en: >-
+    A composite control picking dates on a calendar grid, usually popped from a
+    trigger input but often shown inline. The header navigates months, the grid
+    lays days out by week highlighting today and the selection; the range form
+    bounds an interval with two dates. It avoids manual date-entry mistakes.
+
+use_when:
+  - { zh: 表单需要选择日期且格式易错（预订、报表）, en: Forms need dates where formats cause errors like booking or reports }
+  - { zh: 需要直观查看日期所在星期与月份结构, en: Weekday and month context must be visible while choosing }
+  - { zh: 选择区间（入住退房、活动起止）, en: Interval selection like check-in/checkout or event spans }
+
+avoid_when:
+  - { zh: 只选年份或月份，用更轻的年月选择器, en: Year or month only — a lighter picker fits better }
+  - { zh: 移动端简单日期，原生日期输入体验更好, en: Simple mobile dates — the native date input feels better }
+  - { zh: 高频输入日期的录入场景，快捷键 + 手输更快, en: High-volume data entry — typing with shortcuts is faster }
+
+tags:
+  - form
+  - input
+  - calendar
+
+variants:
+  - id: inline
+    name: { zh: 内嵌日历, en: Inline }
+    note: { zh: 常驻展示，适合面板侧栏, en: Always visible — panel and sidebar friendly }
+  - id: trigger
+    name: { zh: 触发弹出, en: Trigger }
+    note: { zh: 输入框 + 弹层，表单标准形态, en: Input + popup — the standard form shape }
+  - id: range
+    name: { zh: 范围选择, en: Range }
+    note: { zh: 两次点击夹出区间, en: Two clicks bound the interval }
+
+anatomy:
+  - 触发输入框（Trigger input）
+  - 头部年月导航（Header navigation）
+  - 星期与日期网格（Weekday & day grid）
+  - 选中 / 今日标识（Selected & today marks）
+
+applicable_styles:
+  - minimalism
+  - flat-design
+
+applicable_components: []
+applicable_pages:
+  - checkout
+  - dashboard
+  - search
+
+related:
+  - input
+  - popover
+  - dropdown
+  - form-validation
+
+demo:
+  component: date-picker
+  modes: [default, dark, variants]
+
+implementation:
+  css:
+    - grid
+    - "position: absolute"
+    - "z-index: 10"
+    - transition
+  notes:
+    zh: >-
+      网格用 grid-cols-7，首日偏移由当月 1 号的星期决定；日期计算交给
+      Intl / Date API 处理时区与月末。弹出形态面板绝对定位在触发框下，
+      点击外部与 Escape 关闭。今日用描边、选中日用 accent 填充；
+      范围态记录起点终点，中间日期铺浅 accent 背景。键盘方向键移动焦点。
+    en: >-
+      Grid with grid-cols-7; the leading offset comes from the weekday of the
+      1st. Delegate date math to Date / Intl APIs for timezones and month ends.
+      The popup panel sits below the trigger, closing on outside click and
+      Escape. Today gets an outline, selection an accent fill; in range mode the
+      start and end record bounds and in-between days take a soft accent
+      background. Arrow keys move focus.
+
+sources:
+  - name: W3C APG — Dialog (Modal) Date Picker
+    url: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+  - name: Apple HIG — Date pickers
+    url: https://developer.apple.com/design/human-interface-guidelines/date-pickers
+
+prompts:
+  basic:
+    zh: 创建一个日期选择器组件，点击输入框弹出日历面板选择日期。
+    en: Create a date picker that pops a calendar panel from a trigger input to pick a date.
+  design:
+    zh: >-
+      创建日期选择器组件。要求：触发输入框显示所选日期（占位「请选择日期」），
+      弹出日历面板：头部年月 + 前后切换按钮，7 列网格高亮今天（描边）与选中日
+      （accent 填充）；点击外部关闭；提供内嵌日历与范围选择两种变体；深浅色一致。
+    en: >-
+      Create a date picker. Requirements: trigger input showing the chosen date
+      (placeholder "Pick a date"); popup calendar with a month header and
+      prev/next buttons, 7-column grid highlighting today (outline) and the
+      selection (accent fill); closes on outside click; inline and range
+      variants; consistent in light/dark.
+  implementation:
+    zh: >-
+      用 React + Tailwind 实现 DatePicker：受控 value；由 Date 计算当月天数与首日
+      偏移，Intl 获取星期标题；面板绝对定位 + 点击外部关闭（document 监听）；
+      prev/next 切换年月；范围态维护 [start, end] 与 picking 阶段，中间日着色。
+      键盘方向键移动日期焦点，aria-label 标注每个日期。
+    en: >-
+      React + Tailwind DatePicker: controlled value; compute days in month and
+      leading offset from Date, weekday titles via Intl; panel absolutely
+      positioned closing on outside document click; prev/next month paging;
+      range keeps [start, end] with a picking phase and tints in-between days.
+      Arrow keys move the date focus; each day gets an aria-label.
+  agent:
+    zh: |-
+      在当前项目中实现日期选择器组件。
+
+      先检查现有表单与弹出层组件，保持风格与 z-index 层级一致。
+      要求：
+      - 触发输入框 + 弹出日历，受控 value
+      - 高亮今日与选中日，支持前后翻月
+      - 范围选择形态（可选）
+      - 点击外部 / Escape 关闭，键盘可达
+      - 深浅色主题一致，不新增依赖
+      完成后运行项目现有检查，并列出修改的文件。
+    en: |-
+      Implement a date picker component in the current project.
+
+      Inspect existing form and overlay components first; keep styles and z-index consistent.
+      Requirements:
+      - Trigger input + popup calendar, controlled value
+      - Highlight today and the selection; navigate months
+      - Range selection form (optional)
+      - Close on outside click / Escape, keyboard accessible
+      - Consistent light/dark themes, no new dependencies
+      Run existing project checks when done and list the modified files.

@@ -1,0 +1,178 @@
+status: published
+
+name:
+  zh: 极简主义
+  en: Minimalism
+
+aliases:
+  - 极简风
+  - 简约风格
+  - 性冷淡风
+  - 大量留白那种设计
+  - 性冷淡设计
+  - Minimal
+  - Minimalist Design
+  - Less is more
+
+category:
+  - Style
+  - Visual Language
+
+description:
+  zh: >-
+    以"少即是多"为准则的视觉语言：用大量留白、克制的黑白灰配色与有限字体层级
+    来凸显内容本身，删除一切装饰性元素，层级完全依靠空间、字重与疏密建立。
+    安静、克制、内容至上是它的气质。
+  en: >-
+    A visual language built on "less is more": generous whitespace, a restrained
+    monochrome palette and very few type scales let the content speak. All
+    decoration is stripped away; hierarchy is created purely by space, weight
+    and rhythm. Quiet, restrained, content-first.
+
+use_when:
+  - { zh: 内容为王的产品——阅读、写作、摄影、作品集, en: Content-first products — reading, writing, photography, portfolios }
+  - { zh: 想传达专业、克制、高端的品牌气质, en: Conveying a professional, restrained, premium brand voice }
+  - { zh: 元素少而结构清晰的页面（官网首屏、详情页）, en: Pages with few elements and clear structure (hero, detail pages) }
+
+avoid_when:
+  - { zh: 信息密度高的后台与数据界面，过度留白牺牲效率, en: Dense dashboards — excessive whitespace wastes efficiency }
+  - { zh: 需要情绪浓度与热闹感的营销、娱乐、节庆场景, en: Marketing or festive contexts that need energy and warmth }
+  - { zh: 可用元素很少时容易显得"空而廉价"，需极强排版功底兜底, en: Without strong typographic skill it reads as empty rather than elegant }
+
+tags:
+  - minimal
+  - whitespace
+  - typography
+  - clean
+  - content-first
+
+variants:
+  - id: mono-minimal
+    name: { zh: 黑白极简, en: Monochrome Minimal }
+    note: { zh: 纯黑 白 灰三色，最锋利的版本, en: Pure black, white and grey — the sharpest version }
+  - id: flat-minimal
+    name: { zh: 扁平极简, en: Flat Minimal }
+    note: { zh: 无阴影无渐变，靠留白与字重分层, en: No shadows or gradients; hierarchy via whitespace and weight }
+  - id: warm-minimal
+    name: { zh: 暖调极简, en: Warm Minimal }
+    note: { zh: 米白与暖灰底色，日式 北欧的生活感, en: Cream and warm-grey tones, Japanese or Nordic feel }
+
+applicable_components:
+  - button
+  - input
+  - card
+  - navbar
+
+applicable_pages:
+  - landing-page
+  - profile
+
+related:
+  - flat-design
+  - swiss-style
+  - editorial
+  - button
+  - card
+
+demo:
+  component: minimalism
+  modes: [default, dark, variants]
+
+sources:
+  - name: Apple HIG — Visual Design
+    url: https://developer.apple.com/design/human-interface-guidelines/visual-design
+  - name: Dieter Rams — 10 Principles of Good Design
+    url: https://www.vitsoe.com/us/about/good-design
+
+implementation:
+  css:
+    - whitespace
+    - "font-weight"
+    - "letter-spacing"
+    - "border: 1px solid"
+    - grid
+  notes:
+    zh: >-
+      核心是排版与留白：建立 3 档以内的字号层级与克制的行高；配色收敛到黑 白 灰
+      外加至多一个强调色；边框只用 1px 发丝线或干脆用留白分隔；按钮以实心黑或
+      描边两种形态为主，禁用投影与渐变。先删到不能再删，再谈精致。
+    en: >-
+      Typography and whitespace carry the design: at most three type sizes with
+      restrained line-height; a palette of black, white, grey plus at most one
+      accent; separate with 1px hairlines or pure space instead of boxes; buttons
+      are solid black or outlined, no shadows or gradients. Remove everything
+      first, then refine what remains.
+
+prompts:
+  basic:
+    zh: >-
+      用极简主义风格（Minimalism）设计界面：大量留白、黑白灰配色、无装饰，层级靠字号字重与空间建立。
+    en: >-
+      "Design an interface in Minimalism style: generous whitespace, a monochrome palette, zero decoration, hierarchy built from type scale and space alone."
+  design:
+    zh: >-
+      极简主义风格设计规范：底色纯白，文字近黑（#111）；字号层级 3 档以内，标题
+      用大字号加收紧字距；配色只有黑 白 灰 + 一个强调色；分隔用 1px 发丝线或留白，
+      禁止投影 渐变 纹理；按钮为实心黑或 1px 描边两种；整体留白至少是内容高度的
+      一半。支持深色模式（近黑底 反白字）。
+    en: >-
+      Minimalism design spec: pure white surface, near-black text (#111); at most
+      three type sizes with tight heading tracking; palette limited to black,
+      white, grey plus one accent; separate with 1px hairlines or whitespace — no
+      shadows, gradients or textures; buttons are solid black or 1px outlined;
+      whitespace at least half the content height. Dark mode: near-black surface,
+      inverted text.
+  implementation:
+    zh: >-
+      用 CSS 实现极简风格：定义 --space 留白阶梯（8 的倍数）与 3 档字号 token；
+      按钮 .btn-solid（黑底白字）与 .btn-outline（1px 描边），无圆角或 2px 微圆角；
+      卡片用 1px 边框或无边框 + 留白分区，box-shadow 一律为 none；输入框只保留下
+      边框线，focus 时变强调色。过渡只做颜色，150ms 内完成。
+    en: >-
+      Implement minimalism in CSS: a whitespace scale (multiples of 8) and three
+      font-size tokens; .btn-solid (black on white) and .btn-outline (1px border)
+      with no or 2px radius; cards separated by 1px borders or whitespace with
+      box-shadow: none; inputs keep a bottom hairline that turns accent on focus.
+      Transition colors only, under 150ms.
+  agent:
+    zh: |-
+      在当前项目中用极简主义风格（Minimalism）实现一个内容卡片区块。
+
+      先检查现有 Design Token 与组件体系，复用既有的字号与间距变量。
+      要求：
+      - 大量留白，层级只靠字号 字重 空间建立
+      - 配色收敛为黑 白 灰 + 至多一个强调色
+      - 无投影 无渐变 无纹理，分隔用 1px 发丝线或留白
+      - 支持深色模式
+      - 若加入任何过渡动画，尊重 prefers-reduced-motion，时长 150ms 内
+      - 不新增任何依赖
+      完成后运行项目现有检查，并列出修改的文件。
+    en: |-
+      Implement a minimal content card section in Minimalism style in the current project.
+
+      Inspect the existing design tokens and component system first; reuse the current font and spacing variables.
+      Requirements:
+      - Generous whitespace; hierarchy from type scale, weight and space only
+      - Palette restrained to black, white, grey plus at most one accent
+      - No shadows, gradients or textures; separate with 1px hairlines or whitespace
+      - Dark mode support
+      - If any transitions are added, respect prefers-reduced-motion and keep them under 150ms
+      - No new dependencies
+      Run existing project checks when done and list the modified files.
+
+style_spec:
+  typography:
+    zh: "衬线大标题 + 无衬线灰阶正文"
+    en: "Serif display with grey sans body"
+  color:
+    zh: "米白 #FAFAF8 × 近黑 #161513，单一强调色"
+    en: "Off-white #FAFAF8 × near-black #161513, one accent"
+  border:
+    zh: "无边框，或 1px #EDEDE9 细分隔线"
+    en: "Frameless; 1px #EDEDE9 hairlines at most"
+  shadow:
+    zh: "几乎无阴影，层次靠灰度"
+    en: "No shadows — depth via greyscale"
+  spacing:
+    zh: "极大留白，宽松的 8pt 网格"
+    en: "Generous whitespace on a relaxed 8pt grid"

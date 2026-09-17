@@ -1,0 +1,56 @@
+status: published
+
+name:
+  zh: 菜单与下拉参考图集
+  en: Menu & Dropdown Reference Sheets
+
+aliases:
+  - 下拉菜单设计参考
+  - 菜单灵感图
+  - dropdown 灵感图
+
+description:
+  zh: >-
+    8 张 AI 生成的菜单 / 下拉菜单设计参考海报，每张围绕"组件结构 + 交互逻辑"
+    展开 5 个案例：从基础操作菜单到分组、多级、右键、命令式菜单，
+    覆盖触发方式、层级的完整谱系。
+  en: >-
+    Eight AI-generated menu/dropdown reference posters. Each sheet explores five cases
+    around "component structure + interaction logic": from plain action menus to
+    grouped, nested, context and command menus — the full spectrum of triggers and
+    hierarchy.
+
+related_component: dropdown
+
+images:
+  - { file: /images/gallery/menu-dropdown/1.webp, title: { zh: 结构案例 0, en: Sheet 0 } }
+  - { file: /images/gallery/menu-dropdown/2.webp, title: { zh: 结构案例 1, en: Sheet 1 } }
+  - { file: /images/gallery/menu-dropdown/3.webp, title: { zh: 结构案例 2, en: Sheet 2 } }
+  - { file: /images/gallery/menu-dropdown/4.webp, title: { zh: 结构案例 3, en: Sheet 3 } }
+  - { file: /images/gallery/menu-dropdown/5.webp, title: { zh: 结构案例 5, en: Sheet 5 } }
+  - { file: /images/gallery/menu-dropdown/6.webp, title: { zh: 结构案例 6, en: Sheet 6 } }
+  - { file: /images/gallery/menu-dropdown/7.webp, title: { zh: 结构案例 7, en: Sheet 7 } }
+  - { file: /images/gallery/menu-dropdown/8.webp, title: { zh: 结构案例 8, en: Sheet 8 } }
+
+prompt:
+  zh: >-
+    制作一张竖版「菜单 / 下拉菜单设计参考」海报，编号 N。米白背景（#FAF9F5），黑色粗标题
+    「菜单 / 下拉菜单设计参考 N」+ 灰色小字 MENU / DROPDOWN · DESIGN REFERENCE，右上角
+    两行小标签「组件结构 / 交互逻辑」。正文纵向排列 5 个案例，每条左侧是大号灰色序号 01～05、
+    英文模式名（如 Action Menu / Grouped Menu / Nested Menu / Context Menu / Command
+    Menu）、中文模式名与 2×2 关键词短语；右侧浅灰圆角卡片内是真实感的菜单演示——
+    触发按钮加展开的浮层面板（菜单项、图标、快捷键提示、分隔线、选中态），底部一行灰色说明。
+    排版网格严格、留白充足、扁平极简，蓝色仅作强调，中英文对照，UI 细节逼真。
+  en: >-
+    A vertical "Menu / Dropdown Design Reference" poster, sheet number N. Off-white
+    background (#FAF9F5), bold black Chinese title plus grey "MENU / DROPDOWN · DESIGN
+    REFERENCE" subtitle, two small labels top right ("组件结构 / 交互逻辑"). Five numbered
+    cases: large grey index, English pattern name (e.g. Action Menu, Grouped Menu,
+    Nested Menu, Context Menu, Command Menu), Chinese name and a 2x2 keyword grid; on
+    the right, a realistic menu demo — a trigger button with an open floating panel
+    (items, icons, shortcut hints, separators, selected state) and a one-line caption.
+    Strict grid, flat minimal, blue accent only, bilingual labels, crisp UI details.
+
+tips:
+  - { zh: 「组件结构 + 交互逻辑」双标签让每张都同时讲结构与行为, en: The twin labels keep every sheet covering both structure and behaviour }
+  - { zh: 浮层类组件务必在 prompt 里要求"展开态"，否则只会得到按钮, en: For overlay components, demand the open state — otherwise you only get the trigger }

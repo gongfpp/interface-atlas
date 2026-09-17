@@ -1,0 +1,188 @@
+{
+  "id": "bento-grid",
+  "type": "styles",
+  "status": "published",
+  "name": {
+    "zh": "便当盒网格",
+    "en": "Bento Grid"
+  },
+  "aliases": [
+    "便当盒布局",
+    "便当格网格",
+    "Bento网格",
+    "苹果发布会那种格子布局",
+    "拼块仪表盘",
+    "不等宽卡片网格",
+    "Bento Box Layout",
+    "Bento Grid"
+  ],
+  "category": [
+    "Style",
+    "Layout"
+  ],
+  "description": {
+    "zh": "把界面装进便当盒的布局语言：一组圆角矩形像分格便当一样拼合，各格跨度不同 ——大格承载主内容，小格陈列数据与点缀，格与格之间留窄缝对齐同一套网格。 它是卡片网格的升级：用面积差异直接表达信息优先级。",
+    "en": "A layout language that packs the interface like a bento box: rounded tiles of varying spans snap to one grid with narrow gutters — big cells carry the hero content, small cells hold stats and garnish. A card-grid upgrade where area itself encodes priority."
+  },
+  "use_when": [
+    {
+      "zh": "仪表盘 个人主页 产品概览，内容模块多且优先级分明",
+      "en": "Dashboards",
+      "profile pages and product overviews with mixed-priority modules": null
+    },
+    {
+      "zh": "功能特性展示页，一格一卖点整齐陈列",
+      "en": "Feature showcases — one tile",
+      "one selling point": null
+    },
+    {
+      "zh": "想用面积对比引导视觉动线，避免均质卡片海洋",
+      "en": "Guiding the eye with area contrast instead of uniform card rows"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "内容长度不可控时，格子会被撑破或大量留空",
+      "en": "Unpredictable content lengths that overflow or hollow out tiles"
+    },
+    {
+      "zh": "小屏只放得下一列，便当结构失去意义",
+      "en": "Narrow screens that collapse to one column and void the bento structure"
+    },
+    {
+      "zh": "顺序阅读的长文场景，网格拼接会打断叙事",
+      "en": "Sequential long-form reading where tiling breaks the narrative"
+    }
+  ],
+  "tags": [
+    "bento",
+    "grid",
+    "layout",
+    "tiles",
+    "dashboard"
+  ],
+  "variants": [
+    {
+      "id": "keynote",
+      "name": {
+        "zh": "发布会式",
+        "en": "Keynote"
+      },
+      "note": {
+        "zh": "苹果发布会风格，大图大字大格子",
+        "en": "Apple keynote style — big tiles",
+        "big type": null,
+        "product heroes": null
+      }
+    },
+    {
+      "id": "dashboard",
+      "name": {
+        "zh": "仪表盘式",
+        "en": "Dashboard"
+      },
+      "note": {
+        "zh": "数据格为主，迷你图表与指标卡拼合",
+        "en": "Data-first — stat tiles and mini charts packed together"
+      }
+    },
+    {
+      "id": "profile",
+      "name": {
+        "zh": "个人主页式",
+        "en": "Profile"
+      },
+      "note": {
+        "zh": "头像 简介 社交链接混搭的个人便当",
+        "en": "Personal bento mixing avatar",
+        "bio and link tiles": null
+      }
+    }
+  ],
+  "applicable_components": [
+    "card",
+    "avatar",
+    "progress-bar",
+    "badge",
+    "table"
+  ],
+  "related": [
+    "card",
+    "minimalism",
+    "glassmorphism",
+    "dashboard",
+    "aurora"
+  ],
+  "demo": {
+    "component": "bento-grid",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Bento Grids — gallery of bento layouts",
+      "url": "https://bentogrids.com/"
+    },
+    {
+      "name": "Apple Newsroom",
+      "url": "https://www.apple.com/newsroom/"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "display: grid",
+      "grid-template-columns: repeat(4, 1fr)",
+      "grid-auto-rows",
+      "grid-column: span 2",
+      "border-radius: 16px",
+      "gap"
+    ],
+    "notes": {
+      "zh": "先定网格再装内容：常用 4 列（移动端 2 列）× 若干等高行，行高用 grid-auto-rows 固定；主格 span 2×2，次格 2×1 或 1×1；gap 收窄到 8～16px 保证\"一整盒\"的整体感；所有格子统一圆角（14～20px）与内边距（16～24px）。 每格只放一个主题：大格做主视觉，小格做指标；格子数量 5～9 个为宜， 少于 4 个失去拼贴感，多于 10 个变成仪表盘噪音。",
+      "en": "Grid first, content second: typically 4 columns (2 on mobile) with grid-auto-rows fixing row height; hero cells span 2×2, secondary 2×1 or 1×1; keep gap tight at 8–16px so the box reads as one object; unify radii (14–20px) and padding (16–24px) across cells. One topic per tile — heroes big, stats small. Aim for 5–9 tiles: fewer than 4 loses the collage, more than 10 becomes dashboard noise."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "用便当盒网格（Bento Grid）布局设计界面：圆角格子按不同跨度拼合在一套 网格上，大格承载主内容，小格陈列指标与点缀，窄缝对齐。",
+      "en": "\"Design an interface with a Bento Grid layout: rounded tiles of varying spans on one grid, big cells for hero content, small cells for stats and garnish, tight aligned gutters.\""
+    },
+    "design": {
+      "zh": "便当盒布局设计规范：4 列网格（移动端 2 列），grid-auto-rows 固定行高； 主格 2×2，辅助格 2×1 或 1×1；gap 12px，圆角统一 16px，内边距统一 20px； 格内一题一格，层级靠面积不靠边框；格子底色可用纯色 浅灰或深色卡面， 主格可承载图片或渐变；总格数控制在 5～9 个。",
+      "en": "\"Bento spec: a 4-column grid (2 on mobile) with fixed grid-auto-rows; hero cells 2×2, secondary 2×1 or 1×1; 12px gap, uniform 16px radii and 20px padding; one topic per tile; hierarchy via area, not borders; tile fills in solid, light grey or dark card tones, heroes may carry imagery or gradients; 5–9 tiles total.\""
+    },
+    "implementation": {
+      "zh": "用 CSS 实现便当盒网格：.bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 96px; gap: 12px; } 主格 .bento-hero { grid-column: span 2; grid-row: span 2; } 次格 .bento-wide { grid-column: span 2; } 所有格子 border-radius: 16px; padding: 20px; 移动端用 @media 收窄为 2 列。",
+      "en": "\"Implement a bento grid in CSS: .bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 96px; gap: 12px; } hero: .bento-hero { grid-column: span 2; grid-row: span 2; } wide: .bento-wide { grid-column: span 2; } all tiles get border-radius: 16px and padding: 20px; collapse to 2 columns under @media.\""
+    },
+    "agent": {
+      "zh": "在当前项目中用便当盒网格（Bento Grid）实现一个概览区块。\n\n先检查现有栅格 断点与卡片组件，复用现有间距与圆角变量。\n要求：\n- 一套统一网格，格子按 span 拼合，gap 窄缝对齐\n- 每格一个主题，层级靠面积表达\n- 圆角 内边距全格统一，整体像一个便当盒\n- 移动端降级为 2 列或单列不破格\n- 支持深色模式\n- 不新增任何依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a bento-grid overview section in the current project.\n\nInspect the existing grid, breakpoints and card components first; reuse current spacing and radius variables.\nRequirements:\n- One unified grid; tiles composed by span with tight aligned gutters\n- One topic per tile; hierarchy expressed by area\n- Uniform radii and padding so the set reads as a single box\n- Mobile collapses to 2 columns or one column without breaking tiles\n- Dark mode support\n- No new dependencies\nRun existing project checks when done and list the modified files."
+    }
+  },
+  "style_spec": {
+    "typography": {
+      "zh": "系统无衬线，卡片内大数字",
+      "en": "System sans with big in-card numerals"
+    },
+    "color": {
+      "zh": "浅灰底 #F5F5F7 × 白卡 × 紫 #5B5BD6",
+      "en": "Light grey #F5F5F7, white cards, violet #5B5BD6"
+    },
+    "border": {
+      "zh": "1px #E5E7EB 卡片描边",
+      "en": "1px #E5E7EB card borders"
+    },
+    "shadow": {
+      "zh": "1px 微投影保持层次",
+      "en": "1px micro shadows for depth"
+    },
+    "spacing": {
+      "zh": "16px 圆角 + 10px 网格间距",
+      "en": "16px radius, ~10px grid gaps"
+    }
+  }
+}

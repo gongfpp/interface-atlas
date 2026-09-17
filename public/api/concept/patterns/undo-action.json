@@ -1,0 +1,170 @@
+{
+  "id": "undo-action",
+  "type": "patterns",
+  "status": "published",
+  "name": {
+    "zh": "撤销操作",
+    "en": "Undo Action"
+  },
+  "aliases": [
+    "撤销",
+    "防误操作",
+    "撤销删除",
+    "撤回操作",
+    "后悔药",
+    "删除可恢复"
+  ],
+  "category": [
+    "Feedback",
+    "Safety"
+  ],
+  "description": {
+    "zh": "用\"先执行、给反悔窗口\"的方式处理高风险操作：删除等动作立即生效并展示结果，同时在底部弹出 带倒计时的撤销条，窗口期内一键恢复，倒计时结束才真正提交。相比弹窗确认，它不打断操作流， 又比\"确认一次就完\"的弹窗多了一层真正可用的后悔药。",
+    "en": "Handles risky actions with \"apply first, allow regret\": deletions take effect immediately and show the result, while a snackbar with a countdown offers one-tap undo until the timer expires. Unlike confirmation dialogs it never interrupts the flow, and unlike a single confirm it leaves a real window to change one's mind."
+  },
+  "use_when": [
+    {
+      "zh": "删除、归档、清空等破坏性但可恢复的操作",
+      "en": "Destructive but recoverable actions — delete",
+      "archive": null,
+      "clear": null
+    },
+    {
+      "zh": "操作频繁，弹窗确认会严重拖慢节奏",
+      "en": "High-frequency actions where confirm dialogs would grind the flow"
+    },
+    {
+      "zh": "操作结果立即可见，用户需要看到效果后再决定",
+      "en": "The result is visible at once and users decide after seeing it"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "操作不可逆（永久删除、对外发送），撤销条会给出错误安全感",
+      "en": "Irreversible actions (permanent delete",
+      "send) — undo creates false safety": null
+    },
+    {
+      "zh": "操作影响重大且低频，正式确认对话框更合适",
+      "en": "Major",
+      "infrequent actions deserve a real confirmation dialog": null
+    },
+    {
+      "zh": "操作在后台静默完成，用户感知不到结果",
+      "en": "Background operations with no visible result to inspect"
+    }
+  ],
+  "tags": [
+    "undo",
+    "safety",
+    "toast",
+    "destructive"
+  ],
+  "variants": [
+    {
+      "id": "snackbar",
+      "name": {
+        "zh": "撤销条",
+        "en": "Snackbar"
+      },
+      "note": {
+        "zh": "底部条 + 倒计时，Gmail 删除邮件的经典样式",
+        "en": "Bottom bar with countdown",
+        "the classic Gmail archive pattern": null
+      }
+    },
+    {
+      "id": "toast-undo",
+      "name": {
+        "zh": "轻提示撤销",
+        "en": "Toast undo"
+      },
+      "note": {
+        "zh": "顶部或角落 toast 内嵌撤销按钮，自动消失",
+        "en": "Undo inside a toast that auto-dismisses"
+      }
+    },
+    {
+      "id": "delay-commit",
+      "name": {
+        "zh": "延迟提交",
+        "en": "Delayed commit"
+      },
+      "note": {
+        "zh": "界面即时更新，请求在倒计时后才真正发出",
+        "en": "UI updates at once; the request only fires after the timer"
+      }
+    }
+  ],
+  "anatomy": [
+    "已执行的结果（Applied result）",
+    "撤销条（Undo bar）",
+    "倒计时指示（Countdown）",
+    "撤销按钮（Undo button）"
+  ],
+  "applicable_styles": [
+    "minimalism"
+  ],
+  "applicable_components": [
+    "toast"
+  ],
+  "applicable_pages": [
+    "settings",
+    "dashboard"
+  ],
+  "related": [
+    "toast",
+    "optimistic-ui",
+    "modal",
+    "empty-state",
+    "progressive-disclosure"
+  ],
+  "demo": {
+    "component": "undo-action",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "linear-gradient",
+      "position: fixed",
+      "animation",
+      "transform"
+    ],
+    "notes": {
+      "zh": "删除先更新本地状态并渲染撤销条，倒计时用 setTimeout 或 CSS 线性动画驱动；点击撤销清除定时器 并恢复数据，倒计时归零后发出真正的删除请求。撤销条固定在容器底部，倒计时可用渐缩进度条可视化。 撤销按钮要足够大，撤销条存活期内不要堆叠多条同类提示。",
+      "en": "Update local state immediately and render an undo bar driven by setTimeout or a CSS linear animation; clicking undo clears the timer and restores the item, while expiry fires the real delete request. Pin the bar to the container bottom and visualize the countdown as a shrinking progress strip. Keep the undo target large and never stack multiple bars of the same kind."
+    }
+  },
+  "sources": [
+    {
+      "name": "Material Design — Snackbars",
+      "url": "https://m3.material.io/components/snackbars/overview"
+    },
+    {
+      "name": "Nielsen Norman Group — Undo",
+      "url": "https://www.nngroup.com/articles/undo/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个撤销操作（Undo Action）演示，删除列表项后底部出现带倒计时的撤销条，点撤销可恢复。",
+      "en": "Create an undo action demo where deleting a list item raises a bottom undo bar with a countdown that restores it."
+    },
+    "design": {
+      "zh": "创建撤销操作演示。要求：任务列表可删除条目，删除后条目立即消失并在底部弹出撤销条， 内含\"已删除\"文案、撤销按钮与 5 秒倒计时进度条；倒计时结束撤销条自动收起； 撤销后条目回到原位置。",
+      "en": "Create an undo action demo. Requirements: a task list with deletable items; on delete the row vanishes and a bottom undo bar appears with \"deleted\" copy, an undo button and a 5-second countdown strip; the bar auto-dismisses at zero; undo restores the item to its original place."
+    },
+    "implementation": {
+      "zh": "用 React 实现 Undo Action：useState 管理列表与 pending 删除项，删除时立即从列表移除并记录， setTimeout 5 秒后提交；撤销按钮清除 timeout 并把条目插回原索引。倒计时进度条用 CSS width 线性动画，时长乘 var(--demo-speed, 1)。清理时清除所有未决定时器。",
+      "en": "Implement Undo Action in React: manage list and pending deletion in useState, remove the row at once on delete and commit via a 5s setTimeout; the undo button clears the timeout and splices the item back at its original index. Drive the countdown strip with a CSS linear width animation scaled by var(--demo-speed, 1). Clear pending timers on unmount."
+    },
+    "agent": {
+      "zh": "在当前项目中实现撤销操作（Undo Action）。\n\n先检查现有 toast/snackbar 组件，优先在其内部扩展撤销能力。\n用途：任务列表的删除操作。\n要求：\n- 删除立即生效，底部撤销条提供 5 秒撤销窗口与倒计时进度\n- 撤销恢复原位置，倒计时结束才真正提交删除\n- 不与确认弹窗叠加使用，避免双重打断\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement Undo Action in the current project.\n\nInspect existing toast/snackbar components first; prefer extending them with undo.\nUsage: deleting items from a task list.\nRequirements:\n- Delete applies immediately; a bottom bar offers a 5-second undo window with countdown\n- Undo restores the original position; the real delete only fires at countdown end\n- No stacking with confirmation dialogs to avoid double interruption\n- No new dependencies\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

@@ -1,0 +1,168 @@
+status: published
+
+name:
+  zh: 玻璃拟态
+  en: Glassmorphism
+
+aliases:
+  - 毛玻璃
+  - 苹果那种透明玻璃效果
+  - 玻璃拟态
+  - 磨砂玻璃
+  - 玻璃效果
+  - 半透明模糊背景
+  - Frosted Glass
+  - Glassmorphism UI
+
+category:
+  - Style
+  - Visual Language
+
+description:
+  zh: >-
+    用半透明磨砂玻璃质感表示悬浮层级的视觉语言：backdrop-filter 背景模糊 + 低透明度
+    填充 + 一圈细窄的白色高光描边，让面板像磨砂玻璃片一样透出底下的色彩与图形。
+    它强调"层"——玻璃之下必须有可透出的丰富背景，否则质感无从谈起。
+  en: >-
+    A visual language that expresses floating layers as frosted glass: a blurred
+    backdrop (backdrop-filter), a low-opacity fill and a thin white rim of light.
+    Panels literally reveal the vivid background beneath them, so the style is
+    about depth — it only works over rich, colorful content worth revealing.
+
+use_when:
+  - { zh: 背景是渐变 照片或彩色内容，需要透出层次, en: Over gradients, photos or colorful backdrops worth revealing }
+  - { zh: 弹层 播放器 系统级悬浮面板，要轻盈不要沉闷, en: Overlays, players and floating system panels that should feel light }
+  - { zh: 想延续 macOS iOS 的材质语言获得熟悉感, en: Evoking the familiar macOS/iOS material language }
+
+avoid_when:
+  - { zh: 背景纯净单调，玻璃无内容可透 出来只剩灰雾, en: Plain backgrounds — frosted glass over nothing is just grey fog }
+  - { zh: 长文本密集区域，模糊底会持续削弱文字对比度, en: Long-form reading areas where blur keeps eroding text contrast }
+  - { zh: 低端设备兼容与性能敏感场景，backdrop-filter 开销大, en: Performance-sensitive or older devices — backdrop-filter is costly }
+
+tags:
+  - glass
+  - blur
+  - transparency
+  - depth
+  - material
+
+variants:
+  - id: frost
+    name: { zh: 磨砂, en: Frost }
+    note: { zh: 高模糊低透明，最经典的奶白玻璃, en: High blur, low opacity — the classic milky glass }
+  - id: clear
+    name: { zh: 透明玻璃, en: Clear Glass }
+    note: { zh: 低模糊高透明，更依赖高光描边, en: Light blur, high transparency, leans on the light rim }
+  - id: tinted
+    name: { zh: 有色玻璃, en: Tinted Glass }
+    note: { zh: 带色调的玻璃，iOS 振动感传统, en: Color-tinted glass, the iOS vibrancy tradition }
+
+applicable_components:
+  - card
+  - navbar
+  - modal
+  - popover
+
+related:
+  - skeuomorphism
+  - aurora
+  - minimalism
+  - card
+  - modal
+
+demo:
+  component: glassmorphism
+  modes: [default, dark, variants]
+
+sources:
+  - name: Apple HIG — Materials
+    url: https://developer.apple.com/design/human-interface-guidelines/materials
+  - name: MDN — backdrop-filter
+    url: https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter
+
+implementation:
+  css:
+    - "backdrop-filter: blur()"
+    - "background: rgba(255,255,255,0.1~0.4)"
+    - "border: 1px solid rgba(255,255,255,0.4)"
+    - "box-shadow: inset 0 1px 0 rgba(255,255,255,0.5)"
+    - "@supports"
+  notes:
+    zh: >-
+      玻璃三要素：半透明填充（白色 10%～40% 透明度）、backdrop-filter blur(8~24px)、
+      顶部 1px 半透明白描边制造玻璃厚度。深色底上玻璃效果最典型，可再叠一层顶部
+      内发光。务必用 @supports 为不支持 backdrop-filter 的环境准备降级（提高填充
+      不透明度）。文字对比度要按模糊后的实际背景校验。
+    en: >-
+      Three ingredients: a translucent fill (white at 10–40% opacity),
+      backdrop-filter blur(8–24px), and a 1px translucent white top rim that
+      sells the glass thickness. It shines on dark backgrounds — add an inner
+      top glow. Always gate with @supports and fall back to a more opaque fill
+      where backdrop-filter is unsupported. Verify text contrast against the
+      blurred result, not the raw backdrop.
+
+prompts:
+  basic:
+    zh: >-
+      用玻璃拟态风格（Glassmorphism）设计界面：半透明磨砂玻璃面板，背景模糊透出底下的渐变或照片，配细白色高光描边。
+    en: >-
+      "Design an interface in Glassmorphism style: translucent frosted-glass panels that blur and reveal a gradient or photo beneath, edged with a thin white highlight."
+  design:
+    zh: >-
+      玻璃拟态设计规范：页面背景为鲜艳渐变或照片（深色背景效果最佳）；玻璃面板
+      填充 rgba(255,255,255,0.15) 左右，backdrop-filter blur(16px)；描边用 1px
+      rgba(255,255,255,0.35)，顶部可加内发光高光；圆角 16px+；玻璃上的文字保证
+      4.5:1 对比度。深色模式用更深的渐变底，玻璃透明度略升。
+    en: >-
+      "Glassmorphism design spec: a vivid gradient or photo background (dark works best); panels filled with rgba(255,255,255,0.15) and backdrop-filter blur(16px); 1px rgba(255,255,255,0.35) rims with an optional inner top glow; radii 16px+; text on glass must keep 4.5:1 contrast. Dark mode deepens the backdrop and slightly raises transparency."
+  implementation:
+    zh: >-
+      用 CSS 实现玻璃拟态：封装 .glass 类（background: rgba(255,255,255,0.16);
+      backdrop-filter: blur(16px) saturate(160%); border: 1px solid
+      rgba(255,255,255,0.35); border-radius: 16px），用 @supports (backdrop-filter:
+      blur(1px)) 提供不透明度更高的降级填充；卡片可加 inset 0 1px 0 的高光内阴影；
+      注意 backdrop-filter 会创建包含块，内部 fixed 定位需上移。
+    en: >-
+      "Implement Glassmorphism in CSS: a .glass class (background: rgba(255,255,255,0.16); backdrop-filter: blur(16px) saturate(160%); border: 1px solid rgba(255,255,255,0.35); border-radius: 16px), with an @supports fallback that raises fill opacity; add an inset 0 1px 0 top highlight for thickness; remember backdrop-filter creates a containing block — hoist inner fixed positioning."
+  agent:
+    zh: |-
+      在当前项目中用玻璃拟态风格（Glassmorphism）实现一个悬浮卡片 + 按钮区块。
+
+      先检查现有 Design Token 与弹层组件，确认背景层方案（渐变/图片）。
+      要求：
+      - 页面层提供彩色渐变背景，玻璃面板半透明 + backdrop-filter blur
+      - 1px 半透明白描边与顶部高光内阴影表现玻璃厚度
+      - @supports 降级：不支持时提高面板不透明度保证可读
+      - 深色模式使用更深渐变底（玻璃在深底上最典型）
+      - 玻璃上的文字对比度满足可读性要求
+      - 不新增任何依赖
+      完成后运行项目现有检查，并列出修改的文件。
+    en: |-
+      Implement a floating glass card + button section in Glassmorphism style in the current project.
+
+      Inspect the existing design tokens and overlay components first; settle the backdrop layer (gradient or image).
+      Requirements:
+      - A colorful gradient page layer beneath translucent, backdrop-blurred panels
+      - 1px translucent white rims plus an inner top highlight for glass thickness
+      - An @supports fallback that raises panel opacity when backdrop-filter is unavailable
+      - Dark mode with a deeper gradient backdrop (glass is most typical on dark)
+      - Text contrast on glass stays readable
+      - No new dependencies
+      Run existing project checks when done and list the modified files.
+
+style_spec:
+  typography:
+    zh: "无衬线，白色大标题"
+    en: "Sans-serif with white display type"
+  color:
+    zh: "蓝紫粉渐变底 × 白色玻璃 rgba(255,255,255,.45)"
+    en: "Blue-purple-pink gradient with white glass rgba(255,255,255,.45)"
+  border:
+    zh: "1px 半透明白边框"
+    en: "1px translucent white borders"
+  shadow:
+    zh: "大范围柔和彩色投影"
+    en: "Large soft coloured shadows"
+  spacing:
+    zh: "圆角 16px+，卡片内边距充足"
+    en: "16px+ radii with roomy card padding"

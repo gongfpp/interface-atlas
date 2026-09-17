@@ -1,0 +1,55 @@
+status: published
+
+name:
+  zh: 标签与分段控件参考图集
+  en: Tabs & Segmented Control Reference Sheets
+
+aliases:
+  - 标签页设计参考
+  - 分段控件灵感
+  - tabs 灵感图
+
+description:
+  zh: >-
+    8 张 AI 生成的标签页 / 分段控件设计参考海报：前四张是 20 个差异案例的图鉴，
+    后四张是 20 个新增案例的补充——下划线式、胶囊式、卡片式、分段圆钮，
+    到浏览器标签、垂直标签等边缘形态。
+  en: >-
+    Eight AI-generated tabs / segmented-control reference posters: the first four are
+    an atlas of 20 distinct cases, the last four add 20 more — underline, pill, card
+    and segmented styles through browser tabs and vertical tabs.
+
+related_component: tabs
+
+images:
+  - { file: /images/gallery/tabs/1.webp, title: { zh: 差异案例 · 图鉴一, en: Cases atlas I } }
+  - { file: /images/gallery/tabs/2.webp, title: { zh: 差异案例 · 图鉴二, en: Cases atlas II } }
+  - { file: /images/gallery/tabs/3.webp, title: { zh: 差异案例 · 图鉴三, en: Cases atlas III } }
+  - { file: /images/gallery/tabs/4.webp, title: { zh: 差异案例 · 图鉴四, en: Cases atlas IV } }
+  - { file: /images/gallery/tabs/5.webp, title: { zh: 新增案例 · 补充一, en: More cases I } }
+  - { file: /images/gallery/tabs/6.webp, title: { zh: 新增案例 · 补充二, en: More cases II } }
+  - { file: /images/gallery/tabs/7.webp, title: { zh: 新增案例 · 补充三, en: More cases III } }
+  - { file: /images/gallery/tabs/8.webp, title: { zh: 新增案例 · 补充四, en: More cases IV } }
+
+prompt:
+  zh: >-
+    制作一张竖版「标签与分段控件设计参考」海报，编号 N，右上角小字「界面组件图鉴 /
+    20 个差异案例」（后半系列改「20 个新增案例」）。米白背景（#FAF9F5），黑色粗标题
+    「标签与分段控件设计参考 N」+ 灰色小字 TAB / SEGMENTED CONTROL。正文纵向排列
+    5 组案例，每组左侧是大号灰色序号 01～05、英文模式名（如 Underline Tabs / Pill
+    Segmented / Card Tabs / Browser Tabs / Vertical Tabs）、中文模式名与 2×2 关键词；
+    右侧浅灰圆角卡片内是真实感的标签控件演示（标签行 + 当前项高亮 + 对应内容面板），
+    底部一行灰色说明。排版网格严格、留白充足、扁平极简，蓝色仅作强调，中英文对照。
+  en: >-
+    A vertical "Tabs / Segmented Control Design Reference" poster, sheet number N,
+    with a small top-right label ("界面组件图鉴 / 20 个差异案例", later sheets "20 个新增案例").
+    Off-white background (#FAF9F5), bold black Chinese title plus grey "TAB / SEGMENTED
+    CONTROL" subtitle. Five numbered rows: large grey index, English pattern name (e.g.
+    Underline Tabs, Pill Segmented, Card Tabs, Browser Tabs, Vertical Tabs), Chinese
+    name and a 2x2 keyword grid; on the right, a realistic tab control demo (tab row,
+    highlighted active item, matching content panel) with a one-line caption. Strict
+    grid, flat minimal, blue accent only, bilingual labels.
+
+tips:
+  - { zh: 用「20 个差异案例 → 20 个新增案例」分批生成，避免一次要求太多而重复, en: Split into "20 distinct" then "20 more" batches to avoid repeats in one shot }
+  - { zh: 指定「当前项高亮方式各不相同」，能逼出更多视觉变体, en: Ask for a different active-state treatment per case to force visual variety }

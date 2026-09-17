@@ -1,0 +1,166 @@
+{
+  "id": "select",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "下拉选择",
+    "en": "Select"
+  },
+  "aliases": [
+    "下拉选择",
+    "下拉框",
+    "选择器",
+    "下拉列表",
+    "下拉选项框",
+    "select 下拉"
+  ],
+  "category": [
+    "Form",
+    "Input"
+  ],
+  "description": {
+    "zh": "用收起的单行控件承载一组互斥选项，点击展开面板后选择其一，选中值常驻显示在触发器上。 比 radio 更省空间，适合选项多于 5 个的场景；面板支持滚动、分组或搜索，选择即关闭。",
+    "en": "A collapsed single-line control holding a set of mutually exclusive options; expanding the panel reveals them and the chosen value stays on the trigger. More space-efficient than radios, suited to more than 5 options; the panel can scroll, group or search, and picking one closes it."
+  },
+  "use_when": [
+    {
+      "zh": "选项数量多于 5 个且互斥单选",
+      "en": "More than 5 mutually exclusive options"
+    },
+    {
+      "zh": "表单空间有限，需要收起选项列表",
+      "en": "Tight form space — options must stay collapsed"
+    },
+    {
+      "zh": "选项可分组或较长（国家、时区、分类）",
+      "en": "Long or groupable option sets like countries",
+      "timezones": null,
+      "categories": null
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "选项少于 5 个，直接平铺 radio 更快",
+      "en": "Fewer than 5 options — visible radios are faster"
+    },
+    {
+      "zh": "选项很多且需要键盘快速检索，用可搜索的下拉或命令面板",
+      "en": "Many options needing quick search — use a searchable select or command palette"
+    },
+    {
+      "zh": "允许多选时需明确多选语义，避免误用单选下拉",
+      "en": "Multi-select semantics must be explicit — do not disguise it as single select"
+    }
+  ],
+  "tags": [
+    "form",
+    "input",
+    "selection"
+  ],
+  "variants": [
+    {
+      "id": "native",
+      "name": {
+        "zh": "原生",
+        "en": "Native"
+      },
+      "note": {
+        "zh": "系统控件，移动端体验最好",
+        "en": "OS control — best on mobile"
+      }
+    },
+    {
+      "id": "custom",
+      "name": {
+        "zh": "自定义面板",
+        "en": "Custom panel"
+      },
+      "note": {
+        "zh": "可完全定制样式与分组",
+        "en": "Fully styleable with grouping"
+      }
+    },
+    {
+      "id": "multiple",
+      "name": {
+        "zh": "多选",
+        "en": "Multiple"
+      },
+      "note": {
+        "zh": "以标签（chip）呈现已选集合",
+        "en": "Selected set shown as chips"
+      }
+    }
+  ],
+  "anatomy": [
+    "触发器（Trigger）",
+    "展开面板（Listbox）",
+    "选项（Option）",
+    "选中标识（Selected mark）"
+  ],
+  "applicable_styles": [
+    "minimalism",
+    "swiss-style"
+  ],
+  "applicable_components": [],
+  "applicable_pages": [
+    "settings",
+    "checkout",
+    "signup"
+  ],
+  "related": [
+    "dropdown",
+    "menu",
+    "radio",
+    "form-validation",
+    "command-palette"
+  ],
+  "demo": {
+    "component": "select",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "position: absolute",
+      "max-height: overflow",
+      "z-index: 10",
+      "transition"
+    ],
+    "notes": {
+      "zh": "触发器样式与输入框一致，右侧 chevron 随展开旋转；面板绝对定位于触发器下方， max-height + overflow-y-auto 控制高度。键盘用 aria-expanded / role=\"listbox\" / role=\"option\" 与 aria-selected 标注，Escape 关闭、点击外部关闭。 多选时点击不关闭，已选项以 chip 展示。",
+      "en": "Style the trigger like an input with a chevron rotating when open; the panel is absolutely positioned below with max-height and overflow-y-auto. Mark up with aria-expanded, role=\"listbox\", role=\"option\" and aria-selected; close on Escape and outside click. In multi-select, clicks stay open and selections render as chips."
+    }
+  },
+  "sources": [
+    {
+      "name": "W3C APG — Select-Only Combobox",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/"
+    },
+    {
+      "name": "Material Design — Menus",
+      "url": "https://m3.material.io/components/menus/overview"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个下拉选择组件，点击展开选项面板，选中值显示在触发器上。",
+      "en": "Create a select component that opens an option panel on click and shows the chosen value on the trigger."
+    },
+    "design": {
+      "zh": "创建下拉选择组件。要求：触发器与输入框风格一致（边框 + 右侧旋转 chevron）， 展开面板带阴影、当前项高亮、支持滚动；选中后面板关闭并更新触发器文案； 支持选项分组；深浅色一致。",
+      "en": "Create a select component. Requirements: trigger styled like an input (border + rotating chevron); panel with shadow, highlighted current option and scrolling; selecting closes the panel and updates the trigger; option groups supported; consistent in light/dark."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Select：受控 value 与 open 状态；面板绝对定位 + max-h-60 overflow-auto；选项 role=\"option\" + aria-selected；监听 document 点击 与 Escape 关闭；键盘上下键移动高亮项。多选模式选项点击不关闭，value 为数组， 已选渲染为可删除 chip。",
+      "en": "React + Tailwind Select: controlled value and open state; panel absolutely positioned with max-h-60 overflow-auto; options with role=\"option\" and aria-selected; close on document click and Escape; arrow keys move the highlight. Multi-select keeps the panel open, value is an array rendered as removable chips."
+    },
+    "agent": {
+      "zh": "在当前项目中实现下拉选择组件。\n\n先检查现有表单组件与弹出层实现，保持风格与层级（z-index）一致。\n要求：\n- 受控单选，触发器显示当前值 + 旋转 chevron\n- 展开面板：滚动、当前项高亮、点击外部与 Escape 关闭\n- 无障碍：aria-expanded、role=listbox/option、键盘上下选择\n- 深浅色主题一致\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a select component in the current project.\n\nInspect existing form components and overlay implementations first; keep styles and z-index consistent.\nRequirements:\n- Controlled single select; trigger shows the value + rotating chevron\n- Panel: scrollable, highlighted current option, closes on outside click and Escape\n- Accessibility: aria-expanded, role=listbox/option, arrow-key selection\n- Consistent light/dark themes\n- No new dependencies\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

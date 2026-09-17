@@ -1,0 +1,167 @@
+status: published
+
+name:
+  zh: 扁平化设计
+  en: Flat Design
+
+aliases:
+  - 扁平化
+  - 扁平风格
+  - 扁平化设计
+  - 没有阴影那种平面设计
+  - 色块图标风格
+  - 扁平UI
+  - Flat UI
+  - Flat Design
+
+category:
+  - Style
+  - Visual Language
+
+description:
+  zh: >-
+    拒绝一切拟真修饰的视觉语言：纯色块、几何形状、无渐变无投影无纹理，靠颜色、
+    形状与排版建立层级。它是拟物化的反面——界面不再模仿实物，而是承认自己
+    是一块发光的平面，用清晰与直接换取效率与一致性。
+  en: >-
+    A visual language that strips out all simulation: solid color blocks,
+    simple geometry, no gradients, shadows or textures. Hierarchy comes from
+    color, shape and typography alone. The opposite of skeuomorphism — the
+    interface admits it is a glowing plane and trades decoration for clarity.
+
+use_when:
+  - { zh: 系统级产品需要跨平台一致与极低成本维护, en: System products that need cross-platform consistency at low cost }
+  - { zh: 图标 信息图 后台界面，要求一眼识别 快速扫读, en: Icons, infographics and dashboards that must scan instantly }
+  - { zh: 移动端小屏幕，装饰会挤占内容空间, en: Small mobile screens where decoration crowds out content }
+
+avoid_when:
+  - { zh: 层级复杂且用户需要空间线索区分可点与不可点, en: Complex hierarchies where users need depth cues to see what is clickable }
+  - { zh: 品牌需要温度 情绪与精致感, en: Brands that need warmth, emotion or crafted refinement }
+  - { zh: 大面积灰底上加细线按钮，可点性暗示不足（ Flat 2.0 随之出现）, en: Grey on grey with hairline buttons — weak affordance triggered Flat 2.0 }
+
+tags:
+  - flat
+  - solid-color
+  - geometry
+  - clarity
+  - metro
+
+variants:
+  - id: metro
+    name: { zh: Metro 磁贴, en: Metro Tiles }
+    note: { zh: 微软 Metro，大色块磁贴与矩形至上, en: Microsoft Metro — big color tiles, rectangles all the way }
+  - id: flat-ui
+    name: { zh: Flat UI 撞色, en: Flat UI Colors }
+    note: { zh: 高饱和撞色 加浅底 圆角与细描边, en: Saturated clash colors on pale surfaces with 1px borders }
+  - id: flat2
+    name: { zh: 扁平 2.0, en: Flat 2.0 }
+    note: { zh: 补回轻微阴影与层次，Material 前奏, en: Shadows return subtly — the prelude to Material }
+
+applicable_components:
+  - button
+  - card
+  - input
+  - navbar
+  - badge
+
+related:
+  - minimalism
+  - skeuomorphism
+  - swiss-style
+  - button
+  - card
+
+demo:
+  component: flat-design
+  modes: [default, dark, variants]
+
+sources:
+  - name: Nielsen Norman Group — Flat Design
+    url: https://www.nngroup.com/articles/flat-design/
+  - name: Apple HIG — Visual Design
+    url: https://developer.apple.com/design/human-interface-guidelines/visual-design
+
+implementation:
+  css:
+    - solid-color
+    - "border: 0"
+    - "box-shadow: none"
+    - "transition: background-color"
+  notes:
+    zh: >-
+      纪律比技巧重要：只允许纯色填充与 1px 描边，box-shadow 一律 none，渐变与
+      纹理一律不出现；层级交给色块面积与明度差。可交互元素用高饱和强调色或
+      描边保证可点性；hover 只改 background-color，150ms 内完成。深浅色模式
+      各维护一套色板而非简单反色。
+    en: >-
+      Discipline over technique: solid fills and 1px borders only, box-shadow
+      always none, gradients and textures banned. Hierarchy lives in color
+      area and luminance steps. Keep interactive elements on saturated accents
+      or clear outlines; hover changes background-color only, within 150ms.
+      Maintain separate light and dark palettes instead of inverting.
+
+prompts:
+  basic:
+    zh: >-
+      用扁平化设计（Flat Design）风格设计界面：纯色块、无渐变无投影无纹理，
+      层级靠颜色与排版建立，交互元素用高饱和强调色标识。
+    en: >-
+      "Design an interface in Flat Design style: solid color blocks with no gradients, shadows or textures; hierarchy from color and typography; interactive elements marked by saturated accents."
+  design:
+    zh: >-
+      扁平化设计规范：背景纯白或纯灰，内容用 5～6 个高饱和色块（参考 Flat UI
+      Colors：#3498DB #E74C3C #2ECC71 等）；无边框无投影，圆角 0～4px；文字
+      反白或近黑，字号层级清晰；按钮 hover 仅加深背景色 8%；深色模式单独
+      调整色板明度，不做简单反色。
+    en: >-
+      "Flat design spec: white or light grey background with 5–6 saturated tiles (Flat UI Colors: #3498DB, #E74C3C, #2ECC71...); no borders, no shadows, 0–4px radii; inverted or near-black text with clear type scale; hover darkens the fill by 8% only; dark mode uses its own palette, not a simple inversion."
+  implementation:
+    zh: >-
+      用 CSS 实现扁平风格：建立 6 色设计变量（--c-primary 等），按钮 .btn-flat
+      { background: var(--c-primary); color: #fff; border-radius: 3px;
+      transition: background-color 150ms; } hover 加深 8%；卡片用纯色块或
+      1px 分隔；确保所有交互元素与非交互元素的颜色差达到可辨识水平。
+    en: >-
+      "Implement flat design in CSS: six color variables (--c-primary etc.); .btn-flat { background: var(--c-primary); color: #fff; border-radius: 3px; transition: background-color 150ms; } hover darkens 8%; cards as solid blocks or 1px dividers; keep interactive vs. non-interactive elements color-distinguishable."
+  agent:
+    zh: |-
+      在当前项目中用扁平化设计（Flat Design）实现一组卡片与按钮区块。
+
+      先检查现有 Design Token 与色彩变量，把风格色板映射进现有变量体系。
+      要求：
+      - 只用纯色填充，无渐变 无投影 无纹理
+      - 交互元素用高饱和强调色，hover 仅改 background-color
+      - 层级靠色块面积 明度差与字号字重建立
+      - 支持深色模式（独立色板，不做简单反色）
+      - 若有过渡动画，尊重 prefers-reduced-motion，150ms 内完成
+      - 不新增任何依赖
+      完成后运行项目现有检查，并列出修改的文件。
+    en: |-
+      Implement a flat-design card and button section in the current project.
+
+      Inspect the existing design tokens and color variables first; map the flat palette into them.
+      Requirements:
+      - Solid fills only — no gradients, shadows or textures
+      - Saturated accents for interactive elements; hover changes background-color only
+      - Hierarchy from color area, luminance and type weight
+      - Dark mode with its own palette, not a naive inversion
+      - Respect prefers-reduced-motion for transitions, under 150ms
+      - No new dependencies
+      Run existing project checks when done and list the modified files.
+
+style_spec:
+  typography:
+    zh: "几何无衬线，中等字重"
+    en: "Geometric sans at medium weights"
+  color:
+    zh: "纯色平涂：蓝 #1FA2FF × 黄 #FFD54F"
+    en: "Flat fills: blue #1FA2FF, yellow #FFD54F"
+  border:
+    zh: "无描边，色块分区"
+    en: "No outlines — blocks define areas"
+  shadow:
+    zh: "完全无阴影"
+    en: "Completely shadowless"
+  spacing:
+    zh: "小圆角 6px，均匀网格"
+    en: "Small 6px radius, even grid"

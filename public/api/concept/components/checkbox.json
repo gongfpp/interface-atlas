@@ -1,0 +1,163 @@
+{
+  "id": "checkbox",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "复选框",
+    "en": "Checkbox"
+  },
+  "aliases": [
+    "复选框",
+    "勾选框",
+    "多选框",
+    "打勾框",
+    "勾选项",
+    "勾选框选择"
+  ],
+  "category": [
+    "Form",
+    "Input"
+  ],
+  "description": {
+    "zh": "用方形勾选框表示一组可多选的独立开关项，点击在选中与未选中间切换。 父级项可呈现半选态（部分子项选中），常用于批量选择、筛选与同意条款。",
+    "en": "Square toggles for a set of independently selectable items, flipping between checked and unchecked on click. A parent can show an indeterminate state when only some children are checked — used for bulk selection, filters and consent."
+  },
+  "use_when": [
+    {
+      "zh": "多个选项可以同时选中、互不影响",
+      "en": "Multiple options can be selected independently"
+    },
+    {
+      "zh": "批量操作前勾选列表项",
+      "en": "Checking list items before a bulk action"
+    },
+    {
+      "zh": "「同意条款」等单条独立确认",
+      "en": "Single standalone confirmations like agreeing to terms"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "选项互斥只能选一个，用 radio",
+      "en": "Mutually exclusive choice — use radios"
+    },
+    {
+      "zh": "即时生效的开关型设置，用 switch 更直观",
+      "en": "Immediate-effect on/off settings — a switch is clearer"
+    },
+    {
+      "zh": "选项超过约 15 个且需检索，改用可搜索的多选下拉",
+      "en": "More than ~15 options needing search — use a searchable multi-select"
+    }
+  ],
+  "tags": [
+    "form",
+    "input",
+    "selection"
+  ],
+  "variants": [
+    {
+      "id": "single",
+      "name": {
+        "zh": "单项",
+        "en": "Single"
+      },
+      "note": {
+        "zh": "一条独立确认项",
+        "en": "One standalone item"
+      }
+    },
+    {
+      "id": "group",
+      "name": {
+        "zh": "分组",
+        "en": "Group"
+      },
+      "note": {
+        "zh": "多项并列可全选",
+        "en": "Parallel items",
+        "bulk-checkable": null
+      }
+    },
+    {
+      "id": "indeterminate",
+      "name": {
+        "zh": "半选",
+        "en": "Indeterminate"
+      },
+      "note": {
+        "zh": "父级横线态表示部分选中",
+        "en": "Parent dash state for partial selection"
+      }
+    }
+  ],
+  "anatomy": [
+    "方框（Box）",
+    "对勾标识（Check mark）",
+    "标签文字（Label）"
+  ],
+  "applicable_styles": [
+    "minimalism",
+    "flat-design"
+  ],
+  "applicable_components": [],
+  "applicable_pages": [
+    "settings",
+    "checkout",
+    "signup"
+  ],
+  "related": [
+    "radio",
+    "switch",
+    "filter-panel",
+    "form-validation"
+  ],
+  "demo": {
+    "component": "checkbox",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "appearance",
+      "accent-color",
+      "border-radius: 4px",
+      "transition"
+    ],
+    "notes": {
+      "zh": "自定义样式时隐藏原生 appearance，用伪元素或内联 SVG 绘制对勾， 选中态用 accent 底 + 白色勾，过渡 scale 弹入；半选态画横线。 原生快速方案直接用 accent-color。整行 label 可点击，热区不小于 24px。 半选由 JS 控制父级 ref 的 indeterminate 属性。",
+      "en": "For custom styling hide the native appearance and draw the check with a pseudo-element or inline SVG — accent fill with a white check scaling in; the indeterminate state draws a dash. The quick native route is accent-color. Make the whole label row clickable with a ≥ 24px hit area; drive the parent's indeterminate property from JS."
+    }
+  },
+  "sources": [
+    {
+      "name": "W3C APG — Checkbox",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/"
+    },
+    {
+      "name": "Material Design — Checkbox",
+      "url": "https://m3.material.io/components/checkbox/overview"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个复选框组件，支持单项、分组全选与半选状态。",
+      "en": "Create a checkbox component supporting single items, group select-all and an indeterminate state."
+    },
+    "design": {
+      "zh": "创建复选框组件。要求：圆角方框，选中 accent 底 + 白色对勾弹入动画； 父级「全选」在子项部分选中时显示半选横线；整行可点击；深浅色一致。",
+      "en": "Create a checkbox component. Requirements: rounded square box, accent fill with a white check scaling in on select; a parent \"select all\" showing a dash when children are partially checked; full-row clickable; consistent in light/dark."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Checkbox：受控 checked 与 onChange；自定义框用 peer + 伪元素或内联 SVG 对勾（scale 过渡，时长乘 --demo-speed）；父级 ref 上 通过 effect 设置 indeterminate；键盘空格可切换，label 用 htmlFor 关联。 分组数据驱动（{label, children}）。",
+      "en": "React + Tailwind Checkbox: controlled checked and onChange; custom box with peer + pseudo-element or inline SVG check (scale transition multiplied by --demo-speed); set the parent's indeterminate via effect on its ref; space-bar toggling and htmlFor label association. Groups are data-driven ({label, children})."
+    },
+    "agent": {
+      "zh": "在当前项目中实现复选框组件。\n\n先检查现有表单组件与颜色变量，保持一致。\n要求：\n- 受控 checked，支持单项 / 分组 / 半选\n- 对勾选中动画尊重 prefers-reduced-motion\n- 键盘可达（空格切换，label 关联）\n- 深浅色主题一致\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a checkbox component in the current project.\n\nInspect existing form components and color variables first; stay consistent.\nRequirements:\n- Controlled checked; single / group / indeterminate support\n- Check animation respecting prefers-reduced-motion\n- Keyboard accessible (space to toggle, label association)\n- Consistent light/dark themes\n- No new dependencies\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

@@ -1,0 +1,58 @@
+status: published
+
+name:
+  zh: 导航栏参考图集
+  en: Navbar Reference Sheets
+
+aliases:
+  - 导航栏设计参考
+  - 顶部导航灵感
+  - navbar 灵感图
+
+description:
+  zh: >-
+    8 张 AI 生成的导航栏设计参考海报：每张系统展开 5 个变体，从顶部主导航、侧边导航、
+    底部导航、标签导航到超级菜单，再延伸到浮动胶囊、自动隐藏、上下文导航与翻页状态。
+    适合在动手前快速过一遍"导航还有哪些做法"。
+  en: >-
+    Eight AI-generated navbar reference posters. Each sheet lays out five variants —
+    from top / sidebar / bottom / tab navigation to mega menus, then floating pills,
+    auto-hide headers, contextual navigation and prev/next states. A fast pre-flight
+    scan of "what else could this navbar be".
+
+related_component: navbar
+
+images:
+  - { file: /images/gallery/navbar/1.webp, title: { zh: 基础结构, en: Fundamentals } }
+  - { file: /images/gallery/navbar/2.webp, title: { zh: 层级与路径, en: Hierarchy & paths } }
+  - { file: /images/gallery/navbar/3.webp, title: { zh: 展开与唤起, en: Expansion & triggers } }
+  - { file: /images/gallery/navbar/4.webp, title: { zh: 索引与定位, en: Indexing & wayfinding } }
+  - { file: /images/gallery/navbar/5.webp, title: { zh: 浮动胶囊导航, en: Floating islands } }
+  - { file: /images/gallery/navbar/6.webp, title: { zh: 滚动响应与自动隐藏, en: Auto-hide & scroll } }
+  - { file: /images/gallery/navbar/7.webp, title: { zh: 上下文导航, en: Contextual navigation } }
+  - { file: /images/gallery/navbar/8.webp, title: { zh: 导航状态与相邻跳转, en: States & prev/next } }
+
+prompt:
+  zh: >-
+    制作一张竖版「导航栏设计参考」海报，编号 N，右上角标注本张主题。米白背景（#FAF9F5），
+    黑色粗标题「导航栏设计参考 N」+ 灰色小字 DESIGN REFERENCE。正文纵向排列 5 个条目，
+    每条左侧是大号灰色序号 01～05、英文模式名（如 Top Navigation / Sidebar Navigation /
+    Bottom Navigation / Tab Navigation / Mega Menu）、中文模式名与 2×2 关键词短语；
+    右侧是浅灰圆角卡片内的真实感 UI 演示：完整的导航栏界面（品牌 Logo、菜单项、搜索图标、
+    主按钮，当前项用蓝色下划线标记），卡片底部一行灰色说明文字。整张海报排版网格严格、
+    留白充足、扁平极简风格，蓝色仅作强调色，所有文字为简体中文与英文对照，UI 细节逼真可放大。
+  en: >-
+    A vertical "Navigation Bar Design Reference" poster, sheet number N, with the sheet
+    theme at the top right. Off-white background (#FAF9F5), bold black title in Chinese
+    plus a grey "DESIGN REFERENCE" subtitle. Five numbered rows: each has a large grey
+    index (01–05), the English pattern name (e.g. Top Navigation, Sidebar Navigation,
+    Bottom Navigation, Tab Navigation, Mega Menu), its Chinese name, and a 2x2 grid of
+    short keywords; on the right, a realistic UI demo inside a light-grey rounded card —
+    a complete navbar with brand logo, menu items, search icon and primary button, the
+    active item marked with a blue underline — and a one-line grey caption below. Strict
+    grid, generous whitespace, flat minimal style, blue as the only accent, bilingual
+    Chinese/English labels, crisp zoomable UI details.
+
+tips:
+  - { zh: 每张只换「本张主题」与 5 个模式名，其余描述保持不变，整批风格就统一, en: Keep everything fixed except the sheet theme and the five pattern names for a consistent series }
+  - { zh: 生成后用 4K 分辨率重绘一版，UI 文字更清晰, en: Upscale at 4K for crisper in-UI text }

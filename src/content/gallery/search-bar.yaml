@@ -1,0 +1,55 @@
+status: published
+
+name:
+  zh: 搜索框参考图集
+  en: Search Bar Reference Sheets
+
+aliases:
+  - 搜索框设计参考
+  - 搜索栏灵感
+  - search bar 灵感图
+
+description:
+  zh: >-
+    8 张 AI 生成的搜索框设计参考海报：从页头窄搜索框、居中大搜索框，到带筛选、
+    带建议、带历史记录、结果内联展开的形态——搜索入口的完整决策空间。
+  en: >-
+    Eight AI-generated search-bar reference posters: slim header fields, centered
+    hero search, filtered and suggest-enabled variants, history and inline results —
+    the full decision space of a search entry point.
+
+related_component: command-palette
+
+images:
+  - { file: /images/gallery/search-bar/1.webp, title: { zh: 参考 01, en: Sheet 01 } }
+  - { file: /images/gallery/search-bar/2.webp, title: { zh: 参考 02, en: Sheet 02 } }
+  - { file: /images/gallery/search-bar/3.webp, title: { zh: 参考 03, en: Sheet 03 } }
+  - { file: /images/gallery/search-bar/4.webp, title: { zh: 参考 04, en: Sheet 04 } }
+  - { file: /images/gallery/search-bar/5.webp, title: { zh: 参考 05, en: Sheet 05 } }
+  - { file: /images/gallery/search-bar/6.webp, title: { zh: 参考 06, en: Sheet 06 } }
+  - { file: /images/gallery/search-bar/7.webp, title: { zh: 参考 07, en: Sheet 07 } }
+  - { file: /images/gallery/search-bar/8.webp, title: { zh: 参考 08, en: Sheet 08 } }
+
+prompt:
+  zh: >-
+    制作一张竖版「Search Bar 设计参考」海报，编号 NN。米白背景（#FAF9F5），黑色粗标题
+    「Search Bar 设计参考 NN」+ 灰色小字 SEARCH BAR / DESIGN REFERENCE。正文纵向排列
+    5 个条目，每条左侧是大号灰色序号 01～05、英文模式名（如 Header Search / Hero Search /
+    Filter Search / Suggest Search / Inline Results）、中文模式名与 2×2 关键词短语；
+    右侧浅灰圆角卡片内是真实感的搜索框演示（输入框、放大镜图标、占位文案、建议面板
+    或结果列表，当前项高亮），底部一行灰色说明文字。排版网格严格、留白充足、扁平极简，
+    蓝色仅作强调色，中英文对照，UI 细节逼真可放大。
+  en: >-
+    A vertical "Search Bar Design Reference" poster, sheet number NN. Off-white
+    background (#FAF9F5), bold black Chinese-English title plus grey "SEARCH BAR /
+    DESIGN REFERENCE" subtitle. Five numbered rows: large grey index, English pattern
+    name (e.g. Header Search, Hero Search, Filter Search, Suggest Search, Inline
+    Results), Chinese name and a 2x2 keyword grid; on the right, a realistic search
+    demo inside a light-grey rounded card (input with magnifier icon, placeholder,
+    suggestion panel or result list, highlighted active row) and a one-line caption.
+    Strict grid, generous whitespace, flat minimal, blue accent only, bilingual labels,
+    crisp zoomable UI details.
+
+tips:
+  - { zh: 搜索框演示务必包含「建议面板」这类展开内容，画面信息量立刻上来, en: Always include a suggestion panel — the sheet gains instant information density }
+  - { zh: 编号连续生成时保持同一句式，整套图放在一起像一本册子, en: Keep the sentence template identical across sheets so the set reads like one booklet }

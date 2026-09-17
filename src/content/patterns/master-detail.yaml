@@ -1,0 +1,162 @@
+status: published
+
+name:
+  zh: 主从视图
+  en: Master Detail
+
+aliases:
+  - Master Detail
+  - 主从视图
+  - 主从布局
+  - 列表详情联动
+  - 左右分栏
+  - 双栏视图
+  - 左边列表右边详情
+
+category:
+  - Layout
+  - Navigation
+
+description:
+  zh: >-
+    左侧一列摘要条目，右侧展示选中项的完整详情，点击左侧条目右侧即时联动更新。
+    它解决的是"在列表页与详情页之间来回跳转"的问题——总览与细读同屏共存，
+    用户切换条目不丢方向感，浏览和比对多个条目的成本大幅降低。
+  en: >-
+    A summary list on one side with the selected item's full detail on the other;
+    clicking an entry updates the detail pane instantly. It solves the constant
+    back-and-forth between list and detail pages — overview and depth share one
+    screen, so users keep their sense of place and switching or comparing
+    multiple items becomes cheap.
+
+use_when:
+  - { zh: 邮件、文件管理器等条目密集的工具界面, en: Item-dense tools like mail clients and file managers }
+  - { zh: 需要在多个条目间快速切换或比对, en: Fast switching or comparison across many items }
+  - { zh: 宽屏空间充足，可容纳两栏, en: Wide viewports with room for both panes }
+
+avoid_when:
+  - { zh: 屏幕过窄，需退化为列表 + 详情两级页面, en: Narrow screens — degrade to list page then detail page }
+  - { zh: 详情内容很重，与列表同屏会互相挤压, en: Heavy detail content that crowds out the list }
+  - { zh: 条目间没有浏览关系，用户只看单个对象, en: Unrelated items where users inspect a single object }
+
+tags:
+  - layout
+  - navigation
+  - list
+  - responsive
+
+variants:
+  - id: two-pane
+    name: { zh: 双栏同屏, en: Two-pane }
+    note: { zh: 宽屏经典左右布局，点选即联动, en: Classic side-by-side layout for wide screens, click syncs panes }
+  - id: stacked
+    name: { zh: 窄屏堆叠, en: Stacked }
+    note: { zh: 窄屏先列表后详情，可返回列表, en: On narrow screens list comes first, detail opens over it with a back affordance }
+  - id: persistent-selection
+    name: { zh: 常驻选中, en: Persistent selection }
+    note: { zh: 列表保持选中高亮，滚动位置不丢失, en: The list keeps a visible selection and scroll position across switches }
+
+anatomy:
+  - 主列表（Master list）
+  - 选中态（Selected row state）
+  - 详情面板（Detail pane）
+  - 返回/切换操作（Back or switch affordance）
+
+applicable_components:
+  - sidebar
+  - table
+applicable_pages:
+  - dashboard
+  - settings
+
+related:
+  - sidebar
+  - table
+  - card
+  - drawer
+  - tabs
+
+demo:
+  component: master-detail
+  modes: [default, dark, variants]
+
+implementation:
+  css:
+    - flex
+    - overflow-y-auto
+    - aria-selected
+    - min-width
+  notes:
+    zh: >-
+      外层 flex，主列表固定或弹性宽度、独立 overflow-y-auto，详情面板占剩余空间；
+      列表项用 role="listbox"/option 或按钮加 aria-selected 表达选中态。
+      窄屏用容器查询或断点切换为堆叠布局：列表在上，选中后详情推入或覆盖，
+      提供明确的返回操作。
+    en: >-
+      Lay out with flex: the master list gets a fixed or fluid width with its own
+      overflow-y-auto, and the detail pane fills the rest. Express selection with
+      role="listbox"/option or buttons carrying aria-selected. On narrow screens use
+      container queries or breakpoints to stack: list first, detail pushed in or
+      overlaid on selection, with an explicit back affordance.
+
+sources:
+  - name: Apple HIG — Split Views
+    url: https://developer.apple.com/design/human-interface-guidelines/split-views
+  - name: Material Design — Lists
+    url: https://m3.material.io/components/lists/overview
+
+prompts:
+  basic:
+    zh: >-
+      创建一个主从视图（Master Detail）布局：左侧项目列表，右侧显示选中项目的详情，
+      点击左侧条目右侧即时联动。
+    en: >-
+      Create a master-detail layout with a project list on the left and the selected
+      project's details on the right; clicking a row syncs the detail pane instantly.
+  design:
+    zh: >-
+      设计一个主从视图界面。要求：左列摘要条目（名称 + 状态），选中项高亮并带左侧强调条；
+      右侧详情含标题、状态徽章、负责人与进度条；列表与详情各自独立滚动；
+      提供窄屏堆叠变体；支持深浅色主题。
+    en: >-
+      Design a master-detail interface. Requirements: the left column shows summary rows
+      (name + status) with the selected row highlighted by an accent bar; the detail pane
+      shows title, status badge, owner and a progress bar; both panes scroll
+      independently; include a stacked narrow-screen variant; light/dark themes.
+  implementation:
+    zh: >-
+      用 React + Tailwind 实现 Master Detail。useState 记录选中 id；
+      外层 flex + 固定高度，左列 w-40 overflow-y-auto，列表按钮用 aria-selected
+      与 bg-accent-soft 高亮；右侧 flex-1 渲染详情（标题、徽章、进度条）。
+      变体模式渲染双栏与堆叠两个小样。尊重 prefers-reduced-motion。
+    en: >-
+      Implement Master Detail in React + Tailwind. Track the selected id with useState;
+      outer flex with a fixed height, left column w-40 overflow-y-auto, row buttons
+      highlighted via aria-selected and bg-accent-soft; the right flex-1 pane renders
+      details (title, badge, progress bar). In variants mode render small two-pane and
+      stacked samples. Respect prefers-reduced-motion.
+  agent:
+    zh: |-
+      在当前项目中实现主从视图（Master Detail）。
+
+      先检查现有列表、侧栏与详情组件，优先复用现有的选中态样式。
+      用途：项目列表 + 项目详情的同屏联动界面。
+      要求：
+      - 左侧摘要列表，右侧详情面板，点选即时联动
+      - 选中态清晰（高亮 + 强调条），列表滚动位置不丢失
+      - 两栏独立滚动，窄屏退化为堆叠布局并提供返回
+      - 支持 Dark Mode
+      - 不新增不必要的依赖
+      完成后运行项目现有检查，并列出修改的文件。
+    en: |-
+      Implement Master Detail in the current project.
+
+      Inspect the existing list, sidebar and detail components first; reuse existing selection styles.
+      Usage: a projects screen syncing list and detail on one canvas.
+      Requirements:
+      - Summary list on the left, detail pane on the right, synced instantly on click
+      - Clear selection state (highlight + accent bar); list scroll position preserved
+      - Independent pane scrolling; degrade to a stacked layout with a back action on narrow screens
+      - Dark mode support
+      - No unnecessary dependencies
+      Run existing project checks when done and list the modified files.

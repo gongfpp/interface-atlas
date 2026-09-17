@@ -1,0 +1,172 @@
+{
+  "id": "search",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "搜索页",
+    "en": "Search Page"
+  },
+  "aliases": [
+    "搜索结果页",
+    "搜索页面",
+    "搜东西的页面",
+    "全站搜索",
+    "查询结果页",
+    "搜索列表页",
+    "搜一搜"
+  ],
+  "category": [
+    "Page",
+    "Discovery"
+  ],
+  "description": {
+    "zh": "承接查询意图并返回结果的内容发现页面：顶部常驻搜索框（保留查询词、可修改重搜）， 一侧是类型与筛选器，主体按相关度排列结果条目（标题 + 摘要 + 高亮命中词）， 底部用分页或无限滚动续接。空结果和无结果关键词是必须设计好的两个状态。",
+    "en": "A content-discovery page answering a query: a persistent search box on top (keeping the term, editable to re-search), type and facet filters on one side, and results ranked by relevance in the body (title + snippet + highlighted hits), continued by pagination or infinite scroll. Empty state and no-results state must be designed explicitly."
+  },
+  "use_when": [
+    {
+      "zh": "内容量大、用户靠关键词定位信息",
+      "en": "Large content bases located by keywords"
+    },
+    {
+      "zh": "结果需要按类型、时间、标签过滤",
+      "en": "Results need type",
+      "time or tag filtering": null
+    },
+    {
+      "zh": "查询词与结果的匹配过程需要透明（高亮、计数）",
+      "en": "Matching must be transparent — highlights and counts"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "内容量极小、浏览即可覆盖",
+      "en": "Tiny content bases where browsing suffices"
+    },
+    {
+      "zh": "结构化数据的精确查询（用筛选器或表格更直接）",
+      "en": "Precise structured queries — filters or tables are direct"
+    },
+    {
+      "zh": "命令式快捷操作（用命令面板更轻）",
+      "en": "Command-style quick actions — a command palette is lighter"
+    }
+  ],
+  "tags": [
+    "search",
+    "discovery",
+    "results",
+    "filtering"
+  ],
+  "variants": [
+    {
+      "id": "list",
+      "name": {
+        "zh": "列表结果",
+        "en": "Results List"
+      },
+      "note": {
+        "zh": "标题 + 摘要纵排，搜索引擎经典",
+        "en": "Title + snippet rows",
+        "the classic search engine": null
+      }
+    },
+    {
+      "id": "grid",
+      "name": {
+        "zh": "网格结果",
+        "en": "Grid Results"
+      },
+      "note": {
+        "zh": "卡片网格，适合图片或商品",
+        "en": "Card grid for images or products"
+      }
+    },
+    {
+      "id": "instant",
+      "name": {
+        "zh": "即时搜索",
+        "en": "Instant Search"
+      },
+      "note": {
+        "zh": "边输入边出结果，无需回车",
+        "en": "Results while typing",
+        "no Enter needed": null
+      }
+    },
+    {
+      "id": "faceted",
+      "name": {
+        "zh": "多面筛选",
+        "en": "Faceted Search"
+      },
+      "note": {
+        "zh": "左侧筛选器 + 右侧结果，电商与文档常用",
+        "en": "Facets left + results right",
+        "common in commerce and docs": null
+      }
+    }
+  ],
+  "anatomy": [
+    "Search Box 搜索框",
+    "Filters 筛选面板",
+    "Results 结果列表",
+    "Result Item 单条结果",
+    "Pagination 分页"
+  ],
+  "related": [
+    "command-palette",
+    "filter-panel",
+    "search-filtering",
+    "pagination",
+    "empty-state"
+  ],
+  "demo": {
+    "component": "search",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "grid",
+      "flex",
+      "scroll-behavior: smooth",
+      "text-wrap: balance"
+    ],
+    "notes": {
+      "zh": "搜索框常驻顶部并保留查询词（受控 input）；即时搜索用 debounce（250～400ms）+ AbortController 取消过期请求。命中词高亮用 <mark> 样式区分。筛选器变化写入 URL query（可分享、可回退）。空关键词给引导态，无结果给换词建议与热门内容。",
+      "en": "Keep the box persistent with the term preserved (controlled input); instant search uses debounce (250–400ms) plus AbortController to cancel stale requests. Highlight hits with a distinct <mark> style. Sync filters to URL query params (shareable, back-button friendly). Empty input gets a guide state; no results get alternate suggestions and popular content."
+    }
+  },
+  "sources": [
+    {
+      "name": "Nielsen Norman Group — Search Results",
+      "url": "https://www.nngroup.com/articles/search-results-pages/"
+    },
+    {
+      "name": "W3C WAI — Search accessibility",
+      "url": "https://www.w3.org/WAI/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个搜索结果页，包含搜索框、筛选器和结果列表。",
+      "en": "Create a search results page with a search box, filters and a result list."
+    },
+    "design": {
+      "zh": "创建文档站搜索页：顶部大搜索框（保留关键词、清除按钮、回车搜索）；左侧筛选器（类型复选、时间范围）；结果列表每条含标题（命中词高亮）、摘要两行、路径面包屑；顶部\"约 128 条结果\"计数；无结果时显示换词建议。响应式，移动端筛选器收进下拉。",
+      "en": "Build a docs search page: prominent search box on top (kept term, clear button, Enter to search); filters on the left (type checkboxes, time range); each result shows a title with highlighted hits, a two-line snippet and a breadcrumb path; \"about 128 results\" count on top; no-results state with term suggestions. Responsive — filters collapse on mobile."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现搜索页：query 受控 + debounce 触发模拟过滤；结果数据驱动， 命中词分段高亮；筛选状态与 URL searchParams 同步；键盘上下键选择结果； 尊重 prefers-reduced-motion。不新增依赖。",
+      "en": "React + Tailwind search page: controlled query with debounced mock filtering; data-driven results with segmented hit highlighting; filter state synced to URL searchParams; arrow-key result selection; respect prefers-reduced-motion. No new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现搜索结果页。\n\n先检查现有搜索接口与筛选组件，保持一致。\n要求：\n- 常驻搜索框（保留词、可清除）\n- 筛选器与结果联动，状态同步到 URL\n- 命中词高亮 + 结果计数\n- 无结果空态设计\n- 深浅色一致，键盘可访问\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the search results page in the current project.\n\nInspect the existing search API and filter components first; stay consistent.\nRequirements:\n- Persistent search box (term preserved, clearable)\n- Filters linked to results, state synced to URL\n- Hit highlighting + result count\n- Designed no-results empty state\n- Consistent light/dark; keyboard accessible\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

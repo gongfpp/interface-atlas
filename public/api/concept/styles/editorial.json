@@ -1,0 +1,189 @@
+{
+  "id": "editorial",
+  "type": "styles",
+  "status": "published",
+  "name": {
+    "zh": "杂志编辑风",
+    "en": "Editorial"
+  },
+  "aliases": [
+    "杂志编辑风",
+    "杂志风",
+    "编辑排版风",
+    "报刊风格",
+    "首字下沉那种排版",
+    "衬线大标题风",
+    "Magazine Layout",
+    "Editorial Design"
+  ],
+  "category": [
+    "Style",
+    "Visual Language"
+  ],
+  "description": {
+    "zh": "把页面当作杂志版面经营的视觉语言：衬线大标题、首字下沉、细分栏、章节 编号与发丝分隔线，图文穿插而节奏如翻页。黑白灰为底、衬线与无衬线搭配， 用版式语言讲故事，而非用装饰堆砌氛围。",
+    "en": "A visual language that lays out the page like a magazine spread: serif display headings, drop caps, hairline column rules, issue numbering and generous margins, with imagery woven into a page-turning rhythm. Black, white and grey grounds, serif-and-sans pairing — the layout tells the story, not ornament."
+  },
+  "use_when": [
+    {
+      "zh": "内容型产品：长文 数字杂志 作品集 品牌刊物",
+      "en": "Content products — long-form",
+      "digital magazines": null,
+      "portfolios": null,
+      "brand journals": null
+    },
+    {
+      "zh": "品牌想传达文化质感与文字的尊严",
+      "en": "Brands that want cultural gravitas and respect for the written word"
+    },
+    {
+      "zh": "图片与文字有明确主次关系的叙事页面",
+      "en": "Narrative pages with a clear image-text hierarchy"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "任务型工具界面，效率优先于阅读体验",
+      "en": "Task-oriented tools where efficiency beats reading experience"
+    },
+    {
+      "zh": "需要快速扫读的仪表盘与列表",
+      "en": "Dashboards and lists meant for rapid scanning"
+    },
+    {
+      "zh": "团队缺乏排版功底，劣质衬线会暴露无遗",
+      "en": "Teams without typographic skill — bad serif work exposes itself"
+    }
+  ],
+  "tags": [
+    "editorial",
+    "magazine",
+    "typography",
+    "serif",
+    "longform"
+  ],
+  "variants": [
+    {
+      "id": "broadsheet",
+      "name": {
+        "zh": "大报风",
+        "en": "Broadsheet"
+      },
+      "note": {
+        "zh": "报纸多栏密排，黑白摄影与细栏线",
+        "en": "Newspaper columns",
+        "dense setting": null,
+        "B&W photography": null,
+        "hairline rules": null
+      }
+    },
+    {
+      "id": "glossymag",
+      "name": {
+        "zh": "光面杂志",
+        "en": "Glossy Magazine"
+      },
+      "note": {
+        "zh": "大图大字留白多，时尚刊物气质",
+        "en": "Big imagery",
+        "display type": null,
+        "generous whitespace — fashion monthly": null
+      }
+    },
+    {
+      "id": "digital-first",
+      "name": {
+        "zh": "数字编辑风",
+        "en": "Digital Editorial"
+      },
+      "note": {
+        "zh": "网页化改良，衬线标题配现代正文排版",
+        "en": "Web-adapted — serif display with modern body typography"
+      }
+    }
+  ],
+  "applicable_components": [
+    "card",
+    "navbar",
+    "breadcrumb",
+    "pagination"
+  ],
+  "related": [
+    "swiss-style",
+    "minimalism",
+    "documentation",
+    "card",
+    "navbar"
+  ],
+  "demo": {
+    "component": "editorial",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Butterick's Practical Typography",
+      "url": "https://practicaltypography.com/"
+    },
+    {
+      "name": "Wikipedia — Editorial design",
+      "url": "https://en.wikipedia.org/wiki/Editorial_design"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "font-family: Georgia",
+      "font-variant-numeric: oldstyle-nums",
+      "column-count",
+      "border-top: 1px solid",
+      "text-indent"
+    ],
+    "notes": {
+      "zh": "字体是主角：标题用高对比衬线（Playfair/Georgia），正文衬线或人文无衬线， 行长控制在 60～75 字符；首字下沉用 float 加 3～4 行高度；分隔只用发丝线 （1px）与留白，配小型大写字母的眉题（letter-spacing 0.15em）；编号用 老式数字。黑白摄影或单色调图片优先，深色模式用暖黑底保持纸感。",
+      "en": "Type carries it: high-contrast serif display (Playfair/Georgia), serif or humanist sans body at 60–75 characters per line; drop caps float over 3–4 lines; separate with 1px hairlines and whitespace plus small-caps eyebrows at 0.15em tracking; oldstyle numerals for numbering. Prefer black-and-white or duotone imagery; dark mode uses warm black to keep the paper feel."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "用杂志编辑风（Editorial）设计界面：衬线大标题、首字下沉、发丝分隔线与 章节编号，像经营杂志版面一样排版内容。",
+      "en": "\"Design an interface in Editorial style: serif display headings, drop caps, hairline rules and issue numbering — lay out content like a magazine spread.\""
+    },
+    "design": {
+      "zh": "编辑风设计规范：底色纸白 #FAF8F4，文字近黑 #1A1816；标题用高对比衬线 36px+，眉题用小型大写加宽字距；正文衬线 17px/1.75，行长 60～75 字符； 首字下沉 3 行；分隔用 1px 发丝线与章节编号（罗马数字或老式数字）；图片 黑白或单色调；深色模式暖黑底 #17150F 配米白文字。",
+      "en": "\"Editorial spec: paper white #FAF8F4 ground, near-black #1A1816 text; high-contrast serif headings 36px+, small-caps eyebrows with wide tracking; serif body 17px/1.75 at 60–75 characters; 3-line drop caps; 1px hairlines with Roman or oldstyle numerals; B&W or duotone imagery. Dark mode: warm black #17150F with cream text.\""
+    },
+    "implementation": {
+      "zh": "用 CSS 实现编辑风排版：.article { font-family: Georgia, serif; font-size: 17px; line-height: 1.75; max-width: 65ch; } 首字下沉 .article > p:first-of-type::first-letter { float: left; font-size: 3.4em; line-height: 0.85; padding-right: 8px; } 眉题 .eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; } 分隔线 1px solid #D8D2C6。",
+      "en": "\"Implement editorial layout in CSS: .article { font-family: Georgia, serif; font-size: 17px; line-height: 1.75; max-width: 65ch; } drop cap: .article > p:first-of-type::first-letter { float: left; font-size: 3.4em; line-height: 0.85; padding-right: 8px; } eyebrow: .eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; } hairlines at 1px solid #D8D2C6.\""
+    },
+    "agent": {
+      "zh": "在当前项目中用杂志编辑风（Editorial）实现一个长文阅读区块。\n\n先检查现有字体栈与排版变量，衬线字体通过现有字体系统引入。\n要求：\n- 衬线大标题 + 眉题 + 正文三级结构，行长 60～75 字符\n- 首字下沉与章节编号用 CSS 实现\n- 分隔只用发丝线与留白，无重投影无重渐变\n- 移动端字号行距同步适配，标题不换行断裂尴尬\n- 支持深色模式（暖黑底保纸感）\n- 不新增任何依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement an Editorial long-form reading section in the current project.\n\nInspect the existing font stacks and typography variables first; bring in serifs through the current font system.\nRequirements:\n- Serif display + eyebrow + body hierarchy, 60–75 character measure\n- Drop caps and section numerals in pure CSS\n- Separate with hairlines and whitespace only — no heavy shadows or gradients\n- Mobile type scale keeps rhythm; headings wrap gracefully\n- Dark mode with warm black for the paper feel\n- No new dependencies\nRun existing project checks when done and list the modified files."
+    }
+  },
+  "style_spec": {
+    "typography": {
+      "zh": "斜体衬线大标题 + 衬线正文",
+      "en": "Italic serif headlines with serif body"
+    },
+    "color": {
+      "zh": "暖纸底 #FBF9F4 × 墨色 × 棕色强调",
+      "en": "Warm paper #FBF9F4, ink text, brown accents"
+    },
+    "border": {
+      "zh": "细分割线代替卡片框",
+      "en": "Hairline rules instead of card boxes"
+    },
+    "shadow": {
+      "zh": "仅照片卡带轻微投影",
+      "en": "Soft shadow on photo cards only"
+    },
+    "spacing": {
+      "zh": "分栏排版，行距宽松",
+      "en": "Multi-column layout, airy leading"
+    }
+  }
+}

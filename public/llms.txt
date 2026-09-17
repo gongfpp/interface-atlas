@@ -1,0 +1,70 @@
+# Interface Atlas（界面图谱）
+
+> Frontend design concept encyclopedia: components, patterns, styles, pages, motion.
+> Each concept: bilingual (zh/en) name, description, when/when-not to use, variants, 4-layer agent prompts.
+> Fetch any concept as JSON via its `api` URL.
+
+## Concepts
+
+- [Breadcrumb / 面包屑](/api/concept/components/breadcrumb.json): 用"首页 / 分类 / 子类 / 当前页"的层级路径表示用户在信息架构中所处的位置： 每个上级都可点击跳回，末项为当前页不可点。这是防止用户迷路成本最低的手段，
+- [Button / 按钮](/api/concept/components/button.json): 用可点击的色块触发一个明确的动作，是界面中最基础的操作入口。 通过填充、描边、幽灵等视觉层级区分主次操作，按压时有即时的下沉反馈， 繁忙时进入加载态并禁用点击，
+- [Checkbox / 复选框](/api/concept/components/checkbox.json): 用方形勾选框表示一组可多选的独立开关项，点击在选中与未选中间切换。 父级项可呈现半选态（部分子项选中），常用于批量选择、筛选与同意条款。
+- [Command Palette / 命令面板](/api/concept/components/command-palette.json): 用快捷键（⌘K / Ctrl+K）唤出的浮动搜索面板：输入即筛选命令、页面或内容， 键盘上下选择、回车执行。macOS Spotlight 把它带入大众视野， 
+- [Date Picker / 日期选择器](/api/concept/components/date-picker.json): 用日历网格选择日期的复合控件，通常由输入框触发弹出，也常内嵌展示。 头部提供年月切换，网格按周排列日期并高亮今天与选中日； 范围形态用两个日期夹出区间。避免手输
+- [Dropdown / 下拉菜单](/api/concept/components/dropdown.json): 由触发按钮就近弹出的一组操作菜单，用于收纳次要操作，保持界面整洁。 典型形态是「···」更多按钮；面板带阴影浮于内容之上，点击菜单项即执行并关闭， 危险操作以红
+- [Input / 输入框](/api/concept/components/input.json): 用一条带边框的水平输入区收集单行文本，是表单的基本单元。 占位符提示期望格式，聚焦时高亮边框引导视线，校验失败时切换错误色 并附提示文案；可内嵌前后缀图标与清除
+- [Navbar / 顶部导航栏](/api/concept/components/navbar.json): 固定在页面顶部的水平导航条：左侧品牌标识，中间主导航链接，右侧搜索、 入口按钮与用户头像。它是网站的"门面导航"，把最重要的三到七个入口压进 一条横向空间，移动
+- [Pagination / 分页](/api/concept/components/pagination.json): 用带页码的控件把长结果集切分为离散页面：用户显式点击页码或上一页 / 下一页 按钮取回对应片段，当前位置永远可知、可分享、可回退。与无限滚动的"失控 漂移"相对
+- [Radio / 单选框](/api/concept/components/radio.json): 用一组圆形按钮表示互斥选项，同组内只能选中一个且不可取消。 与复选框的核心区别是多选与单选；选中圆点用填充动画反馈， 选项少（2～5 个）时平铺展示比下拉选择效
+- [Select / 下拉选择](/api/concept/components/select.json): 用收起的单行控件承载一组互斥选项，点击展开面板后选择其一，选中值常驻显示在触发器上。 比 radio 更省空间，适合选项多于 5 个的场景；面板支持滚动、分组或
+- [Sidebar / 侧边栏](/api/concept/components/sidebar.json): 固定在页面一侧（通常左侧）的垂直导航区，承载产品的主要层级入口。 后台管理系统的事实标准：顶部放品牌与全局搜索，侧边栏放模块树，内容区专注任务。
+- [Slider / 滑块](/api/concept/components/slider.json): 用轨道上可拖动的手柄在连续区间内取值，拖动时数值与已填充轨道实时跟随。 适合调音量、亮度、价格区间等量级选择，比输入框更直观； 可带刻度标记、步进与双端区间形态
+- [Switch / 开关](/api/concept/components/switch.json): 用滑轨上的圆形滑块表示二元设置的开与关，拨动立即生效，无需确认。 滑块位移与轨道变色同时反馈状态，右侧或内嵌「开 / 关」文字辅助辨认， 是设置页的标准控件。
+- [Tabs / 标签页](/api/concept/components/tabs.json): 用一排可切换的标签把同一区域的内容分成互斥视图：标签头常驻可点击，仅当前 标签对应的面板可见，其余隐藏。适合把高度相关的几类内容压缩在同一区域内 就地切换，避免
+- [Textarea / 多行输入框](/api/concept/components/textarea.json): 用一块可多行增长的输入区收集长文本，如简介、备注、留言与反馈。 支持手动或自动增高，常配字数统计与提交按钮；超出上限时计数变红提醒， 内容换行显示而非溢出截断。
+- [Drag & Drop Sorting / 拖拽排序](/api/concept/patterns/drag-and-drop-sorting.json): 用直接拖动的方式调整列表项的先后顺序：按住条目（或把手）拖到目标位置，其余条目实时让位并给出落点提示。 它把"排序"从抽象的上下移按钮变成所见即所得的空间操作，
+- [Empty State / 空状态](/api/concept/patterns/empty-state.json): 当列表或页面没有数据时，不留一片空白，而是用插图、一句说明和一个明确的下一步操作填充。 它解决的是"用户面对空白不知道发生了什么、也不知道该做什么"的问题—— 
+- [Form Validation / 表单校验](/api/concept/patterns/form-validation.json): 在用户填写表单的过程中或提交时检查输入合法性，并把错误就地显示在对应字段旁边。 目标是让用户在离错误最近的位置、以最小的打断成本知道"哪里错了、怎么改"，而不是
+- [Infinite Scroll / 无限滚动](/api/concept/patterns/infinite-scroll.json): 用"滚动到底自动追加下一页"取代传统分页：用户持续下滑，新内容不断出现， 底部以加载指示或哨兵元素衔接。它解决的是浏览节奏被打断的问题—— 用户不必寻找"下一页
+- [Inline Editing / 行内编辑](/api/concept/patterns/inline-editing.json): 页面上的文本本身即可编辑：单击把文本原位变成输入框，Enter 或失焦确认，Esc 取消， 改完所见即所得。它解决的是"小改动也要跳转完整编辑页"的问题—— 把
+- [Lazy Loading / 懒加载](/api/concept/patterns/lazy-loading.json): 用"推迟加载"的方式处理暂不在视口内的资源：图片、列表分块、组件等在接近或进入可视区域时才真正请求和渲染。 首屏只承担可见部分的开销，配合占位骨架避免突然撑开布
+- [Master Detail / 主从视图](/api/concept/patterns/master-detail.json): 左侧一列摘要条目，右侧展示选中项的完整详情，点击左侧条目右侧即时联动更新。 它解决的是"在列表页与详情页之间来回跳转"的问题——总览与细读同屏共存， 用户切换条
+- [Onboarding Tour / 新手引导](/api/concept/patterns/onboarding-tour.json): 用"蒙层 + 聚光高亮 + 分步气泡"的方式带用户认识界面：每一步只露出一个关键区域并就地解释， 上一步/下一步与步骤指示器控制节奏，可随时跳过。它把功能说明放
+- [Optimistic UI / 乐观界面](/api/concept/patterns/optimistic-ui.json): 用户操作后立即按"预计成功"更新界面，真实请求在后台进行，成功则落定， 失败则回滚到原状态并提示。它解决的是"每个操作都要转圈等服务器"的问题—— 用短暂的不确
+- [Progressive Disclosure / 渐进式披露](/api/concept/patterns/progressive-disclosure.json): 把信息分层呈现：先给最常用、最必要的部分，把次要细节藏到"展开""下一步""显示更多"后面， 用户主动索取时才展示。它解决的是一次性塞给用户太多内容的问题—— 
+- [Pull to Refresh / 下拉刷新](/api/concept/patterns/pull-to-refresh.json): 在列表顶部按住并向下拖动，出现随拖动距离变化的加载指示，超过阈值后松手即重新拉取最新数据。 它解决的是"内容可能已经过期"的问题——用户主动、可预期地请求更新，
+- [Search Filtering / 搜索筛选](/api/concept/patterns/search-filtering.json): 用即时过滤把大列表缩到与当前输入相关的一小部分：用户在搜索框敲字，列表随之实时收窄， 并显示命中数量与空结果提示。它把"查找"变成"修剪"，不用提交、不用等跳转
+- [Skeleton Loading / 骨架屏](/api/concept/patterns/skeleton-loading.json): 用与真实内容结构一致的灰色占位块表示加载状态，通常带轻微的微光扫过或呼吸动画。 它告诉用户"内容马上就位，结构长这样"，而不是让用户盯着空白或转圈等待。
+- [Undo Action / 撤销操作](/api/concept/patterns/undo-action.json): 用"先执行、给反悔窗口"的方式处理高风险操作：删除等动作立即生效并展示结果，同时在底部弹出 带倒计时的撤销条，窗口期内一键恢复，倒计时结束才真正提交。相比弹窗确
+- [Aurora Gradient / 极光渐变](/api/concept/styles/aurora.json): 用大面积流动渐变光斑营造氛围的视觉语言：青绿 紫 蓝 多色模糊色块在背景 中缓慢漂移融合，前景内容保持极简克制。色彩是主角——像极光一样柔和 跨 色相 渐次过渡
+- [Bauhaus / 包豪斯](/api/concept/styles/bauhaus.json): 用基础几何与三原色做构成游戏的视觉语言：圆 三角 方三种形状，红 黄 蓝 三原色加黑，不对称但平衡的构图，装饰服从功能。每一块色面与线条都参与 结构，海报像一场
+- [Bento Grid / 便当盒网格](/api/concept/styles/bento-grid.json): 把界面装进便当盒的布局语言：一组圆角矩形像分格便当一样拼合，各格跨度不同 ——大格承载主内容，小格陈列数据与点缀，格与格之间留窄缝对齐同一套网格。 它是卡片网格
+- [Claymorphism / 黏土风](/api/concept/styles/claymorphism.json): 把控件捏成软黏土的视觉语言：大圆角、柔和粉彩底色，双重阴影——向内的内 凹阴影加向外的膨胀投影——让元素像充了气的黏土块，圆润 饱满 软乎乎。 它是新拟物与 3
+- [Cyberpunk / 赛博朋克](/api/concept/styles/cyberpunk.json): "High tech, low life" 的视觉语言：近黑的深底上，霓虹青与品红发光描边切割 界面，等宽字体与终端符号贯穿，扫描线 故障位移 毛刺纹理营造信息
+- [Editorial / 杂志编辑风](/api/concept/styles/editorial.json): 把页面当作杂志版面经营的视觉语言：衬线大标题、首字下沉、细分栏、章节 编号与发丝分隔线，图文穿插而节奏如翻页。黑白灰为底、衬线与无衬线搭配， 用版式语言讲故事，
+- [Flat Design / 扁平化设计](/api/concept/styles/flat-design.json): 拒绝一切拟真修饰的视觉语言：纯色块、几何形状、无渐变无投影无纹理，靠颜色、 形状与排版建立层级。它是拟物化的反面——界面不再模仿实物，而是承认自己 是一块发光的
+- [Glassmorphism / 玻璃拟态](/api/concept/styles/glassmorphism.json): 用半透明磨砂玻璃质感表示悬浮层级的视觉语言：backdrop-filter 背景模糊 + 低透明度 填充 + 一圈细窄的白色高光描边，让面板像磨砂玻璃片一样透出
+- [Memphis Design / 孟菲斯风格](/api/concept/styles/memphis.json): 反功能主义的后现代视觉语言：波浪线 圆点 锯齿 斑点等天真涂鸦元素，与高饱和 撞色、黑色粗描边一起铺满画面，故意打破网格与秩序。它拥抱廉价与热闹，用 "丑得快乐
+- [Minimalism / 极简主义](/api/concept/styles/minimalism.json): 以"少即是多"为准则的视觉语言：用大量留白、克制的黑白灰配色与有限字体层级 来凸显内容本身，删除一切装饰性元素，层级完全依靠空间、字重与疏密建立。 安静、克制、
+- [Neobrutalism / 新粗野主义](/api/concept/styles/neobrutalism.json): 用粗黑描边、高饱和撞色与生硬的偏移实心阴影构成的高对比视觉语言：元素像彩色 贴纸一样直接砸在页面上，配合夸张的圆角与醒目标签。它刻意拒绝精致与圆滑， 以"丑得理
+- [Retro-Futurism / 复古未来主义](/api/concept/styles/retro-futurism.json): "过去的人想象中的未来"的视觉语言：奶油橙棕的暖色底、粗圆角机身、轨道线 与星球贴纸、像素化屏幕与 CRT 荧光，乐观却已过时的科技感。它把登机舱 仪表盘、老式
+- [Skeuomorphism / 拟物化](/api/concept/styles/skeuomorphism.json): 用现实世界的材质与物理形态表示数字控件的视觉语言：皮革缝线、木质纹理、拉丝 金属、玻璃光泽，按钮做成可以按压的实体，开关做成拨杆。界面元件拥有高光、 投影与倒角
+- [Swiss Style / 瑞士风格](/api/concept/styles/swiss-style.json): 以客观网格与排版传达信息的视觉语言：严密的数学网格、无衬线字体、左对齐、 黑白加一个强调色（经典为红），用留白与字号对比建立秩序。装饰被视为噪音， 设计的目标是
+- [Y2K Aesthetic / Y2K 千禧美学](/api/concept/styles/y2k.json): 复刻千禧年前后数码乐观主义的视觉语言：镀铬液态金属、iMac 糖果半透明塑料、 气泡字与闪光星形、粉紫蓝渐变配银白高光。它混合了对未来的天真想象与低分辨率 3D
+- [Checkout Page / 结账页](/api/concept/pages/checkout.json): 电商转化的最后一公里：页面把收货信息、配送方式、支付方式和订单摘要组织成一条 不可回头的短流程，步骤条标示进度，表单尽量预填与自动更正，摘要常驻展示金额明细。 
+- [Dashboard / 仪表盘](/api/concept/pages/dashboard.json): 把关键数据与操作入口聚在一屏内的后台首页，用区域化网格组织：顶栏与侧栏负责导航， 中部依次铺指标卡、图表区和主表格，让用户打开就能看到系统当前状态并直接下钻。 
+- [Documentation Page / 文档页](/api/concept/pages/documentation.json): 以阅读为中心的长驻内容页面：一侧是可折叠的文档树导航，正文栏承载标题层级、段落、 代码块与提示框，宽屏下再加页内目录（TOC）标示当前阅读位置。页面靠永久链接与
+- [Landing Page / 落地页](/api/concept/pages/landing-page.json): 围绕单一转化目标纵向组织信息的营销页面：顶部导航与 Hero 主视觉先讲清楚"这是什么、好在哪"， 中段用功能区、信任区（客户 logo、评价、数据）逐层打消顾
+- [Login Page / 登录页](/api/concept/pages/login.json): 用最小干扰让已有账号用户进入系统的门面页：核心只有身份识别表单（邮箱/密码）与一个主按钮， 辅以第三方登录、忘记密码和注册入口。页面刻意保持极简——少一个字段，
+- [Pricing Page / 定价页](/api/concept/pages/pricing.json): 把付费方式讲清楚的商业页面：页面通常以标题与计费周期切换开头，主体是并排的套餐卡 （价格、功能清单、行动按钮），推荐档位用视觉强调；下方补功能对比表和 FAQ 
+- [Profile Page / 个人主页](/api/concept/pages/profile.json): 以身份为中心展示"这是谁、有什么、在做什么"的页面：封面与头像建立视觉身份， 下方是姓名、简介与统计数字，再用页签切换动态、作品或文章等内容流。 他人视角配关注
+- [Search Page / 搜索页](/api/concept/pages/search.json): 承接查询意图并返回结果的内容发现页面：顶部常驻搜索框（保留查询词、可修改重搜）， 一侧是类型与筛选器，主体按相关度排列结果条目（标题 + 摘要 + 高亮命中词）
+- [Settings Page / 设置页](/api/concept/pages/settings.json): 集中管理账号偏好与系统配置的功能页面：一侧是稳定的设置导航（通用、通知、安全等分区）， 另一侧是行式表单列表——每行一个"标签 + 控件 + 说明"，低频修改、
+- [Signup Page / 注册页](/api/concept/pages/signup.json): 把陌生访客变成账号的转化页：表单只保留起步必需的字段（邮箱 + 密码），其余信息 延后到产品内补齐；辅以第三方注册、密码强度提示和服务条款勾选。与登录页共用 布
+- [Hover Glow / 悬停发光](/api/concept/motion/hover-glow.json): 鼠标悬停时元素边缘泛出柔和光晕，用外发光阴影或径向渐变沿边框晕开， 颜色多为品牌强调色。相比投影的"物理抬升"，光晕暗示的是"能量"与"可交互"， 常用于深色界
+- [Hover Lift / 悬浮上浮](/api/concept/motion/hover-lift.json): 鼠标悬停时卡片或按钮轻轻上浮（translateY -2～6px）并加深投影， 像被无形的手托起。最常见的"这个可以点"的桌面端暗示， 成本极低但立刻让页面有层
+- [Loading Spinner / 加载指示器](/api/concept/motion/loading-spinner.json): 用一个持续旋转的圆环或圆点表示"正在处理"。占用空间极小、语义全球通用， 适合嵌入按钮内、跟随光标或作为局部区块的轻量加载反馈。 它只表达"忙碌"，不表达进度多
+- [Magnetic Button / 磁吸按钮](/api/concept/motion/magnetic-button.json): 鼠标靠近按钮时，按钮像被磁铁吸住一样朝光标方向偏移一小段距离， 离开后弹性归位。偏移量按光标与按钮中心的距离计算，通常限制在 8～20px。 一种高"手感"的桌
+- [Page Transition / 页面切换过渡](/api/concept/motion/page-transition.json): 页面之间切换时，旧页面滑出或淡出、新页面滑入或淡入，让路由跳转 从"硬切"变成一段 200～400ms 的连续运动。方向应与信息层级一致： 进入下级页面向左推入
+- [Press Feedback / 按压反馈](/api/concept/motion/press-feedback.json): 用户按下按钮、卡片等可点击元素时，元素轻微缩小（通常 0.95～0.98）， 松开后弹回。一个几十毫秒的细节，让界面"手感"立刻从网页变成实体按键。
+- [Scroll Reveal / 滚动显现](/api/concept/motion/scroll-reveal.json): 元素滚动进入视口时才播放淡入、上浮或滑入动画，之前保持隐藏或占位。 把"一次性呈现全部内容"变成"随阅读节奏逐段揭示"，让长页面的信息 更有秩序感。通常由 In

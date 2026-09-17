@@ -1,0 +1,162 @@
+status: published
+
+name:
+  zh: 空状态
+  en: Empty State
+
+aliases:
+  - Empty State
+  - 空状态页面
+  - 空白页占位
+  - 无数据占位
+  - 空数据提示
+  - 零数据状态
+  - 暂无内容
+
+category:
+  - Feedback
+  - Content
+
+description:
+  zh: >-
+    当列表或页面没有数据时，不留一片空白，而是用插图、一句说明和一个明确的下一步操作填充。
+    它解决的是"用户面对空白不知道发生了什么、也不知道该做什么"的问题——
+    把空档变成引导起点：首次使用教用户开始，搜索无结果给出路。
+  en: >-
+    When a list or page has no data, don't leave a void — fill it with an illustration,
+    one sentence of explanation and a clear next action. It solves the "blank screen"
+    problem where users can't tell what happened or what to do next, turning dead space
+    into a starting point: onboarding for first use, a way out for fruitless searches.
+
+use_when:
+  - { zh: 首次使用，账号尚未产生数据, en: First use before any data exists }
+  - { zh: 搜索或筛选没有匹配结果, en: Searches or filters with zero matches }
+  - { zh: 操作清空了内容，需要引导恢复, en: Content cleared by an action that needs a recovery path }
+
+avoid_when:
+  - { zh: 只是加载的瞬间，应使用骨架屏, en: A momentary load — use a skeleton instead }
+  - { zh: 数据缺失由错误导致，应区分错误态, en: Missing data caused by errors — use a distinct error state }
+  - { zh: 编辑类画布，用户需要空白自由度, en: Editing canvases where users need blank freedom }
+
+tags:
+  - feedback
+  - onboarding
+  - content
+  - guidance
+
+variants:
+  - id: first-use
+    name: { zh: 首次使用, en: First use }
+    note: { zh: 插图 + 主 CTA 引导创建第一条数据, en: Illustration plus a primary CTA to create the first item }
+  - id: no-results
+    name: { zh: 无搜索结果, en: No results }
+    note: { zh: 说明无匹配并提供"清除筛选"出路, en: Explains the miss and offers a "clear filters" way out }
+  - id: minimal
+    name: { zh: 极简, en: Minimal }
+    note: { zh: 只有一行说明文字，适合次要区域, en: A single line of copy for secondary areas }
+
+anatomy:
+  - 插图（Illustration）
+  - 说明文案（Explanation copy）
+  - 引导操作（Primary action）
+
+applicable_components:
+  - card
+  - table
+applicable_pages:
+  - search
+  - dashboard
+
+related:
+  - skeleton-loading
+  - onboarding-tour
+  - button
+  - search-filtering
+  - card
+
+demo:
+  component: empty-state
+  modes: [default, dark, variants]
+
+implementation:
+  css:
+    - flex centering
+    - svg stroke
+    - border-dashed
+    - min-height
+  notes:
+    zh: >-
+      空态容器保持与有数据时相近的最小高度，避免切换跳动；插图用简单描边 SVG（stroke: currentColor）
+      随主题变色；文案说明"为什么空"并指向一个动作；主 CTA 一个就够，
+      次级操作弱化为链接。错误导致的数据缺失不要复用空态，应单独设计错误态。
+    en: >-
+      Keep the empty container at a min-height close to the populated layout to avoid
+      jumps; draw the illustration as a simple stroked SVG (stroke: currentColor) that
+      follows the theme; copy should explain why it's empty and point to one action —
+      a single primary CTA, with secondary options demoted to links. Never reuse the
+      empty state for failures; design a separate error state.
+
+sources:
+  - name: Apple HIG — Empty States
+    url: https://developer.apple.com/design/human-interface-guidelines/
+  - name: Material Design — Understates / empty states
+    url: https://m3.material.io/
+
+prompts:
+  basic:
+    zh: >-
+      创建一个空状态（Empty State）页面：插图加一句「还没有项目」的说明，
+      主按钮「新建项目」引导用户创建第一条数据。
+    en: >-
+      Create an empty-state page with an illustration, a "no projects yet" line and
+      a primary "New project" button guiding users to their first item.
+  design:
+    zh: >-
+      设计一个空状态界面。要求：描边风格插图居中，说明文案解释为何为空并指向动作；
+      只保留一个主 CTA，次级操作弱化为链接；空态与有数据态高度接近避免跳动；
+      无结果变体提供"清除筛选"出路；支持深浅色主题。
+    en: >-
+      Design an empty-state screen. Requirements: a centered stroked illustration, copy
+      that explains why it's empty and points to one action; keep a single primary CTA
+      and demote secondary options to links; match the empty layout's height to the
+      populated one to avoid jumps; a no-results variant offers "clear filters";
+      light/dark themes.
+  implementation:
+    zh: >-
+      用 React + Tailwind 实现 Empty State。useState 切换有数据 / 空态；
+      空态用 flex 垂直居中：内联 SVG 描边插图（currentColor 随主题）、标题、说明与主按钮；
+      容器设置与列表一致的固定最小高度；"清除筛选"按钮重置筛选状态。
+      尊重 prefers-reduced-motion（淡入动画可省略）。
+    en: >-
+      Implement Empty State in React + Tailwind. Toggle populated / empty with useState;
+      the empty layout centers an inline stroked SVG (currentColor, theme-aware), a title,
+      explanation and primary button in a flex column; set a fixed min-height matching
+      the list; the "clear filters" button resets the filter state. Respect
+      prefers-reduced-motion (skip the fade-in).
+  agent:
+    zh: |-
+      在当前项目中实现空状态（Empty State）。
+
+      先检查现有插画资源与按钮组件，优先复用现有的描边插图风格与 CTA 样式。
+      用途：项目列表首次使用与搜索无结果两种空态。
+      要求：
+      - 插图 + 说明文案 + 单个主 CTA 的标准结构
+      - 无结果空态提供"清除筛选"出路
+      - 空态与有数据态高度接近，切换不跳动
+      - 与错误态区分，错误不复用空态
+      - 支持 Dark Mode
+      - 不新增不必要的依赖
+      完成后运行项目现有检查，并列出修改的文件。
+    en: |-
+      Implement Empty State in the current project.
+
+      Inspect the existing illustration assets and button components first; reuse the existing stroked illustration style and CTA styles.
+      Usage: first-use and no-results empty states for a project list.
+      Requirements:
+      - Standard structure: illustration + explanation copy + a single primary CTA
+      - No-results state offers a "clear filters" way out
+      - Empty layout height close to the populated one, no jump on switch
+      - Distinct from the error state — never reuse the empty state for failures
+      - Dark mode support
+      - No unnecessary dependencies
+      Run existing project checks when done and list the modified files.

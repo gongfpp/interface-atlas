@@ -1,0 +1,185 @@
+{
+  "id": "dashboard",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "仪表盘",
+    "en": "Dashboard"
+  },
+  "aliases": [
+    "后台管理首页",
+    "仪表盘",
+    "后台首页",
+    "数据看板",
+    "管理面板首页",
+    "数据大盘",
+    "admin 后台"
+  ],
+  "category": [
+    "Page",
+    "Admin"
+  ],
+  "description": {
+    "zh": "把关键数据与操作入口聚在一屏内的后台首页，用区域化网格组织：顶栏与侧栏负责导航， 中部依次铺指标卡、图表区和主表格，让用户打开就能看到系统当前状态并直接下钻。 它是后台产品信息架构的核心页面，密度与分区方式决定了整站的阅读节奏。",
+    "en": "An admin home screen that concentrates key data and entry points into one view, organized as regional grids: header and sidebar handle navigation, while KPI cards, charts and a primary table fill the content area so users grasp system status at a glance and drill down directly. It anchors the information architecture of the product."
+  },
+  "use_when": [
+    {
+      "zh": "需要一屏总览业务关键指标的后台系统",
+      "en": "Admin systems needing at-a-glance key metrics"
+    },
+    {
+      "zh": "用户进入后先看状态、再下钻到详情",
+      "en": "Users check status first",
+      "then drill into details": null
+    },
+    {
+      "zh": "多种数据形态（数字、图表、表格）需要同屏",
+      "en": "Mixed data forms — numbers",
+      "charts": null,
+      "tables — on one screen": null
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "面向公众的营销页（用落地页更合适）",
+      "en": "Public marketing pages — a landing page fits better"
+    },
+    {
+      "zh": "只有单一操作、无数据可看的工具页",
+      "en": "Single-action tools with no data to show"
+    },
+    {
+      "zh": "移动端主流程（指标应降级为列表或卡片流）",
+      "en": "Mobile-first flows — degrade metrics to lists or card feeds"
+    }
+  ],
+  "tags": [
+    "admin",
+    "data",
+    "analytics",
+    "layout"
+  ],
+  "variants": [
+    {
+      "id": "sidebar",
+      "name": {
+        "zh": "侧栏仪表盘",
+        "en": "Sidebar Dashboard"
+      },
+      "note": {
+        "zh": "左侧栏 + 内容区，最经典的 SaaS 后台布局",
+        "en": "Left sidebar + content",
+        "the classic SaaS admin layout": null
+      }
+    },
+    {
+      "id": "topnav",
+      "name": {
+        "zh": "顶部导航仪表盘",
+        "en": "Top Navigation Dashboard"
+      },
+      "note": {
+        "zh": "顶栏承担导航，内容区横向更宽",
+        "en": "Nav lives in the header — wider content area"
+      }
+    },
+    {
+      "id": "dense",
+      "name": {
+        "zh": "高密度仪表盘",
+        "en": "Dense Dashboard"
+      },
+      "note": {
+        "zh": "更多指标与更密的表格，面向专业运营",
+        "en": "More metrics and denser tables for power operators"
+      }
+    },
+    {
+      "id": "card",
+      "name": {
+        "zh": "卡片仪表盘",
+        "en": "Card Dashboard"
+      },
+      "note": {
+        "zh": "内容全部卡片化的便当格布局",
+        "en": "Fully card-based bento layout"
+      }
+    },
+    {
+      "id": "analytical",
+      "name": {
+        "zh": "分析型仪表盘",
+        "en": "Analytical Dashboard"
+      },
+      "note": {
+        "zh": "图表为主体，表格与筛选为辅",
+        "en": "Chart-led",
+        "with tables and filters as support": null
+      }
+    }
+  ],
+  "anatomy": [
+    "Header 顶栏",
+    "Sidebar 侧栏",
+    "KPI Cards 指标卡",
+    "Charts 图表区",
+    "Table 主表格",
+    "Filters 筛选区"
+  ],
+  "related": [
+    "sidebar",
+    "card",
+    "table",
+    "filter-panel",
+    "skeleton-loading"
+  ],
+  "demo": {
+    "component": "dashboard",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "grid",
+      "flex",
+      "gap",
+      "grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))"
+    ],
+    "notes": {
+      "zh": "布局骨架用 flex：顶栏 + 下方（侧栏 + 内容区）；内容区内部用 CSS Grid 划分指标、图表、表格三个层级。 指标卡建议 repeat(auto-fit, minmax(180px, 1fr)) 自适应；图表区保持固定高度避免跳动。 数据未到时用骨架屏占位；筛选区吸附在表格上方或侧栏顶部。",
+      "en": "Flex skeleton: header on top, below it sidebar + content; inside content use CSS Grid to layer KPI cards, charts and the table. Cards adapt with repeat(auto-fit, minmax(180px, 1fr)); keep chart heights fixed to avoid shift. Use skeletons while data loads; keep filters sticky above the table or at the top of the sidebar."
+    }
+  },
+  "sources": [
+    {
+      "name": "Nielsen Norman Group — Dashboards",
+      "url": "https://www.nngroup.com/articles/dashboards/"
+    },
+    {
+      "name": "Atlassian Design System — Dashboards",
+      "url": "https://atlassian.design/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个后台仪表盘页面，包含指标卡、图表区和主表格。",
+      "en": "Create an admin dashboard page with KPI cards, a chart area and a primary table."
+    },
+    "design": {
+      "zh": "创建 SaaS 后台仪表盘：左侧固定侧栏导航，顶栏含面包屑与时间范围筛选；内容区 12 列网格，上排 4 张指标卡（数值 + 同比箭头），中部主图表 + 次图表，下方数据表格带分页。深浅色主题一致，数据加载用骨架屏。",
+      "en": "Build a SaaS admin dashboard: fixed left sidebar, header with breadcrumb and range filter; content on a 12-column grid — four KPI cards (value + trend arrow) on top, a primary and a secondary chart in the middle, a paginated data table below. Consistent light/dark, skeleton placeholders while loading."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Dashboard：外层 flex（aside + main），main 内用 grid grid-cols-12 gap-4 布局。 指标卡、图表、表格拆成独立组件并支持骨架态；时间范围用受控状态传给图表； 表格分页受控；尊重 prefers-reduced-motion；不新增依赖。",
+      "en": "React + Tailwind dashboard: outer flex (aside + main), main laid out with grid grid-cols-12 gap-4. Split cards, charts and table into components with skeleton states; the range state feeds the charts; controlled table pagination; respect prefers-reduced-motion; no new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现后台仪表盘首页。\n\n先检查现有路由、布局壳与图表/表格组件，优先复用。\n要求：\n- 布局：侧栏 + 顶栏 + 12 列内容网格\n- 指标卡、图表、表格均为独立组件，支持加载骨架\n- 时间范围筛选驱动图表与表格刷新\n- 深浅色主题一致，尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the admin dashboard home in the current project.\n\nInspect the existing routes, layout shell and chart/table components first; reuse them.\nRequirements:\n- Layout: sidebar + header + 12-column content grid\n- KPI cards, charts, table as separate components with loading skeletons\n- Range filter drives chart and table refresh\n- Consistent light/dark themes; respect prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}
