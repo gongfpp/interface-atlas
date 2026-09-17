@@ -1,0 +1,137 @@
+status: published
+name:
+  zh: 表格
+  en: Table
+aliases:
+  - 表格
+  - 数据表格
+  - 数据列表
+  - 二维表
+  - 可排序表格
+  - 后台数据列表
+  - 订单列表那种表
+category:
+  - Display
+  - Data
+description:
+  zh: 用行与列精确对齐数据的二维表格：一行一条记录、一列一个字段，适合逐列比较、排序与大容量数据浏览。 行可悬停高亮、点击选中，列头通常带排序控制。
+  en: A two-dimensional grid aligning data in rows and columns — one record per row, one field per column — built for column-by-column comparison, sorting and high-volume browsing. Rows highlight on hover and support selection; column headers usually carry sort controls.
+use_when:
+  - zh: 字段多、需要逐列比较的数据
+    en: Many fields needing column-by-column comparison
+  - zh: 后台管理列表（订单、用户、日志）
+    en: Admin lists (orders, users, logs)
+  - zh: 需要排序、筛选、批量操作的密集数据
+    en: Dense data with sorting, filtering and batch actions
+avoid_when:
+  - zh: 移动端窄屏放不下列（转为卡片列表）
+    en: Narrow mobile screens cannot fit columns — switch to card lists
+  - zh: 内容以浏览为主、比较为辅（用 card 流）
+    en: Browsing-oriented content — use a card feed
+  - zh: 每条记录字段很少且强调视觉（用卡片或列表）
+    en: Few fields with visual emphasis — use cards or lists
+tags:
+  - data
+  - display
+  - density
+  - sorting
+variants:
+  - id: bordered
+    name:
+      zh: 带边框
+      en: Bordered
+    note:
+      zh: 单元格描线，最传统
+      en: Cell rules, the traditional look
+  - id: striped
+    name:
+      zh: 斑马纹
+      en: Striped
+    note:
+      zh: 隔行底色，长表格更易读
+      en: Alternating row tint eases long scans
+  - id: sticky-header
+    name:
+      zh: 固定表头
+      en: Sticky header
+    note:
+      zh: 滚动时表头常驻
+      en: Header stays put while scrolling
+anatomy:
+  - 列头（Header row）
+  - 数据行（Body row）
+  - 单元格（Cell）
+  - 行操作（Row actions）
+related:
+  - card
+  - pagination
+  - filter-panel
+  - master-detail
+demo:
+  component: table
+  modes:
+    - default
+    - dark
+    - variants
+compare:
+  group: primary-display
+  dimensions:
+    信息密度:
+      zh: 高，行列紧凑
+      en: High — compact rows and columns
+    可扫描性:
+      zh: 高，同列对齐易比较
+      en: High — aligned columns ease comparison
+    适合内容:
+      zh: 结构化记录、财务与日志
+      en: Structured records, finance, logs
+implementation:
+  css:
+    - border-collapse
+    - text-align
+    - 'overflow-x: auto'
+    - 'position: sticky'
+  notes:
+    zh: 容器 overflow-x-auto 处理窄屏；数字列右对齐、文本列左对齐；斑马纹用 odd 行底色。 排序：th 内放按钮并标记 aria-sort，二次点击反向。固定表头用 sticky top-0 配表头底色。 行密度用 py 控制紧凑（约 8px）或舒适（约 16px）。
+    en: 'Wrap in overflow-x-auto for narrow screens; right-align numbers, left-align text; stripe with an odd-row tint. Sorting: a button inside th with aria-sort, second click reverses. Sticky header via sticky top-0 over a header background. Control density with row padding (~8px compact vs ~16px comfortable).'
+sources:
+  - name: W3C WAI Tables Tutorial
+    url: https://www.w3.org/WAI/tutorials/tables/
+  - name: Apple HIG — Tables (macOS)
+    url: https://developer.apple.com/design/human-interface-guidelines/tables
+prompts:
+  basic:
+    zh: 创建一个表格（Table）组件：展示订单列表，包含列头排序、行悬停高亮与状态列。
+    en: 'Create a Table component: an order list with sortable column headers, row hover highlight and a status column.'
+  design:
+    zh: 创建数据表格。要求：细线分隔行（或斑马纹），表头小写灰字加粗、可点击排序（带方向指示）； 数字列右对齐且用等宽数字；行悬停浅色高亮；状态列用彩色圆点 + 文字；行高紧凑舒适两档。
+    en: 'Create a data table. Requirements: hairline row separators (or stripes), bold small grey headers that click to sort (with direction indicator), right-aligned numeric columns with tabular figures, light row hover, a status column with coloured dot + text, compact and comfortable row densities.'
+  implementation:
+    zh: 用 React + Tailwind 实现 Table：数据数组 + sortKey/sortDir 受控，useMemo 排序； thead th 内 button 触发排序并设 aria-sort="ascending/descending"； 数字列 className text-right tabular-nums；容器 overflow-x-auto； 斑马纹 odd:bg-code-bg；行选中用 state + aria-selected； 排序动画时长乘 var(--demo-speed, 1)。
+    en: 'React + Tailwind Table: data array with controlled sortKey/sortDir, sorting via useMemo; a button inside thead th triggers sorting and sets aria-sort="ascending/descending"; numeric columns get text-right tabular-nums; container overflow-x-auto; stripes with odd:bg-code-bg; row selection with state + aria-selected; animation durations scaled by var(--demo-speed, 1).'
+  agent:
+    zh: |-
+      在当前项目中实现数据表格（Table）组件。
+
+      先检查现有组件体系与 Design Token，优先复用现有的表面色与文本层级变量。
+      用途：后台订单/成员列表。
+      要求：
+      - 列头点击排序（aria-sort），支持升序/降序切换
+      - 数字列右对齐，文本列左对齐
+      - 行悬停高亮，支持斑马纹变体
+      - 窄屏 overflow-x 处理，深浅色主题一致
+      - 不新增依赖
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Implement a data Table component in the current project.
+
+      Inspect the existing component system and design tokens first; reuse existing
+      surface and text hierarchy variables.
+      Usage: admin order/member lists.
+      Requirements:
+      - Click-to-sort headers (aria-sort) with ascending/descending toggle
+      - Right-aligned numeric columns, left-aligned text columns
+      - Row hover highlight and a striped variant
+      - overflow-x handling on narrow screens; consistent light/dark themes
+      - No new dependencies
+      Run existing checks when done and list modified files.

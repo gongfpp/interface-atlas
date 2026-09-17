@@ -18,7 +18,7 @@ const COMMANDS: Command[] = [
   { group: '最近使用 / Recent', label: '团队成员 / Team' },
 ];
 
-const CommandPaletteDemo: DemoComponent = ({ mode }) => {
+const CommandPaletteDemo: DemoComponent = ({ mode: _mode }) => {
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);
 

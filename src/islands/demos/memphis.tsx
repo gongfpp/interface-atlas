@@ -1,5 +1,14 @@
-import { useState, type CSSProperties } from 'react';
+import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
+/** 涂鸦形状（SVG 波浪线）——模块级组件，避免渲染期创建组件 */
+function Squiggle({ color, style }: { color: string; style?: React.CSSProperties }) {
+  return (
+    <svg viewBox="0 0 60 12" width="52" height="11" style={{ position: 'absolute', ...style }}>
+      <path d="M1 8 Q8 1 15 8 T29 8 T43 8 T57 8" fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 
 /**
  * 孟菲斯风格 · Component × Style
@@ -14,12 +23,6 @@ const MemphisDemo: DemoComponent = ({ mode }) => {
   const ground = dark ? '#14143C' : '#FFF6E9';
   const dot = dark ? 'rgba(255,255,255,0.35)' : '#111111';
 
-  // 涂鸦形状（SVG 波浪线）
-  const Squiggle = ({ color, style }: { color: string; style?: CSSProperties }) => (
-    <svg viewBox="0 0 60 12" width="52" height="11" style={{ position: 'absolute', ...style }}>
-      <path d="M1 8 Q8 1 15 8 T29 8 T43 8 T57 8" fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" />
-    </svg>
-  );
 
   if (mode === 'variants') {
     const items = [

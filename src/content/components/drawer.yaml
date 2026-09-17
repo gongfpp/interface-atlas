@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 抽屉
   en: Drawer
-
 aliases:
   - 抽屉
   - 侧滑面板
@@ -12,124 +10,107 @@ aliases:
   - 侧拉页面
   - 汉堡菜单点开的面板
   - 手机上滑出来的面板
-
 category:
   - Overlay
   - Navigation
-
 description:
-  zh: >-
-    从屏幕边缘（多为右侧或左侧）滑入、通常带遮罩的面板。比模态框轻：能承载较长内容又不离开当前页面，
-    关闭后原样回到上下文；移动端常以左滑导航或底部抽屉的形式出现。
-  en: >-
-    A panel that slides in from a screen edge (usually right or left), usually with a
-    backdrop. Lighter than a modal: it carries longer content without leaving the page,
-    and closing restores the original context. On mobile it appears as a nav drawer or a
-    bottom sheet.
-
+  zh: 从屏幕边缘（多为右侧或左侧）滑入、通常带遮罩的面板。比模态框轻：能承载较长内容又不离开当前页面， 关闭后原样回到上下文；移动端常以左滑导航或底部抽屉的形式出现。
+  en: 'A panel that slides in from a screen edge (usually right or left), usually with a backdrop. Lighter than a modal: it carries longer content without leaving the page, and closing restores the original context. On mobile it appears as a nav drawer or a bottom sheet.'
 use_when:
-  - { zh: "查看详情但不想离开列表（邮件、订单）", en: "Inspect details without leaving the list (mail, orders)" }
-  - { zh: "移动端承载侧边导航", en: "Host side navigation on mobile" }
-  - { zh: "快速编辑或筛选，且需要保留底层上下文", en: "Quick edit or filter while keeping page context" }
-
+  - zh: 查看详情但不想离开列表（邮件、订单）
+    en: Inspect details without leaving the list (mail, orders)
+  - zh: 移动端承载侧边导航
+    en: Host side navigation on mobile
+  - zh: 快速编辑或筛选，且需要保留底层上下文
+    en: Quick edit or filter while keeping page context
 avoid_when:
-  - { zh: "需要用户强制决策（改用模态框）", en: "A forced decision is required — use a modal" }
-  - { zh: "内容只有一两行（改用 popover 或 tooltip）", en: "One or two lines of content — use a popover or tooltip" }
-  - { zh: "桌面端常驻导航（改用 sidebar）", en: "Persistent desktop navigation — use a sidebar" }
-
+  - zh: 需要用户强制决策（改用模态框）
+    en: A forced decision is required — use a modal
+  - zh: 内容只有一两行（改用 popover 或 tooltip）
+    en: One or two lines of content — use a popover or tooltip
+  - zh: 桌面端常驻导航（改用 sidebar）
+    en: Persistent desktop navigation — use a sidebar
 tags:
   - overlay
   - navigation
   - panel
   - mobile
-
 variants:
   - id: edge-right
-    name: { zh: "右侧滑入", en: "Right edge" }
-    note: { zh: "详情面板最常见方向", en: "The common direction for detail panels" }
+    name:
+      zh: 右侧滑入
+      en: Right edge
+    note:
+      zh: 详情面板最常见方向
+      en: The common direction for detail panels
   - id: edge-left
-    name: { zh: "左侧滑入", en: "Left edge" }
-    note: { zh: "移动端导航抽屉常用", en: "Common for mobile navigation drawers" }
+    name:
+      zh: 左侧滑入
+      en: Left edge
+    note:
+      zh: 移动端导航抽屉常用
+      en: Common for mobile navigation drawers
   - id: bottom-sheet
-    name: { zh: "底部抽屉", en: "Bottom sheet" }
-    note: { zh: "移动端操作与筛选面板", en: "Mobile action and filter panels" }
-
+    name:
+      zh: 底部抽屉
+      en: Bottom sheet
+    note:
+      zh: 移动端操作与筛选面板
+      en: Mobile action and filter panels
 anatomy:
   - 遮罩层（Backdrop）
   - 面板（Panel）
   - 头部标题（Header）
   - 内容区（Body）
   - 底部操作区（Footer actions）
-
 related:
   - modal
   - sidebar
   - popover
   - drawer-slide
-
 demo:
   component: drawer
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 compare:
   group: overlay-container
   dimensions:
-    打断程度: { zh: "高，打开时遮罩挡住页面", en: "High — backdrop covers the page while open" }
-    内容容量: { zh: "高，可承载长列表与表单", en: "High — long lists and forms fit" }
-    移动端友好: { zh: "好，边缘滑动符合直觉", en: "Good — edge sliding feels natural" }
-
+    打断程度:
+      zh: 高，打开时遮罩挡住页面
+      en: High — backdrop covers the page while open
+    内容容量:
+      zh: 高，可承载长列表与表单
+      en: High — long lists and forms fit
+    移动端友好:
+      zh: 好，边缘滑动符合直觉
+      en: Good — edge sliding feels natural
 implementation:
   css:
-    - "position: fixed"
-    - "transform: translateX(100%)"
+    - 'position: fixed'
+    - 'transform: translateX(100%)'
     - transition
-    - "z-index"
-    - "overflow-y: auto"
+    - z-index
+    - 'overflow-y: auto'
   notes:
-    zh: >-
-      面板 fixed 定位在边缘，用 transform translateX 收起与展开（GPU 友好，避免动 width）；
-      遮罩同步淡入淡出。内部 overflow-y-auto 承载长内容，底部操作区吸底。
-      焦点管理与滚动锁定同模态框；Esc 关闭，移动端可加边缘滑动手势。
-    en: >-
-      Fix the panel at the edge and animate transform translateX to hide/show (GPU-friendly,
-      do not animate width); fade the backdrop in sync. Scroll long content inside with
-      overflow-y-auto and pin footer actions. Focus management and scroll lock match the
-      modal; close on Esc, add edge-swipe gestures on mobile.
-
+    zh: 面板 fixed 定位在边缘，用 transform translateX 收起与展开（GPU 友好，避免动 width）； 遮罩同步淡入淡出。内部 overflow-y-auto 承载长内容，底部操作区吸底。 焦点管理与滚动锁定同模态框；Esc 关闭，移动端可加边缘滑动手势。
+    en: Fix the panel at the edge and animate transform translateX to hide/show (GPU-friendly, do not animate width); fade the backdrop in sync. Scroll long content inside with overflow-y-auto and pin footer actions. Focus management and scroll lock match the modal; close on Esc, add edge-swipe gestures on mobile.
 sources:
   - name: Material Design — Navigation drawer
     url: https://m3.material.io/components/navigation-drawer/overview
   - name: Apple HIG — Sheets
     url: https://developer.apple.com/design/human-interface-guidelines/sheets
-
 prompts:
   basic:
-    zh: >-
-      创建一个抽屉（Drawer）组件：点击按钮从右侧滑出面板，带遮罩，包含标题、内容和关闭按钮。
-    en: >-
-      Create a Drawer component: a button slides a panel in from the right with a backdrop,
-      containing a header, content and a close button.
+    zh: 创建一个抽屉（Drawer）组件：点击按钮从右侧滑出面板，带遮罩，包含标题、内容和关闭按钮。
+    en: 'Create a Drawer component: a button slides a panel in from the right with a backdrop, containing a header, content and a close button.'
   design:
-    zh: >-
-      创建抽屉组件。要求：面板从右侧滑入（宽约 360px），遮罩半透明；头部标题 + 关闭按钮，内容区可滚动，
-      底部吸底操作区；滑入动画 240ms 缓出；Esc 与点击遮罩关闭；深浅色主题一致。
-    en: >-
-      Create a drawer. Requirements: panel slides in from the right (~360px wide) over a
-      translucent backdrop; header with title and close button, scrollable body, pinned
-      footer actions; 240ms ease-out slide; closes on Esc and backdrop click; consistent
-      light/dark themes.
+    zh: 创建抽屉组件。要求：面板从右侧滑入（宽约 360px），遮罩半透明；头部标题 + 关闭按钮，内容区可滚动， 底部吸底操作区；滑入动画 240ms 缓出；Esc 与点击遮罩关闭；深浅色主题一致。
+    en: 'Create a drawer. Requirements: panel slides in from the right (~360px wide) over a translucent backdrop; header with title and close button, scrollable body, pinned footer actions; 240ms ease-out slide; closes on Esc and backdrop click; consistent light/dark themes.'
   implementation:
-    zh: >-
-      用 React + Tailwind 实现 Drawer：open 受控；面板 fixed inset-y-0 right-0，
-      用 transform translate-x-full ↔ translate-x-0 过渡（时长乘 var(--demo-speed, 1)）；
-      遮罩 opacity 过渡；打开时锁定 body 滚动、焦点移入；Esc 关闭；
-      role="dialog" aria-modal="true"，尊重 prefers-reduced-motion。
-    en: >-
-      React + Tailwind Drawer: controlled open state; fixed inset-y-0 right-0 panel
-      transitioning transform translate-x-full ↔ translate-x-0 (duration scaled by
-      var(--demo-speed, 1)); backdrop opacity transition; lock body scroll and move focus
-      in when open; close on Esc; role="dialog" aria-modal="true"; respect
-      prefers-reduced-motion.
+    zh: 用 React + Tailwind 实现 Drawer：open 受控；面板 fixed inset-y-0 right-0， 用 transform translate-x-full ↔ translate-x-0 过渡（时长乘 var(--demo-speed, 1)）； 遮罩 opacity 过渡；打开时锁定 body 滚动、焦点移入；Esc 关闭； role="dialog" aria-modal="true"，尊重 prefers-reduced-motion。
+    en: 'React + Tailwind Drawer: controlled open state; fixed inset-y-0 right-0 panel transitioning transform translate-x-full ↔ translate-x-0 (duration scaled by var(--demo-speed, 1)); backdrop opacity transition; lock body scroll and move focus in when open; close on Esc; role="dialog" aria-modal="true"; respect prefers-reduced-motion.'
   agent:
     zh: |-
       在当前项目中实现抽屉（Drawer）组件。

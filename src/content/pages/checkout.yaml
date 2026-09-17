@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 结账页
   en: Checkout Page
-
 aliases:
   - 结账页
   - 下单页
@@ -12,117 +10,102 @@ aliases:
   - 提交订单页
   - 支付页面
   - 买的东西确认页
-
 category:
   - Page
   - Commerce
-
 description:
-  zh: >-
-    电商转化的最后一公里：页面把收货信息、配送方式、支付方式和订单摘要组织成一条
-    不可回头的短流程，步骤条标示进度，表单尽量预填与自动更正，摘要常驻展示金额明细。
-    核心原则是每一步只问必要的信息，任何犹豫点（运费、总金额）都要提前说清楚。
-  en: >-
-    The last mile of e-commerce conversion: shipping info, delivery method, payment and the
-    order summary are arranged into one short forward-only flow — a stepper marks progress,
-    forms are prefilled and auto-corrected, and the summary keeps totals always visible.
-    Ask only what is necessary per step, and surface hesitation points (shipping cost, total)
-    before they become objections.
-
+  zh: 电商转化的最后一公里：页面把收货信息、配送方式、支付方式和订单摘要组织成一条 不可回头的短流程，步骤条标示进度，表单尽量预填与自动更正，摘要常驻展示金额明细。 核心原则是每一步只问必要的信息，任何犹豫点（运费、总金额）都要提前说清楚。
+  en: 'The last mile of e-commerce conversion: shipping info, delivery method, payment and the order summary are arranged into one short forward-only flow — a stepper marks progress, forms are prefilled and auto-corrected, and the summary keeps totals always visible. Ask only what is necessary per step, and surface hesitation points (shipping cost, total) before they become objections.'
 use_when:
-  - { zh: 购物车到支付的完整下单流程, en: Full purchase flow from cart to payment }
-  - { zh: 需要分步收集收货、配送、支付信息, en: Collecting shipping, delivery and payment info in steps }
-  - { zh: 需要同时展示金额明细与优惠减免, en: Totals and discounts must be visible throughout }
-
+  - zh: 购物车到支付的完整下单流程
+    en: Full purchase flow from cart to payment
+  - zh: 需要分步收集收货、配送、支付信息
+    en: Collecting shipping, delivery and payment info in steps
+  - zh: 需要同时展示金额明细与优惠减免
+    en: Totals and discounts must be visible throughout
 avoid_when:
-  - { zh: 单件虚拟商品的极简购买（一屏内完成更优）, en: Single digital-item purchase — one screen is better }
-  - { zh: 浏览和挑选商品的商城首页, en: Browsing and product discovery surfaces }
-  - { zh: 订阅升级（用定价页的升级弹层更轻）, en: Subscription upgrades — a pricing-page modal is lighter }
-
+  - zh: 单件虚拟商品的极简购买（一屏内完成更优）
+    en: Single digital-item purchase — one screen is better
+  - zh: 浏览和挑选商品的商城首页
+    en: Browsing and product discovery surfaces
+  - zh: 订阅升级（用定价页的升级弹层更轻）
+    en: Subscription upgrades — a pricing-page modal is lighter
 tags:
   - commerce
   - conversion
   - form
   - payment
-
 variants:
   - id: one-page
-    name: { zh: 单页结账, en: One-page Checkout }
-    note: { zh: 所有信息一屏铺开，转化路径最短, en: Everything on one screen, shortest path }
+    name:
+      zh: 单页结账
+      en: One-page Checkout
+    note:
+      zh: 所有信息一屏铺开，转化路径最短
+      en: Everything on one screen, shortest path
   - id: multi-step
-    name: { zh: 多步结账, en: Multi-step Checkout }
-    note: { zh: 步骤条分段收集，长表单减压, en: Stepper splits the long form to reduce pressure }
+    name:
+      zh: 多步结账
+      en: Multi-step Checkout
+    note:
+      zh: 步骤条分段收集，长表单减压
+      en: Stepper splits the long form to reduce pressure
   - id: accordion
-    name: { zh: 手风琴式, en: Accordion Checkout }
-    note: { zh: 完成一段折叠一段，兼顾单页与分步, en: Completed sections collapse — one page with steps }
+    name:
+      zh: 手风琴式
+      en: Accordion Checkout
+    note:
+      zh: 完成一段折叠一段，兼顾单页与分步
+      en: Completed sections collapse — one page with steps
   - id: express
-    name: { zh: 快捷支付优先, en: Express-first }
-    note: { zh: 一键支付按钮置顶，表单退居其次, en: Express-pay buttons on top, form secondary }
-
+    name:
+      zh: 快捷支付优先
+      en: Express-first
+    note:
+      zh: 一键支付按钮置顶，表单退居其次
+      en: Express-pay buttons on top, form secondary
 anatomy:
   - Steps 步骤条
   - Form 收货与支付表单
   - Payment 支付方式
   - Summary 订单摘要
   - Place Order 提交按钮
-
 related:
   - input
   - form-validation
   - progress-bar
   - toast
   - button
-
 demo:
   component: checkout
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 implementation:
   css:
     - flex
     - grid
-    - "position: sticky"
-    - "accent-color: var(--color-accent)"
+    - 'position: sticky'
+    - 'accent-color: var(--color-accent)'
   notes:
-    zh: >-
-      多步流程用受控 step 状态 + 步骤条（可点击回退）；每步本地校验通过才放行。
-      订单摘要桌面端 sticky 右栏，移动端折叠成"合计 ¥xx"的可展开条。
-      表单输入配 autocomplete（name / postal-code / cc-number）、输入掩码与即时校验。
-      提交中禁用按钮并防重复下单；成功后跳转确认页。
-    en: >-
-      Multi-step flow uses controlled step state + a stepper (clickable to go back); each step
-      validates locally before advancing. The summary is sticky right on desktop and a collapsed
-      "Total ¥xx" bar on mobile. Inputs get autocomplete (name / postal-code / cc-number), input
-      masks and inline validation. Disable the button while submitting to prevent duplicates;
-      redirect to a confirmation page on success.
-
+    zh: 多步流程用受控 step 状态 + 步骤条（可点击回退）；每步本地校验通过才放行。 订单摘要桌面端 sticky 右栏，移动端折叠成"合计 ¥xx"的可展开条。 表单输入配 autocomplete（name / postal-code / cc-number）、输入掩码与即时校验。 提交中禁用按钮并防重复下单；成功后跳转确认页。
+    en: Multi-step flow uses controlled step state + a stepper (clickable to go back); each step validates locally before advancing. The summary is sticky right on desktop and a collapsed "Total ¥xx" bar on mobile. Inputs get autocomplete (name / postal-code / cc-number), input masks and inline validation. Disable the button while submitting to prevent duplicates; redirect to a confirmation page on success.
 sources:
   - name: Baymard Institute — Checkout Usability
     url: https://baymard.com/lists/checkout-flow-usability
   - name: Nielsen Norman Group — Checkout
     url: https://www.nngroup.com/articles/checkout-flow/
-
 prompts:
   basic:
     zh: 创建一个结账页，包含收货表单、支付方式选择和订单摘要。
     en: Create a checkout page with a shipping form, payment options and an order summary.
   design:
     zh: 创建三步结账页：顶部步骤条（收货 → 支付 → 确认）；左栏当前步表单（收货：姓名/地址/电话，即时校验；支付：卡号掩码与支付方式单选）；右栏 sticky 订单摘要（商品两行 + 运费 + 优惠 + 合计）；底部"提交订单"按钮带提交 loading。移动端摘要折叠。
-    en: >-
-      Build a three-step checkout: stepper on top (Shipping → Payment → Review); left column
-      holds the current step's form (shipping: name/address/phone with inline validation;
-      payment: card number mask and payment method radios); right column a sticky order summary
-      (two line items + shipping + discount + total); "Place order" button with loading state.
-      Collapsed summary on mobile.
+    en: 'Build a three-step checkout: stepper on top (Shipping → Payment → Review); left column holds the current step''s form (shipping: name/address/phone with inline validation; payment: card number mask and payment method radios); right column a sticky order summary (two line items + shipping + discount + total); "Place order" button with loading state. Collapsed summary on mobile.'
   implementation:
-    zh: >-
-      用 React + Tailwind 实现结账页：step 受控 + 每步字段级校验；卡号输入掩码
-      （4 位分组）；金额计算抽成纯函数；摘要 sticky；提交态防重复；
-      支付方式单选受控；深浅色一致。不新增依赖。
-    en: >-
-      React + Tailwind checkout: controlled step + per-step field validation; card-number input
-      mask (4-digit groups); totals as a pure function; sticky summary; duplicate-submit guard;
-      controlled payment radios; consistent light/dark. No new dependencies.
+    zh: 用 React + Tailwind 实现结账页：step 受控 + 每步字段级校验；卡号输入掩码 （4 位分组）；金额计算抽成纯函数；摘要 sticky；提交态防重复； 支付方式单选受控；深浅色一致。不新增依赖。
+    en: 'React + Tailwind checkout: controlled step + per-step field validation; card-number input mask (4-digit groups); totals as a pure function; sticky summary; duplicate-submit guard; controlled payment radios; consistent light/dark. No new dependencies.'
   agent:
     zh: |-
       在当前项目中实现结账页。

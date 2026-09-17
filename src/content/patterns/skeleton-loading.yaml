@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 骨架屏
   en: Skeleton Loading
-
 aliases:
   - Skeleton
   - 骨架加载
@@ -11,114 +9,115 @@ aliases:
   - 灰色占位
   - 加载占位图
   - shimmer 占位
-
 category:
   - Feedback
   - Loading
-
 description:
-  zh: >-
-    用与真实内容结构一致的灰色占位块表示加载状态，通常带轻微的微光扫过或呼吸动画。
-    它告诉用户"内容马上就位，结构长这样"，而不是让用户盯着空白或转圈等待。
-  en: >-
-    Grey placeholder blocks that mirror the real content structure while loading,
-    usually with a subtle shimmer or pulse. It tells users "content is coming and
-    it will look like this" instead of a blank page or a bare spinner.
-
+  zh: 用与真实内容结构一致的灰色占位块表示加载状态，通常带轻微的微光扫过或呼吸动画。 它告诉用户"内容马上就位，结构长这样"，而不是让用户盯着空白或转圈等待。
+  en: Grey placeholder blocks that mirror the real content structure while loading, usually with a subtle shimmer or pulse. It tells users "content is coming and it will look like this" instead of a blank page or a bare spinner.
 use_when:
-  - { zh: 内容结构相对稳定、可预知, en: Content structure is stable and predictable }
-  - { zh: 预计加载时间在 1～3 秒之间, en: Expected load time is 1–3 seconds }
-  - { zh: 列表、卡片流等重复结构的内容页, en: Lists and card feeds with repeating structures }
-
+  - zh: 内容结构相对稳定、可预知
+    en: Content structure is stable and predictable
+  - zh: 预计加载时间在 1～3 秒之间
+    en: Expected load time is 1–3 seconds
+  - zh: 列表、卡片流等重复结构的内容页
+    en: Lists and card feeds with repeating structures
 avoid_when:
-  - { zh: 加载极快（< 300ms），骨架屏会闪一下反而干扰, en: Very fast loads (< 300ms) — the skeleton itself becomes flicker }
-  - { zh: 内容结构完全不可预测，占位与结果差异过大, en: Unpredictable content — placeholders that wildly mismatch the result }
-  - { zh: 后台操作但页面结构不变，用进度或按钮状态更合适, en: Background operations with unchanged layout — prefer progress or button state }
-
+  - zh: 加载极快（< 300ms），骨架屏会闪一下反而干扰
+    en: Very fast loads (< 300ms) — the skeleton itself becomes flicker
+  - zh: 内容结构完全不可预测，占位与结果差异过大
+    en: Unpredictable content — placeholders that wildly mismatch the result
+  - zh: 后台操作但页面结构不变，用进度或按钮状态更合适
+    en: Background operations with unchanged layout — prefer progress or button state
 tags:
   - loading
   - animation
   - feedback
   - placeholder
-
 variants:
   - id: static
-    name: { zh: 静态占位, en: Static }
-    note: { zh: 纯灰色块，最克制, en: Plain grey blocks, most restrained }
+    name:
+      zh: 静态占位
+      en: Static
+    note:
+      zh: 纯灰色块，最克制
+      en: Plain grey blocks, most restrained
   - id: pulse
-    name: { zh: 呼吸, en: Pulse }
-    note: { zh: 透明度缓慢起伏, en: Slow opacity oscillation }
+    name:
+      zh: 呼吸
+      en: Pulse
+    note:
+      zh: 透明度缓慢起伏
+      en: Slow opacity oscillation
   - id: shimmer
-    name: { zh: 微光扫过, en: Shimmer }
-    note: { zh: 一道高光斜向扫过，iOS 风格, en: A highlight sweeping across, iOS-style }
-
+    name:
+      zh: 微光扫过
+      en: Shimmer
+    note:
+      zh: 一道高光斜向扫过，iOS 风格
+      en: A highlight sweeping across, iOS-style
 anatomy:
   - 头像/图标占位（Avatar）
   - 标题行（Title line）
   - 正文多行（Body lines）
   - 操作区占位（Actions）
-
 applicable_styles:
   - minimalism
   - bento-grid
-
 applicable_components: []
 applicable_pages:
   - dashboard
-
 related:
   - loading-spinner
   - progress-bar
   - optimistic-ui
   - lazy-loading
   - empty-state
-
 demo:
   component: skeleton-loading
-  modes: [default, dark, loading]
-
+  modes:
+    - default
+    - dark
+    - loading
 compare:
   group: loading-indicator
   dimensions:
-    打断程度: { zh: 低，页面结构不变, en: Low — layout unchanged }
-    信息量: { zh: 低，只表达结构, en: Low — structure only }
-    适用时长: { zh: 1～3 秒, en: 1–3 seconds }
-    与结果一致性: { zh: 高, en: High }
-
+    打断程度:
+      zh: 低，页面结构不变
+      en: Low — layout unchanged
+    信息量:
+      zh: 低，只表达结构
+      en: Low — structure only
+    适用时长:
+      zh: 1～3 秒
+      en: 1–3 seconds
+    与结果一致性:
+      zh: 高
+      en: High
 implementation:
   css:
     - background
     - animation
-    - "background-clip: text"
+    - 'background-clip: text'
     - linear-gradient
   notes:
-    zh: >-
-      占位块用 border-radius 模拟头像/文字形状；shimmer 用 linear-gradient 高光叠层，
-      通过 background-position 动画扫过，或对伪元素做 translateX。
-      pulse 直接动画 opacity。占位尺寸应尽量接近真实内容，避免加载完成后布局跳动。
-    en: >-
-      Shape placeholders with border-radius; shimmer is a gradient highlight layer
-      animated via background-position or a translated pseudo-element; pulse animates
-      opacity. Match placeholder size to real content to avoid layout shift on load.
-
+    zh: 占位块用 border-radius 模拟头像/文字形状；shimmer 用 linear-gradient 高光叠层， 通过 background-position 动画扫过，或对伪元素做 translateX。 pulse 直接动画 opacity。占位尺寸应尽量接近真实内容，避免加载完成后布局跳动。
+    en: Shape placeholders with border-radius; shimmer is a gradient highlight layer animated via background-position or a translated pseudo-element; pulse animates opacity. Match placeholder size to real content to avoid layout shift on load.
 sources:
   - name: Material Design — Text fields & placeholders
     url: https://m3.material.io/
   - name: Apple HIG — Loading
     url: https://developer.apple.com/design/human-interface-guidelines/loading
-
 prompts:
   basic:
     zh: 创建一个骨架屏（Skeleton Loading）组件，用于内容加载时展示与真实结构一致的灰色占位块。
     en: Create a skeleton loading component that shows grey placeholders matching the real content structure while data loads.
   design:
     zh: 创建骨架屏组件。要求：灰色占位块（头像圆形 + 标题行 + 两行正文），带轻微 shimmer 微光扫过动画；支持深浅色主题；占位尺寸与最终内容一致。
-    en: >-
-      "Create a skeleton loading component. Requirements: grey blocks (round avatar", title line, two body lines) with a subtle shimmer sweep; support light/dark themes; placeholder sizes must match the final content.
+    en: '"Create a skeleton loading component. Requirements: grey blocks (round avatar", title line, two body lines) with a subtle shimmer sweep; support light/dark themes; placeholder sizes must match the final content.'
   implementation:
     zh: 用 React + Tailwind 实现 Skeleton Loading。结构：容器内若干占位 div，用 animate-pulse 或自写 shimmer keyframes（linear-gradient 高光 + background-position 动画）。提供 Skeleton、SkeletonCircle、SkeletonText 子组件，支持 className 定制尺寸。尊重 prefers-reduced-motion（降级为静态灰色块）。
-    en: >-
-      "Implement Skeleton Loading in React + Tailwind. Structure: placeholder divs with animate-pulse or custom shimmer keyframes (gradient highlight + background-position animation). Export Skeleton", SkeletonCircle, SkeletonText with className size overrides. Respect prefers-reduced-motion (fall back to static blocks).
+    en: '"Implement Skeleton Loading in React + Tailwind. Structure: placeholder divs with animate-pulse or custom shimmer keyframes (gradient highlight + background-position animation). Export Skeleton", SkeletonCircle, SkeletonText with className size overrides. Respect prefers-reduced-motion (fall back to static blocks).'
   agent:
     zh: |-
       在当前项目中实现骨架屏（Skeleton Loading）。

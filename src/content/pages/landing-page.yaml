@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 落地页
   en: Landing Page
-
 aliases:
   - 落地页
   - 卖东西的落地页
@@ -12,52 +10,60 @@ aliases:
   - 营销首页
   - 产品介绍页
   - 转化页
-
 category:
   - Page
   - Marketing
-
 description:
-  zh: >-
-    围绕单一转化目标纵向组织信息的营销页面：顶部导航与 Hero 主视觉先讲清楚"这是什么、好在哪"，
-    中段用功能区、信任区（客户 logo、评价、数据）逐层打消顾虑，末端以强视觉的行动按钮收口。
-    页面按说服顺序分区，每一屏都在回答用户下一步的疑问。
-  en: >-
-    A marketing page organized vertically around one conversion goal: nav and hero explain
-    "what is this and why it's good", mid-sections use features and social proof (logos,
-    testimonials, numbers) to dissolve objections, and a strong call-to-action closes.
-    Sections follow the persuasion order — each screen answers the visitor's next question.
-
+  zh: 围绕单一转化目标纵向组织信息的营销页面：顶部导航与 Hero 主视觉先讲清楚"这是什么、好在哪"， 中段用功能区、信任区（客户 logo、评价、数据）逐层打消顾虑，末端以强视觉的行动按钮收口。 页面按说服顺序分区，每一屏都在回答用户下一步的疑问。
+  en: 'A marketing page organized vertically around one conversion goal: nav and hero explain "what is this and why it''s good", mid-sections use features and social proof (logos, testimonials, numbers) to dissolve objections, and a strong call-to-action closes. Sections follow the persuasion order — each screen answers the visitor''s next question.'
 use_when:
-  - { zh: 推广单一产品或活动、追求注册/购买转化, en: Promoting one product or campaign, chasing signups or sales }
-  - { zh: 来自广告或外链的访客需要快速理解价值, en: Visitors from ads or links must grasp value fast }
-  - { zh: 需要在无登录状态下完成首次转化, en: First conversion must happen without logging in }
-
+  - zh: 推广单一产品或活动、追求注册/购买转化
+    en: Promoting one product or campaign, chasing signups or sales
+  - zh: 来自广告或外链的访客需要快速理解价值
+    en: Visitors from ads or links must grasp value fast
+  - zh: 需要在无登录状态下完成首次转化
+    en: First conversion must happen without logging in
 avoid_when:
-  - { zh: 已登录用户的日常工作界面, en: Everyday surfaces for logged-in users }
-  - { zh: 信息层级复杂、需长期维护的内容站（用文档站更合适）, en: Complex long-lived content sites — use documentation instead }
-  - { zh: 需要频繁检索的数据库型页面, en: Database-like pages that need frequent lookup }
-
+  - zh: 已登录用户的日常工作界面
+    en: Everyday surfaces for logged-in users
+  - zh: 信息层级复杂、需长期维护的内容站（用文档站更合适）
+    en: Complex long-lived content sites — use documentation instead
+  - zh: 需要频繁检索的数据库型页面
+    en: Database-like pages that need frequent lookup
 tags:
   - marketing
   - conversion
   - hero
   - cta
-
 variants:
   - id: hero
-    name: { zh: 经典 Hero, en: Classic Hero }
-    note: { zh: 大标题 + 主图 + 单一 CTA，最通用, en: Big headline + visual + one CTA, the general default }
+    name:
+      zh: 经典 Hero
+      en: Classic Hero
+    note:
+      zh: 大标题 + 主图 + 单一 CTA，最通用
+      en: Big headline + visual + one CTA, the general default
   - id: feature-grid
-    name: { zh: 功能矩阵, en: Feature Grid }
-    note: { zh: Hero 之后用卡片矩阵罗列功能点, en: Card matrix of features right after the hero }
+    name:
+      zh: 功能矩阵
+      en: Feature Grid
+    note:
+      zh: Hero 之后用卡片矩阵罗列功能点
+      en: Card matrix of features right after the hero
   - id: long-scroll
-    name: { zh: 长滚动叙事, en: Long-scroll Story }
-    note: { zh: 一屏一个论点，逐屏滚动说服, en: One point per screen, scroll-driven persuasion }
+    name:
+      zh: 长滚动叙事
+      en: Long-scroll Story
+    note:
+      zh: 一屏一个论点，逐屏滚动说服
+      en: One point per screen, scroll-driven persuasion
   - id: waitlist
-    name: { zh: 候补列表, en: Waitlist }
-    note: { zh: 只有 Hero + 邮箱收集，产品未上线时用, en: Hero + email capture only, for pre-launch }
-
+    name:
+      zh: 候补列表
+      en: Waitlist
+    note:
+      zh: 只有 Hero + 邮箱收集，产品未上线时用
+      en: Hero + email capture only, for pre-launch
 anatomy:
   - Navbar 导航
   - Hero 主视觉
@@ -65,60 +71,42 @@ anatomy:
   - Social Proof 信任区
   - CTA 行动区
   - Footer 页脚
-
 related:
   - navbar
   - card
   - scroll-reveal
   - text-reveal
   - hover-lift
-
 demo:
   component: landing-page
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 implementation:
   css:
     - flex
     - grid
-    - "scroll-behavior: smooth"
-    - "scroll-snap-type: y mandatory"
+    - 'scroll-behavior: smooth'
+    - 'scroll-snap-type: y mandatory'
   notes:
-    zh: >-
-      页面纵向由 section 串联：hero 通常 100vh 或近满屏，功能区用 grid 自适应卡片，
-      信任区一行 logo + 评价卡。CTA 按钮全局唯一强调色并重复出现（hero 与页脚前各一次）。
-      长滚动变体可用 scroll-snap 分屏；进场动画尊重 prefers-reduced-motion。
-    en: >-
-      Sections stacked vertically: hero fills or nearly fills the viewport, features adapt
-      as a card grid, social proof is a logo row plus testimonial cards. One accent CTA color,
-      repeated before the footer. The long-scroll variant can use scroll-snap; entry animations
-      respect prefers-reduced-motion.
-
+    zh: 页面纵向由 section 串联：hero 通常 100vh 或近满屏，功能区用 grid 自适应卡片， 信任区一行 logo + 评价卡。CTA 按钮全局唯一强调色并重复出现（hero 与页脚前各一次）。 长滚动变体可用 scroll-snap 分屏；进场动画尊重 prefers-reduced-motion。
+    en: 'Sections stacked vertically: hero fills or nearly fills the viewport, features adapt as a card grid, social proof is a logo row plus testimonial cards. One accent CTA color, repeated before the footer. The long-scroll variant can use scroll-snap; entry animations respect prefers-reduced-motion.'
 sources:
   - name: Nielsen Norman Group — Landing Pages
     url: https://www.nngroup.com/articles/landing-pages/
   - name: MDN — Scroll-driven animations
     url: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll-driven_animations
-
 prompts:
   basic:
     zh: 创建一个产品落地页，包含 Hero、功能区、用户评价和行动按钮。
     en: Create a product landing page with a hero, feature sections, testimonials and a call-to-action.
   design:
     zh: 创建 SaaS 产品落地页：吸顶导航（logo + 锚点 + 登录/注册按钮）；Hero 大标题 + 副标题 + 邮箱输入与主按钮；下方客户 logo 一排；功能区 3 列卡片；评价区 2～3 条带头像的引用；页脚前重复一条强 CTA 横幅。响应式、深浅色一致。
-    en: >-
-      Build a SaaS landing page: sticky nav (logo + anchor links + login/signup); hero with headline,
-      subcopy, email input and primary button; a logo row; three-column feature cards; two to three
-      testimonials with avatars; a strong CTA banner before the footer. Responsive and theme-consistent.
+    en: 'Build a SaaS landing page: sticky nav (logo + anchor links + login/signup); hero with headline, subcopy, email input and primary button; a logo row; three-column feature cards; two to three testimonials with avatars; a strong CTA banner before the footer. Responsive and theme-consistent.'
   implementation:
-    zh: >-
-      用 React + Tailwind 实现 Landing Page：语义化 section + 锚点导航；邮箱表单做基础校验与成功态；
-      卡片进场用 IntersectionObserver 触发渐入（尊重 prefers-reduced-motion）；
-      图片用 loading="lazy"；CTA 事件可埋点。不新增依赖。
-    en: >-
-      React + Tailwind landing page: semantic sections with anchor nav; email form with basic
-      validation and success state; cards fade in via IntersectionObserver (respecting
-      prefers-reduced-motion); lazy-load images; CTA ready for analytics. No new dependencies.
+    zh: 用 React + Tailwind 实现 Landing Page：语义化 section + 锚点导航；邮箱表单做基础校验与成功态； 卡片进场用 IntersectionObserver 触发渐入（尊重 prefers-reduced-motion）； 图片用 loading="lazy"；CTA 事件可埋点。不新增依赖。
+    en: 'React + Tailwind landing page: semantic sections with anchor nav; email form with basic validation and success state; cards fade in via IntersectionObserver (respecting prefers-reduced-motion); lazy-load images; CTA ready for analytics. No new dependencies.'
   agent:
     zh: |-
       在当前项目中实现产品落地页。

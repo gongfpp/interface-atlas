@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 懒加载
   en: Lazy Loading
-
 aliases:
   - 懒加载
   - 按需加载
@@ -11,116 +9,102 @@ aliases:
   - 滚动到才加载
   - 图片懒加载
   - 进入视口加载
-
 category:
   - Performance
   - Loading
-
 description:
-  zh: >-
-    用"推迟加载"的方式处理暂不在视口内的资源：图片、列表分块、组件等在接近或进入可视区域时才真正请求和渲染。
-    首屏只承担可见部分的开销，配合占位骨架避免突然撑开布局，让长页面既快又稳。
-  en: >-
-    Defers loading of off-viewport resources: images, list chunks and components are fetched and
-    rendered only when they approach or enter the viewport. The first screen pays only for what is
-    visible, with placeholders preventing layout jumps as content streams in.
-
+  zh: 用"推迟加载"的方式处理暂不在视口内的资源：图片、列表分块、组件等在接近或进入可视区域时才真正请求和渲染。 首屏只承担可见部分的开销，配合占位骨架避免突然撑开布局，让长页面既快又稳。
+  en: 'Defers loading of off-viewport resources: images, list chunks and components are fetched and rendered only when they approach or enter the viewport. The first screen pays only for what is visible, with placeholders preventing layout jumps as content streams in.'
 use_when:
-  - { zh: 页面含大量图片或长列表，首屏之外的资源较多, en: Pages with many images or long lists beyond the first screen }
-  - { zh: 首屏加载速度是关键指标，需要削减初始请求, en: First-load performance matters and initial requests must shrink }
-  - { zh: 部分内容用户大概率不会滚动看到, en: Much of the content will likely never be scrolled to }
-
+  - zh: 页面含大量图片或长列表，首屏之外的资源较多
+    en: Pages with many images or long lists beyond the first screen
+  - zh: 首屏加载速度是关键指标，需要削减初始请求
+    en: First-load performance matters and initial requests must shrink
+  - zh: 部分内容用户大概率不会滚动看到
+    en: Much of the content will likely never be scrolled to
 avoid_when:
-  - { zh: 资源就在首屏内，懒加载反而引入延迟, en: Assets sit in the first screen — deferring only adds delay }
-  - { zh: 打印、SEO 或无 JS 环境必须能拿到全部内容, en: Printing, SEO or no-JS contexts need the full content upfront }
-  - { zh: 资源极小且数量有限，切分收益低于复杂度成本, en: Few tiny assets — splitting costs more than it saves }
-
+  - zh: 资源就在首屏内，懒加载反而引入延迟
+    en: Assets sit in the first screen — deferring only adds delay
+  - zh: 打印、SEO 或无 JS 环境必须能拿到全部内容
+    en: Printing, SEO or no-JS contexts need the full content upfront
+  - zh: 资源极小且数量有限，切分收益低于复杂度成本
+    en: Few tiny assets — splitting costs more than it saves
 tags:
   - performance
   - loading
   - viewport
   - images
-
 variants:
   - id: native
-    name: { zh: 原生懒加载, en: Native }
-    note: { zh: img loading="lazy" 一行搞定，交给浏览器, en: One attribute, browser handles it }
+    name:
+      zh: 原生懒加载
+      en: Native
+    note:
+      zh: img loading="lazy" 一行搞定，交给浏览器
+      en: One attribute, browser handles it
   - id: observer
-    name: { zh: 视口侦测, en: IntersectionObserver }
-    note: { zh: 进入视口再挂载并淡入，可控性更强, en: Mount and fade in on intersection, more control }
+    name:
+      zh: 视口侦测
+      en: IntersectionObserver
+    note:
+      zh: 进入视口再挂载并淡入，可控性更强
+      en: Mount and fade in on intersection, more control
   - id: placeholder
-    name: { zh: 占位渐进, en: Placeholder }
-    note: { zh: 模糊缩略图或纯色块先行，加载后替换, en: Blur-up or solid placeholder swaps in when ready }
-
+    name:
+      zh: 占位渐进
+      en: Placeholder
+    note:
+      zh: 模糊缩略图或纯色块先行，加载后替换
+      en: Blur-up or solid placeholder swaps in when ready
 anatomy:
   - 占位区域（Placeholder）
   - 视口侦测目标（Sentinel）
   - 实际内容（Real content）
   - 加载完成过渡（Reveal transition）
-
 applicable_styles:
   - bento-grid
   - minimalism
-
 applicable_components:
   - card
 applicable_pages:
   - landing-page
   - search
-
 related:
   - infinite-scroll
   - skeleton-loading
   - progressive-disclosure
   - empty-state
   - pagination
-
 demo:
   component: lazy-loading
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 implementation:
   css:
-    - "loading: lazy"
+    - 'loading: lazy'
     - IntersectionObserver
     - opacity
     - transform
   notes:
-    zh: >-
-      图片优先用原生 loading="lazy"；需要自定义时机或动画时用 IntersectionObserver 监听占位元素，
-      命中后设置真实 src 或挂载组件，配 opacity/translate 过渡淡入。占位需预留宽高（aspect-ratio）避免布局跳动。
-      尊重 prefers-reduced-motion，淡入退化为直接显示。
-    en: >-
-      Prefer native loading="lazy" for images; use IntersectionObserver on a placeholder for custom
-      timing or animation, then set the real src or mount the component with an opacity/translate
-      reveal. Reserve space with aspect-ratio to avoid layout shift. Respect prefers-reduced-motion
-      by revealing instantly.
-
+    zh: 图片优先用原生 loading="lazy"；需要自定义时机或动画时用 IntersectionObserver 监听占位元素， 命中后设置真实 src 或挂载组件，配 opacity/translate 过渡淡入。占位需预留宽高（aspect-ratio）避免布局跳动。 尊重 prefers-reduced-motion，淡入退化为直接显示。
+    en: Prefer native loading="lazy" for images; use IntersectionObserver on a placeholder for custom timing or animation, then set the real src or mount the component with an opacity/translate reveal. Reserve space with aspect-ratio to avoid layout shift. Respect prefers-reduced-motion by revealing instantly.
 sources:
   - name: MDN — Lazy loading
     url: https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Lazy_loading
   - name: MDN — Intersection Observer API
     url: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
-
 prompts:
   basic:
     zh: 创建一个懒加载（Lazy Loading）演示，图片在滚动进入视口时才加载并淡入显示。
     en: Create a lazy loading demo where images load and fade in only as they scroll into the viewport.
   design:
     zh: 创建懒加载演示。要求：可滚动画布内若干卡片，未进入视口时显示灰色占位块，进入后加载并淡入；占位与真实内容同尺寸，避免布局跳动；提供"模拟进入视口"按钮方便演示。
-    en: >-
-      Create a lazy loading demo. Requirements: cards in a scrollable canvas show grey placeholders
-      until they enter the viewport, then load and fade in; placeholders match final sizes to avoid
-      layout shift; include a "simulate viewport" button for easy demoing.
+    en: 'Create a lazy loading demo. Requirements: cards in a scrollable canvas show grey placeholders until they enter the viewport, then load and fade in; placeholders match final sizes to avoid layout shift; include a "simulate viewport" button for easy demoing.'
   implementation:
-    zh: >-
-      用 React + IntersectionObserver 实现懒加载。列表项初始渲染占位 div（固定宽高），ref 进入视口
-      （rootMargin 提前量）后置 loaded 并渲染真实内容，配 CSS 过渡淡入。组件卸载时 disconnect observer。
-      尊重 prefers-reduced-motion。
-    en: >-
-      Implement lazy loading with React + IntersectionObserver. Render placeholder divs with fixed
-      sizes; when a ref intersects (with rootMargin lead), set loaded and render real content with a
-      CSS fade. Disconnect the observer on unmount. Respect prefers-reduced-motion.
+    zh: 用 React + IntersectionObserver 实现懒加载。列表项初始渲染占位 div（固定宽高），ref 进入视口 （rootMargin 提前量）后置 loaded 并渲染真实内容，配 CSS 过渡淡入。组件卸载时 disconnect observer。 尊重 prefers-reduced-motion。
+    en: Implement lazy loading with React + IntersectionObserver. Render placeholder divs with fixed sizes; when a ref intersects (with rootMargin lead), set loaded and render real content with a CSS fade. Disconnect the observer on unmount. Respect prefers-reduced-motion.
   agent:
     zh: |-
       在当前项目中实现图片懒加载（Lazy Loading）。

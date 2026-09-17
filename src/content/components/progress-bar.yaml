@@ -1,0 +1,140 @@
+status: published
+name:
+  zh: 进度条
+  en: Progress Bar
+aliases:
+  - 进度条
+  - 加载进度
+  - 进度指示条
+  - 百分比进度条
+  - 上传进度条
+  - linear progress
+  - 显示百分之多少的横条
+category:
+  - Feedback
+  - Loading
+description:
+  zh: 用横条从左到右填充来表示任务完成比例的加载指示，常配百分比或步骤文字。 适用于时长可预测的确定性任务：上传、下载、安装与分步表单。
+  en: 'A loading indicator where a horizontal bar fills left to right to express task completion, usually with a percentage or step label. For determinate tasks with predictable duration: uploads, downloads, installs and multi-step forms.'
+use_when:
+  - zh: 时长可预测的确定性任务（上传、导出）
+    en: Determinate tasks with known duration (upload, export)
+  - zh: 分步流程中展示当前进行到第几步
+    en: Step position in a multi-step flow
+  - zh: 时长超过 3 秒、需要传达量感
+    en: Tasks over 3 seconds where magnitude matters
+avoid_when:
+  - zh: 时长不可知（用 loading-spinner 或骨架屏）
+    en: Indeterminate duration — use a spinner or skeleton
+  - zh: 极短任务（< 1 秒，直接完成即可）
+    en: Very short tasks — just let them finish
+  - zh: 无法给出真实进度（宁可显示不定态，避免假进度）
+    en: Unknown progress — show indeterminate rather than faking it
+tags:
+  - loading
+  - feedback
+  - progress
+  - determinate
+variants:
+  - id: determinate
+    name:
+      zh: 确定进度
+      en: Determinate
+    note:
+      zh: 已知比例按值填充
+      en: Fills by value when the ratio is known
+  - id: indeterminate
+    name:
+      zh: 不定进度
+      en: Indeterminate
+    note:
+      zh: 滑块往复运动，表达进行中但时长未知
+      en: 'A slider loop: working, duration unknown'
+  - id: with-label
+    name:
+      zh: 带标签
+      en: Labeled
+    note:
+      zh: 附百分比或步骤文字
+      en: Percentage or step text beside the bar
+anatomy:
+  - 轨道（Track）
+  - 填充条（Fill）
+  - 标签 / 百分比（Label）
+related:
+  - loading-spinner
+  - skeleton-loading
+  - number-counter
+  - optimistic-ui
+demo:
+  component: progress-bar
+  modes:
+    - default
+    - dark
+    - loading
+compare:
+  group: loading-indicator
+  dimensions:
+    打断程度:
+      zh: 低，嵌入版面不遮挡
+      en: Low — inline, hides nothing
+    信息量:
+      zh: 中，传达比例与剩余量
+      en: Medium — shows proportion remaining
+    适用时长:
+      zh: 3 秒以上的确定性任务
+      en: 3+ seconds, determinate
+    与结果一致性:
+      zh: 高，需绑定真实进度
+      en: High — must reflect real progress
+implementation:
+  css:
+    - width
+    - transition
+    - background-color
+    - border-radius
+    - '@keyframes'
+  notes:
+    zh: 轨道固定高度（4~8px）圆角，填充条用 width 百分比或 transform scaleX 过渡； 不定态用 keyframes 平移一小块往复循环。务必绑定真实进度事件，无法获知时用不定态而非假进度。 可达性：role="progressbar" + aria-valuenow / aria-valuemin / aria-valuemax。
+    en: 'Fixed-height (4–8px) rounded track; fill transitions by width percentage or transform scaleX; indeterminate loops a small block with keyframes. Bind to real progress events — prefer indeterminate over a fake bar. Accessibility: role="progressbar" with aria-valuenow / aria-valuemin / aria-valuemax.'
+sources:
+  - name: Material Design — Linear progress
+    url: https://m3.material.io/components/linear-progress/overview
+  - name: MDN — ARIA progressbar role
+    url: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/progressbar_role
+prompts:
+  basic:
+    zh: 创建一个进度条（Progress Bar）组件：显示任务完成百分比，支持确定与不定两种状态。
+    en: 'Create a Progress Bar component: shows task completion as a percentage, supporting determinate and indeterminate states.'
+  design:
+    zh: 创建进度条组件。要求：6px 高圆角轨道 + 强调色填充；右侧或上方标注百分比（等宽数字）； 完成时变为成功色并可显示对勾；不定态用小块往复滑动动画；深浅色主题一致。
+    en: 'Create a progress bar. Requirements: 6px rounded track with an accent fill; the percentage beside or above in tabular figures; turns success-coloured with a check on completion; indeterminate state slides a small block back and forth; consistent light/dark themes.'
+  implementation:
+    zh: '用 React + Tailwind 实现 ProgressBar：value 0-100 受控；轨道 div 内填充 div style={{ width: `${value}%` }} 配 transition（时长乘 var(--demo-speed, 1)）； 不定态用 keyframes translateX 往复；role="progressbar" + aria-valuenow； 达 100 时切换成功态；尊重 prefers-reduced-motion。'
+    en: 'React + Tailwind ProgressBar: controlled value 0–100; inner fill div with style={{ width: `${value}%` }} and a transition (duration scaled by var(--demo-speed, 1)); indeterminate loop via translateX keyframes; role="progressbar" + aria-valuenow; switch to a success state at 100; respect prefers-reduced-motion.'
+  agent:
+    zh: |-
+      在当前项目中实现进度条（Progress Bar）组件。
+
+      先检查现有组件体系与 Design Token，优先复用现有的强调色与表面色变量。
+      用途：文件上传与分步表单。
+      要求：
+      - 确定态绑定真实进度值，不定态用往复动画
+      - role="progressbar" + aria-valuenow 可达性
+      - 完成态有明确的视觉变化
+      - 动画尊重 prefers-reduced-motion
+      - 不新增依赖
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Implement a Progress Bar component in the current project.
+
+      Inspect the existing component system and design tokens first; reuse existing
+      accent and surface colour variables.
+      Usage: file uploads and multi-step forms.
+      Requirements:
+      - Determinate mode bound to real progress; indeterminate loop animation
+      - role="progressbar" + aria-valuenow accessibility
+      - Clear visual change on completion
+      - Animations respect prefers-reduced-motion
+      - No new dependencies
+      Run existing checks when done and list modified files.

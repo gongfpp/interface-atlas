@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 包豪斯
   en: Bauhaus
-
 aliases:
   - 包豪斯
   - 包豪斯风格
@@ -13,116 +11,96 @@ aliases:
   - 圆三角方构成
   - Bauhaus Design
   - Geometric Abstraction
-
 category:
   - Style
   - Visual Language
-
 description:
-  zh: >-
-    用基础几何与三原色做构成游戏的视觉语言：圆 三角 方三种形状，红 黄 蓝
-    三原色加黑，不对称但平衡的构图，装饰服从功能。每一块色面与线条都参与
-    结构，海报像一场几何关系的研究。
-  en: >-
-    A visual language of playing composition with geometry: circle, triangle
-    and square in primary red, yellow and blue plus black, asymmetric yet
-    balanced. Decoration obeys function — every plane and line carries
-    structure, and a poster reads as a study in geometric relations.
-
+  zh: 用基础几何与三原色做构成游戏的视觉语言：圆 三角 方三种形状，红 黄 蓝 三原色加黑，不对称但平衡的构图，装饰服从功能。每一块色面与线条都参与 结构，海报像一场几何关系的研究。
+  en: 'A visual language of playing composition with geometry: circle, triangle and square in primary red, yellow and blue plus black, asymmetric yet balanced. Decoration obeys function — every plane and line carries structure, and a poster reads as a study in geometric relations.'
 use_when:
-  - { zh: 品牌 海报 活动页，需要强烈的图形识别与艺术气质, en: Brands, posters and campaign pages that want bold graphic identity }
-  - { zh: 教育 创意工具类产品，传达"创造与构成"的气质, en: Education and creative tools — composing and making }
-  - { zh: 大面积视觉主视觉区，元素少而冲击力要求高, en: Hero visuals with few elements and high impact needs }
-
+  - zh: 品牌 海报 活动页，需要强烈的图形识别与艺术气质
+    en: Brands, posters and campaign pages that want bold graphic identity
+  - zh: 教育 创意工具类产品，传达"创造与构成"的气质
+    en: Education and creative tools — composing and making
+  - zh: 大面积视觉主视觉区，元素少而冲击力要求高
+    en: Hero visuals with few elements and high impact needs
 avoid_when:
-  - { zh: 信息密集的界面，几何装饰会干扰数据可读性, en: Data-dense UIs where geometric play hurts readability }
-  - { zh: 需要长时间阅读的产品场景, en: Long reading sessions — the visual noise accumulates }
-  - { zh: 品牌色板已被锁定，无法让位于三原色, en: Locked brand palettes that cannot yield to primaries }
-
+  - zh: 信息密集的界面，几何装饰会干扰数据可读性
+    en: Data-dense UIs where geometric play hurts readability
+  - zh: 需要长时间阅读的产品场景
+    en: Long reading sessions — the visual noise accumulates
+  - zh: 品牌色板已被锁定，无法让位于三原色
+    en: Locked brand palettes that cannot yield to primaries
 tags:
   - bauhaus
   - geometry
   - primary-colors
   - composition
   - modernism
-
 variants:
   - id: weimar
-    name: { zh: 魏玛时期, en: Weimar }
-    note: { zh: 表现主义余温，Itten 色彩理论影响, en: Expressionist warmth under Itten's color theory }
+    name:
+      zh: 魏玛时期
+      en: Weimar
+    note:
+      zh: 表现主义余温，Itten 色彩理论影响
+      en: Expressionist warmth under Itten's color theory
   - id: dessau
-    name: { zh: 德绍时期, en: Dessau }
-    note: { zh: 最经典阶段——理性几何与红黄蓝, en: The classic phase — rational geometry and primaries }
+    name:
+      zh: 德绍时期
+      en: Dessau
+    note:
+      zh: 最经典阶段——理性几何与红黄蓝
+      en: The classic phase — rational geometry and primaries
   - id: contemporary
-    name: { zh: 当代包豪斯, en: Contemporary Bauhaus }
-    note: { zh: 网页化的构成主义，更大胆的留白与动效, en: Web-era constructivism with bolder whitespace and motion }
-
+    name:
+      zh: 当代包豪斯
+      en: Contemporary Bauhaus
+    note:
+      zh: 网页化的构成主义，更大胆的留白与动效
+      en: Web-era constructivism with bolder whitespace and motion
 applicable_components:
   - button
   - card
   - badge
   - input
-
 related:
   - swiss-style
   - memphis
   - flat-design
   - button
   - card
-
 demo:
   component: bauhaus
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 sources:
   - name: Bauhaus Dessau Foundation
     url: https://www.bauhaus-dessau.de/en/
   - name: Wikipedia — Bauhaus
     url: https://en.wikipedia.org/wiki/Bauhaus
-
 implementation:
   css:
-    - "background: #D93025"
-    - "clip-path"
-    - "border-radius: 50%"
+    - 'background: #D93025'
+    - clip-path
+    - 'border-radius: 50%'
     - grid
-    - "mix-blend-mode"
+    - mix-blend-mode
   notes:
-    zh: >-
-      用三原色建立固定角色：红为主视觉面，黄做暖点缀，蓝做冷点缀，黑承担
-      文字与结构线。构图用非对称平衡：一大几何形 + 一两条结构线 + 一个小
-      实体，元素之间保持接触或穿插而非悬空。形状可用 border-radius 50% 与
-      clip-path 三角形实现，避免图片素材。留白同样是构图材料。
-    en: >-
-      Give the primaries fixed roles: red as the hero plane, yellow the warm
-      accent, blue the cool one, black for type and structural lines. Balance
-      asymmetrically — one large form plus one or two structural lines and a
-      small solid; shapes should touch or overlap, never float. Use
-      border-radius: 50% and clip-path triangles instead of image assets.
-      Whitespace is a compositional material too.
-
+    zh: 用三原色建立固定角色：红为主视觉面，黄做暖点缀，蓝做冷点缀，黑承担 文字与结构线。构图用非对称平衡：一大几何形 + 一两条结构线 + 一个小 实体，元素之间保持接触或穿插而非悬空。形状可用 border-radius 50% 与 clip-path 三角形实现，避免图片素材。留白同样是构图材料。
+    en: 'Give the primaries fixed roles: red as the hero plane, yellow the warm accent, blue the cool one, black for type and structural lines. Balance asymmetrically — one large form plus one or two structural lines and a small solid; shapes should touch or overlap, never float. Use border-radius: 50% and clip-path triangles instead of image assets. Whitespace is a compositional material too.'
 prompts:
   basic:
-    zh: >-
-      用包豪斯风格（Bauhaus）设计界面：圆 三角 方几何构成，红 黄 蓝 三原色加黑，
-      不对称但平衡的构图，装饰服从功能。
-    en: >-
-      "Design an interface in Bauhaus style: compositions of circle, triangle and square in primary red, yellow and blue with black, asymmetrically balanced, form follows function."
+    zh: 用包豪斯风格（Bauhaus）设计界面：圆 三角 方几何构成，红 黄 蓝 三原色加黑， 不对称但平衡的构图，装饰服从功能。
+    en: '"Design an interface in Bauhaus style: compositions of circle, triangle and square in primary red, yellow and blue with black, asymmetrically balanced, form follows function."'
   design:
-    zh: >-
-      包豪斯设计规范：底色米白 #F4EFE6 或黑；主视觉用大几何形（红圆 黄三角
-      蓝方至少出现两种）并与文字穿插接触；文字黑色无衬线 大写或粗几何体；
-      禁用渐变 投影 与纹理；构图不对称但重心平衡；深色模式底色近黑，三原色
-      提亮一档保持冲击。
-    en: >-
-      "Bauhaus spec: cream #F4EFE6 or black ground; hero geometry (at least two of red circle, yellow triangle, blue square) interlocking with type; black geometric sans, uppercase or heavy; no gradients, shadows or textures; asymmetric yet balanced. Dark mode on near-black with primaries lifted one step."
+    zh: '包豪斯设计规范：底色米白 #F4EFE6 或黑；主视觉用大几何形（红圆 黄三角 蓝方至少出现两种）并与文字穿插接触；文字黑色无衬线 大写或粗几何体； 禁用渐变 投影 与纹理；构图不对称但重心平衡；深色模式底色近黑，三原色 提亮一档保持冲击。'
+    en: '"Bauhaus spec: cream #F4EFE6 or black ground; hero geometry (at least two of red circle, yellow triangle, blue square) interlocking with type; black geometric sans, uppercase or heavy; no gradients, shadows or textures; asymmetric yet balanced. Dark mode on near-black with primaries lifted one step."'
   implementation:
-    zh: >-
-      用 CSS 实现包豪斯构成：圆形用 border-radius: 50%；三角形用
-      clip-path: polygon(50% 0, 0 100%, 100% 100%)；结构线用 2px 黑色实线；
-      文字与几何形用负 margin 或 grid 重叠穿插；所有色面纯色填充，无阴影。
-    en: >-
-      "Implement Bauhaus composition in CSS: circles with border-radius: 50%; triangles with clip-path: polygon(50% 0, 0 100%, 100% 100%); 2px solid black structural lines; interleave type and shapes via negative margins or grid overlap; all planes solid, no shadows."
+    zh: '用 CSS 实现包豪斯构成：圆形用 border-radius: 50%；三角形用 clip-path: polygon(50% 0, 0 100%, 100% 100%)；结构线用 2px 黑色实线； 文字与几何形用负 margin 或 grid 重叠穿插；所有色面纯色填充，无阴影。'
+    en: '"Implement Bauhaus composition in CSS: circles with border-radius: 50%; triangles with clip-path: polygon(50% 0, 0 100%, 100% 100%); 2px solid black structural lines; interleave type and shapes via negative margins or grid overlap; all planes solid, no shadows."'
   agent:
     zh: |-
       在当前项目中用包豪斯风格（Bauhaus）实现一个几何构成主视觉区块。
@@ -148,20 +126,19 @@ prompts:
       - Dark mode support
       - No new dependencies
       Run existing project checks when done and list the modified files.
-
 style_spec:
   typography:
-    zh: "包豪斯几何无衬线，大写"
-    en: "Bauhaus geometric sans, uppercase"
+    zh: 包豪斯几何无衬线，大写
+    en: Bauhaus geometric sans, uppercase
   color:
-    zh: "米底 × 红 #E23B2E 蓝 #21409A 黄 #F2B705"
-    en: "Cream base; red #E23B2E, blue #21409A, yellow #F2B705"
+    zh: '米底 × 红 #E23B2E 蓝 #21409A 黄 #F2B705'
+    en: 'Cream base; red #E23B2E, blue #21409A, yellow #F2B705'
   border:
-    zh: "0 圆角，细黑边框"
-    en: "Zero radius with thin black rules"
+    zh: 0 圆角，细黑边框
+    en: Zero radius with thin black rules
   shadow:
-    zh: "无阴影"
-    en: "No shadows"
+    zh: 无阴影
+    en: No shadows
   spacing:
-    zh: "几何构图留白"
-    en: "Compositional whitespace around geometry"
+    zh: 几何构图留白
+    en: Compositional whitespace around geometry

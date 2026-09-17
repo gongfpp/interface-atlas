@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 磁吸按钮
   en: Magnetic Button
-
 aliases:
   - 磁吸按钮
   - 磁性按钮
@@ -11,109 +9,87 @@ aliases:
   - 鼠标靠近按钮偏移
   - magnetic effect
   - 磁力吸附
-
 category:
   - Motion
   - Hover
-
 description:
-  zh: >-
-    鼠标靠近按钮时，按钮像被磁铁吸住一样朝光标方向偏移一小段距离，
-    离开后弹性归位。偏移量按光标与按钮中心的距离计算，通常限制在 8～20px。
-    一种高"手感"的桌面端彩蛋交互，常出现在作品集与创意官网。
-  en: >-
-    As the cursor approaches, the button is pulled toward it like iron to a magnet,
-    then springs home on leave. The offset is computed from cursor-to-center
-    distance and usually clamped to 8–20px. A tactile desktop flourish common on
-    portfolios and creative sites.
-
+  zh: 鼠标靠近按钮时，按钮像被磁铁吸住一样朝光标方向偏移一小段距离， 离开后弹性归位。偏移量按光标与按钮中心的距离计算，通常限制在 8～20px。 一种高"手感"的桌面端彩蛋交互，常出现在作品集与创意官网。
+  en: As the cursor approaches, the button is pulled toward it like iron to a magnet, then springs home on leave. The offset is computed from cursor-to-center distance and usually clamped to 8–20px. A tactile desktop flourish common on portfolios and creative sites.
 use_when:
-  - { zh: 落地页的 CTA、导航图标等少量关键按钮, en: A few key targets — landing-page CTAs, nav icons }
-  - { zh: 创意类 / 作品集网站的品牌调性, en: Creative or portfolio sites leaning into personality }
-  - { zh: 桌面端为主、留白充足的布局, en: Desktop-first layouts with room to move }
-
+  - zh: 落地页的 CTA、导航图标等少量关键按钮
+    en: A few key targets — landing-page CTAs, nav icons
+  - zh: 创意类 / 作品集网站的品牌调性
+    en: Creative or portfolio sites leaning into personality
+  - zh: 桌面端为主、留白充足的布局
+    en: Desktop-first layouts with room to move
 avoid_when:
-  - { zh: 触屏设备（没有 hover，效果失效）, en: Touch devices — no hover, no effect }
-  - { zh: 表单控件与密集操作区（偏移破坏瞄准）, en: Form controls and dense toolbars — offset ruins aiming }
-  - { zh: 页面大量按钮全部磁吸（眩晕且廉价）, en: Magnetizing every button on the page — dizzying and cheap }
-
+  - zh: 触屏设备（没有 hover，效果失效）
+    en: Touch devices — no hover, no effect
+  - zh: 表单控件与密集操作区（偏移破坏瞄准）
+    en: Form controls and dense toolbars — offset ruins aiming
+  - zh: 页面大量按钮全部磁吸（眩晕且廉价）
+    en: Magnetizing every button on the page — dizzying and cheap
 tags:
   - animation
   - hover
   - pointer
   - feedback
   - micro-interaction
-
 variants:
   - id: translate-only
-    name: { zh: 平移跟随, en: Translate follow }
-    note: { zh: 按钮整体向光标平移，最基础, en: The whole button translates toward the cursor }
+    name:
+      zh: 平移跟随
+      en: Translate follow
+    note:
+      zh: 按钮整体向光标平移，最基础
+      en: The whole button translates toward the cursor
   - id: translate-label
-    name: { zh: 按钮与文字分层跟随, en: Layered follow }
-    note: { zh: 文字比外壳多移一档，产生视差, en: The label travels further than the shell — parallax }
+    name:
+      zh: 按钮与文字分层跟随
+      en: Layered follow
+    note:
+      zh: 文字比外壳多移一档，产生视差
+      en: The label travels further than the shell — parallax
   - id: tilt
-    name: { zh: 磁吸 + 微倾斜, en: Magnet + tilt }
-    note: { zh: 叠加轻微 rotateX/Y，立体感更强, en: Adds subtle rotateX/Y for depth }
-
+    name:
+      zh: 磁吸 + 微倾斜
+      en: Magnet + tilt
+    note:
+      zh: 叠加轻微 rotateX/Y，立体感更强
+      en: Adds subtle rotateX/Y for depth
 related:
   - hover-lift
   - press-feedback
   - hover-glow
   - elastic-bounce
-
 demo:
   component: magnetic-button
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 implementation:
   css:
-    - "transform: translate"
+    - 'transform: translate'
     - transition
     - mousemove
     - getBoundingClientRect
   notes:
-    zh: >-
-      在按钮（或更大的热区）上监听 mousemove，用 getBoundingClientRect 求光标相对
-      中心的比例，乘以最大偏移（如 0.3 × 40px）写入 transform: translate；
-      mouseleave 时归零并给 300～500ms 的弹性过渡（cubic-bezier(.2,.8,.3,1.2)）。
-      进入热区时把 transition 缩短到 100ms 让跟随更"黏"。
-      触屏直接禁用，配 @media (hover:hover)。
-    en: >-
-      Listen for mousemove on a hotspot wrapping the button; derive the cursor's
-      offset ratio from center via getBoundingClientRect, multiply by max travel
-      (e.g. 0.3 × 40px) and write it to `transform: translate`. On mouseleave,
-      return to zero with a springy 300–500ms transition (cubic-bezier(.2,.8,.3,1.2));
-      shorten to ~100ms while inside so the follow feels sticky. Disable on touch
-      behind @media (hover:hover).
-
+    zh: '在按钮（或更大的热区）上监听 mousemove，用 getBoundingClientRect 求光标相对 中心的比例，乘以最大偏移（如 0.3 × 40px）写入 transform: translate； mouseleave 时归零并给 300～500ms 的弹性过渡（cubic-bezier(.2,.8,.3,1.2)）。 进入热区时把 transition 缩短到 100ms 让跟随更"黏"。 触屏直接禁用，配 @media (hover:hover)。'
+    en: 'Listen for mousemove on a hotspot wrapping the button; derive the cursor''s offset ratio from center via getBoundingClientRect, multiply by max travel (e.g. 0.3 × 40px) and write it to `transform: translate`. On mouseleave, return to zero with a springy 300–500ms transition (cubic-bezier(.2,.8,.3,1.2)); shorten to ~100ms while inside so the follow feels sticky. Disable on touch behind @media (hover:hover).'
 sources:
-  - name: "MDN — Element: mousemove event"
+  - name: 'MDN — Element: mousemove event'
     url: https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event
-
 prompts:
   basic:
     zh: 给按钮添加磁吸效果：鼠标靠近时按钮朝光标方向轻微偏移，离开后弹回。
     en: Add a magnetic effect to buttons — the button drifts toward the nearby cursor and springs back on leave.
   design:
-    zh: >-
-      按钮在光标进入 1.5 倍热区时按比例向光标平移（最大 12px），跟随 100ms、
-      弹回 400ms 弹性缓动；只用于主 CTA，触屏与键盘操作不受影响。
-    en: >-
-      Within a 1.5x hotspot the button translates proportionally toward the cursor
-      (max 12px), 100ms follow and a 400ms springy return; reserve for primary CTAs,
-      keep touch and keyboard unaffected.
+    zh: 按钮在光标进入 1.5 倍热区时按比例向光标平移（最大 12px），跟随 100ms、 弹回 400ms 弹性缓动；只用于主 CTA，触屏与键盘操作不受影响。
+    en: Within a 1.5x hotspot the button translates proportionally toward the cursor (max 12px), 100ms follow and a 400ms springy return; reserve for primary CTAs, keep touch and keyboard unaffected.
   implementation:
-    zh: >-
-      React 实现：热区 div 监听 onMouseMove/onMouseLeave，getBoundingClientRect
-      计算相对中心偏移，setState 驱动 transform: translate(x,y)；内部用
-      will-change: transform。跟随 100ms、回弹 400ms cubic-bezier(.2,.8,.3,1.2)。
-      @media (hover:hover) 门控；尊重 prefers-reduced-motion（禁用偏移）。
-    en: >-
-      React: attach onMouseMove/onMouseLeave to a hotspot div, compute the
-      center-relative offset with getBoundingClientRect, drive
-      `transform: translate(x,y)` from state; add will-change: transform.
-      100ms follow, 400ms return with cubic-bezier(.2,.8,.3,1.2). Gate behind
-      @media (hover:hover); disable offsets under prefers-reduced-motion.
+    zh: 'React 实现：热区 div 监听 onMouseMove/onMouseLeave，getBoundingClientRect 计算相对中心偏移，setState 驱动 transform: translate(x,y)；内部用 will-change: transform。跟随 100ms、回弹 400ms cubic-bezier(.2,.8,.3,1.2)。 @media (hover:hover) 门控；尊重 prefers-reduced-motion（禁用偏移）。'
+    en: 'React: attach onMouseMove/onMouseLeave to a hotspot div, compute the center-relative offset with getBoundingClientRect, drive `transform: translate(x,y)` from state; add will-change: transform. 100ms follow, 400ms return with cubic-bezier(.2,.8,.3,1.2). Gate behind @media (hover:hover); disable offsets under prefers-reduced-motion.'
   agent:
     zh: |-
       为项目的主 CTA 按钮添加磁吸交互。

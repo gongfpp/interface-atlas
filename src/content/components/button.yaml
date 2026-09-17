@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 按钮
   en: Button
-
 aliases:
   - 按钮
   - 按键
@@ -11,134 +9,121 @@ aliases:
   - 主按钮
   - 提交按钮
   - CTA 按钮
-
 category:
   - Action
   - Form
-
 description:
-  zh: >-
-    用可点击的色块触发一个明确的动作，是界面中最基础的操作入口。
-    通过填充、描边、幽灵等视觉层级区分主次操作，按压时有即时的下沉反馈，
-    繁忙时进入加载态并禁用点击，防止重复提交。
-  en: >-
-    A clickable block that triggers one clear action — the most basic
-    interactive element of any interface. Fill, outline and ghost styles rank
-    primary against secondary actions; presses give instant sink-in feedback,
-    and a busy state disables further clicks to prevent double submission.
-
+  zh: 用可点击的色块触发一个明确的动作，是界面中最基础的操作入口。 通过填充、描边、幽灵等视觉层级区分主次操作，按压时有即时的下沉反馈， 繁忙时进入加载态并禁用点击，防止重复提交。
+  en: A clickable block that triggers one clear action — the most basic interactive element of any interface. Fill, outline and ghost styles rank primary against secondary actions; presses give instant sink-in feedback, and a busy state disables further clicks to prevent double submission.
 use_when:
-  - { zh: 需要用户主动触发一个明确动作（提交、创建、确认）, en: A user-initiated action such as submit, create or confirm }
-  - { zh: 同一区域存在主次多个操作，需要视觉分层, en: Multiple actions coexist and need visual hierarchy }
-  - { zh: 操作会改变数据或状态，需要防止误触与重复提交, en: The action mutates data and must guard against double submits }
-
+  - zh: 需要用户主动触发一个明确动作（提交、创建、确认）
+    en: A user-initiated action such as submit, create or confirm
+  - zh: 同一区域存在主次多个操作，需要视觉分层
+    en: Multiple actions coexist and need visual hierarchy
+  - zh: 操作会改变数据或状态，需要防止误触与重复提交
+    en: The action mutates data and must guard against double submits
 avoid_when:
-  - { zh: 动作只是导航到另一页，用链接更符合预期, en: Pure navigation — a link matches expectations better }
-  - { zh: 操作可逆且频繁切换，用开关或复选框更合适, en: Frequently toggled reversible state — use a switch or checkbox }
-  - { zh: 一屏内大量重复的次要操作，弱化为文字按钮避免视觉噪音, en: Many repeated secondary actions — demote to text buttons to cut noise }
-
+  - zh: 动作只是导航到另一页，用链接更符合预期
+    en: Pure navigation — a link matches expectations better
+  - zh: 操作可逆且频繁切换，用开关或复选框更合适
+    en: Frequently toggled reversible state — use a switch or checkbox
+  - zh: 一屏内大量重复的次要操作，弱化为文字按钮避免视觉噪音
+    en: Many repeated secondary actions — demote to text buttons to cut noise
 tags:
   - action
   - form
   - interaction
-
 variants:
   - id: primary
-    name: { zh: 主要, en: Primary }
-    note: { zh: 实心填充，一屏内主操作唯一, en: Solid fill — the single primary action per view }
+    name:
+      zh: 主要
+      en: Primary
+    note:
+      zh: 实心填充，一屏内主操作唯一
+      en: Solid fill — the single primary action per view
   - id: secondary
-    name: { zh: 次要, en: Secondary }
-    note: { zh: 描边样式，与主操作并列, en: Outlined style, paired with the primary }
+    name:
+      zh: 次要
+      en: Secondary
+    note:
+      zh: 描边样式，与主操作并列
+      en: Outlined style, paired with the primary
   - id: ghost
-    name: { zh: 幽灵, en: Ghost }
-    note: { zh: 无边框纯文字，弱化视觉重量, en: Borderless text-only, minimal visual weight }
+    name:
+      zh: 幽灵
+      en: Ghost
+    note:
+      zh: 无边框纯文字，弱化视觉重量
+      en: Borderless text-only, minimal visual weight
   - id: danger
-    name: { zh: 危险, en: Danger }
-    note: { zh: 不可逆操作的警示色, en: Warning color for irreversible actions }
-
+    name:
+      zh: 危险
+      en: Danger
+    note:
+      zh: 不可逆操作的警示色
+      en: Warning color for irreversible actions
 anatomy:
   - 容器（Container）
   - 标签文字（Label）
   - 前置 / 后置图标（Icon）
   - 加载指示（Spinner）
-
 applicable_styles:
   - minimalism
   - neobrutalism
   - glassmorphism
-
 applicable_components: []
 applicable_pages:
   - login
   - checkout
   - settings
-
 related:
   - press-feedback
   - ripple
   - magnetic-button
   - hover-lift
   - loading-spinner
-
 demo:
   component: button
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 compare:
   group: click-feedback
   dimensions:
-    强度: { zh: 低～中，轻微下沉即可, en: Low to medium — a subtle sink is enough }
-    移动端友好: { zh: 好，触控目标不小于 44px, en: Good — keep touch targets ≥ 44px }
-    适合元素: { zh: 按钮 / 小尺寸可点块, en: Buttons / small clickable blocks }
-
+    强度:
+      zh: 低～中，轻微下沉即可
+      en: Low to medium — a subtle sink is enough
+    移动端友好:
+      zh: 好，触控目标不小于 44px
+      en: Good — keep touch targets ≥ 44px
+    适合元素:
+      zh: 按钮 / 小尺寸可点块
+      en: Buttons / small clickable blocks
 implementation:
   css:
     - transition
-    - "transform: scale(0.97)"
+    - 'transform: scale(0.97)'
     - background
     - box-shadow
   notes:
-    zh: >-
-      用 transition 让颜色与阴影平滑变化，按压瞬间加 scale(0.97) 下沉；
-      focus-visible 描边保证键盘可达；加载态将文字替换为 spinner 并 disabled，
-      保留按钮宽度避免布局跳动。触控目标高度不小于 44px。
-    en: >-
-      Transition colors and shadows smoothly; add scale(0.97) on the press frame.
-      Keep a focus-visible ring for keyboard access. In the busy state swap the
-      label for a spinner while disabled, preserving width to avoid layout shift.
-      Touch targets should be at least 44px tall.
-
+    zh: 用 transition 让颜色与阴影平滑变化，按压瞬间加 scale(0.97) 下沉； focus-visible 描边保证键盘可达；加载态将文字替换为 spinner 并 disabled， 保留按钮宽度避免布局跳动。触控目标高度不小于 44px。
+    en: Transition colors and shadows smoothly; add scale(0.97) on the press frame. Keep a focus-visible ring for keyboard access. In the busy state swap the label for a spinner while disabled, preserving width to avoid layout shift. Touch targets should be at least 44px tall.
 sources:
   - name: Material Design — Common buttons
     url: https://m3.material.io/components/buttons/overview
   - name: Apple HIG — Buttons
     url: https://developer.apple.com/design/human-interface-guidelines/buttons
-
 prompts:
   basic:
     zh: 创建一个按钮组件，支持主要、次要、幽灵、危险四种样式和加载状态。
     en: Create a button component with primary, secondary, ghost and danger styles plus a loading state.
   design:
-    zh: >-
-      创建按钮组件。要求：四种层级（实心主按钮、描边次按钮、幽灵文字按钮、危险按钮），
-      按压有轻微下沉反馈，加载时显示 spinner 并禁用点击且保持宽度不变，
-      支持 icon 前置位，深浅色主题一致。
-    en: >-
-      Create a button component. Requirements: four levels (solid primary,
-      outlined secondary, ghost text, danger), a subtle press-down feedback,
-      a loading state with spinner that disables clicks and preserves width,
-      optional leading icon, consistent in light/dark themes.
+    zh: 创建按钮组件。要求：四种层级（实心主按钮、描边次按钮、幽灵文字按钮、危险按钮）， 按压有轻微下沉反馈，加载时显示 spinner 并禁用点击且保持宽度不变， 支持 icon 前置位，深浅色主题一致。
+    en: 'Create a button component. Requirements: four levels (solid primary, outlined secondary, ghost text, danger), a subtle press-down feedback, a loading state with spinner that disables clicks and preserves width, optional leading icon, consistent in light/dark themes.'
   implementation:
-    zh: >-
-      用 React + Tailwind 实现 Button：variant 与 size 走映射表；disabled 与 loading
-      合并控制 pointer-events；点击反馈用 active:scale-[0.97] + transition；加载态渲染
-      spinner 并保留 min-width；支持 asChild 或 as="a" 复用到链接场景。
-      尊重 prefers-reduced-motion（去掉位移类动画）。
-    en: >-
-      React + Tailwind Button: variant and size via lookup maps; disabled and
-      loading merged into pointer control; press feedback with active:scale-[0.97]
-      and transition; busy state renders a spinner and keeps min-width; support
-      an anchor variant for link use. Respect prefers-reduced-motion.
+    zh: 用 React + Tailwind 实现 Button：variant 与 size 走映射表；disabled 与 loading 合并控制 pointer-events；点击反馈用 active:scale-[0.97] + transition；加载态渲染 spinner 并保留 min-width；支持 asChild 或 as="a" 复用到链接场景。 尊重 prefers-reduced-motion（去掉位移类动画）。
+    en: 'React + Tailwind Button: variant and size via lookup maps; disabled and loading merged into pointer control; press feedback with active:scale-[0.97] and transition; busy state renders a spinner and keeps min-width; support an anchor variant for link use. Respect prefers-reduced-motion.'
   agent:
     zh: |-
       在当前项目中实现按钮组件。

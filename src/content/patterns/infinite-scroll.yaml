@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 无限滚动
   en: Infinite Scroll
-
 aliases:
   - Infinite Scroll
   - 无限加载
@@ -11,79 +9,86 @@ aliases:
   - 下滑加载更多
   - 滚动加载
   - 自动翻页
-
 category:
   - Navigation
   - Data Display
-
 description:
-  zh: >-
-    用"滚动到底自动追加下一页"取代传统分页：用户持续下滑，新内容不断出现，
-    底部以加载指示或哨兵元素衔接。它解决的是浏览节奏被打断的问题——
-    用户不必寻找"下一页"按钮，注意力始终停留在内容流上，长列表被拆成一次次无感的追加。
-  en: >-
-    Replaces pagination with automatic loading: as the user scrolls to the bottom,
-    the next page of content appends seamlessly, bridged by a loading indicator or
-    sentinel element. It solves the broken browsing rhythm of hunting for a
-    "next page" button — attention stays on the feed while long lists arrive in
-    imperceptible chunks.
-
+  zh: 用"滚动到底自动追加下一页"取代传统分页：用户持续下滑，新内容不断出现， 底部以加载指示或哨兵元素衔接。它解决的是浏览节奏被打断的问题—— 用户不必寻找"下一页"按钮，注意力始终停留在内容流上，长列表被拆成一次次无感的追加。
+  en: 'Replaces pagination with automatic loading: as the user scrolls to the bottom, the next page of content appends seamlessly, bridged by a loading indicator or sentinel element. It solves the broken browsing rhythm of hunting for a "next page" button — attention stays on the feed while long lists arrive in imperceptible chunks.'
 use_when:
-  - { zh: 信息流、时间线等按时间追加的内容, en: Feeds and timelines that grow over time }
-  - { zh: 浏览型任务，用户不追求精确定位, en: Browsing tasks rather than pinpoint lookups }
-  - { zh: 内容体量大、单页翻页成本高, en: Very large datasets where paging is costly }
-
+  - zh: 信息流、时间线等按时间追加的内容
+    en: Feeds and timelines that grow over time
+  - zh: 浏览型任务，用户不追求精确定位
+    en: Browsing tasks rather than pinpoint lookups
+  - zh: 内容体量大、单页翻页成本高
+    en: Very large datasets where paging is costly
 avoid_when:
-  - { zh: 用户需要跳页、定位或回找特定条目, en: Users need to jump to or relocate specific items }
-  - { zh: 页脚内容重要，会被无限推远而难以触达, en: Important footer — it gets pushed away endlessly }
-  - { zh: 需要明确"共 N 条"的总量边界感, en: Users need a clear sense of total result count }
-
+  - zh: 用户需要跳页、定位或回找特定条目
+    en: Users need to jump to or relocate specific items
+  - zh: 页脚内容重要，会被无限推远而难以触达
+    en: Important footer — it gets pushed away endlessly
+  - zh: 需要明确"共 N 条"的总量边界感
+    en: Users need a clear sense of total result count
 tags:
   - loading
   - scrolling
   - list
   - data-display
-
 variants:
   - id: sentinel
-    name: { zh: 滚动哨兵, en: Sentinel }
-    note: { zh: 底部哨兵元素进入视口即触发加载, en: A bottom sentinel triggers loading on viewport entry }
+    name:
+      zh: 滚动哨兵
+      en: Sentinel
+    note:
+      zh: 底部哨兵元素进入视口即触发加载
+      en: A bottom sentinel triggers loading on viewport entry
   - id: fallback-button
-    name: { zh: 兜底按钮, en: Fallback button }
-    note: { zh: 自动加载失败或停顿时提供"加载更多"按钮, en: A manual "load more" button when auto-load stalls or fails }
+    name:
+      zh: 兜底按钮
+      en: Fallback button
+    note:
+      zh: 自动加载失败或停顿时提供"加载更多"按钮
+      en: A manual "load more" button when auto-load stalls or fails
   - id: end-notice
-    name: { zh: 到底提示, en: End notice }
-    note: { zh: 数据耗尽时展示"没有更多了"收尾, en: A "no more items" notice closes out exhausted data }
-
+    name:
+      zh: 到底提示
+      en: End notice
+    note:
+      zh: 数据耗尽时展示"没有更多了"收尾
+      en: A "no more items" notice closes out exhausted data
 anatomy:
   - 滚动容器（Scroll container）
   - 内容列表（Content list）
   - 底部哨兵与加载指示（Sentinel / loading indicator）
   - 到底提示（End-of-list notice）
-
 applicable_components: []
 applicable_pages:
   - search
   - dashboard
-
 related:
   - pagination
   - pull-to-refresh
   - skeleton-loading
   - lazy-loading
   - search-filtering
-
 demo:
   component: infinite-scroll
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 compare:
   group: scroll-loading
   dimensions:
-    触发方式: { zh: 滚动到底自动触发，无需操作, en: Automatic — fires at scroll bottom }
-    数据控制: { zh: 系统决定加载节奏，用户被动接收, en: System-paced — user passively receives more }
-    适用内容: { zh: 信息流、时间线等浏览型长列表, en: Browsing-oriented feeds and timelines }
-
+    触发方式:
+      zh: 滚动到底自动触发，无需操作
+      en: Automatic — fires at scroll bottom
+    数据控制:
+      zh: 系统决定加载节奏，用户被动接收
+      en: System-paced — user passively receives more
+    适用内容:
+      zh: 信息流、时间线等浏览型长列表
+      en: Browsing-oriented feeds and timelines
 implementation:
   css:
     - overflow-y-auto
@@ -91,46 +96,23 @@ implementation:
     - min-height
     - scroll event
   notes:
-    zh: >-
-      优先用 IntersectionObserver 观察底部哨兵，也可监听 scroll 接近触底时提前请求。
-      加载中显示指示并加锁防止重复触发；插入内容时保留滚动位置、占位高度尽量一致，
-      避免布局跳动。提供"加载更多"兜底按钮与"没有更多了"结束态。
-    en: >-
-      Prefer an IntersectionObserver on a bottom sentinel, or listen to scroll and
-      prefetch near the bottom. Show an indicator and lock re-entry while loading;
-      keep the scroll position stable and match placeholder heights to avoid layout
-      shift. Provide a manual "load more" fallback and an explicit end-of-list notice.
-
+    zh: 优先用 IntersectionObserver 观察底部哨兵，也可监听 scroll 接近触底时提前请求。 加载中显示指示并加锁防止重复触发；插入内容时保留滚动位置、占位高度尽量一致， 避免布局跳动。提供"加载更多"兜底按钮与"没有更多了"结束态。
+    en: Prefer an IntersectionObserver on a bottom sentinel, or listen to scroll and prefetch near the bottom. Show an indicator and lock re-entry while loading; keep the scroll position stable and match placeholder heights to avoid layout shift. Provide a manual "load more" fallback and an explicit end-of-list notice.
 sources:
   - name: MDN — Intersection Observer API
     url: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
   - name: NN/g — Infinite Scrolling Tips
     url: https://www.nngroup.com/articles/infinite-scrolling-tips/
-
 prompts:
   basic:
     zh: 创建一个无限滚动（Infinite Scroll）列表，滚动到底自动加载下一页，加载中显示指示，数据耗尽提示"没有更多了"。
     en: Create an infinite scroll list that loads the next page as the user reaches the bottom, shows an indicator while loading, and an end-of-list notice when data runs out.
   design:
-    zh: >-
-      设计一个无限滚动信息流。要求：滚动到底自动追加下一页；底部加载指示轻量不打断；
-      加载失败出现"加载更多"兜底按钮；数据耗尽显示"已经到底了"结束态；支持深浅色主题。
-    en: >-
-      Design an infinite scroll feed. Requirements: next page appends at scroll bottom;
-      a lightweight loading indicator that doesn't interrupt reading; a manual
-      "load more" fallback on failure; an "you've reached the end" notice; light/dark themes.
+    zh: 设计一个无限滚动信息流。要求：滚动到底自动追加下一页；底部加载指示轻量不打断； 加载失败出现"加载更多"兜底按钮；数据耗尽显示"已经到底了"结束态；支持深浅色主题。
+    en: 'Design an infinite scroll feed. Requirements: next page appends at scroll bottom; a lightweight loading indicator that doesn''t interrupt reading; a manual "load more" fallback on failure; an "you''ve reached the end" notice; light/dark themes.'
   implementation:
-    zh: >-
-      用 React + Tailwind 实现 Infinite Scroll。容器固定高度 + overflow-y-auto，
-      onScroll 计算触底距离或用 IntersectionObserver 观察哨兵元素；加载中置 busy 锁，
-      模拟请求用 setTimeout，完成后追加数据并更新页码；到底后渲染结束态。
-      尊重 prefers-reduced-motion，加载指示不做大幅动画。
-    en: >-
-      Implement Infinite Scroll in React + Tailwind. Fixed-height container with
-      overflow-y-auto; detect bottom via onScroll math or IntersectionObserver on a
-      sentinel; guard with a busy flag, simulate the request with setTimeout, then
-      append data and bump the page counter; render an end state when exhausted.
-      Respect prefers-reduced-motion — keep the indicator animation minimal.
+    zh: 用 React + Tailwind 实现 Infinite Scroll。容器固定高度 + overflow-y-auto， onScroll 计算触底距离或用 IntersectionObserver 观察哨兵元素；加载中置 busy 锁， 模拟请求用 setTimeout，完成后追加数据并更新页码；到底后渲染结束态。 尊重 prefers-reduced-motion，加载指示不做大幅动画。
+    en: Implement Infinite Scroll in React + Tailwind. Fixed-height container with overflow-y-auto; detect bottom via onScroll math or IntersectionObserver on a sentinel; guard with a busy flag, simulate the request with setTimeout, then append data and bump the page counter; render an end state when exhausted. Respect prefers-reduced-motion — keep the indicator animation minimal.
   agent:
     zh: |-
       在当前项目中实现无限滚动（Infinite Scroll）。

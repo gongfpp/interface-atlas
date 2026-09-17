@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 表单校验
   en: Form Validation
-
 aliases:
   - 表单校验
   - 输入报错
@@ -11,56 +9,60 @@ aliases:
   - 表单验证
   - 输入错误提示
   - 红框报错
-
 category:
   - Forms
   - Feedback
-
 description:
-  zh: >-
-    在用户填写表单的过程中或提交时检查输入合法性，并把错误就地显示在对应字段旁边。
-    目标是让用户在离错误最近的位置、以最小的打断成本知道"哪里错了、怎么改"，而不是提交后被一整个错误页打回。
-  en: >-
-    Checks input validity during typing or at submit and surfaces errors right next to the offending
-    field. The goal is to tell users, with minimal interruption and maximum locality, what went
-    wrong and how to fix it — instead of bouncing them back with a page of errors after submit.
-
+  zh: 在用户填写表单的过程中或提交时检查输入合法性，并把错误就地显示在对应字段旁边。 目标是让用户在离错误最近的位置、以最小的打断成本知道"哪里错了、怎么改"，而不是提交后被一整个错误页打回。
+  en: Checks input validity during typing or at submit and surfaces errors right next to the offending field. The goal is to tell users, with minimal interruption and maximum locality, what went wrong and how to fix it — instead of bouncing them back with a page of errors after submit.
 use_when:
-  - { zh: 注册、登录、结账等字段正确性直接影响流程的表单, en: Signup, login and checkout flows where correctness gates progress }
-  - { zh: 字段有明确格式约束（邮箱、手机号、密码规则）, en: Fields with clear format rules (email, phone, password) }
-  - { zh: 表单较长，用户需要在提交前发现并修正问题, en: Long forms where problems must surface before submit }
-
+  - zh: 注册、登录、结账等字段正确性直接影响流程的表单
+    en: Signup, login and checkout flows where correctness gates progress
+  - zh: 字段有明确格式约束（邮箱、手机号、密码规则）
+    en: Fields with clear format rules (email, phone, password)
+  - zh: 表单较长，用户需要在提交前发现并修正问题
+    en: Long forms where problems must surface before submit
 avoid_when:
-  - { zh: 用户还在输入中途就狂报错，造成干扰, en: Aggressively flagging mid-typing, before input is plausibly complete }
-  - { zh: 纯偏好类选项没有对错，无需校验, en: Preference-style fields with no right or wrong answer }
-  - { zh: 错误信息含糊（"输入无效"），用户无法据此修正, en: Vague messages like "invalid input" that users cannot act on }
-
+  - zh: 用户还在输入中途就狂报错，造成干扰
+    en: Aggressively flagging mid-typing, before input is plausibly complete
+  - zh: 纯偏好类选项没有对错，无需校验
+    en: Preference-style fields with no right or wrong answer
+  - zh: 错误信息含糊（"输入无效"），用户无法据此修正
+    en: Vague messages like "invalid input" that users cannot act on
 tags:
   - forms
   - validation
   - error
   - feedback
-
 variants:
   - id: on-blur
-    name: { zh: 失焦校验, en: On blur }
-    note: { zh: 离开字段时检查，干扰最小, en: Validate on leaving the field, least intrusive }
+    name:
+      zh: 失焦校验
+      en: On blur
+    note:
+      zh: 离开字段时检查，干扰最小
+      en: Validate on leaving the field, least intrusive
   - id: on-change
-    name: { zh: 实时校验, en: Live }
-    note: { zh: 输入即校验，反馈最快，注意时机, en: Validate as you type, fastest but watch the timing }
+    name:
+      zh: 实时校验
+      en: Live
+    note:
+      zh: 输入即校验，反馈最快，注意时机
+      en: Validate as you type, fastest but watch the timing
   - id: on-submit
-    name: { zh: 提交校验, en: On submit }
-    note: { zh: 点提交统一检查并定位首个错误, en: Check all at submit and jump to the first error }
-
+    name:
+      zh: 提交校验
+      en: On submit
+    note:
+      zh: 点提交统一检查并定位首个错误
+      en: Check all at submit and jump to the first error
 anatomy:
   - 输入字段（Field）
   - 校验状态标记（Status indicator）
   - 错误信息（Error message）
   - 提交反馈（Submit feedback）
-
 applicable_styles:
   - minimalism
-
 applicable_components:
   - input
   - textarea
@@ -68,69 +70,54 @@ applicable_pages:
   - signup
   - login
   - checkout
-
 related:
   - input
   - toast
   - alert
   - inline-editing
   - empty-state
-
 demo:
   component: form-validation
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 compare:
   group: form-feedback
   dimensions:
-    打断程度: { zh: 低，错误就地显示，不打断输入流, en: Low — inline errors, typing flow preserved }
-    持续性: { zh: 高，错误停留在字段旁直到修正, en: High — error persists beside the field until fixed }
-    错误定位能力: { zh: 精确到具体字段和原因, en: Pinpoints the exact field and reason }
-
+    打断程度:
+      zh: 低，错误就地显示，不打断输入流
+      en: Low — inline errors, typing flow preserved
+    持续性:
+      zh: 高，错误停留在字段旁直到修正
+      en: High — error persists beside the field until fixed
+    错误定位能力:
+      zh: 精确到具体字段和原因
+      en: Pinpoints the exact field and reason
 implementation:
   css:
-    - ":focus"
+    - :focus
     - aria-invalid
     - transition-colors
-    - "[role=alert]"
+    - '[role=alert]'
   notes:
-    zh: >-
-      错误态用 aria-invalid 与红色描边标记字段，错误文本挂 role="alert" 或 aria-live="polite"。
-      校验时机建议：失焦后开始实时校验，提交时统一兜底并聚焦首个错误字段。错误信息写清原因与改法，
-      不要只写"无效"。成功态可用绿色勾选即时确认。
-    en: >-
-      Mark invalid fields with aria-invalid and a red outline; attach error text via role="alert" or
-      aria-live="polite". Suggested timing: validate live after first blur, re-check everything on
-      submit and focus the first invalid field. Messages must state the cause and the fix, never
-      just "invalid". A green check confirms valid input in real time.
-
+    zh: 错误态用 aria-invalid 与红色描边标记字段，错误文本挂 role="alert" 或 aria-live="polite"。 校验时机建议：失焦后开始实时校验，提交时统一兜底并聚焦首个错误字段。错误信息写清原因与改法， 不要只写"无效"。成功态可用绿色勾选即时确认。
+    en: 'Mark invalid fields with aria-invalid and a red outline; attach error text via role="alert" or aria-live="polite". Suggested timing: validate live after first blur, re-check everything on submit and focus the first invalid field. Messages must state the cause and the fix, never just "invalid". A green check confirms valid input in real time.'
 sources:
-  - name: "Material Design — Text fields: Error"
+  - name: 'Material Design — Text fields: Error'
     url: https://m3.material.io/components/text-fields/guidelines
-  - name: "W3C WAI — Forms Tutorial: Error messages"
+  - name: 'W3C WAI — Forms Tutorial: Error messages'
     url: https://www.w3.org/WAI/tutorials/forms/error-messages/
-
 prompts:
   basic:
     zh: 创建一个表单校验（Form Validation）演示，输入邮箱时实时校验格式并就地显示错误或成功状态。
     en: Create a form validation demo that validates email format live and shows inline error or success states.
   design:
-    zh: >-
-      创建表单校验演示。要求：邮箱输入框，失焦后实时校验，错误时红框 + 字段下方错误文案（说明原因与改法），
-      合法时绿勾确认；提交按钮在整体合法前禁用或提交后给出成功提示；错误文案颜色满足对比度。
-    en: >-
-      Create a form validation demo. Requirements: an email field validated live after first blur;
-      red outline plus a message below explaining cause and fix on error, a green check on success;
-      submit disabled until valid or a success confirmation on submit; error text meets contrast.
+    zh: 创建表单校验演示。要求：邮箱输入框，失焦后实时校验，错误时红框 + 字段下方错误文案（说明原因与改法）， 合法时绿勾确认；提交按钮在整体合法前禁用或提交后给出成功提示；错误文案颜色满足对比度。
+    en: 'Create a form validation demo. Requirements: an email field validated live after first blur; red outline plus a message below explaining cause and fix on error, a green check on success; submit disabled until valid or a success confirmation on submit; error text meets contrast.'
   implementation:
-    zh: >-
-      用 React 受控组件实现表单校验：正则校验邮箱格式，状态机为 idle / invalid / valid；
-      首次 blur 后开启实时校验（on-change），提交时兜底检查并聚焦错误字段。错误文本用 role="alert"，
-      字段加 aria-invalid。不引入第三方表单库。
-    en: >-
-      Implement validation with a controlled React component: regex check for email, states
-      idle/invalid/valid; enable live validation after first blur and re-check on submit, focusing
-      the invalid field. Error text uses role="alert", the field gets aria-invalid. No form library.
+    zh: 用 React 受控组件实现表单校验：正则校验邮箱格式，状态机为 idle / invalid / valid； 首次 blur 后开启实时校验（on-change），提交时兜底检查并聚焦错误字段。错误文本用 role="alert"， 字段加 aria-invalid。不引入第三方表单库。
+    en: 'Implement validation with a controlled React component: regex check for email, states idle/invalid/valid; enable live validation after first blur and re-check on submit, focusing the invalid field. Error text uses role="alert", the field gets aria-invalid. No form library.'
   agent:
     zh: |-
       在当前项目中实现表单校验（Form Validation）。

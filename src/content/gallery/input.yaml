@@ -1,59 +1,53 @@
 status: published
-
 name:
   zh: 输入框参考图集
   en: Input Reference Sheets
-
 aliases:
   - 输入框设计参考
   - 表单控件灵感
   - input 灵感图
-
 description:
-  zh: >-
-    8 张 AI 生成的输入框设计参考海报：从基础视觉结构、状态与操作、格式与约束，
-    到验证码、格式掩码、前后缀、步进器、字数限制、分段日期、富文本、语音输入与
-    快捷键录入——把"一个输入框到底能有多少形态"一次讲全。
-  en: >-
-    Eight AI-generated input-field reference posters: basic structure, states and
-    actions, format constraints, then OTP fields, input masking, affixes, steppers,
-    character counters, segmented dates, rich text, voice dictation and shortcut
-    recording — every shape an input can take, in one sweep.
-
+  zh: 8 张 AI 生成的输入框设计参考海报：从基础视觉结构、状态与操作、格式与约束， 到验证码、格式掩码、前后缀、步进器、字数限制、分段日期、富文本、语音输入与 快捷键录入——把"一个输入框到底能有多少形态"一次讲全。
+  en: 'Eight AI-generated input-field reference posters: basic structure, states and actions, format constraints, then OTP fields, input masking, affixes, steppers, character counters, segmented dates, rich text, voice dictation and shortcut recording — every shape an input can take, in one sweep.'
 related_component: input
-
 images:
-  - { file: /images/gallery/input/1.webp, title: { zh: 基础视觉结构, en: Form & structure } }
-  - { file: /images/gallery/input/2.webp, title: { zh: 状态与操作, en: States & actions } }
-  - { file: /images/gallery/input/3.webp, title: { zh: 格式与约束, en: Format & constraints } }
-  - { file: /images/gallery/input/4.webp, title: { zh: 复合与高效输入, en: Compound & productivity } }
-  - { file: /images/gallery/input/5.webp, title: { zh: 分段日期输入, en: Segmented date } }
-  - { file: /images/gallery/input/6.webp, title: { zh: 富文本输入, en: Rich text } }
-  - { file: /images/gallery/input/7.webp, title: { zh: 语音输入, en: Voice dictation } }
-  - { file: /images/gallery/input/8.webp, title: { zh: 快捷键录入, en: Shortcut recorder } }
-
+  - file: /images/gallery/input/1.webp
+    title:
+      zh: 基础视觉结构
+      en: Form & structure
+  - file: /images/gallery/input/2.webp
+    title:
+      zh: 状态与操作
+      en: States & actions
+  - file: /images/gallery/input/3.webp
+    title:
+      zh: 格式与约束
+      en: Format & constraints
+  - file: /images/gallery/input/4.webp
+    title:
+      zh: 复合与高效输入
+      en: Compound & productivity
+  - file: /images/gallery/input/5.webp
+    title:
+      zh: 分段日期输入
+      en: Segmented date
+  - file: /images/gallery/input/6.webp
+    title:
+      zh: 富文本输入
+      en: Rich text
+  - file: /images/gallery/input/7.webp
+    title:
+      zh: 语音输入
+      en: Voice dictation
+  - file: /images/gallery/input/8.webp
+    title:
+      zh: 快捷键录入
+      en: Shortcut recorder
 prompt:
-  zh: >-
-    制作一张竖版「输入框设计参考」海报，编号 NN，右上角标注本张主题（如 基础视觉结构 /
-    状态与操作 / 格式与约束）。米白背景（#FAF9F5），黑色粗标题「输入框设计参考 NN」+
-    灰色小字 INPUT DESIGN REFERENCE。正文纵向排列 5 个条目，每条左侧是大号灰色序号 01～05、
-    英文模式名（如 OTP Input / Masked Input / Affix Input / Number Stepper / Character
-    Counter）、中文模式名与 2×2 关键词短语；右侧浅灰圆角卡片内是该输入模式的真实感演示
-    （如 6 格验证码、手机号 3-4-4 分组、¥ 前缀与 kg 后缀、加减步进器、6/12 字数计数），
-    卡片底部一行灰色说明。排版网格严格、留白充足、扁平极简，蓝色仅作强调，
-    中英文对照，UI 细节逼真。
-  en: >-
-    A vertical "Input Design Reference" poster, sheet number NN, with the sheet theme
-    top right (e.g. Form & Structure / States & Actions / Format & Constraints).
-    Off-white background (#FAF9F5), bold black Chinese title plus grey "INPUT DESIGN
-    REFERENCE" subtitle. Five numbered rows: large grey index, English pattern name
-    (e.g. OTP Input, Masked Input, Affix Input, Number Stepper, Character Counter),
-    Chinese name and a 2x2 keyword grid on the left; a realistic demo of that input
-    mode inside a light-grey rounded card on the right (six OTP boxes, a 3-4-4 grouped
-    phone number, a ¥-prefixed and kg-suffixed field, a +/- stepper, a 6/12 character
-    counter), with a one-line grey caption. Strict grid, flat minimal, blue accent only,
-    bilingual labels, crisp UI details.
-
+  zh: 制作一张竖版「输入框设计参考」海报，编号 NN，右上角标注本张主题（如 基础视觉结构 / 状态与操作 / 格式与约束）。米白背景（#FAF9F5），黑色粗标题「输入框设计参考 NN」+ 灰色小字 INPUT DESIGN REFERENCE。正文纵向排列 5 个条目，每条左侧是大号灰色序号 01～05、 英文模式名（如 OTP Input / Masked Input / Affix Input / Number Stepper / Character Counter）、中文模式名与 2×2 关键词短语；右侧浅灰圆角卡片内是该输入模式的真实感演示 （如 6 格验证码、手机号 3-4-4 分组、¥ 前缀与 kg 后缀、加减步进器、6/12 字数计数）， 卡片底部一行灰色说明。排版网格严格、留白充足、扁平极简，蓝色仅作强调， 中英文对照，UI 细节逼真。
+  en: 'A vertical "Input Design Reference" poster, sheet number NN, with the sheet theme top right (e.g. Form & Structure / States & Actions / Format & Constraints). Off-white background (#FAF9F5), bold black Chinese title plus grey "INPUT DESIGN REFERENCE" subtitle. Five numbered rows: large grey index, English pattern name (e.g. OTP Input, Masked Input, Affix Input, Number Stepper, Character Counter), Chinese name and a 2x2 keyword grid on the left; a realistic demo of that input mode inside a light-grey rounded card on the right (six OTP boxes, a 3-4-4 grouped phone number, a ¥-prefixed and kg-suffixed field, a +/- stepper, a 6/12 character counter), with a one-line grey caption. Strict grid, flat minimal, blue accent only, bilingual labels, crisp UI details.'
 tips:
-  - { zh: 主题词决定本张讲什么：换主题词就能定向补齐某类输入形态, en: The theme line steers the sheet — swap it to target a specific input family }
-  - { zh: 让「演示要能看出交互状态」写进 prompt，避免生成的输入框全是默认态, en: Ask explicitly for interactive states, or every field comes back in its default state }
+  - zh: 主题词决定本张讲什么：换主题词就能定向补齐某类输入形态
+    en: The theme line steers the sheet — swap it to target a specific input family
+  - zh: 让「演示要能看出交互状态」写进 prompt，避免生成的输入框全是默认态
+    en: Ask explicitly for interactive states, or every field comes back in its default state

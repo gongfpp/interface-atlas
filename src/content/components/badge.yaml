@@ -1,0 +1,123 @@
+status: published
+name:
+  zh: 徽标
+  en: Badge
+aliases:
+  - 徽章
+  - 小红点
+  - 角标
+  - 状态标签
+  - 计数气泡
+  - 数字角标
+  - 图标右上角的小圆点
+category:
+  - Display
+  - Status
+description:
+  zh: 附着在元素角落或行内的小型状态标记：圆点、数字计数或短文字标签。用于表达未读数量、 状态（新、已废弃）或分类；不参与交互，视觉上从属于宿主元素。
+  en: 'A small status marker attached to an element''s corner or inline: a dot, a count or a short label. It signals unread counts, status (new, deprecated) or category; non-interactive and visually subordinate to its host element.'
+use_when:
+  - zh: 未读消息数、购物车数量
+    en: Unread counts, cart quantity
+  - zh: 行内状态标注（成功、过期、Beta）
+    en: Inline status labels (success, expired, beta)
+  - zh: 图标右上角的小红点提醒
+    en: An attention dot on an icon corner
+avoid_when:
+  - zh: 需要点击响应（那是按钮或标签 chip）
+    en: It needs to be clickable — use a button or chip
+  - zh: 数值超过上限要截断（99+）并避免频繁跳动
+    en: Cap large counts (99+) and avoid jitter
+  - zh: 大段文字说明（改用 alert 或正文）
+    en: Long explanatory text — use an alert or body copy
+tags:
+  - status
+  - display
+  - marker
+  - count
+variants:
+  - id: count
+    name:
+      zh: 计数
+      en: Count
+    note:
+      zh: 数字气泡，可 99+ 截断
+      en: Numeric bubble, caps at 99+
+  - id: dot
+    name:
+      zh: 圆点
+      en: Dot
+    note:
+      zh: 无文字纯提醒
+      en: A bare dot for pure attention
+  - id: label
+    name:
+      zh: 标签
+      en: Label
+    note:
+      zh: 有底色的短文字状态
+      en: A short text status on a tinted surface
+anatomy:
+  - 宿主元素（Host）
+  - 徽标本体（Badge）
+  - 状态色（Status colour）
+related:
+  - avatar
+  - button
+  - card
+demo:
+  component: badge
+  modes:
+    - default
+    - dark
+    - variants
+implementation:
+  css:
+    - 'position: absolute'
+    - 'border-radius: 9999px'
+    - box-shadow
+    - 'font-variant-numeric: tabular-nums'
+  notes:
+    zh: 宿主 relative，徽标 absolute 定位在 -top/-right 并加与底色一致的描边（ring 或 shadow） 避免融入背景图。数字用 tabular-nums 防宽度抖动，超过 99 显示 99+。 状态色语义固定：红 = 错误或紧急、绿 = 成功、灰 = 中性；颜色之外给 aria-label 说明含义。
+    en: 'Host is relative; the badge sits absolute at -top/-right with a ring or shadow matching the surface so it does not bleed into images. Use tabular-nums to stop width jitter and cap at 99+. Keep status colour semantics stable: red = error or urgent, green = success, grey = neutral; convey meaning beyond colour with aria-label.'
+sources:
+  - name: Material Design — Badges
+    url: https://m3.material.io/components/badges/overview
+  - name: Carbon Design System — Tag
+    url: https://carbondesignsystem.com/components/tag/usage/
+prompts:
+  basic:
+    zh: 创建一个徽标（Badge）组件：支持数字计数、小红点和文字标签三种形态，可附着在图标或按钮角上。
+    en: 'Create a Badge component: count, dot and label forms, attachable to icon or button corners.'
+  design:
+    zh: 创建 Badge 组件。要求：计数形态为强调色圆形气泡（白描边、tabular-nums、99+ 截断）； 圆点形态 8px；标签形态低饱和底色 + 同色系文字（success/warning/error/info）； 附着在宿主右上角并与底面留出 2px 描边间隙；深浅色主题一致。
+    en: 'Create a Badge. Requirements: count form as an accent bubble (white ring, tabular-nums, 99+ cap); dot form at 8px; label form on a low-saturation surface with matching text (success/warning/error/info); anchored to the host''s top-right with a 2px ring gap against the surface; consistent light/dark themes.'
+  implementation:
+    zh: 用 React + Tailwind 实现 Badge：宿主 relative，徽标 absolute -top-1 -right-1  rounded-full min-w 配 px 撑开两位数，shadow 或 ring-2 ring-[surface] 做描边； 计数 value > 99 显示 "99+"；标签形态用配色映射对象；宿主加 aria-label 描述计数含义； 数值动画用 scale 过渡（时长乘 var(--demo-speed, 1)）。
+    en: 'React + Tailwind Badge: relative host, absolute -top-1 -right-1 badge, rounded-full min-w with px to fit two digits, ring-2 ring-[surface] or shadow for the gap; counts over 99 render "99+"; label form uses a palette mapping object; host carries an aria-label describing the count; scale transition on value change (duration scaled by var(--demo-speed, 1)).'
+  agent:
+    zh: |-
+      在当前项目中实现徽标（Badge）组件。
+
+      先检查现有组件体系与 Design Token，优先复用现有的状态色变量。
+      用途：未读计数与状态标注。
+      要求：
+      - 计数 / 圆点 / 文字标签三种形态
+      - 计数 99+ 截断，数字不抖动
+      - 描边与宿主底色衔接自然，深浅色主题一致
+      - 不只靠颜色传达（aria-label 或文字）
+      - 不新增依赖
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Implement a Badge component in the current project.
+
+      Inspect the existing component system and design tokens first; reuse existing
+      status colour variables.
+      Usage: unread counts and status marking.
+      Requirements:
+      - Count / dot / text-label forms
+      - 99+ cap and jitter-free numbers
+      - Ring blends with the host surface; consistent light/dark themes
+      - Never colour-only (aria-label or text)
+      - No new dependencies
+      Run existing checks when done and list modified files.

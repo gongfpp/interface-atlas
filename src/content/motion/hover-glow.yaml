@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 悬停发光
   en: Hover Glow
-
 aliases:
   - 悬浮发光
   - hover 发光
@@ -11,67 +9,77 @@ aliases:
   - 鼠标放上去发光
   - 边缘光晕
   - glow effect
-
 category:
   - Motion
   - Hover
-
 description:
-  zh: >-
-    鼠标悬停时元素边缘泛出柔和光晕，用外发光阴影或径向渐变沿边框晕开，
-    颜色多为品牌强调色。相比投影的"物理抬升"，光晕暗示的是"能量"与"可交互"，
-    常用于深色界面、游戏感产品与霓虹风格按钮。
-  en: >-
-    On hover, a soft glow blooms around the element's edges — an outer box-shadow
-    or radial gradient tinted with the brand accent. Unlike a shadow's physical
-    lift, glow signals energy and interactivity; common on dark UIs, gaming
-    products and neon-style buttons.
-
+  zh: 鼠标悬停时元素边缘泛出柔和光晕，用外发光阴影或径向渐变沿边框晕开， 颜色多为品牌强调色。相比投影的"物理抬升"，光晕暗示的是"能量"与"可交互"， 常用于深色界面、游戏感产品与霓虹风格按钮。
+  en: On hover, a soft glow blooms around the element's edges — an outer box-shadow or radial gradient tinted with the brand accent. Unlike a shadow's physical lift, glow signals energy and interactivity; common on dark UIs, gaming products and neon-style buttons.
 use_when:
-  - { zh: 深色界面上突出主操作按钮或图标, en: Highlighting primary actions or icons on dark UIs }
-  - { zh: 霓虹 / 游戏 / 科技感的产品调性, en: Neon, gaming or sci-fi product tones }
-  - { zh: 与 hover-lift 二选一，避免同时叠加, en: Choose instead of hover-lift — avoid stacking both }
-
+  - zh: 深色界面上突出主操作按钮或图标
+    en: Highlighting primary actions or icons on dark UIs
+  - zh: 霓虹 / 游戏 / 科技感的产品调性
+    en: Neon, gaming or sci-fi product tones
+  - zh: 与 hover-lift 二选一，避免同时叠加
+    en: Choose instead of hover-lift — avoid stacking both
 avoid_when:
-  - { zh: 浅色背景上低对比光晕（几乎不可见）, en: Low-contrast glow on light backgrounds — nearly invisible }
-  - { zh: 大面积元素整块发光（刺眼且廉价）, en: Large surfaces glowing wholesale — harsh and cheap-looking }
-  - { zh: 信息密集的工具界面（光晕分散注意力）, en: Dense utility interfaces — glow steals attention }
-
+  - zh: 浅色背景上低对比光晕（几乎不可见）
+    en: Low-contrast glow on light backgrounds — nearly invisible
+  - zh: 大面积元素整块发光（刺眼且廉价）
+    en: Large surfaces glowing wholesale — harsh and cheap-looking
+  - zh: 信息密集的工具界面（光晕分散注意力）
+    en: Dense utility interfaces — glow steals attention
 tags:
   - animation
   - hover
   - glow
   - feedback
   - micro-interaction
-
 variants:
   - id: soft-shadow
-    name: { zh: 柔和外发光, en: Soft outer glow }
-    note: { zh: box-shadow 大模糊 + 强调色，最常用, en: Large-blur accent box-shadow — the default }
+    name:
+      zh: 柔和外发光
+      en: Soft outer glow
+    note:
+      zh: box-shadow 大模糊 + 强调色，最常用
+      en: Large-blur accent box-shadow — the default
   - id: border-gradient
-    name: { zh: 边框流光, en: Border gradient }
-    note: { zh: 径向渐变沿边框晕开，霓虹感更强, en: Radial gradient tracing the border — more neon }
+    name:
+      zh: 边框流光
+      en: Border gradient
+    note:
+      zh: 径向渐变沿边框晕开，霓虹感更强
+      en: Radial gradient tracing the border — more neon
   - id: inner-glow
-    name: { zh: 内发光, en: Inner glow }
-    note: { zh: inset 阴影向内晕光，适合深色卡片, en: Inset shadow glowing inward — suits dark cards }
-
+    name:
+      zh: 内发光
+      en: Inner glow
+    note:
+      zh: inset 阴影向内晕光，适合深色卡片
+      en: Inset shadow glowing inward — suits dark cards
 related:
   - hover-lift
   - press-feedback
   - button
   - glassmorphism
-
 demo:
   component: hover-glow
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 compare:
   group: hover-feedback
   dimensions:
-    强度: { zh: 中～强，视觉存在感高, en: Medium to strong — visually loud }
-    适合元素: { zh: 按钮 / 图标 / 深色卡片, en: Buttons / icons / dark cards }
-    移动端友好: { zh: 差，无 hover, en: Poor — no hover on touch }
-
+    强度:
+      zh: 中～强，视觉存在感高
+      en: Medium to strong — visually loud
+    适合元素:
+      zh: 按钮 / 图标 / 深色卡片
+      en: Buttons / icons / dark cards
+    移动端友好:
+      zh: 差，无 hover
+      en: Poor — no hover on touch
 implementation:
   css:
     - box-shadow
@@ -79,42 +87,21 @@ implementation:
     - transition
     - :hover
   notes:
-    zh: >-
-      基础写法是 transition: box-shadow 200ms 后在 :hover 加
-      0 0 0 1px + 0 0 24px 两层强调色阴影；更高级的边框流光用伪元素 + 径向渐变
-      配合 mask 或 background 定位动画。光晕颜色取品牌强调色并保持 40%～60% 透明度，
-      避免纯白发光。触屏设备用 @media (hover:hover) 门控。
-    en: >-
-      Base recipe: `transition: box-shadow 200ms`, then on :hover stack two accent
-      shadows (a 1px ring + a ~24px blur bloom). The border-gradient variant uses a
-      pseudo-element with a radial gradient behind a mask, or animates background
-      position. Tint the glow with the accent at 40–60% opacity; avoid pure white.
-      Gate behind @media (hover:hover) for touch devices.
-
+    zh: '基础写法是 transition: box-shadow 200ms 后在 :hover 加 0 0 0 1px + 0 0 24px 两层强调色阴影；更高级的边框流光用伪元素 + 径向渐变 配合 mask 或 background 定位动画。光晕颜色取品牌强调色并保持 40%～60% 透明度， 避免纯白发光。触屏设备用 @media (hover:hover) 门控。'
+    en: 'Base recipe: `transition: box-shadow 200ms`, then on :hover stack two accent shadows (a 1px ring + a ~24px blur bloom). The border-gradient variant uses a pseudo-element with a radial gradient behind a mask, or animates background position. Tint the glow with the accent at 40–60% opacity; avoid pure white. Gate behind @media (hover:hover) for touch devices.'
 sources:
   - name: MDN — box-shadow
     url: https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
-
 prompts:
   basic:
     zh: 给按钮添加 hover 发光效果：鼠标悬停时边缘泛出柔和光晕。
     en: Add a hover glow to buttons — a soft halo blooming around the edges on hover.
   design:
-    zh: >-
-      按钮 hover 时边缘泛出品牌强调色光晕：1px 同色描边 + 24px 模糊外发光，
-      200ms 过渡；只用于主操作，普通按钮仅描边着色不发光。
-    en: >-
-      On hover, buttons bloom with an accent-colored halo — a 1px matching ring plus
-      a 24px blurred outer glow, 200ms transition; reserve it for primary actions.
+    zh: 按钮 hover 时边缘泛出品牌强调色光晕：1px 同色描边 + 24px 模糊外发光， 200ms 过渡；只用于主操作，普通按钮仅描边着色不发光。
+    en: On hover, buttons bloom with an accent-colored halo — a 1px matching ring plus a 24px blurred outer glow, 200ms transition; reserve it for primary actions.
   implementation:
-    zh: >-
-      纯 CSS：transition: box-shadow .2s；hover 时 box-shadow:
-      0 0 0 1px var(--accent), 0 0 24px color-mix(in srgb, var(--accent) 50%, transparent)。
-      用 @media (hover:hover) 门控触屏；尊重 prefers-reduced-motion（降级为仅描边变色）。
-    en: >-
-      CSS-only: `transition: box-shadow .2s`; on hover
-      `box-shadow: 0 0 0 1px var(--accent), 0 0 24px color-mix(in srgb, var(--accent) 50%, transparent)`.
-      Gate behind @media (hover:hover); respect prefers-reduced-motion (ring-color-only fallback).
+    zh: '纯 CSS：transition: box-shadow .2s；hover 时 box-shadow: 0 0 0 1px var(--accent), 0 0 24px color-mix(in srgb, var(--accent) 50%, transparent)。 用 @media (hover:hover) 门控触屏；尊重 prefers-reduced-motion（降级为仅描边变色）。'
+    en: 'CSS-only: `transition: box-shadow .2s`; on hover `box-shadow: 0 0 0 1px var(--accent), 0 0 24px color-mix(in srgb, var(--accent) 50%, transparent)`. Gate behind @media (hover:hover); respect prefers-reduced-motion (ring-color-only fallback).'
   agent:
     zh: |-
       为当前项目的主操作按钮添加 hover 发光反馈。

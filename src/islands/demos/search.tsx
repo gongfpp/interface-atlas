@@ -18,10 +18,6 @@ const DATA = [
   { title: '深色模式适配清单', path: 'docs / 主题', body: '适配深色模式的检查清单：色彩、阴影与图片…' },
 ];
 
-const Bar = ({ w = 'w-full', h = 'h-1.5', cls = 'bg-ink-3/25' }: { w?: string; h?: string; cls?: string }) => (
-  <div className={`${h} ${w} rounded-full ${cls}`} />
-);
-
 function highlight(text: string, q: string) {
   if (!q) return text;
   const i = text.indexOf(q);

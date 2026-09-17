@@ -43,7 +43,7 @@ function LazyList({ simulate, keySeed }: { simulate: boolean; keySeed: number })
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    setStates(Array(6).fill('pending'));
+    // 组件由父级 key={keySeed} 重挂载复位，这里无需同步 setState 重置
     const root = rootRef.current;
     if (!root) return;
     const observer = new IntersectionObserver(
@@ -66,15 +66,18 @@ function LazyList({ simulate, keySeed }: { simulate: boolean; keySeed: number })
     return () => observer.disconnect();
   }, [keySeed]);
 
-  // 模拟进入视口：把前两个未加载项直接标记为 loaded
+  // 模拟进入视口：把前两个未加载项直接标记为 loaded（延迟触发，避免 effect 内同步 setState）
   useEffect(() => {
     if (!simulate) return;
-    setStates((prev) => {
-      const next = [...prev];
-      const first = next.indexOf('pending');
-      if (first !== -1) next[first] = 'loaded';
-      return next;
-    });
+    const t = setTimeout(() => {
+      setStates((prev) => {
+        const next = [...prev];
+        const first = next.indexOf('pending');
+        if (first !== -1) next[first] = 'loaded';
+        return next;
+      });
+    }, 300);
+    return () => clearTimeout(t);
   }, [simulate]);
 
   return (

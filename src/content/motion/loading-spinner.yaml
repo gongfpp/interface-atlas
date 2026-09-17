@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 加载指示器
   en: Loading Spinner
-
 aliases:
   - 加载图标
   - 转圈加载
@@ -11,111 +9,99 @@ aliases:
   - 转圈圈
   - loading 转圈
   - 旋转加载
-
 category:
   - Motion
   - Loading
-
 description:
-  zh: >-
-    用一个持续旋转的圆环或圆点表示"正在处理"。占用空间极小、语义全球通用，
-    适合嵌入按钮内、跟随光标或作为局部区块的轻量加载反馈。
-    它只表达"忙碌"，不表达进度多少，也不预告还剩多久。
-  en: >-
-    A continuously rotating ring or dots that says "work in progress". Tiny in
-    footprint and universally understood, it fits inside buttons, cursors or small
-    regions as lightweight feedback. It communicates busyness only — neither
-    progress amount nor time remaining.
-
+  zh: 用一个持续旋转的圆环或圆点表示"正在处理"。占用空间极小、语义全球通用， 适合嵌入按钮内、跟随光标或作为局部区块的轻量加载反馈。 它只表达"忙碌"，不表达进度多少，也不预告还剩多久。
+  en: A continuously rotating ring or dots that says "work in progress". Tiny in footprint and universally understood, it fits inside buttons, cursors or small regions as lightweight feedback. It communicates busyness only — neither progress amount nor time remaining.
 use_when:
-  - { zh: 1～5 秒的短时等待（请求、提交、刷新）, en: Short waits of 1–5 seconds — requests, submits, refreshes }
-  - { zh: 按钮内联表示"点击已生效，处理中", en: Inline in a button to confirm the click registered }
-  - { zh: 局部小区域加载，不值得整页骨架屏, en: Small local regions where a full skeleton is overkill }
-
+  - zh: 1～5 秒的短时等待（请求、提交、刷新）
+    en: Short waits of 1–5 seconds — requests, submits, refreshes
+  - zh: 按钮内联表示"点击已生效，处理中"
+    en: Inline in a button to confirm the click registered
+  - zh: 局部小区域加载，不值得整页骨架屏
+    en: Small local regions where a full skeleton is overkill
 avoid_when:
-  - { zh: 超过 5～10 秒的等待（改用进度条）, en: Waits beyond 5–10 seconds — use a progress bar }
-  - { zh: 首屏内容加载（改用骨架屏保布局）, en: Initial content loads — skeletons preserve layout }
-  - { zh: 无限旋转但任务可能失败（需可取消/可退出）, en: Potentially failing tasks — spinner alone offers no escape }
-
+  - zh: 超过 5～10 秒的等待（改用进度条）
+    en: Waits beyond 5–10 seconds — use a progress bar
+  - zh: 首屏内容加载（改用骨架屏保布局）
+    en: Initial content loads — skeletons preserve layout
+  - zh: 无限旋转但任务可能失败（需可取消/可退出）
+    en: Potentially failing tasks — spinner alone offers no escape
 tags:
   - animation
   - loading
   - spinner
   - feedback
-
 variants:
   - id: ring
-    name: { zh: 圆环, en: Ring }
-    note: { zh: 部分弧线旋转，Material 风格, en: Partial arc rotating — Material style }
+    name:
+      zh: 圆环
+      en: Ring
+    note:
+      zh: 部分弧线旋转，Material 风格
+      en: Partial arc rotating — Material style
   - id: dots
-    name: { zh: 圆点跳动, en: Dots }
-    note: { zh: 三点波浪起伏，社交产品常用, en: Three dots waving — social products' favorite }
+    name:
+      zh: 圆点跳动
+      en: Dots
+    note:
+      zh: 三点波浪起伏，社交产品常用
+      en: Three dots waving — social products' favorite
   - id: dual-ring
-    name: { zh: 双环, en: Dual ring }
-    note: { zh: 双层反向旋转，科技感更强, en: Two counter-rotating rings — more techy }
-
+    name:
+      zh: 双环
+      en: Dual ring
+    note:
+      zh: 双层反向旋转，科技感更强
+      en: Two counter-rotating rings — more techy
 related:
   - skeleton-loading
   - progress-bar
   - button
-
 demo:
   component: loading-spinner
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 compare:
   group: loading-indicator
   dimensions:
-    打断程度: { zh: 低，占位极小, en: Low — minimal footprint }
-    信息量: { zh: 低，只表达忙碌, en: Low — busyness only }
-    适用时长: { zh: 1～5 秒, en: 1–5 seconds }
-    与结果一致性: { zh: 低，不预示结果形态, en: Low — no shape of the result }
-
+    打断程度:
+      zh: 低，占位极小
+      en: Low — minimal footprint
+    信息量:
+      zh: 低，只表达忙碌
+      en: Low — busyness only
+    适用时长:
+      zh: 1～5 秒
+      en: 1–5 seconds
+    与结果一致性:
+      zh: 低，不预示结果形态
+      en: Low — no shape of the result
 implementation:
   css:
-    - "@keyframes spin"
-    - "border-radius: 50%"
-    - "border-top-color"
+    - '@keyframes spin'
+    - 'border-radius: 50%'
+    - border-top-color
   notes:
-    zh: >-
-      最简实现：直径 16～24px 的圆，边框 2～3px，只给顶部一个强调色边框，
-      animation: spin 0.8s linear infinite。圆点版用三个圆 + 交错 animation-delay。
-      必须加 role="status" 与 aria-label="加载中"，
-      并尊重 prefers-reduced-motion（降级为呼吸透明度）。
-    en: >-
-      Simplest recipe: a 16–24px circle with a 2–3px border where only the top arc
-      takes the accent color, animated with `spin 0.8s linear infinite`. The dots
-      variant staggers animation-delay across three circles. Always add
-      role="status" with an aria-label, and respect prefers-reduced-motion
-      (fall back to a gentle opacity pulse).
-
+    zh: '最简实现：直径 16～24px 的圆，边框 2～3px，只给顶部一个强调色边框， animation: spin 0.8s linear infinite。圆点版用三个圆 + 交错 animation-delay。 必须加 role="status" 与 aria-label="加载中"， 并尊重 prefers-reduced-motion（降级为呼吸透明度）。'
+    en: 'Simplest recipe: a 16–24px circle with a 2–3px border where only the top arc takes the accent color, animated with `spin 0.8s linear infinite`. The dots variant staggers animation-delay across three circles. Always add role="status" with an aria-label, and respect prefers-reduced-motion (fall back to a gentle opacity pulse).'
 sources:
   - name: Material Design — Progress indicators
     url: https://m3.material.io/components/progress-indicators/overview
-
 prompts:
   basic:
     zh: 给按钮添加旋转加载指示器：提交中按钮内显示转圈图标并禁用点击。
     en: Add a spinner to the button — show a rotating icon and disable clicks while submitting.
   design:
-    zh: >-
-      提交时按钮文字替换为 16px 强调色圆环指示器，按钮禁用并保持宽度不变，
-      旋转 0.8s linear infinite；完成后恢复文字。
-    en: >-
-      While submitting, swap the button label for a 16px accent ring spinning at
-      0.8s linear infinite; disable the button, keep its width fixed, restore the
-      label when done.
+    zh: 提交时按钮文字替换为 16px 强调色圆环指示器，按钮禁用并保持宽度不变， 旋转 0.8s linear infinite；完成后恢复文字。
+    en: While submitting, swap the button label for a 16px accent ring spinning at 0.8s linear infinite; disable the button, keep its width fixed, restore the label when done.
   implementation:
-    zh: >-
-      纯 CSS：border: 2px solid transparent; border-top-color: var(--accent);
-      animation: spin .8s linear infinite。按钮内联时用 flex 居中并锁宽
-      （min-width 防抖动）。加 role="status" aria-label="加载中"；
-      尊重 prefers-reduced-motion（改用透明度呼吸）。
-    en: >-
-      CSS-only: `border: 2px solid transparent; border-top-color: var(--accent);`
-      with `animation: spin .8s linear infinite`. Inline in buttons via flex centering
-      and a min-width to avoid layout shift. Add role="status" + aria-label;
-      respect prefers-reduced-motion (opacity pulse instead).
+    zh: '纯 CSS：border: 2px solid transparent; border-top-color: var(--accent); animation: spin .8s linear infinite。按钮内联时用 flex 居中并锁宽 （min-width 防抖动）。加 role="status" aria-label="加载中"； 尊重 prefers-reduced-motion（改用透明度呼吸）。'
+    en: 'CSS-only: `border: 2px solid transparent; border-top-color: var(--accent);` with `animation: spin .8s linear infinite`. Inline in buttons via flex centering and a min-width to avoid layout shift. Add role="status" + aria-label; respect prefers-reduced-motion (opacity pulse instead).'
   agent:
     zh: |-
       为项目中的异步按钮与局部区块统一加载指示器。

@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: Y2K 千禧美学
   en: Y2K Aesthetic
-
 aliases:
   - 千禧风
   - Y2K风格
@@ -13,119 +11,96 @@ aliases:
   - 闪亮科技感
   - 千禧辣妹风
   - Cyber Y2K
-
 category:
   - Style
   - Visual Language
-
 description:
-  zh: >-
-    复刻千禧年前后数码乐观主义的视觉语言：镀铬液态金属、iMac 糖果半透明塑料、
-    气泡字与闪光星形、粉紫蓝渐变配银白高光。它混合了对未来的天真想象与低分辨率
-    3D 的笨拙质感，甜腻、闪亮、毫不克制。
-  en: >-
-    A visual language reviving turn-of-the-millennium digital optimism: liquid
-    chrome, iMac translucent candy plastics, bubble type, sparkle stars, and
-    pink-purple-blue gradients on silver highlights. It mixes naive futurism
-    with clumsy low-poly 3D — sweet, shiny, gloriously unrestrained.
-
+  zh: 复刻千禧年前后数码乐观主义的视觉语言：镀铬液态金属、iMac 糖果半透明塑料、 气泡字与闪光星形、粉紫蓝渐变配银白高光。它混合了对未来的天真想象与低分辨率 3D 的笨拙质感，甜腻、闪亮、毫不克制。
+  en: 'A visual language reviving turn-of-the-millennium digital optimism: liquid chrome, iMac translucent candy plastics, bubble type, sparkle stars, and pink-purple-blue gradients on silver highlights. It mixes naive futurism with clumsy low-poly 3D — sweet, shiny, gloriously unrestrained.'
 use_when:
-  - { zh: 音乐 潮流 时尚品牌，瞄准怀旧千禧的年轻受众, en: Music, streetwear and fashion brands chasing Y2K nostalgia }
-  - { zh: 派对 社交 娱乐类产品，需要甜腻高饱和情绪, en: Party, social and entertainment products that want sugary energy }
-  - { zh: 复古主题营销活动与限定包装, en: Retro-themed campaigns and limited packaging }
-
+  - zh: 音乐 潮流 时尚品牌，瞄准怀旧千禧的年轻受众
+    en: Music, streetwear and fashion brands chasing Y2K nostalgia
+  - zh: 派对 社交 娱乐类产品，需要甜腻高饱和情绪
+    en: Party, social and entertainment products that want sugary energy
+  - zh: 复古主题营销活动与限定包装
+    en: Retro-themed campaigns and limited packaging
 avoid_when:
-  - { zh: 金融 医疗 生产力工具，需要可信与克制, en: Fintech, healthcare and productivity — trust demands restraint }
-  - { zh: 长内容阅读场景，高饱和与闪光持续消耗注意力, en: Long reading sessions — saturation and sparkles fatigue the eye }
-  - { zh: 无障碍要求高的场景，银底浅字对比度普遍不足, en: Accessibility-critical contexts — silver-on-pastel often fails contrast }
-
+  - zh: 金融 医疗 生产力工具，需要可信与克制
+    en: Fintech, healthcare and productivity — trust demands restraint
+  - zh: 长内容阅读场景，高饱和与闪光持续消耗注意力
+    en: Long reading sessions — saturation and sparkles fatigue the eye
+  - zh: 无障碍要求高的场景，银底浅字对比度普遍不足
+    en: Accessibility-critical contexts — silver-on-pastel often fails contrast
 tags:
   - y2k
   - chrome
   - candy
   - millennium
   - futurism
-
 variants:
   - id: candy
-    name: { zh: 糖果塑料, en: Candy Plastic }
-    note: { zh: iMac G3 半透明糖果壳，蓝绿橙粉, en: iMac G3 translucent shells in blue, green, orange and pink }
+    name:
+      zh: 糖果塑料
+      en: Candy Plastic
+    note:
+      zh: iMac G3 半透明糖果壳，蓝绿橙粉
+      en: iMac G3 translucent shells in blue, green, orange and pink
   - id: chrome
-    name: { zh: 镀铬金属, en: Liquid Chrome }
-    note: { zh: 液态金属字与镜面渐变，Cyber Y2K, en: Liquid-metal type and mirror gradients — the Cyber Y2K branch }
+    name:
+      zh: 镀铬金属
+      en: Liquid Chrome
+    note:
+      zh: 液态金属字与镜面渐变，Cyber Y2K
+      en: Liquid-metal type and mirror gradients — the Cyber Y2K branch
   - id: iridescent
-    name: { zh: 珠光幻彩, en: Iridescent }
-    note: { zh: 珍珠光泽幻彩渐变 CD 盘面, en: Pearlescent sheen and CD-rainbow gradients }
-
+    name:
+      zh: 珠光幻彩
+      en: Iridescent
+    note:
+      zh: 珍珠光泽幻彩渐变 CD 盘面
+      en: Pearlescent sheen and CD-rainbow gradients
 applicable_components:
   - button
   - card
   - badge
   - avatar
-
 related:
   - cyberpunk
   - aurora
   - glassmorphism
   - retro-futurism
   - card
-
 demo:
   component: y2k
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 sources:
   - name: Wikipedia — Y2K aesthetic
     url: https://en.wikipedia.org/wiki/Y2K_aesthetic
   - name: MDN — linear-gradient
     url: https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient
-
 implementation:
   css:
-    - "background: linear-gradient(#e0e0e0, #8f9096, #f5f5f5)"
-    - "background-clip: text"
-    - "text-shadow"
-    - "border-radius: 999px"
-    - "box-shadow: inset"
+    - 'background: linear-gradient(#e0e0e0, #8f9096, #f5f5f5)'
+    - 'background-clip: text'
+    - text-shadow
+    - 'border-radius: 999px'
+    - 'box-shadow: inset'
   notes:
-    zh: >-
-      镀铬感的公式是窄幅多段灰阶渐变：#f8f8f8 → #9a9ba2 → #ffffff → #7c7d84，
-      配 1px 白高光内阴影与深色投影；文字镀铬用 background-clip: text 加同款
-      渐变。糖果塑料用高饱和色 + 顶部 40% 白色内阴影模拟透光。星形闪光与
-      泡泡字是点睛元素，克制在 2～3 处。深色模式改用紫黑底让银色更突出。
-    en: >-
-      Chrome is a narrow multi-stop greyscale gradient — #f8f8f8 → #9a9ba2 →
-      #ffffff → #7c7d84 — with a 1px white inset highlight and a dark shadow;
-      chrome text is the same gradient through background-clip: text. Candy
-      plastic is a saturated fill with a white inner glow across the top 40%
-      to fake translucency. Spend sparkles and bubble type on two or three
-      accents. Dark mode goes purple-black so silver pops.
-
+    zh: '镀铬感的公式是窄幅多段灰阶渐变：#f8f8f8 → #9a9ba2 → #ffffff → #7c7d84， 配 1px 白高光内阴影与深色投影；文字镀铬用 background-clip: text 加同款 渐变。糖果塑料用高饱和色 + 顶部 40% 白色内阴影模拟透光。星形闪光与 泡泡字是点睛元素，克制在 2～3 处。深色模式改用紫黑底让银色更突出。'
+    en: 'Chrome is a narrow multi-stop greyscale gradient — #f8f8f8 → #9a9ba2 → #ffffff → #7c7d84 — with a 1px white inset highlight and a dark shadow; chrome text is the same gradient through background-clip: text. Candy plastic is a saturated fill with a white inner glow across the top 40% to fake translucency. Spend sparkles and bubble type on two or three accents. Dark mode goes purple-black so silver pops.'
 prompts:
   basic:
-    zh: >-
-      用 Y2K 千禧美学设计界面：镀铬液态金属、iMac 糖果半透明塑料、粉紫蓝渐变
-      与闪光星形元素，甜腻闪亮的千禧年质感。
-    en: >-
-      "Design an interface in Y2K aesthetic: liquid chrome, iMac candy plastics, pink-purple-blue gradients and sparkle stars — sweet, shiny millennium texture."
+    zh: 用 Y2K 千禧美学设计界面：镀铬液态金属、iMac 糖果半透明塑料、粉紫蓝渐变 与闪光星形元素，甜腻闪亮的千禧年质感。
+    en: '"Design an interface in Y2K aesthetic: liquid chrome, iMac candy plastics, pink-purple-blue gradients and sparkle stars — sweet, shiny millennium texture."'
   design:
-    zh: >-
-      Y2K 设计规范：底色粉紫渐变（#FFC8F0 → #C8B8FF → #A8D8FF）或银白；主按钮
-      用胶囊形 + 铬渐变（灰白四段）+ 白高光内阴影；卡片为半透明糖果色圆角块，
-      顶部白色内发光；标题用气泡粗字或镀铬字（background-clip: text）；点缀
-      四角星闪光；深色模式用紫黑底 + 银铬高亮。
-    en: >-
-      "Y2K spec: pink-purple gradient ground (#FFC8F0 → #C8B8FF → #A8D8FF) or silver; pill buttons with a four-stop chrome gradient and white inset highlight; cards as translucent candy rounded blocks with a top inner glow; bubble-bold or chrome headings (background-clip: text); four-point sparkle accents. Dark mode on purple-black with silver chrome highlights."
+    zh: 'Y2K 设计规范：底色粉紫渐变（#FFC8F0 → #C8B8FF → #A8D8FF）或银白；主按钮 用胶囊形 + 铬渐变（灰白四段）+ 白高光内阴影；卡片为半透明糖果色圆角块， 顶部白色内发光；标题用气泡粗字或镀铬字（background-clip: text）；点缀 四角星闪光；深色模式用紫黑底 + 银铬高亮。'
+    en: '"Y2K spec: pink-purple gradient ground (#FFC8F0 → #C8B8FF → #A8D8FF) or silver; pill buttons with a four-stop chrome gradient and white inset highlight; cards as translucent candy rounded blocks with a top inner glow; bubble-bold or chrome headings (background-clip: text); four-point sparkle accents. Dark mode on purple-black with silver chrome highlights."'
   implementation:
-    zh: >-
-      用 CSS 实现 Y2K 镀铬：.chrome { background: linear-gradient(180deg,
-      #fdfdfd, #b9bac1 38%, #ffffff 50%, #83848c 62%, #e6e6ea);
-      background-clip: text; color: transparent; -webkit-text-fill-color:
-      transparent; } 糖果按钮 .candy { background: #7DE2FF; box-shadow: inset
-      0 14px 18px rgba(255,255,255,0.75), inset 0 -8px 14px rgba(0,60,120,0.25);
-      border-radius: 999px; }
-    en: >-
-      "Implement Y2K chrome in CSS: .chrome { background: linear-gradient(180deg, #fdfdfd, #b9bac1 38%, #ffffff 50%, #83848c 62%, #e6e6ea); background-clip: text; color: transparent; -webkit-text-fill-color: transparent; } Candy button: .candy { background: #7DE2FF; box-shadow: inset 0 14px 18px rgba(255,255,255,0.75), inset 0 -8px 14px rgba(0,60,120,0.25); border-radius: 999px; }"
+    zh: '用 CSS 实现 Y2K 镀铬：.chrome { background: linear-gradient(180deg, #fdfdfd, #b9bac1 38%, #ffffff 50%, #83848c 62%, #e6e6ea); background-clip: text; color: transparent; -webkit-text-fill-color: transparent; } 糖果按钮 .candy { background: #7DE2FF; box-shadow: inset 0 14px 18px rgba(255,255,255,0.75), inset 0 -8px 14px rgba(0,60,120,0.25); border-radius: 999px; }'
+    en: '"Implement Y2K chrome in CSS: .chrome { background: linear-gradient(180deg, #fdfdfd, #b9bac1 38%, #ffffff 50%, #83848c 62%, #e6e6ea); background-clip: text; color: transparent; -webkit-text-fill-color: transparent; } Candy button: .candy { background: #7DE2FF; box-shadow: inset 0 14px 18px rgba(255,255,255,0.75), inset 0 -8px 14px rgba(0,60,120,0.25); border-radius: 999px; }"'
   agent:
     zh: |-
       在当前项目中用 Y2K 千禧美学实现一组胶囊按钮与糖果卡片区块。
@@ -151,20 +126,19 @@ prompts:
       - Dark mode on purple-black with silver chrome highlights
       - No new dependencies
       Run existing project checks when done and list the modified files.
-
 style_spec:
   typography:
-    zh: "圆体字 + 金属渐变标题"
-    en: "Rounded type with chrome gradient titles"
+    zh: 圆体字 + 金属渐变标题
+    en: Rounded type with chrome gradient titles
   color:
-    zh: "银紫粉渐变 × 电紫 #7B61FF"
-    en: "Silver-lilac gradients with electric violet #7B61FF"
+    zh: '银紫粉渐变 × 电紫 #7B61FF'
+    en: 'Silver-lilac gradients with electric violet #7B61FF'
   border:
-    zh: "1px 淡紫描边，大圆角"
-    en: "1px lavender outlines, large radius"
+    zh: 1px 淡紫描边，大圆角
+    en: 1px lavender outlines, large radius
   shadow:
-    zh: "柔和紫色光晕投影"
-    en: "Soft violet glow shadows"
+    zh: 柔和紫色光晕投影
+    en: Soft violet glow shadows
   spacing:
-    zh: "气泡式 20px 圆角，松弛排布"
-    en: "Bubble 20px radii, relaxed spacing"
+    zh: 气泡式 20px 圆角，松弛排布
+    en: Bubble 20px radii, relaxed spacing

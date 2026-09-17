@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 登录页
   en: Login Page
-
 aliases:
   - 登录页面
   - 登陆页
@@ -12,120 +10,113 @@ aliases:
   - 登录框
   - 输密码进系统的页面
   - 账号登录页
-
 category:
   - Page
   - Auth
-
 description:
-  zh: >-
-    用最小干扰让已有账号用户进入系统的门面页：核心只有身份识别表单（邮箱/密码）与一个主按钮，
-    辅以第三方登录、忘记密码和注册入口。页面刻意保持极简——少一个字段，转化就高一分；
-    所有装饰都让位于"快点进去"这一目标。
-  en: >-
-    The gateway page that gets existing users in with minimal friction: an identity form
-    (email/password) and one primary button, supported by third-party login, password recovery
-    and a signup link. Deliberately minimal — every removed field raises conversion, and all
-    decoration yields to the single goal of getting in fast.
-
+  zh: 用最小干扰让已有账号用户进入系统的门面页：核心只有身份识别表单（邮箱/密码）与一个主按钮， 辅以第三方登录、忘记密码和注册入口。页面刻意保持极简——少一个字段，转化就高一分； 所有装饰都让位于"快点进去"这一目标。
+  en: 'The gateway page that gets existing users in with minimal friction: an identity form (email/password) and one primary button, supported by third-party login, password recovery and a signup link. Deliberately minimal — every removed field raises conversion, and all decoration yields to the single goal of getting in fast.'
 use_when:
-  - { zh: 已有账号体系的产品的入口, en: Entry point of any product with an account system }
-  - { zh: 回访用户需要快速恢复会话, en: Returning users need to resume a session quickly }
-  - { zh: 需要对接 SSO 或第三方身份提供方, en: SSO or third-party identity providers are involved }
-
+  - zh: 已有账号体系的产品的入口
+    en: Entry point of any product with an account system
+  - zh: 回访用户需要快速恢复会话
+    en: Returning users need to resume a session quickly
+  - zh: 需要对接 SSO 或第三方身份提供方
+    en: SSO or third-party identity providers are involved
 avoid_when:
-  - { zh: 新用户首次创建账号（用注册页承接）, en: First-time account creation — a signup page fits better }
-  - { zh: 一次性工具、无需身份识别, en: Throwaway tools that need no identity }
-  - { zh: 内嵌到弹窗的轻量验证（用模态登录更轻）, en: Lightweight inline auth — a modal is lighter }
-
+  - zh: 新用户首次创建账号（用注册页承接）
+    en: First-time account creation — a signup page fits better
+  - zh: 一次性工具、无需身份识别
+    en: Throwaway tools that need no identity
+  - zh: 内嵌到弹窗的轻量验证（用模态登录更轻）
+    en: Lightweight inline auth — a modal is lighter
 tags:
   - auth
   - form
   - security
   - conversion
-
 variants:
   - id: centered
-    name: { zh: 居中卡片, en: Centered Card }
-    note: { zh: 单卡片居中，最通用的默认形态, en: One centered card, the universal default }
+    name:
+      zh: 居中卡片
+      en: Centered Card
+    note:
+      zh: 单卡片居中，最通用的默认形态
+      en: One centered card, the universal default
   - id: split
-    name: { zh: 分屏品牌, en: Split Screen }
-    note: { zh: 左品牌图 + 右表单，SaaS 常用, en: Brand panel left, form right — common in SaaS }
+    name:
+      zh: 分屏品牌
+      en: Split Screen
+    note:
+      zh: 左品牌图 + 右表单，SaaS 常用
+      en: Brand panel left, form right — common in SaaS
   - id: multi-step
-    name: { zh: 多步登录, en: Multi-step }
-    note: { zh: 先认邮箱再要密码，支持无密码流, en: Email first, password next — enables passwordless }
+    name:
+      zh: 多步登录
+      en: Multi-step
+    note:
+      zh: 先认邮箱再要密码，支持无密码流
+      en: Email first, password next — enables passwordless
   - id: social
-    name: { zh: 社交优先, en: Social-first }
-    note: { zh: 第三方登录按钮置顶，表单退居其次, en: OAuth buttons first, form secondary }
-
+    name:
+      zh: 社交优先
+      en: Social-first
+    note:
+      zh: 第三方登录按钮置顶，表单退居其次
+      en: OAuth buttons first, form secondary
 anatomy:
   - Brand 品牌区
   - Form 登录表单
   - Social 第三方登录
   - Recovery 辅助链接
   - Signup 注册入口
-
 related:
   - input
   - button
   - form-validation
   - signup
-
 demo:
   component: login
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 compare:
   group: auth-pages
   dimensions:
-    用户状态: { zh: 已有账号的回访用户, en: Returning users with an account }
-    核心目标: { zh: 快速进入系统, en: Fast re-entry into the product }
-    安全要求: { zh: 中——会话与暴力破解防护, en: Medium — session and brute-force protection }
-
+    用户状态:
+      zh: 已有账号的回访用户
+      en: Returning users with an account
+    核心目标:
+      zh: 快速进入系统
+      en: Fast re-entry into the product
+    安全要求:
+      zh: 中——会话与暴力破解防护
+      en: Medium — session and brute-force protection
 implementation:
   css:
     - flex
     - grid
-    - "min-height: 100vh"
-    - "place-items: center"
+    - 'min-height: 100vh'
+    - 'place-items: center'
   notes:
-    zh: >-
-      居中卡片用 min-h-screen grid place-items-center；分屏变体 md 断点下 grid-cols-2，
-      左侧品牌区在移动端隐藏。表单字段用 autocomplete（username / current-password），
-      密码框配可见性切换；错误信息内联展示并 aria-describedby 关联；
-      提交中按钮禁用防止重复提交。
-    en: >-
-      Centered card via min-h-screen grid place-items-center; split variant uses grid-cols-2 at md,
-      hiding the brand panel on mobile. Fields set autocomplete (username / current-password);
-      password gets a visibility toggle; errors are inline and linked with aria-describedby;
-      disable the submit button while pending.
-
+    zh: 居中卡片用 min-h-screen grid place-items-center；分屏变体 md 断点下 grid-cols-2， 左侧品牌区在移动端隐藏。表单字段用 autocomplete（username / current-password）， 密码框配可见性切换；错误信息内联展示并 aria-describedby 关联； 提交中按钮禁用防止重复提交。
+    en: Centered card via min-h-screen grid place-items-center; split variant uses grid-cols-2 at md, hiding the brand panel on mobile. Fields set autocomplete (username / current-password); password gets a visibility toggle; errors are inline and linked with aria-describedby; disable the submit button while pending.
 sources:
   - name: Nielsen Norman Group — Login & Registration Forms
     url: https://www.nngroup.com/articles/login-registration-forms/
   - name: MDN — Web authentication
     url: https://developer.mozilla.org/en-US/docs/Web/API/Web_Authentication_API
-
 prompts:
   basic:
     zh: 创建一个登录页面，包含邮箱密码表单、第三方登录和注册入口。
     en: Create a login page with an email/password form, third-party login and a signup link.
   design:
     zh: 创建居中卡片式登录页：品牌 logo、邮箱与密码输入（带可见性切换）、记住我开关、忘记密码链接、主按钮"登录"、分隔线下的两个第三方登录按钮、底部"没有账号？注册"。错误内联提示，提交中按钮 loading。
-    en: >-
-      Create a centered-card login page: brand logo, email and password fields (visibility toggle),
-      remember-me switch, forgot-password link, primary "Sign in" button, two OAuth buttons below a
-      divider, and "No account? Sign up" at the bottom. Inline errors; button shows loading while pending.
+    en: 'Create a centered-card login page: brand logo, email and password fields (visibility toggle), remember-me switch, forgot-password link, primary "Sign in" button, two OAuth buttons below a divider, and "No account? Sign up" at the bottom. Inline errors; button shows loading while pending.'
   implementation:
-    zh: >-
-      用 React + Tailwind 实现登录页：受控表单 + 前端校验（邮箱格式、密码非空），
-      autocomplete 属性齐全；密码可见性切换；提交态禁用按钮；
-      错误 aria-describedby 关联字段；深浅色一致。不新增依赖。
-    en: >-
-      React + Tailwind login page: controlled form with front-end validation (email format,
-      non-empty password), full autocomplete attributes, password visibility toggle, disabled
-      button while pending, errors linked via aria-describedby, consistent light/dark.
-      No new dependencies.
+    zh: 用 React + Tailwind 实现登录页：受控表单 + 前端校验（邮箱格式、密码非空）， autocomplete 属性齐全；密码可见性切换；提交态禁用按钮； 错误 aria-describedby 关联字段；深浅色一致。不新增依赖。
+    en: 'React + Tailwind login page: controlled form with front-end validation (email format, non-empty password), full autocomplete attributes, password visibility toggle, disabled button while pending, errors linked via aria-describedby, consistent light/dark. No new dependencies.'
   agent:
     zh: |-
       在当前项目中实现登录页。

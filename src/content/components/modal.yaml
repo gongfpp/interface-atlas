@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 模态框
   en: Modal
-
 aliases:
   - 弹窗
   - 对话框
@@ -12,123 +10,107 @@ aliases:
   - 弹出对话框
   - 遮罩弹窗
   - 网页中间弹出来的窗口
-
 category:
   - Overlay
   - Feedback
-
 description:
-  zh: >-
-    覆盖在页面之上、带半透明遮罩的对话框，打断用户当前流程，要求先完成弹窗内的任务或决策。
-    遮罩阻断与底层页面的交互，焦点被暂时困在弹窗内，是容器类浮层中打断程度最高的一种。
-  en: >-
-    A dialog rendered above the page with a translucent backdrop that interrupts the
-    current flow and demands a task or decision first. The backdrop blocks interaction
-    with the underlying page and focus is temporarily trapped inside — the most
-    disruptive of the overlay containers.
-
+  zh: 覆盖在页面之上、带半透明遮罩的对话框，打断用户当前流程，要求先完成弹窗内的任务或决策。 遮罩阻断与底层页面的交互，焦点被暂时困在弹窗内，是容器类浮层中打断程度最高的一种。
+  en: A dialog rendered above the page with a translucent backdrop that interrupts the current flow and demands a task or decision first. The backdrop blocks interaction with the underlying page and focus is temporarily trapped inside — the most disruptive of the overlay containers.
 use_when:
-  - { zh: "需要明确决策的破坏性操作（删除、支付）", en: "High-stakes confirmation such as delete or payment" }
-  - { zh: "任务必须完成后流程才能继续（向导、登录）", en: "A task must finish before the flow continues (wizard, sign-in)" }
-  - { zh: "需要专注处理的临时内容（详情、快速编辑）", en: "Focused temporary content like a detail view or quick edit" }
-
+  - zh: 需要明确决策的破坏性操作（删除、支付）
+    en: High-stakes confirmation such as delete or payment
+  - zh: 任务必须完成后流程才能继续（向导、登录）
+    en: A task must finish before the flow continues (wizard, sign-in)
+  - zh: 需要专注处理的临时内容（详情、快速编辑）
+    en: Focused temporary content like a detail view or quick edit
 avoid_when:
-  - { zh: "内容是辅助性的、可随时关闭（改用 popover 或 tooltip）", en: "Supporting, dismissible content — use a popover or tooltip" }
-  - { zh: "用户需要对照底层页面操作（改用 drawer）", en: "Users need the underlying page for context — use a drawer" }
-  - { zh: "移动端长内容滚动（改为全屏页面更稳）", en: "Long scrolling content on mobile — a full page holds up better" }
-
+  - zh: 内容是辅助性的、可随时关闭（改用 popover 或 tooltip）
+    en: Supporting, dismissible content — use a popover or tooltip
+  - zh: 用户需要对照底层页面操作（改用 drawer）
+    en: Users need the underlying page for context — use a drawer
+  - zh: 移动端长内容滚动（改为全屏页面更稳）
+    en: Long scrolling content on mobile — a full page holds up better
 tags:
   - overlay
   - dialog
   - interruption
   - feedback
-
 variants:
   - id: centered
-    name: { zh: "居中对话框", en: "Centered" }
-    note: { zh: "最经典形态，标题 + 正文 + 操作区", en: "The classic: title, body and action row" }
+    name:
+      zh: 居中对话框
+      en: Centered
+    note:
+      zh: 最经典形态，标题 + 正文 + 操作区
+      en: 'The classic: title, body and action row'
   - id: confirm
-    name: { zh: "紧凑确认框", en: "Confirm" }
-    note: { zh: "小尺寸，只放一句文案和两个按钮", en: "Compact, one sentence plus two buttons" }
+    name:
+      zh: 紧凑确认框
+      en: Confirm
+    note:
+      zh: 小尺寸，只放一句文案和两个按钮
+      en: Compact, one sentence plus two buttons
   - id: sheet
-    name: { zh: "底部面板", en: "Sheet" }
-    note: { zh: "移动端常见，从底部升起承接长内容", en: "Mobile pattern, rising from the bottom for longer content" }
-
+    name:
+      zh: 底部面板
+      en: Sheet
+    note:
+      zh: 移动端常见，从底部升起承接长内容
+      en: Mobile pattern, rising from the bottom for longer content
 anatomy:
   - 遮罩层（Backdrop）
   - 对话框面板（Panel）
   - 标题（Title）
   - 正文内容（Body）
   - 操作区（Actions）
-
 related:
   - drawer
   - popover
   - toast
   - alert
-
 demo:
   component: modal
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 compare:
   group: overlay-container
   dimensions:
-    打断程度: { zh: "高，遮罩阻断底层操作", en: "High — backdrop blocks the page" }
-    内容容量: { zh: "中，适合短内容与小型表单", en: "Medium — short content and small forms" }
-    移动端友好: { zh: "中，长内容需转全屏", en: "Medium — go full-screen for long content" }
-
+    打断程度:
+      zh: 高，遮罩阻断底层操作
+      en: High — backdrop blocks the page
+    内容容量:
+      zh: 中，适合短内容与小型表单
+      en: Medium — short content and small forms
+    移动端友好:
+      zh: 中，长内容需转全屏
+      en: Medium — go full-screen for long content
 implementation:
   css:
-    - "position: fixed"
-    - "inset: 0"
-    - "z-index"
+    - 'position: fixed'
+    - 'inset: 0'
+    - z-index
     - transform
-    - "background-color"
+    - background-color
   notes:
-    zh: >-
-      遮罩用 fixed inset-0 + 半透明黑，面板用 flex 居中或 inset-0 m-auto。
-      打开时锁定 body 滚动，焦点移入面板，Esc 与点击遮罩均可关闭。
-      入场动画 scale 0.96→1 加淡入，200ms 左右；尊重 prefers-reduced-motion。
-    en: >-
-      Backdrop is fixed inset-0 with translucent black; center the panel with flex or
-      auto margins. Lock body scroll on open, move focus into the panel, close on Esc
-      and backdrop click. Enter animation: scale 0.96→1 with fade, ~200ms; respect
-      prefers-reduced-motion.
-
+    zh: 遮罩用 fixed inset-0 + 半透明黑，面板用 flex 居中或 inset-0 m-auto。 打开时锁定 body 滚动，焦点移入面板，Esc 与点击遮罩均可关闭。 入场动画 scale 0.96→1 加淡入，200ms 左右；尊重 prefers-reduced-motion。
+    en: 'Backdrop is fixed inset-0 with translucent black; center the panel with flex or auto margins. Lock body scroll on open, move focus into the panel, close on Esc and backdrop click. Enter animation: scale 0.96→1 with fade, ~200ms; respect prefers-reduced-motion.'
 sources:
   - name: WAI-ARIA Authoring Practices — Dialog (Modal)
     url: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
   - name: Material Design — Dialogs
     url: https://m3.material.io/components/dialogs/overview
-
 prompts:
   basic:
-    zh: >-
-      创建一个模态框（Modal）组件：点击按钮弹出居中对话框，带遮罩层，包含标题、正文和操作按钮。
-    en: >-
-      Create a Modal component: a button opens a centered dialog with a backdrop,
-      containing a title, body and action buttons.
+    zh: 创建一个模态框（Modal）组件：点击按钮弹出居中对话框，带遮罩层，包含标题、正文和操作按钮。
+    en: 'Create a Modal component: a button opens a centered dialog with a backdrop, containing a title, body and action buttons.'
   design:
-    zh: >-
-      创建模态框组件。要求：半透明遮罩 + 居中白色面板（圆角、阴影）；标题区、正文区、底部右对齐操作区（次要按钮 + 主要按钮）；
-      打开时面板轻微放大淡入；支持 Esc 与点击遮罩关闭；深浅色主题一致。
-    en: >-
-      Create a modal. Requirements: translucent backdrop plus a centered surface panel
-      (rounded, shadowed); title, body and a bottom-right action row (secondary + primary
-      button); panel zooms in slightly with a fade on open; closes on Esc and backdrop
-      click; consistent light/dark themes.
+    zh: 创建模态框组件。要求：半透明遮罩 + 居中白色面板（圆角、阴影）；标题区、正文区、底部右对齐操作区（次要按钮 + 主要按钮）； 打开时面板轻微放大淡入；支持 Esc 与点击遮罩关闭；深浅色主题一致。
+    en: 'Create a modal. Requirements: translucent backdrop plus a centered surface panel (rounded, shadowed); title, body and a bottom-right action row (secondary + primary button); panel zooms in slightly with a fade on open; closes on Esc and backdrop click; consistent light/dark themes.'
   implementation:
-    zh: >-
-      用 React + Tailwind 实现 Modal：open 受控；fixed inset-0 遮罩 + flex 居中面板；
-      打开时锁定 body overflow，焦点移入并做简单 focus trap，Esc 关闭；
-      入场用 keyframes（scale + opacity），时长乘 var(--demo-speed, 1)；
-      aria-role="dialog" aria-modal="true"，尊重 prefers-reduced-motion。
-    en: >-
-      React + Tailwind Modal: controlled open state; fixed inset-0 backdrop with a flex-
-      centered panel; lock body overflow on open, move focus in with a simple focus trap,
-      close on Esc; enter keyframes (scale + opacity) scaled by var(--demo-speed, 1);
-      role="dialog" aria-modal="true"; respect prefers-reduced-motion.
+    zh: 用 React + Tailwind 实现 Modal：open 受控；fixed inset-0 遮罩 + flex 居中面板； 打开时锁定 body overflow，焦点移入并做简单 focus trap，Esc 关闭； 入场用 keyframes（scale + opacity），时长乘 var(--demo-speed, 1)； aria-role="dialog" aria-modal="true"，尊重 prefers-reduced-motion。
+    en: 'React + Tailwind Modal: controlled open state; fixed inset-0 backdrop with a flex- centered panel; lock body overflow on open, move focus in with a simple focus trap, close on Esc; enter keyframes (scale + opacity) scaled by var(--demo-speed, 1); role="dialog" aria-modal="true"; respect prefers-reduced-motion.'
   agent:
     zh: |-
       在当前项目中实现模态框（Modal）组件。

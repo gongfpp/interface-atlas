@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 面包屑
   en: Breadcrumb
-
 aliases:
   - 面包屑导航
   - 路径导航
@@ -12,125 +10,99 @@ aliases:
   - 首页大于分类那种路径
   - 网站路径条
   - trail
-
 category:
   - Navigation
-
 description:
-  zh: >-
-    用"首页 / 分类 / 子类 / 当前页"的层级路径表示用户在信息架构中所处的位置：
-    每个上级都可点击跳回，末项为当前页不可点。这是防止用户迷路成本最低的手段，
-    命名源自童话中沿途撒下用来标记归路的面包屑。常置于页面标题上方。
-  en: >-
-    A hierarchical path like "Home / Library / Page" that states where the user sits
-    in the information architecture: every ancestor is a link back, and the last item
-    marks the current page. The cheapest way to keep users oriented — the name comes
-    from the breadcrumbs Hansel dropped to find his way home. Usually placed above
-    the page title.
-
+  zh: 用"首页 / 分类 / 子类 / 当前页"的层级路径表示用户在信息架构中所处的位置： 每个上级都可点击跳回，末项为当前页不可点。这是防止用户迷路成本最低的手段， 命名源自童话中沿途撒下用来标记归路的面包屑。常置于页面标题上方。
+  en: 'A hierarchical path like "Home / Library / Page" that states where the user sits in the information architecture: every ancestor is a link back, and the last item marks the current page. The cheapest way to keep users oriented — the name comes from the breadcrumbs Hansel dropped to find his way home. Usually placed above the page title.'
 use_when:
-  - { zh: 层级深于两层的内容型站点（文档、电商类目）, en: Content sites deeper than two levels — docs, category trees }
-  - { zh: 用户可能从搜索或外链直达深层页面, en: Users land on deep pages from search or external links }
-  - { zh: 需要低成本的逐级回退路径, en: A cheap path to walk back level by level }
-
+  - zh: 层级深于两层的内容型站点（文档、电商类目）
+    en: Content sites deeper than two levels — docs, category trees
+  - zh: 用户可能从搜索或外链直达深层页面
+    en: Users land on deep pages from search or external links
+  - zh: 需要低成本的逐级回退路径
+    en: A cheap path to walk back level by level
 avoid_when:
-  - { zh: 扁平单层的应用，面包屑只是噪音, en: Flat single-level apps — it is pure noise }
-  - { zh: 无稳定层级的个性化信息流, en: Personalized feeds without a stable hierarchy }
-  - { zh: 移动端空间极紧且层级浅（可省略）, en: Tight mobile screens with shallow levels — can be omitted }
-
+  - zh: 扁平单层的应用，面包屑只是噪音
+    en: Flat single-level apps — it is pure noise
+  - zh: 无稳定层级的个性化信息流
+    en: Personalized feeds without a stable hierarchy
+  - zh: 移动端空间极紧且层级浅（可省略）
+    en: Tight mobile screens with shallow levels — can be omitted
 tags:
   - navigation
   - hierarchy
   - location
-
 variants:
   - id: text
-    name: { zh: 文字型, en: Text }
-    note: { zh: 纯文本链接 + 分隔符，最常见, en: Plain links + separator, the default }
+    name:
+      zh: 文字型
+      en: Text
+    note:
+      zh: 纯文本链接 + 分隔符，最常见
+      en: Plain links + separator, the default
   - id: with-icon
-    name: { zh: 带图标, en: With icons }
-    note: { zh: 根节点用房子图标、项前加小图标, en: Home icon at the root, small icons per item }
+    name:
+      zh: 带图标
+      en: With icons
+    note:
+      zh: 根节点用房子图标、项前加小图标
+      en: Home icon at the root, small icons per item
   - id: truncated
-    name: { zh: 截断型, en: Truncated }
-    note: { zh: 中间层级折叠为省略号，可展开, en: Middle levels collapse into an expandable ellipsis }
-
+    name:
+      zh: 截断型
+      en: Truncated
+    note:
+      zh: 中间层级折叠为省略号，可展开
+      en: Middle levels collapse into an expandable ellipsis
 anatomy:
   - 根节点 / Home 链接
   - 中间层级链接（Ancestors）
   - 分隔符（Separator）
   - 当前页（Current page）
-
 applicable_styles:
   - minimalism
   - editorial
-
 applicable_pages:
   - documentation
   - dashboard
   - settings
-
 related:
   - navbar
   - sidebar
   - tabs
   - pagination
   - menu
-
 demo:
   component: breadcrumb
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 implementation:
   css:
     - flex
-    - "white-space: nowrap"
-    - "overflow: hidden"
-    - "text-overflow: ellipsis"
+    - 'white-space: nowrap'
+    - 'overflow: hidden'
+    - 'text-overflow: ellipsis'
   notes:
-    zh: >-
-      用 nav[aria-label="面包屑"] + 有序列表实现，层级用 ol/li 表达；分隔符用
-      CSS ::before 或独立 span，勿放进链接的可点击区域。当前页加
-      aria-current="page" 且渲染为纯文本。过长时中间层级折叠为可展开的省略号，
-      容器单行省略。
-    en: >-
-      Build with nav[aria-label="Breadcrumb"] and an ordered list; render separators
-      via CSS ::before or a dedicated span — never inside the link target. The last
-      item is plain text with aria-current="page". For deep paths collapse middle
-      levels into an expandable ellipsis and keep the container single-line with
-      ellipsis overflow.
-
+    zh: 用 nav[aria-label="面包屑"] + 有序列表实现，层级用 ol/li 表达；分隔符用 CSS ::before 或独立 span，勿放进链接的可点击区域。当前页加 aria-current="page" 且渲染为纯文本。过长时中间层级折叠为可展开的省略号， 容器单行省略。
+    en: Build with nav[aria-label="Breadcrumb"] and an ordered list; render separators via CSS ::before or a dedicated span — never inside the link target. The last item is plain text with aria-current="page". For deep paths collapse middle levels into an expandable ellipsis and keep the container single-line with ellipsis overflow.
 sources:
   - name: WAI-ARIA Authoring Practices — Breadcrumb
     url: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
   - name: NN/g — Breadcrumbs
     url: https://www.nngroup.com/articles/breadcrumbs/
-
 prompts:
   basic:
-    zh: >-
-      创建一个面包屑导航组件：显示"首页 / 分类 / 当前页"层级路径，上级可点击返回，末项为当前页。
-    en: >-
-      Create a breadcrumb that shows a "Home / Category / Current" path where ancestors link back and the last item is the current page.
+    zh: 创建一个面包屑导航组件：显示"首页 / 分类 / 当前页"层级路径，上级可点击返回，末项为当前页。
+    en: Create a breadcrumb that shows a "Home / Category / Current" path where ancestors link back and the last item is the current page.
   design:
-    zh: >-
-      创建面包屑：小号文字（12～13px），层级间用 "/" 或 ">" 分隔符；根节点带小房子
-      图标；上级为次级色链接、hover 变强调色；当前页为纯文本主色并加 aria-current。
-      层级很多时中间折叠为省略号。深浅色主题一致。
-    en: >-
-      Create a breadcrumb: small text (12–13px), "/" or ">" separators; a home icon at
-      the root; ancestors in secondary color that accent on hover; the current page as
-      plain primary text with aria-current. Collapse middle levels into an ellipsis for
-      deep paths. Consistent in light and dark themes.
+    zh: 创建面包屑：小号文字（12～13px），层级间用 "/" 或 ">" 分隔符；根节点带小房子 图标；上级为次级色链接、hover 变强调色；当前页为纯文本主色并加 aria-current。 层级很多时中间折叠为省略号。深浅色主题一致。
+    en: 'Create a breadcrumb: small text (12–13px), "/" or ">" separators; a home icon at the root; ancestors in secondary color that accent on hover; the current page as plain primary text with aria-current. Collapse middle levels into an ellipsis for deep paths. Consistent in light and dark themes.'
   implementation:
-    zh: >-
-      用 React 实现 Breadcrumb：nav + ol/li 语义结构；items 数据驱动，末项自动渲染
-      为纯文本并加 aria-current="page"；分隔符独立于链接；提供 maxItems 属性实现
-      中间省略折叠（点击展开）。单行溢出省略。无新增依赖。
-    en: >-
-      React breadcrumb: nav + ol/li semantics; data-driven items whose last entry renders
-      as plain text with aria-current="page"; separators outside the link targets; a
-      maxItems prop folds middle levels into an expandable ellipsis. Single-line
-      overflow with ellipsis. No new dependencies.
+    zh: 用 React 实现 Breadcrumb：nav + ol/li 语义结构；items 数据驱动，末项自动渲染 为纯文本并加 aria-current="page"；分隔符独立于链接；提供 maxItems 属性实现 中间省略折叠（点击展开）。单行溢出省略。无新增依赖。
+    en: 'React breadcrumb: nav + ol/li semantics; data-driven items whose last entry renders as plain text with aria-current="page"; separators outside the link targets; a maxItems prop folds middle levels into an expandable ellipsis. Single-line overflow with ellipsis. No new dependencies.'
   agent:
     zh: |-
       在当前项目中实现面包屑导航。

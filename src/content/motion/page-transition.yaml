@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 页面切换过渡
   en: Page Transition
-
 aliases:
   - 页面转场
   - 切换动画
@@ -11,107 +9,84 @@ aliases:
   - 转场效果
   - 路由过渡
   - page switch animation
-
 category:
   - Motion
   - Navigation
-
 description:
-  zh: >-
-    页面之间切换时，旧页面滑出或淡出、新页面滑入或淡入，让路由跳转
-    从"硬切"变成一段 200～400ms 的连续运动。方向应与信息层级一致：
-    进入下级页面向左推入，返回时向右退出，帮助用户建立空间心智模型。
-  en: >-
-    When navigating, the outgoing page slides or fades away while the incoming one
-    arrives — turning a hard cut into 200–400ms of continuous motion. Direction
-    should mirror hierarchy: pushing left to go deeper, exiting right to go back,
-    building a spatial mental model.
-
+  zh: 页面之间切换时，旧页面滑出或淡出、新页面滑入或淡入，让路由跳转 从"硬切"变成一段 200～400ms 的连续运动。方向应与信息层级一致： 进入下级页面向左推入，返回时向右退出，帮助用户建立空间心智模型。
+  en: 'When navigating, the outgoing page slides or fades away while the incoming one arrives — turning a hard cut into 200–400ms of continuous motion. Direction should mirror hierarchy: pushing left to go deeper, exiting right to go back, building a spatial mental model.'
 use_when:
-  - { zh: SPA 路由切换、分步向导、tab 式页面流, en: SPA route changes, step wizards, tab-like flows }
-  - { zh: 需要表达页面间父子层级关系, en: When parent-child hierarchy between pages matters }
-  - { zh: 原生 App 风格的 Web 产品调性, en: Web products aiming for a native-app feel }
-
+  - zh: SPA 路由切换、分步向导、tab 式页面流
+    en: SPA route changes, step wizards, tab-like flows
+  - zh: 需要表达页面间父子层级关系
+    en: When parent-child hierarchy between pages matters
+  - zh: 原生 App 风格的 Web 产品调性
+    en: Web products aiming for a native-app feel
 avoid_when:
-  - { zh: 每次 300ms 以上的长过渡（拖慢浏览节奏）, en: Transitions beyond 300ms — they drag the browsing rhythm }
-  - { zh: 用户频繁快速切换（动画跟不上点击）, en: Rapid back-and-forth navigation — animation lags the clicks }
-  - { zh: 传统多页站点整页刷新（没有过渡载体）, en: Traditional MPAs with full reloads — nothing to animate between }
-
+  - zh: 每次 300ms 以上的长过渡（拖慢浏览节奏）
+    en: Transitions beyond 300ms — they drag the browsing rhythm
+  - zh: 用户频繁快速切换（动画跟不上点击）
+    en: Rapid back-and-forth navigation — animation lags the clicks
+  - zh: 传统多页站点整页刷新（没有过渡载体）
+    en: Traditional MPAs with full reloads — nothing to animate between
 tags:
   - animation
   - navigation
   - transition
   - routing
-
 variants:
   - id: push
-    name: { zh: 推入, en: Push }
-    note: { zh: 新页从右推入、旧页左移，表达层级, en: New page pushes in from the right — expresses depth }
+    name:
+      zh: 推入
+      en: Push
+    note:
+      zh: 新页从右推入、旧页左移，表达层级
+      en: New page pushes in from the right — expresses depth
   - id: fade
-    name: { zh: 淡入淡出, en: Cross-fade }
-    note: { zh: 两页交叉淡化，中性无方向, en: Both pages cross-fade — neutral, directionless }
+    name:
+      zh: 淡入淡出
+      en: Cross-fade
+    note:
+      zh: 两页交叉淡化，中性无方向
+      en: Both pages cross-fade — neutral, directionless
   - id: shared-axis
-    name: { zh: 共享轴, en: Shared axis }
-    note: { zh: Material 规范，进入与退出配对同轴运动, en: Material's paired same-axis enter/exit }
-
+    name:
+      zh: 共享轴
+      en: Shared axis
+    note:
+      zh: Material 规范，进入与退出配对同轴运动
+      en: Material's paired same-axis enter/exit
 related:
   - drawer-slide
   - modal
   - tabs
   - toast-slide-in
-
 demo:
   component: page-transition
-  modes: [default, dark]
-
+  modes:
+    - default
+    - dark
 implementation:
   css:
-    - "transform: translateX"
+    - 'transform: translateX'
     - opacity
     - transition
   notes:
-    zh: >-
-      最简做法：路由容器在切换时给旧页 class "exit"（translateX(-30%) + opacity:0）、
-      新页 "enter"（从 translateX(30%) 到 0），时长 250～300ms ease-out。
-      现代方案用 View Transitions API：document.startViewTransition 包裹路由更新，
-      一行代码获得交叉淡入淡出并可用 CSS 定制方向。注意尊重 prefers-reduced-motion。
-    en: >-
-      Minimal recipe: on navigation give the outgoing page an "exit" class
-      (translateX(-30%) + opacity:0) and animate the incoming one from
-      translateX(30%) to 0 over 250–300ms ease-out. The modern route is the View
-      Transitions API — wrap the router update in document.startViewTransition for
-      a cross-fade you can restyle per direction in CSS. Respect
-      prefers-reduced-motion.
-
+    zh: 最简做法：路由容器在切换时给旧页 class "exit"（translateX(-30%) + opacity:0）、 新页 "enter"（从 translateX(30%) 到 0），时长 250～300ms ease-out。 现代方案用 View Transitions API：document.startViewTransition 包裹路由更新， 一行代码获得交叉淡入淡出并可用 CSS 定制方向。注意尊重 prefers-reduced-motion。
+    en: 'Minimal recipe: on navigation give the outgoing page an "exit" class (translateX(-30%) + opacity:0) and animate the incoming one from translateX(30%) to 0 over 250–300ms ease-out. The modern route is the View Transitions API — wrap the router update in document.startViewTransition for a cross-fade you can restyle per direction in CSS. Respect prefers-reduced-motion.'
 sources:
   - name: MDN — View Transitions API
     url: https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API
-
 prompts:
   basic:
     zh: 给站点路由切换添加过渡动画：新页面淡入，旧页面淡出。
     en: Add a transition between route changes — the new page fades in as the old one fades out.
   design:
-    zh: >-
-      页面切换采用共享轴过渡：前进时新页从右侧 30% 处滑入、旧页左移淡出，
-      返回时方向相反；时长 280ms ease-out，动画期间禁止重复触发。
-    en: >-
-      Use a shared-axis transition: forward navigations slide the new page in from
-      +30% while the old one fades left; backward reverses it. 280ms ease-out;
-      ignore re-triggers while animating.
+    zh: 页面切换采用共享轴过渡：前进时新页从右侧 30% 处滑入、旧页左移淡出， 返回时方向相反；时长 280ms ease-out，动画期间禁止重复触发。
+    en: 'Use a shared-axis transition: forward navigations slide the new page in from +30% while the old one fades left; backward reverses it. 280ms ease-out; ignore re-triggers while animating.'
   implementation:
-    zh: >-
-      React Router 场景：切换时对路由容器施加 key 触发的 CSS 动画类
-      （slide-in-left/right 250ms ease-out both）。或用
-      document.startViewTransition(() => flushSync(update))，配合
-      ::view-transition-old/new 自定义方向。尊重 prefers-reduced-motion
-      （退化为 120ms 交叉淡化或直接切换）。
-    en: >-
-      React Router: apply a key-driven CSS animation class to the route container
-      (slide-in-left/right, 250ms ease-out both). Or use
-      document.startViewTransition(() => flushSync(update)) and steer direction via
-      ::view-transition-old/new. Respect prefers-reduced-motion (fall back to a
-      120ms cross-fade or an instant swap).
+    zh: React Router 场景：切换时对路由容器施加 key 触发的 CSS 动画类 （slide-in-left/right 250ms ease-out both）。或用 document.startViewTransition(() => flushSync(update))，配合 ::view-transition-old/new 自定义方向。尊重 prefers-reduced-motion （退化为 120ms 交叉淡化或直接切换）。
+    en: 'React Router: apply a key-driven CSS animation class to the route container (slide-in-left/right, 250ms ease-out both). Or use document.startViewTransition(() => flushSync(update)) and steer direction via ::view-transition-old/new. Respect prefers-reduced-motion (fall back to a 120ms cross-fade or an instant swap).'
   agent:
     zh: |-
       为当前 SPA 的路由切换添加页面过渡。

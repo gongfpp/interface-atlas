@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 复古未来主义
   en: Retro-Futurism
-
 aliases:
   - 复古未来主义
   - 复古未来风
@@ -13,120 +11,96 @@ aliases:
   - 落日灰壳那种怀旧科技
   - Atompunk
   - Raygun Gothic
-
 category:
   - Style
   - Visual Language
-
 description:
-  zh: >-
-    "过去的人想象中的未来"的视觉语言：奶油橙棕的暖色底、粗圆角机身、轨道线
-    与星球贴纸、像素化屏幕与 CRT 荧光，乐观却已过时的科技感。它把登机舱
-    仪表盘、老式家电与太空竞赛海报揉成一种温暖的怀旧未来。
-  en: >-
-    The future as imagined by the past: cream-orange-brown warm palettes,
-    chunky rounded casings, orbit lines and planet decals, pixel screens and
-    CRT phosphor — optimistic tech that has aged. Space-age dashboards, vintage
-    appliances and space-race posters fold into one warm nostalgic future.
-
+  zh: '"过去的人想象中的未来"的视觉语言：奶油橙棕的暖色底、粗圆角机身、轨道线 与星球贴纸、像素化屏幕与 CRT 荧光，乐观却已过时的科技感。它把登机舱 仪表盘、老式家电与太空竞赛海报揉成一种温暖的怀旧未来。'
+  en: 'The future as imagined by the past: cream-orange-brown warm palettes, chunky rounded casings, orbit lines and planet decals, pixel screens and CRT phosphor — optimistic tech that has aged. Space-age dashboards, vintage appliances and space-race posters fold into one warm nostalgic future.'
 use_when:
-  - { zh: 游戏 音乐 与怀旧科技主题的品牌叙事, en: Games, music and nostalgia-tech brand storytelling }
-  - { zh: 需要温暖乐观的未来感，拒绝冰冷的赛博叙事, en: Futures that feel warm and optimistic instead of cold-cyber }
-  - { zh: 概念产品 活动页，"过去的明天"是故事本身, en: Concept pages where "yesterday's tomorrow" is the story }
-
+  - zh: 游戏 音乐 与怀旧科技主题的品牌叙事
+    en: Games, music and nostalgia-tech brand storytelling
+  - zh: 需要温暖乐观的未来感，拒绝冰冷的赛博叙事
+    en: Futures that feel warm and optimistic instead of cold-cyber
+  - zh: 概念产品 活动页，"过去的明天"是故事本身
+    en: Concept pages where "yesterday's tomorrow" is the story
 avoid_when:
-  - { zh: 现代工具型产品，旧机身隐喻降低效率感知, en: Modern productivity tools — vintage casing metaphors hurt perceived efficiency }
-  - { zh: 极简高端品牌，复古装饰稀释品牌信号, en: Minimal premium brands where retro garnish dilutes the signal }
-  - { zh: 需要无障碍大对比的场景，暖色低对比组合常见, en: Accessibility-critical contexts — warm palettes often run low contrast }
-
+  - zh: 现代工具型产品，旧机身隐喻降低效率感知
+    en: Modern productivity tools — vintage casing metaphors hurt perceived efficiency
+  - zh: 极简高端品牌，复古装饰稀释品牌信号
+    en: Minimal premium brands where retro garnish dilutes the signal
+  - zh: 需要无障碍大对比的场景，暖色低对比组合常见
+    en: Accessibility-critical contexts — warm palettes often run low contrast
 tags:
   - retro-futurism
   - space-age
   - nostalgia
   - optimism
   - vintage-tech
-
 variants:
   - id: atompunk
-    name: { zh: 原子时代, en: Atompunk }
-    note: { zh: 五六十年代太空竞赛，轨道线与火箭, en: 50s–60s space race — orbit lines and rockets }
+    name:
+      zh: 原子时代
+      en: Atompunk
+    note:
+      zh: 五六十年代太空竞赛，轨道线与火箭
+      en: 50s–60s space race — orbit lines and rockets
   - id: cassette
-    name: { zh: 卡带未来, en: Cassette Futurism }
-    note: { zh: 七八十年代 CRT 与米色机身仪表盘, en: 70s–80s CRTs on beige dashboard casings }
+    name:
+      zh: 卡带未来
+      en: Cassette Futurism
+    note:
+      zh: 七八十年代 CRT 与米色机身仪表盘
+      en: 70s–80s CRTs on beige dashboard casings
   - id: synth
-    name: { zh: 合成器落日, en: Synth Sunset }
-    note: { zh: 落日条纹网格地平线，与 Y2K 相邻, en: Sunset stripes over grid horizons — adjacent to Y2K }
-
+    name:
+      zh: 合成器落日
+      en: Synth Sunset
+    note:
+      zh: 落日条纹网格地平线，与 Y2K 相邻
+      en: Sunset stripes over grid horizons — adjacent to Y2K
 applicable_components:
   - button
   - card
   - progress-bar
   - input
-
 related:
   - y2k
   - cyberpunk
   - aurora
   - glassmorphism
   - card
-
 demo:
   component: retro-futurism
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 sources:
   - name: Wikipedia — Retrofuturism
     url: https://en.wikipedia.org/wiki/Retrofuturism
   - name: Wikipedia — Cassette futurism
     url: https://en.wikipedia.org/wiki/Cassette_futurism
-
 implementation:
   css:
-    - "background: linear-gradient(#F5E6C8, #E8B87A)"
-    - "border-radius: 24px"
-    - "box-shadow: inset"
-    - "repeating-linear-gradient"
-    - "font-family: monospace"
+    - 'background: linear-gradient(#F5E6C8, #E8B87A)'
+    - 'border-radius: 24px'
+    - 'box-shadow: inset'
+    - repeating-linear-gradient
+    - 'font-family: monospace'
   notes:
-    zh: >-
-      色板锁在暖调：奶油 #F2E4C2 杏橙 #E8965A 陶土棕 #8A4B2E 配一点湖蓝
-      #3D7A99 点缀；机身感来自大圆角（20px+）+ 双重内阴影（上亮下暗）模拟
-      塑料厚度；轨道线用细椭圆边框，网格地平线用 repeating-linear-gradient；
-      文字可混用宽体几何无衬线与等宽屏显字。深色模式转为 CRT：暖黑底加荧光
-      琥珀或青色屏显字。
-    en: >-
-      Lock the palette to warm tones: cream #F2E4C2, apricot #E8965A, terracotta
-      #8A4B2E with a dash of lake blue #3D7A99. Casing comes from big radii
-      (20px+) plus a double inset shadow (lit top, dark bottom) faking plastic
-      thickness; orbit lines are thin ellipse borders; grid horizons use
-      repeating-linear-gradient. Mix wide geometric sans with mono screen type.
-      Dark mode goes CRT — warm black with phosphor amber or cyan type.
-
+    zh: '色板锁在暖调：奶油 #F2E4C2 杏橙 #E8965A 陶土棕 #8A4B2E 配一点湖蓝 #3D7A99 点缀；机身感来自大圆角（20px+）+ 双重内阴影（上亮下暗）模拟 塑料厚度；轨道线用细椭圆边框，网格地平线用 repeating-linear-gradient； 文字可混用宽体几何无衬线与等宽屏显字。深色模式转为 CRT：暖黑底加荧光 琥珀或青色屏显字。'
+    en: 'Lock the palette to warm tones: cream #F2E4C2, apricot #E8965A, terracotta #8A4B2E with a dash of lake blue #3D7A99. Casing comes from big radii (20px+) plus a double inset shadow (lit top, dark bottom) faking plastic thickness; orbit lines are thin ellipse borders; grid horizons use repeating-linear-gradient. Mix wide geometric sans with mono screen type. Dark mode goes CRT — warm black with phosphor amber or cyan type.'
 prompts:
   basic:
-    zh: >-
-      用复古未来主义（Retro-Futurism）设计界面：奶油橙棕暖色底、粗圆角机身感
-      卡片、轨道线与像素屏幕点缀，呈现"过去想象的未来"。
-    en: >-
-      "Design an interface in Retro-Futurism style: cream-orange-brown warm ground, chunky rounded casing cards, orbit lines and pixel-screen accents — the future as imagined by the past."
+    zh: 用复古未来主义（Retro-Futurism）设计界面：奶油橙棕暖色底、粗圆角机身感 卡片、轨道线与像素屏幕点缀，呈现"过去想象的未来"。
+    en: '"Design an interface in Retro-Futurism style: cream-orange-brown warm ground, chunky rounded casing cards, orbit lines and pixel-screen accents — the future as imagined by the past."'
   design:
-    zh: >-
-      复古未来设计规范：底色奶油 #F2E4C2 到杏橙 #E8965A 渐变；卡片大圆角
-      24px，上缘亮 内下缘暗的双重内阴影模拟塑料机身；按钮为胶囊形 或方形
-      大按钮，配湖蓝 #3D7A99 点缀；轨道线用 1px 椭圆，网格地平线用横向
-      repeating-linear-gradient；标题宽体几何无衬线，数据用等宽屏显字；
-      深色模式为 CRT 暖黑底 + 荧光琥珀字。
-    en: >-
-      "Retro-futurism spec: cream #F2E4C2 to apricot #E8965A gradient ground; cards at 24px radii with a double inset shadow (lit top edge, dark bottom) for plastic casing; pill or chunky square buttons with lake blue #3D7A99 accents; 1px ellipse orbit lines and a repeating-linear-gradient grid horizon; wide geometric sans headings, mono screen numerals. Dark mode: CRT warm black with phosphor amber."
+    zh: '复古未来设计规范：底色奶油 #F2E4C2 到杏橙 #E8965A 渐变；卡片大圆角 24px，上缘亮 内下缘暗的双重内阴影模拟塑料机身；按钮为胶囊形 或方形 大按钮，配湖蓝 #3D7A99 点缀；轨道线用 1px 椭圆，网格地平线用横向 repeating-linear-gradient；标题宽体几何无衬线，数据用等宽屏显字； 深色模式为 CRT 暖黑底 + 荧光琥珀字。'
+    en: '"Retro-futurism spec: cream #F2E4C2 to apricot #E8965A gradient ground; cards at 24px radii with a double inset shadow (lit top edge, dark bottom) for plastic casing; pill or chunky square buttons with lake blue #3D7A99 accents; 1px ellipse orbit lines and a repeating-linear-gradient grid horizon; wide geometric sans headings, mono screen numerals. Dark mode: CRT warm black with phosphor amber."'
   implementation:
-    zh: >-
-      用 CSS 实现复古未来机身卡片：.casing { background: linear-gradient(
-      #F7EDD6, #EBD9B4); border-radius: 24px; box-shadow: inset 0 2px 0
-      rgba(255,255,255,0.9), inset 0 -4px 8px rgba(120,70,30,0.25), 0 6px 14px
-      rgba(90,50,20,0.25); } 网格地平线：repeating-linear-gradient(0deg,
-      rgba(61,122,153,0.35) 0 1px, transparent 1px 12px)。
-    en: >-
-      "Implement a retro casing card in CSS: .casing { background: linear-gradient(#F7EDD6, #EBD9B4); border-radius: 24px; box-shadow: inset 0 2px 0 rgba(255,255,255,0.9), inset 0 -4px 8px rgba(120,70,30,0.25), 0 6px 14px rgba(90,50,20,0.25); } Grid horizon: repeating-linear-gradient(0deg, rgba(61,122,153,0.35) 0 1px, transparent 1px 12px)."
+    zh: '用 CSS 实现复古未来机身卡片：.casing { background: linear-gradient( #F7EDD6, #EBD9B4); border-radius: 24px; box-shadow: inset 0 2px 0 rgba(255,255,255,0.9), inset 0 -4px 8px rgba(120,70,30,0.25), 0 6px 14px rgba(90,50,20,0.25); } 网格地平线：repeating-linear-gradient(0deg, rgba(61,122,153,0.35) 0 1px, transparent 1px 12px)。'
+    en: '"Implement a retro casing card in CSS: .casing { background: linear-gradient(#F7EDD6, #EBD9B4); border-radius: 24px; box-shadow: inset 0 2px 0 rgba(255,255,255,0.9), inset 0 -4px 8px rgba(120,70,30,0.25), 0 6px 14px rgba(90,50,20,0.25); } Grid horizon: repeating-linear-gradient(0deg, rgba(61,122,153,0.35) 0 1px, transparent 1px 12px)."'
   agent:
     zh: |-
       在当前项目中用复古未来主义（Retro-Futurism）实现一个机身感卡片与按钮区块。
@@ -152,20 +126,19 @@ prompts:
       - Respect prefers-reduced-motion for any motion
       - No new dependencies
       Run existing project checks when done and list the modified files.
-
 style_spec:
   typography:
-    zh: "等宽铬金标题，全大写"
-    en: "Mono chrome caps display"
+    zh: 等宽铬金标题，全大写
+    en: Mono chrome caps display
   color:
-    zh: "深紫渐变 #140A33→#7A1F63 × 粉 #FF71CE"
-    en: "Deep purple gradient to #7A1F63 with pink #FF71CE"
+    zh: '深紫渐变 #140A33→#7A1F63 × 粉 #FF71CE'
+    en: 'Deep purple gradient to #7A1F63 with pink #FF71CE'
   border:
-    zh: "1px 霓虹粉描边"
-    en: "1px neon pink outlines"
+    zh: 1px 霓虹粉描边
+    en: 1px neon pink outlines
   shadow:
-    zh: "霓虹光晕"
-    en: "Neon glow"
+    zh: 霓虹光晕
+    en: Neon glow
   spacing:
-    zh: "网格地平线式构图"
-    en: "Horizon-grid composition"
+    zh: 网格地平线式构图
+    en: Horizon-grid composition

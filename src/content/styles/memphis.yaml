@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 孟菲斯风格
   en: Memphis Design
-
 aliases:
   - 孟菲斯风格
   - 孟菲斯设计
@@ -13,118 +11,96 @@ aliases:
   - 水磨石撞色风
   - Memphis Milano
   - Postmodern Pop
-
 category:
   - Style
   - Visual Language
-
 description:
-  zh: >-
-    反功能主义的后现代视觉语言：波浪线 圆点 锯齿 斑点等天真涂鸦元素，与高饱和
-    撞色、黑色粗描边一起铺满画面，故意打破网格与秩序。它拥抱廉价与热闹，用
-    "丑得快乐"对抗优雅的现代主义。
-  en: >-
-    The postmodern anti-functionalist language: squiggles, dots, zigzags and
-    confetti spots in saturated clashing colors with bold black outlines,
-    deliberately breaking grids and order. It embraces the cheap and the
-    festive — happily ugly against modernist good taste.
-
+  zh: 反功能主义的后现代视觉语言：波浪线 圆点 锯齿 斑点等天真涂鸦元素，与高饱和 撞色、黑色粗描边一起铺满画面，故意打破网格与秩序。它拥抱廉价与热闹，用 "丑得快乐"对抗优雅的现代主义。
+  en: 'The postmodern anti-functionalist language: squiggles, dots, zigzags and confetti spots in saturated clashing colors with bold black outlines, deliberately breaking grids and order. It embraces the cheap and the festive — happily ugly against modernist good taste.'
 use_when:
-  - { zh: 潮流 玩具 派对 音乐节等需要欢乐能量的场景, en: Streetwear, toys, parties and festivals that need joyful energy }
-  - { zh: 儿童与创意教育产品，热闹无攻击性, en: Children and creative education products — festive, non-threatening }
-  - { zh: 短期营销活动，需要一眼难忘的视觉记忆点, en: Short campaigns that must be unforgettable at a glance }
-
+  - zh: 潮流 玩具 派对 音乐节等需要欢乐能量的场景
+    en: Streetwear, toys, parties and festivals that need joyful energy
+  - zh: 儿童与创意教育产品，热闹无攻击性
+    en: Children and creative education products — festive, non-threatening
+  - zh: 短期营销活动，需要一眼难忘的视觉记忆点
+    en: Short campaigns that must be unforgettable at a glance
 avoid_when:
-  - { zh: 需要长时间专注使用的工具与阅读产品, en: Tools and reading products used for long focused sessions }
-  - { zh: 品牌调性高级 克制 或面向严肃决策者, en: Premium, restrained brands or serious decision-makers }
-  - { zh: 信息密集界面，装饰密度会淹没功能, en: Dense interfaces where decoration drowns function }
-
+  - zh: 需要长时间专注使用的工具与阅读产品
+    en: Tools and reading products used for long focused sessions
+  - zh: 品牌调性高级 克制 或面向严肃决策者
+    en: Premium, restrained brands or serious decision-makers
+  - zh: 信息密集界面，装饰密度会淹没功能
+    en: Dense interfaces where decoration drowns function
 tags:
   - memphis
   - postmodern
   - pop
   - playful
   - pattern
-
 variants:
   - id: classic
-    name: { zh: 经典孟菲斯, en: Classic Memphis }
-    note: { zh: Ettore Sottsass 式黑白底 大色块 波浪, en: Ettore Sottsass — black-and-white ground, big blobs, squiggles }
+    name:
+      zh: 经典孟菲斯
+      en: Classic Memphis
+    note:
+      zh: Ettore Sottsass 式黑白底 大色块 波浪
+      en: Ettore Sottsass — black-and-white ground, big blobs, squiggles
   - id: terrazzo
-    name: { zh: 水磨石, en: Terrazzo }
-    note: { zh: 碎片斑点铺满底面，密度取胜, en: Confetti fragments across the surface — density as texture }
+    name:
+      zh: 水磨石
+      en: Terrazzo
+    note:
+      zh: 碎片斑点铺满底面，密度取胜
+      en: Confetti fragments across the surface — density as texture
   - id: neo-memphis
-    name: { zh: 新孟菲斯, en: Neo-Memphis }
-    note: { zh: 网页化改良，留白增多 描边变细, en: Web-adapted — more whitespace, thinner outlines }
-
+    name:
+      zh: 新孟菲斯
+      en: Neo-Memphis
+    note:
+      zh: 网页化改良，留白增多 描边变细
+      en: Web-adapted — more whitespace, thinner outlines
 applicable_components:
   - button
   - card
   - badge
   - alert
-
 related:
   - bauhaus
   - neobrutalism
   - y2k
   - button
   - card
-
 demo:
   component: memphis
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 sources:
   - name: Memphis Milano
     url: https://memphis-milano.com/
   - name: Wikipedia — Memphis Group
     url: https://en.wikipedia.org/wiki/Memphis_Group
-
 implementation:
   css:
-    - "background-image: radial-gradient"
-    - "border: 3px solid #000"
-    - "box-shadow: 5px 5px 0"
-    - "border-radius: 50%"
-    - "clip-path"
+    - 'background-image: radial-gradient'
+    - 'border: 3px solid #000'
+    - 'box-shadow: 5px 5px 0'
+    - 'border-radius: 50%'
+    - clip-path
   notes:
-    zh: >-
-      经典配方：黑白几何底纹（波点用 radial-gradient 平铺，条纹用 repeating-
-      linear-gradient）垫底；主体元素用高饱和撞色（柠檬黄 珊瑚红 湖蓝 紫罗兰）
-      + 2～3px 黑描边 + 偏移实心阴影；波浪线与锯齿用 SVG 或 clip-path，数量
-      控制在 3～5 个防止失控。深色模式把黑底反转成墨蓝，保持撞色饱和度。
-    en: >-
-      The classic recipe: a black-and-white geometric ground (dots via tiled
-      radial-gradient, stripes via repeating-linear-gradient); elements in
-      saturated clashes (lemon, coral, lake blue, violet) with 2–3px black
-      outlines and offset solid shadows; squiggles and zigzags as SVG or
-      clip-path, capped at three to five. Dark mode swaps black for ink blue
-      and keeps the saturation.
-
+    zh: 经典配方：黑白几何底纹（波点用 radial-gradient 平铺，条纹用 repeating- linear-gradient）垫底；主体元素用高饱和撞色（柠檬黄 珊瑚红 湖蓝 紫罗兰） + 2～3px 黑描边 + 偏移实心阴影；波浪线与锯齿用 SVG 或 clip-path，数量 控制在 3～5 个防止失控。深色模式把黑底反转成墨蓝，保持撞色饱和度。
+    en: 'The classic recipe: a black-and-white geometric ground (dots via tiled radial-gradient, stripes via repeating-linear-gradient); elements in saturated clashes (lemon, coral, lake blue, violet) with 2–3px black outlines and offset solid shadows; squiggles and zigzags as SVG or clip-path, capped at three to five. Dark mode swaps black for ink blue and keeps the saturation.'
 prompts:
   basic:
-    zh: >-
-      用孟菲斯风格（Memphis Design）设计界面：波浪线 圆点 锯齿涂鸦元素与高饱和
-      撞色，黑色描边与偏移阴影，热闹反秩序的后现代气质。
-    en: >-
-      "Design an interface in Memphis Design style: squiggles, dots and zigzags in saturated clashing colors with bold black outlines and offset shadows — festive, anti-order, postmodern."
+    zh: 用孟菲斯风格（Memphis Design）设计界面：波浪线 圆点 锯齿涂鸦元素与高饱和 撞色，黑色描边与偏移阴影，热闹反秩序的后现代气质。
+    en: '"Design an interface in Memphis Design style: squiggles, dots and zigzags in saturated clashing colors with bold black outlines and offset shadows — festive, anti-order, postmodern."'
   design:
-    zh: >-
-      孟菲斯设计规范：底面用黑白波点或条纹几何纹样；主体色块用柠檬黄 #FFD53D
-      珊瑚红 #FF6B6B 湖蓝 #4D96FF 紫罗兰 #B388FF，全部 3px 黑描边加 5px 偏移
-      实心阴影；点缀波浪线 锯齿与三角 圆 小方等涂鸦元素 3～5 个；文字粗壮
-      无衬线可略倾斜；深色模式底改墨蓝 #14143C，撞色保持饱和。
-    en: >-
-      "Memphis spec: a black-and-white dot or stripe geometric ground; blocks in lemon #FFD53D, coral #FF6B6B, lake blue #4D96FF, violet #B388FF with 3px black borders and 5px offset solid shadows; three to five squiggles, zigzags and confetti shapes; chunky sans type, slightly tilted OK. Dark mode on ink blue #14143C with saturation kept."
+    zh: '孟菲斯设计规范：底面用黑白波点或条纹几何纹样；主体色块用柠檬黄 #FFD53D 珊瑚红 #FF6B6B 湖蓝 #4D96FF 紫罗兰 #B388FF，全部 3px 黑描边加 5px 偏移 实心阴影；点缀波浪线 锯齿与三角 圆 小方等涂鸦元素 3～5 个；文字粗壮 无衬线可略倾斜；深色模式底改墨蓝 #14143C，撞色保持饱和。'
+    en: '"Memphis spec: a black-and-white dot or stripe geometric ground; blocks in lemon #FFD53D, coral #FF6B6B, lake blue #4D96FF, violet #B388FF with 3px black borders and 5px offset solid shadows; three to five squiggles, zigzags and confetti shapes; chunky sans type, slightly tilted OK. Dark mode on ink blue #14143C with saturation kept."'
   implementation:
-    zh: >-
-      用 CSS 实现孟菲斯底纹：.memphis-dots { background-image:
-      radial-gradient(#000 2.5px, transparent 2.5px); background-size: 18px
-      18px; } 撞色卡片 .memphis-card { border: 3px solid #000;
-      box-shadow: 6px 6px 0 #000; border-radius: 10px; } 波浪线用内联 SVG
-      path，锯齿用 clip-path polygon。
-    en: >-
-      "Implement a Memphis ground in CSS: .memphis-dots { background-image: radial-gradient(#000 2.5px, transparent 2.5px); background-size: 18px 18px; } Clash card: .memphis-card { border: 3px solid #000; box-shadow: 6px 6px 0 #000; border-radius: 10px; } Squiggles as inline SVG paths; zigzags via clip-path polygon."
+    zh: '用 CSS 实现孟菲斯底纹：.memphis-dots { background-image: radial-gradient(#000 2.5px, transparent 2.5px); background-size: 18px 18px; } 撞色卡片 .memphis-card { border: 3px solid #000; box-shadow: 6px 6px 0 #000; border-radius: 10px; } 波浪线用内联 SVG path，锯齿用 clip-path polygon。'
+    en: '"Implement a Memphis ground in CSS: .memphis-dots { background-image: radial-gradient(#000 2.5px, transparent 2.5px); background-size: 18px 18px; } Clash card: .memphis-card { border: 3px solid #000; box-shadow: 6px 6px 0 #000; border-radius: 10px; } Squiggles as inline SVG paths; zigzags via clip-path polygon."'
   agent:
     zh: |-
       在当前项目中用孟菲斯风格（Memphis Design）实现一组撞色卡片与按钮区块。
@@ -150,20 +126,19 @@ prompts:
       - Respect prefers-reduced-motion for hover effects
       - No new dependencies
       Run existing project checks when done and list the modified files.
-
 style_spec:
   typography:
-    zh: "无衬线粗标题，随性排版"
-    en: "Bold sans with playful type"
+    zh: 无衬线粗标题，随性排版
+    en: Bold sans with playful type
   color:
-    zh: "奶油底 × 粉 #FF5C8A 黄 #FFD23F 青 #3EC6A8"
-    en: "Cream base; pink #FF5C8A, yellow #FFD23F, teal #3EC6A8"
+    zh: '奶油底 × 粉 #FF5C8A 黄 #FFD23F 青 #3EC6A8'
+    en: 'Cream base; pink #FF5C8A, yellow #FFD23F, teal #3EC6A8'
   border:
-    zh: "2px 黑边"
-    en: "2px black outlines"
+    zh: 2px 黑边
+    en: 2px black outlines
   shadow:
-    zh: "4px 4px 0 位移硬投影"
-    en: "4px 4px 0 offset hard shadows"
+    zh: 4px 4px 0 位移硬投影
+    en: 4px 4px 0 offset hard shadows
   spacing:
-    zh: "故意歪斜、错位排布"
-    en: "Deliberately tilted, misaligned"
+    zh: 故意歪斜、错位排布
+    en: Deliberately tilted, misaligned

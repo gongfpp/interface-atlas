@@ -1,0 +1,123 @@
+status: published
+name:
+  zh: 手风琴
+  en: Accordion
+aliases:
+  - 手风琴
+  - 折叠面板
+  - 折叠菜单
+  - 展开收起
+  - 可折叠区块
+  - FAQ 折叠列表
+  - 点标题展开的那种列表
+category:
+  - Disclosure
+  - Layout
+description:
+  zh: 由多个可折叠区块组成的垂直列表：点击标题展开内容、再点收起，可互斥（同时只开一项） 也可多开。用于在有限空间里收纳成组内容，让用户按需展开。
+  en: 'A vertical list of collapsible sections: clicking a header expands its content and clicking again collapses it, either exclusively (one open at a time) or independently. Packs grouped content into limited space for on-demand expansion.'
+use_when:
+  - zh: FAQ、帮助中心的分组问题
+    en: FAQ and help-centre question groups
+  - zh: 设置页分组长表单（高级选项默认收起）
+    en: Long settings forms with advanced sections collapsed
+  - zh: 移动端长内容分期呈现
+    en: Progressive disclosure of long content on mobile
+avoid_when:
+  - zh: 用户需要同时对照多块内容
+    en: Users must compare sections side by side
+  - zh: 核心内容应默认可见（收起会藏关键信息）
+    en: Essential content should be visible by default
+  - zh: 打印或 SEO 需要全量文本（需处理展开态）
+    en: Print or SEO needs full text — handle the expanded state
+tags:
+  - disclosure
+  - layout
+  - progressive
+  - faq
+variants:
+  - id: single
+    name:
+      zh: 单开
+      en: Single
+    note:
+      zh: 同时只展开一项，最常见
+      en: One open at a time, the common default
+  - id: multiple
+    name:
+      zh: 多开
+      en: Multiple
+    note:
+      zh: 各项独立展开收起
+      en: Sections expand independently
+  - id: bordered
+    name:
+      zh: 分隔卡
+      en: Bordered
+    note:
+      zh: 每项带边框或分隔线，区块感更强
+      en: Per-item borders or dividers for stronger grouping
+anatomy:
+  - 区块标题（Header）
+  - 展开指示箭头（Chevron）
+  - 内容区（Panel）
+  - 分隔线（Divider）
+related:
+  - accordion-expand
+  - progressive-disclosure
+  - tabs
+  - dropdown
+demo:
+  component: accordion
+  modes:
+    - default
+    - dark
+    - variants
+implementation:
+  css:
+    - grid-template-rows
+    - transition
+    - 'overflow: hidden'
+    - 'transform: rotate'
+  notes:
+    zh: 展开动画：grid-template-rows 0fr→1fr 过渡（或测量 scrollHeight 设 max-height）， 箭头 rotate 180° 同步旋转。标题用 button，Enter/Space 触发；aria-expanded + aria-controls 关联面板。互斥逻辑放在受控 state 里处理；尊重 prefers-reduced-motion 时可去掉高度动画。
+    en: 'Expand animation: transition grid-template-rows 0fr→1fr (or measure scrollHeight into max-height); rotate the chevron 180° in sync. Headers are buttons triggered by Enter/Space; link panels with aria-expanded + aria-controls. Keep the exclusive logic in controlled state; drop the height animation under prefers-reduced-motion.'
+sources:
+  - name: WAI-ARIA Authoring Practices — Accordion
+    url: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
+  - name: MDN — details element
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details
+prompts:
+  basic:
+    zh: 创建一个手风琴（Accordion）组件：多个折叠区块，点击标题展开收起，支持单开与多开两种模式。
+    en: 'Create an Accordion component: collapsible sections with click-to-toggle headers, supporting single-open and multiple-open modes.'
+  design:
+    zh: 创建 Accordion 组件。要求：每项标题行左侧标题、右侧箭头（展开时旋转 180°）； 展开收起用高度过渡动画（200ms 左右）；分隔线或卡片式两种外观； 当前项标题可加强调色；深浅色主题一致。
+    en: 'Create an Accordion. Requirements: header rows with the title on the left and a chevron on the right (rotating 180° when open); smooth height transition (~200ms); divider or card looks; optional accent tint on the open header; consistent light/dark themes.'
+  implementation:
+    zh: 用 React + Tailwind 实现 Accordion：items + openIds 受控 state，单开模式 setOpenId(id)； 面板用 grid grid-rows-[0fr]/[1fr] + transition-[grid-template-rows] 实现高度动画 （时长乘 var(--demo-speed, 1)），内层 overflow-hidden；箭头 -rotate-90/rotate-0 过渡； 标题 button + aria-expanded + aria-controls；尊重 prefers-reduced-motion。
+    en: 'React + Tailwind Accordion: items + openIds controlled state, single-open maps to setOpenId(id); panels animate height via grid grid-rows-[0fr]/[1fr] + transition-[grid-template-rows] (duration scaled by var(--demo-speed, 1)) with an inner overflow-hidden; chevron transitions -rotate-90/rotate-0; headers are buttons with aria-expanded + aria-controls; respect prefers-reduced-motion.'
+  agent:
+    zh: |-
+      在当前项目中实现手风琴（Accordion）组件。
+
+      先检查现有组件体系与 Design Token，优先复用现有的表面色与圆角变量。
+      用途：FAQ 与设置页分组。
+      要求：
+      - 支持单开（互斥）与多开两种模式
+      - 高度展开动画，尊重 prefers-reduced-motion
+      - 键盘可用：button 标题 + aria-expanded/aria-controls
+      - 深浅色主题一致，不新增依赖
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Implement an Accordion component in the current project.
+
+      Inspect the existing component system and design tokens first; reuse existing
+      surface and radius variables.
+      Usage: FAQs and grouped settings.
+      Requirements:
+      - Single-open (exclusive) and multiple-open modes
+      - Height expand animation, respecting prefers-reduced-motion
+      - Keyboard accessible: button headers + aria-expanded/aria-controls
+      - Consistent light/dark themes, no new dependencies
+      Run existing checks when done and list modified files.

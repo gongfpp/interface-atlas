@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 开关
   en: Switch
-
 aliases:
   - 开关
   - 拨动开关
@@ -11,121 +9,97 @@ aliases:
   - toggle 开关
   - 滑动开关
   - 开关键
-
 category:
   - Form
   - Input
-
 description:
-  zh: >-
-    用滑轨上的圆形滑块表示二元设置的开与关，拨动立即生效，无需确认。
-    滑块位移与轨道变色同时反馈状态，右侧或内嵌「开 / 关」文字辅助辨认，
-    是设置页的标准控件。
-  en: >-
-    A thumb sliding on a track represents a binary setting that takes effect
-    immediately, no confirmation needed. Thumb travel and track color change
-    together signal the state, with an on/off text hint beside or inside —
-    the standard control of settings pages.
-
+  zh: 用滑轨上的圆形滑块表示二元设置的开与关，拨动立即生效，无需确认。 滑块位移与轨道变色同时反馈状态，右侧或内嵌「开 / 关」文字辅助辨认， 是设置页的标准控件。
+  en: A thumb sliding on a track represents a binary setting that takes effect immediately, no confirmation needed. Thumb travel and track color change together signal the state, with an on/off text hint beside or inside — the standard control of settings pages.
 use_when:
-  - { zh: 二元设置拨动后立即生效（通知、深色模式）, en: Binary settings that apply immediately like notifications or dark mode }
-  - { zh: 状态改变无需提交即可见, en: Changes take visible effect without submitting }
-  - { zh: 设置页等以「开 / 关」心智组织的场景, en: Settings pages organized around on/off mental models }
-
+  - zh: 二元设置拨动后立即生效（通知、深色模式）
+    en: Binary settings that apply immediately like notifications or dark mode
+  - zh: 状态改变无需提交即可见
+    en: Changes take visible effect without submitting
+  - zh: 设置页等以「开 / 关」心智组织的场景
+    en: Settings pages organized around on/off mental models
 avoid_when:
-  - { zh: 修改后需要点保存才生效，用 checkbox + 表单, en: Changes need a save step — use a checkbox in a form }
-  - { zh: 语义是「从列表多选几项」，用 checkbox, en: Selecting several from a list — use checkboxes }
-  - { zh: 需要第三个中间状态，用分段控件, en: A third middle state is needed — use a segmented control }
-
+  - zh: 修改后需要点保存才生效，用 checkbox + 表单
+    en: Changes need a save step — use a checkbox in a form
+  - zh: 语义是「从列表多选几项」，用 checkbox
+    en: Selecting several from a list — use checkboxes
+  - zh: 需要第三个中间状态，用分段控件
+    en: A third middle state is needed — use a segmented control
 tags:
   - form
   - input
   - toggle
-
 variants:
   - id: basic
-    name: { zh: 基础, en: Basic }
-    note: { zh: 纯滑轨无文字, en: Bare track without text }
+    name:
+      zh: 基础
+      en: Basic
+    note:
+      zh: 纯滑轨无文字
+      en: Bare track without text
   - id: with-text
-    name: { zh: 带状态文字, en: With text }
-    note: { zh: 内嵌开 / 关字样辅助辨认, en: On/off text inside for clarity }
+    name:
+      zh: 带状态文字
+      en: With text
+    note:
+      zh: 内嵌开 / 关字样辅助辨认
+      en: On/off text inside for clarity
   - id: with-label
-    name: { zh: 设置行, en: Settings row }
-    note: { zh: 左标题右开关，设置页标准排布, en: Title left, switch right — the settings layout }
-
+    name:
+      zh: 设置行
+      en: Settings row
+    note:
+      zh: 左标题右开关，设置页标准排布
+      en: Title left, switch right — the settings layout
 anatomy:
   - 轨道（Track）
   - 滑块（Thumb）
   - 标签 / 状态文字（Label）
-
 applicable_styles:
   - minimalism
   - claymorphism
-
 applicable_components: []
 applicable_pages:
   - settings
   - profile
-
 related:
   - checkbox
   - press-feedback
   - settings
-
 demo:
   component: switch
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 implementation:
   css:
     - transition
-    - "transform: translateX"
+    - 'transform: translateX'
     - background
-    - "border-radius: 999px"
+    - 'border-radius: 999px'
   notes:
-    zh: >-
-      轨道 w 固定，thumb 用 translateX 在两端间过渡，轨道底色同步在灰与 accent 间切换，
-      全部时长乘 --demo-speed。role="switch" + aria-checked 表达状态；
-      整行 label 可点击；触控热区高不小于 32px（视觉可以更小）。
-      状态文字用 opacity 淡入淡出避免跳动。
-    en: >-
-      Fixed track width; the thumb translates between ends while the track color
-      crossfades between grey and accent, all durations multiplied by
-      --demo-speed. Express state with role="switch" and aria-checked; make the
-      whole row clickable; hit height at least 32px even if visually smaller.
-      Fade the status text with opacity to avoid jumps.
-
+    zh: 轨道 w 固定，thumb 用 translateX 在两端间过渡，轨道底色同步在灰与 accent 间切换， 全部时长乘 --demo-speed。role="switch" + aria-checked 表达状态； 整行 label 可点击；触控热区高不小于 32px（视觉可以更小）。 状态文字用 opacity 淡入淡出避免跳动。
+    en: Fixed track width; the thumb translates between ends while the track color crossfades between grey and accent, all durations multiplied by --demo-speed. Express state with role="switch" and aria-checked; make the whole row clickable; hit height at least 32px even if visually smaller. Fade the status text with opacity to avoid jumps.
 sources:
   - name: Apple HIG — Toggles
     url: https://developer.apple.com/design/human-interface-guidelines/toggles
   - name: Material Design — Switch
     url: https://m3.material.io/components/switch/overview
-
 prompts:
   basic:
     zh: 创建一个开关组件，拨动立即切换状态并反馈到界面。
     en: Create a switch component that flips state on toggle and reflects it immediately.
   design:
-    zh: >-
-      创建开关组件。要求：滑块位移 + 轨道变色双重反馈，动画平滑；
-      提供纯滑轨、内嵌开 / 关文字、左标题右开关的设置行三种形态；
-      role="switch" + aria-checked；深浅色一致。
-    en: >-
-      Create a switch component. Requirements: dual feedback of thumb travel and
-      track color, smooth animation; three forms — bare track, on/off text
-      inside, and a settings row with title left and switch right;
-      role="switch" + aria-checked; consistent in light/dark.
+    zh: 创建开关组件。要求：滑块位移 + 轨道变色双重反馈，动画平滑； 提供纯滑轨、内嵌开 / 关文字、左标题右开关的设置行三种形态； role="switch" + aria-checked；深浅色一致。
+    en: 'Create a switch component. Requirements: dual feedback of thumb travel and track color, smooth animation; three forms — bare track, on/off text inside, and a settings row with title left and switch right; role="switch" + aria-checked; consistent in light/dark.'
   implementation:
-    zh: >-
-      用 React + Tailwind 实现 Switch：受控 checked；按钮内绝对定位 thumb，
-      translateX 过渡（时长乘 --demo-speed）；轨道 checked ? bg-accent :
-      bg-ink-3/30；状态文字 opacity 过渡；role="switch" + aria-checked +
-      aria-labelledby 关联标题。
-    en: >-
-      React + Tailwind Switch: controlled checked; an absolutely positioned thumb
-      with a translateX transition (duration multiplied by --demo-speed); track
-      bg-accent vs bg-ink-3/30 by checked; status text fades via opacity;
-      role="switch" + aria-checked + aria-labelledby for the title.
+    zh: '用 React + Tailwind 实现 Switch：受控 checked；按钮内绝对定位 thumb， translateX 过渡（时长乘 --demo-speed）；轨道 checked ? bg-accent : bg-ink-3/30；状态文字 opacity 过渡；role="switch" + aria-checked + aria-labelledby 关联标题。'
+    en: 'React + Tailwind Switch: controlled checked; an absolutely positioned thumb with a translateX transition (duration multiplied by --demo-speed); track bg-accent vs bg-ink-3/30 by checked; status text fades via opacity; role="switch" + aria-checked + aria-labelledby for the title.'
   agent:
     zh: |-
       在当前项目中实现开关组件。

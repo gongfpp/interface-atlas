@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 注册页
   en: Signup Page
-
 aliases:
   - 注册页面
   - 注册账号
@@ -12,120 +10,113 @@ aliases:
   - 立即注册页
   - 开户页
   - 注册表单
-
 category:
   - Page
   - Auth
-
 description:
-  zh: >-
-    把陌生访客变成账号的转化页：表单只保留起步必需的字段（邮箱 + 密码），其余信息
-    延后到产品内补齐；辅以第三方注册、密码强度提示和服务条款勾选。与登录页共用
-    布局骨架，但每一处设计都在回答"注册这件事值不值得、麻不麻烦"。
-  en: >-
-    The conversion page turning strangers into accounts: the form keeps only the fields needed
-    to start (email + password) and defers everything else into the product, supported by
-    third-party signup, a password strength hint and terms consent. It shares a layout skeleton
-    with the login page, but every design decision answers "is signing up worth it and painless?"
-
+  zh: 把陌生访客变成账号的转化页：表单只保留起步必需的字段（邮箱 + 密码），其余信息 延后到产品内补齐；辅以第三方注册、密码强度提示和服务条款勾选。与登录页共用 布局骨架，但每一处设计都在回答"注册这件事值不值得、麻不麻烦"。
+  en: 'The conversion page turning strangers into accounts: the form keeps only the fields needed to start (email + password) and defers everything else into the product, supported by third-party signup, a password strength hint and terms consent. It shares a layout skeleton with the login page, but every design decision answers "is signing up worth it and painless?"'
 use_when:
-  - { zh: 需要创建新账号的转化入口, en: Conversion entry where new accounts are created }
-  - { zh: 产品承诺注册后即可开始使用（先试后买）, en: The product promises instant start after signup }
-  - { zh: 需要引导式补全资料的多步 onboarding 前置, en: A guided multi-step onboarding follows }
-
+  - zh: 需要创建新账号的转化入口
+    en: Conversion entry where new accounts are created
+  - zh: 产品承诺注册后即可开始使用（先试后买）
+    en: The product promises instant start after signup
+  - zh: 需要引导式补全资料的多步 onboarding 前置
+    en: A guided multi-step onboarding follows
 avoid_when:
-  - { zh: 已有账号用户的登录（勿让回访用户误入）, en: Existing users signing in — never route them here by mistake }
-  - { zh: 邀请制/企业 SSO 自动开户（无需自助注册）, en: Invite-only or SSO-provisioned accounts — no self signup }
-  - { zh: 匿名试用优先的产品（试用后再索要账号）, en: Products preferring anonymous trials before asking for an account }
-
+  - zh: 已有账号用户的登录（勿让回访用户误入）
+    en: Existing users signing in — never route them here by mistake
+  - zh: 邀请制/企业 SSO 自动开户（无需自助注册）
+    en: Invite-only or SSO-provisioned accounts — no self signup
+  - zh: 匿名试用优先的产品（试用后再索要账号）
+    en: Products preferring anonymous trials before asking for an account
 tags:
   - auth
   - conversion
   - form
   - onboarding
-
 variants:
   - id: centered
-    name: { zh: 居中卡片, en: Centered Card }
-    note: { zh: 与登录页一致的居中卡片，认知成本最低, en: Same centered card as login — lowest cognitive cost }
+    name:
+      zh: 居中卡片
+      en: Centered Card
+    note:
+      zh: 与登录页一致的居中卡片，认知成本最低
+      en: Same centered card as login — lowest cognitive cost
   - id: split
-    name: { zh: 分屏价值, en: Split Value Prop }
-    note: { zh: 左侧讲注册能得到什么，右侧表单, en: Left panel sells the value, right holds the form }
+    name:
+      zh: 分屏价值
+      en: Split Value Prop
+    note:
+      zh: 左侧讲注册能得到什么，右侧表单
+      en: Left panel sells the value, right holds the form
   - id: social
-    name: { zh: 社交优先, en: Social-first }
-    note: { zh: 第三方注册置顶，一键开通, en: OAuth buttons first, one-click provisioning }
+    name:
+      zh: 社交优先
+      en: Social-first
+    note:
+      zh: 第三方注册置顶，一键开通
+      en: OAuth buttons first, one-click provisioning
   - id: guided
-    name: { zh: 多步引导, en: Guided Steps }
-    note: { zh: 分步收集信息，边注册边 onboarding, en: Steps collect info, onboarding while signing up }
-
+    name:
+      zh: 多步引导
+      en: Guided Steps
+    note:
+      zh: 分步收集信息，边注册边 onboarding
+      en: Steps collect info, onboarding while signing up
 anatomy:
   - Brand/Value 品牌与价值主张
   - Form 注册表单
   - Social 第三方注册
   - Terms 服务条款
   - Login 登录入口
-
 related:
   - input
   - button
   - form-validation
   - login
-
 demo:
   component: signup
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 compare:
   group: auth-pages
   dimensions:
-    用户状态: { zh: 尚无账号的新用户, en: New users without an account }
-    核心目标: { zh: 降低门槛、完成转化, en: Lower the barrier and convert }
-    安全要求: { zh: 高——验证与防滥用, en: High — verification and anti-abuse }
-
+    用户状态:
+      zh: 尚无账号的新用户
+      en: New users without an account
+    核心目标:
+      zh: 降低门槛、完成转化
+      en: Lower the barrier and convert
+    安全要求:
+      zh: 高——验证与防滥用
+      en: High — verification and anti-abuse
 implementation:
   css:
     - flex
     - grid
-    - "min-height: 100vh"
-    - "place-items: center"
+    - 'min-height: 100vh'
+    - 'place-items: center'
   notes:
-    zh: >-
-      与登录页共用布局骨架，仅切换文案与字段。字段做即时校验（邮箱格式、密码强度条），
-      autocomplete 用 new-password；服务条款复选框未勾选时提交按钮禁用。
-      第三方注册按钮与表单提交在视觉上区分主次；提交后进入引导式补全流程。
-    en: >-
-      Share the login page layout skeleton, swapping copy and fields. Inline-validate fields
-      (email format, password strength meter) with autocomplete=new-password; disable submit
-      until terms are checked. Keep OAuth and form submit visually ranked; on submit, move
-      into guided profile completion.
-
+    zh: 与登录页共用布局骨架，仅切换文案与字段。字段做即时校验（邮箱格式、密码强度条）， autocomplete 用 new-password；服务条款复选框未勾选时提交按钮禁用。 第三方注册按钮与表单提交在视觉上区分主次；提交后进入引导式补全流程。
+    en: Share the login page layout skeleton, swapping copy and fields. Inline-validate fields (email format, password strength meter) with autocomplete=new-password; disable submit until terms are checked. Keep OAuth and form submit visually ranked; on submit, move into guided profile completion.
 sources:
   - name: Nielsen Norman Group — Login & Registration Forms
     url: https://www.nngroup.com/articles/login-registration-forms/
   - name: Baymard Institute — Signup Usability
     url: https://baymard.com/blog
-
 prompts:
   basic:
     zh: 创建一个注册页面，包含邮箱密码表单、第三方注册和登录入口。
     en: Create a signup page with an email/password form, third-party signup and a login link.
   design:
     zh: 创建居中卡片注册页：品牌 logo、"创建你的账号"标题、邮箱与密码输入（密码带强度条：弱/中/强三段变色）、服务条款勾选、主按钮"免费注册"、分隔线下两个第三方注册按钮、底部"已有账号？登录"。错误内联提示，条款未勾选时按钮禁用。
-    en: >-
-      Build a centered-card signup page: brand logo, "Create your account" headline, email and
-      password fields (three-segment strength meter), terms checkbox, primary "Sign up free"
-      button, two OAuth buttons below a divider, "Already have an account? Log in" at the bottom.
-      Inline errors; button disabled until terms are checked.
+    en: 'Build a centered-card signup page: brand logo, "Create your account" headline, email and password fields (three-segment strength meter), terms checkbox, primary "Sign up free" button, two OAuth buttons below a divider, "Already have an account? Log in" at the bottom. Inline errors; button disabled until terms are checked.'
   implementation:
-    zh: >-
-      用 React + Tailwind 实现注册页：受控表单 + 即时校验；密码强度按长度与字符类别
-      计算并渲染三段强度条；autocomplete="new-password"；条款复选驱动按钮禁用态；
-      错误 aria-describedby 关联；深浅色一致。不新增依赖。
-    en: >-
-      React + Tailwind signup page: controlled form with inline validation; strength meter
-      computed from length and character classes into three segments; autocomplete=new-password;
-      terms checkbox drives the disabled state; errors linked via aria-describedby; consistent
-      light/dark. No new dependencies.
+    zh: 用 React + Tailwind 实现注册页：受控表单 + 即时校验；密码强度按长度与字符类别 计算并渲染三段强度条；autocomplete="new-password"；条款复选驱动按钮禁用态； 错误 aria-describedby 关联；深浅色一致。不新增依赖。
+    en: 'React + Tailwind signup page: controlled form with inline validation; strength meter computed from length and character classes into three segments; autocomplete=new-password; terms checkbox drives the disabled state; errors linked via aria-describedby; consistent light/dark. No new dependencies.'
   agent:
     zh: |-
       在当前项目中实现注册页。

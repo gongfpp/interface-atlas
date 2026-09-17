@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 设置页
   en: Settings Page
-
 aliases:
   - 设置页面
   - 设置面板
@@ -12,116 +10,102 @@ aliases:
   - 账号设置
   - 配置页面
   - 个人设置
-
 category:
   - Page
   - Utility
-
 description:
-  zh: >-
-    集中管理账号偏好与系统配置的功能页面：一侧是稳定的设置导航（通用、通知、安全等分区），
-    另一侧是行式表单列表——每行一个"标签 + 控件 + 说明"，低频修改、即改即存。
-    页面按配置域分区而非按任务流组织，用户靠扫读标题定位，改完即走。
-  en: >-
-    A utility page for managing account preferences and system configuration: a stable settings
-    nav on one side (general, notifications, security…), and rows of "label + control + hint"
-    forms on the other — low-frequency edits, saved as they change. Organized by configuration
-    domain rather than task flow; users locate sections by scanning titles, change, and leave.
-
+  zh: 集中管理账号偏好与系统配置的功能页面：一侧是稳定的设置导航（通用、通知、安全等分区）， 另一侧是行式表单列表——每行一个"标签 + 控件 + 说明"，低频修改、即改即存。 页面按配置域分区而非按任务流组织，用户靠扫读标题定位，改完即走。
+  en: 'A utility page for managing account preferences and system configuration: a stable settings nav on one side (general, notifications, security…), and rows of "label + control + hint" forms on the other — low-frequency edits, saved as they change. Organized by configuration domain rather than task flow; users locate sections by scanning titles, change, and leave.'
 use_when:
-  - { zh: 账号资料、通知、安全等偏好集中管理, en: Central management of profile, notifications, security }
-  - { zh: 配置项多、需要分区导航定位, en: Many options that need sectioned navigation }
-  - { zh: 修改低频但需要随时可达的入口, en: Edits are infrequent but the entry must stay reachable }
-
+  - zh: 账号资料、通知、安全等偏好集中管理
+    en: Central management of profile, notifications, security
+  - zh: 配置项多、需要分区导航定位
+    en: Many options that need sectioned navigation
+  - zh: 修改低频但需要随时可达的入口
+    en: Edits are infrequent but the entry must stay reachable
 avoid_when:
-  - { zh: 高频操作流（应放进对应工作界面）, en: High-frequency task flows — put them in the working surface }
-  - { zh: 只有 2～3 个开关的极简产品（并入菜单即可）, en: Minimal products with two or three toggles — fold into a menu }
-  - { zh: 需要管理员审核的审批流页面, en: Approval workflows that need admin review }
-
+  - zh: 高频操作流（应放进对应工作界面）
+    en: High-frequency task flows — put them in the working surface
+  - zh: 只有 2～3 个开关的极简产品（并入菜单即可）
+    en: Minimal products with two or three toggles — fold into a menu
+  - zh: 需要管理员审核的审批流页面
+    en: Approval workflows that need admin review
 tags:
   - settings
   - form
   - utility
   - account
-
 variants:
   - id: sidebar
-    name: { zh: 侧栏导航设置, en: Sidebar Settings }
-    note: { zh: 左侧分区导航 + 右侧表单，最常见, en: Sectioned nav left, forms right — the common default }
+    name:
+      zh: 侧栏导航设置
+      en: Sidebar Settings
+    note:
+      zh: 左侧分区导航 + 右侧表单，最常见
+      en: Sectioned nav left, forms right — the common default
   - id: tabbed
-    name: { zh: 标签页设置, en: Tabbed Settings }
-    note: { zh: 顶部 Tab 切换配置域，适合少分区, en: Top tabs switch domains — good for few sections }
+    name:
+      zh: 标签页设置
+      en: Tabbed Settings
+    note:
+      zh: 顶部 Tab 切换配置域，适合少分区
+      en: Top tabs switch domains — good for few sections
   - id: sectioned
-    name: { zh: 分组单页, en: Sectioned Single Page }
-    note: { zh: 所有分区纵向滚动一页到底, en: All sections scroll vertically on one page }
+    name:
+      zh: 分组单页
+      en: Sectioned Single Page
+    note:
+      zh: 所有分区纵向滚动一页到底
+      en: All sections scroll vertically on one page
   - id: modal
-    name: { zh: 弹窗设置, en: Modal Settings }
-    note: { zh: 轻量设置以弹窗承载，不离开当前页, en: Lightweight settings in a modal, no page exit }
-
+    name:
+      zh: 弹窗设置
+      en: Modal Settings
+    note:
+      zh: 轻量设置以弹窗承载，不离开当前页
+      en: Lightweight settings in a modal, no page exit
 anatomy:
   - Nav 设置导航
   - Section 设置分区
   - Field 行式表单
   - Danger Zone 危险区
   - Save Bar 保存条
-
 related:
   - sidebar
   - switch
   - input
   - tabs
   - toast
-
 demo:
   component: settings
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 implementation:
   css:
     - flex
     - grid
-    - "position: sticky"
-    - "scroll-margin-top: 6rem"
+    - 'position: sticky'
+    - 'scroll-margin-top: 6rem'
   notes:
-    zh: >-
-      侧栏变体：nav sticky，内容区按分区渲染行式表单（label 左、控件右）。
-      分组单页变体用锚点 + scroll-margin 联动高亮当前分区。行式表单切换控件用受控
-      switch；有未保存更改时底部浮出保存条（sticky bottom）。危险区用红色边框与
-      二次确认弹窗隔离在页面末尾。
-    en: >-
-      Sidebar variant: sticky nav, content renders row-style forms per section (label left,
-      control right). The single-page variant links anchors with scroll-margin and highlights
-      the active section. Toggles are controlled switches; when unsaved changes exist, a
-      sticky bottom save bar appears. Isolate the danger zone at the end with red borders
-      and a confirm dialog.
-
+    zh: 侧栏变体：nav sticky，内容区按分区渲染行式表单（label 左、控件右）。 分组单页变体用锚点 + scroll-margin 联动高亮当前分区。行式表单切换控件用受控 switch；有未保存更改时底部浮出保存条（sticky bottom）。危险区用红色边框与 二次确认弹窗隔离在页面末尾。
+    en: 'Sidebar variant: sticky nav, content renders row-style forms per section (label left, control right). The single-page variant links anchors with scroll-margin and highlights the active section. Toggles are controlled switches; when unsaved changes exist, a sticky bottom save bar appears. Isolate the danger zone at the end with red borders and a confirm dialog.'
 sources:
   - name: Nielsen Norman Group — Settings
     url: https://www.nngroup.com/articles/settings-ux/
   - name: Apple HIG — Settings
     url: https://developer.apple.com/design/human-interface-guidelines/settings
-
 prompts:
   basic:
     zh: 创建一个设置页面，包含分区导航、行式表单和保存按钮。
     en: Create a settings page with sectioned navigation, row-style forms and a save button.
   design:
     zh: 创建侧栏式设置页：左侧分区导航（通用、通知、安全、账单），右侧每区一组行式表单（标签 + 说明 + 开关/输入）；通知区含邮件/推送/短信三个开关；页面底部红色"危险区"（删除账号，需二次确认）；有未保存更改时右下浮出保存条。
-    en: >-
-      Build a sidebar-style settings page: left nav (General, Notifications, Security, Billing),
-      right side row-style forms per section (label + hint + toggle/input); notifications has
-      email/push/SMS toggles; a red "Danger Zone" (delete account with confirmation) at the
-      bottom; a save bar floats when there are unsaved changes.
+    en: 'Build a sidebar-style settings page: left nav (General, Notifications, Security, Billing), right side row-style forms per section (label + hint + toggle/input); notifications has email/push/SMS toggles; a red "Danger Zone" (delete account with confirmation) at the bottom; a save bar floats when there are unsaved changes.'
   implementation:
-    zh: >-
-      用 React + Tailwind 实现设置页：设置项数据驱动（{section, rows:[{label, hint, type}]}）；
-      switch/input 受控；脏状态驱动保存条显隐（sticky bottom + toast 反馈保存成功）；
-      危险区按钮触发确认弹窗；分区切换支持键盘与 aria-current。不新增依赖。
-    en: >-
-      React + Tailwind settings page: data-driven options ({section, rows:[{label, hint, type}]});
-      controlled switches/inputs; dirty state drives a sticky save bar with toast on success;
-      danger-zone button opens a confirm dialog; section nav supports keyboard and aria-current.
-      No new dependencies.
+    zh: 用 React + Tailwind 实现设置页：设置项数据驱动（{section, rows:[{label, hint, type}]}）； switch/input 受控；脏状态驱动保存条显隐（sticky bottom + toast 反馈保存成功）； 危险区按钮触发确认弹窗；分区切换支持键盘与 aria-current。不新增依赖。
+    en: 'React + Tailwind settings page: data-driven options ({section, rows:[{label, hint, type}]}); controlled switches/inputs; dirty state drives a sticky save bar with toast on success; danger-zone button opens a confirm dialog; section nav supports keyboard and aria-current. No new dependencies.'
   agent:
     zh: |-
       在当前项目中实现设置页。

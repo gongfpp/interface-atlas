@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 输入框
   en: Input
-
 aliases:
   - 输入框
   - 文本输入框
@@ -11,122 +9,101 @@ aliases:
   - 输入栏
   - 表单输入框
   - 单行输入框
-
 category:
   - Form
   - Input
-
 description:
-  zh: >-
-    用一条带边框的水平输入区收集单行文本，是表单的基本单元。
-    占位符提示期望格式，聚焦时高亮边框引导视线，校验失败时切换错误色
-    并附提示文案；可内嵌前后缀图标与清除按钮，受控管理输入值。
-  en: >-
-    A single-line bordered field for collecting text — the basic unit of every
-    form. Placeholder hints the expected format, focus highlights the border to
-    guide the eye, and failed validation switches to an error color with a hint.
-    Prefix and suffix icons or a clear button can live inside, and the value is
-    controlled state.
-
+  zh: 用一条带边框的水平输入区收集单行文本，是表单的基本单元。 占位符提示期望格式，聚焦时高亮边框引导视线，校验失败时切换错误色 并附提示文案；可内嵌前后缀图标与清除按钮，受控管理输入值。
+  en: A single-line bordered field for collecting text — the basic unit of every form. Placeholder hints the expected format, focus highlights the border to guide the eye, and failed validation switches to an error color with a hint. Prefix and suffix icons or a clear button can live inside, and the value is controlled state.
 use_when:
-  - { zh: 收集用户名、邮箱、标题等单行短文本, en: Short single-line values like name, email or title }
-  - { zh: 表单校验需要即时反馈错误与格式提示, en: Forms that need instant validation feedback }
-  - { zh: 搜索等需要前后缀图标或清除按钮的场景, en: Search-like fields with icons or a clear button }
-
+  - zh: 收集用户名、邮箱、标题等单行短文本
+    en: Short single-line values like name, email or title
+  - zh: 表单校验需要即时反馈错误与格式提示
+    en: Forms that need instant validation feedback
+  - zh: 搜索等需要前后缀图标或清除按钮的场景
+    en: Search-like fields with icons or a clear button
 avoid_when:
-  - { zh: 长段落、简介等多行内容，改用 textarea, en: Multi-line content like bios — use a textarea }
-  - { zh: 选项固定且少于 5 个，用 radio 或 select 更高效, en: Fewer than 5 fixed options — radio or select is faster }
-  - { zh: 需要复杂格式编辑（富文本、日期），用专用组件, en: Complex formats like rich text or dates — use dedicated components }
-
+  - zh: 长段落、简介等多行内容，改用 textarea
+    en: Multi-line content like bios — use a textarea
+  - zh: 选项固定且少于 5 个，用 radio 或 select 更高效
+    en: Fewer than 5 fixed options — radio or select is faster
+  - zh: 需要复杂格式编辑（富文本、日期），用专用组件
+    en: Complex formats like rich text or dates — use dedicated components
 tags:
   - form
   - input
   - text
-
 variants:
   - id: outline
-    name: { zh: 描边, en: Outline }
-    note: { zh: 边框包裹，最通用, en: Bordered box — the default everywhere }
+    name:
+      zh: 描边
+      en: Outline
+    note:
+      zh: 边框包裹，最通用
+      en: Bordered box — the default everywhere
   - id: filled
-    name: { zh: 填充, en: Filled }
-    note: { zh: 浅灰底无边框，Material 常用, en: Tinted background, borderless — Material style }
+    name:
+      zh: 填充
+      en: Filled
+    note:
+      zh: 浅灰底无边框，Material 常用
+      en: Tinted background, borderless — Material style
   - id: with-addons
-    name: { zh: 带前后缀, en: With addons }
-    note: { zh: 内嵌图标与清除按钮, en: Inline icons and a clear button }
-
+    name:
+      zh: 带前后缀
+      en: With addons
+    note:
+      zh: 内嵌图标与清除按钮
+      en: Inline icons and a clear button
 anatomy:
   - 标签（Label）
   - 输入区（Input area）
   - 前后缀（Prefix & suffix）
   - 帮助 / 错误提示（Helper & error）
-
 applicable_styles:
   - minimalism
   - swiss-style
-
 applicable_components: []
 applicable_pages:
   - login
   - signup
   - checkout
   - search
-
 related:
   - textarea
   - select
   - form-validation
   - search-filtering
-
 demo:
   component: input
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 implementation:
   css:
     - border
     - outline
-    - "box-shadow: ring"
+    - 'box-shadow: ring'
     - transition
   notes:
-    zh: >-
-      基础样式是 border + rounded + px，focus 时叠加 accent 色描边（box-shadow 实现，
-      不改动布局）；错误态切换 border 与提示文字颜色。清除按钮用绝对定位内嵌右侧。
-      高度控制在 36～44px，placeholder 用低对比灰。始终配 label 或 aria-label。
-    en: >-
-      Base style is border + rounded + horizontal padding; focus adds an accent
-      ring via box-shadow without shifting layout; the error state swaps border
-      and hint colors. The clear button is absolutely positioned inside. Keep
-      height 36–44px, low-contrast placeholder, and always attach a label or
-      aria-label.
-
+    zh: 基础样式是 border + rounded + px，focus 时叠加 accent 色描边（box-shadow 实现， 不改动布局）；错误态切换 border 与提示文字颜色。清除按钮用绝对定位内嵌右侧。 高度控制在 36～44px，placeholder 用低对比灰。始终配 label 或 aria-label。
+    en: Base style is border + rounded + horizontal padding; focus adds an accent ring via box-shadow without shifting layout; the error state swaps border and hint colors. The clear button is absolutely positioned inside. Keep height 36–44px, low-contrast placeholder, and always attach a label or aria-label.
 sources:
   - name: Material Design — Text fields
     url: https://m3.material.io/components/text-fields/overview
   - name: Apple HIG — Text fields
     url: https://developer.apple.com/design/human-interface-guidelines/text-fields
-
 prompts:
   basic:
     zh: 创建一个输入框组件，支持标签、占位符、清除按钮和错误提示。
     en: Create an input component with a label, placeholder, clear button and error hint.
   design:
-    zh: >-
-      创建输入框组件。要求：外置左对齐 label，聚焦时 accent 描边，输入非空时右侧出现
-      清除按钮，校验失败切红并显示错误文案；提供描边与填充两种样式，深浅色一致。
-    en: >-
-      Create an input component. Requirements: left-aligned external label, accent
-      ring on focus, a clear button appearing when non-empty, red error state with
-      a message; outline and filled styles; consistent in light/dark.
+    zh: 创建输入框组件。要求：外置左对齐 label，聚焦时 accent 描边，输入非空时右侧出现 清除按钮，校验失败切红并显示错误文案；提供描边与填充两种样式，深浅色一致。
+    en: 'Create an input component. Requirements: left-aligned external label, accent ring on focus, a clear button appearing when non-empty, red error state with a message; outline and filled styles; consistent in light/dark.'
   implementation:
-    zh: >-
-      用 React + Tailwind 实现 Input：受控 value；focus 态用 focus:border-accent +
-      focus-visible ring；错误态由 error prop 驱动；清除按钮 absolute 定位并留出右侧
-      padding；支持 prefix / suffix 插槽与 maxLength。label 用 htmlFor 关联。
-    en: >-
-      React + Tailwind Input: controlled value; focus with focus:border-accent and
-      ring; error driven by an error prop; absolutely positioned clear button with
-      right padding reserved; prefix/suffix slots and maxLength support. Associate
-      the label with htmlFor.
+    zh: 用 React + Tailwind 实现 Input：受控 value；focus 态用 focus:border-accent + focus-visible ring；错误态由 error prop 驱动；清除按钮 absolute 定位并留出右侧 padding；支持 prefix / suffix 插槽与 maxLength。label 用 htmlFor 关联。
+    en: 'React + Tailwind Input: controlled value; focus with focus:border-accent and ring; error driven by an error prop; absolutely positioned clear button with right padding reserved; prefix/suffix slots and maxLength support. Associate the label with htmlFor.'
   agent:
     zh: |-
       在当前项目中实现输入框组件。

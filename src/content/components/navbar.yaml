@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 顶部导航栏
   en: Navbar
-
 aliases:
   - 导航栏
   - 顶部菜单
@@ -12,133 +10,112 @@ aliases:
   - 页头导航
   - 汉堡菜单那条栏
   - top bar
-
 category:
   - Navigation
-
 description:
-  zh: >-
-    固定在页面顶部的水平导航条：左侧品牌标识，中间主导航链接，右侧搜索、
-    入口按钮与用户头像。它是网站的"门面导航"，把最重要的三到七个入口压进
-    一条横向空间，移动端折叠为汉堡菜单。常配合 position: sticky 在滚动时保持可见。
-  en: >-
-    A horizontal navigation bar pinned to the top of the page: brand on the left,
-    primary links in the middle, search, actions and avatar on the right. It is the
-    front door of a site — the 3–7 most important destinations compressed into one
-    strip, folding into a hamburger menu on mobile. Usually kept visible with
-    position: sticky.
-
+  zh: '固定在页面顶部的水平导航条：左侧品牌标识，中间主导航链接，右侧搜索、 入口按钮与用户头像。它是网站的"门面导航"，把最重要的三到七个入口压进 一条横向空间，移动端折叠为汉堡菜单。常配合 position: sticky 在滚动时保持可见。'
+  en: 'A horizontal navigation bar pinned to the top of the page: brand on the left, primary links in the middle, search, actions and avatar on the right. It is the front door of a site — the 3–7 most important destinations compressed into one strip, folding into a hamburger menu on mobile. Usually kept visible with position: sticky.'
 use_when:
-  - { zh: 入口少而扁平的官网、产品站、文档站, en: Marketing, product and docs sites with few flat destinations }
-  - { zh: 品牌与全局动作需要常驻首屏, en: Brand and global actions must stay pinned above the fold }
-  - { zh: 页面结构上下流动、适合顶部横向空间, en: Vertically scrolling layouts that can spare one horizontal strip }
-
+  - zh: 入口少而扁平的官网、产品站、文档站
+    en: Marketing, product and docs sites with few flat destinations
+  - zh: 品牌与全局动作需要常驻首屏
+    en: Brand and global actions must stay pinned above the fold
+  - zh: 页面结构上下流动、适合顶部横向空间
+    en: Vertically scrolling layouts that can spare one horizontal strip
 avoid_when:
-  - { zh: 层级深、模块多的后台（侧边栏更合适）, en: Deep admin hierarchies — prefer a sidebar }
-  - { zh: 需要同时扫视大量导航项, en: Scanning many nav items at once }
-  - { zh: 沉浸式阅读、编辑器等全屏场景, en: Immersive reading or editor modes }
-
+  - zh: 层级深、模块多的后台（侧边栏更合适）
+    en: Deep admin hierarchies — prefer a sidebar
+  - zh: 需要同时扫视大量导航项
+    en: Scanning many nav items at once
+  - zh: 沉浸式阅读、编辑器等全屏场景
+    en: Immersive reading or editor modes
 tags:
   - navigation
   - header
   - layout
-
 variants:
   - id: standard
-    name: { zh: 标准, en: Standard }
-    note: { zh: 品牌左、链接中、动作右, en: Brand left, links center, actions right }
+    name:
+      zh: 标准
+      en: Standard
+    note:
+      zh: 品牌左、链接中、动作右
+      en: Brand left, links center, actions right
   - id: centered
-    name: { zh: 居中, en: Centered }
-    note: { zh: 链接绝对居中，Apple 官网风格, en: Absolutely centered links, Apple-style }
+    name:
+      zh: 居中
+      en: Centered
+    note:
+      zh: 链接绝对居中，Apple 官网风格
+      en: Absolutely centered links, Apple-style
   - id: overlay
-    name: { zh: 透明悬浮, en: Transparent overlay }
-    note: { zh: 压在首屏大图上，滚动后加底色, en: Floats over the hero, gains a background on scroll }
-
+    name:
+      zh: 透明悬浮
+      en: Transparent overlay
+    note:
+      zh: 压在首屏大图上，滚动后加底色
+      en: Floats over the hero, gains a background on scroll
 anatomy:
   - 品牌 / Logo 区
   - 导航链接区（Nav links）
   - 搜索 / 全局动作
   - 用户 / 操作区
-
 applicable_styles:
   - minimalism
   - glassmorphism
   - editorial
-
 applicable_pages:
   - landing-page
   - documentation
   - profile
-
 related:
   - sidebar
   - menu
   - breadcrumb
   - tabs
   - landing-page
-
 demo:
   component: navbar
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 compare:
   group: primary-navigation
   dimensions:
-    空间占用: { zh: 低，仅顶部一横条, en: Low — one top strip }
-    层级容量: { zh: 低，扁平一级为主, en: Low — mostly one flat level }
-    移动端友好: { zh: 中，需折叠为汉堡菜单, en: Medium — folds into a hamburger }
-
+    空间占用:
+      zh: 低，仅顶部一横条
+      en: Low — one top strip
+    层级容量:
+      zh: 低，扁平一级为主
+      en: Low — mostly one flat level
+    移动端友好:
+      zh: 中，需折叠为汉堡菜单
+      en: Medium — folds into a hamburger
 implementation:
   css:
-    - "position: sticky"
-    - "z-index"
+    - 'position: sticky'
+    - z-index
     - flex
-    - "justify-content: space-between"
+    - 'justify-content: space-between'
   notes:
-    zh: >-
-      用 sticky 置顶，内部 flex 三段式（品牌 / 链接 / 动作）。当前项用 accent
-      色或下划线标识（aria-current="page"）。移动端断点下隐藏链接、显示汉堡
-      按钮，展开为下拉面板或抽屉；透明悬浮变体在滚动超过首屏高度后切换
-      background 与 backdrop-filter。
-    en: >-
-      Sticky top bar with a three-part flex row (brand / links / actions). Mark the
-      current item with accent color or underline (aria-current="page"). Below the
-      mobile breakpoint hide the links behind a hamburger that opens a dropdown or
-      drawer; the overlay variant gains background and backdrop-filter after
-      scrolling past the hero.
-
+    zh: 用 sticky 置顶，内部 flex 三段式（品牌 / 链接 / 动作）。当前项用 accent 色或下划线标识（aria-current="page"）。移动端断点下隐藏链接、显示汉堡 按钮，展开为下拉面板或抽屉；透明悬浮变体在滚动超过首屏高度后切换 background 与 backdrop-filter。
+    en: Sticky top bar with a three-part flex row (brand / links / actions). Mark the current item with accent color or underline (aria-current="page"). Below the mobile breakpoint hide the links behind a hamburger that opens a dropdown or drawer; the overlay variant gains background and backdrop-filter after scrolling past the hero.
 sources:
   - name: Apple HIG — Navigation bars
     url: https://developer.apple.com/design/human-interface-guidelines/navigation-bars
   - name: NN/g — Navigation design
     url: https://www.nngroup.com/articles/navigation-design/
-
 prompts:
   basic:
-    zh: >-
-      创建一个顶部导航栏组件，包含品牌标识、若干主导航链接、搜索入口和用户头像区。
-    en: >-
-      Create a navbar with a brand mark, a few primary links, a search entry and a user area.
+    zh: 创建一个顶部导航栏组件，包含品牌标识、若干主导航链接、搜索入口和用户头像区。
+    en: Create a navbar with a brand mark, a few primary links, a search entry and a user area.
   design:
-    zh: >-
-      创建顶部导航栏：高 56px、sticky 置顶；左侧 Logo + 产品名，中间 4 个导航链接
-      （当前项用强调色下划线标识），右侧搜索框 + 主按钮 + 头像。移动端折叠为汉堡
-      按钮并展开为下拉菜单。深浅色主题一致。
-    en: >-
-      Create a navbar: 56px tall, sticky; logo + product name on the left, four links in
-      the middle (active item marked with an accent underline), search box + primary
-      button + avatar on the right. Folds into a hamburger dropdown on mobile. Consistent
-      in light and dark themes.
+    zh: 创建顶部导航栏：高 56px、sticky 置顶；左侧 Logo + 产品名，中间 4 个导航链接 （当前项用强调色下划线标识），右侧搜索框 + 主按钮 + 头像。移动端折叠为汉堡 按钮并展开为下拉菜单。深浅色主题一致。
+    en: 'Create a navbar: 56px tall, sticky; logo + product name on the left, four links in the middle (active item marked with an accent underline), search box + primary button + avatar on the right. Folds into a hamburger dropdown on mobile. Consistent in light and dark themes.'
   implementation:
-    zh: >-
-      用 React + Tailwind 实现 Navbar：header + sticky top-0 + z-index；链接数据驱动，
-      activeId 受控，当前项加 aria-current="page"；sm 断点以下切换汉堡按钮与折叠面板
-      （max-height 过渡）。提供 gap、theme 变体参数。不引入依赖。
-    en: >-
-      React + Tailwind navbar: header with sticky top-0 and z-index; data-driven links with
-      a controlled activeId and aria-current="page" on the active item; below the sm
-      breakpoint swap to a hamburger with a max-height transition panel. Expose gap and
-      theme props. No new dependencies.
+    zh: 用 React + Tailwind 实现 Navbar：header + sticky top-0 + z-index；链接数据驱动， activeId 受控，当前项加 aria-current="page"；sm 断点以下切换汉堡按钮与折叠面板 （max-height 过渡）。提供 gap、theme 变体参数。不引入依赖。
+    en: 'React + Tailwind navbar: header with sticky top-0 and z-index; data-driven links with a controlled activeId and aria-current="page" on the active item; below the sm breakpoint swap to a hamburger with a max-height transition panel. Expose gap and theme props. No new dependencies.'
   agent:
     zh: |-
       在当前项目中实现顶部导航栏。

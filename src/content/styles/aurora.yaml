@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 极光渐变
   en: Aurora Gradient
-
 aliases:
   - 极光渐变
   - 极光风格
@@ -13,123 +11,96 @@ aliases:
   - 大面积渐变光效
   - Aurora Background
   - Mesh Gradient
-
 category:
   - Style
   - Visual Language
-
 description:
-  zh: >-
-    用大面积流动渐变光斑营造氛围的视觉语言：青绿 紫 蓝 多色模糊色块在背景
-    中缓慢漂移融合，前景内容保持极简克制。色彩是主角——像极光一样柔和 跨
-    色相 渐次过渡，界面因此获得呼吸感与情绪温度。
-  en: >-
-    An atmosphere built from large flowing gradient blooms: teal, violet and
-    blue blurred blobs drift and merge across the background while the
-    foreground stays minimal. Color is the protagonist — soft, cross-hue,
-    aurora-like transitions that give the interface breath and warmth.
-
+  zh: 用大面积流动渐变光斑营造氛围的视觉语言：青绿 紫 蓝 多色模糊色块在背景 中缓慢漂移融合，前景内容保持极简克制。色彩是主角——像极光一样柔和 跨 色相 渐次过渡，界面因此获得呼吸感与情绪温度。
+  en: 'An atmosphere built from large flowing gradient blooms: teal, violet and blue blurred blobs drift and merge across the background while the foreground stays minimal. Color is the protagonist — soft, cross-hue, aurora-like transitions that give the interface breath and warmth.'
 use_when:
-  - { zh: 落地页 首屏 品牌页，需要第一眼氛围与情绪, en: Landing pages, heroes and brand pages that need instant atmosphere }
-  - { zh: AI 创意工具类产品，渐变已成为其品类视觉符号, en: AI and creative tools where gradients are a category signature }
-  - { zh: 极简前景 + 需要一点温度的深浅色界面, en: Minimal foregrounds that need warmth in either mode }
-
+  - zh: 落地页 首屏 品牌页，需要第一眼氛围与情绪
+    en: Landing pages, heroes and brand pages that need instant atmosphere
+  - zh: AI 创意工具类产品，渐变已成为其品类视觉符号
+    en: AI and creative tools where gradients are a category signature
+  - zh: 极简前景 + 需要一点温度的深浅色界面
+    en: Minimal foregrounds that need warmth in either mode
 avoid_when:
-  - { zh: 数据密集工具界面，大面积渐变干扰信息读取, en: Data-dense tools where blooms interfere with scanning }
-  - { zh: 可访问性敏感场景，光斑上的文字对比度难保证, en: Accessibility-critical contexts — text over blooms is hard to keep compliant }
-  - { zh: 大量使用动画光斑时低端设备性能敏感, en: Performance-sensitive devices when animated blobs are used }
-
+  - zh: 数据密集工具界面，大面积渐变干扰信息读取
+    en: Data-dense tools where blooms interfere with scanning
+  - zh: 可访问性敏感场景，光斑上的文字对比度难保证
+    en: Accessibility-critical contexts — text over blooms is hard to keep compliant
+  - zh: 大量使用动画光斑时低端设备性能敏感
+    en: Performance-sensitive devices when animated blobs are used
 tags:
   - aurora
   - gradient
   - atmosphere
   - blobs
   - ambient
-
 variants:
   - id: static-mesh
-    name: { zh: 静态网格渐变, en: Static Mesh }
-    note: { zh: 一次成型的多点网格渐变，无动画, en: A one-shot multi-point mesh gradient, no motion }
+    name:
+      zh: 静态网格渐变
+      en: Static Mesh
+    note:
+      zh: 一次成型的多点网格渐变，无动画
+      en: A one-shot multi-point mesh gradient, no motion
   - id: flowing-blobs
-    name: { zh: 流动光斑, en: Flowing Blobs }
-    note: { zh: 大 blur 色块缓慢漂移，动效极光, en: Heavily blurred blobs drifting slowly — aurora in motion }
+    name:
+      zh: 流动光斑
+      en: Flowing Blobs
+    note:
+      zh: 大 blur 色块缓慢漂移，动效极光
+      en: Heavily blurred blobs drifting slowly — aurora in motion
   - id: dark-aurora
-    name: { zh: 暗夜极光, en: Dark Aurora }
-    note: { zh: 深空底色上更浓的光带，对比更强, en: Denser light bands over deep space, higher contrast }
-
+    name:
+      zh: 暗夜极光
+      en: Dark Aurora
+    note:
+      zh: 深空底色上更浓的光带，对比更强
+      en: Denser light bands over deep space, higher contrast
 applicable_components:
   - card
   - button
   - modal
   - navbar
-
 related:
   - glassmorphism
   - bento-grid
   - minimalism
   - card
   - landing-page
-
 demo:
   component: aurora
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 sources:
   - name: MDN — radial-gradient
     url: https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/radial-gradient
   - name: Stripe — brand gradient practice
     url: https://stripe.com/blog
-
 implementation:
   css:
-    - "background: radial-gradient"
-    - "filter: blur()"
-    - "@keyframes drift"
-    - "mix-blend-mode"
-    - "background-clip: text"
+    - 'background: radial-gradient'
+    - 'filter: blur()'
+    - '@keyframes drift'
+    - mix-blend-mode
+    - 'background-clip: text'
   notes:
-    zh: >-
-      光斑三要素：2～4 个大型 radial-gradient 色块（直径为画布的 40%～80%），
-      blur(60px) 级别的重模糊，色相跨越 2～3 段（如青绿→紫→蓝）且彼此部分
-      重叠。前景内容置于光斑之上，用纯色文字或半透明白面板保证对比。动画
-      光斑只做位移与缩放的慢速漂移（20s+），时长乘 var(--demo-speed, 1)，
-      并在 prefers-reduced-motion 下静止。
-    en: >-
-      Three ingredients: two to four large radial-gradient blooms (40–80% of
-      the canvas), heavy blur around 60px, and hues spanning two or three
-      segments (teal→violet→blue) that partially overlap. Keep foreground
-      minimal — solid text or translucent panels hold contrast. Animated
-      blobs drift slowly (20s+) on transform only, multiply durations by
-      var(--demo-speed, 1), and freeze under prefers-reduced-motion.
-
+    zh: 光斑三要素：2～4 个大型 radial-gradient 色块（直径为画布的 40%～80%）， blur(60px) 级别的重模糊，色相跨越 2～3 段（如青绿→紫→蓝）且彼此部分 重叠。前景内容置于光斑之上，用纯色文字或半透明白面板保证对比。动画 光斑只做位移与缩放的慢速漂移（20s+），时长乘 var(--demo-speed, 1)， 并在 prefers-reduced-motion 下静止。
+    en: 'Three ingredients: two to four large radial-gradient blooms (40–80% of the canvas), heavy blur around 60px, and hues spanning two or three segments (teal→violet→blue) that partially overlap. Keep foreground minimal — solid text or translucent panels hold contrast. Animated blobs drift slowly (20s+) on transform only, multiply durations by var(--demo-speed, 1), and freeze under prefers-reduced-motion.'
 prompts:
   basic:
-    zh: >-
-      用极光渐变（Aurora Gradient）风格设计界面：背景由青绿 紫蓝多色模糊光斑
-      漂移融合，前景内容极简克制，氛围柔和有呼吸感。
-    en: >-
-      "Design an interface in Aurora Gradient style: teal, violet and blue blurred blooms drifting across the background, minimal restrained foreground, soft breathing atmosphere."
+    zh: 用极光渐变（Aurora Gradient）风格设计界面：背景由青绿 紫蓝多色模糊光斑 漂移融合，前景内容极简克制，氛围柔和有呼吸感。
+    en: '"Design an interface in Aurora Gradient style: teal, violet and blue blurred blooms drifting across the background, minimal restrained foreground, soft breathing atmosphere."'
   design:
-    zh: >-
-      极光渐变设计规范：浅色模式底 #F6F7FB，深色模式底 #0B0E1A；光斑 2～4 个
-      radial-gradient 色块（#5EEAD4 #818CF8 #C084FC 等），blur 60px 级别，
-      彼此重叠约 20%；前景文字纯色（深底用白 浅底用近黑），按钮可用同款
-      渐变填充；光斑动画只做 20s 以上的慢速位移缩放，尊重
-      prefers-reduced-motion。
-    en: >-
-      "Aurora spec: light ground #F6F7FB, dark ground #0B0E1A; two to four radial-gradient blooms (#5EEAD4, #818CF8, #C084FC...) blurred ~60px overlapping by ~20%; foreground text solid (white on dark, near-black on light), buttons may carry the same gradient; blob motion is slow drift/scale over 20s+, respecting prefers-reduced-motion."
+    zh: '极光渐变设计规范：浅色模式底 #F6F7FB，深色模式底 #0B0E1A；光斑 2～4 个 radial-gradient 色块（#5EEAD4 #818CF8 #C084FC 等），blur 60px 级别， 彼此重叠约 20%；前景文字纯色（深底用白 浅底用近黑），按钮可用同款 渐变填充；光斑动画只做 20s 以上的慢速位移缩放，尊重 prefers-reduced-motion。'
+    en: '"Aurora spec: light ground #F6F7FB, dark ground #0B0E1A; two to four radial-gradient blooms (#5EEAD4, #818CF8, #C084FC...) blurred ~60px overlapping by ~20%; foreground text solid (white on dark, near-black on light), buttons may carry the same gradient; blob motion is slow drift/scale over 20s+, respecting prefers-reduced-motion."'
   implementation:
-    zh: >-
-      用 CSS 实现极光背景：.aurora { position: relative; overflow: hidden;
-      background: #0B0E1A; } .aurora::before { content: ''; position: absolute;
-      inset: -20%; background: radial-gradient(40% 40% at 30% 30%, #5EEAD4aa,
-      transparent 70%), radial-gradient(45% 45% at 70% 40%, #818CF8aa,
-      transparent 70%), radial-gradient(40% 40% at 50% 80%, #C084FCaa,
-      transparent 70%); filter: blur(60px); animation: aurora-drift 24s
-      ease-in-out infinite alternate; } 动画只做 transform，时长乘
-      var(--demo-speed, 1)。
-    en: >-
-      "Implement an aurora background in CSS: .aurora { position: relative; overflow: hidden; background: #0B0E1A; } .aurora::before { content: ''; position: absolute; inset: -20%; background: radial-gradient(40% 40% at 30% 30%, #5EEAD4aa, transparent 70%), radial-gradient(45% 45% at 70% 40%, #818CF8aa, transparent 70%), radial-gradient(40% 40% at 50% 80%, #C084FCaa, transparent 70%); filter: blur(60px); animation: aurora-drift 24s ease-in-out infinite alternate; } Animate transform only; multiply duration by var(--demo-speed, 1)."
+    zh: '用 CSS 实现极光背景：.aurora { position: relative; overflow: hidden; background: #0B0E1A; } .aurora::before { content: ''''; position: absolute; inset: -20%; background: radial-gradient(40% 40% at 30% 30%, #5EEAD4aa, transparent 70%), radial-gradient(45% 45% at 70% 40%, #818CF8aa, transparent 70%), radial-gradient(40% 40% at 50% 80%, #C084FCaa, transparent 70%); filter: blur(60px); animation: aurora-drift 24s ease-in-out infinite alternate; } 动画只做 transform，时长乘 var(--demo-speed, 1)。'
+    en: '"Implement an aurora background in CSS: .aurora { position: relative; overflow: hidden; background: #0B0E1A; } .aurora::before { content: ''''; position: absolute; inset: -20%; background: radial-gradient(40% 40% at 30% 30%, #5EEAD4aa, transparent 70%), radial-gradient(45% 45% at 70% 40%, #818CF8aa, transparent 70%), radial-gradient(40% 40% at 50% 80%, #C084FCaa, transparent 70%); filter: blur(60px); animation: aurora-drift 24s ease-in-out infinite alternate; } Animate transform only; multiply duration by var(--demo-speed, 1)."'
   agent:
     zh: |-
       在当前项目中用极光渐变（Aurora Gradient）实现一个氛围感首屏区块。
@@ -154,20 +125,19 @@ prompts:
       - Aurora palettes for both light and dark modes
       - No new dependencies
       Run existing project checks when done and list the modified files.
-
 style_spec:
   typography:
-    zh: "无衬线白标题"
-    en: "Sans-serif white display"
+    zh: 无衬线白标题
+    en: Sans-serif white display
   color:
-    zh: "暗夜底 #0D0B1E × 绿紫粉光斑"
-    en: "Night base #0D0B1E with green-violet-pink glow"
+    zh: '暗夜底 #0D0B1E × 绿紫粉光斑'
+    en: 'Night base #0D0B1E with green-violet-pink glow'
   border:
-    zh: "1px 半透明紫边框"
-    en: "1px translucent violet borders"
+    zh: 1px 半透明紫边框
+    en: 1px translucent violet borders
   shadow:
-    zh: "深色大投影 + 光晕"
-    en: "Deep shadows with glow"
+    zh: 深色大投影 + 光晕
+    en: Deep shadows with glow
   spacing:
-    zh: "悬浮卡层叠，间距宽松"
-    en: "Floating stacked cards, roomy gaps"
+    zh: 悬浮卡层叠，间距宽松
+    en: Floating stacked cards, roomy gaps

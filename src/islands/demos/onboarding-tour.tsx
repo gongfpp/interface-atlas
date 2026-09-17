@@ -52,19 +52,19 @@ function TourOverlay({ step }: { step: Step }) {
 function OnboardingTour() {
   const [index, setIndex] = useState<number | null>(0);
   const running = index !== null;
-  const step = running ? STEPS[index] : null;
+  const step: (typeof STEPS)[number] | null = running ? STEPS[index] ?? null : null;
 
   return (
     <div className="relative mx-auto w-full max-w-sm">
       <div className={`relative grid grid-cols-3 grid-rows-[auto_1fr] gap-1.5 rounded-lg border border-line bg-code-bg p-2 ${running ? '' : 'opacity-100'}`} style={{ height: 190 }}>
         <div className={TARGET_LABEL.nav.cls}>
-          <TourSpotlight step={STEPS[0]} active={running && step.target === 'nav'} />
+          <TourSpotlight step={STEPS[0]} active={running && step?.target === 'nav'} />
         </div>
         <div className={`${TARGET_LABEL.canvas.cls}`}>
-          <TourSpotlight step={STEPS[1]} active={running && step.target === 'canvas'} />
+          <TourSpotlight step={STEPS[1]} active={running && step?.target === 'canvas'} />
         </div>
         <div className={`${TARGET_LABEL.panel.cls}`}>
-          <TourSpotlight step={STEPS[2]} active={running && step.target === 'panel'} />
+          <TourSpotlight step={STEPS[2]} active={running && step?.target === 'panel'} />
         </div>
         <div className="col-span-2 flex items-center justify-center rounded-md border border-line bg-raised text-[10px] text-ink-3">
           画布内容 · Canvas content

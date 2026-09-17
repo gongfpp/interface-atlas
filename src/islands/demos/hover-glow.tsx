@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
 const HoverGlowDemo: DemoComponent = ({ mode }) => (

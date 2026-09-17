@@ -1,0 +1,142 @@
+status: published
+name:
+  zh: 警告提示
+  en: Alert
+aliases:
+  - 警告条
+  - 提示横幅
+  - 警告框
+  - 通知横幅
+  - 错误提示条
+  - 页面顶部提示
+  - 表单提交后的错误提示
+category:
+  - Feedback
+description:
+  zh: 嵌在页面流内、带状态色底色的横条，用于必须被看见的消息：错误、警告、重要通知。 它占据文档流而不是覆盖内容，通常常驻直到问题被处理或用户手动关闭。
+  en: 'An inline, status-coloured banner inside the page flow for messages that must be seen: errors, warnings, important notices. It takes layout space instead of overlaying, and stays until the issue is resolved or the user dismisses it.'
+use_when:
+  - zh: 表单提交后的整体错误汇总
+    en: A form-level error summary after submit
+  - zh: 系统级通知（维护、额度将满）
+    en: System notices (maintenance, quota nearly full)
+  - zh: 破坏性操作前的页面内警告
+    en: An in-page warning before a destructive action
+avoid_when:
+  - zh: 轻量的成功反馈（改用 toast）
+    en: Lightweight success feedback — use a toast
+  - zh: 只与单个字段相关（改用字段内联错误）
+    en: Field-specific issues — use inline field errors
+  - zh: 多处滥用会稀释注意力，保持克制
+    en: Overuse dilutes attention — keep alerts rare
+tags:
+  - feedback
+  - error
+  - warning
+  - inline
+variants:
+  - id: info
+    name:
+      zh: 信息
+      en: Info
+    note:
+      zh: 中性色，一般通知
+      en: Neutral tone, general notice
+  - id: success
+    name:
+      zh: 成功
+      en: Success
+    note:
+      zh: 确认操作已完成
+      en: Confirms a completed operation
+  - id: warning
+    name:
+      zh: 警告
+      en: Warning
+    note:
+      zh: 有风险但可以继续
+      en: Risky but continuable
+  - id: error
+    name:
+      zh: 错误
+      en: Error
+    note:
+      zh: 失败或危险，需要处理
+      en: Failed or dangerous, needs handling
+anatomy:
+  - 状态图标（Icon）
+  - 标题（Title）
+  - 说明文本（Description）
+  - 操作与关闭（Actions / Close）
+related:
+  - toast
+  - form-validation
+  - modal
+demo:
+  component: alert
+  modes:
+    - default
+    - dark
+    - variants
+compare:
+  group: form-feedback
+  dimensions:
+    打断程度:
+      zh: 中，占据版面可见但不阻断
+      en: Medium — visible in the flow, not blocking
+    持续性:
+      zh: 高，常驻直到处理或关闭
+      en: High — persists until resolved or dismissed
+    错误定位能力:
+      zh: 中，能说明原因与影响范围
+      en: Medium — explains cause and scope
+implementation:
+  css:
+    - background-color
+    - border
+    - border-radius
+    - flex
+  notes:
+    zh: 状态色映射：info/success/warning/error 各配低饱和底色、同色系图标与左侧强调边。 结构：图标 + 标题 + 描述 + 可选操作与关闭。放在出错内容上方或附近，而不是一律堆在页面顶部。 颜色之外必须配图标与文字，避免只靠颜色传达状态。
+    en: 'Map status colours: info/success/warning/error each get a low-saturation surface, a matching icon and a left accent border. Structure: icon, title, description, optional actions and close. Place it above or near the offending content rather than always stacking at the top. Never rely on colour alone — pair it with icons and text.'
+sources:
+  - name: Apple HIG — Alerts
+    url: https://developer.apple.com/design/human-interface-guidelines/alerts
+  - name: Material Design — Banners
+    url: https://m3.material.io/components/banners/overview
+prompts:
+  basic:
+    zh: 创建一个警告提示（Alert）组件：带状态色底色的横条，包含图标、标题、说明文本和关闭按钮， 支持 info/success/warning/error 四种状态。
+    en: 'Create an Alert component: a status-coloured banner with icon, title, description and a close button, supporting info/success/warning/error.'
+  design:
+    zh: 创建 Alert 组件。要求：低饱和状态色底 + 左侧同色强调边；图标 + 标题 + 描述行 + 右上关闭按钮； 圆角适中，文字对比度达标；常驻显示直到手动关闭；深浅色主题一致。
+    en: 'Create an Alert. Requirements: low-saturation status surface with a matching left accent border; icon, title, description line and a top-right close button; moderate radius with accessible text contrast; persistent until dismissed; consistent light/dark themes.'
+  implementation:
+    zh: 用 React + Tailwind 实现 Alert：variant 映射到配色对象（surface/border/icon 文本色）； 结构 flex：图标、内容区（标题 + 描述）、可选操作按钮、关闭按钮（aria-label）； 组件受控 visible 或由父层条件渲染；入场可用淡入 keyframes（时长乘 var(--demo-speed, 1)）； role 视状态用 alert（error）或 status。
+    en: 'React + Tailwind Alert: variants map to a palette object (surface, border, icon and text colours); flex structure with icon, content (title + description), optional actions and a close button (aria-label); controlled visible state or parent conditional rendering; optional fade-in keyframes scaled by var(--demo-speed, 1); role="alert" for errors, role="status" otherwise.'
+  agent:
+    zh: |-
+      在当前项目中实现警告提示（Alert）组件。
+
+      先检查现有组件体系与 Design Token，优先复用现有的状态色与语义色变量。
+      用途：表单错误汇总与系统级通知。
+      要求：
+      - 支持 info/success/warning/error 四种状态
+      - 图标 + 标题 + 描述 + 可选操作与关闭
+      - 不只靠颜色传达状态（图标 + 文字）
+      - 常驻显示，不自动消失
+      - 深浅色主题一致，不新增依赖
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Implement an Alert component in the current project.
+
+      Inspect the existing component system and design tokens first; reuse existing
+      status and semantic colour variables.
+      Usage: form error summaries and system-level notices.
+      Requirements:
+      - info/success/warning/error variants
+      - Icon + title + description + optional actions and close
+      - Never colour-only: icons and text accompany status
+      - Persistent, no auto-dismiss
+      - Consistent light/dark themes, no new dependencies
+      Run existing checks when done and list modified files.

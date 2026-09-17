@@ -11,7 +11,6 @@ const MagneticButtonDemo: DemoComponent = ({ mode }) => {
     const area = areaRef.current;
     const btn = btnRef.current;
     if (!area || !btn) return;
-    const r = area.getBoundingClientRect();
     const b = btn.getBoundingClientRect();
     const dx = e.clientX - (b.left + b.width / 2);
     const dy = e.clientY - (b.top + b.height / 2);

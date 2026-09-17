@@ -67,20 +67,22 @@ function Tip({
         {children}
       </button>
       {show && (
-        <span
-          id="tip"
-          role="tooltip"
-          data-anatomy="2"
-          className={`pointer-events-none absolute z-20 whitespace-nowrap rounded-md px-2 py-1 text-[11px] leading-snug ${POS[placement]} ${bubbleSkin}`}
-          style={{ animation: 'demo-tip-in calc(150ms * var(--demo-speed, 1)) both' }}
-        >
-          {label}
+        <span className={`pointer-events-none absolute z-20 ${POS[placement]}`}>
           <span
-            data-anatomy="3"
-            aria-hidden="true"
-            className={`absolute h-1.5 w-1.5 rotate-45 ${arrowSkin} ${skin === 'light' || skin === 'rich' ? 'border-line' : ''} ${ARROW[placement]}`}
-            style={skin === 'dark' ? undefined : { clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}
-          />
+            id="tip"
+            role="tooltip"
+            data-anatomy="2"
+            className={`block whitespace-nowrap rounded-md px-2 py-1 text-[11px] leading-snug ${bubbleSkin}`}
+            style={{ animation: 'demo-tip-in calc(150ms * var(--demo-speed, 1)) both' }}
+          >
+            {label}
+            <span
+              data-anatomy="3"
+              aria-hidden="true"
+              className={`absolute h-1.5 w-1.5 rotate-45 ${arrowSkin} ${skin === 'light' || skin === 'rich' ? 'border-line' : ''} ${ARROW[placement]}`}
+              style={skin === 'dark' ? undefined : { clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}
+            />
+          </span>
         </span>
       )}
     </span>

@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 标签页
   en: Tabs
-
 aliases:
   - 选项卡
   - tab 切换
@@ -11,124 +9,99 @@ aliases:
   - 切换标签
   - 浏览器那种标签
   - 分栏切换
-
 category:
   - Navigation
   - Layout
-
 description:
-  zh: >-
-    用一排可切换的标签把同一区域的内容分成互斥视图：标签头常驻可点击，仅当前
-    标签对应的面板可见，其余隐藏。适合把高度相关的几类内容压缩在同一区域内
-    就地切换，避免整页跳转。键盘上用左右方向键在标签间移动，是可访问性的经典范例。
-  en: >-
-    A row of switchable labels that divide one region into mutually exclusive views:
-    the tab headers stay visible and clickable, and only the active tab's panel shows
-    while the rest stay hidden. Packs several tightly related contents into one area to
-    switch in place instead of full-page navigation. Arrow-key navigation between tabs
-    makes it a classic accessibility showcase.
-
+  zh: 用一排可切换的标签把同一区域的内容分成互斥视图：标签头常驻可点击，仅当前 标签对应的面板可见，其余隐藏。适合把高度相关的几类内容压缩在同一区域内 就地切换，避免整页跳转。键盘上用左右方向键在标签间移动，是可访问性的经典范例。
+  en: 'A row of switchable labels that divide one region into mutually exclusive views: the tab headers stay visible and clickable, and only the active tab''s panel shows while the rest stay hidden. Packs several tightly related contents into one area to switch in place instead of full-page navigation. Arrow-key navigation between tabs makes it a classic accessibility showcase.'
 use_when:
-  - { zh: 同一对象的几个平行视图（概览 / 动态 / 设置）, en: Parallel views of one object — overview / activity / settings }
-  - { zh: 想就地切换、避免整页跳转, en: Switching in place instead of full-page navigation }
-  - { zh: 内容高度相关且标签数 ≤ 7, en: Tightly related contents with ≤ 7 tabs }
-
+  - zh: 同一对象的几个平行视图（概览 / 动态 / 设置）
+    en: Parallel views of one object — overview / activity / settings
+  - zh: 想就地切换、避免整页跳转
+    en: Switching in place instead of full-page navigation
+  - zh: 内容高度相关且标签数 ≤ 7
+    en: Tightly related contents with ≤ 7 tabs
 avoid_when:
-  - { zh: 各标签内容不相关，应拆成独立页面或路由, en: Unrelated contents — split into pages or routes }
-  - { zh: 需要同时对照两个标签的内容, en: Users must compare two panes side by side }
-  - { zh: 有先后顺序的多步流程（用分步指示器）, en: Sequential flows — use a stepper }
-
+  - zh: 各标签内容不相关，应拆成独立页面或路由
+    en: Unrelated contents — split into pages or routes
+  - zh: 需要同时对照两个标签的内容
+    en: Users must compare two panes side by side
+  - zh: 有先后顺序的多步流程（用分步指示器）
+    en: Sequential flows — use a stepper
 tags:
   - navigation
   - layout
   - content-switching
-
 variants:
   - id: underline
-    name: { zh: 下划线式, en: Underline }
-    note: { zh: 激活项底部横线，Material 风格, en: Active marker under the label, Material-style }
+    name:
+      zh: 下划线式
+      en: Underline
+    note:
+      zh: 激活项底部横线，Material 风格
+      en: Active marker under the label, Material-style
   - id: pill
-    name: { zh: 胶囊分段式, en: Pill / Segmented }
-    note: { zh: 圆角分段控件，iOS Segmented 风格, en: Rounded segmented control, iOS-style }
+    name:
+      zh: 胶囊分段式
+      en: Pill / Segmented
+    note:
+      zh: 圆角分段控件，iOS Segmented 风格
+      en: Rounded segmented control, iOS-style
   - id: card
-    name: { zh: 卡片式, en: Card }
-    note: { zh: 标签即页签卡片，与面板连成一体, en: Tab cards fused with the panel }
-
+    name:
+      zh: 卡片式
+      en: Card
+    note:
+      zh: 标签即页签卡片，与面板连成一体
+      en: Tab cards fused with the panel
 anatomy:
   - 标签列表（Tab list）
   - 激活指示器（Active indicator）
   - 内容面板（Tab panel）
-
 applicable_styles:
   - minimalism
   - bento-grid
-
 applicable_pages:
   - settings
   - profile
   - dashboard
-
 related:
   - accordion
   - breadcrumb
   - pagination
   - dropdown
   - sidebar
-
 demo:
   component: tabs
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 implementation:
   css:
     - flex
-    - "border-bottom: 2px solid"
+    - 'border-bottom: 2px solid'
     - transform
     - transition
   notes:
-    zh: >-
-      语义结构 role="tablist" > role="tab"（aria-selected）+ role="tabpanel"
-      （aria-labelledby，hidden 隐藏非当前面板）。激活指示器用绝对定位小横条，
-      transform: translateX 滑动过渡；面板切换可加轻微 fade。键盘需实现左右
-      方向键移动焦点（roving tabindex）。
-    en: >-
-      Semantics: role="tablist" > role="tab" (aria-selected) + role="tabpanel"
-      (aria-labelledby, non-active panels hidden). Animate the active indicator with an
-      absolutely positioned bar sliding via transform: translateX; panels may fade on
-      switch. Keyboard support needs roving tabindex with arrow keys.
-
+    zh: '语义结构 role="tablist" > role="tab"（aria-selected）+ role="tabpanel" （aria-labelledby，hidden 隐藏非当前面板）。激活指示器用绝对定位小横条， transform: translateX 滑动过渡；面板切换可加轻微 fade。键盘需实现左右 方向键移动焦点（roving tabindex）。'
+    en: 'Semantics: role="tablist" > role="tab" (aria-selected) + role="tabpanel" (aria-labelledby, non-active panels hidden). Animate the active indicator with an absolutely positioned bar sliding via transform: translateX; panels may fade on switch. Keyboard support needs roving tabindex with arrow keys.'
 sources:
   - name: WAI-ARIA Authoring Practices — Tabs
     url: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
   - name: Material Design 3 — Tabs
     url: https://m3.material.io/components/tabs/overview
-
 prompts:
   basic:
-    zh: >-
-      创建一个标签页组件：一排标签头加内容面板，点击或方向键切换，仅显示当前标签的面板。
-    en: >-
-      Create a tabs component: a row of tab headers plus panels, switched by click or arrow keys, showing only the active panel.
+    zh: 创建一个标签页组件：一排标签头加内容面板，点击或方向键切换，仅显示当前标签的面板。
+    en: 'Create a tabs component: a row of tab headers plus panels, switched by click or arrow keys, showing only the active panel.'
   design:
-    zh: >-
-      创建标签页：标签头等宽横排，激活项文字用主色并带 2px 底部强调色横线（横线
-      滑动过渡）；面板留白 16px；未激活标签为次级色。切换有轻微 fade。深浅色主题一致。
-    en: >-
-      Create tabs: equal-width headers in a row, active label in primary color with a
-      2px accent underline that slides between tabs; 16px panel padding; inactive labels
-      in secondary color. Subtle fade on switch. Consistent in light and dark themes.
+    zh: 创建标签页：标签头等宽横排，激活项文字用主色并带 2px 底部强调色横线（横线 滑动过渡）；面板留白 16px；未激活标签为次级色。切换有轻微 fade。深浅色主题一致。
+    en: 'Create tabs: equal-width headers in a row, active label in primary color with a 2px accent underline that slides between tabs; 16px panel padding; inactive labels in secondary color. Subtle fade on switch. Consistent in light and dark themes.'
   implementation:
-    zh: >-
-      用 React + Tailwind 实现 Tabs：role="tablist"/"tab"/"tabpanel" 完整语义；
-      activeId 受控；指示器用绝对定位 + translateX 过渡（时长乘
-      var(--demo-speed, 1) 类变量便于调试）；面板切换 key 触发 fade 动画，尊重
-      prefers-reduced-motion；roving tabindex 左右方向键。无新增依赖。
-    en: >-
-      React + Tailwind tabs: full role="tablist"/"tab"/"tabpanel" semantics; controlled
-      activeId; indicator as an absolutely positioned bar animated with translateX
-      (duration multiplied by a speed variable for debugging); panels fade in via key
-      changes, respecting prefers-reduced-motion; roving tabindex with arrow keys.
-      No new dependencies.
+    zh: 用 React + Tailwind 实现 Tabs：role="tablist"/"tab"/"tabpanel" 完整语义； activeId 受控；指示器用绝对定位 + translateX 过渡（时长乘 var(--demo-speed, 1) 类变量便于调试）；面板切换 key 触发 fade 动画，尊重 prefers-reduced-motion；roving tabindex 左右方向键。无新增依赖。
+    en: 'React + Tailwind tabs: full role="tablist"/"tab"/"tabpanel" semantics; controlled activeId; indicator as an absolutely positioned bar animated with translateX (duration multiplied by a speed variable for debugging); panels fade in via key changes, respecting prefers-reduced-motion; roving tabindex with arrow keys. No new dependencies.'
   agent:
     zh: |-
       在当前项目中实现标签页组件。

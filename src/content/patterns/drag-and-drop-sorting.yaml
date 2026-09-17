@@ -1,9 +1,7 @@
 status: published
-
 name:
   zh: 拖拽排序
   en: Drag & Drop Sorting
-
 aliases:
   - 拖拽排序
   - 拖动调整顺序
@@ -11,74 +9,78 @@ aliases:
   - 上下移动排序
   - 拖拽换位置
   - 拖放排列
-
 category:
   - Manipulation
   - Lists
-
 description:
-  zh: >-
-    用直接拖动的方式调整列表项的先后顺序：按住条目（或把手）拖到目标位置，其余条目实时让位并给出落点提示。
-    它把"排序"从抽象的上下移按钮变成所见即所得的空间操作，同时保留按钮作为可达性兜底。
-  en: >-
-    Reorders list items by direct manipulation: press an item (or its handle), drag it to a target
-    slot while neighbours give way and a drop hint appears. It turns ordering into a spatial,
-    what-you-see-is-what-you-get action — with buttons kept as an accessible fallback.
-
+  zh: 用直接拖动的方式调整列表项的先后顺序：按住条目（或把手）拖到目标位置，其余条目实时让位并给出落点提示。 它把"排序"从抽象的上下移按钮变成所见即所得的空间操作，同时保留按钮作为可达性兜底。
+  en: 'Reorders list items by direct manipulation: press an item (or its handle), drag it to a target slot while neighbours give way and a drop hint appears. It turns ordering into a spatial, what-you-see-is-what-you-get action — with buttons kept as an accessible fallback.'
 use_when:
-  - { zh: 用户需要自由决定条目顺序（播放列表、任务清单、栏目配置）, en: Users control the order — playlists, task lists, section config }
-  - { zh: 列表项数量适中，一屏内能看清全局, en: Moderately sized lists where all items fit on one screen }
-  - { zh: 顺序调整频繁，按钮逐级移动太低效, en: Frequent reordering where stepping one-by-one is too slow }
-
+  - zh: 用户需要自由决定条目顺序（播放列表、任务清单、栏目配置）
+    en: Users control the order — playlists, task lists, section config
+  - zh: 列表项数量适中，一屏内能看清全局
+    en: Moderately sized lists where all items fit on one screen
+  - zh: 顺序调整频繁，按钮逐级移动太低效
+    en: Frequent reordering where stepping one-by-one is too slow
 avoid_when:
-  - { zh: 顺序由规则决定（按时间、按字母），无需手动调, en: Order is rule-based (time, alphabetical) — no manual control needed }
-  - { zh: 列表很长且跨屏拖动容易迷失落点, en: Very long lists where cross-screen dragging loses the drop target }
-  - { zh: 主要用户在触屏上且行高太小，拖拽误触率高, en: Small touch targets on mobile where drags misfire }
-
+  - zh: 顺序由规则决定（按时间、按字母），无需手动调
+    en: Order is rule-based (time, alphabetical) — no manual control needed
+  - zh: 列表很长且跨屏拖动容易迷失落点
+    en: Very long lists where cross-screen dragging loses the drop target
+  - zh: 主要用户在触屏上且行高太小，拖拽误触率高
+    en: Small touch targets on mobile where drags misfire
 tags:
   - drag
   - sorting
   - lists
   - manipulation
-
 variants:
   - id: full-item
-    name: { zh: 整行拖动, en: Whole item }
-    note: { zh: 按条目任意位置拖，最直接, en: Drag anywhere on the item, most direct }
+    name:
+      zh: 整行拖动
+      en: Whole item
+    note:
+      zh: 按条目任意位置拖，最直接
+      en: Drag anywhere on the item, most direct
   - id: handle
-    name: { zh: 把手拖动, en: Handle }
-    note: { zh: 六点把手限定拖拽区，避免与滚动冲突, en: A six-dot handle constrains the drag zone, avoids scroll conflicts }
+    name:
+      zh: 把手拖动
+      en: Handle
+    note:
+      zh: 六点把手限定拖拽区，避免与滚动冲突
+      en: A six-dot handle constrains the drag zone, avoids scroll conflicts
   - id: button
-    name: { zh: 按钮排序, en: Buttons }
-    note: { zh: 上移/下移按钮，键盘与读屏友好, en: Move up/down buttons, keyboard and screen-reader friendly }
-
+    name:
+      zh: 按钮排序
+      en: Buttons
+    note:
+      zh: 上移/下移按钮，键盘与读屏友好
+      en: Move up/down buttons, keyboard and screen-reader friendly
 anatomy:
   - 可拖条目（Draggable item）
   - 拖拽把手（Drag handle）
   - 落点指示（Drop indicator）
   - 顺序调整按钮（Reorder buttons）
-
 applicable_styles:
   - minimalism
   - bento-grid
-
 applicable_components:
   - table
   - card
 applicable_pages:
   - settings
-
 related:
   - kanban-board
   - inline-editing
   - optimistic-ui
   - button
   - accordion
-
 demo:
   component: drag-and-drop-sorting
-  modes: [default, dark, variants]
-
+  modes:
+    - default
+    - dark
+    - variants
 implementation:
   css:
     - draggable
@@ -86,44 +88,23 @@ implementation:
     - transition
     - cursor-grab
   notes:
-    zh: >-
-      HTML5 拖拽：条目设 draggable，dragstart 记录来源索引，dragover 阻止默认并计算落点，drop 时
-      重排数组。触屏不支持 HTML5 DnD，需按钮或指针事件兜底。拖动中给原位置留半透明占位，
-      目标行高亮。尊重 prefers-reduced-motion，交换动画退化为直接落位。
-    en: >-
-      HTML5 drag: set draggable on items, record the source index on dragstart, preventDefault on
-      dragover to compute the drop target, then reorder the array on drop. Touch devices need
-      buttons or pointer events as fallback. Keep a translucent ghost at the origin and highlight
-      the target row. Respect prefers-reduced-motion by snapping without transition.
-
+    zh: HTML5 拖拽：条目设 draggable，dragstart 记录来源索引，dragover 阻止默认并计算落点，drop 时 重排数组。触屏不支持 HTML5 DnD，需按钮或指针事件兜底。拖动中给原位置留半透明占位， 目标行高亮。尊重 prefers-reduced-motion，交换动画退化为直接落位。
+    en: 'HTML5 drag: set draggable on items, record the source index on dragstart, preventDefault on dragover to compute the drop target, then reorder the array on drop. Touch devices need buttons or pointer events as fallback. Keep a translucent ghost at the origin and highlight the target row. Respect prefers-reduced-motion by snapping without transition.'
 sources:
   - name: Apple HIG — Drag and drop
     url: https://developer.apple.com/design/human-interface-guidelines/drag-and-drop
   - name: MDN — HTML Drag and Drop API
     url: https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
-
 prompts:
   basic:
     zh: 创建一个拖拽排序（Drag & Drop Sorting）演示，列表条目可以拖动换位，也提供上移/下移按钮。
     en: Create a drag & drop sorting demo where list items can be dragged to reorder, with move up/down buttons as fallback.
   design:
-    zh: >-
-      创建拖拽排序演示。要求：任务列表条目可整行拖动换位，拖动中原位留半透明占位、目标行高亮；
-      每行附上移/下移按钮兜底；把手用六点图标暗示可拖；顺序变化有轻微过渡动画。
-    en: >-
-      Create a drag & drop sorting demo. Requirements: task rows reorderable by dragging, with a
-      translucent ghost at the origin and a highlighted drop target; per-row move up/down buttons
-      as fallback; a six-dot handle hinting draggability; subtle transition on reorder.
+    zh: 创建拖拽排序演示。要求：任务列表条目可整行拖动换位，拖动中原位留半透明占位、目标行高亮； 每行附上移/下移按钮兜底；把手用六点图标暗示可拖；顺序变化有轻微过渡动画。
+    en: 'Create a drag & drop sorting demo. Requirements: task rows reorderable by dragging, with a translucent ghost at the origin and a highlighted drop target; per-row move up/down buttons as fallback; a six-dot handle hinting draggability; subtle transition on reorder.'
   implementation:
-    zh: >-
-      用 React + HTML5 DnD 实现排序：useState 保存数组，dragstart/dragover/drop 处理索引交换，
-      dragging 状态控制 ghost 样式。另提供 moveUp/moveDown 按钮函数。拖动样式用 cursor-grab 与
-      opacity，交换动画尊重 prefers-reduced-motion。不引入 dnd 库。
-    en: >-
-      Implement sorting with React + HTML5 DnD: keep the array in useState, handle
-      dragstart/dragover/drop for index swaps, drive ghost styling from a dragging state. Provide
-      moveUp/moveDown helpers for the buttons. Use cursor-grab and opacity for drag styling and
-      respect prefers-reduced-motion for swap transitions. No DnD library.
+    zh: 用 React + HTML5 DnD 实现排序：useState 保存数组，dragstart/dragover/drop 处理索引交换， dragging 状态控制 ghost 样式。另提供 moveUp/moveDown 按钮函数。拖动样式用 cursor-grab 与 opacity，交换动画尊重 prefers-reduced-motion。不引入 dnd 库。
+    en: 'Implement sorting with React + HTML5 DnD: keep the array in useState, handle dragstart/dragover/drop for index swaps, drive ghost styling from a dragging state. Provide moveUp/moveDown helpers for the buttons. Use cursor-grab and opacity for drag styling and respect prefers-reduced-motion for swap transitions. No DnD library.'
   agent:
     zh: |-
       在当前项目中实现列表拖拽排序（Drag & Drop Sorting）。
