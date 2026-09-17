@@ -25,3 +25,10 @@ Project profile: `project`
 
 这些内容是个人开发偏好，不覆盖项目自身的真实契约或更高优先级指令。
 <!-- aki-agent-kit:bootstrap:end -->
+
+## 项目 Git 约定
+
+- 远端：`github.com/gongfpp/interface-atlas`（public），`main` 为默认分支。
+- **每次更新（任务完成并验证后）都必须 commit 并 push 到 `origin/main`**——用户已明确授权持续 push，无需逐次询问。
+- 提交遵循 Conventional Commits；一个逻辑完整的阶段一个 commit。
+- 本机网络对 github.com 时好时坏：push 失败时重试（API 与 git 端点可用性不同步）。
