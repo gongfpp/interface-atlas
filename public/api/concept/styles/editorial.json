@@ -177,5 +177,55 @@
       "zh": "分栏排版，行距宽松",
       "en": "Multi-column layout, airy leading"
     }
+  },
+  "preview": {
+    "order": 3,
+    "keywords": {
+      "en": "STORIES & TYPE",
+      "zh": "衬线 · 叙事 · 呼吸感"
+    },
+    "url": "https://paperroom.co",
+    "scene": "paper",
+    "brand": "The Paper Room",
+    "nav": [
+      "专栏",
+      "生活",
+      "旅行",
+      "人物"
+    ],
+    "navExt": [
+      "🔍"
+    ],
+    "heroTitle": "Good Life",
+    "heroTitle2": "in Small Things",
+    "heroSub": "我们记录真实的生活方式、人与地方的故事，\n恰在寻常之中，藏着最动人的答案。",
+    "cta": "阅读更多 →",
+    "features": [
+      {
+        "t": "一间面朝山腰的房子",
+        "s": "2024.04.12"
+      },
+      {
+        "t": "城市漫游指南",
+        "s": "2024.04.09"
+      },
+      {
+        "t": "慢下来的周末",
+        "s": "2024.04.01"
+      }
+    ],
+    "panel": "photo",
+    "tokens": {
+      "bg": "#FBF9F4",
+      "fg": "#26241F",
+      "sub": "#8A857A",
+      "accent": "#9A6B3F",
+      "accentFg": "#fff",
+      "card": "#FFFFFF",
+      "cardBorder": "#E8E3D8",
+      "radius": "8px",
+      "font": "Georgia, 'Songti SC', 'Noto Serif CJK SC', serif",
+      "italic": true
+    }
   }
 }

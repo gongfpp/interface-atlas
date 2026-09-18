@@ -142,3 +142,47 @@ style_spec:
   spacing:
     zh: 故意歪斜、错位排布
     en: Deliberately tilted, misaligned
+
+preview:
+  order: 11
+  keywords:
+    en: PLAY & REPEAT
+    zh: 撞色 · 波点 · 顽皮
+  url: https://milano-88.it
+  scene: generic
+  brand: Milano '88
+  nav:
+    - 家居
+    - 图案
+    - 派对
+  navExt:
+    - 意大利制造
+  heroTitle: PLAY &
+  heroTitle2: REPEAT!
+  heroSub: 八十年代的顽皮几何。
+  cta: 开派对
+  heroCaption: 波点 · 折线 · 甜品色
+  features:
+    - t: 撞色格纹
+      s: 粉蓝黄绿
+    - t: 几何贴纸
+      s: 圆点与折线
+    - t: 歪斜排版
+      s: 故意不整齐
+  panel: shapes
+  tokens:
+    bg: '#FFF4E3'
+    fg: '#232323'
+    sub: '#8A7A66'
+    accent: '#FF5C8A'
+    accentFg: '#fff'
+    card: '#FFFFFF'
+    cardBorder: '#232323'
+    radius: 2px
+    shadow: '4px 4px 0 #232323'
+    font: '''Helvetica Neue'', ''PingFang SC'', ''Noto Sans CJK SC'', sans-serif'
+    heroSize: 24px
+    triCards:
+      - '#FF5C8A'
+      - '#FFD23F'
+      - '#3EC6A8'

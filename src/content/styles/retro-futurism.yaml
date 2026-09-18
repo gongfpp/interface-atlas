@@ -142,3 +142,43 @@ style_spec:
   spacing:
     zh: 网格地平线式构图
     en: Horizon-grid composition
+
+preview:
+  order: 13
+  keywords:
+    en: SYNTH 84
+    zh: 霓虹渐变 · 复古日落
+  url: https://synthwave84.fm
+  scene: generic
+  brand: SYNTH-84
+  nav:
+    - 电台
+    - 巡演
+    - 磁带
+  navExt:
+    - REC ●
+  heroTitle: DRIVE INTO
+  heroTitle2: THE SUNSET
+  heroSub: 回到 1984 年想象的未来。
+  cta: 播放电台
+  heroCaption: 合成器 · 网格地平线 · 铬金标题
+  features:
+    - t: 日落渐变
+      s: 粉紫橙三段
+    - t: 透视网格
+      s: 无尽公路感
+    - t: 铬金字
+      s: 金属反光标题
+  panel: chart
+  tokens:
+    bg: linear-gradient(180deg,#140A33 0%,#3D1170 62%,#7A1F63 100%)
+    fg: '#FFE8F6'
+    sub: '#B78BB8'
+    accent: '#FF71CE'
+    accentFg: '#2A0A2E'
+    card: rgba(255,113,206,.12)
+    cardBorder: rgba(255,113,206,.45)
+    radius: 6px
+    font: '''SF Mono'', Menlo, monospace'
+    upper: true
+    heroSize: 22px

@@ -141,3 +141,42 @@ style_spec:
   spacing:
     zh: 悬浮卡层叠，间距宽松
     en: Floating stacked cards, roomy gaps
+
+preview:
+  order: 15
+  keywords:
+    en: GRADIENT GLOW
+    zh: 光晕 · 流动 · 暗夜
+  url: https://borealis.ux
+  scene: generic
+  brand: Borealis
+  nav:
+    - 光
+    - 色
+    - 场
+  navExt:
+    - v2.0
+  heroTitle: Flow with
+  heroTitle2: the Light
+  heroSub: 让颜色像极光一样流动。
+  cta: 点亮
+  heroCaption: 暗夜底 · 光斑 · 渐变文字
+  features:
+    - t: 极光底色
+      s: 绿紫粉光晕
+    - t: 玻璃浮层
+      s: 轻透的内容卡
+    - t: 流动渐变
+      s: 缓慢变色动画
+  panel: mountain
+  tokens:
+    bg: 'radial-gradient(60% 80% at 20% 10%, rgba(52,211,153,.35), transparent), radial-gradient(55% 70% at 80% 25%, rgba(129,140,248,.4), transparent), radial-gradient(60% 60% at 50% 95%, rgba(236,72,153,.3), transparent), #0D0B1E'
+    fg: '#F4F3FF'
+    sub: '#9C99C2'
+    accent: '#A5B4FC'
+    accentFg: '#1E1B4B'
+    card: rgba(255,255,255,.08)
+    cardBorder: rgba(165,180,252,.3)
+    radius: 14px
+    font: '''Helvetica Neue'', ''PingFang SC'', ''Noto Sans CJK SC'', sans-serif'
+    heroSize: 22px

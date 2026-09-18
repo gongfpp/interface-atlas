@@ -142,3 +142,43 @@ style_spec:
   spacing:
     zh: 气泡式 20px 圆角，松弛排布
     en: Bubble 20px radii, relaxed spacing
+
+preview:
+  order: 9
+  keywords:
+    en: METAL & BUBBLE
+    zh: 金属 · 气泡 · 梦幻
+  url: https://cyberdream.jp
+  scene: generic
+  brand: ☆ CyberDream ☆
+  nav:
+    - 音乐
+    - 装扮
+    - 星球
+  navExt:
+    - 会员卡
+  heroTitle: Y2K CYBER
+  heroTitle2: DREAM ✦
+  heroSub: 千禧年的怀旧未来主义。
+  cta: 立即进入
+  heroCaption: 金属光泽 · 气泡字 · 荧光小熊
+  features:
+    - t: 镭射背景
+      s: 流动的银紫
+    - t: 气泡按钮
+      s: 圆滚滚的触感
+    - t: 像素贴纸
+      s: 闪星与小熊
+  panel: chart
+  tokens:
+    bg: linear-gradient(160deg,#DDE7F5 0%,#EFD3E8 55%,#C9C8F4 100%)
+    fg: '#3A3A55'
+    sub: '#7A7A99'
+    accent: '#7B61FF'
+    accentFg: '#fff'
+    card: rgba(255,255,255,.78)
+    cardBorder: '#B8B8E0'
+    radius: 20px
+    shadow: 0 8px 18px rgba(123,97,255,.18)
+    font: ui-rounded, 'Arial Rounded MT Bold', 'PingFang SC', sans-serif
+    heroSize: 22px

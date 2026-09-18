@@ -2,7 +2,7 @@
 import { getConcepts, POPULAR_IDS, type Concept, type ConceptType } from '@/lib/content';
 import ConceptCard from '@/components/ConceptCard.astro';
 import StyleThumb from '@/components/StyleThumb.astro';
-import { STYLE_SPECS } from '@/lib/style-thumbs';
+import { getStylePreviews } from '@/lib/style-previews';
 import { TYPE_LABELS, localePath, t, type Locale } from '@/lib/i18n';
 
 interface Props {
@@ -19,6 +19,7 @@ const all = await Promise.all(
 const total = all.reduce((n, g) => n + g.concepts.length, 0);
 const { getCollection: getCol } = await import('astro:content');
 const gallery = (await getCol('gallery')).filter((e) => e.data.status === 'published');
+const styleSpecs = await getStylePreviews();
 const popular = (await Promise.all(
   (Object.keys(TYPE_LABELS) as ConceptType[]).map((t2) => getConcepts(t2)),
 ))
@@ -62,7 +63,7 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
     <a href={localePath('/styles', locale)} class="text-sm text-accent hover:underline">{t('viewAll', locale)} →</a>
   </div>
   <div class="grid gap-5 md:grid-cols-2">
-    {STYLE_SPECS.map((spec) => (
+    {styleSpecs.map((spec) => (
       <a
         href={localePath(`/styles/${spec.slug}`, locale)}
         class="group transition-transform duration-300 hover:-translate-y-1"

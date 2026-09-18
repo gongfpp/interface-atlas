@@ -181,5 +181,57 @@
       "zh": "极大留白，宽松的 8pt 网格",
       "en": "Generous whitespace on a relaxed 8pt grid"
     }
+  },
+  "preview": {
+    "order": 1,
+    "keywords": {
+      "en": "LESS. BUT BETTER.",
+      "zh": "留白 · 克制 · 内容优先"
+    },
+    "url": "https://lumo.space",
+    "scene": "lumo",
+    "brand": "L U M O",
+    "nav": [
+      "产品",
+      "关于",
+      "灵感",
+      "支持"
+    ],
+    "navExt": [
+      "更多干扰 更纯粹生活"
+    ],
+    "heroTitle": "A calmer",
+    "heroTitle2": "digital life",
+    "heroSub": "简洁的工具，成就更专注的你。",
+    "cta": "立即体验 →",
+    "heroCaption": "让专注成为一种日常",
+    "features": [
+      {
+        "t": "专注模式",
+        "s": "屏蔽一切打扰"
+      },
+      {
+        "t": "极简界面",
+        "s": "只留下必要"
+      },
+      {
+        "t": "自然提醒",
+        "s": "轻声不吵闹"
+      }
+    ],
+    "panel": "device",
+    "tokens": {
+      "bg": "#FBFBF9",
+      "fg": "#161513",
+      "sub": "#9B9B95",
+      "accent": "#161513",
+      "accentFg": "#fff",
+      "card": "#FFFFFF",
+      "cardBorder": "#EDEDE9",
+      "radius": "14px",
+      "shadow": "0 1px 2px rgba(0,0,0,.04)",
+      "font": "Georgia, 'Songti SC', 'Noto Serif CJK SC', serif",
+      "heroSize": "26px"
+    }
   }
 }

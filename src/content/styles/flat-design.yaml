@@ -142,3 +142,45 @@ style_spec:
   spacing:
     zh: 小圆角 6px，均匀网格
     en: Small 6px radius, even grid
+
+preview:
+  order: 7
+  keywords:
+    en: SOLID & SIMPLE
+    zh: 平涂 · 直接 · 去装饰
+  url: https://flatly.io
+  scene: generic
+  brand: Flatly
+  nav:
+    - 功能
+    - 价格
+    - 博客
+  navExt:
+    - 登录
+  heroTitle: Simple & Solid
+  heroSub: 去掉装饰，信息直达。
+  cta: 开始使用
+  heroCaption: 没有渐变 · 没有阴影 · 只有信息
+  features:
+    - t: 色块即层级
+      s: 大色块分区
+    - t: 图标即语言
+      s: 几何小图标
+    - t: 直角与留白
+      s: 克制的圆角
+  panel: shapes
+  tokens:
+    bg: '#1FA2FF'
+    fg: '#FFFFFF'
+    sub: rgba(255,255,255,.75)
+    accent: '#FFD54F'
+    accentFg: '#333333'
+    card: rgba(255,255,255,.16)
+    cardBorder: rgba(255,255,255,.35)
+    radius: 8px
+    font: '''Helvetica Neue'', ''PingFang SC'', ''Noto Sans CJK SC'', sans-serif'
+    heroSize: 24px
+    triCards:
+      - '#FFD54F'
+      - '#FFFFFF'
+      - '#36CFC9'

@@ -179,5 +179,55 @@
       "zh": "16px 圆角 + 10px 网格间距",
       "en": "16px radius, ~10px grid gaps"
     }
+  },
+  "preview": {
+    "order": 12,
+    "keywords": {
+      "en": "MODULAR & FLEX",
+      "zh": "模块化 · 一切尽在掌控"
+    },
+    "url": "https://tasko.app",
+    "scene": "tasko",
+    "brand": "◉ Tasko",
+    "nav": [
+      "产品",
+      "模板",
+      "资源",
+      "定价"
+    ],
+    "navExt": [
+      "登录",
+      "免费注册"
+    ],
+    "heroTitle": "高效生活",
+    "heroTitle2": "从有序开始",
+    "heroSub": "Tasko 帮助你管理任务、笔记与日程，让每一天更专注、更有意义。",
+    "cta": "开始使用 →",
+    "features": [
+      {
+        "t": "任务 5",
+        "s": "今日待完成"
+      },
+      {
+        "t": "笔记 12",
+        "s": "记录灵感"
+      },
+      {
+        "t": "专注 3h24m",
+        "s": "比上周 +40%"
+      }
+    ],
+    "tokens": {
+      "bg": "#F5F5F7",
+      "fg": "#17181C",
+      "sub": "#83858D",
+      "accent": "#5B5BD6",
+      "accentFg": "#fff",
+      "card": "#FFFFFF",
+      "cardBorder": "#E5E7EB",
+      "radius": "16px",
+      "shadow": "0 1px 3px rgba(0,0,0,.06)",
+      "font": "'Helvetica Neue', 'PingFang SC', 'Noto Sans CJK SC', sans-serif"
+    }
   }
 }

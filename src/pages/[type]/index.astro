@@ -4,7 +4,7 @@ import ConceptCard from '@/components/ConceptCard.astro';
 import StyleRow from '@/components/StyleRow.astro';
 import { getConcepts, type ConceptType } from '@/lib/content';
 import { TYPE_LABELS, type Locale } from '@/lib/i18n';
-import { STYLE_SPECS } from '@/lib/style-thumbs';
+import { getStylePreviews } from '@/lib/style-previews';
 
 export async function getStaticPaths() {
   const types = ['components', 'patterns', 'styles', 'pages', 'motion'];
@@ -18,6 +18,7 @@ const { type } = Astro.params as { type: ConceptType };
 const locale: Locale = 'zh';
 const isStyles = type === 'styles';
 const concepts = (await getConcepts(type)).sort((a, b) => a.id.localeCompare(b.id));
+const styleSpecs = isStyles ? await getStylePreviews() : [];
 ---
 
 <BaseLayout
@@ -28,12 +29,12 @@ const concepts = (await getConcepts(type)).sort((a, b) => a.id.localeCompare(b.i
 >
   <section class="pt-14 pb-8">
     <h1 class="font-serif text-3xl font-semibold md:text-4xl">{TYPE_LABELS[type].zh}</h1>
-    <p class="mt-2 text-sm text-ink-3">{isStyles ? `${STYLE_SPECS.length} 种风格 · 点击任意风格查看可运行的组件示范` : `${concepts.length} 个概念`}</p>
+    <p class="mt-2 text-sm text-ink-3">{isStyles ? `${styleSpecs.length} 种风格 · 点击任意风格查看可运行的组件示范` : `${concepts.length} 个概念`}</p>
   </section>
 
   {isStyles ? (
     <div class="flex flex-col gap-5 pb-20">
-      {STYLE_SPECS.map((spec, i) => <StyleRow spec={spec} index={i} locale={locale} />)}
+      {styleSpecs.map((spec, i) => <StyleRow spec={spec} index={i} locale={locale} />)}
     </div>
   ) : (
     <div class="grid gap-3 pb-20 sm:grid-cols-2 md:grid-cols-3">

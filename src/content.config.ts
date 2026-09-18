@@ -13,6 +13,53 @@ const bilingualText = z.object({
 
 const bilingualList = z.array(bilingualText);
 
+/**
+ * Style 缩略预览规格（PRD §21，审计改进：YAML 为唯一事实源，组件只做 renderer）。
+ * 仅 styles collection 使用；`order` 决定列表页与首页风格墙的展示顺序。
+ */
+const stylePreview = z.object({
+  order: z.number(),
+  keywords: bilingualText,
+  url: z.string(),
+  scene: z.enum(['lumo', 'vertex', 'paper', 'aurora', 'tasko', 'generic']),
+  brand: z.string(),
+  nav: z.array(z.string()),
+  navExt: z.array(z.string()).optional(),
+  heroTitle: z.string(),
+  heroTitle2: z.string().optional(),
+  heroSub: z.string(),
+  cta: z.string(),
+  heroCaption: z.string().optional(),
+  features: z
+    .array(
+      z.object({
+        t: z.string(),
+        s: z.string(),
+      }),
+    )
+    .optional(),
+  panel: z.enum(['device', 'photo', 'mountain', 'shapes', 'chart', 'screen']).optional(),
+  tokens: z.object({
+    bg: z.string(),
+    fg: z.string(),
+    sub: z.string(),
+    accent: z.string(),
+    accentFg: z.string(),
+    card: z.string(),
+    cardBorder: z.string(),
+    radius: z.string(),
+    shadow: z.string().optional(),
+    font: z.string(),
+    blur: z.string().optional(),
+    upper: z.boolean().optional(),
+    italic: z.boolean().optional(),
+    triCards: z.tuple([z.string(), z.string(), z.string()]).optional(),
+    heroSize: z.string().optional(),
+  }),
+});
+
+export type StylePreviewData = ReturnType<typeof stylePreview.parse>;
+
 const baseSchema = z
   .object({
     status: z.enum(['draft', 'published']).default('draft'),
@@ -91,6 +138,9 @@ const baseSchema = z
         spacing: bilingualText,
       })
       .optional(),
+
+    /** PRD §21：Style 缩略预览规格（仅 styles 使用） */
+    preview: stylePreview.optional(),
 
     prompts: z.object({
       basic: bilingualText,

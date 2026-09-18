@@ -142,3 +142,47 @@ style_spec:
   spacing:
     zh: 几何构图留白
     en: Compositional whitespace around geometry
+
+preview:
+  order: 8
+  keywords:
+    en: FORM & FUNCTION
+    zh: 几何 · 三原色 · 秩序
+  url: https://staatliches.bau
+  scene: generic
+  brand: BAUHAUS
+  nav:
+    - 形式
+    - 色彩
+    - 工坊
+  navExt:
+    - '1923'
+  heroTitle: FORM &
+  heroTitle2: FUNCTION
+  heroSub: 几何与三原色的秩序。
+  cta: 进入工坊
+  heroCaption: 圆 · 三角 · 方块
+  features:
+    - t: 红之圆
+      s: 统一的起点
+    - t: 蓝之方
+      s: 功能的稳定
+    - t: 黄之角
+      s: 能量的指向
+  panel: shapes
+  tokens:
+    bg: '#F4EFE6'
+    fg: '#141414'
+    sub: '#77716A'
+    accent: '#E23B2E'
+    accentFg: '#fff'
+    card: '#FFFFFF'
+    cardBorder: '#141414'
+    radius: 0px
+    font: '''Helvetica Neue'', ''PingFang SC'', ''Noto Sans CJK SC'', sans-serif'
+    upper: true
+    heroSize: 24px
+    triCards:
+      - '#E23B2E'
+      - '#21409A'
+      - '#F2B705'

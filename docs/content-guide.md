@@ -60,6 +60,14 @@ plain 标量里的 ASCII 逗号会让解析器**静默拆键**（值截断 + 产
 只能引用 §3 全库清单中的 id。不确定就不写。类型前缀规则（CI 强制）：
 `applicable_styles` 只能引用 styles/*；`applicable_components` 只能引用 components/*；`applicable_pages` 只能引用 pages/*；`related` 任意。
 
+### 1.6 Style 预览规格（仅 styles 条目）
+
+Style 的"风格实况"缩略图完全由 YAML 的 `preview` 字段驱动——`src/lib/style-previews.ts` 只做读取与派生，`StyleThumb.astro` 只做 renderer，不存在第二份风格数据。新增或修改风格时：
+
+- `preview.order`：整数，决定 `/styles` 列表与首页风格墙的展示顺序（从 1 连续编号）。
+- `scene` / `brand` / `nav` / `heroTitle` / `heroSub` / `cta` / `features` / `panel` / `tokens` 等定义缩略图的视觉与文案，schema 见 `src/content.config.ts` 的 `stylePreview`。
+- `slug` 与显示名不写进 `preview`：组件从条目 id 与 `name`（zh/en）派生，因此 `name` 即列表上显示的规范名称。
+
 ## 2. Demo 组件规范
 
 文件：`src/islands/demos/<id>.tsx`，与条目 id 同名。签名：

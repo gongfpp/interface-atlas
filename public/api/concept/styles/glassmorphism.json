@@ -177,5 +177,56 @@
       "zh": "圆角 16px+，卡片内边距充足",
       "en": "16px+ radii with roomy card padding"
     }
+  },
+  "preview": {
+    "order": 4,
+    "keywords": {
+      "en": "TRANSPARENT LAYERS",
+      "zh": "通透 · 层次 · 光"
+    },
+    "url": "https://aurora.app",
+    "scene": "aurora",
+    "brand": "Aurora",
+    "nav": [
+      "产品",
+      "方案",
+      "价格",
+      "关于"
+    ],
+    "navExt": [
+      "立即体验"
+    ],
+    "heroTitle": "让灵感",
+    "heroTitle2": "自然流动",
+    "heroSub": "Aurora 是一款全新的 AI 创作工具，\n在想法与灵感之间，创建更短的距离。",
+    "cta": "免费开始 →",
+    "features": [
+      {
+        "t": "AI 灵感助手",
+        "s": "激发灵感、辅助创作"
+      },
+      {
+        "t": "云端同步",
+        "s": "随时随用、灵感不丢失"
+      },
+      {
+        "t": "多格式导出",
+        "s": "连接创作的工作流"
+      }
+    ],
+    "panel": "mountain",
+    "tokens": {
+      "bg": "linear-gradient(160deg,#5B8DEF 0%,#7D6BE8 40%,#C86BD9 78%,#E989B8 100%)",
+      "fg": "#FFFFFF",
+      "sub": "rgba(255,255,255,.72)",
+      "accent": "rgba(255,255,255,.85)",
+      "accentFg": "#3B2E6E",
+      "card": "rgba(255,255,255,.18)",
+      "cardBorder": "rgba(255,255,255,.45)",
+      "radius": "16px",
+      "blur": "blur(14px) saturate(150%)",
+      "font": "'Helvetica Neue', 'PingFang SC', 'Noto Sans CJK SC', sans-serif",
+      "heroSize": "24px"
+    }
   }
 }

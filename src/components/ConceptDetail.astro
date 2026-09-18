@@ -5,7 +5,7 @@ import StyleThumb from '@/components/StyleThumb.astro';
 import DemoMount from '@/islands/demos/DemoMount';
 import PromptBlock from '@/islands/PromptBlock';
 import { conceptPath, resolveRelated, getAllConcepts, type Concept } from '@/lib/content';
-import { STYLE_SPECS } from '@/lib/style-thumbs';
+import { getStylePreviews } from '@/lib/style-previews';
 import { TYPE_LABELS, type Locale } from '@/lib/i18n';
 
 interface Props {
@@ -22,7 +22,9 @@ const all = await getAllConcepts();
 const comparePeers = d.compare
   ? all.filter((c) => c.data.compare?.group === d.compare!.group && c.id !== concept.id)
   : [];
-const styleSpec = concept.conceptType === 'styles' ? STYLE_SPECS.find((s) => s.slug === concept.id) : undefined;
+const styleSpec = concept.conceptType === 'styles'
+  ? (await getStylePreviews()).find((s) => s.slug === concept.id)
+  : undefined;
 
 const sectionTitle = 'mb-4 font-serif text-xl font-semibold';
 const card = 'rounded-xl border border-line bg-raised p-5';

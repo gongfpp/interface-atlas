@@ -178,5 +178,40 @@
       "zh": "严格网格，栏距一致",
       "en": "Strict modular grid, consistent gutters"
     }
+  },
+  "preview": {
+    "order": 2,
+    "keywords": {
+      "en": "GRID. CLARITY. IMPACT.",
+      "zh": "网格 · 清晰 · 有力的表达"
+    },
+    "url": "https://vertex.studio",
+    "scene": "vertex",
+    "brand": "VERTEX",
+    "nav": [
+      "WORK",
+      "STUDIO",
+      "APPROACH",
+      "CONTACT"
+    ],
+    "navExt": [
+      "EN / 中文"
+    ],
+    "heroTitle": "IDEAS",
+    "heroTitle2": "BUILD TOMORROW",
+    "heroSub": "用设计构建更好的未来",
+    "cta": "探索项目 →",
+    "tokens": {
+      "bg": "#F2F1ED",
+      "fg": "#101010",
+      "sub": "#5B5B55",
+      "accent": "#E63312",
+      "accentFg": "#fff",
+      "card": "#FFFFFF",
+      "cardBorder": "#101010",
+      "radius": "0px",
+      "font": "'Helvetica Neue', 'PingFang SC', 'Noto Sans CJK SC', sans-serif",
+      "upper": true
+    }
   }
 }

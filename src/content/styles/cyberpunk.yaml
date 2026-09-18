@@ -140,3 +140,44 @@ style_spec:
   spacing:
     zh: 终端式紧凑排布
     en: Terminal-dense layout
+
+preview:
+  order: 10
+  keywords:
+    en: NEON NIGHTS
+    zh: 霓虹 · 夜色 · 终端
+  url: https://neon.city:2077
+  scene: generic
+  brand: NEON://CITY
+  nav:
+    - 街区
+    - 装备
+    - 黑市
+  navExt:
+    - '[SYS:OK]'
+  heroTitle: WAKE UP,
+  heroTitle2: SAMURAI
+  heroSub: 霓虹永不熄灭。
+  cta: 接入网络
+  heroCaption: 高对比 · 霓虹边框 · 全息投影
+  features:
+    - t: 义体改造
+      s: +15% 神经速率
+    - t: 黑客接口
+      s: 破防只要 3 秒
+    - t: 黑市信用
+      s: 匿名交易
+  panel: chart
+  tokens:
+    bg: '#0B0F1A'
+    fg: '#EAF6FF'
+    sub: '#5B7A94'
+    accent: '#00E5FF'
+    accentFg: '#050810'
+    card: rgba(0,229,255,.06)
+    cardBorder: rgba(0,229,255,.35)
+    radius: 4px
+    shadow: 0 0 14px rgba(0,229,255,.25)
+    font: '''SF Mono'', Menlo, monospace'
+    upper: true
+    heroSize: 22px
