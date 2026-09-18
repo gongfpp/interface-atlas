@@ -10,7 +10,7 @@ const ITEMS = [
 
 const SharedElementTransitionDemo: DemoComponent = ({ mode }) => {
   const [selected, setSelected] = useState<number | null>(null);
-  const cardRefs = useRef<Record<number, HTMLDivElement | null>>({});
+  const cardRefs = useRef<Record<number, HTMLButtonElement | null>>({});
   const detailRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
