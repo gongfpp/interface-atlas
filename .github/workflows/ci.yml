@@ -25,7 +25,7 @@ jobs:
       - name: Lint (react-hooks rules included)
         run: npm run lint
 
-      - name: Build (prebuild: content check + api layer + search index → astro build)
+      - name: "Build (prebuild: content check + api layer + search index → astro build)"
         run: npm run build
 
       - name: Install Playwright browsers
