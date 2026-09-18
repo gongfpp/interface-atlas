@@ -85,3 +85,12 @@ test('list filter: category chip narrows the grid', async ({ page }) => {
   await page.locator('.list-chip[data-list-cat="all"]').click();
   await expect(page.locator('[data-list-item]:not(.hidden)')).toHaveCount(30);
 });
+
+test('prompt builder: style selection composes the prompt', async ({ page }) => {
+  await page.goto('/components/button');
+  const section = page.locator('section', { hasText: '定制 Prompt' });
+  await section.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(600);
+  await section.locator('select').selectOption('neobrutalism');
+  await expect(section.locator('pre')).toContainText('新粗野主义');
+});

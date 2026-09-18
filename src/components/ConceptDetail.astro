@@ -5,6 +5,7 @@ import CompareTable from '@/components/CompareTable.astro';
 import StyleThumb from '@/components/StyleThumb.astro';
 import DemoMount from '@/islands/demos/DemoMount';
 import PromptBlock from '@/islands/PromptBlock';
+import PromptBuilder from '@/islands/PromptBuilder';
 import ConceptActions from '@/islands/ConceptActions';
 import { conceptPath, resolveRelated, getAllConcepts, type Concept } from '@/lib/content';
 import { comparePath } from '@/lib/compare';
@@ -28,6 +29,11 @@ const compareMembers = d.compare
       ...all.filter((c) => c.data.compare?.group === d.compare!.group && c.id !== concept.id),
     ]
   : [];
+
+const styleOptions = all
+  .filter((c) => c.conceptType === 'styles')
+  .map((c) => ({ id: c.id, name: c.data.name[locale], guide: c.data.prompts.design[locale] }))
+  .sort((a, b) => a.name.localeCompare(b.name));
 const styleSpec = concept.conceptType === 'styles'
   ? (await getStylePreviews()).find((s) => s.slug === concept.id)
   : undefined;
@@ -188,6 +194,22 @@ const card = 'rounded-xl border border-line bg-raised p-5';
     <section class="pb-10">
       <h2 class={sectionTitle}>{locale === 'zh' ? '交给 AI' : 'Agent prompts'}</h2>
       <PromptBlock client:visible prompts={d.prompts} locale={locale} conceptName={concept.id} />
+    </section>
+
+    <section class="pb-10">
+      <h2 class={sectionTitle}>{locale === 'zh' ? '定制 Prompt' : 'Prompt builder'}</h2>
+      <p class="mb-3 text-sm text-ink-3">
+        {locale === 'zh'
+          ? '在概念 Prompt 基础上叠加风格与附加要求，组合成一条可直接交给 Coding Agent 的任务。'
+          : 'Combine this concept with a style and extra requirements into one agent-ready task.'}
+      </p>
+      <PromptBuilder
+        client:visible
+        conceptName={concept.id}
+        agentPrompt={d.prompts.agent[locale]}
+        styles={styleOptions}
+        locale={locale}
+      />
     </section>
 
     {related.length > 0 && (
