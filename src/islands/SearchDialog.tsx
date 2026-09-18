@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { search } from '@/lib/search-core.mjs';
+import { track } from '@/lib/track';
 
 export interface SearchDoc {
   id: string;
@@ -127,6 +128,7 @@ export default function SearchDialog({ locale }: { locale: 'zh' | 'en' }) {
     const top = results[0];
     const weak = !top || top.kw < 30;
     if (!weak) return;
+    track('search-miss', { results: results.length });
     if (logTimer.current) clearTimeout(logTimer.current);
     logTimer.current = setTimeout(() => logSearch(query), 900);
     return () => {

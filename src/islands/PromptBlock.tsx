@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { track } from '@/lib/track';
 
 type Layer = 'basic' | 'design' | 'implementation' | 'agent';
 
@@ -16,6 +17,7 @@ const LAYER_LABEL: Record<Layer, { zh: string; en: string; hint: { zh: string; e
 };
 
 function logCopy(layer: Layer, concept: string) {
+  track('prompt-copy', { concept, layer });
   try {
     navigator.sendBeacon?.('/api/log-prompt', JSON.stringify({ concept, layer, t: Date.now() }));
   } catch { /* 埋点失败不影响复制 */ }

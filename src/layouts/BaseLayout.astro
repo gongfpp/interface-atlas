@@ -43,6 +43,15 @@ const themeScript = `
     {import.meta.env.PUBLIC_UMAMI_SRC && import.meta.env.PUBLIC_UMAMI_ID && (
       <script is:inline defer src={import.meta.env.PUBLIC_UMAMI_SRC} data-website-id={import.meta.env.PUBLIC_UMAMI_ID}></script>
     )}
+    {/* Cloudflare Web Analytics（无 cookie 访客统计）：PUBLIC_CF_BEACON_TOKEN 配置后启用 */}
+    {import.meta.env.PUBLIC_CF_BEACON_TOKEN && (
+      <script
+        is:inline
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: import.meta.env.PUBLIC_CF_BEACON_TOKEN })}
+      ></script>
+    )}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
