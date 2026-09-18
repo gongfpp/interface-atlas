@@ -92,10 +92,22 @@
     }
   ],
   "related": [
-    "lazy-loading",
-    "infinite-scroll",
-    "text-reveal",
-    "stagger-reveal"
+    {
+      "id": "lazy-loading",
+      "relation": "used_with"
+    },
+    {
+      "id": "infinite-scroll",
+      "relation": "used_with"
+    },
+    {
+      "id": "text-reveal",
+      "relation": "similar_to"
+    },
+    {
+      "id": "stagger-reveal",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "scroll-reveal",

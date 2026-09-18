@@ -1,14 +1,17 @@
 ---
 import type { Concept } from '@/lib/content';
 import { conceptPath } from '@/lib/content';
-import { TYPE_LABELS, type Locale } from '@/lib/i18n';
+import { TYPE_LABELS, RELATION_LABELS, type Locale } from '@/lib/i18n';
+import type { Relation } from '@/content.config';
 import { demos } from '@/islands/demos/registry';
 
 interface Props {
   concept: Concept;
   locale: Locale;
+  /** related 边的类型标签，仅在概念详情页的相关概念区传入 */
+  relation?: Relation;
 }
-const { concept, locale } = Astro.props;
+const { concept, locale, relation } = Astro.props;
 const href = conceptPath(concept, locale);
 const Demo = concept.data.demo ? demos[concept.data.demo.component] : undefined;
 ---
@@ -31,8 +34,13 @@ const Demo = concept.data.demo ? demos[concept.data.demo.component] : undefined;
       <span class="text-xs text-ink-3">{concept.data.name[locale === 'zh' ? 'en' : 'zh']}</span>
     </div>
     <p class="line-clamp-2 text-sm text-ink-2">{concept.data.description[locale]}</p>
-    <span class="mt-auto pt-1 text-[11px] uppercase tracking-wider text-ink-3 transition-colors group-hover:text-accent">
-      {TYPE_LABELS[concept.conceptType][locale]}
+    <span class="mt-auto flex items-center justify-between gap-2 pt-1 text-[11px] uppercase tracking-wider text-ink-3">
+      <span class="transition-colors group-hover:text-accent">{TYPE_LABELS[concept.conceptType][locale]}</span>
+      {relation && (
+        <span class="rounded-full border border-line px-1.5 py-0.5 text-[10px] normal-case tracking-normal">
+          {RELATION_LABELS[relation][locale]}
+        </span>
+      )}
     </span>
   </div>
 </a>

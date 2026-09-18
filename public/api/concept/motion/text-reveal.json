@@ -91,11 +91,26 @@
     }
   ],
   "related": [
-    "scroll-reveal",
-    "stagger-reveal",
-    "number-counter",
-    "editorial",
-    "landing-page"
+    {
+      "id": "scroll-reveal",
+      "relation": "similar_to"
+    },
+    {
+      "id": "stagger-reveal",
+      "relation": "similar_to"
+    },
+    {
+      "id": "number-counter",
+      "relation": "similar_to"
+    },
+    {
+      "id": "editorial",
+      "relation": "used_with"
+    },
+    {
+      "id": "landing-page",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "text-reveal",

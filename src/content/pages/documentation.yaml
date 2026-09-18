@@ -71,11 +71,16 @@ anatomy:
   - TOC 页内目录
   - Prev/Next 上下篇
 related:
-  - sidebar
-  - breadcrumb
-  - command-palette
-  - tabs
-  - alert
+  - id: sidebar
+    relation: contains
+  - id: breadcrumb
+    relation: contains
+  - id: command-palette
+    relation: contains
+  - id: tabs
+    relation: contains
+  - id: alert
+    relation: contains
 demo:
   component: documentation
   modes:

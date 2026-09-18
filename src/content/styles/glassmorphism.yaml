@@ -65,11 +65,16 @@ applicable_components:
   - modal
   - popover
 related:
-  - skeuomorphism
-  - aurora
-  - minimalism
-  - card
-  - modal
+  - id: skeuomorphism
+    relation: similar_to
+  - id: aurora
+    relation: similar_to
+  - id: minimalism
+    relation: similar_to
+  - id: card
+    relation: affects
+  - id: modal
+    relation: affects
 demo:
   component: glassmorphism
   modes:

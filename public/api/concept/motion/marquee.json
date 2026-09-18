@@ -91,10 +91,22 @@
     }
   ],
   "related": [
-    "editorial",
-    "landing-page",
-    "scroll-reveal",
-    "text-reveal"
+    {
+      "id": "editorial",
+      "relation": "used_with"
+    },
+    {
+      "id": "landing-page",
+      "relation": "used_with"
+    },
+    {
+      "id": "scroll-reveal",
+      "relation": "similar_to"
+    },
+    {
+      "id": "text-reveal",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "marquee",

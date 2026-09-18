@@ -99,10 +99,22 @@
     "分隔线（Separator）"
   ],
   "related": [
-    "dropdown",
-    "navbar",
-    "command-palette",
-    "popover"
+    {
+      "id": "dropdown",
+      "relation": "similar_to"
+    },
+    {
+      "id": "navbar",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "command-palette",
+      "relation": "similar_to"
+    },
+    {
+      "id": "popover",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "menu",

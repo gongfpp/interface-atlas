@@ -62,10 +62,14 @@ anatomy:
   - 气泡（Bubble）
   - 箭头（Arrow）
 related:
-  - popover
-  - modal
-  - toast
-  - button
+  - id: popover
+    relation: similar_to
+  - id: modal
+    relation: similar_to
+  - id: toast
+    relation: similar_to
+  - id: button
+    relation: similar_to
 demo:
   component: tooltip
   modes:

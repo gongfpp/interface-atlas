@@ -56,10 +56,14 @@ variants:
       zh: 停留 3～5s 后反向滑出
       en: Holds 3–5s then exits in reverse
 related:
-  - toast
-  - alert
-  - undo-action
-  - optimistic-ui
+  - id: toast
+    relation: applies_to
+  - id: alert
+    relation: applies_to
+  - id: undo-action
+    relation: used_with
+  - id: optimistic-ui
+    relation: used_with
 demo:
   component: toast-slide-in
   modes:

@@ -65,10 +65,14 @@ anatomy:
 applicable_styles:
   - minimalism
 related:
-  - search
-  - dropdown
-  - sidebar
-  - menu
+  - id: search
+    relation: used_with
+  - id: dropdown
+    relation: alternative_to
+  - id: sidebar
+    relation: similar_to
+  - id: menu
+    relation: similar_to
 demo:
   component: command-palette
   modes:

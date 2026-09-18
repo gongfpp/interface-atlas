@@ -25,7 +25,7 @@ avoid_when: [{ zh, en }, ...]        # ≥2 条
 tags: [...]                          # 小写英文
 variants: [{ id, name{zh,en}, note{zh,en} }, ...]   # ≥2
 anatomy: [...]                       # 组件/页面类建议给；纯动效类可省
-related: [...]                       # 3～5 个，只能引用全库清单里的 id（见 §3）
+related: [{ id, relation }, ...]     # 3～5 条边，id 只能引用全库清单（见 §3），relation 见 §1.5
 demo: { component: <id>, modes: [default, dark, variants] }  # component 一律等于条目 id
 sources: [{ name, url }, ...]        # ≥1，权威来源（Material/HIG/Fluent/MDN/W3C 等）
 implementation: { css: [...], notes: { zh, en } }
@@ -55,10 +55,21 @@ plain 标量里的 ASCII 逗号会让解析器**静默拆键**（值截断 + 产
 - agent prompt：固定骨架（先检查现有体系 → 要求列表 → 尊重 reduced-motion → 不加依赖 → 运行检查并列出修改文件）。
 - 中英不是逐字翻译，是同一判断的两种自然表达。
 
-### 1.5 related 引用约束
+### 1.5 related 关系约束（类型化，PRD §24）
 
-只能引用 §3 全库清单中的 id。不确定就不写。类型前缀规则（CI 强制）：
-`applicable_styles` 只能引用 styles/*；`applicable_components` 只能引用 components/*；`applicable_pages` 只能引用 pages/*；`related` 任意。
+`related` 是边列表，每条边写作 `{ id, relation }`，id 只能引用 §3 全库清单。`relation` 的取值与判定规则：
+
+| relation | 含义 | 判定 |
+| --- | --- | --- |
+| `alternative_to` | 同类可替代 | 双方同属一个 `compare.group`（可跨类型，如 loading-indicator） |
+| `contains` | 页面包含组件 | pages → components |
+| `uses` | 页面使用交互模式 | pages → patterns |
+| `affects` | 风格影响组件 | styles → components |
+| `applies_to` | 动效应用于组件 | motion → components |
+| `similar_to` | 同类相近 | 同类型且无共同 compare 组 |
+| `used_with` | 跨类搭配 | 其余跨类型关系 |
+
+`applicable_styles` 只能引用 styles/*；`applicable_components` 只能引用 components/*；`applicable_pages` 只能引用 pages/*（CI 强制）。
 
 ### 1.6 Style 预览规格（仅 styles 条目）
 
@@ -109,7 +120,7 @@ export default XDemo;
 
 - [ ] YAML 可解析（§0 命令）
 - [ ] 所有 published 必填字段齐全且双语
-- [ ] related/applicable_* 只引用 §3 清单 id 且类型前缀正确
+- [ ] related/applicable_* 只引用 §3 清单 id 且类型/关系合法（related 每条为 { id, relation }）
 - [ ] 同 compare 组的 dimensions 键一致
 - [ ] demo.component = 条目 id；tsx 文件存在、默认导出、无新依赖
 - [ ] 动画乘 --demo-speed；data-anatomy 与 YAML anatomy 对齐

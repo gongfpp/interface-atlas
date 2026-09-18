@@ -107,10 +107,22 @@
     "settings"
   ],
   "related": [
-    "checkbox",
-    "switch",
-    "select",
-    "form-validation"
+    {
+      "id": "checkbox",
+      "relation": "similar_to"
+    },
+    {
+      "id": "switch",
+      "relation": "similar_to"
+    },
+    {
+      "id": "select",
+      "relation": "similar_to"
+    },
+    {
+      "id": "form-validation",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "radio",

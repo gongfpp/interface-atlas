@@ -69,11 +69,16 @@ applicable_pages:
   - documentation
   - profile
 related:
-  - sidebar
-  - menu
-  - breadcrumb
-  - tabs
-  - landing-page
+  - id: sidebar
+    relation: alternative_to
+  - id: menu
+    relation: alternative_to
+  - id: breadcrumb
+    relation: similar_to
+  - id: tabs
+    relation: similar_to
+  - id: landing-page
+    relation: used_with
 demo:
   component: navbar
   modes:

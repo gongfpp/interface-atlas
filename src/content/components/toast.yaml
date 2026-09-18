@@ -63,10 +63,14 @@ anatomy:
   - 操作按钮（Action）
   - 关闭按钮（Close）
 related:
-  - alert
-  - modal
-  - toast-slide-in
-  - undo-action
+  - id: alert
+    relation: alternative_to
+  - id: modal
+    relation: similar_to
+  - id: toast-slide-in
+    relation: used_with
+  - id: undo-action
+    relation: used_with
 demo:
   component: toast
   modes:

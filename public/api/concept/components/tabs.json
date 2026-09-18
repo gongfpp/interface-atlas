@@ -105,11 +105,26 @@
     "dashboard"
   ],
   "related": [
-    "accordion",
-    "breadcrumb",
-    "pagination",
-    "dropdown",
-    "sidebar"
+    {
+      "id": "accordion",
+      "relation": "similar_to"
+    },
+    {
+      "id": "breadcrumb",
+      "relation": "similar_to"
+    },
+    {
+      "id": "pagination",
+      "relation": "similar_to"
+    },
+    {
+      "id": "dropdown",
+      "relation": "similar_to"
+    },
+    {
+      "id": "sidebar",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "tabs",

@@ -112,11 +112,26 @@
     "Footer 页脚"
   ],
   "related": [
-    "navbar",
-    "card",
-    "scroll-reveal",
-    "text-reveal",
-    "hover-lift"
+    {
+      "id": "navbar",
+      "relation": "contains"
+    },
+    {
+      "id": "card",
+      "relation": "contains"
+    },
+    {
+      "id": "scroll-reveal",
+      "relation": "used_with"
+    },
+    {
+      "id": "text-reveal",
+      "relation": "used_with"
+    },
+    {
+      "id": "hover-lift",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "landing-page",

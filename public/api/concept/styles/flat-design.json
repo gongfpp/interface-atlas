@@ -102,11 +102,26 @@
     "badge"
   ],
   "related": [
-    "minimalism",
-    "skeuomorphism",
-    "swiss-style",
-    "button",
-    "card"
+    {
+      "id": "minimalism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "skeuomorphism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "swiss-style",
+      "relation": "similar_to"
+    },
+    {
+      "id": "button",
+      "relation": "affects"
+    },
+    {
+      "id": "card",
+      "relation": "affects"
+    }
   ],
   "demo": {
     "component": "flat-design",

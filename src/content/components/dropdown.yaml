@@ -68,11 +68,16 @@ applicable_pages:
   - dashboard
   - settings
 related:
-  - menu
-  - popover
-  - command-palette
-  - select
-  - modal
+  - id: menu
+    relation: similar_to
+  - id: popover
+    relation: similar_to
+  - id: command-palette
+    relation: alternative_to
+  - id: select
+    relation: similar_to
+  - id: modal
+    relation: similar_to
 demo:
   component: dropdown
   modes:

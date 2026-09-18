@@ -99,10 +99,22 @@
     "操作区（Actions）"
   ],
   "related": [
-    "table",
-    "bento-grid",
-    "hover-lift",
-    "badge"
+    {
+      "id": "table",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "bento-grid",
+      "relation": "used_with"
+    },
+    {
+      "id": "hover-lift",
+      "relation": "used_with"
+    },
+    {
+      "id": "badge",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "card",

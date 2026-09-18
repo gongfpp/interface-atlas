@@ -107,10 +107,22 @@
     "search"
   ],
   "related": [
-    "input",
-    "popover",
-    "dropdown",
-    "form-validation"
+    {
+      "id": "input",
+      "relation": "similar_to"
+    },
+    {
+      "id": "popover",
+      "relation": "similar_to"
+    },
+    {
+      "id": "dropdown",
+      "relation": "similar_to"
+    },
+    {
+      "id": "form-validation",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "date-picker",

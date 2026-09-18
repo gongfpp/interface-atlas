@@ -65,11 +65,16 @@ applicable_components:
   - badge
   - input
 related:
-  - swiss-style
-  - memphis
-  - flat-design
-  - button
-  - card
+  - id: swiss-style
+    relation: similar_to
+  - id: memphis
+    relation: similar_to
+  - id: flat-design
+    relation: similar_to
+  - id: button
+    relation: affects
+  - id: card
+    relation: affects
 demo:
   component: bauhaus
   modes:

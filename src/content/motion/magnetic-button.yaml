@@ -58,10 +58,14 @@ variants:
       zh: 叠加轻微 rotateX/Y，立体感更强
       en: Adds subtle rotateX/Y for depth
 related:
-  - hover-lift
-  - press-feedback
-  - hover-glow
-  - elastic-bounce
+  - id: hover-lift
+    relation: similar_to
+  - id: press-feedback
+    relation: similar_to
+  - id: hover-glow
+    relation: similar_to
+  - id: elastic-bounce
+    relation: similar_to
 demo:
   component: magnetic-button
   modes:

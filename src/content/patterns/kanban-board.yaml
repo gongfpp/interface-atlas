@@ -68,10 +68,14 @@ applicable_components: []
 applicable_pages:
   - dashboard
 related:
-  - drag-and-drop-sorting
-  - optimistic-ui
-  - dashboard
-  - master-detail
+  - id: drag-and-drop-sorting
+    relation: similar_to
+  - id: optimistic-ui
+    relation: similar_to
+  - id: dashboard
+    relation: used_with
+  - id: master-detail
+    relation: similar_to
 demo:
   component: kanban-board
   modes:

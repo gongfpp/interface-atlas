@@ -56,10 +56,14 @@ variants:
       zh: 从一侧依次滑入，导航菜单常用
       en: Slides in from one side — menu favourite
 related:
-  - scroll-reveal
-  - text-reveal
-  - card
-  - menu
+  - id: scroll-reveal
+    relation: similar_to
+  - id: text-reveal
+    relation: similar_to
+  - id: card
+    relation: applies_to
+  - id: menu
+    relation: applies_to
 demo:
   component: stagger-reveal
   modes:

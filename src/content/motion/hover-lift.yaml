@@ -61,10 +61,14 @@ applicable_styles:
   - bento-grid
   - neobrutalism
 related:
-  - press-feedback
-  - hover-glow
-  - card
-  - magnetic-button
+  - id: press-feedback
+    relation: similar_to
+  - id: hover-glow
+    relation: alternative_to
+  - id: card
+    relation: applies_to
+  - id: magnetic-button
+    relation: similar_to
 demo:
   component: hover-lift
   modes:

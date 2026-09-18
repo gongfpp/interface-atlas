@@ -111,10 +111,22 @@
     "Signup 注册入口"
   ],
   "related": [
-    "input",
-    "button",
-    "form-validation",
-    "signup"
+    {
+      "id": "input",
+      "relation": "contains"
+    },
+    {
+      "id": "button",
+      "relation": "contains"
+    },
+    {
+      "id": "form-validation",
+      "relation": "uses"
+    },
+    {
+      "id": "signup",
+      "relation": "alternative_to"
+    }
   ],
   "demo": {
     "component": "login",

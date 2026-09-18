@@ -21,6 +21,15 @@ const entries = new Map(); // id -> { type, rel, data }
 const compareGroups = new Map(); // group -> [{ id, rel }]
 
 const SLUG_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+const RELATIONS = new Set([
+  'alternative_to',
+  'similar_to',
+  'used_with',
+  'contains',
+  'uses',
+  'affects',
+  'applies_to',
+]);
 
 // ---- 第一遍：全量加载 ----
 for (const type of TYPES) {
@@ -81,9 +90,17 @@ for (const [id, { type, rel, data }] of entries) {
     if (!data.demo?.component) fail('demo.component 缺失');
   }
 
-  // 引用存在性 + 类型前缀（基于全量 Map）
+  // 引用存在性 + 类型前缀（基于全量 Map）；related 为 { id, relation }
   for (const refField of REF_FIELDS) {
-    for (const ref of data[refField] ?? []) {
+    for (const item of data[refField] ?? []) {
+      const ref = item && typeof item === 'object' ? item.id : item;
+      if (!ref) {
+        fail(`${refField} 存在空引用`);
+        continue;
+      }
+      if (refField === 'related' && item && typeof item === 'object' && !RELATIONS.has(item.relation)) {
+        fail(`related「${ref}」的 relation 非法：${item.relation}`);
+      }
       const target = entries.get(ref);
       if (!target) {
         fail(`${refField} 引用不存在的 id「${ref}」`);

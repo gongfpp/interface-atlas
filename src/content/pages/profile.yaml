@@ -71,11 +71,16 @@ anatomy:
   - Tabs 内容页签
   - Actions 操作按钮
 related:
-  - avatar
-  - tabs
-  - card
-  - button
-  - badge
+  - id: avatar
+    relation: contains
+  - id: tabs
+    relation: contains
+  - id: card
+    relation: contains
+  - id: button
+    relation: contains
+  - id: badge
+    relation: contains
 demo:
   component: profile
   modes:

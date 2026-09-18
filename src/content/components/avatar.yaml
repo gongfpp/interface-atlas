@@ -62,9 +62,12 @@ anatomy:
   - 状态点（Status dot）
   - 尺寸档位（Sizes）
 related:
-  - badge
-  - dropdown
-  - profile
+  - id: badge
+    relation: similar_to
+  - id: dropdown
+    relation: similar_to
+  - id: profile
+    relation: used_with
 demo:
   component: avatar
   modes:

@@ -106,11 +106,26 @@
     "dashboard"
   ],
   "related": [
-    "skeleton-loading",
-    "onboarding-tour",
-    "button",
-    "search-filtering",
-    "card"
+    {
+      "id": "skeleton-loading",
+      "relation": "similar_to"
+    },
+    {
+      "id": "onboarding-tour",
+      "relation": "similar_to"
+    },
+    {
+      "id": "button",
+      "relation": "used_with"
+    },
+    {
+      "id": "search-filtering",
+      "relation": "similar_to"
+    },
+    {
+      "id": "card",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "empty-state",

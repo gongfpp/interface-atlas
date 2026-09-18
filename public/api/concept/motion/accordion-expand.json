@@ -91,10 +91,22 @@
     }
   ],
   "related": [
-    "accordion",
-    "progressive-disclosure",
-    "filter-panel",
-    "settings"
+    {
+      "id": "accordion",
+      "relation": "applies_to"
+    },
+    {
+      "id": "progressive-disclosure",
+      "relation": "used_with"
+    },
+    {
+      "id": "filter-panel",
+      "relation": "applies_to"
+    },
+    {
+      "id": "settings",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "accordion-expand",

@@ -65,11 +65,16 @@ applicable_components:
   - breadcrumb
   - pagination
 related:
-  - swiss-style
-  - minimalism
-  - documentation
-  - card
-  - navbar
+  - id: swiss-style
+    relation: similar_to
+  - id: minimalism
+    relation: similar_to
+  - id: documentation
+    relation: used_with
+  - id: card
+    relation: affects
+  - id: navbar
+    relation: affects
 demo:
   component: editorial
   modes:

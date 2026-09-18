@@ -71,11 +71,16 @@ anatomy:
   - Feature Table 功能对比表
   - FAQ 常见问题
 related:
-  - card
-  - badge
-  - switch
-  - accordion
-  - table
+  - id: card
+    relation: contains
+  - id: badge
+    relation: contains
+  - id: switch
+    relation: contains
+  - id: accordion
+    relation: contains
+  - id: table
+    relation: contains
 demo:
   component: pricing
   modes:

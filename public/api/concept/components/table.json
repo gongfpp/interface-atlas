@@ -99,10 +99,22 @@
     "行操作（Row actions）"
   ],
   "related": [
-    "card",
-    "pagination",
-    "filter-panel",
-    "master-detail"
+    {
+      "id": "card",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "pagination",
+      "relation": "similar_to"
+    },
+    {
+      "id": "filter-panel",
+      "relation": "similar_to"
+    },
+    {
+      "id": "master-detail",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "table",

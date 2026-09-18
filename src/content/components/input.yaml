@@ -70,10 +70,14 @@ applicable_pages:
   - checkout
   - search
 related:
-  - textarea
-  - select
-  - form-validation
-  - search-filtering
+  - id: textarea
+    relation: similar_to
+  - id: select
+    relation: similar_to
+  - id: form-validation
+    relation: used_with
+  - id: search-filtering
+    relation: used_with
 demo:
   component: input
   modes:

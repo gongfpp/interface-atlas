@@ -63,10 +63,14 @@ anatomy:
   - 内容区（Panel）
   - 分隔线（Divider）
 related:
-  - accordion-expand
-  - progressive-disclosure
-  - tabs
-  - dropdown
+  - id: accordion-expand
+    relation: used_with
+  - id: progressive-disclosure
+    relation: used_with
+  - id: tabs
+    relation: similar_to
+  - id: dropdown
+    relation: similar_to
 demo:
   component: accordion
   modes:

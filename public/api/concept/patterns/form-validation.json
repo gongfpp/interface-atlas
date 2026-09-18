@@ -110,11 +110,26 @@
     "checkout"
   ],
   "related": [
-    "input",
-    "toast",
-    "alert",
-    "inline-editing",
-    "empty-state"
+    {
+      "id": "input",
+      "relation": "used_with"
+    },
+    {
+      "id": "toast",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "alert",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "inline-editing",
+      "relation": "similar_to"
+    },
+    {
+      "id": "empty-state",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "form-validation",

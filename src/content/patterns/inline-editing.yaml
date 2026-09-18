@@ -69,11 +69,16 @@ applicable_pages:
   - profile
   - settings
 related:
-  - input
-  - textarea
-  - form-validation
-  - optimistic-ui
-  - button
+  - id: input
+    relation: used_with
+  - id: textarea
+    relation: used_with
+  - id: form-validation
+    relation: similar_to
+  - id: optimistic-ui
+    relation: similar_to
+  - id: button
+    relation: used_with
 demo:
   component: inline-editing
   modes:

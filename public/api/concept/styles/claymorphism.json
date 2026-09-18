@@ -102,11 +102,26 @@
     "switch"
   ],
   "related": [
-    "glassmorphism",
-    "neobrutalism",
-    "button",
-    "card",
-    "badge"
+    {
+      "id": "glassmorphism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "neobrutalism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "button",
+      "relation": "affects"
+    },
+    {
+      "id": "card",
+      "relation": "affects"
+    },
+    {
+      "id": "badge",
+      "relation": "affects"
+    }
   ],
   "demo": {
     "component": "claymorphism",

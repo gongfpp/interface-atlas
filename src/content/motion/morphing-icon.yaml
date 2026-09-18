@@ -56,10 +56,14 @@ variants:
       zh: 三角与双竖条互相变形
       en: Triangle and double bars morph into each other
 related:
-  - button
-  - menu
-  - drawer
-  - press-feedback
+  - id: button
+    relation: applies_to
+  - id: menu
+    relation: applies_to
+  - id: drawer
+    relation: applies_to
+  - id: press-feedback
+    relation: similar_to
 demo:
   component: morphing-icon
   modes:

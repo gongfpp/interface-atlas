@@ -91,10 +91,22 @@
     }
   ],
   "related": [
-    "elastic-bounce",
-    "empty-state",
-    "button",
-    "optimistic-ui"
+    {
+      "id": "elastic-bounce",
+      "relation": "similar_to"
+    },
+    {
+      "id": "empty-state",
+      "relation": "used_with"
+    },
+    {
+      "id": "button",
+      "relation": "applies_to"
+    },
+    {
+      "id": "optimistic-ui",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "confetti",

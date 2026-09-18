@@ -111,11 +111,26 @@
     "documentation"
   ],
   "related": [
-    "filter-panel",
-    "command-palette",
-    "input",
-    "empty-state",
-    "infinite-scroll"
+    {
+      "id": "filter-panel",
+      "relation": "used_with"
+    },
+    {
+      "id": "command-palette",
+      "relation": "used_with"
+    },
+    {
+      "id": "input",
+      "relation": "used_with"
+    },
+    {
+      "id": "empty-state",
+      "relation": "similar_to"
+    },
+    {
+      "id": "infinite-scroll",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "search-filtering",

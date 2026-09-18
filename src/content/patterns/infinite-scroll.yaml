@@ -66,11 +66,16 @@ applicable_pages:
   - search
   - dashboard
 related:
-  - pagination
-  - pull-to-refresh
-  - skeleton-loading
-  - lazy-loading
-  - search-filtering
+  - id: pagination
+    relation: alternative_to
+  - id: pull-to-refresh
+    relation: alternative_to
+  - id: skeleton-loading
+    relation: similar_to
+  - id: lazy-loading
+    relation: similar_to
+  - id: search-filtering
+    relation: similar_to
 demo:
   component: infinite-scroll
   modes:

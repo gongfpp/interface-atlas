@@ -71,11 +71,16 @@ anatomy:
   - Danger Zone 危险区
   - Save Bar 保存条
 related:
-  - sidebar
-  - switch
-  - input
-  - tabs
-  - toast
+  - id: sidebar
+    relation: contains
+  - id: switch
+    relation: contains
+  - id: input
+    relation: contains
+  - id: tabs
+    relation: contains
+  - id: toast
+    relation: contains
 demo:
   component: settings
   modes:

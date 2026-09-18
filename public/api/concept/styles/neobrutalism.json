@@ -103,11 +103,26 @@
     "landing-page"
   ],
   "related": [
-    "bauhaus",
-    "memphis",
-    "y2k",
-    "button",
-    "card"
+    {
+      "id": "bauhaus",
+      "relation": "similar_to"
+    },
+    {
+      "id": "memphis",
+      "relation": "similar_to"
+    },
+    {
+      "id": "y2k",
+      "relation": "similar_to"
+    },
+    {
+      "id": "button",
+      "relation": "affects"
+    },
+    {
+      "id": "card",
+      "relation": "affects"
+    }
   ],
   "demo": {
     "component": "neobrutalism",

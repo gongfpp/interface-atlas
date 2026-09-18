@@ -106,10 +106,22 @@
     "signup"
   ],
   "related": [
-    "radio",
-    "switch",
-    "filter-panel",
-    "form-validation"
+    {
+      "id": "radio",
+      "relation": "similar_to"
+    },
+    {
+      "id": "switch",
+      "relation": "similar_to"
+    },
+    {
+      "id": "filter-panel",
+      "relation": "similar_to"
+    },
+    {
+      "id": "form-validation",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "checkbox",

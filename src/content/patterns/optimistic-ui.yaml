@@ -67,11 +67,16 @@ applicable_pages:
   - profile
   - dashboard
 related:
-  - toast
-  - undo-action
-  - skeleton-loading
-  - loading-spinner
-  - button
+  - id: toast
+    relation: used_with
+  - id: undo-action
+    relation: similar_to
+  - id: skeleton-loading
+    relation: similar_to
+  - id: loading-spinner
+    relation: used_with
+  - id: button
+    relation: used_with
 demo:
   component: optimistic-ui
   modes:

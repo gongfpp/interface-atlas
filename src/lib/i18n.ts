@@ -15,6 +15,17 @@ export const TYPE_LABELS: Record<string, Record<Locale, string>> = {
   pages: { zh: '页面', en: 'Pages' },
 };
 
+/** related 边标签（PRD §24 内容关系模型） */
+export const RELATION_LABELS: Record<string, Record<Locale, string>> = {
+  alternative_to: { zh: '替代方案', en: 'Alternative' },
+  similar_to: { zh: '相似概念', en: 'Similar' },
+  used_with: { zh: '搭配使用', en: 'Used with' },
+  contains: { zh: '包含组件', en: 'Contains' },
+  uses: { zh: '使用模式', en: 'Uses pattern' },
+  affects: { zh: '影响组件', en: 'Affects' },
+  applies_to: { zh: '应用于', en: 'Applies to' },
+};
+
 export const UI = {
   tagline: { zh: '前端设计概念百科 · 可交互参考库 · Agent Prompt 库', en: 'Frontend design concept encyclopedia · interactive reference · agent prompt library' },
   heroTitle: { zh: '前端设计，不知道叫什么？', en: "Seen a design, but don't know its name?" },

@@ -70,11 +70,16 @@ applicable_components:
 applicable_pages:
   - settings
 related:
-  - kanban-board
-  - inline-editing
-  - optimistic-ui
-  - button
-  - accordion
+  - id: kanban-board
+    relation: similar_to
+  - id: inline-editing
+    relation: similar_to
+  - id: optimistic-ui
+    relation: similar_to
+  - id: button
+    relation: used_with
+  - id: accordion
+    relation: used_with
 demo:
   component: drag-and-drop-sorting
   modes:

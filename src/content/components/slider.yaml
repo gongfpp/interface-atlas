@@ -69,10 +69,14 @@ applicable_pages:
   - search
   - checkout
 related:
-  - progress-bar
-  - input
-  - number-counter
-  - form-validation
+  - id: progress-bar
+    relation: similar_to
+  - id: input
+    relation: similar_to
+  - id: number-counter
+    relation: used_with
+  - id: form-validation
+    relation: used_with
 demo:
   component: slider
   modes:

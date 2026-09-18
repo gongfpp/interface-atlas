@@ -91,10 +91,22 @@
     }
   ],
   "related": [
-    "dashboard",
-    "scroll-reveal",
-    "progress-bar",
-    "text-reveal"
+    {
+      "id": "dashboard",
+      "relation": "used_with"
+    },
+    {
+      "id": "scroll-reveal",
+      "relation": "similar_to"
+    },
+    {
+      "id": "progress-bar",
+      "relation": "applies_to"
+    },
+    {
+      "id": "text-reveal",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "number-counter",

@@ -102,11 +102,26 @@
     "pagination"
   ],
   "related": [
-    "minimalism",
-    "editorial",
-    "bauhaus",
-    "card",
-    "table"
+    {
+      "id": "minimalism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "editorial",
+      "relation": "similar_to"
+    },
+    {
+      "id": "bauhaus",
+      "relation": "similar_to"
+    },
+    {
+      "id": "card",
+      "relation": "affects"
+    },
+    {
+      "id": "table",
+      "relation": "affects"
+    }
   ],
   "demo": {
     "component": "swiss-style",

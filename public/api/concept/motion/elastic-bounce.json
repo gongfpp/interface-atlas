@@ -91,10 +91,22 @@
     }
   ],
   "related": [
-    "press-feedback",
-    "magnetic-button",
-    "confetti",
-    "card"
+    {
+      "id": "press-feedback",
+      "relation": "similar_to"
+    },
+    {
+      "id": "magnetic-button",
+      "relation": "similar_to"
+    },
+    {
+      "id": "confetti",
+      "relation": "similar_to"
+    },
+    {
+      "id": "card",
+      "relation": "applies_to"
+    }
   ],
   "demo": {
     "component": "elastic-bounce",

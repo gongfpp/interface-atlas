@@ -91,10 +91,22 @@
     }
   ],
   "related": [
-    "drawer",
-    "modal",
-    "sidebar",
-    "popover"
+    {
+      "id": "drawer",
+      "relation": "applies_to"
+    },
+    {
+      "id": "modal",
+      "relation": "applies_to"
+    },
+    {
+      "id": "sidebar",
+      "relation": "applies_to"
+    },
+    {
+      "id": "popover",
+      "relation": "applies_to"
+    }
   ],
   "demo": {
     "component": "drawer-slide",

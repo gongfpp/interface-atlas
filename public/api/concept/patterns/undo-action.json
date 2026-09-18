@@ -108,11 +108,26 @@
     "dashboard"
   ],
   "related": [
-    "toast",
-    "optimistic-ui",
-    "modal",
-    "empty-state",
-    "progressive-disclosure"
+    {
+      "id": "toast",
+      "relation": "used_with"
+    },
+    {
+      "id": "optimistic-ui",
+      "relation": "similar_to"
+    },
+    {
+      "id": "modal",
+      "relation": "used_with"
+    },
+    {
+      "id": "empty-state",
+      "relation": "similar_to"
+    },
+    {
+      "id": "progressive-disclosure",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "undo-action",

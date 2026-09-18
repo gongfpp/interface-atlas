@@ -188,7 +188,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
       <section class="pb-10">
         <h2 class={sectionTitle}>{locale === 'zh' ? '相关概念' : 'Related concepts'}</h2>
         <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-          {related.map((c) => <ConceptCard concept={c} locale={locale} />)}
+          {related.map((r) => <ConceptCard concept={r.concept} locale={locale} relation={r.relation} />)}
         </div>
       </section>
     )}

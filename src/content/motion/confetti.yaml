@@ -56,10 +56,14 @@ variants:
       zh: 从顶部持续飘落数秒，覆盖感最强
       en: Drifts down from the top for seconds — maximum coverage
 related:
-  - elastic-bounce
-  - empty-state
-  - button
-  - optimistic-ui
+  - id: elastic-bounce
+    relation: similar_to
+  - id: empty-state
+    relation: used_with
+  - id: button
+    relation: applies_to
+  - id: optimistic-ui
+    relation: used_with
 demo:
   component: confetti
   modes:

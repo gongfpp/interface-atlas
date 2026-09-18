@@ -56,10 +56,14 @@ variants:
       zh: 遮罩与面板同步淡入，加深层次
       en: Scrim fades in with the panel for depth
 related:
-  - drawer
-  - modal
-  - sidebar
-  - popover
+  - id: drawer
+    relation: applies_to
+  - id: modal
+    relation: applies_to
+  - id: sidebar
+    relation: applies_to
+  - id: popover
+    relation: applies_to
 demo:
   component: drawer-slide
   modes:

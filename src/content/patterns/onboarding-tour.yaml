@@ -71,11 +71,16 @@ applicable_pages:
   - dashboard
   - settings
 related:
-  - tooltip
-  - popover
-  - modal
-  - progressive-disclosure
-  - empty-state
+  - id: tooltip
+    relation: used_with
+  - id: popover
+    relation: used_with
+  - id: modal
+    relation: used_with
+  - id: progressive-disclosure
+    relation: similar_to
+  - id: empty-state
+    relation: similar_to
 demo:
   component: onboarding-tour
   modes:

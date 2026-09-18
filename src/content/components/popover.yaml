@@ -62,10 +62,14 @@ anatomy:
   - 箭头（Arrow）
   - 关闭按钮（Close）
 related:
-  - tooltip
-  - modal
-  - drawer
-  - dropdown
+  - id: tooltip
+    relation: similar_to
+  - id: modal
+    relation: alternative_to
+  - id: drawer
+    relation: alternative_to
+  - id: dropdown
+    relation: similar_to
 demo:
   component: popover
   modes:

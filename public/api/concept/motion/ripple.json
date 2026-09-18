@@ -91,10 +91,22 @@
     }
   ],
   "related": [
-    "press-feedback",
-    "button",
-    "magnetic-button",
-    "hover-lift"
+    {
+      "id": "press-feedback",
+      "relation": "similar_to"
+    },
+    {
+      "id": "button",
+      "relation": "applies_to"
+    },
+    {
+      "id": "magnetic-button",
+      "relation": "similar_to"
+    },
+    {
+      "id": "hover-lift",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "ripple",

@@ -68,11 +68,16 @@ applicable_pages:
   - dashboard
   - settings
 related:
-  - navbar
-  - sidebar
-  - tabs
-  - pagination
-  - menu
+  - id: navbar
+    relation: similar_to
+  - id: sidebar
+    relation: similar_to
+  - id: tabs
+    relation: similar_to
+  - id: pagination
+    relation: similar_to
+  - id: menu
+    relation: similar_to
 demo:
   component: breadcrumb
   modes:

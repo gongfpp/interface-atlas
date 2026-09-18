@@ -105,9 +105,18 @@
     "profile"
   ],
   "related": [
-    "checkbox",
-    "press-feedback",
-    "settings"
+    {
+      "id": "checkbox",
+      "relation": "similar_to"
+    },
+    {
+      "id": "press-feedback",
+      "relation": "used_with"
+    },
+    {
+      "id": "settings",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "switch",

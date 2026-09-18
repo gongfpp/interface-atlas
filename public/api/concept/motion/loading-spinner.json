@@ -92,9 +92,18 @@
     }
   ],
   "related": [
-    "skeleton-loading",
-    "progress-bar",
-    "button"
+    {
+      "id": "skeleton-loading",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "progress-bar",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "button",
+      "relation": "applies_to"
+    }
   ],
   "demo": {
     "component": "loading-spinner",

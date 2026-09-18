@@ -107,10 +107,22 @@
     "signup"
   ],
   "related": [
-    "input",
-    "form-validation",
-    "inline-editing",
-    "toast"
+    {
+      "id": "input",
+      "relation": "similar_to"
+    },
+    {
+      "id": "form-validation",
+      "relation": "used_with"
+    },
+    {
+      "id": "inline-editing",
+      "relation": "used_with"
+    },
+    {
+      "id": "toast",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "textarea",

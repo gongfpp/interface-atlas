@@ -91,10 +91,22 @@
     }
   ],
   "related": [
-    "page-transition",
-    "modal",
-    "card",
-    "master-detail"
+    {
+      "id": "page-transition",
+      "relation": "similar_to"
+    },
+    {
+      "id": "modal",
+      "relation": "applies_to"
+    },
+    {
+      "id": "card",
+      "relation": "applies_to"
+    },
+    {
+      "id": "master-detail",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "shared-element-transition",

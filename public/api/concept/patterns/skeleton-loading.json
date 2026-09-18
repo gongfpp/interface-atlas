@@ -106,11 +106,26 @@
     "dashboard"
   ],
   "related": [
-    "loading-spinner",
-    "progress-bar",
-    "optimistic-ui",
-    "lazy-loading",
-    "empty-state"
+    {
+      "id": "loading-spinner",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "progress-bar",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "optimistic-ui",
+      "relation": "similar_to"
+    },
+    {
+      "id": "lazy-loading",
+      "relation": "similar_to"
+    },
+    {
+      "id": "empty-state",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "skeleton-loading",

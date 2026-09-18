@@ -66,11 +66,16 @@ applicable_pages:
   - profile
   - dashboard
 related:
-  - infinite-scroll
-  - pagination
-  - loading-spinner
-  - skeleton-loading
-  - toast
+  - id: infinite-scroll
+    relation: alternative_to
+  - id: pagination
+    relation: alternative_to
+  - id: loading-spinner
+    relation: used_with
+  - id: skeleton-loading
+    relation: similar_to
+  - id: toast
+    relation: used_with
 demo:
   component: pull-to-refresh
   modes:

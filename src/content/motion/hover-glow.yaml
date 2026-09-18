@@ -58,10 +58,14 @@ variants:
       zh: inset 阴影向内晕光，适合深色卡片
       en: Inset shadow glowing inward — suits dark cards
 related:
-  - hover-lift
-  - press-feedback
-  - button
-  - glassmorphism
+  - id: hover-lift
+    relation: alternative_to
+  - id: press-feedback
+    relation: similar_to
+  - id: button
+    relation: applies_to
+  - id: glassmorphism
+    relation: used_with
 demo:
   component: hover-glow
   modes:

@@ -14,6 +14,30 @@ const bilingualText = z.object({
 const bilingualList = z.array(bilingualText);
 
 /**
+ * 概念关系类型（PRD §24 内容关系模型）：
+ * - alternative_to 同类可替代（compare 组内互为替代）
+ * - similar_to     同类相近
+ * - used_with      跨类搭配使用
+ * - contains       页面包含组件
+ * - uses           页面使用交互模式
+ * - affects        风格影响组件
+ * - applies_to     动效应用于组件
+ */
+const relationType = z.enum([
+  'alternative_to',
+  'similar_to',
+  'used_with',
+  'contains',
+  'uses',
+  'affects',
+  'applies_to',
+]);
+
+export type Relation = ReturnType<typeof relationType.parse>;
+
+export const RELATION_TYPES = relationType.options;
+
+/**
  * Style 缩略预览规格（PRD §21，审计改进：YAML 为唯一事实源，组件只做 renderer）。
  * 仅 styles collection 使用；`order` 决定列表页与首页风格墙的展示顺序。
  */
@@ -94,7 +118,14 @@ const baseSchema = z
     applicable_components: z.array(z.string()).default([]),
     applicable_pages: z.array(z.string()).default([]),
 
-    related: z.array(z.string()).default([]),
+    related: z
+      .array(
+        z.object({
+          id: z.string(),
+          relation: relationType,
+        }),
+      )
+      .default([]),
 
     compare: z
       .object({

@@ -102,11 +102,26 @@
     "table"
   ],
   "related": [
-    "card",
-    "minimalism",
-    "glassmorphism",
-    "dashboard",
-    "aurora"
+    {
+      "id": "card",
+      "relation": "affects"
+    },
+    {
+      "id": "minimalism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "glassmorphism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "dashboard",
+      "relation": "used_with"
+    },
+    {
+      "id": "aurora",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "bento-grid",

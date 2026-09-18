@@ -90,10 +90,22 @@
     }
   ],
   "related": [
-    "scroll-reveal",
-    "landing-page",
-    "editorial",
-    "aurora"
+    {
+      "id": "scroll-reveal",
+      "relation": "similar_to"
+    },
+    {
+      "id": "landing-page",
+      "relation": "used_with"
+    },
+    {
+      "id": "editorial",
+      "relation": "used_with"
+    },
+    {
+      "id": "aurora",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "parallax",

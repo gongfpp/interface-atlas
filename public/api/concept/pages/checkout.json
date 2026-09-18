@@ -111,11 +111,26 @@
     "Place Order 提交按钮"
   ],
   "related": [
-    "input",
-    "form-validation",
-    "progress-bar",
-    "toast",
-    "button"
+    {
+      "id": "input",
+      "relation": "contains"
+    },
+    {
+      "id": "form-validation",
+      "relation": "uses"
+    },
+    {
+      "id": "progress-bar",
+      "relation": "contains"
+    },
+    {
+      "id": "toast",
+      "relation": "contains"
+    },
+    {
+      "id": "button",
+      "relation": "contains"
+    }
   ],
   "demo": {
     "component": "checkout",

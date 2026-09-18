@@ -106,10 +106,22 @@
     "documentation"
   ],
   "related": [
-    "navbar",
-    "drawer",
-    "command-palette",
-    "breadcrumb"
+    {
+      "id": "navbar",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "drawer",
+      "relation": "similar_to"
+    },
+    {
+      "id": "command-palette",
+      "relation": "similar_to"
+    },
+    {
+      "id": "breadcrumb",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "sidebar",

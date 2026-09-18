@@ -77,11 +77,16 @@ applicable_pages:
   - checkout
   - settings
 related:
-  - press-feedback
-  - ripple
-  - magnetic-button
-  - hover-lift
-  - loading-spinner
+  - id: press-feedback
+    relation: alternative_to
+  - id: ripple
+    relation: used_with
+  - id: magnetic-button
+    relation: used_with
+  - id: hover-lift
+    relation: used_with
+  - id: loading-spinner
+    relation: used_with
 demo:
   component: button
   modes:

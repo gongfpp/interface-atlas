@@ -56,10 +56,14 @@ variants:
       zh: 两条反向滚动，制造张力，编辑感首屏常用
       en: Two strips scrolling opposite ways — editorial hero energy
 related:
-  - editorial
-  - landing-page
-  - scroll-reveal
-  - text-reveal
+  - id: editorial
+    relation: used_with
+  - id: landing-page
+    relation: used_with
+  - id: scroll-reveal
+    relation: similar_to
+  - id: text-reveal
+    relation: similar_to
 demo:
   component: marquee
   modes:

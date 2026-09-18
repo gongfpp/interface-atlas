@@ -79,11 +79,16 @@ anatomy:
   - Table 主表格
   - Filters 筛选区
 related:
-  - sidebar
-  - card
-  - table
-  - filter-panel
-  - skeleton-loading
+  - id: sidebar
+    relation: contains
+  - id: card
+    relation: contains
+  - id: table
+    relation: contains
+  - id: filter-panel
+    relation: contains
+  - id: skeleton-loading
+    relation: uses
 demo:
   component: dashboard
   modes:

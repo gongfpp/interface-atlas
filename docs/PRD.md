@@ -1,9 +1,11 @@
 # 中文前端设计参考库 PRD
 
-版本：v0.4
+版本：v0.6
 项目阶段：MVP
 中文名称：界面图谱
 英文名称：Interface Atlas（MVP 使用工作名，域名后定，改名成本 = 文案 + 301）
+
+> v0.6 变更摘要（P1 延后项落地，基于外部审计）：① `related` 类型化——`related: [{ id, relation }]`，按 §24 关系模型落地 7 种关系（alternative_to / similar_to / used_with / contains / uses / affects / applies_to），详情页相关概念显示关系标签；② Style 缩略预览规格并入 YAML `preview` 字段（含 `order` 排序），删除 `src/lib/style-thumbs.ts` 第二事实源，缩略图组件只做 renderer，风格列表显示名统一取条目 `name`。
 
 > v0.4 变更摘要（2026-09 开发期）：① 新增灵感图库模块（§43）——AI 生成的设计参考图集 + 可复现生图 Prompt；② 竞品对标改进落地：机器可读层 `/api/concept/*.json` + `llms.txt`、搜索空态引导示例、首页数字概览（详见 `docs/competitor-research.md`）；③ 部署说明 `docs/deploy.md`。
 > v0.5 变更摘要（平台收口，基于外部审计）：① 搜索弹窗 Hook 违规修复；② 内容校验器重写（全量加载→统一校验；compare 组 CI 严格）；③ 构建管线统一为 prebuild 链（content:check → api:build → search:build → astro build），YAML 成为唯一事实源；④ CI 增加 astro check + ESLint(react-hooks) + Playwright 搜索闭环 smoke test；⑤ 搜索日志隐私化：只记录无结果/弱命中查询 + PII 清洗 + 30 天 TTL（§9.3）；⑥ Astro 升级 7.x（消除 critical XSS 通告）；⑦ embedding 事实源统一为 multilingual-e5-small（§9.1）；⑧ Prompt 生产方式决策：人工在 YAML 中结构化维护，生成器推迟（§17）；⑨ README + AGPL-3.0 + sitemap/robots；⑩ 全库 YAML 规范化为块样式（消灭 flow mapping 静默拆键缺陷）并修复 196 处历史数据截断。
@@ -294,6 +296,18 @@ Motion → Applies To Components
 
 最终形成前端设计知识图谱。所有关系 id 由 CI 校验（§33）。
 
+**类型化边（v0.6）**：每条 `related` 边带 `relation` 标签，取值：
+
+| relation | 含义 | 判定规则 |
+| --- | --- | --- |
+| `alternative_to` | 同类可替代 | 双方同属一个 `compare.group`（可跨类型） |
+| `contains` | 页面包含组件 | pages → components |
+| `uses` | 页面使用交互模式 | pages → patterns |
+| `affects` | 风格影响组件 | styles → components |
+| `applies_to` | 动效应用于组件 | motion → components |
+| `similar_to` | 同类相近 | 同类型且无共同 compare 组 |
+| `used_with` | 跨类搭配 | 其余跨类型关系 |
+
 ---
 
 # 25. MVP 范围（v0.2 修订）
@@ -441,7 +455,15 @@ applicable_styles: [minimal, bento]      # Component × Style
 applicable_components: []
 applicable_pages: []
 
-related: [spinner, progress-bar, optimistic-ui, lazy-loading]
+related:                                  # 类型化边（PRD §24）
+  - id: loading-spinner
+    relation: alternative_to
+  - id: progress-bar
+    relation: alternative_to
+  - id: optimistic-ui
+    relation: similar_to
+  - id: lazy-loading
+    relation: similar_to
 
 compare:                                  # 可空；独立浏览页 P1
   group: loading-indicator                # 比较组，组内共享维度定义
@@ -465,7 +487,7 @@ prompts:                                  # 模板生成 + 人工审核（§17�
 
 ## CI 校验规则
 
-1. `related` / `applicable_*` / `compare.group` 引用的 id 或组必须存在；
+1. `related` / `applicable_*` / `compare.group` 引用的 id 或组必须存在；`related` 的 `relation` 必须是 §24 定义的枚举值；
 2. §26 必填字段（含 `sources`、4 层双语 `prompts`）齐全，否则构建失败——"不进入正式内容库"自动化；
 3. `id` 全库唯一且符合 slug 规则；
 4. 黄金测试集搜索回归通过（Top-3 命中率 ≥ 80%）。

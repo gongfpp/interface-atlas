@@ -105,11 +105,26 @@
     "profile"
   ],
   "related": [
-    "flat-design",
-    "swiss-style",
-    "editorial",
-    "button",
-    "card"
+    {
+      "id": "flat-design",
+      "relation": "similar_to"
+    },
+    {
+      "id": "swiss-style",
+      "relation": "similar_to"
+    },
+    {
+      "id": "editorial",
+      "relation": "similar_to"
+    },
+    {
+      "id": "button",
+      "relation": "affects"
+    },
+    {
+      "id": "card",
+      "relation": "affects"
+    }
   ],
   "demo": {
     "component": "minimalism",

@@ -92,10 +92,22 @@
     }
   ],
   "related": [
-    "drawer-slide",
-    "modal",
-    "tabs",
-    "toast-slide-in"
+    {
+      "id": "drawer-slide",
+      "relation": "similar_to"
+    },
+    {
+      "id": "modal",
+      "relation": "applies_to"
+    },
+    {
+      "id": "tabs",
+      "relation": "applies_to"
+    },
+    {
+      "id": "toast-slide-in",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "page-transition",

@@ -104,11 +104,26 @@
     "documentation"
   ],
   "related": [
-    "infinite-scroll",
-    "pull-to-refresh",
-    "table",
-    "tabs",
-    "search-filtering"
+    {
+      "id": "infinite-scroll",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "pull-to-refresh",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "table",
+      "relation": "similar_to"
+    },
+    {
+      "id": "tabs",
+      "relation": "similar_to"
+    },
+    {
+      "id": "search-filtering",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "pagination",

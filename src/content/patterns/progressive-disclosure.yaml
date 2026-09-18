@@ -68,11 +68,16 @@ applicable_pages:
   - settings
   - documentation
 related:
-  - accordion
-  - form-validation
-  - onboarding-tour
-  - drawer
-  - tooltip
+  - id: accordion
+    relation: used_with
+  - id: form-validation
+    relation: similar_to
+  - id: onboarding-tour
+    relation: similar_to
+  - id: drawer
+    relation: used_with
+  - id: tooltip
+    relation: used_with
 demo:
   component: progressive-disclosure
   modes:

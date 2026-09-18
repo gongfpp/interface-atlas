@@ -56,10 +56,14 @@ variants:
       zh: 波纹是否被圆角裁剪（按钮有界、页面无界）
       en: Whether the ripple clips to rounded bounds
 related:
-  - press-feedback
-  - button
-  - magnetic-button
-  - hover-lift
+  - id: press-feedback
+    relation: similar_to
+  - id: button
+    relation: applies_to
+  - id: magnetic-button
+    relation: similar_to
+  - id: hover-lift
+    relation: similar_to
 demo:
   component: ripple
   modes:

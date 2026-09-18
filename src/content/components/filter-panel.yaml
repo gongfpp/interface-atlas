@@ -63,10 +63,14 @@ anatomy:
   - 结果计数（Result count）
   - 清除全部（Clear all）
 related:
-  - search-filtering
-  - checkbox
-  - drawer
-  - search
+  - id: search-filtering
+    relation: used_with
+  - id: checkbox
+    relation: similar_to
+  - id: drawer
+    relation: similar_to
+  - id: search
+    relation: used_with
 demo:
   component: filter-panel
   modes:

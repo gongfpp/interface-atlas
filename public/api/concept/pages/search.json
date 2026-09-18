@@ -111,11 +111,26 @@
     "Pagination 分页"
   ],
   "related": [
-    "command-palette",
-    "filter-panel",
-    "search-filtering",
-    "pagination",
-    "empty-state"
+    {
+      "id": "command-palette",
+      "relation": "contains"
+    },
+    {
+      "id": "filter-panel",
+      "relation": "contains"
+    },
+    {
+      "id": "search-filtering",
+      "relation": "uses"
+    },
+    {
+      "id": "pagination",
+      "relation": "contains"
+    },
+    {
+      "id": "empty-state",
+      "relation": "uses"
+    }
   ],
   "demo": {
     "component": "search",

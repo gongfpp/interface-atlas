@@ -57,10 +57,14 @@ variants:
       zh: 从 0.92 放大到 1，卡片与图片适用
       en: 0.92→1 scale — good for cards and images
 related:
-  - lazy-loading
-  - infinite-scroll
-  - text-reveal
-  - stagger-reveal
+  - id: lazy-loading
+    relation: used_with
+  - id: infinite-scroll
+    relation: used_with
+  - id: text-reveal
+    relation: similar_to
+  - id: stagger-reveal
+    relation: similar_to
 demo:
   component: scroll-reveal
   modes:

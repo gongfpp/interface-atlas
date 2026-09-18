@@ -101,11 +101,26 @@
     "navbar"
   ],
   "related": [
-    "glassmorphism",
-    "bento-grid",
-    "minimalism",
-    "card",
-    "landing-page"
+    {
+      "id": "glassmorphism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "bento-grid",
+      "relation": "similar_to"
+    },
+    {
+      "id": "minimalism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "card",
+      "relation": "affects"
+    },
+    {
+      "id": "landing-page",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "aurora",

@@ -62,10 +62,14 @@ anatomy:
   - 填充条（Fill）
   - 标签 / 百分比（Label）
 related:
-  - loading-spinner
-  - skeleton-loading
-  - number-counter
-  - optimistic-ui
+  - id: loading-spinner
+    relation: alternative_to
+  - id: skeleton-loading
+    relation: alternative_to
+  - id: number-counter
+    relation: used_with
+  - id: optimistic-ui
+    relation: used_with
 demo:
   component: progress-bar
   modes:

@@ -69,11 +69,16 @@ applicable_pages:
   - dashboard
   - settings
 related:
-  - sidebar
-  - table
-  - card
-  - drawer
-  - tabs
+  - id: sidebar
+    relation: used_with
+  - id: table
+    relation: used_with
+  - id: card
+    relation: used_with
+  - id: drawer
+    relation: used_with
+  - id: tabs
+    relation: used_with
 demo:
   component: master-detail
   modes:

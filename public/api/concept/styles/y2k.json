@@ -101,11 +101,26 @@
     "avatar"
   ],
   "related": [
-    "cyberpunk",
-    "aurora",
-    "glassmorphism",
-    "retro-futurism",
-    "card"
+    {
+      "id": "cyberpunk",
+      "relation": "similar_to"
+    },
+    {
+      "id": "aurora",
+      "relation": "similar_to"
+    },
+    {
+      "id": "glassmorphism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "retro-futurism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "card",
+      "relation": "affects"
+    }
   ],
   "demo": {
     "component": "y2k",

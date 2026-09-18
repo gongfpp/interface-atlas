@@ -100,10 +100,22 @@
     "底部操作区（Footer actions）"
   ],
   "related": [
-    "modal",
-    "sidebar",
-    "popover",
-    "drawer-slide"
+    {
+      "id": "modal",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "sidebar",
+      "relation": "similar_to"
+    },
+    {
+      "id": "popover",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "drawer-slide",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "drawer",

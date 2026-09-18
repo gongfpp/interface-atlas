@@ -111,10 +111,22 @@
     "Login 登录入口"
   ],
   "related": [
-    "input",
-    "button",
-    "form-validation",
-    "login"
+    {
+      "id": "input",
+      "relation": "contains"
+    },
+    {
+      "id": "button",
+      "relation": "contains"
+    },
+    {
+      "id": "form-validation",
+      "relation": "uses"
+    },
+    {
+      "id": "login",
+      "relation": "alternative_to"
+    }
   ],
   "demo": {
     "component": "signup",

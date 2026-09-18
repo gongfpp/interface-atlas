@@ -69,11 +69,16 @@ applicable_pages:
   - checkout
   - signup
 related:
-  - dropdown
-  - menu
-  - radio
-  - form-validation
-  - command-palette
+  - id: dropdown
+    relation: similar_to
+  - id: menu
+    relation: similar_to
+  - id: radio
+    relation: similar_to
+  - id: form-validation
+    relation: used_with
+  - id: command-palette
+    relation: similar_to
 demo:
   component: select
   modes:

@@ -69,9 +69,12 @@ anatomy:
   - 说明文本（Description）
   - 操作与关闭（Actions / Close）
 related:
-  - toast
-  - form-validation
-  - modal
+  - id: toast
+    relation: alternative_to
+  - id: form-validation
+    relation: alternative_to
+  - id: modal
+    relation: similar_to
 demo:
   component: alert
   modes:

@@ -109,11 +109,26 @@
     "search"
   ],
   "related": [
-    "infinite-scroll",
-    "skeleton-loading",
-    "progressive-disclosure",
-    "empty-state",
-    "pagination"
+    {
+      "id": "infinite-scroll",
+      "relation": "similar_to"
+    },
+    {
+      "id": "skeleton-loading",
+      "relation": "similar_to"
+    },
+    {
+      "id": "progressive-disclosure",
+      "relation": "similar_to"
+    },
+    {
+      "id": "empty-state",
+      "relation": "similar_to"
+    },
+    {
+      "id": "pagination",
+      "relation": "used_with"
+    }
   ],
   "demo": {
     "component": "lazy-loading",

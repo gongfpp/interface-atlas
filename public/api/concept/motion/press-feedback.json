@@ -97,10 +97,22 @@
     "claymorphism"
   ],
   "related": [
-    "hover-lift",
-    "magnetic-button",
-    "ripple",
-    "button"
+    {
+      "id": "hover-lift",
+      "relation": "similar_to"
+    },
+    {
+      "id": "magnetic-button",
+      "relation": "similar_to"
+    },
+    {
+      "id": "ripple",
+      "relation": "similar_to"
+    },
+    {
+      "id": "button",
+      "relation": "alternative_to"
+    }
   ],
   "demo": {
     "component": "press-feedback",

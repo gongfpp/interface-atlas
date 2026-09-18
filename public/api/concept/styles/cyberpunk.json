@@ -101,11 +101,26 @@
     "command-palette"
   ],
   "related": [
-    "y2k",
-    "retro-futurism",
-    "neobrutalism",
-    "input",
-    "card"
+    {
+      "id": "y2k",
+      "relation": "similar_to"
+    },
+    {
+      "id": "retro-futurism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "neobrutalism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "input",
+      "relation": "affects"
+    },
+    {
+      "id": "card",
+      "relation": "affects"
+    }
   ],
   "demo": {
     "component": "cyberpunk",

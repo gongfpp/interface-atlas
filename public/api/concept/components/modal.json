@@ -100,10 +100,22 @@
     "操作区（Actions）"
   ],
   "related": [
-    "drawer",
-    "popover",
-    "toast",
-    "alert"
+    {
+      "id": "drawer",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "popover",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "toast",
+      "relation": "similar_to"
+    },
+    {
+      "id": "alert",
+      "relation": "similar_to"
+    }
   ],
   "demo": {
     "component": "modal",

@@ -62,9 +62,12 @@ anatomy:
   - 徽标本体（Badge）
   - 状态色（Status colour）
 related:
-  - avatar
-  - button
-  - card
+  - id: avatar
+    relation: similar_to
+  - id: button
+    relation: similar_to
+  - id: card
+    relation: similar_to
 demo:
   component: badge
   modes:
