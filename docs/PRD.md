@@ -1,9 +1,11 @@
 # 中文前端设计参考库 PRD
 
-版本：v0.6
+版本：v0.7
 项目阶段：MVP
 中文名称：界面图谱
 英文名称：Interface Atlas（MVP 使用工作名，域名后定，改名成本 = 文案 + 301）
+
+> v0.7 变更摘要（P1 功能落地）：① 新增概念对比浏览页 `/compare` 与 `/compare/<group>`（中英双语）——从 `compare.group` 数据生成，详情页内联对比改用共享 `CompareTable` 组件并新增"查看完整对比"入口；② CI 增加"同组 compare 维度键必须一致"校验；③ compare 维度英文标签集中到 `src/lib/i18n.ts` 的 `DIMENSION_LABELS`（键为中文维度名）。
 
 > v0.6 变更摘要（P1 延后项落地，基于外部审计）：① `related` 类型化——`related: [{ id, relation }]`，按 §24 关系模型落地 7 种关系（alternative_to / similar_to / used_with / contains / uses / affects / applies_to），详情页相关概念显示关系标签；② Style 缩略预览规格并入 YAML `preview` 字段（含 `order` 排序），删除 `src/lib/style-thumbs.ts` 第二事实源，缩略图组件只做 renderer，风格列表显示名统一取条目 `name`。
 
@@ -265,7 +267,7 @@ MVP 不定位成大型代码组件市场，提供：
 
 # 19. Compare
 
-允许比较相似概念（Modal vs Drawer vs Popover），按维度展示（打断程度 / 内容容量 / Mobile / 上下文保持）。**MVP 阶段 Compare 数据"适用即做全"（§26 底线之上，见 §25a）；独立 Compare 浏览功能在 P1（§28）。** 数据人工维护，Schema 见 §33 的 `compare` 字段。
+允许比较相似概念（Modal vs Drawer vs Popover），按维度展示（打断程度 / 内容容量 / Mobile / 上下文保持）。**MVP 阶段 Compare 数据"适用即做全"（§26 底线之上，见 §25a）；独立 Compare 浏览功能已于 v0.7 落地（`/compare`、`/compare/<group>`，中英双语）。** 数据人工维护，Schema 见 §33 的 `compare` 字段。
 
 # 20. 页面类型详情
 
@@ -375,7 +377,8 @@ Motion 播放器（Play / Replay / Slow Motion / Before-After）
 
 # 28. P1
 
-Concept Compare 独立浏览页 / 完整随机探索页（带过滤）/ 收藏 / 浏览历史 / 高级 Filter / Prompt Builder / 页面结构拆解深化。
+完整随机探索页（带过滤）/ 收藏 / 浏览历史 / 高级 Filter / Prompt Builder / 页面结构拆解深化。
+（Concept Compare 独立浏览页已于 v0.7 落地，见 §19。）
 
 # 29. P2
 

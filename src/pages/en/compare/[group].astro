@@ -1,0 +1,36 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CompareTable from '@/components/CompareTable.astro';
+import { getCompareGroups, type CompareGroup } from '@/lib/compare';
+
+export async function getStaticPaths() {
+  const groups = await getCompareGroups();
+  return groups.map((group) => ({ params: { group: group.group }, props: { group } }));
+}
+
+interface Props {
+  group: CompareGroup;
+}
+const { group } = Astro.props;
+const names = group.members.map((m) => m.data.name.en).join(' · ');
+const namesZh = group.members.map((m) => m.data.name.zh).join(' · ');
+---
+
+<BaseLayout
+  title={`${names} — comparison · Interface Atlas`}
+  description={`Compare ${names} (${namesZh}) side by side across ${group.dimensions.length} dimensions; click a column header to open the concept.`}
+  locale="en"
+  enPath={`/compare/${group.group}`}
+>
+  <article class="pt-10">
+    <a href="/en/compare" class="text-xs uppercase tracking-[0.2em] text-accent">Comparisons</a>
+    <h1 class="mt-3 font-serif text-3xl font-semibold md:text-4xl">{names}</h1>
+    <p class="mt-3 max-w-2xl text-ink-2">
+      {group.members.length} concepts compared across {group.dimensions.length} dimensions. Click a
+      column header to open the concept.
+    </p>
+    <div class="mt-8 pb-20">
+      <CompareTable concepts={group.members} locale="en" />
+    </div>
+  </article>
+</BaseLayout>

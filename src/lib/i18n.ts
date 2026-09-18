@@ -26,6 +26,39 @@ export const RELATION_LABELS: Record<string, Record<Locale, string>> = {
   applies_to: { zh: '应用于', en: 'Applies to' },
 };
 
+/**
+ * compare.dimensions 的 key 是中文维度名（内容即数据）；英文标签在此维护。
+ * 新增 compare 维度时需同步补 en 标签，否则英文页回落为中文 key。
+ */
+export const DIMENSION_LABELS: Record<string, Record<Locale, string>> = {
+  打断程度: { zh: '打断程度', en: 'Interruption' },
+  持续性: { zh: '持续性', en: 'Persistence' },
+  错误定位能力: { zh: '错误定位能力', en: 'Error pinpointing' },
+  强度: { zh: '强度', en: 'Intensity' },
+  移动端友好: { zh: '移动端友好', en: 'Mobile friendly' },
+  适合元素: { zh: '适合元素', en: 'Best for' },
+  信息密度: { zh: '信息密度', en: 'Information density' },
+  可扫描性: { zh: '可扫描性', en: 'Scannability' },
+  适合内容: { zh: '适合内容', en: 'Good for' },
+  内容容量: { zh: '内容容量', en: 'Content capacity' },
+  触发成本: { zh: '触发成本', en: 'Trigger cost' },
+  空间占用: { zh: '空间占用', en: 'Space footprint' },
+  层级容量: { zh: '层级容量', en: 'Layer capacity' },
+  触发方式: { zh: '触发方式', en: 'Trigger' },
+  数据控制: { zh: '数据控制', en: 'Data control' },
+  适用内容: { zh: '适用内容', en: 'Suitable content' },
+  信息量: { zh: '信息量', en: 'Information volume' },
+  适用时长: { zh: '适用时长', en: 'Suitable duration' },
+  与结果一致性: { zh: '与结果一致性', en: 'Result consistency' },
+  用户状态: { zh: '用户状态', en: 'User state' },
+  核心目标: { zh: '核心目标', en: 'Core goal' },
+  安全要求: { zh: '安全要求', en: 'Safety requirement' },
+};
+
+export function dimensionLabel(key: string, locale: Locale): string {
+  return DIMENSION_LABELS[key]?.[locale] ?? key;
+}
+
 export const UI = {
   tagline: { zh: '前端设计概念百科 · 可交互参考库 · Agent Prompt 库', en: 'Frontend design concept encyclopedia · interactive reference · agent prompt library' },
   heroTitle: { zh: '前端设计，不知道叫什么？', en: "Seen a design, but don't know its name?" },

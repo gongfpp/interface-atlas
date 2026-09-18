@@ -31,6 +31,8 @@ sources: [{ name, url }, ...]        # ≥1，权威来源（Material/HIG/Fluent
 implementation: { css: [...], notes: { zh, en } }
 prompts: { basic/design/implementation/agent × { zh, en } }
 compare:                             # 仅当同组 ≥2 成员才写（组名见任务清单）
+                                     # 维度 key 用中文；同组必须键完全一致（CI 强制）
+                                     # 英文维度标签在 src/lib/i18n.ts 的 DIMENSION_LABELS 维护，新增维度需同步补 en
 ```
 
 ### 1.2 aliases 是搜索语料，不是阅读文本

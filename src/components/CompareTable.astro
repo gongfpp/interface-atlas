@@ -1,0 +1,42 @@
+---
+import { conceptPath, type Concept } from '@/lib/content';
+import { dimensionLabel, type Locale } from '@/lib/i18n';
+
+interface Props {
+  /** 同一 compare 组的成员；第一列到末列依次展示 */
+  concepts: Concept[];
+  locale: Locale;
+}
+const { concepts, locale } = Astro.props;
+const dimensions = Object.keys(concepts[0]?.data.compare?.dimensions ?? {});
+---
+
+<div class="overflow-x-auto rounded-xl border border-line">
+  <table class="w-full text-sm">
+    <thead class="bg-code-bg text-left text-xs uppercase tracking-wider text-ink-3">
+      <tr>
+        <th class="p-3"></th>
+        {concepts.map((c) => (
+          <th class="p-3">
+            <a href={conceptPath(c, locale)} class="font-serif text-sm normal-case tracking-normal text-ink hover:text-accent">
+              {c.data.name[locale]}
+            </a>
+            <span class="ml-1.5 font-normal normal-case tracking-normal text-ink-3">
+              {c.data.name[locale === 'zh' ? 'en' : 'zh']}
+            </span>
+          </th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {dimensions.map((dim) => (
+        <tr class="border-t border-line">
+          <td class="p-3 font-medium text-ink-2">{dimensionLabel(dim, locale)}</td>
+          {concepts.map((c) => (
+            <td class="p-3 text-ink-2">{c.data.compare?.dimensions[dim]?.[locale] ?? '—'}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

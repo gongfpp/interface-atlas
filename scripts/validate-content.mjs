@@ -5,7 +5,8 @@
  * 3. id 全库唯一、slug 规范
  * 4. applicable_* 类型前缀约束
  * 5. compare.group 至少 2 个成员（CI 环境为硬失败，本地为警告；成员补齐后自然转绿）
- * 6. 全量 null 值/键扫描（flow mapping 静默拆键会留下 null 键或截断的 null 值）
+ * 6. 同 compare 组成员的 dimensions 键必须完全一致（Compare 浏览页按统一维度渲染）
+ * 7. 全量 null 值/键扫描（flow mapping 静默拆键会留下 null 键或截断的 null 值）
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -137,7 +138,11 @@ for (const [id, { type, rel, data }] of entries) {
 
   if (data.compare?.group) {
     if (!compareGroups.has(data.compare.group)) compareGroups.set(data.compare.group, []);
-    compareGroups.get(data.compare.group).push({ id, rel });
+    compareGroups.get(data.compare.group).push({
+      id,
+      rel,
+      dims: data.compare.dimensions ? Object.keys(data.compare.dimensions) : [],
+    });
   }
 }
 
@@ -146,6 +151,14 @@ for (const [group, members] of compareGroups) {
     const msg = `compare.group「${group}」只有 1 个成员（${members[0].rel}），至少需要 2 条才能对比`;
     if (IS_CI) errors.push(msg);
     else warnings.push(msg);
+  }
+  const keySets = new Set(members.map((m) => [...m.dims].sort().join('|')));
+  if (keySets.size > 1) {
+    errors.push(
+      `compare.group「${group}」成员维度键不一致：${members
+        .map((m) => `${m.id}(${m.dims.join(', ')})`)
+        .join(' / ')}`,
+    );
   }
 }
 

@@ -47,3 +47,12 @@ test('homepage shows style wall and gallery', async ({ page }) => {
     page.getByRole('link', { name: /导航栏参考图集|Navbar Reference Sheets/ }).first(),
   ).toBeVisible();
 });
+
+test('compare: index lists groups, group page renders comparison table', async ({ page }) => {
+  await page.goto('/compare');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('概念对比');
+  await page.locator('a[href="/compare/navigation-overlay"]').click();
+  await expect(page).toHaveURL(/\/compare\/navigation-overlay/);
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('命令面板');
+  await expect(page.getByRole('table')).toBeVisible();
+});
