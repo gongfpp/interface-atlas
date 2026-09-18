@@ -66,8 +66,7 @@
       },
       "note": {
         "zh": "宽屏经典左右布局，点选即联动",
-        "en": "Classic side-by-side layout for wide screens",
-        "click syncs panes": null
+        "en": "Classic side-by-side layout for wide screens, click syncs panes"
       }
     },
     {
@@ -78,8 +77,7 @@
       },
       "note": {
         "zh": "窄屏先列表后详情，可返回列表",
-        "en": "On narrow screens list comes first",
-        "detail opens over it with a back affordance": null
+        "en": "On narrow screens list comes first, detail opens over it with a back affordance"
       }
     },
     {

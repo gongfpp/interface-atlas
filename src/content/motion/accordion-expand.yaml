@@ -1,0 +1,113 @@
+status: published
+name:
+  zh: 手风琴展开
+  en: Accordion Expand
+aliases:
+  - 手风琴展开
+  - 折叠展开
+  - 展开收起动画
+  - 下拉展开
+  - 折叠面板
+category:
+  - Motion
+  - Disclosure
+description:
+  zh: 点击标题后内容区在高度方向展开或收起，像手风琴风箱。 关键是用 grid-template-rows 从 0fr 到 1fr 的高度动画， 让内容"推开来"而不是瞬间出现， 同时箭头旋转呼应状态。
+  en: Tapping a header expands or collapses the content vertically, like a bellows. The crux is animating grid-template-rows from 0fr to 1fr so content unfolds instead of popping in, with the chevron rotating in sync.
+use_when:
+  - zh: FAQ、设置分组、详情页补充信息
+    en: FAQs, grouped settings, supplementary detail sections
+  - zh: 长页面需要折叠低优先级内容
+    en: Long pages hiding low-priority content
+  - zh: 同组内容一次只看一个（互斥手风琴）
+    en: Exclusive sections — one open at a time
+avoid_when:
+  - zh: 用户需要对比多个展开项（互斥会烦）
+    en: Comparing several sections open at once
+  - zh: 内容超过两屏（滚动比折叠更自然）
+    en: Content over two screens — scrolling beats folding
+  - zh: 关键操作路径上的步骤（隐藏即摩擦）
+    en: Critical steps in a flow — hiding adds friction
+tags:
+  - animation
+  - accordion
+  - disclosure
+  - expand
+variants:
+  - id: single-open
+    name:
+      zh: 互斥展开
+      en: Single open
+    note:
+      zh: 同时只开一项，经典手风琴
+      en: One open at a time — the classic accordion
+  - id: multi-open
+    name:
+      zh: 多开
+      en: Multi-open
+    note:
+      zh: 各项独立开合，适合并列内容
+      en: Independent toggles for parallel content
+  - id: grid-rows
+    name:
+      zh: grid 动画
+      en: Grid rows
+    note:
+      zh: grid-template-rows 0fr→1fr，免测高度
+      en: grid-template-rows 0fr→1fr — no height measuring
+related:
+  - accordion
+  - progressive-disclosure
+  - filter-panel
+  - settings
+demo:
+  component: accordion-expand
+  modes:
+    - default
+    - dark
+    - variants
+implementation:
+  css:
+    - 'display: grid'
+    - 'grid-template-rows 0fr → 1fr'
+    - 'min-height: 0'
+    - 'transition grid/height'
+  notes:
+    zh: 现代纯 CSS 法：外层 display:grid，grid-template-rows 在 0fr 与 1fr 间过渡（300ms）， 内层 min-height:0 + overflow:hidden。 免去 JS 测量高度。 展开/收起方向一致；箭头 rotate 90/180 同步过渡； 尊重 prefers-reduced-motion 改为瞬时切换。
+    en: Modern CSS recipe — outer display:grid with grid-template-rows transitioning between 0fr and 1fr (300ms), inner min-height:0 plus overflow:hidden. No height measuring needed. Keep expand/collapse symmetric; rotate the chevron 90/180 in sync; under prefers-reduced-motion switch instantly.
+sources:
+  - name: MDN — grid-template-rows
+    url: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows
+prompts:
+  basic:
+    zh: 给 FAQ 列表添加手风琴展开效果：点击标题展开答案，再点收起。
+    en: Add accordion expand to the FAQ — tapping a header reveals the answer, tapping again collapses it.
+  design:
+    zh: FAQ 项点击后答案在 300ms 内由 0fr 展开到 1fr，箭头同步旋转 180°；同组互斥，一次只开一项；展开不跳页。
+    en: On tap, the answer unfolds from 0fr to 1fr within 300ms while the chevron rotates 180°; sections are mutually exclusive — one open at a time; no page jump.
+  implementation:
+    zh: '外层 grid + grid-template-rows: 0fr/1fr 过渡 300ms，内层 overflow:hidden + min-height:0。React 里用 useState 存展开 id，互斥取单值。加 aria-expanded 与按钮语义；reduced-motion 直接切换。'
+    en: 'Outer grid with grid-template-rows 0fr/1fr transition over 300ms, inner overflow:hidden + min-height:0. Store the open id in useState; mutual exclusion means a single value. Add aria-expanded and button semantics; switch instantly under reduced-motion.'
+  agent:
+    zh: |-
+      为项目 FAQ 区添加手风琴展开动效。
+
+      先检查现有 accordion/折叠组件，避免重复实现。
+      要求：
+      - grid-template-rows 0fr→1fr 高度动画，300ms
+      - 同组互斥（可配置多开），箭头同步旋转
+      - aria-expanded 正确、键盘可操作
+      - 尊重 prefers-reduced-motion
+      - 不引入新依赖
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Add accordion expand motion to the project's FAQ section.
+
+      Check existing accordion/collapse components first; avoid duplicating them.
+      Requirements:
+      - grid-template-rows 0fr→1fr height animation, 300ms
+      - Mutually exclusive within a group (multi-open configurable), chevron in sync
+      - Correct aria-expanded and keyboard operability
+      - Respect prefers-reduced-motion
+      - No new dependencies
+      Run existing checks when done and list modified files.

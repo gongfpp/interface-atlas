@@ -27,13 +27,11 @@
   "use_when": [
     {
       "zh": "游戏 科幻项目 黑客主题社区，风格即世界观",
-      "en": "Games",
-      "sci-fi projects and hacker communities where style is worldbuilding": null
+      "en": "Games, sci-fi projects and hacker communities where style is worldbuilding"
     },
     {
       "zh": "音乐 夜店 电竞品牌，需要强烈的亚文化信号",
-      "en": "Music",
-      "club and esports brands signaling subculture": null
+      "en": "Music, club and esports brands signaling subculture"
     },
     {
       "zh": "深色为主的产品，可低成本叠加霓虹点缀",

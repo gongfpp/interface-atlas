@@ -27,13 +27,11 @@
   "use_when": [
     {
       "zh": "设计系统 博物馆 文化机构，需要客观严谨的秩序感",
-      "en": "Design systems",
-      "museums and institutions that need objective rigor": null
+      "en": "Design systems, museums and institutions that need objective rigor"
     },
     {
       "zh": "数据 技术文档 目录类内容，结构化信息为主",
-      "en": "Data",
-      "documentation and catalog content that is inherently structured": null
+      "en": "Data, documentation and catalog content that is inherently structured"
     },
     {
       "zh": "海报 期刊封面等需要强烈排版张力的场景",
@@ -43,8 +41,7 @@
   "avoid_when": [
     {
       "zh": "品牌需要亲和 温暖或娱乐化的情绪",
-      "en": "Brands needing warmth",
-      "approachability or playfulness": null
+      "en": "Brands needing warmth, approachability or playfulness"
     },
     {
       "zh": "内容零散无结构，网格反而放大凌乱感",

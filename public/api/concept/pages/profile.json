@@ -66,8 +66,7 @@
       },
       "note": {
         "zh": "信息收在一张圆角卡片内，克制通用",
-        "en": "Info contained in one card",
-        "restrained and universal": null
+        "en": "Info contained in one card, restrained and universal"
       }
     },
     {
@@ -78,8 +77,7 @@
       },
       "note": {
         "zh": "大封面 + 叠放头像，社交平台标准",
-        "en": "Big cover with overlapping avatar",
-        "the social standard": null
+        "en": "Big cover with overlapping avatar, the social standard"
       }
     },
     {
@@ -90,8 +88,7 @@
       },
       "note": {
         "zh": "只留头像、一句话与链接，名片风",
-        "en": "Avatar",
-        "one-liner and links — business-card style": null
+        "en": "Avatar, one-liner and links — business-card style"
       }
     },
     {

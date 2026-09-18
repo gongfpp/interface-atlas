@@ -43,8 +43,7 @@
     },
     {
       "zh": "打印、SEO 或无 JS 环境必须能拿到全部内容",
-      "en": "Printing",
-      "SEO or no-JS contexts need the full content upfront": null
+      "en": "Printing, SEO or no-JS contexts need the full content upfront"
     },
     {
       "zh": "资源极小且数量有限，切分收益低于复杂度成本",
@@ -66,8 +65,7 @@
       },
       "note": {
         "zh": "img loading=\"lazy\" 一行搞定，交给浏览器",
-        "en": "One attribute",
-        "browser handles it": null
+        "en": "One attribute, browser handles it"
       }
     },
     {
@@ -78,8 +76,7 @@
       },
       "note": {
         "zh": "进入视口再挂载并淡入，可控性更强",
-        "en": "Mount and fade in on intersection",
-        "more control": null
+        "en": "Mount and fade in on intersection, more control"
       }
     },
     {

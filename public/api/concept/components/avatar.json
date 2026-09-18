@@ -1,0 +1,153 @@
+{
+  "id": "avatar",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "头像",
+    "en": "Avatar"
+  },
+  "aliases": [
+    "头像",
+    "用户头像",
+    "圆形头像",
+    "人员头像",
+    "账号图片",
+    "首字母头像",
+    "名字前面的小圆图"
+  ],
+  "category": [
+    "Display",
+    "Identity"
+  ],
+  "description": {
+    "zh": "以圆形或圆角方形小图代表用户或组织：照片、姓名首字母或图标占位。 常与姓名一起出现在导航、评论与成员列表，可附在线状态点或多人叠加。",
+    "en": "A small round or rounded-square image representing a user or organisation: photo, initials or an icon placeholder. Appears with names in navs, comments and member lists; can carry a status dot or stack several people together."
+  },
+  "use_when": [
+    {
+      "zh": "用户身份的稳定视觉锚点（导航、评论、成员）",
+      "en": "A stable identity anchor (nav, comments, members)"
+    },
+    {
+      "zh": "无图时用姓名首字母 + 品牌底色兜底",
+      "en": "Fall back to initials on brand colours when no image exists"
+    },
+    {
+      "zh": "群组、多负责人场景做叠加展示",
+      "en": "Stacked avatars for teams or multiple owners"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "非人格化的系统对象（改用图标）",
+      "en": "Non-personal system objects — use an icon"
+    },
+    {
+      "zh": "图片本身是内容主体（用完整图片展示）",
+      "en": "The image is the content — use a full image"
+    },
+    {
+      "zh": "需要展示丰富个人信息（用 profile 页或卡片）",
+      "en": "Rich personal info needed — use a profile page or card"
+    }
+  ],
+  "tags": [
+    "identity",
+    "display",
+    "image",
+    "user"
+  ],
+  "variants": [
+    {
+      "id": "image",
+      "name": {
+        "zh": "图片",
+        "en": "Image"
+      },
+      "note": {
+        "zh": "用户上传的照片，裁切填充",
+        "en": "An uploaded photo, cropped to fill"
+      }
+    },
+    {
+      "id": "initials",
+      "name": {
+        "zh": "首字母",
+        "en": "Initials"
+      },
+      "note": {
+        "zh": "无图兜底，底色由名字散列固定",
+        "en": "No-photo fallback; colour derived from the name"
+      }
+    },
+    {
+      "id": "stacked",
+      "name": {
+        "zh": "叠加",
+        "en": "Stacked"
+      },
+      "note": {
+        "zh": "多人重叠 + 余量计数",
+        "en": "Overlapping members plus an overflow count"
+      }
+    }
+  ],
+  "anatomy": [
+    "头像主体（Image / Initials）",
+    "状态点（Status dot）",
+    "尺寸档位（Sizes）"
+  ],
+  "related": [
+    "badge",
+    "dropdown",
+    "profile"
+  ],
+  "demo": {
+    "component": "avatar",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "border-radius: 9999px",
+      "object-fit: cover",
+      "width",
+      "height"
+    ],
+    "notes": {
+      "zh": "图片用 object-fit: cover 裁切防变形；首字母头像底色由名字散列映射到固定色板， 保证同一个人颜色稳定；状态点 absolute 右下并加描边。尺寸阶梯常用 24/32/40/48px。 图片必须有 alt 文本，纯装饰时用 aria-hidden 或空 alt。",
+      "en": "Crop photos with object-fit: cover to avoid distortion; hash the name into a fixed palette so a person's initials colour stays stable; status dot absolute at bottom-right with a ring. Common size steps: 24/32/40/48px. Images need alt text; use aria-hidden or empty alt when purely decorative."
+    }
+  },
+  "sources": [
+    {
+      "name": "Atlassian Design System — Avatar",
+      "url": "https://atlassian.design/components/avatar/overview"
+    },
+    {
+      "name": "Ant Design — Avatar",
+      "url": "https://ant.design/components/avatar"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个头像（Avatar）组件：支持图片与首字母两种内容，三档尺寸，可附在线状态点。",
+      "en": "Create an Avatar component: image and initials content, three size steps, with an optional presence dot."
+    },
+    "design": {
+      "zh": "创建 Avatar 组件。要求：圆形（或圆角方形）裁切；首字母兜底用低饱和底色 + 深色文字， 颜色由名字散列固定；在线状态点右下角带描边；尺寸 24/32/40 三档； 叠加形态 -ml-2 重叠 + 描边分隔；深浅色主题一致。",
+      "en": "Create an Avatar. Requirements: circular (or rounded-square) crop; initials fallback on a low-saturation surface with dark text, colour hashed from the name; presence dot at bottom-right with a ring; sizes 24/32/40; stacked form overlaps with -ml-2 and ring separation; consistent light/dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Avatar：img + object-cover + rounded-full； 无 src 时渲染 initials（取名字前一字/首字母），底色从调色板数组按 name.charCodeAt 散列取色； 状态点 span absolute bottom-0 right-0 + ring-2 ring-[surface]； sizes 映射到 w/h；叠加组 flex -space-x-2，最后一项显示 +N； 图片 onError 时降级为首字母。",
+      "en": "React + Tailwind Avatar: img with object-cover rounded-full; without src render initials (first grapheme) on a palette colour picked by name.charCodeAt hash; presence dot as an absolute span bottom-0 right-0 with ring-2 ring-[surface]; sizes map to w/h; stack with flex -space-x-2 and a final +N item; fall back to initials on img error."
+    },
+    "agent": {
+      "zh": "在当前项目中实现头像（Avatar）组件。\n\n先检查现有组件体系与 Design Token，优先复用现有的表面色变量。\n用途：导航用户区、评论列表与成员叠加。\n要求：\n- 图片 / 首字母两种内容，加载失败自动降级\n- 首字母颜色按名字散列且稳定\n- 尺寸档位 + 可选在线状态点 + 叠加形态\n- 可访问性：有意义的 alt，装饰时 aria-hidden\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement an Avatar component in the current project.\n\nInspect the existing component system and design tokens first; reuse existing\nsurface colour variables.\nUsage: nav user area, comment lists, member stacks.\nRequirements:\n- Image / initials content with automatic fallback on load error\n- Stable name-hashed initials colours\n- Size steps + optional presence dot + stacked form\n- Accessibility: meaningful alt, aria-hidden when decorative\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

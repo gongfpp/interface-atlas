@@ -26,9 +26,7 @@
   "use_when": [
     {
       "zh": "账号资料、通知、安全等偏好集中管理",
-      "en": "Central management of profile",
-      "notifications": null,
-      "security": null
+      "en": "Central management of profile, notifications, security"
     },
     {
       "zh": "配置项多、需要分区导航定位",
@@ -68,8 +66,7 @@
       },
       "note": {
         "zh": "左侧分区导航 + 右侧表单，最常见",
-        "en": "Sectioned nav left",
-        "forms right — the common default": null
+        "en": "Sectioned nav left, forms right — the common default"
       }
     },
     {
@@ -102,8 +99,7 @@
       },
       "note": {
         "zh": "轻量设置以弹窗承载，不离开当前页",
-        "en": "Lightweight settings in a modal",
-        "no page exit": null
+        "en": "Lightweight settings in a modal, no page exit"
       }
     }
   ],

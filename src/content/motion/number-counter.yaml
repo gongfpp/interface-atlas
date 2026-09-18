@@ -1,0 +1,111 @@
+status: published
+name:
+  zh: 数字滚动
+  en: Number Counter
+aliases:
+  - 数字滚动增长
+  - 数字从小到大
+  - 计数动画
+  - 数字跳到目标值
+  - 数据滚动
+category:
+  - Motion
+  - Data
+description:
+  zh: 数字从 0（或旧值）滚动增长到目标值，让计数过程本身表达"数据在增长"。 常用于数据看板大数字、统计区与里程碑（"10 万用户"）。 数字成为动效的主角，比静态数值更有说服力。
+  en: Animates a number from zero (or a previous value) up to its target, so the counting itself tells the story of growth. Common on dashboard KPIs, stats sections and milestones ("100k users") — the digit becomes the animation, far more persuasive than a static figure.
+use_when:
+  - zh: 首屏或统计区的大数字（KPI、用户数、下载量）
+    en: Big numbers on heroes and stats — KPIs, users, downloads
+  - zh: 数字进入视口时触发一次，强调里程碑
+    en: One-shot count-up when the figure scrolls into view
+  - zh: 数值更新时从旧值过渡到新值，保持连续感
+    en: Transitioning from an old value to a new one
+avoid_when:
+  - zh: 高频刷新的实时数值（一直在滚，读不了）
+    en: Rapidly updating live values — perpetual rolling is unreadable
+  - zh: 需要精确抄录的数字（金额、账号、验证码）
+    en: Figures users must transcribe exactly — amounts, IDs
+  - zh: 表格内的密集小数字（噪音大于价值）
+    en: Dense small numbers inside tables — noise over value
+tags:
+  - animation
+  - numbers
+  - data
+  - count-up
+variants:
+  - id: eased-count
+    name:
+      zh: 缓动计数
+      en: Eased count
+    note:
+      zh: 起步快后段减速，最自然的落定
+      en: Fast start, eased landing — the natural default
+  - id: tabular-nums
+    name:
+      zh: 等宽数字
+      en: Tabular digits
+    note:
+      zh: 'font-variant-numeric: tabular-nums 防宽度抖动'
+      en: tabular-nums prevents width jitter
+  - id: formatted-count
+    name:
+      zh: 带格式计数
+      en: Formatted count
+    note:
+      zh: 千分位、单位、小数同步插值
+      en: Thousands separators, units and decimals interpolate in sync
+related:
+  - dashboard
+  - scroll-reveal
+  - progress-bar
+  - text-reveal
+demo:
+  component: number-counter
+  modes:
+    - default
+    - dark
+    - variants
+implementation:
+  css:
+    - requestAnimationFrame
+    - ease-out interpolation
+    - 'font-variant-numeric: tabular-nums'
+    - '@property counter (CSS-only)'
+  notes:
+    zh: 'CSS 无法直接给文本计数，实用做法是 requestAnimationFrame 插值 + ease-out 曲线， 时长 1～2s。必须加 font-variant-numeric: tabular-nums 防止数字宽度抖动； 千分位与单位在每帧一起格式化。尊重 prefers-reduced-motion——直接显示终值。'
+    en: 'CSS cannot count text; the practical recipe is requestAnimationFrame interpolation with an ease-out curve over 1–2s. Always add font-variant-numeric: tabular-nums to stop width jitter, and format separators/units every frame. Respect prefers-reduced-motion by showing the final value directly.'
+sources:
+  - name: MDN — requestAnimationFrame
+    url: https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame
+prompts:
+  basic:
+    zh: 给统计区的大数字添加从 0 滚动到目标值的计数动画。
+    en: Add a count-up animation to the stats — numbers roll from 0 to their target.
+  design:
+    zh: 统计数字进入视口后 1.6s 内从 0 计数到目标值，ease-out 减速落定，等宽数字防抖动，千分位同步格式化；仅触发一次。
+    en: When stats enter the viewport, count from 0 to target over 1.6s with an ease-out landing, tabular digits to prevent jitter, thousands separators formatted per frame; trigger once only.
+  implementation:
+    zh: '用 requestAnimationFrame 插值，progress 经 easeOutCubic(t) 变换，值为 Math.round(target * p)，toLocaleString 格式化。容器加 tabular-nums。IntersectionObserver 触发一次；prefers-reduced-motion 直接渲染终值。'
+    en: 'Interpolate with requestAnimationFrame, ease via easeOutCubic(t), value = Math.round(target * p), formatted with toLocaleString. Apply tabular-nums to the container. Trigger once via IntersectionObserver; render the final value under prefers-reduced-motion.'
+  agent:
+    zh: |-
+      为项目统计区的大数字添加计数动画。
+
+      先检查现有数字展示组件，避免与实时刷新逻辑冲突。
+      要求：
+      - rAF + ease-out 插值，1～2s，进入视口触发一次
+      - tabular-nums 防宽度抖动，千分位格式化
+      - reduced-motion 或 JS 失效时直接显示终值
+      - 不引入新依赖
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Add a count-up animation to the project's stat numbers.
+
+      Check existing number display components first; avoid conflicts with live refresh logic.
+      Requirements:
+      - rAF + ease-out interpolation, 1–2s, triggered once in view
+      - tabular-nums to prevent jitter, thousands formatting
+      - Show the final value directly under reduced-motion or without JS
+      - No new dependencies
+      Run existing checks when done and list modified files.

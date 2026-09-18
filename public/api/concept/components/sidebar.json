@@ -25,9 +25,7 @@
   "use_when": [
     {
       "zh": "层级较多的后台、文档站、管理面板",
-      "en": "Deep-hierarchy admin panels",
-      "docs sites": null,
-      "dashboards": null
+      "en": "Deep-hierarchy admin panels, docs sites, dashboards"
     },
     {
       "zh": "导航项需要常驻可见、随时切换",
@@ -35,8 +33,7 @@
     },
     {
       "zh": "桌面端为主的宽屏布局",
-      "en": "Desktop-first",
-      "wide-screen layouts": null
+      "en": "Desktop-first, wide-screen layouts"
     }
   ],
   "avoid_when": [
@@ -67,8 +64,7 @@
       },
       "note": {
         "zh": "常驻 240px 左右，最经典",
-        "en": "Persistent ~240px",
-        "the classic": null
+        "en": "Persistent ~240px, the classic"
       }
     },
     {
@@ -90,8 +86,7 @@
       },
       "note": {
         "zh": "与内容区脱开，卡片式悬浮（Linear 风格）",
-        "en": "Detached",
-        "floating card style (Linear-like)": null
+        "en": "Detached, floating card style (Linear-like)"
       }
     }
   ],

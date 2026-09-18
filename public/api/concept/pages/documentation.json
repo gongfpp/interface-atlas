@@ -26,9 +26,7 @@
   "use_when": [
     {
       "zh": "产品文档、API 参考、教程手册",
-      "en": "Product docs",
-      "API references": null,
-      "tutorials": null
+      "en": "Product docs, API references, tutorials"
     },
     {
       "zh": "内容长期沉淀、需要稳定结构与会深链",
@@ -68,8 +66,7 @@
       },
       "note": {
         "zh": "文档树 + 正文 + 页内目录，桌面端标配",
-        "en": "Tree + article + TOC",
-        "the desktop standard": null
+        "en": "Tree + article + TOC, the desktop standard"
       }
     },
     {
@@ -80,8 +77,7 @@
       },
       "note": {
         "zh": "文档树 + 正文两栏，中屏友好",
-        "en": "Tree + article",
-        "friendly to mid-size screens": null
+        "en": "Tree + article, friendly to mid-size screens"
       }
     },
     {
@@ -92,8 +88,7 @@
       },
       "note": {
         "zh": "左描述右代码块的双栏条目式排版",
-        "en": "Description left",
-        "code right — entry-style layout": null
+        "en": "Description left, code right — entry-style layout"
       }
     },
     {
@@ -104,8 +99,7 @@
       },
       "note": {
         "zh": "全部章节纵排一页，靠目录跳转",
-        "en": "All sections on one page",
-        "navigated by TOC": null
+        "en": "All sections on one page, navigated by TOC"
       }
     }
   ],

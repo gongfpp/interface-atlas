@@ -1,0 +1,142 @@
+{
+  "id": "morphing-icon",
+  "type": "motion",
+  "status": "published",
+  "name": {
+    "zh": "图标变形",
+    "en": "Morphing Icon"
+  },
+  "aliases": [
+    "图标变形",
+    "汉堡变叉",
+    "图标切换动画",
+    "菜单变关闭",
+    "图标过渡"
+  ],
+  "category": [
+    "Motion",
+    "Feedback"
+  ],
+  "description": {
+    "zh": "一个图标在两种状态间平滑变形，而不是替换—— 最经典是汉堡三横变关闭叉。 用同一组线条的旋转、位移与透明度组合完成， 传达\"同一个控件换了状态\"。",
+    "en": "One icon smoothly morphs between two states instead of being swapped — classically the hamburger turning into a close X. Built from the same strokes rotating, translating and fading, it says \"same control, new state\"."
+  },
+  "use_when": [
+    {
+      "zh": "汉堡菜单 ↔ 关闭、播放 ↔ 暂停等成对状态",
+      "en": "Paired states — menu/close, play/pause"
+    },
+    {
+      "zh": "同一位置的切换型图标按钮",
+      "en": "Toggle-type icon buttons in a fixed spot"
+    },
+    {
+      "zh": "需要强调\"状态变了\"而空间不变",
+      "en": "Emphasising a state change without moving layout"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "两个语义无关的图标（变形反而误导）",
+      "en": "Semantically unrelated icons — morphing misleads"
+    },
+    {
+      "zh": "变形前后形状差异过大（中间帧生硬）",
+      "en": "Shapes too different — the in-between looks broken"
+    },
+    {
+      "zh": "图标极小（小于 16px 变形细节看不清）",
+      "en": "Tiny icons under 16px — the morph is illegible"
+    }
+  ],
+  "tags": [
+    "animation",
+    "icon",
+    "svg",
+    "transition"
+  ],
+  "variants": [
+    {
+      "id": "hamburger-x",
+      "name": {
+        "zh": "汉堡变叉",
+        "en": "Hamburger to X"
+      },
+      "note": {
+        "zh": "中线上移淡出、上下线旋转交叉",
+        "en": "Middle line fades out, outer lines rotate to cross"
+      }
+    },
+    {
+      "id": "plus-x",
+      "name": {
+        "zh": "加号变叉",
+        "en": "Plus to X"
+      },
+      "note": {
+        "zh": "整体旋转 45°，最简单的变形",
+        "en": "A 45° rotation of the whole icon — the easiest morph"
+      }
+    },
+    {
+      "id": "play-pause",
+      "name": {
+        "zh": "播放变暂停",
+        "en": "Play to pause"
+      },
+      "note": {
+        "zh": "三角与双竖条互相变形",
+        "en": "Triangle and double bars morph into each other"
+      }
+    }
+  ],
+  "related": [
+    "button",
+    "menu",
+    "drawer",
+    "press-feedback"
+  ],
+  "demo": {
+    "component": "morphing-icon",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "transform: rotate + translate",
+      "transition 300ms",
+      "opacity: middle line"
+    ],
+    "notes": {
+      "zh": "用三条 span（或 SVG line）加 transition transform 300ms。 汉堡变叉：上线 translateY(6px) rotate(45°)，下线 translateY(-6px) rotate(-45°)， 中线 opacity 0。 aria-label 必须随状态切换； 尊重 prefers-reduced-motion 改为直接切换图形。",
+      "en": "Three spans (or SVG lines) with transition transform 300ms. Hamburger to X — top line translateY(6px) rotate(45°), bottom translateY(-6px) rotate(-45°), middle opacity 0. The aria-label must switch with the state; respect prefers-reduced-motion by swapping the glyph directly."
+    }
+  },
+  "sources": [
+    {
+      "name": "MDN — CSS transitions",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "给导航按钮添加汉堡变叉的图标变形动画。",
+      "en": "Add a hamburger-to-X morph to the nav toggle button."
+    },
+    "design": {
+      "zh": "菜单开合时汉堡三横在 300ms 内变形为关闭叉：上下线旋转交叉、中线淡出；图标占位不变，aria-label 同步切换。",
+      "en": "On menu toggle, the three bars morph into a close X within 300ms — outer lines rotate to cross, the middle fades out; the icon footprint never moves and the aria-label switches in sync."
+    },
+    "implementation": {
+      "zh": "三条绝对定位 span，open 状态：上线 translateY(6px) rotate(45deg)，下线 translateY(-6px) rotate(-45deg)，中线 opacity 0；transition transform+opacity 300ms。按钮加 aria-label={open ? 关闭 : 菜单}。reduced-motion 关闭过渡。",
+      "en": "Three absolutely positioned spans; when open — top translateY(6px) rotate(45deg), bottom translateY(-6px) rotate(-45deg), middle opacity 0; transition transform+opacity 300ms. Set aria-label={open ? Close : Menu}. Disable the transition under reduced-motion."
+    },
+    "agent": {
+      "zh": "为项目导航按钮实现汉堡变叉图标变形。\n\n先检查现有图标体系（SVG 或 iconfont），选择可行的实现层。\n要求：\n- 同一组线条的 rotate/translate/opacity 过渡，300ms\n- aria-label 随状态切换，键盘可触发\n- 图标占位尺寸不变，无布局位移\n- 尊重 prefers-reduced-motion\n- 不引入新依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement a hamburger-to-X morph for the project's nav toggle.\n\nCheck the existing icon system (SVG or iconfont) first and pick a feasible layer.\nRequirements:\n- rotate/translate/opacity transitions on the same strokes, 300ms\n- aria-label switches with state; keyboard operable\n- Fixed icon footprint, no layout shift\n- Respect prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

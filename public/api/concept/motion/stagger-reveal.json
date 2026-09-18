@@ -1,0 +1,143 @@
+{
+  "id": "stagger-reveal",
+  "type": "motion",
+  "status": "published",
+  "name": {
+    "zh": "逐项浮现",
+    "en": "Stagger Reveal"
+  },
+  "aliases": [
+    "逐项浮现",
+    "列表交错出现",
+    "依次淡入",
+    "逐个加载出现",
+    "瀑布式出现"
+  ],
+  "category": [
+    "Motion",
+    "Entrance"
+  ],
+  "description": {
+    "zh": "一组元素不一起出现，而是按固定间隔依次淡入或上浮，像点名一样逐个到位。 间隔 40～120ms 即可让列表\"有秩序地醒来\"， 比整块淡入更有生命感，也比真实逐项加载等待感更低。",
+    "en": "Instead of appearing at once, a group of items enters one after another at a fixed interval — like roll call. A 40–120ms gap lets a list wake up in order: livelier than a single fade, less impatient than true sequential loading."
+  },
+  "use_when": [
+    {
+      "zh": "列表、卡片网格、导航项首次进入视口",
+      "en": "Lists, card grids and nav items entering the viewport"
+    },
+    {
+      "zh": "弹层内的成组内容（菜单项、通知列表）",
+      "en": "Grouped content inside overlays — menus, notification lists"
+    },
+    {
+      "zh": "强调\"一批结果\"的整体感与顺序",
+      "en": "Emphasising order across a batch of results"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "项数很多（超过 15 项，最后一项等到不耐烦）",
+      "en": "Long lists — past ~15 items the tail waits too long"
+    },
+    {
+      "zh": "高频操作界面（延迟即成本）",
+      "en": "High-frequency workflows where every delay is a cost"
+    },
+    {
+      "zh": "间隔过大（超过 150ms 显得拖沓做作）",
+      "en": "Over-long gaps — beyond 150ms it turns theatrical"
+    }
+  ],
+  "tags": [
+    "animation",
+    "stagger",
+    "entrance",
+    "list"
+  ],
+  "variants": [
+    {
+      "id": "fade-up",
+      "name": {
+        "zh": "淡入上浮",
+        "en": "Fade-up"
+      },
+      "note": {
+        "zh": "每项 translateY + opacity，最通用",
+        "en": "translateY + opacity per item — the universal default"
+      }
+    },
+    {
+      "id": "scale-in",
+      "name": {
+        "zh": "缩放浮现",
+        "en": "Scale-in"
+      },
+      "note": {
+        "zh": "从 0.96 放大到 1，卡片感更强",
+        "en": "Grows from 0.96 to 1 — extra card presence"
+      }
+    },
+    {
+      "id": "slide-in",
+      "name": {
+        "zh": "侧向滑入",
+        "en": "Slide-in"
+      },
+      "note": {
+        "zh": "从一侧依次滑入，导航菜单常用",
+        "en": "Slides in from one side — menu favourite"
+      }
+    }
+  ],
+  "related": [
+    "scroll-reveal",
+    "text-reveal",
+    "card",
+    "menu"
+  ],
+  "demo": {
+    "component": "stagger-reveal",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "animation-delay: calc(index * 60ms)",
+      "@keyframes fade-up",
+      "opacity 0 → 1",
+      "animation-fill-mode: both"
+    ],
+    "notes": {
+      "zh": "所有项共用同一组 keyframes，仅 animation-delay 按 index 递增（index * 40～120ms）， 必须配 animation-fill-mode: both 让首项在延迟期保持隐藏。 延迟与时长都要乘速度系数。 尊重 prefers-reduced-motion 时全部直接显示。",
+      "en": "Share one set of keyframes across items and only stagger animation-delay by index (index × 40–120ms), always with animation-fill-mode: both so items stay hidden during their delay. Multiply both delay and duration by the speed factor. With prefers-reduced-motion show everything at once."
+    }
+  },
+  "sources": [
+    {
+      "name": "Material Design — Motion choreography",
+      "url": "https://m2.material.io/design/motion/the-motion-system.html"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "给卡片列表添加逐项浮现效果：进入视口时依次淡入上浮。",
+      "en": "Add a stagger reveal to the card list — items fade up one after another in view."
+    },
+    "design": {
+      "zh": "列表进入视口时，卡片依次淡入上浮，单项 400ms，项间延迟 70ms；整组在 1s 内完成；顺序与阅读顺序一致。",
+      "en": "As the list enters the viewport, cards fade up sequentially — 400ms per item with a 70ms stagger, the whole group done within 1s, matching reading order."
+    },
+    "implementation": {
+      "zh": "统一 keyframes（translateY(16px)+opacity 0 → 正常），每项 style={{ animationDelay: `${i * 0.07}s` }}，animation-fill-mode: both。用 IntersectionObserver 触发一次。reduced-motion 直接显示。",
+      "en": "One shared keyframe (translateY(16px) + opacity 0 → normal), per item style={{ animationDelay: `${i * 0.07}s` }}, fill-mode both. Trigger once with IntersectionObserver. Show immediately under reduced-motion."
+    },
+    "agent": {
+      "zh": "为项目列表页添加逐项浮现入场。\n\n先检查现有入场动画与滚动触发逻辑，保持一致。\n要求：\n- 统一 keyframes，仅用 animation-delay 交错（40～120ms）\n- fill-mode both，避免延迟期闪现\n- 进入视口触发一次，尊重 prefers-reduced-motion\n- 不引入新依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Add a staggered entrance to the project's list pages.\n\nCheck existing entrance animations and scroll-trigger logic first; stay consistent.\nRequirements:\n- Shared keyframes, stagger via animation-delay only (40–120ms)\n- fill-mode both to prevent flashes during delays\n- Trigger once in view; respect prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

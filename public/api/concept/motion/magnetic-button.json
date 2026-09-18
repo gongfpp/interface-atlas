@@ -25,8 +25,7 @@
   "use_when": [
     {
       "zh": "落地页的 CTA、导航图标等少量关键按钮",
-      "en": "A few key targets — landing-page CTAs",
-      "nav icons": null
+      "en": "A few key targets — landing-page CTAs, nav icons"
     },
     {
       "zh": "创意类 / 作品集网站的品牌调性",
@@ -40,8 +39,7 @@
   "avoid_when": [
     {
       "zh": "触屏设备（没有 hover，效果失效）",
-      "en": "Touch devices — no hover",
-      "no effect": null
+      "en": "Touch devices — no hover, no effect"
     },
     {
       "zh": "表单控件与密集操作区（偏移破坏瞄准）",

@@ -1,0 +1,111 @@
+status: published
+name:
+  zh: 提示滑入
+  en: Toast Slide-in
+aliases:
+  - 消息提示滑入
+  - 弹出提示
+  - toast 动画
+  - 通知滑入
+  - 底部提示浮现
+category:
+  - Motion
+  - Feedback
+description:
+  zh: 操作结果以一条短提示从屏幕边缘滑入（常为底部或右上角）， 停留数秒后自动滑出。 动效分三段：滑入—停留—滑出， 方向与来源一致——从边缘来，回边缘去。
+  en: 'A short notice slides in from a screen edge — bottom or top-right — lingers a few seconds, then slides back out. Three phases: enter, hold, exit; it always returns toward the edge it came from.'
+use_when:
+  - zh: 操作成功、失败、已撤销等轻量结果反馈
+    en: Lightweight results — saved, failed, undone
+  - zh: 不打断当前任务的异步完成通知
+    en: Async completions that must not interrupt
+  - zh: 配合撤销操作的短时窗口提示
+    en: Undo windows ("Message archived — Undo")
+avoid_when:
+  - zh: 必须处理的信息（改用 alert 或 modal）
+    en: Must-act information — use an alert or modal
+  - zh: 同屏堆叠多条长文本（读不完即消失）
+    en: Several long toasts stacked — they expire before reading
+  - zh: 关键错误（toast 易被错过，需可恢复方案）
+    en: Critical errors — toasts get missed; make them recoverable
+tags:
+  - animation
+  - toast
+  - feedback
+  - notification
+variants:
+  - id: bottom-up
+    name:
+      zh: 底部浮现
+      en: Bottom-up
+    note:
+      zh: 移动端标准，translateY 滑入
+      en: The mobile standard — slides up via translateY
+  - id: top-right
+    name:
+      zh: 右上角滑入
+      en: Top-right
+    note:
+      zh: 桌面端通知常见，translateX 滑入
+      en: Desktop notification favourite — slides in via translateX
+  - id: auto-dismiss
+    name:
+      zh: 自动消失
+      en: Auto-dismiss
+    note:
+      zh: 停留 3～5s 后反向滑出
+      en: Holds 3–5s then exits in reverse
+related:
+  - toast
+  - alert
+  - undo-action
+  - optimistic-ui
+demo:
+  component: toast-slide-in
+  modes:
+    - default
+    - dark
+    - variants
+implementation:
+  css:
+    - 'transform: translateY/X'
+    - ease-out enter
+    - auto-dismiss timer
+    - 'aria-live: polite'
+  notes:
+    zh: 入场 transform 从 translateY(16px)（或 X 24px）+ opacity 0 到可见，200～250ms ease-out； 停留 3～5s 后反向滑出 150～200ms。 容器加 aria-live="polite" 播报内容； 悬停时暂停倒计时；尊重 prefers-reduced-motion 改为纯淡入淡出。
+    en: Enter with transform from translateY(16px) (or X 24px) plus opacity 0 to visible over 200–250ms ease-out; hold 3–5s, then exit in reverse over 150–200ms. Give the container aria-live="polite", pause the timer on hover, and respect prefers-reduced-motion with a pure crossfade.
+sources:
+  - name: Material Design — Snackbars
+    url: https://m3.material.io/components/snackbars/overview
+prompts:
+  basic:
+    zh: 给保存操作添加 toast 提示：操作成功后从底部滑入，3 秒后自动消失。
+    en: Add a toast for saves — it slides up from the bottom on success and auto-dismisses after 3 seconds.
+  design:
+    zh: 保存成功提示从底部上滑入场 220ms ease-out，停留 3s 后下滑退出；单行文案 + 可选撤销按钮；同时最多一条。
+    en: The success toast slides up from the bottom over 220ms ease-out, holds 3s, then slides back down; single-line copy with an optional undo action; at most one toast at a time.
+  implementation:
+    zh: '入场 transition transform+opacity 220ms ease-out（translateY(16px)→0），用 setTimeout 3s 触发出场（反向 180ms）。容器 position:fixed + aria-live="polite"；hover 时清除计时器，离开时重启；reduced-motion 改 opacity 过渡。'
+    en: 'Enter with transform+opacity transition 220ms ease-out (translateY(16px)→0), a 3s setTimeout triggers the reverse exit (180ms). Fixed-position container with aria-live="polite"; clear the timer on hover and restart on leave; use an opacity-only transition under reduced-motion.'
+  agent:
+    zh: |-
+      为项目操作结果添加 toast 滑入反馈。
+
+      先检查现有 toast/通知组件，复用其队列与计时逻辑。
+      要求：
+      - 入场 200～250ms ease-out，出场反向 150～200ms
+      - 停留 3～5s 自动消失，hover 暂停倒计时
+      - aria-live 播报，reduced-motion 降级为淡入淡出
+      - 不引入新依赖
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Add slide-in toast feedback for operation results.
+
+      Check existing toast/notification components first; reuse their queue and timer logic.
+      Requirements:
+      - Enter 200–250ms ease-out, exit in reverse 150–200ms
+      - Auto-dismiss after 3–5s; pause the countdown on hover
+      - aria-live announcements; crossfade fallback under reduced-motion
+      - No new dependencies
+      Run existing checks when done and list modified files.

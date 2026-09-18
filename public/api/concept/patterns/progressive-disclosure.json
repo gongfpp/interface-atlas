@@ -26,8 +26,7 @@
   "use_when": [
     {
       "zh": "设置页中低频的高级选项",
-      "en": "Advanced",
-      "low-frequency options on settings pages": null
+      "en": "Advanced, low-frequency options on settings pages"
     },
     {
       "zh": "表单中选填或仅在特定条件下需要的字段",
@@ -67,8 +66,7 @@
       },
       "note": {
         "zh": "折叠面板承载次要信息，箭头指示状态",
-        "en": "A collapsed panel holds secondary details",
-        "arrow shows state": null
+        "en": "A collapsed panel holds secondary details, arrow shows state"
       }
     },
     {

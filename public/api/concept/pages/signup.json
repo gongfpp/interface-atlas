@@ -77,8 +77,7 @@
       },
       "note": {
         "zh": "左侧讲注册能得到什么，右侧表单",
-        "en": "Left panel sells the value",
-        "right holds the form": null
+        "en": "Left panel sells the value, right holds the form"
       }
     },
     {
@@ -89,8 +88,7 @@
       },
       "note": {
         "zh": "第三方注册置顶，一键开通",
-        "en": "OAuth buttons first",
-        "one-click provisioning": null
+        "en": "OAuth buttons first, one-click provisioning"
       }
     },
     {
@@ -101,8 +99,7 @@
       },
       "note": {
         "zh": "分步收集信息，边注册边 onboarding",
-        "en": "Steps collect info",
-        "onboarding while signing up": null
+        "en": "Steps collect info, onboarding while signing up"
       }
     }
   ],

@@ -27,14 +27,11 @@
   "use_when": [
     {
       "zh": "潮流 玩具 派对 音乐节等需要欢乐能量的场景",
-      "en": "Streetwear",
-      "toys": null,
-      "parties and festivals that need joyful energy": null
+      "en": "Streetwear, toys, parties and festivals that need joyful energy"
     },
     {
       "zh": "儿童与创意教育产品，热闹无攻击性",
-      "en": "Children and creative education products — festive",
-      "non-threatening": null
+      "en": "Children and creative education products — festive, non-threatening"
     },
     {
       "zh": "短期营销活动，需要一眼难忘的视觉记忆点",
@@ -48,8 +45,7 @@
     },
     {
       "zh": "品牌调性高级 克制 或面向严肃决策者",
-      "en": "Premium",
-      "restrained brands or serious decision-makers": null
+      "en": "Premium, restrained brands or serious decision-makers"
     },
     {
       "zh": "信息密集界面，装饰密度会淹没功能",
@@ -72,9 +68,7 @@
       },
       "note": {
         "zh": "Ettore Sottsass 式黑白底 大色块 波浪",
-        "en": "Ettore Sottsass — black-and-white ground",
-        "big blobs": null,
-        "squiggles": null
+        "en": "Ettore Sottsass — black-and-white ground, big blobs, squiggles"
       }
     },
     {
@@ -96,8 +90,7 @@
       },
       "note": {
         "zh": "网页化改良，留白增多 描边变细",
-        "en": "Web-adapted — more whitespace",
-        "thinner outlines": null
+        "en": "Web-adapted — more whitespace, thinner outlines"
       }
     }
   ],

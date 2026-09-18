@@ -26,8 +26,7 @@
   "use_when": [
     {
       "zh": "推广单一产品或活动、追求注册/购买转化",
-      "en": "Promoting one product or campaign",
-      "chasing signups or sales": null
+      "en": "Promoting one product or campaign, chasing signups or sales"
     },
     {
       "zh": "来自广告或外链的访客需要快速理解价值",
@@ -67,8 +66,7 @@
       },
       "note": {
         "zh": "大标题 + 主图 + 单一 CTA，最通用",
-        "en": "Big headline + visual + one CTA",
-        "the general default": null
+        "en": "Big headline + visual + one CTA, the general default"
       }
     },
     {
@@ -90,8 +88,7 @@
       },
       "note": {
         "zh": "一屏一个论点，逐屏滚动说服",
-        "en": "One point per screen",
-        "scroll-driven persuasion": null
+        "en": "One point per screen, scroll-driven persuasion"
       }
     },
     {
@@ -102,8 +99,7 @@
       },
       "note": {
         "zh": "只有 Hero + 邮箱收集，产品未上线时用",
-        "en": "Hero + email capture only",
-        "for pre-launch": null
+        "en": "Hero + email capture only, for pre-launch"
       }
     }
   ],

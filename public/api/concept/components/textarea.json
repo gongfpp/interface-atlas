@@ -25,8 +25,7 @@
   "use_when": [
     {
       "zh": "收集简介、备注、留言等多段落长文本",
-      "en": "Long-form text like bios",
-      "notes and messages": null
+      "en": "Long-form text like bios, notes and messages"
     },
     {
       "zh": "用户需要换行组织内容结构",
@@ -87,8 +86,7 @@
       },
       "note": {
         "zh": "右下角实时字数，超限变红",
-        "en": "Live counter bottom-right",
-        "red past the limit": null
+        "en": "Live counter bottom-right, red past the limit"
       }
     }
   ],

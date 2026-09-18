@@ -25,8 +25,7 @@
   "use_when": [
     {
       "zh": "需要用户主动触发一个明确动作（提交、创建、确认）",
-      "en": "A user-initiated action such as submit",
-      "create or confirm": null
+      "en": "A user-initiated action such as submit, create or confirm"
     },
     {
       "zh": "同一区域存在主次多个操作，需要视觉分层",
@@ -76,8 +75,7 @@
       },
       "note": {
         "zh": "描边样式，与主操作并列",
-        "en": "Outlined style",
-        "paired with the primary": null
+        "en": "Outlined style, paired with the primary"
       }
     },
     {
@@ -88,8 +86,7 @@
       },
       "note": {
         "zh": "无边框纯文字，弱化视觉重量",
-        "en": "Borderless text-only",
-        "minimal visual weight": null
+        "en": "Borderless text-only, minimal visual weight"
       }
     },
     {

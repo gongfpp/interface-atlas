@@ -1,0 +1,171 @@
+{
+  "id": "popover",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "气泡卡片",
+    "en": "Popover"
+  },
+  "aliases": [
+    "气泡卡片",
+    "弹出卡片",
+    "浮层",
+    "气泡框",
+    "弹出面板",
+    "点击弹出的小卡片",
+    "帮助气泡"
+  ],
+  "category": [
+    "Overlay"
+  ],
+  "description": {
+    "zh": "点击触发元素后在其旁边弹出的非模态浮层，可承载文字说明、小型表单、日期选择等中等复杂内容。 无遮罩、不阻断页面其余部分，点击外部区域或 Esc 即关闭。",
+    "en": "A non-modal layer that pops up beside its trigger on click, carrying medium-complex content such as text, a mini-form or a date picker. No backdrop and no blocking of the rest of the page; clicking outside or pressing Esc closes it."
+  },
+  "use_when": [
+    {
+      "zh": "点击后需要承载可交互内容（小表单、过滤、颜色选择）",
+      "en": "Interactive content on click (mini-form, filters, color picker)"
+    },
+    {
+      "zh": "补充说明的信息量超过一行 tooltip",
+      "en": "Explanations longer than a one-line tooltip"
+    },
+    {
+      "zh": "需要保持底层页面可见且可用",
+      "en": "The page must stay visible and usable"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "只有一句话说明（改用 tooltip）",
+      "en": "A one-line hint — use a tooltip"
+    },
+    {
+      "zh": "强制确认或长流程（改用 modal）",
+      "en": "Forced confirmation or long flows — use a modal"
+    },
+    {
+      "zh": "内容需要大量滚动（改用 drawer）",
+      "en": "Scroll-heavy content — use a drawer"
+    }
+  ],
+  "tags": [
+    "overlay",
+    "container",
+    "click",
+    "floating"
+  ],
+  "variants": [
+    {
+      "id": "plain",
+      "name": {
+        "zh": "纯文本",
+        "en": "Plain"
+      },
+      "note": {
+        "zh": "帮助说明文字，最轻量",
+        "en": "Help text only, the lightest"
+      }
+    },
+    {
+      "id": "interactive",
+      "name": {
+        "zh": "交互式",
+        "en": "Interactive"
+      },
+      "note": {
+        "zh": "内含输入框、按钮等可操作元素",
+        "en": "Contains inputs and buttons"
+      }
+    },
+    {
+      "id": "media",
+      "name": {
+        "zh": "富内容",
+        "en": "Rich"
+      },
+      "note": {
+        "zh": "带图片或结构化信息卡",
+        "en": "Image or structured info card"
+      }
+    }
+  ],
+  "anatomy": [
+    "触发元素（Trigger）",
+    "浮层面板（Panel）",
+    "箭头（Arrow）",
+    "关闭按钮（Close）"
+  ],
+  "related": [
+    "tooltip",
+    "modal",
+    "drawer",
+    "dropdown"
+  ],
+  "demo": {
+    "component": "popover",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "compare": {
+    "group": "overlay-container",
+    "dimensions": {
+      "打断程度": {
+        "zh": "低，无遮罩不阻断页面",
+        "en": "Low — no backdrop, page stays live"
+      },
+      "内容容量": {
+        "zh": "中，小型交互内容",
+        "en": "Medium — small interactive content"
+      },
+      "移动端友好": {
+        "zh": "差，锚定位置易溢出屏幕",
+        "en": "Poor — anchored position overflows easily"
+      }
+    }
+  },
+  "implementation": {
+    "css": [
+      "position: absolute",
+      "z-index",
+      "box-shadow",
+      "transform-origin"
+    ],
+    "notes": {
+      "zh": "以触发元素为锚 absolute 定位（或用 floating-ui 思路测量并翻转防溢出）。 点击外部关闭：在 document 上监听 pointerdown 判断 target 是否在浮层内；Esc 同样关闭，焦点移入浮层。 入场 scale 0.95→1 加淡入，150~200ms；尊重 prefers-reduced-motion。",
+      "en": "Anchor to the trigger with absolute positioning (or measure and flip like floating-ui to prevent overflow). Close on outside click: listen for pointerdown on document and check the target; Esc closes too and focus moves into the panel. Enter with scale 0.95→1 plus fade, 150–200ms; respect prefers-reduced-motion."
+    }
+  },
+  "sources": [
+    {
+      "name": "MDN — Popover API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Popover_API"
+    },
+    {
+      "name": "Apple HIG — Popovers",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/popovers"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个气泡卡片（Popover）组件：点击按钮在按钮旁弹出小卡片，点击外部区域关闭。",
+      "en": "Create a Popover component: clicking a button opens a small card next to it, clicking outside closes it."
+    },
+    "design": {
+      "zh": "创建 Popover 组件。要求：浮层卡片出现在触发元素下方（带小箭头），圆角、边框、大阴影； 标题 + 正文 + 可选操作区；入场轻微放大淡入；点击外部与 Esc 关闭；深浅色主题一致。",
+      "en": "Create a Popover. Requirements: the card appears below the trigger (with a small arrow), rounded, bordered, heavily shadowed; title, body and optional action row; subtle zoom-and-fade entrance; closes on outside click and Esc; consistent light/dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Popover：触发元素 relative 包裹，浮层 absolute top-full； open 受控，useEffect 在 document 监听 pointerdown，target 不在容器内则关闭， 监听 keydown Esc 关闭；入场 keyframes（scale + opacity，时长乘 var(--demo-speed, 1)）； 尊重 prefers-reduced-motion。",
+      "en": "React + Tailwind Popover: relative wrapper around the trigger, absolute top-full panel; controlled open state; useEffect listens for pointerdown on document and closes when the target is outside, plus Esc on keydown; enter keyframes (scale + opacity) scaled by var(--demo-speed, 1); respect prefers-reduced-motion."
+    },
+    "agent": {
+      "zh": "在当前项目中实现气泡卡片（Popover）组件。\n\n先检查现有组件体系与 Design Token，优先复用现有的表面色、圆角与阴影变量。\n用途：帮助说明与小型操作面板。\n要求：\n- 锚定触发元素，贴近屏幕边缘时自动翻转\n- 点击外部与 Esc 关闭，焦点管理正确\n- 入场动画轻微，尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement a Popover component in the current project.\n\nInspect the existing component system and design tokens first; reuse existing\nsurface, radius and shadow variables.\nUsage: help explanations and small action panels.\nRequirements:\n- Anchored to the trigger, flips near screen edges\n- Closes on outside click and Esc, with correct focus management\n- Subtle enter animation, respecting prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

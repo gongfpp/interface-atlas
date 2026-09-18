@@ -27,10 +27,7 @@
   "use_when": [
     {
       "zh": "内容型产品：长文 数字杂志 作品集 品牌刊物",
-      "en": "Content products — long-form",
-      "digital magazines": null,
-      "portfolios": null,
-      "brand journals": null
+      "en": "Content products — long-form, digital magazines, portfolios, brand journals"
     },
     {
       "zh": "品牌想传达文化质感与文字的尊严",
@@ -71,10 +68,7 @@
       },
       "note": {
         "zh": "报纸多栏密排，黑白摄影与细栏线",
-        "en": "Newspaper columns",
-        "dense setting": null,
-        "B&W photography": null,
-        "hairline rules": null
+        "en": "Newspaper columns, dense setting, B&W photography, hairline rules"
       }
     },
     {
@@ -85,9 +79,7 @@
       },
       "note": {
         "zh": "大图大字留白多，时尚刊物气质",
-        "en": "Big imagery",
-        "display type": null,
-        "generous whitespace — fashion monthly": null
+        "en": "Big imagery, display type, generous whitespace — fashion monthly"
       }
     },
     {

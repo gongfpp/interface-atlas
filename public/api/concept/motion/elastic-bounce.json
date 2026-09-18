@@ -1,0 +1,142 @@
+{
+  "id": "elastic-bounce",
+  "type": "motion",
+  "status": "published",
+  "name": {
+    "zh": "弹性回跳",
+    "en": "Elastic Bounce"
+  },
+  "aliases": [
+    "弹性回跳",
+    "果冻效果",
+    "回弹动画",
+    "弹簧动效",
+    "Q弹效果"
+  ],
+  "category": [
+    "Motion",
+    "Personality"
+  ],
+  "description": {
+    "zh": "元素到位后不是稳稳停住，而是带一两次越过后回弹的振荡， 像有弹性地\"Q 一下\"。 给界面注入物理感和俏皮感， 常用于成功状态、奖励时刻或品牌化入场。",
+    "en": "The element overshoots its resting point and oscillates once or twice before settling — a springy \"boing\". It injects physics and playfulness, best saved for success states, reward moments and branded entrances."
+  },
+  "use_when": [
+    {
+      "zh": "成功、奖励、升级等正向关键时刻",
+      "en": "Positive peaks — success, rewards, level-ups"
+    },
+    {
+      "zh": "品牌调性活泼，需要记忆点",
+      "en": "Playful brands that want a signature moment"
+    },
+    {
+      "zh": "拖拽松手后的回弹落位",
+      "en": "Snap-back after releasing a drag"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "高频操作按钮（每次都弹，很快变烦）",
+      "en": "High-frequency buttons — the bounce wears out fast"
+    },
+    {
+      "zh": "严肃场景（支付、医疗、法律）",
+      "en": "Serious contexts — payments, healthcare, legal"
+    },
+    {
+      "zh": "弹跳幅度过大（超过元素尺寸 10% 显得失控）",
+      "en": "Oversized bounce — past ~10% of size it looks broken"
+    }
+  ],
+  "tags": [
+    "animation",
+    "spring",
+    "bounce",
+    "personality"
+  ],
+  "variants": [
+    {
+      "id": "overshoot",
+      "name": {
+        "zh": "过冲回落",
+        "en": "Overshoot"
+      },
+      "note": {
+        "zh": "cubic-bezier(0.34, 1.56, 0.64, 1) 一次过冲，最简",
+        "en": "One overshoot via cubic-bezier(0.34, 1.56, 0.64, 1) — simplest"
+      }
+    },
+    {
+      "id": "keyframe-jelly",
+      "name": {
+        "zh": "果冻抖动",
+        "en": "Jelly"
+      },
+      "note": {
+        "zh": "keyframes 缩放 1→1.2→0.9→1 连续振荡",
+        "en": "Keyframed scale 1→1.2→0.9→1 for continuous wobble"
+      }
+    },
+    {
+      "id": "spring-drag",
+      "name": {
+        "zh": "拖拽回弹",
+        "en": "Spring drag"
+      },
+      "note": {
+        "zh": "松手后带回弹归位，物理感最强",
+        "en": "Snaps back with spring physics on release"
+      }
+    }
+  ],
+  "related": [
+    "press-feedback",
+    "magnetic-button",
+    "confetti",
+    "card"
+  ],
+  "demo": {
+    "component": "elastic-bounce",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "@keyframes overshoot",
+      "transform-origin: center"
+    ],
+    "notes": {
+      "zh": "最简法用带 y>1 的 cubic-bezier(0.34, 1.56, 0.64, 1)（ease-out-back）让过渡末段越过终点再回来； 多次振荡用 keyframes 显式写缩放序列。 transform-origin 保持居中， 幅度控制在元素尺寸 10% 以内； 尊重 prefers-reduced-motion 直接落到终态。",
+      "en": "Simplest recipe — a cubic-bezier with y>1, (0.34, 1.56, 0.64, 1), lets the transition overshoot the end and settle back; multi-oscillation needs explicit keyframed scale sequences. Keep transform-origin centered and the amplitude within 10% of the element's size; with prefers-reduced-motion land on the final state directly."
+    }
+  },
+  "sources": [
+    {
+      "name": "MDN — easing functions",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "给成功状态添加弹性回跳动画：图标出现时 Q 弹一下。",
+      "en": "Add an elastic bounce to the success state — the icon lands with a springy pop."
+    },
+    "design": {
+      "zh": "成功徽章出现时缩放从 0.6 弹到 1，带一次过冲回落，450ms；幅度不超过尺寸 10%；只在成功时刻触发。",
+      "en": "The success badge scales from 0.6 to 1 with a single overshoot over 450ms; amplitude stays under 10% of size; triggered only at the moment of success."
+    },
+    "implementation": {
+      "zh": "transition/animation 用 cubic-bezier(0.34, 1.56, 0.64, 1)；果冻版写 keyframes scale 1→1.08→0.96→1， 总时长 400～600ms。注意与 opacity 组合时过冲只作用于 scale。reduced-motion 直接显示终态。",
+      "en": "Use cubic-bezier(0.34, 1.56, 0.64, 1) for transitions/animations; the jelly variant writes keyframes scale 1→1.08→0.96→1 over 400–600ms total. When combined with opacity, let only scale overshoot. Land on the final state directly under reduced-motion."
+    },
+    "agent": {
+      "zh": "为项目成功/奖励时刻添加弹性回跳动效。\n\n先检查现有动效令牌与缓动变量，避免私加曲线。\n要求：\n- 过冲幅度 ≤ 元素尺寸 10%，总时长 ≤ 600ms\n- 只用于低频正向时刻，不挂在常规按钮上\n- transform-origin 居中，不影响布局\n- 尊重 prefers-reduced-motion\n- 不引入新依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Add an elastic bounce to success and reward moments in the project.\n\nCheck existing motion tokens and easing variables first; don't invent private curves.\nRequirements:\n- Overshoot within 10% of element size, total ≤ 600ms\n- Only on low-frequency positive moments, never on routine buttons\n- Centered transform-origin, no layout impact\n- Respect prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

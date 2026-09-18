@@ -25,9 +25,7 @@
   "use_when": [
     {
       "zh": "删除、归档、清空等破坏性但可恢复的操作",
-      "en": "Destructive but recoverable actions — delete",
-      "archive": null,
-      "clear": null
+      "en": "Destructive but recoverable actions — delete, archive, clear"
     },
     {
       "zh": "操作频繁，弹窗确认会严重拖慢节奏",
@@ -41,13 +39,11 @@
   "avoid_when": [
     {
       "zh": "操作不可逆（永久删除、对外发送），撤销条会给出错误安全感",
-      "en": "Irreversible actions (permanent delete",
-      "send) — undo creates false safety": null
+      "en": "Irreversible actions (permanent delete, send) — undo creates false safety"
     },
     {
       "zh": "操作影响重大且低频，正式确认对话框更合适",
-      "en": "Major",
-      "infrequent actions deserve a real confirmation dialog": null
+      "en": "Major, infrequent actions deserve a real confirmation dialog"
     },
     {
       "zh": "操作在后台静默完成，用户感知不到结果",
@@ -69,8 +65,7 @@
       },
       "note": {
         "zh": "底部条 + 倒计时，Gmail 删除邮件的经典样式",
-        "en": "Bottom bar with countdown",
-        "the classic Gmail archive pattern": null
+        "en": "Bottom bar with countdown, the classic Gmail archive pattern"
       }
     },
     {

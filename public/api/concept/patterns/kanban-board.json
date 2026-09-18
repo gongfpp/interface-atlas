@@ -1,0 +1,161 @@
+{
+  "id": "kanban-board",
+  "type": "patterns",
+  "status": "published",
+  "name": {
+    "zh": "看板",
+    "en": "Kanban Board"
+  },
+  "aliases": [
+    "看板",
+    "任务看板",
+    "kanban",
+    "拖拽看板",
+    "任务面板"
+  ],
+  "category": [
+    "Layout",
+    "Workflow"
+  ],
+  "description": {
+    "zh": "按状态分列的任务面板—— 通常\"待办 / 进行中 / 已完成\"三列， 卡片随状态推进在列间移动。 列的位置即流程阶段， 卡片的所在即任务状态， 一眼看清全局进展与瓶颈列。",
+    "en": "A column-per-status task board — usually \"To do / In progress / Done\" — where cards move between columns as work advances. Column position is the process stage, a card's home is its status: the whole flow and its bottleneck column are visible at a glance."
+  },
+  "use_when": [
+    {
+      "zh": "流程稳定、状态有限的任务管理（开发、招聘、内容生产）",
+      "en": "Task management with stable, limited statuses — dev, hiring, content pipelines"
+    },
+    {
+      "zh": "团队需要一眼看出瓶颈（哪列堆积）",
+      "en": "Teams that need bottlenecks visible — which column is piling up"
+    },
+    {
+      "zh": "个人项目按阶段推进的轻量管理",
+      "en": "Lightweight personal pipelines advanced by stage"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "状态维度超过 4～5 列（认知负担陡增）",
+      "en": "More than 4–5 status columns — cognitive load explodes"
+    },
+    {
+      "zh": "任务间有复杂依赖与层级（用甘特或树状）",
+      "en": "Complex dependencies and hierarchies — use a Gantt or tree"
+    },
+    {
+      "zh": "纯时间维度的排程（日历更合适）",
+      "en": "Scheduling purely by time — a calendar fits better"
+    }
+  ],
+  "tags": [
+    "kanban",
+    "board",
+    "workflow",
+    "tasks"
+  ],
+  "variants": [
+    {
+      "id": "three-column",
+      "name": {
+        "zh": "经典三列",
+        "en": "Classic three-column"
+      },
+      "note": {
+        "zh": "待办/进行中/已完成，最通用",
+        "en": "To do / In progress / Done — the universal default"
+      }
+    },
+    {
+      "id": "wip-limit",
+      "name": {
+        "zh": "WIP 限制",
+        "en": "WIP limit"
+      },
+      "note": {
+        "zh": "列头标注并发上限，超限高亮警示",
+        "en": "Column header caps concurrent cards; overflow highlights"
+      }
+    },
+    {
+      "id": "swimlanes",
+      "name": {
+        "zh": "泳道",
+        "en": "Swimlanes"
+      },
+      "note": {
+        "zh": "列内按负责人或优先级横向分层",
+        "en": "Horizontal lanes inside columns by owner or priority"
+      }
+    }
+  ],
+  "anatomy": [
+    "列（Column）：对应一个状态，含列头与计数",
+    "列头（Column header）：状态名 + 卡片数 / WIP 上限",
+    "卡片（Card）：任务标题、标签、负责人等摘要",
+    "添加入口（Add action）：新建任务（通常在列尾）"
+  ],
+  "applicable_styles": [
+    "minimalism",
+    "bento-grid"
+  ],
+  "applicable_components": [],
+  "applicable_pages": [
+    "dashboard"
+  ],
+  "related": [
+    "drag-and-drop-sorting",
+    "optimistic-ui",
+    "dashboard",
+    "master-detail"
+  ],
+  "demo": {
+    "component": "kanban-board",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "flex/grid columns",
+      "drag-and-drop or button moves",
+      "data-status per column",
+      "optimistic move"
+    ],
+    "notes": {
+      "zh": "结构为横向 flex 的列容器 + 纵向卡片列表；移动卡片本质是状态字段的变更（乐观更新，先移动后同步）。 拖拽排序用原生 DnD 或指针事件， 简单场景用左右移动按钮即可。 列头显示计数；注意空列的 drop 目标高度兜底， 键盘用户需要按钮替代拖拽。",
+      "en": "Structure — a horizontal flex of column containers, each holding a vertical card list; moving a card is really a status-field change (optimistic update: move first, sync after). Drag ordering uses native DnD or pointer events; simple cases can settle for left/right move buttons. Show counts in headers; give empty columns a minimum drop-target height and keyboard users a button alternative to dragging."
+    }
+  },
+  "sources": [
+    {
+      "name": "Apple HIG — Drag and drop",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/drag-and-drop"
+    },
+    {
+      "name": "Material Design — Cards",
+      "url": "https://m3.material.io/components/cards/overview"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个三列看板（待办/进行中/已完成），卡片可在列间移动。",
+      "en": "Create a three-column kanban board (To do / In progress / Done) with cards movable between columns."
+    },
+    "design": {
+      "zh": "三列等宽看板，列头含状态名与计数；卡片含标题与标签，可通过按钮在相邻列间移动，移动即时生效；空列保持可放置高度。",
+      "en": "An equal-width three-column board whose headers show status name and count; cards carry a title and tags and move between adjacent columns via buttons, applying instantly; empty columns keep a droppable minimum height."
+    },
+    "implementation": {
+      "zh": "React：tasks 数组按 status 分组渲染三列；移动按钮更新对应 task.status（乐观更新，无需请求等待）。列容器 min-h 兜底空列。如需拖拽排序，用原生 dragstart/dragover/drop 记录目标列与位置。",
+      "en": "React — group a tasks array by status to render three columns; the move buttons update task.status (optimistic, no request wait). Give column containers a min-h so empty columns stay droppable. For drag ordering, use native dragstart/dragover/drop to capture the target column and position."
+    },
+    "agent": {
+      "zh": "在当前项目中实现一个任务看板。\n\n先检查现有状态管理与卡片组件，复用既有令牌。\n要求：\n- 三列（待办/进行中/已完成），列头带计数\n- 卡片可在列间移动（按钮或拖拽），乐观更新即时生效\n- 键盘可操作（按钮替代拖拽），空列可放置\n- 支持 Dark Mode\n- 不新增不必要的依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a task kanban board in the current project.\n\nCheck the existing state management and card components first; reuse current tokens.\nRequirements:\n- Three columns (To do / In progress / Done) with counts in headers\n- Cards move between columns (buttons or drag) with instant optimistic updates\n- Keyboard operable (buttons as drag alternative), empty columns droppable\n- Dark mode support\n- No unnecessary dependencies\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

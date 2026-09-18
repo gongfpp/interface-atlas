@@ -1,0 +1,113 @@
+status: published
+name:
+  zh: 共享元素转场
+  en: Shared Element Transition
+aliases:
+  - 共享元素转场
+  - 元素飞入详情
+  - 卡片放大成页面
+  - 无缝转场
+  - hero 动画
+category:
+  - Motion
+  - Transition
+description:
+  zh: 列表里的缩略图或卡片在打开详情时"飞"成详情页主图—— 同一个元素跨两个视图连续运动， 而不是各自出现。 元素身份在转场中保持连续， 是最强的上下文延续。
+  en: 'A thumbnail in a list "flies" into the hero of the detail view — the same element moving continuously across two states instead of both views fading. Identity stays continuous through the transition: the strongest form of context preservation.'
+use_when:
+  - zh: 列表 → 详情（图片、卡片、商品）
+    en: List to detail — photos, cards, products
+  - zh: 需要强调"还是那件东西"的选中场景
+    en: Selection flows where "it's the same item" matters
+  - zh: 媒体浏览、相册、文件预览
+    en: Media browsing — galleries, files, previews
+avoid_when:
+  - zh: 两视图布局差异过大（飞行轨迹扭曲难看）
+    en: Very different layouts — the flight path distorts
+  - zh: 低端设备上的大图跨页动画（掉帧破坏错觉）
+    en: Large media transitions on weak devices — jank breaks the illusion
+  - zh: 转场时间超过 400ms（用户开始等）
+    en: Durations past 400ms — users start waiting
+tags:
+  - animation
+  - transition
+  - shared-element
+  - navigation
+variants:
+  - id: container-transform
+    name:
+      zh: 容器变换
+      en: Container transform
+    note:
+      zh: 卡片整体放大为详情容器，Material 3 标准
+      en: The card grows into the detail container — Material 3 standard
+  - id: hero-image
+    name:
+      zh: 主图飞行
+      en: Hero image
+    note:
+      zh: 只有图片飞行，其余内容淡入
+      en: Only the image flies; the rest fades in
+  - id: fade-fallback
+    name:
+      zh: 退化淡切
+      en: Fallback
+    note:
+      zh: 不支持时退化为淡入淡出
+      en: Falls back to a crossfade when unsupported
+related:
+  - page-transition
+  - modal
+  - card
+  - master-detail
+demo:
+  component: shared-element-transition
+  modes:
+    - default
+    - dark
+    - variants
+implementation:
+  css:
+    - FLIP technique
+    - 'view-transition-name'
+    - getBoundingClientRect
+    - transform-only
+  notes:
+    zh: FLIP 技术——先记录元素起始 getBoundingClientRect，视图切换后再测终点， 反向 transform 摆回起点， 再过渡到 0。 Web 现代法可用 View Transitions API（document.startViewTransition + view-transition-name）。 时长 250～400ms； 尊重 prefers-reduced-motion 退化为直接切换。
+    en: FLIP — record the element's first getBoundingClientRect, switch views, measure the last rect, invert the transform back to the start, then play to zero. Modern web option — the View Transitions API (document.startViewTransition + view-transition-name). Keep it to 250–400ms; with prefers-reduced-motion switch instantly.
+sources:
+  - name: Material Design — Container transform
+    url: https://m3.material.io/styles/motion/transitions/transition-patterns
+prompts:
+  basic:
+    zh: 给图片列表添加共享元素转场：点缩略图飞入放大为详情主图。
+    en: Add a shared element transition to the gallery — a thumbnail flies into the enlarged detail hero.
+  design:
+    zh: 点击卡片后，卡片连续放大为详情容器（350ms），其余详情内容随后淡入；关闭时反向缩回原位；转场期间背景列表淡化。
+    en: On tap, the card grows continuously into the detail container (350ms) while the remaining detail content fades in after; closing reverses the flight back to the original spot; the list dims behind the transition.
+  implementation:
+    zh: 'FLIP：点击时记录卡片 rect → 渲染详情层 → useLayoutEffect 测详情 rect → 计算 dx/dy/scale 反向 transform → 强制 reflow → 过渡到 none（350ms）。关闭反向。或用 View Transitions API 给元素加 view-transition-name。reduced-motion 直接切换。'
+    en: 'FLIP — capture the card rect on tap, render the detail layer, measure the detail rect in useLayoutEffect, compute dx/dy/scale as an inverted transform, force a reflow, then transition to none (350ms). Reverse on close. Alternatively use the View Transitions API with view-transition-name. Switch instantly under reduced-motion.'
+  agent:
+    zh: |-
+      为项目列表到详情添加共享元素转场。
+
+      先检查路由/视图切换方式与现有转场实现，选择 FLIP 或 View Transitions。
+      要求：
+      - 元素连续运动，250～400ms，只动 transform/opacity
+      - 关闭时原路返回；不支持时退化为淡切
+      - 不破坏滚动位置与焦点管理
+      - 尊重 prefers-reduced-motion
+      - 不引入新依赖
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Add a shared element transition from list to detail in the project.
+
+      Check the routing/view switching and existing transitions first; pick FLIP or View Transitions.
+      Requirements:
+      - Continuous element motion, 250–400ms, transform/opacity only
+      - Return via the same path on close; crossfade fallback when unsupported
+      - Preserve scroll position and focus management
+      - Respect prefers-reduced-motion
+      - No new dependencies
+      Run existing checks when done and list modified files.

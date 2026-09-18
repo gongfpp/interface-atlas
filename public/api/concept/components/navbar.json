@@ -25,8 +25,7 @@
   "use_when": [
     {
       "zh": "入口少而扁平的官网、产品站、文档站",
-      "en": "Marketing",
-      "product and docs sites with few flat destinations": null
+      "en": "Marketing, product and docs sites with few flat destinations"
     },
     {
       "zh": "品牌与全局动作需要常驻首屏",
@@ -65,9 +64,7 @@
       },
       "note": {
         "zh": "品牌左、链接中、动作右",
-        "en": "Brand left",
-        "links center": null,
-        "actions right": null
+        "en": "Brand left, links center, actions right"
       }
     },
     {
@@ -78,8 +75,7 @@
       },
       "note": {
         "zh": "链接绝对居中，Apple 官网风格",
-        "en": "Absolutely centered links",
-        "Apple-style": null
+        "en": "Absolutely centered links, Apple-style"
       }
     },
     {
@@ -90,8 +86,7 @@
       },
       "note": {
         "zh": "压在首屏大图上，滚动后加底色",
-        "en": "Floats over the hero",
-        "gains a background on scroll": null
+        "en": "Floats over the hero, gains a background on scroll"
       }
     }
   ],

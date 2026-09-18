@@ -31,8 +31,7 @@
     },
     {
       "zh": "图标 信息图 后台界面，要求一眼识别 快速扫读",
-      "en": "Icons",
-      "infographics and dashboards that must scan instantly": null
+      "en": "Icons, infographics and dashboards that must scan instantly"
     },
     {
       "zh": "移动端小屏幕，装饰会挤占内容空间",
@@ -46,8 +45,7 @@
     },
     {
       "zh": "品牌需要温度 情绪与精致感",
-      "en": "Brands that need warmth",
-      "emotion or crafted refinement": null
+      "en": "Brands that need warmth, emotion or crafted refinement"
     },
     {
       "zh": "大面积灰底上加细线按钮，可点性暗示不足（ Flat 2.0 随之出现）",
@@ -70,8 +68,7 @@
       },
       "note": {
         "zh": "微软 Metro，大色块磁贴与矩形至上",
-        "en": "Microsoft Metro — big color tiles",
-        "rectangles all the way": null
+        "en": "Microsoft Metro — big color tiles, rectangles all the way"
       }
     },
     {

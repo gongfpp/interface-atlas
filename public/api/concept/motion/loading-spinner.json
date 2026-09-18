@@ -25,9 +25,7 @@
   "use_when": [
     {
       "zh": "1～5 秒的短时等待（请求、提交、刷新）",
-      "en": "Short waits of 1–5 seconds — requests",
-      "submits": null,
-      "refreshes": null
+      "en": "Short waits of 1–5 seconds — requests, submits, refreshes"
     },
     {
       "zh": "按钮内联表示\"点击已生效，处理中\"",

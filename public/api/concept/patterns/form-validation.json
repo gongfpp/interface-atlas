@@ -25,14 +25,11 @@
   "use_when": [
     {
       "zh": "注册、登录、结账等字段正确性直接影响流程的表单",
-      "en": "Signup",
-      "login and checkout flows where correctness gates progress": null
+      "en": "Signup, login and checkout flows where correctness gates progress"
     },
     {
       "zh": "字段有明确格式约束（邮箱、手机号、密码规则）",
-      "en": "Fields with clear format rules (email",
-      "phone": null,
-      "password)": null
+      "en": "Fields with clear format rules (email, phone, password)"
     },
     {
       "zh": "表单较长，用户需要在提交前发现并修正问题",
@@ -42,8 +39,7 @@
   "avoid_when": [
     {
       "zh": "用户还在输入中途就狂报错，造成干扰",
-      "en": "Aggressively flagging mid-typing",
-      "before input is plausibly complete": null
+      "en": "Aggressively flagging mid-typing, before input is plausibly complete"
     },
     {
       "zh": "纯偏好类选项没有对错，无需校验",
@@ -69,8 +65,7 @@
       },
       "note": {
         "zh": "离开字段时检查，干扰最小",
-        "en": "Validate on leaving the field",
-        "least intrusive": null
+        "en": "Validate on leaving the field, least intrusive"
       }
     },
     {
@@ -81,8 +76,7 @@
       },
       "note": {
         "zh": "输入即校验，反馈最快，注意时机",
-        "en": "Validate as you type",
-        "fastest but watch the timing": null
+        "en": "Validate as you type, fastest but watch the timing"
       }
     },
     {
@@ -135,8 +129,7 @@
     "dimensions": {
       "打断程度": {
         "zh": "低，错误就地显示，不打断输入流",
-        "en": "Low — inline errors",
-        "typing flow preserved": null
+        "en": "Low — inline errors, typing flow preserved"
       },
       "持续性": {
         "zh": "高，错误停留在字段旁直到修正",

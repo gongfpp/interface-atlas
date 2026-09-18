@@ -26,8 +26,7 @@
   "use_when": [
     {
       "zh": "面向年轻群体的品牌 活动 开发者工具官网",
-      "en": "Youth-oriented brands",
-      "campaigns and developer-tool landing pages": null
+      "en": "Youth-oriented brands, campaigns and developer-tool landing pages"
     },
     {
       "zh": "想在千篇一律的精致界面里制造强烈记忆点",
@@ -35,15 +34,13 @@
     },
     {
       "zh": "营销页 作品集 创意社区等低密度高表现力场景",
-      "en": "Marketing pages",
-      "portfolios and creative communities": null
+      "en": "Marketing pages, portfolios and creative communities"
     }
   ],
   "avoid_when": [
     {
       "zh": "金融 医疗 企业级产品等需要稳重可信的场景",
-      "en": "Finance",
-      "healthcare or enterprise products that must feel trustworthy": null
+      "en": "Finance, healthcare or enterprise products that must feel trustworthy"
     },
     {
       "zh": "长时间使用的生产力工具，高对比装饰易造成视觉疲劳",
@@ -70,9 +67,7 @@
       },
       "note": {
         "zh": "奶油底色 + 黑边 + 偏移实心阴影",
-        "en": "Cream background",
-        "black borders": null,
-        "offset solid shadows": null
+        "en": "Cream background, black borders, offset solid shadows"
       }
     },
     {
@@ -83,8 +78,7 @@
       },
       "note": {
         "zh": "粉 紫 黄等高饱和糖果色块互相碰撞",
-        "en": "Saturated pink",
-        "purple and yellow blocks colliding": null
+        "en": "Saturated pink, purple and yellow blocks colliding"
       }
     },
     {
@@ -95,8 +89,7 @@
       },
       "note": {
         "zh": "加入噪点纹理 倾斜元素与手绘涂鸦",
-        "en": "Adds noise",
-        "tilted elements and doodles": null
+        "en": "Adds noise, tilted elements and doodles"
       }
     }
   ],

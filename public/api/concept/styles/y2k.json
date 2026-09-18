@@ -27,13 +27,11 @@
   "use_when": [
     {
       "zh": "音乐 潮流 时尚品牌，瞄准怀旧千禧的年轻受众",
-      "en": "Music",
-      "streetwear and fashion brands chasing Y2K nostalgia": null
+      "en": "Music, streetwear and fashion brands chasing Y2K nostalgia"
     },
     {
       "zh": "派对 社交 娱乐类产品，需要甜腻高饱和情绪",
-      "en": "Party",
-      "social and entertainment products that want sugary energy": null
+      "en": "Party, social and entertainment products that want sugary energy"
     },
     {
       "zh": "复古主题营销活动与限定包装",
@@ -43,8 +41,7 @@
   "avoid_when": [
     {
       "zh": "金融 医疗 生产力工具，需要可信与克制",
-      "en": "Fintech",
-      "healthcare and productivity — trust demands restraint": null
+      "en": "Fintech, healthcare and productivity — trust demands restraint"
     },
     {
       "zh": "长内容阅读场景，高饱和与闪光持续消耗注意力",
@@ -71,9 +68,7 @@
       },
       "note": {
         "zh": "iMac G3 半透明糖果壳，蓝绿橙粉",
-        "en": "iMac G3 translucent shells in blue",
-        "green": null,
-        "orange and pink": null
+        "en": "iMac G3 translucent shells in blue, green, orange and pink"
       }
     },
     {

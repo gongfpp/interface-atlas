@@ -48,8 +48,7 @@
     },
     {
       "zh": "需要草稿、版本等编辑上下文的场景",
-      "en": "Flows needing drafts",
-      "versions or other edit context": null
+      "en": "Flows needing drafts, versions or other edit context"
     }
   ],
   "tags": [

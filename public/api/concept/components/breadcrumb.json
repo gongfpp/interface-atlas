@@ -25,8 +25,7 @@
   "use_when": [
     {
       "zh": "层级深于两层的内容型站点（文档、电商类目）",
-      "en": "Content sites deeper than two levels — docs",
-      "category trees": null
+      "en": "Content sites deeper than two levels — docs, category trees"
     },
     {
       "zh": "用户可能从搜索或外链直达深层页面",
@@ -65,8 +64,7 @@
       },
       "note": {
         "zh": "纯文本链接 + 分隔符，最常见",
-        "en": "Plain links + separator",
-        "the default": null
+        "en": "Plain links + separator, the default"
       }
     },
     {
@@ -77,8 +75,7 @@
       },
       "note": {
         "zh": "根节点用房子图标、项前加小图标",
-        "en": "Home icon at the root",
-        "small icons per item": null
+        "en": "Home icon at the root, small icons per item"
       }
     },
     {

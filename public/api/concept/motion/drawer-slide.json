@@ -1,0 +1,143 @@
+{
+  "id": "drawer-slide",
+  "type": "motion",
+  "status": "published",
+  "name": {
+    "zh": "抽屉滑入",
+    "en": "Drawer Slide"
+  },
+  "aliases": [
+    "抽屉滑入",
+    "侧滑面板",
+    "侧边栏滑出",
+    "底部抽屉",
+    "滑出层"
+  ],
+  "category": [
+    "Motion",
+    "Overlay"
+  ],
+  "description": {
+    "zh": "面板从屏幕边缘（常为右侧或底部）滑入并带遮罩，像从抽屉里拉出来。 转场方向即空间隐喻：从边缘滑入表示\"叠加的临时层\"， 关闭时原路滑回，保持心智模型不换。",
+    "en": "A panel slides in from a screen edge — usually right or bottom — over a scrim, like pulling out a drawer. Direction carries the spatial metaphor: entering from the edge marks it as a temporary layer, and it exits back the same way, keeping the mental model intact."
+  },
+  "use_when": [
+    {
+      "zh": "移动端筛选、设置、详情等次级内容",
+      "en": "Secondary content on mobile — filters, settings, detail sheets"
+    },
+    {
+      "zh": "需要保留主页面上下文的侧边操作",
+      "en": "Side panels that must keep the main page in context"
+    },
+    {
+      "zh": "底部抽屉（bottom sheet）承载移动端快捷操作",
+      "en": "Bottom sheets for quick mobile actions"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "不可跳过的强制任务（抽屉可随手关掉）",
+      "en": "Unskippable tasks — drawers are dismissed on a whim"
+    },
+    {
+      "zh": "内容复杂需要大空间（改用整页或 modal）",
+      "en": "Complex content needing room — use a page or modal"
+    },
+    {
+      "zh": "滑入动画超过 300ms（等待感明显）",
+      "en": "Slide durations past 300ms — waits feel long"
+    }
+  ],
+  "tags": [
+    "animation",
+    "overlay",
+    "drawer",
+    "transition"
+  ],
+  "variants": [
+    {
+      "id": "right-sheet",
+      "name": {
+        "zh": "右侧滑入",
+        "en": "Right sheet"
+      },
+      "note": {
+        "zh": "X 轴位移，桌面端最常见",
+        "en": "X-axis motion — the desktop default"
+      }
+    },
+    {
+      "id": "bottom-sheet",
+      "name": {
+        "zh": "底部抽屉",
+        "en": "Bottom sheet"
+      },
+      "note": {
+        "zh": "Y 轴上滑，移动端标准形态",
+        "en": "Slides up on the Y axis — the mobile standard"
+      }
+    },
+    {
+      "id": "with-scrim",
+      "name": {
+        "zh": "遮罩渐变",
+        "en": "Scrim fade"
+      },
+      "note": {
+        "zh": "遮罩与面板同步淡入，加深层次",
+        "en": "Scrim fades in with the panel for depth"
+      }
+    }
+  ],
+  "related": [
+    "drawer",
+    "modal",
+    "sidebar",
+    "popover"
+  ],
+  "demo": {
+    "component": "drawer-slide",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "transform: translateX/Y",
+      "cubic-bezier(0.32, 0.72, 0, 1)",
+      "scrim opacity",
+      "transform-only (no reflow)"
+    ],
+    "notes": {
+      "zh": "面板 transform 从 translateX(100%)（或 translateY(100%)）到 0，260～300ms， 材料系抽屉曲线 cubic-bezier(0.32, 0.72, 0, 1)；关闭方向相反。 遮罩 opacity 0→1 同步。 只动 transform/opacity 不引起回流；打开时锁 body 滚动并管理焦点与 Esc 关闭。",
+      "en": "Animate the panel transform from translateX(100%) (or translateY(100%)) to 0 over 260–300ms using the Material drawer curve cubic-bezier(0.32, 0.72, 0, 1); reverse on close. Fade the scrim opacity 0→1 in sync. Animate transform/opacity only to avoid reflow; lock body scroll and manage focus plus Esc-to-close while open."
+    }
+  },
+  "sources": [
+    {
+      "name": "Material Design — Side sheets",
+      "url": "https://m3.material.io/components/side-sheets/overview"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "给筛选面板添加抽屉滑入效果：从右侧滑入并带遮罩。",
+      "en": "Add a drawer slide to the filter panel — sliding in from the right over a scrim."
+    },
+    "design": {
+      "zh": "筛选抽屉从右侧滑入 280ms，曲线带回抽感，遮罩同步淡入；关闭时原路滑回；底部抽屉在移动端从下方上滑。",
+      "en": "The filter drawer slides in from the right over 280ms with a decelerating-with-snap curve, scrim fading in sync; it exits back the same way; on mobile the bottom sheet slides up instead."
+    },
+    "implementation": {
+      "zh": "transform: translateX(100%) ↔ 0，transition 280ms cubic-bezier(0.32, 0.72, 0, 1)；遮罩 opacity 过渡同步。挂载期用两帧（rAF）切状态避免首帧跳变。打开时 document.body.style.overflow = hidden，Esc 与遮罩点击关闭，焦点移入抽屉。",
+      "en": "transform translateX(100%) ↔ 0 with transition 280ms cubic-bezier(0.32, 0.72, 0, 1); scrim opacity in sync. Toggle the state after a double rAF on mount to avoid a first-frame jump. Lock body overflow while open, close on Esc and scrim click, move focus into the drawer."
+    },
+    "agent": {
+      "zh": "为项目添加抽屉滑入转场（右侧筛选抽屉）。\n\n先检查现有 drawer/modal 组件，复用其焦点与滚动锁定逻辑。\n要求：\n- transform 滑入 260～300ms，材料抽屉曲线\n- 遮罩同步淡入，Esc/遮罩点击可关\n- 只动 transform/opacity，无布局位移\n- 尊重 prefers-reduced-motion（改为淡入淡出）\n- 不引入新依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Add a drawer-slide transition to the project (right-side filter drawer).\n\nCheck existing drawer/modal components first; reuse their focus trap and scroll lock.\nRequirements:\n- transform slide 260–300ms with the Material drawer curve\n- Scrim fades in sync; close on Esc and scrim click\n- transform/opacity only, no layout shift\n- Respect prefers-reduced-motion (fall back to fades)\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

@@ -30,14 +30,11 @@
     },
     {
       "zh": "用户进入后先看状态、再下钻到详情",
-      "en": "Users check status first",
-      "then drill into details": null
+      "en": "Users check status first, then drill into details"
     },
     {
       "zh": "多种数据形态（数字、图表、表格）需要同屏",
-      "en": "Mixed data forms — numbers",
-      "charts": null,
-      "tables — on one screen": null
+      "en": "Mixed data forms — numbers, charts, tables — on one screen"
     }
   ],
   "avoid_when": [
@@ -69,8 +66,7 @@
       },
       "note": {
         "zh": "左侧栏 + 内容区，最经典的 SaaS 后台布局",
-        "en": "Left sidebar + content",
-        "the classic SaaS admin layout": null
+        "en": "Left sidebar + content, the classic SaaS admin layout"
       }
     },
     {
@@ -114,8 +110,7 @@
       },
       "note": {
         "zh": "图表为主体，表格与筛选为辅",
-        "en": "Chart-led",
-        "with tables and filters as support": null
+        "en": "Chart-led, with tables and filters as support"
       }
     }
   ],

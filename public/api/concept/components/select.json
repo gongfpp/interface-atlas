@@ -33,9 +33,7 @@
     },
     {
       "zh": "选项可分组或较长（国家、时区、分类）",
-      "en": "Long or groupable option sets like countries",
-      "timezones": null,
-      "categories": null
+      "en": "Long or groupable option sets like countries, timezones, categories"
     }
   ],
   "avoid_when": [

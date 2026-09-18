@@ -25,9 +25,7 @@
   "use_when": [
     {
       "zh": "点赞、收藏、关注等高频轻操作",
-      "en": "High-frequency light actions — likes",
-      "saves": null,
-      "follows": null
+      "en": "High-frequency light actions — likes, saves, follows"
     },
     {
       "zh": "弱网环境下仍想保持操作流畅",
@@ -41,8 +39,7 @@
   "avoid_when": [
     {
       "zh": "支付、下单等不可逆或高价值操作",
-      "en": "Irreversible or high-value operations — payments",
-      "orders": null
+      "en": "Irreversible or high-value operations — payments, orders"
     },
     {
       "zh": "结果决定后续流程的分支走向",

@@ -25,9 +25,7 @@
   "use_when": [
     {
       "zh": "所有可点击元素：按钮、卡片、图标按钮",
-      "en": "All tappable elements — buttons",
-      "cards": null,
-      "icon buttons": null
+      "en": "All tappable elements — buttons, cards, icon buttons"
     },
     {
       "zh": "移动端与触屏界面（按压是最主要操作）",
@@ -67,8 +65,7 @@
       },
       "note": {
         "zh": "最常用，scale(0.96)",
-        "en": "Most common",
-        "scale(0.96)": null
+        "en": "Most common, scale(0.96)"
       }
     },
     {
@@ -118,8 +115,7 @@
     "dimensions": {
       "强度": {
         "zh": "中，克制",
-        "en": "Medium",
-        "restrained": null
+        "en": "Medium, restrained"
       },
       "移动端友好": {
         "zh": "好，按压即触发",

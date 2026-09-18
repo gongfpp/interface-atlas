@@ -31,14 +31,11 @@
     },
     {
       "zh": "品牌需要复古 怀旧或高端工艺感（音响 咖啡 笔记本应用）",
-      "en": "Brands seeking vintage",
-      "nostalgic or crafted-premium feel": null
+      "en": "Brands seeking vintage, nostalgic or crafted-premium feel"
     },
     {
       "zh": "表达物理操作的乐趣，如拨动 按压 旋转",
-      "en": "Playful physical interactions — flipping",
-      "pressing": null,
-      "turning": null
+      "en": "Playful physical interactions — flipping, pressing, turning"
     }
   ],
   "avoid_when": [

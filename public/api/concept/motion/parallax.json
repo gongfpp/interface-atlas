@@ -1,0 +1,142 @@
+{
+  "id": "parallax",
+  "type": "motion",
+  "status": "published",
+  "name": {
+    "zh": "视差滚动",
+    "en": "Parallax"
+  },
+  "aliases": [
+    "视差滚动",
+    "背景慢速滚动",
+    "分层滚动",
+    "视差效果"
+  ],
+  "category": [
+    "Motion",
+    "Depth"
+  ],
+  "description": {
+    "zh": "滚动时不同图层以不同速度移动——背景慢、前景快—— 用速度差制造纵深。 是\"2D 里伪造 3D\"最便宜的手段， 常见于首屏大图与滚动叙事页面。",
+    "en": "On scroll, layers move at different speeds — background slower, foreground faster — and the velocity gap reads as depth. The cheapest way to fake 3D in 2D; a staple of hero sections and scrollytelling."
+  },
+  "use_when": [
+    {
+      "zh": "首屏大图或插画需要纵深与电影感",
+      "en": "Hero imagery that needs depth and a cinematic feel"
+    },
+    {
+      "zh": "滚动叙事页面，图层分段讲述",
+      "en": "Scrollytelling where layers stage the story"
+    },
+    {
+      "zh": "装饰性背景纹理缓慢移动",
+      "en": "Decorative background textures drifting slowly"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "长文阅读页面（滚动与文字错位致晕）",
+      "en": "Long-form reading — offset motion causes nausea"
+    },
+    {
+      "zh": "移动端大规模视差（性能差且眩晕）",
+      "en": "Heavy parallax on mobile — jank and motion sickness"
+    },
+    {
+      "zh": "视差影响可读性或遮挡操作目标",
+      "en": "When it harms legibility or blocks targets"
+    }
+  ],
+  "tags": [
+    "animation",
+    "scroll",
+    "depth",
+    "parallax"
+  ],
+  "variants": [
+    {
+      "id": "bg-slow",
+      "name": {
+        "zh": "背景减速",
+        "en": "Slow background"
+      },
+      "note": {
+        "zh": "背景以 0.3～0.5 倍速滚动，最常用",
+        "en": "Background scrolls at 0.3–0.5x — the default"
+      }
+    },
+    {
+      "id": "multi-layer",
+      "name": {
+        "zh": "多层深度",
+        "en": "Multi-layer"
+      },
+      "note": {
+        "zh": "三层以上不同速率，纵深更强",
+        "en": "Three-plus layers at different rates — deeper feel"
+      }
+    },
+    {
+      "id": "scroll-driven",
+      "name": {
+        "zh": "滚动驱动动画",
+        "en": "Scroll-driven"
+      },
+      "note": {
+        "zh": "animation-timeline: scroll() 绑定滚动进度",
+        "en": "animation-timeline scroll() binds to scroll progress"
+      }
+    }
+  ],
+  "related": [
+    "scroll-reveal",
+    "landing-page",
+    "editorial",
+    "aurora"
+  ],
+  "demo": {
+    "component": "parallax",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "transform: translateY(scrollY * factor)",
+      "rAF throttle",
+      "animation-timeline: scroll()",
+      "will-change: transform"
+    ],
+    "notes": {
+      "zh": "传统法监听 scroll，在 rAF 里对每层执行 translateY(scrollTop * factor)， factor 小于 1 为慢层（背景 0.3、前景 1.2）； 现代法用 CSS scroll-driven animations（animation-timeline: scroll()）。 只动 transform 走合成层； 移动端与 prefers-reduced-motion 默认关闭。",
+      "en": "The classic way — listen to scroll and, inside rAF, apply translateY(scrollTop * factor) per layer, factor < 1 for slow layers (background 0.3, foreground 1.2); the modern way is CSS scroll-driven animations (animation-timeline: scroll()). Transform-only changes stay on the compositor; default off on mobile and under prefers-reduced-motion."
+    }
+  },
+  "sources": [
+    {
+      "name": "MDN — scroll-driven animations",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll-driven_animations"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "给首屏添加视差滚动：背景图比前景慢速移动。",
+      "en": "Add parallax to the hero — the background image moves slower than the foreground."
+    },
+    "design": {
+      "zh": "首屏分三层：远景 0.3 倍速、中景 0.6 倍速、前景 1 倍速，滚动时速度差制造纵深；装饰层不影响可读性。",
+      "en": "Split the hero into three layers — far 0.3x, mid 0.6x, near 1x — so the velocity gap creates depth while scrolling; decorative layers never harm legibility."
+    },
+    "implementation": {
+      "zh": "监听 scroll 容器，rAF 内对每层 style.transform = translateY(scrollTop * factor)；背景层加 will-change: transform。或用 CSS：animation-timeline: scroll() + keyframes 位移。reduced-motion 与触屏默认静态。",
+      "en": "Listen to the scroll container, set style.transform = translateY(scrollTop * factor) per layer inside rAF; add will-change: transform to background layers. Or CSS: animation-timeline: scroll() + keyframed offsets. Static by default under reduced-motion and on touch."
+    },
+    "agent": {
+      "zh": "为项目首屏添加视差滚动效果。\n\n先检查首屏结构与滚动容器，确认性能预算。\n要求：\n- 分层不同速率，只动 transform（合成层）\n- rAF 节流或 CSS scroll-timeline 实现\n- 不影响可读性与滚动性能（避免 scroll 监听重排）\n- 移动端与 reduced-motion 默认关闭\n- 不引入新依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Add parallax scrolling to the project's hero section.\n\nInspect the hero structure and scroll container first; confirm the performance budget.\nRequirements:\n- Layered speeds, transform-only (compositor)\n- rAF throttling or CSS scroll-timeline\n- No readability or scroll-performance regressions (no layout thrash)\n- Off by default on mobile and under reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

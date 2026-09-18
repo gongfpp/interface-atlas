@@ -30,8 +30,7 @@
     },
     {
       "zh": "需要分步收集收货、配送、支付信息",
-      "en": "Collecting shipping",
-      "delivery and payment info in steps": null
+      "en": "Collecting shipping, delivery and payment info in steps"
     },
     {
       "zh": "需要同时展示金额明细与优惠减免",
@@ -67,8 +66,7 @@
       },
       "note": {
         "zh": "所有信息一屏铺开，转化路径最短",
-        "en": "Everything on one screen",
-        "shortest path": null
+        "en": "Everything on one screen, shortest path"
       }
     },
     {
@@ -101,8 +99,7 @@
       },
       "note": {
         "zh": "一键支付按钮置顶，表单退居其次",
-        "en": "Express-pay buttons on top",
-        "form secondary": null
+        "en": "Express-pay buttons on top, form secondary"
       }
     }
   ],

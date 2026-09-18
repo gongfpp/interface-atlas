@@ -27,13 +27,11 @@
   "use_when": [
     {
       "zh": "背景是渐变 照片或彩色内容，需要透出层次",
-      "en": "Over gradients",
-      "photos or colorful backdrops worth revealing": null
+      "en": "Over gradients, photos or colorful backdrops worth revealing"
     },
     {
       "zh": "弹层 播放器 系统级悬浮面板，要轻盈不要沉闷",
-      "en": "Overlays",
-      "players and floating system panels that should feel light": null
+      "en": "Overlays, players and floating system panels that should feel light"
     },
     {
       "zh": "想延续 macOS iOS 的材质语言获得熟悉感",
@@ -70,8 +68,7 @@
       },
       "note": {
         "zh": "高模糊低透明，最经典的奶白玻璃",
-        "en": "High blur",
-        "low opacity — the classic milky glass": null
+        "en": "High blur, low opacity — the classic milky glass"
       }
     },
     {
@@ -82,9 +79,7 @@
       },
       "note": {
         "zh": "低模糊高透明，更依赖高光描边",
-        "en": "Light blur",
-        "high transparency": null,
-        "leans on the light rim": null
+        "en": "Light blur, high transparency, leans on the light rim"
       }
     },
     {
@@ -95,8 +90,7 @@
       },
       "note": {
         "zh": "带色调的玻璃，iOS 振动感传统",
-        "en": "Color-tinted glass",
-        "the iOS vibrancy tradition": null
+        "en": "Color-tinted glass, the iOS vibrancy tradition"
       }
     }
   ],

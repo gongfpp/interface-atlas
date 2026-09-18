@@ -29,8 +29,7 @@
     },
     {
       "zh": "需要可分享的页码 URL（搜索、后台表格）",
-      "en": "Shareable page URLs — search results",
-      "admin tables": null
+      "en": "Shareable page URLs — search results, admin tables"
     },
     {
       "zh": "需要跳到末页或精确页码",
@@ -65,8 +64,7 @@
       },
       "note": {
         "zh": "完整页码 + 省略号，可控性最强",
-        "en": "Full numbers + ellipsis",
-        "most control": null
+        "en": "Full numbers + ellipsis, most control"
       }
     },
     {
@@ -133,8 +131,7 @@
       },
       "适用内容": {
         "zh": "有序、可寻址的结果集",
-        "en": "Ordered",
-        "addressable result sets": null
+        "en": "Ordered, addressable result sets"
       }
     }
   },

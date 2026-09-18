@@ -25,8 +25,7 @@
   "use_when": [
     {
       "zh": "在连续区间内选量级（音量、透明度、预算）",
-      "en": "Picking a magnitude in a range like volume",
-      "opacity or budget": null
+      "en": "Picking a magnitude in a range like volume, opacity or budget"
     },
     {
       "zh": "精确数值不重要，相对大小即可",
@@ -65,8 +64,7 @@
       },
       "note": {
         "zh": "一个手柄取一个值",
-        "en": "One handle",
-        "one value": null
+        "en": "One handle, one value"
       }
     },
     {

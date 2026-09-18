@@ -65,8 +65,7 @@
       },
       "note": {
         "zh": "纯灰色块，最克制",
-        "en": "Plain grey blocks",
-        "most restrained": null
+        "en": "Plain grey blocks, most restrained"
       }
     },
     {
@@ -88,8 +87,7 @@
       },
       "note": {
         "zh": "一道高光斜向扫过，iOS 风格",
-        "en": "A highlight sweeping across",
-        "iOS-style": null
+        "en": "A highlight sweeping across, iOS-style"
       }
     }
   ],

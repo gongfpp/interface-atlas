@@ -25,9 +25,7 @@
   "use_when": [
     {
       "zh": "用户需要自由决定条目顺序（播放列表、任务清单、栏目配置）",
-      "en": "Users control the order — playlists",
-      "task lists": null,
-      "section config": null
+      "en": "Users control the order — playlists, task lists, section config"
     },
     {
       "zh": "列表项数量适中，一屏内能看清全局",
@@ -41,8 +39,7 @@
   "avoid_when": [
     {
       "zh": "顺序由规则决定（按时间、按字母），无需手动调",
-      "en": "Order is rule-based (time",
-      "alphabetical) — no manual control needed": null
+      "en": "Order is rule-based (time, alphabetical) — no manual control needed"
     },
     {
       "zh": "列表很长且跨屏拖动容易迷失落点",
@@ -68,8 +65,7 @@
       },
       "note": {
         "zh": "按条目任意位置拖，最直接",
-        "en": "Drag anywhere on the item",
-        "most direct": null
+        "en": "Drag anywhere on the item, most direct"
       }
     },
     {
@@ -80,8 +76,7 @@
       },
       "note": {
         "zh": "六点把手限定拖拽区，避免与滚动冲突",
-        "en": "A six-dot handle constrains the drag zone",
-        "avoids scroll conflicts": null
+        "en": "A six-dot handle constrains the drag zone, avoids scroll conflicts"
       }
     },
     {
@@ -92,8 +87,7 @@
       },
       "note": {
         "zh": "上移/下移按钮，键盘与读屏友好",
-        "en": "Move up/down buttons",
-        "keyboard and screen-reader friendly": null
+        "en": "Move up/down buttons, keyboard and screen-reader friendly"
       }
     }
   ],

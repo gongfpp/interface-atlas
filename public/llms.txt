@@ -6,30 +6,42 @@
 
 ## Concepts
 
+- [Accordion / 手风琴](/api/concept/components/accordion.json): 由多个可折叠区块组成的垂直列表：点击标题展开内容、再点收起，可互斥（同时只开一项） 也可多开。用于在有限空间里收纳成组内容，让用户按需展开。
+- [Alert / 警告提示](/api/concept/components/alert.json): 嵌在页面流内、带状态色底色的横条，用于必须被看见的消息：错误、警告、重要通知。 它占据文档流而不是覆盖内容，通常常驻直到问题被处理或用户手动关闭。
+- [Avatar / 头像](/api/concept/components/avatar.json): 以圆形或圆角方形小图代表用户或组织：照片、姓名首字母或图标占位。 常与姓名一起出现在导航、评论与成员列表，可附在线状态点或多人叠加。
+- [Badge / 徽标](/api/concept/components/badge.json): 附着在元素角落或行内的小型状态标记：圆点、数字计数或短文字标签。用于表达未读数量、 状态（新、已废弃）或分类；不参与交互，视觉上从属于宿主元素。
 - [Breadcrumb / 面包屑](/api/concept/components/breadcrumb.json): 用"首页 / 分类 / 子类 / 当前页"的层级路径表示用户在信息架构中所处的位置： 每个上级都可点击跳回，末项为当前页不可点。这是防止用户迷路成本最低的手段，
 - [Button / 按钮](/api/concept/components/button.json): 用可点击的色块触发一个明确的动作，是界面中最基础的操作入口。 通过填充、描边、幽灵等视觉层级区分主次操作，按压时有即时的下沉反馈， 繁忙时进入加载态并禁用点击，
+- [Card / 卡片](/api/concept/components/card.json): 用圆角边框或底色围出一块自包含内容的矩形容器，一块卡片聚合一组相关信息： 封面图、标题、摘要与操作。是内容流、仪表盘与电商列表的通用显示单元。
 - [Checkbox / 复选框](/api/concept/components/checkbox.json): 用方形勾选框表示一组可多选的独立开关项，点击在选中与未选中间切换。 父级项可呈现半选态（部分子项选中），常用于批量选择、筛选与同意条款。
 - [Command Palette / 命令面板](/api/concept/components/command-palette.json): 用快捷键（⌘K / Ctrl+K）唤出的浮动搜索面板：输入即筛选命令、页面或内容， 键盘上下选择、回车执行。macOS Spotlight 把它带入大众视野， 
 - [Date Picker / 日期选择器](/api/concept/components/date-picker.json): 用日历网格选择日期的复合控件，通常由输入框触发弹出，也常内嵌展示。 头部提供年月切换，网格按周排列日期并高亮今天与选中日； 范围形态用两个日期夹出区间。避免手输
 - [Drawer / 抽屉](/api/concept/components/drawer.json): 从屏幕边缘（多为右侧或左侧）滑入、通常带遮罩的面板。比模态框轻：能承载较长内容又不离开当前页面， 关闭后原样回到上下文；移动端常以左滑导航或底部抽屉的形式出现。
 - [Dropdown / 下拉菜单](/api/concept/components/dropdown.json): 由触发按钮就近弹出的一组操作菜单，用于收纳次要操作，保持界面整洁。 典型形态是「···」更多按钮；面板带阴影浮于内容之上，点击菜单项即执行并关闭， 危险操作以红
+- [Filter Panel / 筛选面板](/api/concept/components/filter-panel.json): 集中承载筛选条件的面板，常驻列表侧边或以抽屉、浮层唤起：复选组、单选、滑杆组合出当前查询。 与列表实时联动刷新结果数，并支持已选条件回显与一键清除。
 - [Input / 输入框](/api/concept/components/input.json): 用一条带边框的水平输入区收集单行文本，是表单的基本单元。 占位符提示期望格式，聚焦时高亮边框引导视线，校验失败时切换错误色 并附提示文案；可内嵌前后缀图标与清除
+- [Menu / 菜单](/api/concept/components/menu.json): 点击或右键触发的临时操作列表浮层：平铺或分组的命令项，选中即执行并关闭。 用于收纳非高频操作（更多、设置、删除），通常以「⋯」按钮或右键唤起。
 - [Modal / 模态框](/api/concept/components/modal.json): 覆盖在页面之上、带半透明遮罩的对话框，打断用户当前流程，要求先完成弹窗内的任务或决策。 遮罩阻断与底层页面的交互，焦点被暂时困在弹窗内，是容器类浮层中打断程度最
 - [Navbar / 顶部导航栏](/api/concept/components/navbar.json): 固定在页面顶部的水平导航条：左侧品牌标识，中间主导航链接，右侧搜索、 入口按钮与用户头像。它是网站的"门面导航"，把最重要的三到七个入口压进 一条横向空间，移动
 - [Pagination / 分页](/api/concept/components/pagination.json): 用带页码的控件把长结果集切分为离散页面：用户显式点击页码或上一页 / 下一页 按钮取回对应片段，当前位置永远可知、可分享、可回退。与无限滚动的"失控 漂移"相对
+- [Popover / 气泡卡片](/api/concept/components/popover.json): 点击触发元素后在其旁边弹出的非模态浮层，可承载文字说明、小型表单、日期选择等中等复杂内容。 无遮罩、不阻断页面其余部分，点击外部区域或 Esc 即关闭。
+- [Progress Bar / 进度条](/api/concept/components/progress-bar.json): 用横条从左到右填充来表示任务完成比例的加载指示，常配百分比或步骤文字。 适用于时长可预测的确定性任务：上传、下载、安装与分步表单。
 - [Radio / 单选框](/api/concept/components/radio.json): 用一组圆形按钮表示互斥选项，同组内只能选中一个且不可取消。 与复选框的核心区别是多选与单选；选中圆点用填充动画反馈， 选项少（2～5 个）时平铺展示比下拉选择效
 - [Select / 下拉选择](/api/concept/components/select.json): 用收起的单行控件承载一组互斥选项，点击展开面板后选择其一，选中值常驻显示在触发器上。 比 radio 更省空间，适合选项多于 5 个的场景；面板支持滚动、分组或
 - [Sidebar / 侧边栏](/api/concept/components/sidebar.json): 固定在页面一侧（通常左侧）的垂直导航区，承载产品的主要层级入口。 后台管理系统的事实标准：顶部放品牌与全局搜索，侧边栏放模块树，内容区专注任务。
 - [Slider / 滑块](/api/concept/components/slider.json): 用轨道上可拖动的手柄在连续区间内取值，拖动时数值与已填充轨道实时跟随。 适合调音量、亮度、价格区间等量级选择，比输入框更直观； 可带刻度标记、步进与双端区间形态
 - [Switch / 开关](/api/concept/components/switch.json): 用滑轨上的圆形滑块表示二元设置的开与关，拨动立即生效，无需确认。 滑块位移与轨道变色同时反馈状态，右侧或内嵌「开 / 关」文字辅助辨认， 是设置页的标准控件。
+- [Table / 表格](/api/concept/components/table.json): 用行与列精确对齐数据的二维表格：一行一条记录、一列一个字段，适合逐列比较、排序与大容量数据浏览。 行可悬停高亮、点击选中，列头通常带排序控制。
 - [Tabs / 标签页](/api/concept/components/tabs.json): 用一排可切换的标签把同一区域的内容分成互斥视图：标签头常驻可点击，仅当前 标签对应的面板可见，其余隐藏。适合把高度相关的几类内容压缩在同一区域内 就地切换，避免
 - [Textarea / 多行输入框](/api/concept/components/textarea.json): 用一块可多行增长的输入区收集长文本，如简介、备注、留言与反馈。 支持手动或自动增高，常配字数统计与提交按钮；超出上限时计数变红提醒， 内容换行显示而非溢出截断。
+- [Toast / 轻提示](/api/concept/components/toast.json): 在视口角落短暂出现、自动消失的小消息条，用来告知操作结果（已保存、已复制、上传完成）。 不打断当前流程，通常附一个操作入口（撤销、查看），停留约 3~5 秒后淡
 - [Tooltip / 工具提示](/api/concept/components/tooltip.json): 悬停在元素上短暂出现的小型文字气泡，用来解释图标按钮、缩写或被截断的文本。 纯提示、不可交互，移开即消失；通常延迟约 300ms 出现以避免扫过时闪烁。
 - [Drag & Drop Sorting / 拖拽排序](/api/concept/patterns/drag-and-drop-sorting.json): 用直接拖动的方式调整列表项的先后顺序：按住条目（或把手）拖到目标位置，其余条目实时让位并给出落点提示。 它把"排序"从抽象的上下移按钮变成所见即所得的空间操作，
 - [Empty State / 空状态](/api/concept/patterns/empty-state.json): 当列表或页面没有数据时，不留一片空白，而是用插图、一句说明和一个明确的下一步操作填充。 它解决的是"用户面对空白不知道发生了什么、也不知道该做什么"的问题—— 
 - [Form Validation / 表单校验](/api/concept/patterns/form-validation.json): 在用户填写表单的过程中或提交时检查输入合法性，并把错误就地显示在对应字段旁边。 目标是让用户在离错误最近的位置、以最小的打断成本知道"哪里错了、怎么改"，而不是
 - [Infinite Scroll / 无限滚动](/api/concept/patterns/infinite-scroll.json): 用"滚动到底自动追加下一页"取代传统分页：用户持续下滑，新内容不断出现， 底部以加载指示或哨兵元素衔接。它解决的是浏览节奏被打断的问题—— 用户不必寻找"下一页
 - [Inline Editing / 行内编辑](/api/concept/patterns/inline-editing.json): 页面上的文本本身即可编辑：单击把文本原位变成输入框，Enter 或失焦确认，Esc 取消， 改完所见即所得。它解决的是"小改动也要跳转完整编辑页"的问题—— 把
+- [Kanban Board / 看板](/api/concept/patterns/kanban-board.json): 按状态分列的任务面板—— 通常"待办 / 进行中 / 已完成"三列， 卡片随状态推进在列间移动。 列的位置即流程阶段， 卡片的所在即任务状态， 一眼看清全局进展
 - [Lazy Loading / 懒加载](/api/concept/patterns/lazy-loading.json): 用"推迟加载"的方式处理暂不在视口内的资源：图片、列表分块、组件等在接近或进入可视区域时才真正请求和渲染。 首屏只承担可见部分的开销，配合占位骨架避免突然撑开布
 - [Master Detail / 主从视图](/api/concept/patterns/master-detail.json): 左侧一列摘要条目，右侧展示选中项的完整详情，点击左侧条目右侧即时联动更新。 它解决的是"在列表页与详情页之间来回跳转"的问题——总览与细读同屏共存， 用户切换条
 - [Onboarding Tour / 新手引导](/api/concept/patterns/onboarding-tour.json): 用"蒙层 + 聚光高亮 + 分步气泡"的方式带用户认识界面：每一步只露出一个关键区域并就地解释， 上一步/下一步与步骤指示器控制节奏，可随时跳过。它把功能说明放
@@ -64,10 +76,23 @@
 - [Search Page / 搜索页](/api/concept/pages/search.json): 承接查询意图并返回结果的内容发现页面：顶部常驻搜索框（保留查询词、可修改重搜）， 一侧是类型与筛选器，主体按相关度排列结果条目（标题 + 摘要 + 高亮命中词）
 - [Settings Page / 设置页](/api/concept/pages/settings.json): 集中管理账号偏好与系统配置的功能页面：一侧是稳定的设置导航（通用、通知、安全等分区）， 另一侧是行式表单列表——每行一个"标签 + 控件 + 说明"，低频修改、
 - [Signup Page / 注册页](/api/concept/pages/signup.json): 把陌生访客变成账号的转化页：表单只保留起步必需的字段（邮箱 + 密码），其余信息 延后到产品内补齐；辅以第三方注册、密码强度提示和服务条款勾选。与登录页共用 布
+- [Accordion Expand / 手风琴展开](/api/concept/motion/accordion-expand.json): 点击标题后内容区在高度方向展开或收起，像手风琴风箱。 关键是用 grid-template-rows 从 0fr 到 1fr 的高度动画， 让内容"推开来"而不
+- [Confetti / 撒花彩带](/api/concept/motion/confetti.json): 完成关键动作后从一点爆出彩色纸屑飘落，用一次性高能量庆祝"做成了"。 只在里程碑出现：提交成功、任务完成、订阅达成—— 正因为稀有，才有庆祝的分量。
+- [Drawer Slide / 抽屉滑入](/api/concept/motion/drawer-slide.json): 面板从屏幕边缘（常为右侧或底部）滑入并带遮罩，像从抽屉里拉出来。 转场方向即空间隐喻：从边缘滑入表示"叠加的临时层"， 关闭时原路滑回，保持心智模型不换。
+- [Elastic Bounce / 弹性回跳](/api/concept/motion/elastic-bounce.json): 元素到位后不是稳稳停住，而是带一两次越过后回弹的振荡， 像有弹性地"Q 一下"。 给界面注入物理感和俏皮感， 常用于成功状态、奖励时刻或品牌化入场。
 - [Hover Glow / 悬停发光](/api/concept/motion/hover-glow.json): 鼠标悬停时元素边缘泛出柔和光晕，用外发光阴影或径向渐变沿边框晕开， 颜色多为品牌强调色。相比投影的"物理抬升"，光晕暗示的是"能量"与"可交互"， 常用于深色界
 - [Hover Lift / 悬浮上浮](/api/concept/motion/hover-lift.json): 鼠标悬停时卡片或按钮轻轻上浮（translateY -2～6px）并加深投影， 像被无形的手托起。最常见的"这个可以点"的桌面端暗示， 成本极低但立刻让页面有层
 - [Loading Spinner / 加载指示器](/api/concept/motion/loading-spinner.json): 用一个持续旋转的圆环或圆点表示"正在处理"。占用空间极小、语义全球通用， 适合嵌入按钮内、跟随光标或作为局部区块的轻量加载反馈。 它只表达"忙碌"，不表达进度多
 - [Magnetic Button / 磁吸按钮](/api/concept/motion/magnetic-button.json): 鼠标靠近按钮时，按钮像被磁铁吸住一样朝光标方向偏移一小段距离， 离开后弹性归位。偏移量按光标与按钮中心的距离计算，通常限制在 8～20px。 一种高"手感"的桌
+- [Marquee / 跑马灯](/api/concept/motion/marquee.json): 一条内容带在水平方向匀速循环滚动，首尾无缝衔接。 用于 logo 墙、合作方名单、公告与促销横幅——用"连续流动"表达数量多与不间断， 而不是引导用户逐条读完。
+- [Morphing Icon / 图标变形](/api/concept/motion/morphing-icon.json): 一个图标在两种状态间平滑变形，而不是替换—— 最经典是汉堡三横变关闭叉。 用同一组线条的旋转、位移与透明度组合完成， 传达"同一个控件换了状态"。
+- [Number Counter / 数字滚动](/api/concept/motion/number-counter.json): 数字从 0（或旧值）滚动增长到目标值，让计数过程本身表达"数据在增长"。 常用于数据看板大数字、统计区与里程碑（"10 万用户"）。 数字成为动效的主角，比静态
 - [Page Transition / 页面切换过渡](/api/concept/motion/page-transition.json): 页面之间切换时，旧页面滑出或淡出、新页面滑入或淡入，让路由跳转 从"硬切"变成一段 200～400ms 的连续运动。方向应与信息层级一致： 进入下级页面向左推入
+- [Parallax / 视差滚动](/api/concept/motion/parallax.json): 滚动时不同图层以不同速度移动——背景慢、前景快—— 用速度差制造纵深。 是"2D 里伪造 3D"最便宜的手段， 常见于首屏大图与滚动叙事页面。
 - [Press Feedback / 按压反馈](/api/concept/motion/press-feedback.json): 用户按下按钮、卡片等可点击元素时，元素轻微缩小（通常 0.95～0.98）， 松开后弹回。一个几十毫秒的细节，让界面"手感"立刻从网页变成实体按键。
+- [Ripple / 点击涟漪](/api/concept/motion/ripple.json): 点击位置向外扩散一圈半透明圆形波纹后消散，把"点中了哪里"可视化。 Material Design 的标志性按压反馈， 让无生命的点击立刻获得物理感——像石头落
 - [Scroll Reveal / 滚动显现](/api/concept/motion/scroll-reveal.json): 元素滚动进入视口时才播放淡入、上浮或滑入动画，之前保持隐藏或占位。 把"一次性呈现全部内容"变成"随阅读节奏逐段揭示"，让长页面的信息 更有秩序感。通常由 In
+- [Shared Element Transition / 共享元素转场](/api/concept/motion/shared-element-transition.json): 列表里的缩略图或卡片在打开详情时"飞"成详情页主图—— 同一个元素跨两个视图连续运动， 而不是各自出现。 元素身份在转场中保持连续， 是最强的上下文延续。
+- [Stagger Reveal / 逐项浮现](/api/concept/motion/stagger-reveal.json): 一组元素不一起出现，而是按固定间隔依次淡入或上浮，像点名一样逐个到位。 间隔 40～120ms 即可让列表"有秩序地醒来"， 比整块淡入更有生命感，也比真实逐项
+- [Text Reveal / 文字显现](/api/concept/motion/text-reveal.json): 把标题或段落按行、按词逐个显现，而不是整块淡入。文字"被说出来"的节奏感让信息有先后与分量， 常用于落地页首屏大标题、章节开场与滚动叙事， 通常进入视口时触发一
+- [Toast Slide-in / 提示滑入](/api/concept/motion/toast-slide-in.json): 操作结果以一条短提示从屏幕边缘滑入（常为底部或右上角）， 停留数秒后自动滑出。 动效分三段：滑入—停留—滑出， 方向与来源一致——从边缘来，回边缘去。

@@ -1,0 +1,113 @@
+status: published
+name:
+  zh: 点击涟漪
+  en: Ripple
+aliases:
+  - 水波纹
+  - 点击涟漪
+  - 波纹扩散
+  - material 点击效果
+  - 涟漪动画
+category:
+  - Motion
+  - Feedback
+description:
+  zh: 点击位置向外扩散一圈半透明圆形波纹后消散，把"点中了哪里"可视化。 Material Design 的标志性按压反馈， 让无生命的点击立刻获得物理感——像石头落进水面。
+  en: A translucent circle expands from the exact tap point and fades out, visualising where the press landed. Material Design's signature press feedback — it gives clicks a physical sense, like a stone dropped on water.
+use_when:
+  - zh: 按钮、列表项、卡片等大面积可点击元素
+    en: Buttons, list items, cards — larger tappable surfaces
+  - zh: 触屏为主的界面（按压即触发，不依赖 hover）
+    en: Touch-first interfaces — fires on press, no hover needed
+  - zh: 密集列表中需要明确"点在了哪里"
+    en: Dense lists where the hit point matters
+avoid_when:
+  - zh: 极小图标按钮（波纹大于按钮，显得溢出）
+    en: Tiny icon buttons — the ripple overflows the target
+  - zh: 高频连续点击的工具栏（波纹糊成一片）
+    en: Rapid-fire toolbars — ripples smear together
+  - zh: 已有强按压反馈（scale/阴影）的组件，叠加冗余
+    en: Components with strong press scale/shadow already
+tags:
+  - animation
+  - feedback
+  - touch
+  - material
+variants:
+  - id: centered
+    name:
+      zh: 居中波纹
+      en: Centered
+    note:
+      zh: 从元素中心扩散，纯 CSS 可实现，最简
+      en: Expands from center, CSS-only — simplest
+  - id: pointer
+    name:
+      zh: 触点波纹
+      en: Pointer
+    note:
+      zh: 从真实点击坐标扩散，Material 标准
+      en: Expands from the real tap coordinates — Material standard
+  - id: bounded
+    name:
+      zh: 有界/无界
+      en: Bounded vs unbounded
+    note:
+      zh: 波纹是否被圆角裁剪（按钮有界、页面无界）
+      en: Whether the ripple clips to rounded bounds
+related:
+  - press-feedback
+  - button
+  - magnetic-button
+  - hover-lift
+demo:
+  component: ripple
+  modes:
+    - default
+    - dark
+    - variants
+implementation:
+  css:
+    - 'position: relative + overflow hidden'
+    - 'transform: scale(0 → 1)'
+    - opacity fade
+    - 'pointer-events: none'
+  notes:
+    zh: 点击时在按点插入一个圆形 span，从 scale(0) 放大到覆盖元素并渐隐，300～500ms 后移除； 父元素 position:relative + overflow:hidden。 触点版需要监听 offsetX/Y，纯 CSS 只能做居中版。 尊重 prefers-reduced-motion 退化为简单背景加深。
+    en: On press, insert a circular span at the tap point, scale it from 0 until it covers the element while fading out, remove after 300–500ms; the parent needs position:relative plus overflow:hidden. The pointer variant requires listening to offsetX/Y — pure CSS only does the centered version. Respect prefers-reduced-motion by falling back to a simple background darken.
+sources:
+  - name: Material Design — States
+    url: https://m3.material.io/foundations/interaction/states/state-layers
+prompts:
+  basic:
+    zh: 给按钮添加点击涟漪效果：按下时从点击位置扩散水波纹。
+    en: Add a ripple to buttons — a wave expanding from the tap point on press.
+  design:
+    zh: 按钮按下时从触点扩散半透明圆形波纹，400ms 内放大并渐隐，波纹被圆角裁剪；不改变按钮尺寸与布局。
+    en: On press, a translucent circular ripple expands from the tap point, scaling and fading within 400ms, clipped to the button's rounded bounds; size and layout stay unchanged.
+  implementation:
+    zh: '监听 pointerdown 取 offsetX/Y，向按钮插入 span（定位到触点，直径取对角线），触发 scale 0→1 + opacity 渐隐动画，animationend 移除。按钮加 overflow:hidden 与 position:relative。reduced-motion 降级为背景加深。'
+    en: 'Listen to pointerdown for offsetX/Y, insert a span (positioned at the tap point, diameter = the diagonal), animate scale 0→1 with an opacity fade, remove on animationend. Give the button overflow:hidden and position:relative. Fall back to background darken under reduced-motion.'
+  agent:
+    zh: |-
+      为项目按钮与列表项添加点击涟漪反馈。
+
+      先检查现有按钮组件与按压反馈，避免双重反馈冲突。
+      要求：
+      - 从真实触点扩散，波纹被圆角裁剪
+      - 400ms 内完成，动画节点及时清理防内存泄漏
+      - 不影响布局（transform + opacity）
+      - 尊重 prefers-reduced-motion
+      - 不引入新依赖
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Add ripple feedback to the project's buttons and list items.
+
+      Check existing button components and press feedback first; avoid double feedback.
+      Requirements:
+      - Expand from the real tap point, clipped to rounded bounds
+      - Complete within 400ms, clean up animated nodes to avoid leaks
+      - No layout impact (transform + opacity only)
+      - Respect prefers-reduced-motion
+      - No new dependencies
+      Run existing checks when done and list modified files.

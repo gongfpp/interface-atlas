@@ -30,8 +30,7 @@
     },
     {
       "zh": "结果需要按类型、时间、标签过滤",
-      "en": "Results need type",
-      "time or tag filtering": null
+      "en": "Results need type, time or tag filtering"
     },
     {
       "zh": "查询词与结果的匹配过程需要透明（高亮、计数）",
@@ -67,8 +66,7 @@
       },
       "note": {
         "zh": "标题 + 摘要纵排，搜索引擎经典",
-        "en": "Title + snippet rows",
-        "the classic search engine": null
+        "en": "Title + snippet rows, the classic search engine"
       }
     },
     {
@@ -90,8 +88,7 @@
       },
       "note": {
         "zh": "边输入边出结果，无需回车",
-        "en": "Results while typing",
-        "no Enter needed": null
+        "en": "Results while typing, no Enter needed"
       }
     },
     {
@@ -102,8 +99,7 @@
       },
       "note": {
         "zh": "左侧筛选器 + 右侧结果，电商与文档常用",
-        "en": "Facets left + results right",
-        "common in commerce and docs": null
+        "en": "Facets left + results right, common in commerce and docs"
       }
     }
   ],

@@ -75,8 +75,7 @@
       },
       "note": {
         "zh": "多项并列可全选",
-        "en": "Parallel items",
-        "bulk-checkable": null
+        "en": "Parallel items, bulk-checkable"
       }
     },
     {

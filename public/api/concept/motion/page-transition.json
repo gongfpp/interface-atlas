@@ -25,9 +25,7 @@
   "use_when": [
     {
       "zh": "SPA 路由切换、分步向导、tab 式页面流",
-      "en": "SPA route changes",
-      "step wizards": null,
-      "tab-like flows": null
+      "en": "SPA route changes, step wizards, tab-like flows"
     },
     {
       "zh": "需要表达页面间父子层级关系",
@@ -78,8 +76,7 @@
       },
       "note": {
         "zh": "两页交叉淡化，中性无方向",
-        "en": "Both pages cross-fade — neutral",
-        "directionless": null
+        "en": "Both pages cross-fade — neutral, directionless"
       }
     },
     {

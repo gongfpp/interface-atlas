@@ -1,0 +1,172 @@
+{
+  "id": "card",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "卡片",
+    "en": "Card"
+  },
+  "aliases": [
+    "卡片",
+    "卡片容器",
+    "信息卡",
+    "内容卡片",
+    "卡片式布局",
+    "商品卡片",
+    "一块一块的内容板"
+  ],
+  "category": [
+    "Layout",
+    "Display"
+  ],
+  "description": {
+    "zh": "用圆角边框或底色围出一块自包含内容的矩形容器，一块卡片聚合一组相关信息： 封面图、标题、摘要与操作。是内容流、仪表盘与电商列表的通用显示单元。",
+    "en": "A self-contained rectangular container outlined by rounded borders or a surface colour, aggregating related content: cover, title, excerpt and actions. The universal display unit of content feeds, dashboards and commerce lists."
+  },
+  "use_when": [
+    {
+      "zh": "封面图 + 标题 + 摘要的流式内容展示",
+      "en": "Feed items with cover, title and excerpt"
+    },
+    {
+      "zh": "仪表盘中并列的多块摘要指标",
+      "en": "Side-by-side metric summaries on a dashboard"
+    },
+    {
+      "zh": "可点击跳转的聚合入口（商品、文章、项目）",
+      "en": "Clickable aggregate entries (product, article, project)"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "需要逐行精确对齐比较（改用 table）",
+      "en": "Row-aligned comparison matters — use a table"
+    },
+    {
+      "zh": "密度极高的数据展示（改用 table）",
+      "en": "Very high-density data — use a table"
+    },
+    {
+      "zh": "纯装饰性包裹会稀释信息，宁可用留白分隔",
+      "en": "Purely decorative wrapping dilutes content — prefer whitespace"
+    }
+  ],
+  "tags": [
+    "layout",
+    "display",
+    "container",
+    "content"
+  ],
+  "variants": [
+    {
+      "id": "basic",
+      "name": {
+        "zh": "基础",
+        "en": "Basic"
+      },
+      "note": {
+        "zh": "边框或浅底 + 内容，最通用",
+        "en": "Border or surface plus content, the general case"
+      }
+    },
+    {
+      "id": "media",
+      "name": {
+        "zh": "带封面",
+        "en": "Media"
+      },
+      "note": {
+        "zh": "顶部图片 + 内容区",
+        "en": "Top image above a content area"
+      }
+    },
+    {
+      "id": "actionable",
+      "name": {
+        "zh": "可点击",
+        "en": "Actionable"
+      },
+      "note": {
+        "zh": "整卡可点，hover 抬升或边框强调",
+        "en": "Whole card clickable with hover lift or border emphasis"
+      }
+    }
+  ],
+  "anatomy": [
+    "封面 / 媒体区（Media）",
+    "标题（Title）",
+    "描述（Body）",
+    "操作区（Actions）"
+  ],
+  "related": [
+    "table",
+    "bento-grid",
+    "hover-lift",
+    "badge"
+  ],
+  "demo": {
+    "component": "card",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "compare": {
+    "group": "primary-display",
+    "dimensions": {
+      "信息密度": {
+        "zh": "低，一块卡一个主题",
+        "en": "Low — one topic per card"
+      },
+      "可扫描性": {
+        "zh": "中，视觉引导好但占空间",
+        "en": "Medium — scannable but space-hungry"
+      },
+      "适合内容": {
+        "zh": "封面类内容、指标摘要",
+        "en": "Cover-led content, metric summaries"
+      }
+    }
+  },
+  "implementation": {
+    "css": [
+      "border-radius",
+      "box-shadow",
+      "border",
+      "aspect-ratio"
+    ],
+    "notes": {
+      "zh": "卡片 = 容器（圆角、边框或阴影）+ 内边距 + 可选分区（媒体区、内容区、操作区）。 整卡可点时用 a 或 button 包裹，hover 给边框变色或轻微上浮反馈； 图片区固定宽高比（aspect-ratio）防止加载后布局跳动。",
+      "en": "Card = container (radius, border or shadow) + padding + optional sections (media, content, actions). For a clickable card wrap it in an a or button and give hover feedback (border colour or slight lift); fix the media area's aspect-ratio to prevent layout shift after images load."
+    }
+  },
+  "sources": [
+    {
+      "name": "Material Design — Cards",
+      "url": "https://m3.material.io/components/cards/overview"
+    },
+    {
+      "name": "Ant Design — Card",
+      "url": "https://ant.design/components/card"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个卡片（Card）组件：圆角边框容器，包含封面图、标题、描述和操作按钮。",
+      "en": "Create a Card component: a rounded bordered container with a cover image, title, description and action buttons."
+    },
+    "design": {
+      "zh": "创建 Card 组件。要求：圆角 + 细边框（或浅底），内边距一致；可选媒体区固定 16:9； 标题加粗、描述两行截断；hover 时边框变强调色或轻微上浮（120ms）；支持整卡可点与底部操作区两种形态。",
+      "en": "Create a Card. Requirements: rounded corners with a hairline border (or soft surface), consistent padding; optional 16:9 media area; bold title, two-line clamped description; hover shifts the border to accent or lifts slightly (120ms); both whole-card-click and footer-action forms."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Card：article/容器 rounded-xl border bg-raised； 媒体区 aspect-video overflow-hidden；描述 line-clamp-2；整卡可点时外层 a/button + transition hover:border-accent hover:shadow，注意嵌套可点元素的语义冲突； 支持 as prop 定制元素；时长乘 var(--demo-speed, 1)。",
+      "en": "React + Tailwind Card: rounded-xl border bg-raised container; media area with aspect-video overflow-hidden; description with line-clamp-2; for whole-card click wrap in an a/button with transition hover:border-accent hover:shadow and mind nested interactive semantics; support an as prop; durations scaled by var(--demo-speed, 1)."
+    },
+    "agent": {
+      "zh": "在当前项目中实现卡片（Card）组件。\n\n先检查现有组件体系与 Design Token，优先复用现有的表面色、圆角与阴影变量。\n用途：内容流与仪表盘摘要。\n要求：\n- 容器 + 可选媒体区 + 标题/描述 + 操作区\n- 支持整卡可点（注意语义与嵌套交互）\n- hover 反馈克制，尊重 prefers-reduced-motion\n- 深浅色主题一致，不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement a Card component in the current project.\n\nInspect the existing component system and design tokens first; reuse existing\nsurface, radius and shadow variables.\nUsage: content feeds and dashboard summaries.\nRequirements:\n- Container + optional media + title/description + action row\n- Optional whole-card click (mind semantics and nested interactives)\n- Restrained hover feedback, respecting prefers-reduced-motion\n- Consistent light/dark themes, no new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

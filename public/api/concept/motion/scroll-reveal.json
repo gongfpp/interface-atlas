@@ -29,9 +29,7 @@
     },
     {
       "zh": "文章、案例展示等线性阅读内容",
-      "en": "Linear reading — articles",
-      "case studies": null,
-      "showcases": null
+      "en": "Linear reading — articles, case studies, showcases"
     },
     {
       "zh": "需要引导视线自上而下移动",
@@ -45,8 +43,7 @@
     },
     {
       "zh": "表单、价格等决策关键信息",
-      "en": "Decision-critical info — forms",
-      "pricing": null
+      "en": "Decision-critical info — forms, pricing"
     },
     {
       "zh": "整页元素全部滚动显现（等待感堆积）",

@@ -27,8 +27,7 @@
   "use_when": [
     {
       "zh": "落地页 首屏 品牌页，需要第一眼氛围与情绪",
-      "en": "Landing pages",
-      "heroes and brand pages that need instant atmosphere": null
+      "en": "Landing pages, heroes and brand pages that need instant atmosphere"
     },
     {
       "zh": "AI 创意工具类产品，渐变已成为其品类视觉符号",
@@ -69,8 +68,7 @@
       },
       "note": {
         "zh": "一次成型的多点网格渐变，无动画",
-        "en": "A one-shot multi-point mesh gradient",
-        "no motion": null
+        "en": "A one-shot multi-point mesh gradient, no motion"
       }
     },
     {
@@ -92,8 +90,7 @@
       },
       "note": {
         "zh": "深空底色上更浓的光带，对比更强",
-        "en": "Denser light bands over deep space",
-        "higher contrast": null
+        "en": "Denser light bands over deep space, higher contrast"
       }
     }
   ],

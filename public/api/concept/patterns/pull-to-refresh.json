@@ -25,8 +25,7 @@
   "use_when": [
     {
       "zh": "移动端时间线、消息、动态列表",
-      "en": "Mobile timelines",
-      "inboxes and activity feeds": null
+      "en": "Mobile timelines, inboxes and activity feeds"
     },
     {
       "zh": "内容有时效性但无需自动轮询",
@@ -88,8 +87,7 @@
       },
       "note": {
         "zh": "松手后以骨架屏过渡到刷新后的内容",
-        "en": "After release",
-        "a skeleton bridges into the refreshed content": null
+        "en": "After release, a skeleton bridges into the refreshed content"
       }
     }
   ],

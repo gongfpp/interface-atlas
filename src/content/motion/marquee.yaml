@@ -1,0 +1,113 @@
+status: published
+name:
+  zh: 跑马灯
+  en: Marquee
+aliases:
+  - 横向滚动广告位
+  - 跑马灯
+  - 无限滚动条带
+  - 循环滚动横幅
+  - 滚动字幕
+category:
+  - Motion
+  - Decoration
+description:
+  zh: 一条内容带在水平方向匀速循环滚动，首尾无缝衔接。 用于 logo 墙、合作方名单、公告与促销横幅——用"连续流动"表达数量多与不间断， 而不是引导用户逐条读完。
+  en: A horizontal strip of content scrolling continuously and looping seamlessly. Used for logo walls, partner lists, announcements and promo banners — the endless flow signals abundance; it never asks users to read every item.
+use_when:
+  - zh: 合作方/logo 墙，展示"很多谁在用我们"
+    en: Logo walls showing who else trusts the product
+  - zh: 公告条、促销横幅的循环展示
+    en: Announcement bars and looping promo banners
+  - zh: 内容远超容器宽度且无需逐条阅读
+    en: Content far wider than the container that nobody must read in full
+avoid_when:
+  - zh: 用户必须读完的关键信息（读不完就焦虑）
+    en: Critical copy users must finish reading
+  - zh: 需要停顿细看、可交互的条目
+    en: Items users need to pause on and click
+  - zh: 移动端窄屏塞长条带（速度感知更快更晕）
+    en: Long strips on narrow mobile screens — perceived speed worsens
+tags:
+  - animation
+  - marquee
+  - loop
+  - decoration
+variants:
+  - id: seamless
+    name:
+      zh: 无缝拼接
+      en: Seamless
+    note:
+      zh: 内容复制两份位移 -50% 循环，首尾无接缝
+      en: Duplicate the content, translate -50% — no visible seam
+  - id: hover-pause
+    name:
+      zh: 悬停暂停
+      en: Hover pause
+    note:
+      zh: 'hover 时 animation-play-state: paused 方便查看'
+      en: Pauses via animation-play-state so items can be read
+  - id: reverse
+    name:
+      zh: 反向双条
+      en: Reverse pair
+    note:
+      zh: 两条反向滚动，制造张力，编辑感首屏常用
+      en: Two strips scrolling opposite ways — editorial hero energy
+related:
+  - editorial
+  - landing-page
+  - scroll-reveal
+  - text-reveal
+demo:
+  component: marquee
+  modes:
+    - default
+    - dark
+    - variants
+implementation:
+  css:
+    - 'overflow: hidden'
+    - '@keyframes translateX 0 → -50%'
+    - linear infinite
+    - 'animation-play-state: paused'
+  notes:
+    zh: '把内容复制两份放进 flex 容器，animation: marquee Xs linear infinite，keyframes 到 translateX(-50%)， 两份内容宽度一致才无缝。时长 15～40s 视内容量而定，匀速不缓动。 hover 暂停用 animation-play-state；尊重 prefers-reduced-motion 改为静态可横向滚动。'
+    en: Duplicate the content inside a flex container and run animation marquee Xs linear infinite, keyframes to translateX(-50%); both copies must be identical in width for a seamless loop. Duration 15–40s depending on volume, linear, never eased. Pause on hover with animation-play-state; under prefers-reduced-motion fall back to a static horizontally scrollable strip.
+sources:
+  - name: MDN — CSS animations
+    url: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations
+prompts:
+  basic:
+    zh: 添加一个跑马灯：合作方 logo 横向匀速循环滚动。
+    en: Add a marquee — partner logos scrolling horizontally in a seamless loop.
+  design:
+    zh: 合作方条带以 30s 匀速循环滚动，内容复制两份无缝衔接，悬停暂停；灰度 logo、间距一致；不作为信息主通道。
+    en: A partner strip loops at 30s linear with the content duplicated for a seamless seam, pausing on hover; greyscale logos, even spacing; never a primary information channel.
+  implementation:
+    zh: '纯 CSS：外层 overflow:hidden，内层 flex 内放两份相同内容，animation: marquee 30s linear infinite，@keyframes marquee 到 translateX(-50%)。hover 暂停：animation-play-state: paused。加 prefers-reduced-motion 降级为静态滚动。'
+    en: 'CSS-only: outer overflow:hidden, inner flex holding two identical copies, animation marquee 30s linear infinite, keyframes to translateX(-50%). Hover pause via animation-play-state: paused. Degrade to a static scrollable strip under prefers-reduced-motion.'
+  agent:
+    zh: |-
+      为项目落地页添加合作方 logo 跑马灯。
+
+      先检查现有 logo 资源与间距令牌。
+      要求：
+      - 内容复制两份实现无缝循环，匀速不缓动
+      - 悬停暂停；聚焦时也暂停（可访问性）
+      - 装饰属性：aria-hidden，不进入无障碍阅读流
+      - 尊重 prefers-reduced-motion
+      - 不引入新依赖
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Add a partner-logo marquee to the project's landing page.
+
+      Check existing logo assets and spacing tokens first.
+      Requirements:
+      - Duplicate content for a seamless loop, linear motion only
+      - Pause on hover and on focus (accessibility)
+      - Decorative: aria-hidden, outside the accessibility reading flow
+      - Respect prefers-reduced-motion
+      - No new dependencies
+      Run existing checks when done and list modified files.

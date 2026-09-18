@@ -1,0 +1,113 @@
+status: published
+name:
+  zh: 撒花彩带
+  en: Confetti
+aliases:
+  - 撒花
+  - 彩带动画
+  - 庆祝特效
+  - 五彩纸屑
+  - 撒花庆祝
+category:
+  - Motion
+  - Celebration
+description:
+  zh: 完成关键动作后从一点爆出彩色纸屑飘落，用一次性高能量庆祝"做成了"。 只在里程碑出现：提交成功、任务完成、订阅达成—— 正因为稀有，才有庆祝的分量。
+  en: 'On completing a key action, a burst of coloured pieces erupts and falls — a one-shot, high-energy celebration. It belongs only to milestones: submission success, task done, subscription reached. Rarity is what gives it weight.'
+use_when:
+  - zh: 里程碑完成（首次发布、支付成功、目标达成）
+    en: Milestones — first publish, payment success, goal reached
+  - zh: 空状态被首次打破、成就解锁
+    en: First-time moments and achievements unlocked
+  - zh: 品牌调性允许庆祝的 C 端产品
+    en: Consumer products whose brand welcomes celebration
+avoid_when:
+  - zh: 高频操作（每次保存都撒花即灾难）
+    en: Frequent actions — confetti on every save is a disaster
+  - zh: 严肃或专业工具界面
+    en: Serious or professional tooling
+  - zh: 会遮挡关键结果信息的时机
+    en: Moments where it obscures the result itself
+tags:
+  - animation
+  - celebration
+  - confetti
+  - reward
+variants:
+  - id: burst
+    name:
+      zh: 中心爆开
+      en: Burst
+    note:
+      zh: 从按钮中心向外抛射，最常用
+      en: Erupts from the button center — the default
+  - id: cannon
+    name:
+      zh: 双侧礼炮
+      en: Cannons
+    note:
+      zh: 左右两门礼炮对射，仪式感更强
+      en: Two cannons firing from both sides — more ceremony
+  - id: rain
+    name:
+      zh: 顶部飘落
+      en: Rain
+    note:
+      zh: 从顶部持续飘落数秒，覆盖感最强
+      en: Drifts down from the top for seconds — maximum coverage
+related:
+  - elastic-bounce
+  - empty-state
+  - button
+  - optimistic-ui
+demo:
+  component: confetti
+  modes:
+    - default
+    - dark
+    - variants
+implementation:
+  css:
+    - absolute particles
+    - 'random transform translate/rotate'
+    - '@keyframes fall'
+    - cleanup after animation
+  notes:
+    zh: 用绝对定位的若干小块（div 或 canvas 粒子），随机角度、初速、颜色做抛物线下落并旋转， 1～2s 动画结束后立即从 DOM 移除， 防止节点泄漏。 一次性触发，不循环； 尊重 prefers-reduced-motion 改为静态成功图标。
+    en: Spawn absolutely positioned small pieces (divs or canvas particles) with random angle, initial velocity and colour, falling in a parabola while spinning; remove them from the DOM as soon as the 1–2s animation ends to prevent node leaks. Fire once, never loop; respect prefers-reduced-motion with a static success glyph instead.
+sources:
+  - name: canvas-confetti — canonical implementation
+    url: https://github.com/catdad/canvas-confetti
+prompts:
+  basic:
+    zh: 给任务完成时刻添加撒花庆祝效果：点击完成后爆出彩色纸屑。
+    en: Add a confetti celebration to task completion — a burst of colour when the task is done.
+  design:
+    zh: 完成按钮点击后从按钮中心爆出 30～60 枚纸屑，抛物线下落 1.5s 后消失；颜色取品牌色板；一次性，不循环。
+    en: On completion, 30–60 pieces burst from the button center, fall in parabolas for 1.5s, then vanish; colours come from the brand palette; one-shot, never looping.
+  implementation:
+    zh: '点击时生成 N 个绝对定位小 div，随机 --dx/--dy/--rot 自定义属性驱动 @keyframes 抛物线 + 旋转，animationend 后 remove()。容器 pointer-events:none + overflow:hidden。reduced-motion 直接显示成功状态。'
+    en: 'On click, spawn N absolutely positioned divs with random --dx/--dy/--rot custom properties driving a parabola + spin keyframe; remove() each on animationend. Container gets pointer-events:none and overflow:hidden. Under reduced-motion show the success state directly.'
+  agent:
+    zh: |-
+      为项目里程碑时刻添加撒花庆祝动效。
+
+      先检查产品调性与触发时机清单，确认撒花是合适的（低频正向）。
+      要求：
+      - 30～60 枚纸屑，1～2s 抛物线飘落后清理 DOM
+      - 一次性触发，颜色用品牌令牌
+      - 不遮挡结果信息，pointer-events 不拦截点击
+      - 尊重 prefers-reduced-motion
+      - 不引入新依赖
+      完成后运行现有检查，说明修改文件。
+    en: |-
+      Add confetti celebration to the project's milestone moments.
+
+      Check brand tone and the trigger list first; confirm confetti fits (low-frequency, positive).
+      Requirements:
+      - 30–60 pieces, 1–2s parabola, DOM cleaned up afterwards
+      - One-shot, brand token colours
+      - Never obscures results; pointer-events must not block clicks
+      - Respect prefers-reduced-motion
+      - No new dependencies
+      Run existing checks when done and list modified files.

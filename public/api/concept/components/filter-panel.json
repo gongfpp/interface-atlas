@@ -1,0 +1,155 @@
+{
+  "id": "filter-panel",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "筛选面板",
+    "en": "Filter Panel"
+  },
+  "aliases": [
+    "筛选面板",
+    "过滤器",
+    "筛选器",
+    "过滤面板",
+    "条件筛选",
+    "侧边筛选",
+    "左边勾选条件的那种面板"
+  ],
+  "category": [
+    "Data",
+    "Navigation"
+  ],
+  "description": {
+    "zh": "集中承载筛选条件的面板，常驻列表侧边或以抽屉、浮层唤起：复选组、单选、滑杆组合出当前查询。 与列表实时联动刷新结果数，并支持已选条件回显与一键清除。",
+    "en": "A panel concentrating filter controls beside the list (or revealed in a drawer or popover): checkbox groups, radios and sliders compose the current query. It syncs with the list to refresh result counts, echoes selected conditions and offers clear-all."
+  },
+  "use_when": [
+    {
+      "zh": "电商、检索结果等多维度数据浏览",
+      "en": "Multi-facet browsing (commerce, search results)"
+    },
+    {
+      "zh": "后台列表需要组合条件定位记录",
+      "en": "Admin lists locating records by combined conditions"
+    },
+    {
+      "zh": "需要展示各选项的结果数（facet count）",
+      "en": "Showing per-option result counts (facets)"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "维度极少（1~2 个，用下拉或搜索框即可）",
+      "en": "One or two dimensions — a select or search box suffices"
+    },
+    {
+      "zh": "筛选计算很慢（需要防抖与加载态）",
+      "en": "Slow filtering — debounce and show a loading state"
+    },
+    {
+      "zh": "移动端直接堆砌（收进底部抽屉承载）",
+      "en": "On mobile move it into a bottom drawer, do not stack it inline"
+    }
+  ],
+  "tags": [
+    "data",
+    "filtering",
+    "search",
+    "facets"
+  ],
+  "variants": [
+    {
+      "id": "sidebar",
+      "name": {
+        "zh": "侧边常驻",
+        "en": "Sidebar"
+      },
+      "note": {
+        "zh": "桌面列表页左侧常驻",
+        "en": "Persistent left rail on desktop list pages"
+      }
+    },
+    {
+      "id": "drawer",
+      "name": {
+        "zh": "抽屉唤起",
+        "en": "Drawer"
+      },
+      "note": {
+        "zh": "移动端以底部抽屉承载",
+        "en": "Mobile hosts it in a bottom drawer"
+      }
+    },
+    {
+      "id": "chips",
+      "name": {
+        "zh": "条件胶囊",
+        "en": "Chips"
+      },
+      "note": {
+        "zh": "已选条件以可删除胶囊回显在列表上方",
+        "en": "Selected conditions echo as removable chips above the list"
+      }
+    }
+  ],
+  "anatomy": [
+    "筛选组（Group）",
+    "复选项（Checkbox item）",
+    "结果计数（Result count）",
+    "清除全部（Clear all）"
+  ],
+  "related": [
+    "search-filtering",
+    "checkbox",
+    "drawer",
+    "search"
+  ],
+  "demo": {
+    "component": "filter-panel",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "flex",
+      "grid",
+      "overflow-y: auto",
+      "position: sticky"
+    ],
+    "notes": {
+      "zh": "左筛选 + 右结果的双栏布局（lg 以下收进抽屉）。多选状态用 Set<string> 管理， 过滤结果用 useMemo 派生；面板顶部常驻结果数与「清除全部」；已选条件回显为可删胶囊。 选项旁标注 facet 数量帮助用户预估结果规模；重筛选时防抖并给列表 loading 态。",
+      "en": "Two-pane layout: filters left, results right (collapse into a drawer below lg). Manage multi-select with Set<string> and derive filtered results with useMemo; keep result count and clear-all pinned at the panel top; echo selections as removable chips. Annotate options with facet counts to set expectations; debounce and show a list loading state on re-filter."
+    }
+  },
+  "sources": [
+    {
+      "name": "Nielsen Norman Group — Faceted Navigation",
+      "url": "https://www.nngroup.com/articles/faceted-navigation/"
+    },
+    {
+      "name": "MDN — :checked pseudo-class",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:checked"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个筛选面板（Filter Panel）：左侧分组复选条件，右侧商品列表，勾选后列表实时过滤并显示结果数。",
+      "en": "Create a Filter Panel: grouped checkboxes on the left, a product list on the right; checking a box filters the list live and updates the result count."
+    },
+    "design": {
+      "zh": "创建筛选面板。要求：分组标题 + 复选项（右侧带 facet 数量灰字）；面板顶部显示「共 N 个结果」 与「清除全部」按钮；已选条件以可删除胶囊回显在列表上方；选中项强调色标识； 移动端收进底部抽屉；深浅色主题一致。",
+      "en": "Create a filter panel. Requirements: group labels and checkboxes (facet counts in grey at the right); panel top shows \"N results\" with a clear-all button; selected conditions echo as removable chips above the list; checked items marked with the accent; mobile folds into a bottom drawer; consistent light/dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 FilterPanel：selected: Set<string> 受控， filtered = useMemo(() => items.filter(...), [selected])；每组渲染 checkbox + facet 数量； 结果区显示 filtered.length 与空态（empty-state）；清除全部 selected.clear()； 胶囊回显 selected 项，点 × 移除；容器 lg:grid-cols-[200px_1fr]，小屏改抽屉； 防抖在数据源异步时处理。",
+      "en": "React + Tailwind FilterPanel: selected: Set<string> controlled state, filtered = useMemo(() => items.filter(...), [selected]); each group renders checkboxes with facet counts; the results area shows filtered.length with an empty-state; clear-all empties the set; chips echo selections with an × to remove; container lg:grid-cols-[200px_1fr] collapsing to a drawer on small screens; debounce when the source is async."
+    },
+    "agent": {
+      "zh": "在当前项目中实现筛选面板（Filter Panel）。\n\n先检查现有组件体系、路由参数与数据源，保持状态同步方式一致。\n用途：检索结果页与后台列表。\n要求：\n- 分组复选 + facet 数量 + 实时过滤\n- 结果数与「清除全部」常驻，已选条件胶囊回显\n- 无结果时给出空态与清除入口\n- URL 参数或状态可恢复，深浅色主题一致\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement a Filter Panel in the current project.\n\nInspect the existing component system, route params and data source first; keep the\nstate-sync approach consistent.\nUsage: search results pages and admin lists.\nRequirements:\n- Grouped checkboxes + facet counts + live filtering\n- Persistent result count and clear-all; selections echoed as chips\n- An empty state with a clear entry when nothing matches\n- Restorable from URL params or state; consistent light/dark themes\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

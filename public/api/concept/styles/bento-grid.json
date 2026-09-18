@@ -27,13 +27,11 @@
   "use_when": [
     {
       "zh": "仪表盘 个人主页 产品概览，内容模块多且优先级分明",
-      "en": "Dashboards",
-      "profile pages and product overviews with mixed-priority modules": null
+      "en": "Dashboards, profile pages and product overviews with mixed-priority modules"
     },
     {
       "zh": "功能特性展示页，一格一卖点整齐陈列",
-      "en": "Feature showcases — one tile",
-      "one selling point": null
+      "en": "Feature showcases — one tile, one selling point"
     },
     {
       "zh": "想用面积对比引导视觉动线，避免均质卡片海洋",
@@ -70,9 +68,7 @@
       },
       "note": {
         "zh": "苹果发布会风格，大图大字大格子",
-        "en": "Apple keynote style — big tiles",
-        "big type": null,
-        "product heroes": null
+        "en": "Apple keynote style — big tiles, big type, product heroes"
       }
     },
     {
@@ -94,8 +90,7 @@
       },
       "note": {
         "zh": "头像 简介 社交链接混搭的个人便当",
-        "en": "Personal bento mixing avatar",
-        "bio and link tiles": null
+        "en": "Personal bento mixing avatar, bio and link tiles"
       }
     }
   ],

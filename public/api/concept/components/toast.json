@@ -1,0 +1,172 @@
+{
+  "id": "toast",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "轻提示",
+    "en": "Toast"
+  },
+  "aliases": [
+    "消息提示条",
+    "吐司",
+    "轻提示",
+    "通知条",
+    "snackbar",
+    "自动消失提示",
+    "右下角弹出的小提示"
+  ],
+  "category": [
+    "Feedback",
+    "Overlay"
+  ],
+  "description": {
+    "zh": "在视口角落短暂出现、自动消失的小消息条，用来告知操作结果（已保存、已复制、上传完成）。 不打断当前流程，通常附一个操作入口（撤销、查看），停留约 3~5 秒后淡出。",
+    "en": "A small message bar that appears in a viewport corner and dismisses itself, reporting an operation result (saved, copied, upload done). Non-blocking, usually with one action (undo, view), lingering for about 3–5 seconds before fading out."
+  },
+  "use_when": [
+    {
+      "zh": "操作成功、状态更新等轻量反馈",
+      "en": "Lightweight feedback: success, status updates"
+    },
+    {
+      "zh": "配合撤销动作（删除后可撤销）",
+      "en": "Paired with undo after light destructive actions"
+    },
+    {
+      "zh": "后台任务完成通知（上传、导出）",
+      "en": "Notify finished background tasks (upload, export)"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "必须被看到并处理的错误（改用 alert 或表单内联错误）",
+      "en": "Errors that must be seen and handled — use an alert or inline form errors"
+    },
+    {
+      "zh": "长消息或多条排队（改用通知中心）",
+      "en": "Long or queued messages — use a notification center"
+    },
+    {
+      "zh": "需要用户做出决策（改用模态框）",
+      "en": "A user decision is required — use a modal"
+    }
+  ],
+  "tags": [
+    "feedback",
+    "notification",
+    "transient",
+    "animation"
+  ],
+  "variants": [
+    {
+      "id": "success",
+      "name": {
+        "zh": "成功",
+        "en": "Success"
+      },
+      "note": {
+        "zh": "状态色圆点或对勾图标",
+        "en": "Status dot or check icon"
+      }
+    },
+    {
+      "id": "error",
+      "name": {
+        "zh": "错误",
+        "en": "Error"
+      },
+      "note": {
+        "zh": "危险色，停留更久或需手动关闭",
+        "en": "Danger colour, lingers longer or needs manual dismiss"
+      }
+    },
+    {
+      "id": "action",
+      "name": {
+        "zh": "带操作",
+        "en": "Action"
+      },
+      "note": {
+        "zh": "附撤销或查看按钮（snackbar 风格）",
+        "en": "Carries an undo or view button (snackbar style)"
+      }
+    }
+  ],
+  "anatomy": [
+    "消息文本（Message）",
+    "状态图标（Status icon）",
+    "操作按钮（Action）",
+    "关闭按钮（Close）"
+  ],
+  "related": [
+    "alert",
+    "modal",
+    "toast-slide-in",
+    "undo-action"
+  ],
+  "demo": {
+    "component": "toast",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "compare": {
+    "group": "form-feedback",
+    "dimensions": {
+      "打断程度": {
+        "zh": "低，短暂出现不打断操作",
+        "en": "Low — brief and non-blocking"
+      },
+      "持续性": {
+        "zh": "低，几秒后自动消失",
+        "en": "Low — auto-dismisses in seconds"
+      },
+      "错误定位能力": {
+        "zh": "差，无法定位到具体字段",
+        "en": "Poor — no field-level context"
+      }
+    }
+  },
+  "implementation": {
+    "css": [
+      "position: fixed",
+      "z-index",
+      "transform: translateY",
+      "animation"
+    ],
+    "notes": {
+      "zh": "固定在视口右下角或底部居中，入场 slide + fade、出场同理，全部用 transform 避免重排； 多条消息栈式叠放（新的在下面顶上来）。hover 时暂停自动关闭计时。 错误类可延长停留或要求手动关闭；尊重 prefers-reduced-motion。",
+      "en": "Pin to the bottom-right (or bottom-center); enter and exit with slide + fade using transforms only to avoid reflow; stack multiple toasts. Pause the auto-dismiss timer on hover. Error toasts may linger longer or require manual dismissal; respect prefers-reduced-motion."
+    }
+  },
+  "sources": [
+    {
+      "name": "Material Design — Snackbar",
+      "url": "https://m3.material.io/components/snackbar/overview"
+    },
+    {
+      "name": "Nielsen Norman Group — Toasts or Snackbars",
+      "url": "https://www.nngroup.com/articles/toasts-or-snackbars/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个轻提示（Toast）组件：点击按钮后在右下角弹出消息条，3 秒后自动消失，支持手动关闭。",
+      "en": "Create a Toast component: clicking a button pops a message bar in the bottom-right corner that auto-dismisses after 3 seconds and can be closed manually."
+    },
+    "design": {
+      "zh": "创建 Toast 组件。要求：消息条固定在视口右下角，圆角深色底（成功/错误两种状态色点缀）； 入场从下方滑入淡入、出场淡出；文本右侧可带「撤销」操作与关闭按钮；多条时栈式叠放；深浅色主题一致。",
+      "en": "Create a Toast. Requirements: bars pinned bottom-right, rounded, dark surface with success/error status accents; slide in from below with fade, fade out on exit; optional \"Undo\" action and close button; stack multiple bars; consistent light/dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Toast：消息数组 state（含 id/type/text/action）， 容器 fixed bottom-4 right-4 z-50 flex-col-reverse；每条入场 keyframes（translateY + opacity， 时长乘 var(--demo-speed, 1)）；setTimeout 3 秒移除，hover 清除计时器、leave 重置； 提供 remove(id)；尊重 prefers-reduced-motion（可只保留 opacity）。",
+      "en": "React + Tailwind Toast: toasts array state (id/type/text/action); container fixed bottom-4 right-4 z-50 flex-col-reverse; per-toast enter keyframes (translateY + opacity, duration scaled by var(--demo-speed, 1)); remove after a 3s setTimeout, clearing the timer on hover and resetting on leave; expose remove(id); respect prefers-reduced-motion (opacity-only fallback)."
+    },
+    "agent": {
+      "zh": "在当前项目中实现轻提示（Toast）组件。\n\n先检查现有组件体系与 Design Token，优先复用现有的表面色与状态色变量。\n用途：操作结果反馈（保存成功、复制成功、删除后撤销）。\n要求：\n- 固定视口角落，自动消失，hover 暂停计时\n- 支持成功/错误两种状态与一个可选操作按钮\n- 多条栈式叠放，动画用 transform，尊重 prefers-reduced-motion\n- 提供命令式 API（toast.show）或 Provider 用法\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement a Toast component in the current project.\n\nInspect the existing component system and design tokens first; reuse existing\nsurface and status colour variables.\nUsage: operation feedback (saved, copied, undo after delete).\nRequirements:\n- Pinned to a viewport corner, auto-dismiss, pause timer on hover\n- Success/error variants plus one optional action button\n- Stack multiple toasts; transform-based animation respecting prefers-reduced-motion\n- Imperative API (toast.show) or a Provider-based usage\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

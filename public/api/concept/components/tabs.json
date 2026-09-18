@@ -64,8 +64,7 @@
       },
       "note": {
         "zh": "激活项底部横线，Material 风格",
-        "en": "Active marker under the label",
-        "Material-style": null
+        "en": "Active marker under the label, Material-style"
       }
     },
     {
@@ -76,8 +75,7 @@
       },
       "note": {
         "zh": "圆角分段控件，iOS Segmented 风格",
-        "en": "Rounded segmented control",
-        "iOS-style": null
+        "en": "Rounded segmented control, iOS-style"
       }
     },
     {

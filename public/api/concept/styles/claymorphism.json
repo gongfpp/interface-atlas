@@ -27,8 +27,7 @@
   "use_when": [
     {
       "zh": "儿童 教育 休闲游戏类产品，需要亲和与手感",
-      "en": "Kids",
-      "education and casual games that want approachable tactility": null
+      "en": "Kids, education and casual games that want approachable tactility"
     },
     {
       "zh": "轻松的社交 消费品牌，传达可爱与松弛感",
@@ -42,8 +41,7 @@
   "avoid_when": [
     {
       "zh": "专业 金融 企业级场景，软糖感削弱专业信号",
-      "en": "Professional",
-      "fintech and enterprise contexts — clay reads unserious": null
+      "en": "Professional, fintech and enterprise contexts — clay reads unserious"
     },
     {
       "zh": "信息密集的后台界面，膨胀阴影消耗空间与注意力",
@@ -92,8 +90,7 @@
       },
       "note": {
         "zh": "深灰底上的哑光黏土，膨胀感保留",
-        "en": "Matte clay on dark grey",
-        "inflation kept": null
+        "en": "Matte clay on dark grey, inflation kept"
       }
     }
   ],

@@ -27,21 +27,15 @@
   "use_when": [
     {
       "zh": "内容为王的产品——阅读、写作、摄影、作品集",
-      "en": "Content-first products — reading",
-      "writing": null,
-      "photography": null,
-      "portfolios": null
+      "en": "Content-first products — reading, writing, photography, portfolios"
     },
     {
       "zh": "想传达专业、克制、高端的品牌气质",
-      "en": "Conveying a professional",
-      "restrained": null,
-      "premium brand voice": null
+      "en": "Conveying a professional, restrained, premium brand voice"
     },
     {
       "zh": "元素少而结构清晰的页面（官网首屏、详情页）",
-      "en": "Pages with few elements and clear structure (hero",
-      "detail pages)": null
+      "en": "Pages with few elements and clear structure (hero, detail pages)"
     }
   ],
   "avoid_when": [
@@ -74,8 +68,7 @@
       },
       "note": {
         "zh": "纯黑 白 灰三色，最锋利的版本",
-        "en": "Pure black",
-        "white and grey — the sharpest version": null
+        "en": "Pure black, white and grey — the sharpest version"
       }
     },
     {
@@ -97,8 +90,7 @@
       },
       "note": {
         "zh": "米白与暖灰底色，日式 北欧的生活感",
-        "en": "Cream and warm-grey tones",
-        "Japanese or Nordic feel": null
+        "en": "Cream and warm-grey tones, Japanese or Nordic feel"
       }
     }
   ],

@@ -25,9 +25,7 @@
   "use_when": [
     {
       "zh": "卡片网格、商品卡、文章卡等可点击块",
-      "en": "Card grids",
-      "product cards": null,
-      "article cards — clickable blocks": null
+      "en": "Card grids, product cards, article cards — clickable blocks"
     },
     {
       "zh": "桌面端为主的交互（hover 是桌面专属语言）",
@@ -41,8 +39,7 @@
   "avoid_when": [
     {
       "zh": "触屏设备（没有 hover，会粘滞），改用按压反馈",
-      "en": "Touch devices — no hover",
-      "sticky triggers; use press feedback instead": null
+      "en": "Touch devices — no hover, sticky triggers; use press feedback instead"
     },
     {
       "zh": "页面上所有元素都上浮（通胀，暗示失效）",

@@ -47,8 +47,7 @@
     },
     {
       "zh": "每次进入都强制播放，应只在首次出现且可重看",
-      "en": "Forcing it on every visit — show once",
-      "keep a replay entry": null
+      "en": "Forcing it on every visit — show once, keep a replay entry"
     }
   ],
   "tags": [
@@ -66,8 +65,7 @@
       },
       "note": {
         "zh": "蒙层挖洞高亮目标区域，注意力最聚焦",
-        "en": "The overlay cuts a hole around the target",
-        "tightest focus": null
+        "en": "The overlay cuts a hole around the target, tightest focus"
       }
     },
     {
