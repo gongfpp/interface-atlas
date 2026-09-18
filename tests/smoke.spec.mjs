@@ -56,3 +56,13 @@ test('compare: index lists groups, group page renders comparison table', async (
   await expect(page.getByRole('heading', { level: 1 })).toContainText('命令面板');
   await expect(page.getByRole('table')).toBeVisible();
 });
+
+test('explore: type filter narrows the grid', async ({ page }) => {
+  await page.goto('/explore');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('随机探索');
+  await expect(page.locator('[data-explore-item]').first()).toBeVisible();
+  await page.locator('.explore-chip[data-filter="motion"]').click();
+  await expect(page.locator('[data-explore-item]:not(.hidden)')).toHaveCount(20);
+  await page.locator('.explore-chip[data-filter="all"]').click();
+  await expect(page.locator('[data-explore-item]:not(.hidden)')).toHaveCount(90);
+});

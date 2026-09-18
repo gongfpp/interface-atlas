@@ -7,6 +7,9 @@ const { locale } = Astro.props;
 <footer class="mt-24 border-t border-line py-10 text-sm text-ink-3">
   <div class="mx-auto flex w-full max-w-6xl flex-col gap-3 px-5 md:px-8">
     <nav class="flex flex-wrap gap-x-5 gap-y-2 text-ink-2" aria-label="次级导航">
+      <a class="hover:text-accent" href={localePath('/explore', locale)}>
+        {locale === 'zh' ? '随机探索' : 'Explore'}
+      </a>
       <a class="hover:text-accent" href={localePath('/compare', locale)}>
         {locale === 'zh' ? '概念对比' : 'Concept comparisons'}
       </a>

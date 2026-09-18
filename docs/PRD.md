@@ -1,9 +1,11 @@
 # 中文前端设计参考库 PRD
 
-版本：v0.7
+版本：v0.8
 项目阶段：MVP
 中文名称：界面图谱
 英文名称：Interface Atlas（MVP 使用工作名，域名后定，改名成本 = 文案 + 301）
+
+> v0.8 变更摘要（P1 功能落地）：新增带过滤的随机探索页 `/explore`（中英双语）——按类型多选筛选、打乱顺序（每次进入随机排序）、随机跳转，复用 ConceptCard 静态渲染，交互由页面内联脚本完成（无新依赖）。
 
 > v0.7 变更摘要（P1 功能落地）：① 新增概念对比浏览页 `/compare` 与 `/compare/<group>`（中英双语）——从 `compare.group` 数据生成，详情页内联对比改用共享 `CompareTable` 组件并新增"查看完整对比"入口；② CI 增加"同组 compare 维度键必须一致"校验；③ compare 维度英文标签集中到 `src/lib/i18n.ts` 的 `DIMENSION_LABELS`（键为中文维度名）。
 
@@ -144,7 +146,7 @@ MVP 不建立社区、商城和复杂账户体系。
 展示常见设计概念：Command Palette、Glassmorphism、Bento Grid、Skeleton Loading、Neobrutalism、Scroll Reveal。
 
 ## Random Discovery（P0）
-首页提供**"随便看看"随机按钮**：随机跳转到任一已发布条目（v0.2 明确进 P0）。带过滤的完整随机探索页在 P1（§28）。
+首页提供**"随便看看"随机按钮**：随机跳转到任一已发布条目（v0.2 明确进 P0）。带过滤的完整随机探索页已于 v0.8 落地（`/explore`：类型筛选 + 打乱顺序 + 随机跳转）。
 
 ---
 
@@ -377,8 +379,8 @@ Motion 播放器（Play / Replay / Slow Motion / Before-After）
 
 # 28. P1
 
-完整随机探索页（带过滤）/ 收藏 / 浏览历史 / 高级 Filter / Prompt Builder / 页面结构拆解深化。
-（Concept Compare 独立浏览页已于 v0.7 落地，见 §19。）
+收藏 / 浏览历史 / 高级 Filter / Prompt Builder / 页面结构拆解深化。
+（Concept Compare 独立浏览页已于 v0.7 落地，见 §19；带过滤的随机探索页已于 v0.8 落地，见 §8。）
 
 # 29. P2
 

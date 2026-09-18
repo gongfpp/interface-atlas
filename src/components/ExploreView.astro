@@ -1,0 +1,162 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ConceptCard from '@/components/ConceptCard.astro';
+import { getConcepts } from '@/lib/content';
+import { CONCEPT_TYPES } from '@/content.config';
+import { TYPE_LABELS, type Locale } from '@/lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const groups = await Promise.all(
+  CONCEPT_TYPES.map(async (type) => ({ type, concepts: await getConcepts(type) })),
+);
+const total = groups.reduce((n, g) => n + g.concepts.length, 0);
+
+const L =
+  locale === 'zh'
+    ? {
+        title: '随机探索 · 界面图谱',
+        description:
+          '按类型筛选、打乱顺序、随机跳进一个前端设计概念——不知道看什么的时候从这里开始。',
+        heading: '随机探索',
+        intro: '筛类型、打乱顺序、随机跳进一个概念——不知道看什么的时候从这里开始。',
+        all: '全部',
+        countSuffix: '个概念',
+        shuffle: '打乱顺序',
+        random: '随机跳转',
+      }
+    : {
+        title: 'Explore · Interface Atlas',
+        description:
+          'Filter by type, shuffle the deck and jump into a random frontend design concept — start here when you do not know what to look for.',
+        heading: 'Explore',
+        intro:
+          'Filter by type, shuffle the deck and jump into a random concept — for when you do not know what to look for.',
+        all: 'All',
+        countSuffix: 'concepts',
+        shuffle: 'Shuffle',
+        random: 'Surprise me',
+      };
+
+const chip = 'rounded-full border px-3 py-1 text-xs transition-colors hover:border-line-strong';
+const chipActive = `${chip} border-ink bg-ink text-paper`;
+const chipIdle = `${chip} border-line text-ink-2`;
+const action =
+  'rounded-full border border-line px-3 py-1 text-xs text-ink-2 transition-colors hover:border-accent hover:text-accent';
+const actionPrimary =
+  'rounded-full border border-accent bg-accent px-3 py-1 text-xs font-medium text-paper transition-opacity hover:opacity-90';
+---
+
+<BaseLayout title={L.title} description={L.description} locale={locale} enPath="/explore">
+  <section class="pt-14 pb-6">
+    <h1 class="font-serif text-3xl font-semibold md:text-4xl">{L.heading}</h1>
+    <p class="mt-3 max-w-2xl text-ink-2">{L.intro}</p>
+  </section>
+
+  <div class="sticky top-14 z-30 -mx-5 mb-6 border-b border-line bg-paper/90 px-5 py-3 backdrop-blur md:-mx-8 md:px-8">
+    <div class="flex flex-wrap items-center gap-2">
+      <button type="button" class:list={['explore-chip', chipActive]} data-filter="all">{L.all}</button>
+      {CONCEPT_TYPES.map((t) => (
+        <button type="button" class:list={['explore-chip', chipIdle]} data-filter={t}>
+          {TYPE_LABELS[t][locale]}
+        </button>
+      ))}
+      <span class="ml-auto text-xs text-ink-3" data-explore-count>
+        {`${total} / ${total} ${L.countSuffix}`}
+      </span>
+      <button type="button" class={action} data-explore-shuffle>{L.shuffle}</button>
+      <button type="button" class={actionPrimary} data-explore-random>{L.random} →</button>
+    </div>
+  </div>
+
+  <div data-explore-grid class="grid gap-3 pb-20 sm:grid-cols-2 md:grid-cols-3">
+    {groups.flatMap((g) =>
+      g.concepts.map((c) => (
+        <div data-explore-item data-type={c.conceptType}>
+          <ConceptCard concept={c} locale={locale} />
+        </div>
+      )),
+    )}
+  </div>
+</BaseLayout>
+
+<script is:inline define:vars={{ countSuffix: L.countSuffix }}>
+  (function () {
+    var chips = Array.prototype.slice.call(document.querySelectorAll('.explore-chip'));
+    var items = Array.prototype.slice.call(document.querySelectorAll('[data-explore-item]'));
+    var grid = document.querySelector('[data-explore-grid]');
+    var countEl = document.querySelector('[data-explore-count]');
+    if (!chips.length || !items.length || !grid || !countEl) return;
+    var total = items.length;
+    var selected = null; // null = 全部
+
+    function setChip(btn, on) {
+      btn.classList.toggle('border-line', !on);
+      btn.classList.toggle('text-ink-2', !on);
+      btn.classList.toggle('border-ink', on);
+      btn.classList.toggle('bg-ink', on);
+      btn.classList.toggle('text-paper', on);
+    }
+
+    function refresh() {
+      var visible = 0;
+      items.forEach(function (el) {
+        var on = !selected || selected.has(el.dataset.type);
+        el.classList.toggle('hidden', !on);
+        if (on) visible++;
+      });
+      chips.forEach(function (btn) {
+        var t = btn.dataset.filter;
+        var on = t === 'all' ? !selected : Boolean(selected && selected.has(t));
+        setChip(btn, on);
+      });
+      countEl.textContent = visible + ' / ' + total + ' ' + countSuffix;
+    }
+
+    chips.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var t = btn.dataset.filter;
+        if (t === 'all') {
+          selected = null;
+        } else if (!selected) {
+          selected = new Set([t]);
+        } else if (selected.has(t)) {
+          selected.delete(t);
+          if (selected.size === 0) selected = null;
+        } else {
+          selected.add(t);
+        }
+        refresh();
+      });
+    });
+
+    function shuffle() {
+      for (var i = items.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = items[i];
+        items[i] = items[j];
+        items[j] = tmp;
+      }
+      items.forEach(function (el) {
+        grid.appendChild(el);
+      });
+    }
+
+    document.querySelector('[data-explore-shuffle]').addEventListener('click', shuffle);
+
+    document.querySelector('[data-explore-random]').addEventListener('click', function () {
+      var pool = items.filter(function (el) {
+        return !el.classList.contains('hidden');
+      });
+      if (!pool.length) return;
+      var el = pool[Math.floor(Math.random() * pool.length)];
+      var a = el.querySelector('a');
+      if (a) window.location.href = a.getAttribute('href');
+    });
+
+    shuffle();
+  })();
+</script>
