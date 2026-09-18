@@ -1,0 +1,112 @@
+---
+import ConceptCard from '@/components/ConceptCard.astro';
+import type { Concept } from '@/lib/content';
+import type { Locale } from '@/lib/i18n';
+
+interface Props {
+  concepts: Concept[];
+  locale: Locale;
+}
+const { concepts, locale } = Astro.props;
+
+// 只显示 ≥2 个成员的分类，避免单例分类噪声
+const counts = new Map<string, number>();
+for (const c of concepts) {
+  for (const cat of c.data.category) counts.set(cat, (counts.get(cat) ?? 0) + 1);
+}
+const categories = [...counts.entries()]
+  .filter(([, n]) => n >= 2)
+  .map(([cat]) => cat)
+  .sort();
+
+const L =
+  locale === 'zh'
+    ? { search: '按名称 / 别名 / 标签过滤…', all: '全部', countSuffix: '个概念', empty: '没有匹配的概念' }
+    : { search: 'Filter by name / alias / tag…', all: 'All', countSuffix: 'concepts', empty: 'No matching concepts' };
+
+const chip = 'rounded-full border px-3 py-1 text-xs transition-colors hover:border-line-strong';
+const chipActive = `${chip} border-ink bg-ink text-paper`;
+const chipIdle = `${chip} border-line text-ink-2`;
+---
+
+<div data-list-root>
+  <div class="mb-5 flex flex-wrap items-center gap-2">
+    <input
+      type="search"
+      data-list-search
+      placeholder={L.search}
+      class="w-full max-w-xs rounded-full border border-line bg-raised px-3.5 py-1.5 text-xs text-ink outline-none transition-colors focus:border-accent sm:w-auto"
+    />
+    <button type="button" class:list={['list-chip', chipActive]} data-list-cat="all">{L.all}</button>
+    {categories.map((cat) => (
+      <button type="button" class:list={['list-chip', chipIdle]} data-list-cat={cat}>{cat}</button>
+    ))}
+    <span class="ml-auto text-xs text-ink-3" data-list-count>{`${concepts.length} / ${concepts.length} ${L.countSuffix}`}</span>
+  </div>
+
+  <div data-list-grid class="grid gap-3 pb-20 sm:grid-cols-2 md:grid-cols-3">
+    {concepts.map((c) => (
+      <div
+        data-list-item
+        data-category={c.data.category.join('|')}
+        data-search={[c.data.name.zh, c.data.name.en, ...c.data.aliases, ...c.data.tags]
+          .join(' ')
+          .toLowerCase()}
+      >
+        <ConceptCard concept={c} locale={locale} />
+      </div>
+    ))}
+  </div>
+
+  <p data-list-empty class="hidden pb-20 text-sm text-ink-3">{L.empty}</p>
+</div>
+
+<script is:inline define:vars={{ countSuffix: L.countSuffix }}>
+  (function () {
+    var root = document.querySelector('[data-list-root]');
+    if (!root) return;
+    var input = root.querySelector('[data-list-search]');
+    var chips = Array.prototype.slice.call(root.querySelectorAll('.list-chip'));
+    var items = Array.prototype.slice.call(root.querySelectorAll('[data-list-item]'));
+    var grid = root.querySelector('[data-list-grid]');
+    var countEl = root.querySelector('[data-list-count]');
+    var emptyEl = root.querySelector('[data-list-empty]');
+    if (!input || !items.length || !grid || !countEl || !emptyEl) return;
+    var total = items.length;
+    var cat = 'all';
+
+    function setChip(btn, on) {
+      btn.classList.toggle('border-line', !on);
+      btn.classList.toggle('text-ink-2', !on);
+      btn.classList.toggle('border-ink', on);
+      btn.classList.toggle('bg-ink', on);
+      btn.classList.toggle('text-paper', on);
+    }
+
+    function refresh() {
+      var q = input.value.trim().toLowerCase();
+      var visible = 0;
+      items.forEach(function (el) {
+        var okCat = cat === 'all' || ('|' + el.dataset.category + '|').indexOf('|' + cat + '|') >= 0;
+        var okText = !q || (el.dataset.search || '').indexOf(q) >= 0;
+        var on = okCat && okText;
+        el.classList.toggle('hidden', !on);
+        if (on) visible++;
+      });
+      chips.forEach(function (btn) {
+        setChip(btn, btn.dataset.listCat === cat);
+      });
+      countEl.textContent = visible + ' / ' + total + ' ' + countSuffix;
+      emptyEl.classList.toggle('hidden', visible !== 0);
+      grid.classList.toggle('hidden', visible === 0);
+    }
+
+    input.addEventListener('input', refresh);
+    chips.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        cat = btn.dataset.listCat;
+        refresh();
+      });
+    });
+  })();
+</script>

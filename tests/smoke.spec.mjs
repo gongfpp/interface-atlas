@@ -76,3 +76,12 @@ test('saved: save a concept then see it on /saved', async ({ page }) => {
   await expect(page.getByRole('link', { name: /按钮/ }).first()).toBeVisible();
   await expect(page.getByRole('heading', { level: 2, name: '最近浏览' })).toBeVisible();
 });
+
+test('list filter: category chip narrows the grid', async ({ page }) => {
+  await page.goto('/components');
+  await expect(page.locator('[data-list-item]').first()).toBeVisible();
+  await page.locator('.list-chip[data-list-cat="Navigation"]').click();
+  await expect(page.locator('[data-list-item]:not(.hidden)')).toHaveCount(10);
+  await page.locator('.list-chip[data-list-cat="all"]').click();
+  await expect(page.locator('[data-list-item]:not(.hidden)')).toHaveCount(30);
+});

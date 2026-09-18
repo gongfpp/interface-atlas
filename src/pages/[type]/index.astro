@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import ConceptCard from '@/components/ConceptCard.astro';
+import ConceptListView from '@/components/ConceptListView.astro';
 import StyleRow from '@/components/StyleRow.astro';
 import { getConcepts, type ConceptType } from '@/lib/content';
 import { TYPE_LABELS, type Locale } from '@/lib/i18n';
@@ -37,8 +37,6 @@ const styleSpecs = isStyles ? await getStylePreviews() : [];
       {styleSpecs.map((spec, i) => <StyleRow spec={spec} index={i} locale={locale} />)}
     </div>
   ) : (
-    <div class="grid gap-3 pb-20 sm:grid-cols-2 md:grid-cols-3">
-      {concepts.map((c) => <ConceptCard concept={c} locale={locale} />)}
-    </div>
+    <ConceptListView concepts={concepts} locale={locale} />
   )}
 </BaseLayout>
