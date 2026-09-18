@@ -81,6 +81,37 @@ related:
     relation: contains
   - id: table
     relation: contains
+structure:
+  - part:
+      zh: 标题区
+      en: Header
+    note:
+      zh: 页面主张与定位说明，先讲清价值再谈价格。
+      en: The page proposition and positioning before any numbers.
+  - part:
+      zh: 计费周期切换
+      en: Billing toggle
+    note:
+      zh: 月付 / 年付切换，年付标注折扣。
+      en: Monthly/annual toggle with the annual discount surfaced.
+  - part:
+      zh: 套餐卡
+      en: Tier cards
+    note:
+      zh: 2–4 档，推荐档视觉强化；每档列出关键差异。
+      en: Two to four tiers, one visually recommended, each listing key differences.
+  - part:
+      zh: 功能对比表
+      en: Feature comparison
+    note:
+      zh: 细粒度功能逐项对比，可折叠次要行。
+      en: Item-by-item feature comparison, with secondary rows collapsible.
+  - part:
+      zh: 常见问题
+      en: FAQ
+    note:
+      zh: 打消计费、退款、升级等购买顾虑。
+      en: Addresses billing, refund and upgrade concerns.
 demo:
   component: pricing
   modes:

@@ -132,6 +132,58 @@
       "relation": "contains"
     }
   ],
+  "structure": [
+    {
+      "part": {
+        "zh": "步骤条",
+        "en": "Steps"
+      },
+      "note": {
+        "zh": "购物车 → 信息 → 支付 → 完成，标明当前进度。",
+        "en": "Cart to info to payment to done, marking current progress."
+      }
+    },
+    {
+      "part": {
+        "zh": "收货与支付表单",
+        "en": "Address & payment form"
+      },
+      "note": {
+        "zh": "地址与卡信息分组，减少字段并支持自动填充。",
+        "en": "Address and card grouped, minimized fields with autofill."
+      }
+    },
+    {
+      "part": {
+        "zh": "支付方式",
+        "en": "Payment methods"
+      },
+      "note": {
+        "zh": "卡 / 钱包 / 分期并列，默认选中推荐方式。",
+        "en": "Card, wallet or installments side by side, defaulting to the recommended one."
+      }
+    },
+    {
+      "part": {
+        "zh": "订单摘要",
+        "en": "Order summary"
+      },
+      "note": {
+        "zh": "商品、运费、税费与合计，结算全程可见。",
+        "en": "Items, shipping, tax and total, visible throughout checkout."
+      }
+    },
+    {
+      "part": {
+        "zh": "提交按钮",
+        "en": "Place order"
+      },
+      "note": {
+        "zh": "唯一致命操作，处理中禁用并给出反馈。",
+        "en": "The single irreversible action, disabled with feedback while pending."
+      }
+    }
+  ],
   "demo": {
     "component": "checkout",
     "modes": [

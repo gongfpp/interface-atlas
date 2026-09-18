@@ -132,6 +132,58 @@
       "relation": "contains"
     }
   ],
+  "structure": [
+    {
+      "part": {
+        "zh": "文档树导航",
+        "en": "Doc tree"
+      },
+      "note": {
+        "zh": "按版本与章节分组的左侧导航，可折叠、可搜索。",
+        "en": "Left nav grouped by version and section, collapsible and searchable."
+      }
+    },
+    {
+      "part": {
+        "zh": "正文",
+        "en": "Article"
+      },
+      "note": {
+        "zh": "标题层级清晰、段落短，锚点可分享。",
+        "en": "Clear heading hierarchy, short paragraphs, shareable anchors."
+      }
+    },
+    {
+      "part": {
+        "zh": "代码块",
+        "en": "Code blocks"
+      },
+      "note": {
+        "zh": "语法高亮 + 一键复制，标明语言与文件名。",
+        "en": "Syntax highlighting plus one-click copy, labelled with language and file name."
+      }
+    },
+    {
+      "part": {
+        "zh": "页内目录",
+        "en": "On-page TOC"
+      },
+      "note": {
+        "zh": "长文右侧目录，滚动高亮当前小节。",
+        "en": "A right-hand TOC for long pages, highlighting the active section."
+      }
+    },
+    {
+      "part": {
+        "zh": "上下篇",
+        "en": "Prev/next"
+      },
+      "note": {
+        "zh": "按阅读顺序串联，降低跳转成本。",
+        "en": "Chained in reading order to reduce navigation cost."
+      }
+    }
+  ],
   "demo": {
     "component": "documentation",
     "modes": [

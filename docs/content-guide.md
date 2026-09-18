@@ -26,6 +26,7 @@ tags: [...]                          # 小写英文
 variants: [{ id, name{zh,en}, note{zh,en} }, ...]   # ≥2
 anatomy: [...]                       # 组件/页面类建议给；纯动效类可省
 api: [...]                           # 可选：对应 Web 平台 API 符号（元素 / role / 属性），组件类建议给
+structure: [{ part{zh,en}, note{zh,en} }, ...]   # 可选：page 结构拆解（部件 + 说明），页面类建议给
 related: [{ id, relation }, ...]     # 3～5 条边，id 只能引用全库清单（见 §3），relation 见 §1.5
 demo: { component: <id>, modes: [default, dark, variants] }  # component 一律等于条目 id
 sources: [{ name, url }, ...]        # ≥1，权威来源（Material/HIG/Fluent/MDN/W3C 等）

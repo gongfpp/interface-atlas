@@ -128,6 +128,58 @@
       "relation": "alternative_to"
     }
   ],
+  "structure": [
+    {
+      "part": {
+        "zh": "品牌区",
+        "en": "Brand panel"
+      },
+      "note": {
+        "zh": "Logo 或品牌插画；分屏布局时占一侧，移动端隐藏。",
+        "en": "Logo or brand art; takes one side in split layouts, hidden on mobile."
+      }
+    },
+    {
+      "part": {
+        "zh": "登录表单",
+        "en": "Login form"
+      },
+      "note": {
+        "zh": "邮箱 / 用户名 + 密码，字段最少化，主按钮唯一。",
+        "en": "Email or username plus password, minimal fields, a single primary button."
+      }
+    },
+    {
+      "part": {
+        "zh": "第三方登录",
+        "en": "OAuth"
+      },
+      "note": {
+        "zh": "OAuth 按钮置于分隔线下，与主按钮区分主次。",
+        "en": "OAuth buttons below a divider, visually ranked below the primary action."
+      }
+    },
+    {
+      "part": {
+        "zh": "辅助链接",
+        "en": "Recovery links"
+      },
+      "note": {
+        "zh": "忘记密码、记住我等次要操作，弱化处理。",
+        "en": "Forgot password and remember-me as de-emphasized secondary actions."
+      }
+    },
+    {
+      "part": {
+        "zh": "注册入口",
+        "en": "Signup link"
+      },
+      "note": {
+        "zh": "「没有账号？注册」放页尾，形成账号闭环。",
+        "en": "A “No account? Sign up” link at the bottom to close the loop."
+      }
+    }
+  ],
   "demo": {
     "component": "login",
     "modes": [

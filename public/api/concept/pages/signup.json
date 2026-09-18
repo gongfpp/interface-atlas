@@ -128,6 +128,58 @@
       "relation": "alternative_to"
     }
   ],
+  "structure": [
+    {
+      "part": {
+        "zh": "品牌与价值主张",
+        "en": "Brand & value"
+      },
+      "note": {
+        "zh": "说明注册能得到什么，降低注册心理门槛。",
+        "en": "States what signing up unlocks, lowering the barrier."
+      }
+    },
+    {
+      "part": {
+        "zh": "注册表单",
+        "en": "Signup form"
+      },
+      "note": {
+        "zh": "只留邮箱与密码，其余延后到产品内补全。",
+        "en": "Only email and password; everything else deferred into the product."
+      }
+    },
+    {
+      "part": {
+        "zh": "第三方注册",
+        "en": "OAuth"
+      },
+      "note": {
+        "zh": "一键注册入口，与表单按钮区分主次。",
+        "en": "One-tap signup, visually ranked against the form button."
+      }
+    },
+    {
+      "part": {
+        "zh": "服务条款",
+        "en": "Terms"
+      },
+      "note": {
+        "zh": "条款勾选驱动提交按钮可用态。",
+        "en": "The terms checkbox gates the submit button."
+      }
+    },
+    {
+      "part": {
+        "zh": "登录入口",
+        "en": "Login link"
+      },
+      "note": {
+        "zh": "「已有账号？登录」与登录页共用布局。",
+        "en": "A “Have an account? Log in” link sharing the login layout."
+      }
+    }
+  ],
   "demo": {
     "component": "signup",
     "modes": [

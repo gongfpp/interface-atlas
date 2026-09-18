@@ -94,3 +94,9 @@ test('prompt builder: style selection composes the prompt', async ({ page }) => 
   await section.locator('select').selectOption('neobrutalism');
   await expect(section.locator('pre')).toContainText('新粗野主义');
 });
+
+test('page structure: breakdown renders on a page concept', async ({ page }) => {
+  await page.goto('/pages/dashboard');
+  await expect(page.getByRole('heading', { level: 2, name: '页面结构' })).toBeVisible();
+  await expect(page.getByText(/固定不随内容滚动/)).toBeVisible();
+});

@@ -1,11 +1,11 @@
 # 中文前端设计参考库 PRD
 
-版本：v0.9
+版本：v0.10
 项目阶段：MVP
 中文名称：界面图谱
 英文名称：Interface Atlas（MVP 使用工作名，域名后定，改名成本 = 文案 + 301）
 
-> v0.9 变更摘要（竞品改进 #1）：条目新增可选 `api` 字段（Web 平台 API 符号：元素 / ARIA role / 关键属性），30 个组件条目已填写；详情页新增"平台 API"区展示，机器可读层 `/api/concept/*.json` 自动包含该字段。
+> v0.10 变更摘要（P1 功能落地）：① 收藏 + 浏览历史（localStorage，`/saved`，无账号、不上传）；② 类型列表页高级筛选（文本 + category chips，≥2 成员分类）；③ 概念页 Prompt Builder（概念 agent prompt + 风格 guide + 可选项组合成 agent-ready prompt，仅拼接人工维护内容）；④ 10 个 page 条目新增 `structure` 结构拆解（部件 + 说明）并在详情页展示；⑤ 埋点补强：Cloudflare Web Analytics 访客统计（`PUBLIC_CF_BEACON_TOKEN`）+ Umami 无 PII 事件（`search-miss`/`prompt-copy`/`prompt-builder-copy`），站点域名可用 `PUBLIC_SITE_URL` 覆盖。
 
 > v0.8 变更摘要（P1 功能落地）：新增带过滤的随机探索页 `/explore`（中英双语）——按类型多选筛选、打乱顺序（每次进入随机排序）、随机跳转，复用 ConceptCard 静态渲染，交互由页面内联脚本完成（无新依赖）。
 
@@ -275,7 +275,7 @@ MVP 不定位成大型代码组件市场，提供：
 
 # 20. 页面类型详情
 
-Page 不只展示截图。Dashboard 需展示典型结构（Header / Sidebar / KPI Cards / Charts / Table / Filters）及不同结构变体（Sidebar / Top Navigation / Dense / Card / Analytical Dashboard）。
+Page 不只展示截图。Dashboard 需展示典型结构（Header / Sidebar / KPI Cards / Charts / Table / Filters）及不同结构变体（Sidebar / Top Navigation / Dense / Card / Analytical Dashboard）。**v0.10：每个 page 条目新增 `structure` 字段（部件 + 一句话说明），详情页新增「页面结构」区；与 `anatomy`（Demo 联动高亮标签）、`variants`（结构变体）互补。**
 
 # 21. Style 详情
 
@@ -381,8 +381,13 @@ Motion 播放器（Play / Replay / Slow Motion / Before-After）
 
 # 28. P1
 
-收藏 / 浏览历史 / 高级 Filter / Prompt Builder / 页面结构拆解深化。
-（Concept Compare 独立浏览页已于 v0.7 落地，见 §19；带过滤的随机探索页已于 v0.8 落地，见 §8。）
+P1 项已全部落地：
+- Concept Compare 独立浏览页（v0.7，见 §19）
+- 带过滤的随机探索页（v0.8，见 §8）
+- 收藏 / 浏览历史（v0.10，localStorage，`/saved`）
+- 高级 Filter（v0.10，类型列表页文本 + category 筛选）
+- Prompt Builder（v0.10，概念 × 风格组合，详情页）
+- 页面结构拆解深化（v0.10，见 §20）
 
 # 29. P2
 

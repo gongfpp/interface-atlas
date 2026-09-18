@@ -89,6 +89,43 @@ related:
     relation: contains
   - id: skeleton-loading
     relation: uses
+structure:
+  - part:
+      zh: 顶栏
+      en: Top bar
+    note:
+      zh: 品牌、全局搜索、通知与账户菜单，固定不随内容滚动。
+      en: Brand, global search, notifications and account menu — fixed while content scrolls.
+  - part:
+      zh: 侧栏
+      en: Side nav
+    note:
+      zh: 一级导航分组，可折叠；移动端收为抽屉。
+      en: Grouped primary navigation, collapsible; becomes a drawer on mobile.
+  - part:
+      zh: 指标卡
+      en: KPI cards
+    note:
+      zh: 3–5 个核心指标，数值 + 环比趋势，最上排。
+      en: Three to five core metrics with value and trend, in the top row.
+  - part:
+      zh: 图表区
+      en: Charts
+    note:
+      zh: 一个主图 + 一个辅图，共享同一时间范围选择。
+      en: One primary and one secondary chart sharing a single time-range control.
+  - part:
+      zh: 主表格
+      en: Primary table
+    note:
+      zh: 可排序、分页、行内操作；列密度可切换。
+      en: Sortable, paginated, with row actions and switchable density.
+  - part:
+      zh: 筛选区
+      en: Filter bar
+    note:
+      zh: 时间范围与维度筛选，作用于整页数据。
+      en: Time range and dimension filters applied to the whole page.
 demo:
   component: dashboard
   modes:

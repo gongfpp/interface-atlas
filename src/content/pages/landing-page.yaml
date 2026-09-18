@@ -82,6 +82,43 @@ related:
     relation: used_with
   - id: hover-lift
     relation: used_with
+structure:
+  - part:
+      zh: 导航
+      en: Navbar
+    note:
+      zh: Logo + 锚点导航 + 主 CTA，首屏常透明悬浮。
+      en: Logo, anchor nav and primary CTA, often transparent over the hero.
+  - part:
+      zh: 主视觉
+      en: Hero
+    note:
+      zh: 一句价值主张 + 主 CTA，首屏必须说清「是什么、给谁」。
+      en: A value proposition plus primary CTA; the first screen must say what and for whom.
+  - part:
+      zh: 功能区
+      en: Features
+    note:
+      zh: 3–6 个能力点，图文并排，支撑价值主张。
+      en: Three to six benefits with visuals, backing the value proposition.
+  - part:
+      zh: 信任区
+      en: Social proof
+    note:
+      zh: 客户 logo 墙、用户评价或关键数据。
+      en: Customer logos, testimonials or key numbers.
+  - part:
+      zh: 行动区
+      en: Closing CTA
+    note:
+      zh: 页尾前的最后一次转化催促，重复主 CTA。
+      en: A final conversion push that repeats the primary CTA.
+  - part:
+      zh: 页脚
+      en: Footer
+    note:
+      zh: 站点地图、法律与社交链接，收束整页。
+      en: Sitemap, legal and social links closing the page.
 demo:
   component: landing-page
   modes:

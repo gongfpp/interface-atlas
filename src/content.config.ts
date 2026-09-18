@@ -176,6 +176,16 @@ const baseSchema = z
     /** PRD §21：Style 缩略预览规格（仅 styles 使用） */
     preview: stylePreview.optional(),
 
+    /** PRD §20：Page 结构拆解（部件 + 说明，仅 pages 使用） */
+    structure: z
+      .array(
+        z.object({
+          part: bilingualText,
+          note: bilingualText,
+        }),
+      )
+      .optional(),
+
     prompts: z.object({
       basic: bilingualText,
       design: bilingualText,

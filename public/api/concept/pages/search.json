@@ -132,6 +132,58 @@
       "relation": "uses"
     }
   ],
+  "structure": [
+    {
+      "part": {
+        "zh": "搜索框",
+        "en": "Search box"
+      },
+      "note": {
+        "zh": "页面主入口，保留上次查询并支持即时联想。",
+        "en": "The page entry point, keeping the last query and supporting suggestions."
+      }
+    },
+    {
+      "part": {
+        "zh": "筛选面板",
+        "en": "Filter panel"
+      },
+      "note": {
+        "zh": "分类、范围、排序等，可折叠或常驻侧边。",
+        "en": "Category, scope and sort — collapsible or a persistent sidebar."
+      }
+    },
+    {
+      "part": {
+        "zh": "结果列表",
+        "en": "Results"
+      },
+      "note": {
+        "zh": "命中数与耗时反馈；无结果时给引导而非空白。",
+        "en": "Shows hit count and timing; guides instead of a blank when empty."
+      }
+    },
+    {
+      "part": {
+        "zh": "单条结果",
+        "en": "Result item"
+      },
+      "note": {
+        "zh": "标题可点、摘要高亮命中词、来源与时间。",
+        "en": "Clickable title, snippet with highlighted terms, source and time."
+      }
+    },
+    {
+      "part": {
+        "zh": "分页",
+        "en": "Pagination"
+      },
+      "note": {
+        "zh": "翻页或无限滚动，保持筛选条件与滚动位置。",
+        "en": "Paging or infinite scroll, preserving filters and scroll position."
+      }
+    }
+  ],
   "demo": {
     "component": "search",
     "modes": [

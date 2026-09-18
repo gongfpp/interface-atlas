@@ -132,6 +132,58 @@
       "relation": "contains"
     }
   ],
+  "structure": [
+    {
+      "part": {
+        "zh": "封面与头像",
+        "en": "Cover & avatar"
+      },
+      "note": {
+        "zh": "身份的第一眼，头像与封面比例固定避免跳动。",
+        "en": "First impression of identity; fixed cover and avatar ratios to avoid shift."
+      }
+    },
+    {
+      "part": {
+        "zh": "身份信息",
+        "en": "Identity"
+      },
+      "note": {
+        "zh": "姓名、角色、简介、地点与联系方式。",
+        "en": "Name, role, bio, location and contact."
+      }
+    },
+    {
+      "part": {
+        "zh": "统计",
+        "en": "Stats"
+      },
+      "note": {
+        "zh": "关注数 / 作品数等关键数字，横向排列。",
+        "en": "Key numbers such as followers or works, laid out horizontally."
+      }
+    },
+    {
+      "part": {
+        "zh": "内容页签",
+        "en": "Tabs"
+      },
+      "note": {
+        "zh": "作品 / 收藏 / 关于等分区，切换不跳页。",
+        "en": "Works, saves, about — switching without leaving the page."
+      }
+    },
+    {
+      "part": {
+        "zh": "操作按钮",
+        "en": "Actions"
+      },
+      "note": {
+        "zh": "关注 / 编辑 / 分享等主操作，按权限显隐。",
+        "en": "Follow, edit or share actions shown by permission."
+      }
+    }
+  ],
   "demo": {
     "component": "profile",
     "modes": [

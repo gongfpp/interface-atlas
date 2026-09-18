@@ -81,6 +81,37 @@ related:
     relation: contains
   - id: toast
     relation: contains
+structure:
+  - part:
+      zh: 设置导航
+      en: Settings nav
+    note:
+      zh: 按分区分组，标出当前所在分区。
+      en: Grouped by section, marking the active one.
+  - part:
+      zh: 设置分区
+      en: Sections
+    note:
+      zh: 每个分区只放一类设置，标题与说明清晰。
+      en: One category of settings per section with a clear title and description.
+  - part:
+      zh: 行式表单
+      en: Form rows
+    note:
+      zh: 标签 + 控件 + 帮助文本，即时保存或统一保存二选一。
+      en: Label, control and help text; pick instant or batched saving, not both.
+  - part:
+      zh: 危险区
+      en: Danger zone
+    note:
+      zh: 删除 / 注销等不可逆操作，红色隔离并二次确认。
+      en: Irreversible actions isolated in red with a second confirmation.
+  - part:
+      zh: 保存条
+      en: Save bar
+    note:
+      zh: 未保存时出现，明确「有改动未保存」状态。
+      en: Appears when dirty, making the unsaved state explicit.
 demo:
   component: settings
   modes:
