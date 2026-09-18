@@ -5,6 +5,7 @@
  * 3. id 全库唯一、slug 规范
  * 4. applicable_* 类型前缀约束
  * 5. compare.group 至少 2 个成员（CI 环境为硬失败，本地为警告；成员补齐后自然转绿）
+ * 6. 全量 null 值/键扫描（flow mapping 静默拆键会留下 null 键或截断的 null 值）
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -64,9 +65,30 @@ const TYPE_PREFIX = {
   applicable_pages: 'pages',
 };
 
+/** flow mapping 静默拆键会留下 null 键或截断的 null 值，全量拦截 */
+function scanNulls(node, path, rel) {
+  if (node === null) {
+    errors.push(`${rel}: ${path || '(root)'} 为 null`);
+    return;
+  }
+  if (Array.isArray(node)) {
+    node.forEach((v, i) => scanNulls(v, `${path}[${i}]`, rel));
+    return;
+  }
+  if (typeof node === 'object') {
+    for (const [k, v] of Object.entries(node)) {
+      if (k === 'null' || k === 'undefined' || k === '') {
+        errors.push(`${rel}: 异常键名「${k}」（疑似 flow mapping 静默拆键）`);
+      }
+      scanNulls(v, path ? `${path}.${k}` : k, rel);
+    }
+  }
+}
+
 for (const [id, { type, rel, data }] of entries) {
   const status = data.status ?? 'draft';
   const fail = (msg) => errors.push(`${rel}: ${msg}`);
+  scanNulls(data, '', rel);
 
   if (status === 'published') {
     for (const field of ['name', 'description', 'use_when', 'avoid_when', 'variants', 'prompts', 'sources', 'implementation', 'demo']) {
