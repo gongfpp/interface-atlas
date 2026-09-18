@@ -55,6 +55,11 @@
     "form",
     "interaction"
   ],
+  "api": [
+    "<button>",
+    "type",
+    "role=\"button\""
+  ],
   "variants": [
     {
       "id": "primary",

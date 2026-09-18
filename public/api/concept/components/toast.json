@@ -57,6 +57,10 @@
     "transient",
     "animation"
   ],
+  "api": [
+    "role=\"status\"",
+    "aria-live=\"polite\""
+  ],
   "variants": [
     {
       "id": "success",

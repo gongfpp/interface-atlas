@@ -55,6 +55,10 @@
     "header",
     "layout"
   ],
+  "api": [
+    "<nav>",
+    "role=\"navigation\""
+  ],
   "variants": [
     {
       "id": "standard",

@@ -55,6 +55,11 @@
     "layout",
     "content-switching"
   ],
+  "api": [
+    "role=\"tablist\"",
+    "role=\"tab\"",
+    "role=\"tabpanel\""
+  ],
   "variants": [
     {
       "id": "underline",

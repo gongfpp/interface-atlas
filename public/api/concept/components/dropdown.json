@@ -55,6 +55,11 @@
     "overlay",
     "menu"
   ],
+  "api": [
+    "role=\"menu\"",
+    "role=\"menuitem\"",
+    "aria-haspopup"
+  ],
   "variants": [
     {
       "id": "more",

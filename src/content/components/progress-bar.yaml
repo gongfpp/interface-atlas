@@ -35,6 +35,10 @@ tags:
   - feedback
   - progress
   - determinate
+api:
+  - <progress>
+  - role="progressbar"
+  - aria-valuenow
 variants:
   - id: determinate
     name:

@@ -114,6 +114,9 @@ const baseSchema = z
 
     anatomy: z.array(z.string()).default([]),
 
+    /** 竞品改进 #1：对应 Web 平台 API 符号（元素 / ARIA role / 关键属性），仅适用条目填写 */
+    api: z.array(z.string()).default([]),
+
     applicable_styles: z.array(z.string()).default([]),
     applicable_components: z.array(z.string()).default([]),
     applicable_pages: z.array(z.string()).default([]),

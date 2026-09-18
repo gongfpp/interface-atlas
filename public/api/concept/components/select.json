@@ -55,6 +55,11 @@
     "input",
     "selection"
   ],
+  "api": [
+    "<select>",
+    "role=\"listbox\"",
+    "role=\"option\""
+  ],
   "variants": [
     {
       "id": "native",

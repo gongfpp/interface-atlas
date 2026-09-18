@@ -35,6 +35,9 @@ tags:
   - overlay
   - actions
   - context
+api:
+  - role="menu"
+  - role="menuitem"
 variants:
   - id: dropdown
     name:

@@ -55,6 +55,9 @@
     "input",
     "toggle"
   ],
+  "api": [
+    "<input type=\"checkbox\" role=\"switch\">"
+  ],
   "variants": [
     {
       "id": "basic",

@@ -33,6 +33,9 @@ tags:
   - navigation
   - data
   - list
+api:
+  - <nav aria-label="Pagination">
+  - role="navigation"
 variants:
   - id: numbered
     name:

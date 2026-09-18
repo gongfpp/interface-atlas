@@ -35,6 +35,10 @@ tags:
   - display
   - density
   - sorting
+api:
+  - <table>
+  - <thead>
+  - <tbody>
 variants:
   - id: bordered
     name:

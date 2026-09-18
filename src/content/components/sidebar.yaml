@@ -33,6 +33,9 @@ tags:
   - navigation
   - layout
   - dashboard
+api:
+  - <aside>
+  - <nav>
 variants:
   - id: fixed
     name:

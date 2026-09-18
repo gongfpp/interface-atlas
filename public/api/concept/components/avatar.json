@@ -57,6 +57,9 @@
     "image",
     "user"
   ],
+  "api": [
+    "<img>"
+  ],
   "variants": [
     {
       "id": "image",

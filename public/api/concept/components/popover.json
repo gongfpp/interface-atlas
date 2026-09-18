@@ -56,6 +56,11 @@
     "click",
     "floating"
   ],
+  "api": [
+    "popover",
+    "[popover]",
+    "role=\"dialog\""
+  ],
   "variants": [
     {
       "id": "plain",

@@ -35,6 +35,8 @@ tags:
   - display
   - marker
   - count
+api:
+  - <span>
 variants:
   - id: count
     name:

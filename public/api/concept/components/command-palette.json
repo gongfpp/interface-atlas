@@ -57,6 +57,10 @@
     "keyboard",
     "productivity"
   ],
+  "api": [
+    "<dialog>",
+    "role=\"combobox\""
+  ],
   "variants": [
     {
       "id": "command-only",

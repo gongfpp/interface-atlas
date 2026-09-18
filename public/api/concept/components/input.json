@@ -55,6 +55,11 @@
     "input",
     "text"
   ],
+  "api": [
+    "<input>",
+    "type",
+    "role=\"textbox\""
+  ],
   "variants": [
     {
       "id": "outline",

@@ -35,6 +35,8 @@ tags:
   - display
   - image
   - user
+api:
+  - <img>
 variants:
   - id: image
     name:

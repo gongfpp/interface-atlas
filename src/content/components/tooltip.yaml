@@ -35,6 +35,9 @@ tags:
   - hover
   - hint
   - accessibility
+api:
+  - role="tooltip"
+  - aria-describedby
 variants:
   - id: dark
     name:

@@ -33,6 +33,8 @@ tags:
   - form
   - input
   - text
+api:
+  - <textarea>
 variants:
   - id: fixed
     name:

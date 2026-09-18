@@ -35,6 +35,9 @@ tags:
   - filtering
   - search
   - facets
+api:
+  - <fieldset>
+  - <form>
 variants:
   - id: sidebar
     name:

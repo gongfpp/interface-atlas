@@ -57,6 +57,11 @@
     "panel",
     "mobile"
   ],
+  "api": [
+    "<dialog>",
+    "role=\"dialog\"",
+    "aria-modal=\"true\""
+  ],
   "variants": [
     {
       "id": "edge-right",

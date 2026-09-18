@@ -156,6 +156,17 @@ const card = 'rounded-xl border border-line bg-raised p-5';
       </section>
     )}
 
+    {d.api.length > 0 && (
+      <section class="pb-10">
+        <h2 class={sectionTitle}>{locale === 'zh' ? '平台 API' : 'Platform API'}</h2>
+        <div class={`${card} flex flex-wrap gap-2`}>
+          {d.api.map((sym) => (
+            <code class="rounded bg-code-bg px-2 py-1 font-mono text-xs">{sym}</code>
+          ))}
+        </div>
+      </section>
+    )}
+
     {compareMembers.length > 1 && d.compare && (
       <section class="pb-10">
         <div class="mb-4 flex items-baseline justify-between gap-3">

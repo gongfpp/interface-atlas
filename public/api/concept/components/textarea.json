@@ -55,6 +55,9 @@
     "input",
     "text"
   ],
+  "api": [
+    "<textarea>"
+  ],
   "variants": [
     {
       "id": "fixed",

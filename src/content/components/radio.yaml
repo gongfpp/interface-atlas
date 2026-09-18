@@ -33,6 +33,10 @@ tags:
   - form
   - input
   - selection
+api:
+  - <input type="radio">
+  - role="radio"
+  - role="radiogroup"
 variants:
   - id: default
     name:

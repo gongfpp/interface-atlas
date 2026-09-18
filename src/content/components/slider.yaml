@@ -33,6 +33,9 @@ tags:
   - form
   - input
   - range
+api:
+  - <input type="range">
+  - role="slider"
 variants:
   - id: single
     name:

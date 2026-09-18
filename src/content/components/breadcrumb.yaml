@@ -33,6 +33,10 @@ tags:
   - navigation
   - hierarchy
   - location
+api:
+  - <nav aria-label="Breadcrumb">
+  - <ol>
+  - <li>
 variants:
   - id: text
     name:

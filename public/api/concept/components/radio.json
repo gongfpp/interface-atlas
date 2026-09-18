@@ -55,6 +55,11 @@
     "input",
     "selection"
   ],
+  "api": [
+    "<input type=\"radio\">",
+    "role=\"radio\"",
+    "role=\"radiogroup\""
+  ],
   "variants": [
     {
       "id": "default",

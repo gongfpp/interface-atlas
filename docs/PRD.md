@@ -1,9 +1,11 @@
 # 中文前端设计参考库 PRD
 
-版本：v0.8
+版本：v0.9
 项目阶段：MVP
 中文名称：界面图谱
 英文名称：Interface Atlas（MVP 使用工作名，域名后定，改名成本 = 文案 + 301）
+
+> v0.9 变更摘要（竞品改进 #1）：条目新增可选 `api` 字段（Web 平台 API 符号：元素 / ARIA role / 关键属性），30 个组件条目已填写；详情页新增"平台 API"区展示，机器可读层 `/api/concept/*.json` 自动包含该字段。
 
 > v0.8 变更摘要（P1 功能落地）：新增带过滤的随机探索页 `/explore`（中英双语）——按类型多选筛选、打乱顺序（每次进入随机排序）、随机跳转，复用 ConceptCard 静态渲染，交互由页面内联脚本完成（无新依赖）。
 
@@ -455,6 +457,8 @@ variants:
     name: { en: Shimmer, zh: 微光扫过 }
 
 anatomy: [container, header, media]      # 可空
+
+api: [<progress>, role="progressbar"]    # 可选：Web 平台 API 符号（元素 / role / 属性），组件类建议给
 
 applicable_styles: [minimal, bento]      # Component × Style
 applicable_components: []

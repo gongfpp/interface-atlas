@@ -35,6 +35,9 @@ tags:
   - layout
   - progressive
   - faq
+api:
+  - <details>
+  - <summary>
 variants:
   - id: single
     name:

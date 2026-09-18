@@ -35,6 +35,8 @@ tags:
   - display
   - container
   - content
+api:
+  - <article>
 variants:
   - id: basic
     name:

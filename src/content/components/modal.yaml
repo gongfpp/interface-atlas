@@ -35,6 +35,10 @@ tags:
   - dialog
   - interruption
   - feedback
+api:
+  - <dialog>
+  - role="dialog"
+  - aria-modal="true"
 variants:
   - id: centered
     name:

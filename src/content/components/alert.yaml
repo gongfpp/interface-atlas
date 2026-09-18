@@ -34,6 +34,9 @@ tags:
   - error
   - warning
   - inline
+api:
+  - role="alert"
+  - aria-live="assertive"
 variants:
   - id: info
     name:

@@ -55,6 +55,11 @@
     "input",
     "calendar"
   ],
+  "api": [
+    "<input type=\"date\">",
+    "aria-haspopup",
+    "role=\"dialog\""
+  ],
   "variants": [
     {
       "id": "inline",
