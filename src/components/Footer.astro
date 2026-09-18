@@ -13,6 +13,9 @@ const { locale } = Astro.props;
       <a class="hover:text-accent" href={localePath('/compare', locale)}>
         {locale === 'zh' ? '概念对比' : 'Concept comparisons'}
       </a>
+      <a class="hover:text-accent" href={localePath('/saved', locale)}>
+        {locale === 'zh' ? '我的收藏' : 'Saved'}
+      </a>
       <a class="hover:text-accent" href={localePath('/gallery', locale)}>
         {locale === 'zh' ? '灵感图库' : 'Gallery'}
       </a>

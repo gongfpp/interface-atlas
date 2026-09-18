@@ -1,0 +1,24 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SavedView from '@/islands/SavedView';
+import { getAllConcepts } from '@/lib/content';
+
+const concepts = (await getAllConcepts()).map((c) => ({
+  id: c.id,
+  type: c.conceptType,
+  name: c.data.name,
+}));
+---
+
+<BaseLayout
+  title="我的收藏 · 界面图谱"
+  description="收藏的概念与最近浏览记录，保存在浏览器本地。"
+  locale="zh"
+  enPath="/saved"
+>
+  <section class="pt-14 pb-8">
+    <h1 class="font-serif text-3xl font-semibold md:text-4xl">我的收藏</h1>
+    <p class="mt-3 max-w-2xl text-ink-2">收藏与浏览记录保存在你的浏览器本地，不上传服务器。</p>
+  </section>
+  <SavedView client:load concepts={concepts} locale="zh" />
+</BaseLayout>

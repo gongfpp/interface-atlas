@@ -5,6 +5,7 @@ import CompareTable from '@/components/CompareTable.astro';
 import StyleThumb from '@/components/StyleThumb.astro';
 import DemoMount from '@/islands/demos/DemoMount';
 import PromptBlock from '@/islands/PromptBlock';
+import ConceptActions from '@/islands/ConceptActions';
 import { conceptPath, resolveRelated, getAllConcepts, type Concept } from '@/lib/content';
 import { comparePath } from '@/lib/compare';
 import { getStylePreviews } from '@/lib/style-previews';
@@ -50,16 +51,21 @@ const card = 'rounded-xl border border-line bg-raised p-5';
       {d.category.length > 0 && (
         <span class="ml-3 text-xs text-ink-3">{d.category.join(' / ')}</span>
       )}
-      <h1 class="mt-3 font-serif text-4xl font-semibold md:text-5xl">{d.name[locale]}</h1>
-      <p class="mt-2 text-lg text-ink-2">{d.name[otherLocale]}</p>
-      {d.aliases.length > 0 && (
-        <p class="mt-4 text-sm text-ink-3">
-          <span class="mr-2">{locale === 'zh' ? '别名' : 'Aliases'}:</span>
-          {d.aliases.map((a) => (
-            <span class="mr-2 inline-block rounded-full border border-line px-2 py-0.5">{a}</span>
-          ))}
-        </p>
-      )}
+      <div class="mt-3 flex items-start justify-between gap-4">
+        <div>
+          <h1 class="font-serif text-4xl font-semibold md:text-5xl">{d.name[locale]}</h1>
+          <p class="mt-2 text-lg text-ink-2">{d.name[otherLocale]}</p>
+          {d.aliases.length > 0 && (
+            <p class="mt-4 text-sm text-ink-3">
+              <span class="mr-2">{locale === 'zh' ? '别名' : 'Aliases'}:</span>
+              {d.aliases.map((a) => (
+                <span class="mr-2 inline-block rounded-full border border-line px-2 py-0.5">{a}</span>
+              ))}
+            </p>
+          )}
+        </div>
+        <ConceptActions client:load conceptId={concept.id} locale={locale} />
+      </div>
     </header>
 
     <section class="py-10">

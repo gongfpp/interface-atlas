@@ -1,0 +1,24 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SavedView from '@/islands/SavedView';
+import { getAllConcepts } from '@/lib/content';
+
+const concepts = (await getAllConcepts()).map((c) => ({
+  id: c.id,
+  type: c.conceptType,
+  name: c.data.name,
+}));
+---
+
+<BaseLayout
+  title="Saved · Interface Atlas"
+  description="Your saved concepts and recent history, stored in the browser."
+  locale="en"
+  enPath="/saved"
+>
+  <section class="pt-14 pb-8">
+    <h1 class="font-serif text-3xl font-semibold md:text-4xl">Saved</h1>
+    <p class="mt-3 max-w-2xl text-ink-2">Saved items and history live in your browser's local storage — nothing is uploaded.</p>
+  </section>
+  <SavedView client:load concepts={concepts} locale="en" />
+</BaseLayout>

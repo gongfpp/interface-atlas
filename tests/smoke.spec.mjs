@@ -66,3 +66,13 @@ test('explore: type filter narrows the grid', async ({ page }) => {
   await page.locator('.explore-chip[data-filter="all"]').click();
   await expect(page.locator('[data-explore-item]:not(.hidden)')).toHaveCount(90);
 });
+
+test('saved: save a concept then see it on /saved', async ({ page }) => {
+  await page.goto('/components/button');
+  await page.waitForTimeout(800);
+  await page.getByRole('button', { name: /收藏/ }).click();
+  await page.goto('/saved');
+  await expect(page.getByRole('heading', { level: 1, name: '我的收藏' })).toBeVisible();
+  await expect(page.getByRole('link', { name: /按钮/ }).first()).toBeVisible();
+  await expect(page.getByRole('heading', { level: 2, name: '最近浏览' })).toBeVisible();
+});
