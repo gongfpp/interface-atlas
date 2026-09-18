@@ -671,7 +671,7 @@ get_agent_prompt()
   - `prompt`：中英双份生图 Prompt，可直接复制到即梦 / Midjourney / DALL-E 等；模板中仅「编号 + 主题」变化，保证整套风格统一
   - `tips`：使用该 prompt 的经验（如"浮层组件必须要求展开态"）
   - `related_component`：链接到对应概念词条
-- 图集来源：`/Users/mass/Documents/前端设计参考`（导航栏 / 菜单和下拉框 / 输入框 / tab:segmented control / 搜索框，共 40 张）。原图不入库，入库的是压缩 webp。
+- 图集来源：个人收集的前端设计参考图集（导航栏 / 菜单和下拉框 / 输入框 / tab:segmented control / 搜索框，共 40 张）。原图不入库，入库的是压缩 webp。
 
 ## 43.2 页面与集成
 
