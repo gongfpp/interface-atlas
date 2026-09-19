@@ -30,6 +30,7 @@ jobs:
         run: npm ci
 
       # 项目站点挂在 /interface-atlas/ 子路径；build:fast 复用已提交的搜索索引，无需下载 embedding 模型
+      # 埋点变量在仓库 Settings → Secrets and variables → Actions → Variables 配置（未配置则自动跳过）
       - name: Build
         run: npm run build:fast
         env:
@@ -37,6 +38,9 @@ jobs:
           PUBLIC_BASE_PATH: /interface-atlas
           # GitHub Pages 无 Functions/KV 后端，关闭查询落库，避免 404 噪声
           PUBLIC_LOG_API: 'off'
+          PUBLIC_UMAMI_SRC: ${{ vars.PUBLIC_UMAMI_SRC }}
+          PUBLIC_UMAMI_ID: ${{ vars.PUBLIC_UMAMI_ID }}
+          PUBLIC_CF_BEACON_TOKEN: ${{ vars.PUBLIC_CF_BEACON_TOKEN }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v6

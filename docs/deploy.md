@@ -14,7 +14,18 @@
 
 > 若改用自定义域名：把 `PUBLIC_BASE_PATH` 改为 `/`、`PUBLIC_SITE_URL` 改为该域名即可（并在 Pages 里配自定义域）。根部署时 `base` 为空，行为与旧版一致。
 
-> GitHub Pages 不运行 `functions/`（Cloudflare Functions）；访客统计不加 CF Web Analytics（该 beacon 只在 CF 生效），如需统计请用 Umami（见下）。
+> GitHub Pages 不运行 `functions/`（Cloudflare Functions），故 `PUBLIC_LOG_API=off`。
+
+### GitHub Pages 访客统计
+
+Actions 构建的站点，analytics 变量要配在仓库 **Settings → Secrets and variables → Actions → Variables**（不是 Pages 设置），由 `deploy-pages.yml` 注入构建：
+
+- `PUBLIC_UMAMI_SRC`：Umami 脚本地址，如 `https://cloud.umami.is/script.js`（Umami Cloud）或自建实例 `https://umami.example.com/script.js`
+- `PUBLIC_UMAMI_ID`：Umami 网站 ID
+- 可选 `PUBLIC_CF_BEACON_TOKEN`：Cloudflare Web Analytics token（支持非 Cloudflare 站点，无 cookie）
+
+配好后重新运行 “Deploy to GitHub Pages” 工作流即可生效；未配置则自动跳过。站内已内置无 PII 事件：`search-miss`、`prompt-copy`、`prompt-builder-copy`。
+命令行设置：`gh variable set PUBLIC_UMAMI_SRC --body '…'`、`gh variable set PUBLIC_UMAMI_ID --body '…'`。
 
 ## Cloudflare Pages（可选）
 
