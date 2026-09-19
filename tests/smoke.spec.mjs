@@ -26,6 +26,27 @@ test('search: open, type colloquial query, navigate to concept', async ({ page }
   await expect(page.getByRole('heading', { level: 1 })).toContainText(/骨架屏|Skeleton/);
 });
 
+test('home hero: type directly, inline results, navigate to concept', async ({ page }) => {
+  await page.goto('/');
+
+  const combo = page.getByRole('combobox');
+  await combo.click();
+  await combo.fill('加载的时候灰色一闪一闪');
+
+  // 结果在输入框下方就地展开（不弹新窗口）
+  const firstResult = page.getByRole('option').filter({ hasText: /骨架屏|Skeleton/ }).first();
+  await expect(firstResult).toBeVisible({ timeout: 15_000 });
+  await firstResult.click();
+
+  await expect(page).toHaveURL(/\/patterns\/skeleton-loading/);
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/骨架屏|Skeleton/);
+});
+
+test('/search landing opens the search dialog', async ({ page }) => {
+  await page.goto('/search');
+  await expect(page.getByRole('dialog').getByRole('textbox')).toBeVisible();
+});
+
 test('⌘K opens search after hydration', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('#search-open')).toBeVisible();

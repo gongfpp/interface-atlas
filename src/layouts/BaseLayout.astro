@@ -11,9 +11,11 @@ interface Props {
   locale: Locale;
   /** 英文版对应路径，用于 hreflang；无则视为无镜像 */
   enPath?: string;
+  /** 落地即打开命令面板（/search 页用；避免依赖事件派发时机） */
+  autoOpenSearch?: boolean;
 }
 
-const { title, description, locale, enPath } = Astro.props;
+const { title, description, locale, enPath, autoOpenSearch = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
 const themeScript = `
@@ -63,6 +65,6 @@ const themeScript = `
       <slot />
     </main>
     <Footer locale={locale} />
-    <SearchDialog client:idle locale={locale} />
+    <SearchDialog client:idle locale={locale} autoOpen={autoOpenSearch} />
   </body>
 </html>
