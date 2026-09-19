@@ -1,10 +1,26 @@
 export type Locale = 'zh' | 'en';
 export const LOCALES: Locale[] = ['zh', 'en'];
 
-/** zh 无前缀，en 加 /en 前缀（PRD §7a） */
+/** 部署子路径（GitHub Pages 项目站点为 `/interface-atlas`，根部署为 `''`）。 */
+export const BASE = import.meta.env.BASE_URL.replace(/\/+$/, '');
+
+/** 给站内绝对路径加上部署 base。 */
+export function withBase(path: string): string {
+  const p = path.startsWith('/') ? path : `/${path}`;
+  if (p === '/') return `${BASE}/`;
+  return `${BASE}${p}`;
+}
+
+/** 去掉部署 base，得到站内路由路径（用于语言切换等）。 */
+export function stripBase(pathname: string): string {
+  if (BASE && pathname.startsWith(BASE)) return pathname.slice(BASE.length) || '/';
+  return pathname;
+}
+
+/** zh 无前缀，en 加 /en 前缀（PRD §7a），并带上部署 base。 */
 export function localePath(path: string, locale: Locale): string {
   const p = path.startsWith('/') ? path : `/${path}`;
-  return locale === 'zh' ? p : `/en${p === '/' ? '' : p}`;
+  return withBase(locale === 'zh' ? p : `/en${p === '/' ? '' : p}`);
 }
 
 export const TYPE_LABELS: Record<string, Record<Locale, string>> = {

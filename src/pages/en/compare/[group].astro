@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CompareTable from '@/components/CompareTable.astro';
 import { getCompareGroups, type CompareGroup } from '@/lib/compare';
+import { localePath } from '@/lib/i18n';
 
 export async function getStaticPaths() {
   const groups = await getCompareGroups();
@@ -23,7 +24,7 @@ const namesZh = group.members.map((m) => m.data.name.zh).join(' · ');
   enPath={`/compare/${group.group}`}
 >
   <article class="pt-10">
-    <a href="/en/compare" class="text-xs uppercase tracking-[0.2em] text-accent">Comparisons</a>
+    <a href={localePath('/compare', 'en')} class="text-xs uppercase tracking-[0.2em] text-accent">Comparisons</a>
     <h1 class="mt-3 font-serif text-3xl font-semibold md:text-4xl">{names}</h1>
     <p class="mt-3 max-w-2xl text-ink-2">
       {group.members.length} concepts compared across {group.dimensions.length} dimensions. Click a

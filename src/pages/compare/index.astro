@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getCompareGroups } from '@/lib/compare';
-import { TYPE_LABELS } from '@/lib/i18n';
+import { TYPE_LABELS, localePath } from '@/lib/i18n';
 
 const groups = await getCompareGroups();
 ---
@@ -22,7 +22,7 @@ const groups = await getCompareGroups();
   <div class="grid gap-4 pb-20 sm:grid-cols-2 md:grid-cols-3">
     {groups.map((g) => (
       <a
-        href={`/compare/${g.group}`}
+        href={localePath(`/compare/${g.group}`, 'zh')}
         class="group flex flex-col rounded-xl border border-line bg-raised p-5 transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-sm"
       >
         <ul class="flex flex-1 flex-col gap-1.5">

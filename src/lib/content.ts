@@ -1,5 +1,6 @@
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 import { CONCEPT_TYPES, type ConceptType, type Relation } from '@/content.config';
+import { localePath } from '@/lib/i18n';
 export type { ConceptType };
 
 export type Concept = CollectionEntry<(typeof CONCEPT_TYPES)[number]> & {
@@ -43,8 +44,7 @@ export async function getConcept(type: ConceptType, id: string): Promise<Concept
 }
 
 export function conceptPath(concept: Pick<Concept, 'id' | 'conceptType'>, locale: 'zh' | 'en'): string {
-  const base = `/${concept.conceptType}/${concept.id}`;
-  return locale === 'zh' ? base : `/en${base}`;
+  return localePath(`/${concept.conceptType}/${concept.id}`, locale);
 }
 
 export const POPULAR_IDS = [

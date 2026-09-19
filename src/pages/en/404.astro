@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { localePath } from '@/lib/i18n';
 ---
 
 <BaseLayout title="404 · Interface Atlas" description="Page not found" locale="en">
   <section class="py-32 text-center">
     <p class="font-serif text-6xl font-semibold text-ink-3">404</p>
     <p class="mt-4 text-ink-2">This concept doesn't exist — or shouldn't be used that way.</p>
-    <a href="/en/" class="mt-6 inline-block rounded-full border border-line px-5 py-2 text-sm hover:border-accent hover:text-accent">Home</a>
+    <a href={localePath('/', 'en')} class="mt-6 inline-block rounded-full border border-line px-5 py-2 text-sm hover:border-accent hover:text-accent">Home</a>
   </section>
 </BaseLayout>

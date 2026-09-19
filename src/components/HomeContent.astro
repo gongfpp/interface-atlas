@@ -3,7 +3,7 @@ import { getConcepts, POPULAR_IDS, type Concept, type ConceptType } from '@/lib/
 import ConceptCard from '@/components/ConceptCard.astro';
 import StyleThumb from '@/components/StyleThumb.astro';
 import { getStylePreviews } from '@/lib/style-previews';
-import { TYPE_LABELS, localePath, t, type Locale } from '@/lib/i18n';
+import { TYPE_LABELS, localePath, t, withBase, type Locale } from '@/lib/i18n';
 
 interface Props {
   locale: Locale;
@@ -110,7 +110,7 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
         class="group overflow-hidden rounded-lg border border-line bg-raised transition-all hover:-translate-y-0.5 hover:border-accent"
       >
         <img
-          src={entry.data.images[0]?.file}
+          src={withBase(entry.data.images[0]?.file ?? '')}
           alt={entry.data.name[locale]}
           loading="lazy"
           width="800"
@@ -144,7 +144,7 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
   </button>
 </section>
 
-<script is:inline>
+<script is:inline define:vars={{ base: import.meta.env.BASE_URL.replace(/\/+$/, '') }}>
   document.getElementById('hero-search')?.addEventListener('click', () =>
     window.dispatchEvent(new CustomEvent('ia:search-open')),
   );
@@ -153,6 +153,6 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
     if (!entries.length) return;
     const pick = entries[Math.floor(Math.random() * entries.length)];
     const prefix = this.dataset.locale === 'zh' ? '' : '/en';
-    window.location.href = `${prefix}/${pick.type}/${pick.id}`;
+    window.location.href = `${base}${prefix}/${pick.type}/${pick.id}`;
   });
 </script>

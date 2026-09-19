@@ -1,5 +1,5 @@
 import { getAllConcepts, type Concept } from '@/lib/content';
-import type { Locale } from '@/lib/i18n';
+import { localePath, type Locale } from '@/lib/i18n';
 
 /** 一个 compare 组：成员（按类型→id 排序）与共享维度（顺序取首成员）。 */
 export interface CompareGroup {
@@ -34,6 +34,5 @@ export async function getCompareGroup(group: string): Promise<CompareGroup | und
 }
 
 export function comparePath(group: string, locale: Locale): string {
-  const base = `/compare/${group}`;
-  return locale === 'zh' ? base : `/en${base}`;
+  return localePath(`/compare/${group}`, locale);
 }

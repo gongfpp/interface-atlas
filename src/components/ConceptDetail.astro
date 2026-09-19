@@ -10,7 +10,7 @@ import ConceptActions from '@/islands/ConceptActions';
 import { conceptPath, resolveRelated, getAllConcepts, type Concept } from '@/lib/content';
 import { comparePath } from '@/lib/compare';
 import { getStylePreviews } from '@/lib/style-previews';
-import { TYPE_LABELS, type Locale } from '@/lib/i18n';
+import { TYPE_LABELS, localePath, type Locale } from '@/lib/i18n';
 
 interface Props {
   concept: Concept;
@@ -50,7 +50,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
 >
   <article class="pt-10">
     <header class="border-b border-line pb-8">
-      <a href={`/${locale === 'zh' ? '' : 'en/'}${concept.conceptType}`}
+      <a href={localePath(`/${concept.conceptType}`, locale)}
          class="text-xs uppercase tracking-[0.2em] text-accent">
         {TYPE_LABELS[concept.conceptType][locale]}
       </a>

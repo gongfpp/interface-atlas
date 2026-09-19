@@ -1,9 +1,11 @@
 # 中文前端设计参考库 PRD
 
-版本：v0.10
+版本：v0.11
 项目阶段：MVP
 中文名称：界面图谱
 英文名称：Interface Atlas（MVP 使用工作名，域名后定，改名成本 = 文案 + 301）
+
+> v0.11 变更摘要（部署）：新增 GitHub Pages 自动部署（`.github/workflows/deploy-pages.yml`，站点 `https://gongfpp.github.io/interface-atlas/`）；引入 `PUBLIC_BASE_PATH` 子路径支持——所有站内链接/资源/robots/sitemap/canonical/`/api/*.json`/`llms.txt` 自动带 base，根部署（Cloudflare）行为不变；无后端部署可用 `PUBLIC_LOG_API=off` 关闭查询落库。
 
 > v0.10 变更摘要（P1 功能落地）：① 收藏 + 浏览历史（localStorage，`/saved`，无账号、不上传）；② 类型列表页高级筛选（文本 + category chips，≥2 成员分类）；③ 概念页 Prompt Builder（概念 agent prompt + 风格 guide + 可选项组合成 agent-ready prompt，仅拼接人工维护内容）；④ 10 个 page 条目新增 `structure` 结构拆解（部件 + 说明）并在详情页展示；⑤ 埋点补强：Cloudflare Web Analytics 访客统计（`PUBLIC_CF_BEACON_TOKEN`）+ Umami 无 PII 事件（`search-miss`/`prompt-copy`/`prompt-builder-copy`），站点域名可用 `PUBLIC_SITE_URL` 覆盖。
 

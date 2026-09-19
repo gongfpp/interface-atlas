@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import type { Locale } from '@/lib/i18n';
+import { localePath, withBase, type Locale } from '@/lib/i18n';
+import { LOG_ENABLED } from '@/lib/track';
 
 export async function getStaticPaths() {
   const entries = await getCollection('gallery');
@@ -18,7 +19,7 @@ const locale: Locale = 'zh';
 <BaseLayout title={`${d.name.zh} · 灵感图库 · 界面图谱`} description={d.description.zh.slice(0, 150)} locale={locale} enPath={`/gallery/${entry.id}`}>
   <article class="pt-10">
     <header class="border-b border-line pb-8">
-      <a href="/gallery" class="text-xs uppercase tracking-[0.2em] text-accent">灵感图库</a>
+      <a href={localePath('/gallery', 'zh')} class="text-xs uppercase tracking-[0.2em] text-accent">灵感图库</a>
       <h1 class="mt-3 font-serif text-4xl font-semibold md:text-5xl">{d.name.zh}</h1>
       <p class="mt-2 text-lg text-ink-2">{d.name.en}</p>
       <p class="mt-4 max-w-3xl leading-relaxed text-ink-2">{d.description.zh}</p>
@@ -48,9 +49,9 @@ const locale: Locale = 'zh';
       <div class="grid gap-5 sm:grid-cols-2">
         {d.images.map((img, i) => (
           <figure class="group">
-            <a href={img.file} target="_blank" rel="noopener noreferrer" class="block overflow-hidden rounded-xl border border-line">
+            <a href={withBase(img.file)} target="_blank" rel="noopener noreferrer" class="block overflow-hidden rounded-xl border border-line">
               <img
-                src={img.file}
+                src={withBase(img.file)}
                 alt={`${d.name.zh} ${img.title.zh}`}
                 loading={i < 2 ? 'eager' : 'lazy'}
                 width="1600"
@@ -69,21 +70,21 @@ const locale: Locale = 'zh';
 
     {d.related_component && (
       <section class="pb-16">
-        <a href={`/components/${d.related_component}`} class="text-sm text-accent hover:underline">
+        <a href={localePath(`/components/${d.related_component}`, 'zh')} class="text-sm text-accent hover:underline">
           → 查看对应概念：{d.related_component}
         </a>
       </section>
     )}
   </article>
 
-  <script is:inline>
+  <script is:inline define:vars={{ logUrl: LOG_ENABLED ? withBase('/api/log-prompt') : '' }}>
     document.querySelectorAll('.copy-btn').forEach((btn) => {
       btn.addEventListener('click', async () => {
         try {
           await navigator.clipboard.writeText(btn.dataset.text);
           const old = btn.textContent;
           btn.textContent = '✓ 已复制';
-          try { navigator.sendBeacon?.('/api/log-prompt', JSON.stringify({ concept: 'gallery:' + location.pathname, layer: 'image', t: Date.now() })); } catch {}
+          if (logUrl) { try { navigator.sendBeacon?.(logUrl, JSON.stringify({ concept: 'gallery:' + location.pathname, layer: 'image', t: Date.now() })); } catch {} }
           setTimeout(() => (btn.textContent = old), 1500);
         } catch {}
       });

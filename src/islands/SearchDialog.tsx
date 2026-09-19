@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { search } from '@/lib/search-core.mjs';
-import { track } from '@/lib/track';
+import { localePath, withBase } from '@/lib/i18n';
+import { beacon, track } from '@/lib/track';
 
 export interface SearchDoc {
   id: string;
@@ -39,9 +40,7 @@ function scrubQuery(q: string) {
 function logSearch(q: string) {
   const cleaned = scrubQuery(q).trim();
   if (!cleaned) return;
-  try {
-    navigator.sendBeacon?.('/api/log-search', JSON.stringify({ q: cleaned, t: Date.now() }));
-  } catch { /* 埋点失败不影响搜索 */ }
+  beacon('/api/log-search', { q: cleaned });
 }
 
 export default function SearchDialog({ locale }: { locale: 'zh' | 'en' }) {
@@ -61,7 +60,7 @@ export default function SearchDialog({ locale }: { locale: 'zh' | 'en' }) {
   // 首次打开时懒加载索引
   useEffect(() => {
     if (!open || index) return;
-    fetch('/data/search-index.json')
+    fetch(withBase('/data/search-index.json'))
       .then((r) => r.json())
       .then(setIndex)
       .catch(() => setIndex({ docs: [], vectors: null, model: null }));
@@ -160,8 +159,7 @@ export default function SearchDialog({ locale }: { locale: 'zh' | 'en' }) {
   }, [results]);
 
   const go = (doc: SearchDoc) => {
-    const base = `/${doc.type}/${doc.id}`;
-    window.location.href = locale === 'zh' ? base : `/en${base}`;
+    window.location.href = localePath(`/${doc.type}/${doc.id}`, locale);
   };
 
   if (!open) return null;

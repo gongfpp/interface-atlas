@@ -1,5 +1,5 @@
 ---
-import { TYPE_LABELS, localePath, type Locale } from '@/lib/i18n';
+import { TYPE_LABELS, localePath, stripBase, type Locale } from '@/lib/i18n';
 import SearchButton from '@/islands/SearchButton.astro';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 const { locale } = Astro.props;
 const types = Object.keys(TYPE_LABELS);
 const otherLocale: Locale = locale === 'zh' ? 'en' : 'zh';
-const switchTo = localePath(Astro.url.pathname.replace(/^\/en(?=\/|$)/, '') || '/', otherLocale);
+const switchTo = localePath(stripBase(Astro.url.pathname).replace(/^\/en(?=\/|$)/, '') || '/', otherLocale);
 ---
 
 <header class="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur">

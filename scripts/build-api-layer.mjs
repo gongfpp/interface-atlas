@@ -13,6 +13,9 @@ const TYPES = ['components', 'patterns', 'styles', 'pages', 'motion'];
 const apiDir = join(root, 'public', 'api', 'concept');
 const index = [];
 
+/** 部署子路径（GitHub Pages 项目站点为 /interface-atlas；根部署为空）。 */
+const BASE = (process.env.PUBLIC_BASE_PATH || '').replace(/\/+$/, '');
+
 for (const type of TYPES) {
   const dir = join(root, 'src', 'content', type);
   let files = [];
@@ -32,8 +35,8 @@ for (const type of TYPES) {
       id,
       type,
       name: data.name,
-      url: `/${type}/${id}`,
-      api: `/api/concept/${type}/${id}.json`,
+      url: `${BASE}/${type}/${id}`,
+      api: `${BASE}/api/concept/${type}/${id}.json`,
       summary: data.description?.zh?.slice(0, 80) ?? '',
     });
   }

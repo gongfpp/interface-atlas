@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { localePath, withBase } from '@/lib/i18n';
 ---
 
 <BaseLayout title="Gallery · Interface Atlas" description="AI-generated component reference sheets, each with a reproducible image-generation prompt." locale="en">
@@ -17,11 +18,11 @@ import { getCollection } from 'astro:content';
       .sort((a, b) => a.id.localeCompare(b.id))
       .map((entry) => (
         <a
-          href={`/en/gallery/${entry.id}`}
+          href={localePath(`/gallery/${entry.id}`, 'en')}
           class="group overflow-hidden rounded-xl border border-line bg-raised transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-sm"
         >
           <img
-            src={entry.data.images[0]?.file}
+            src={withBase(entry.data.images[0]?.file ?? '')}
             alt={entry.data.name.en}
             loading="lazy"
             width="1600"

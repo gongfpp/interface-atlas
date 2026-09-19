@@ -1,7 +1,7 @@
 ---
 import type { StyleThumbSpec } from '@/lib/style-previews';
 import StyleThumb from '@/components/StyleThumb.astro';
-import type { Locale } from '@/lib/i18n';
+import { localePath, type Locale } from '@/lib/i18n';
 
 interface Props {
   spec: StyleThumbSpec;
@@ -16,7 +16,7 @@ const num = String(index + 1).padStart(2, '0');
 ---
 
 <a
-  href={`/${locale === 'zh' ? '' : 'en/'}styles/${spec.slug}`}
+  href={localePath(`/styles/${spec.slug}`, locale)}
   class="group grid gap-6 rounded-2xl border border-line bg-raised p-5 transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md md:grid-cols-[240px_1fr] md:p-7"
 >
   <!-- 左：文字 -->

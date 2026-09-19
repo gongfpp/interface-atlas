@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://interface-atlas.dev/sitemap-index.xml

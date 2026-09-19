@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { TYPE_LABELS } from '@/lib/i18n';
+import { TYPE_LABELS, localePath } from '@/lib/i18n';
 import {
   getHistorySnapshot,
   getSavedSnapshot,
@@ -33,7 +33,7 @@ export default function SavedView({ concepts, locale }: Props) {
     .filter((x): x is Item => Boolean(x))
     .slice(0, HISTORY_PREVIEW);
 
-  const href = (item: Item) => `${zh ? '' : '/en'}/${item.type}/${item.id}`;
+  const href = (item: Item) => localePath(`/${item.type}/${item.id}`, locale);
   const typeLabel = (item: Item) => TYPE_LABELS[item.type]?.[locale] ?? item.type;
   const sectionTitle = 'mb-4 font-serif text-xl font-semibold';
 

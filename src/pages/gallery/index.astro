@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { localePath, withBase } from '@/lib/i18n';
 ---
 
 <BaseLayout title="灵感图库 · 界面图谱" description="AI 生成的组件设计参考图集，每套图附可复现的生图 Prompt。" locale="zh" enPath="/gallery">
@@ -16,11 +17,11 @@ import { getCollection } from 'astro:content';
       .sort((a, b) => a.id.localeCompare(b.id))
       .map((entry) => (
         <a
-          href={`/gallery/${entry.id}`}
+          href={localePath(`/gallery/${entry.id}`, 'zh')}
           class="group overflow-hidden rounded-xl border border-line bg-raised transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-sm"
         >
           <img
-            src={entry.data.images[0]?.file}
+            src={withBase(entry.data.images[0]?.file ?? '')}
             alt={entry.data.name.zh}
             loading="lazy"
             width="1600"
