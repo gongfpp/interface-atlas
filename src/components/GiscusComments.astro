@@ -1,0 +1,58 @@
+---
+/**
+ * 留言板评论组件（giscus → 仓库 GitHub Discussions）。
+ *
+ * 前置条件（一次性，需仓库 Owner 操作）：
+ * 1. 仓库已启用 Discussions（本仓库已开）。
+ * 2. 安装 giscus GitHub App：https://github.com/apps/giscus → Configure → 选中本仓库。
+ * 配置取自 giscus.app 生成的值（均为公开信息，非密钥）。
+ */
+interface Props { locale: 'zh' | 'en' }
+const { locale } = Astro.props;
+
+const GISCUS = {
+  repo: 'gongfpp/interface-atlas',
+  repoId: 'R_kgDOUfKALg',
+  category: 'General',
+  categoryId: 'DIC_kwDOUfKALs4DF9eD',
+  // specific + term：中英两个页面共用一个讨论串，保证留言都在同一块板子上
+  term: 'interface-atlas-board',
+};
+---
+
+<div class="giscus" data-giscus-board></div>
+
+<script is:inline define:vars={{ GISCUS, lang: locale === 'zh' ? 'zh-CN' : 'en' }}>
+  (function () {
+    function currentTheme() {
+      return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    }
+
+    var script = document.createElement('script');
+    script.src = 'https://giscus.app/client.js';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    script.setAttribute('data-repo', GISCUS.repo);
+    script.setAttribute('data-repo-id', GISCUS.repoId);
+    script.setAttribute('data-category', GISCUS.category);
+    script.setAttribute('data-category-id', GISCUS.categoryId);
+    script.setAttribute('data-mapping', 'specific');
+    script.setAttribute('data-term', GISCUS.term);
+    script.setAttribute('data-strict', '0');
+    script.setAttribute('data-reactions-enabled', '1');
+    script.setAttribute('data-emit-metadata', '0');
+    script.setAttribute('data-input-position', 'top');
+    script.setAttribute('data-theme', currentTheme());
+    script.setAttribute('data-lang', lang);
+    script.setAttribute('data-loading', 'lazy');
+    document.querySelector('[data-giscus-board]').appendChild(script);
+
+    // 跟随站点深色/浅色切换：通知 giscus iframe 换主题
+    new MutationObserver(function () {
+      var frame = document.querySelector('iframe.giscus-frame');
+      if (frame && frame.contentWindow) {
+        frame.contentWindow.postMessage({ giscus: { setConfig: { theme: currentTheme() } } }, 'https://giscus.app');
+      }
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  })();
+</script>

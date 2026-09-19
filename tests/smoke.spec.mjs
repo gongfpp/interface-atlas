@@ -128,6 +128,12 @@ test('prompt builder: style selection composes the prompt', async ({ page }) => 
   await expect(section.locator('pre')).toContainText('新粗野主义');
 });
 
+test('board: page renders with giscus mount point', async ({ page }) => {
+  await page.goto('/board');
+  await expect(page.getByRole('heading', { level: 1, name: '留言板' })).toBeVisible();
+  await expect(page.locator('[data-giscus-board]')).toBeAttached();
+});
+
 test('page structure: breakdown renders on a page concept', async ({ page }) => {
   await page.goto('/pages/dashboard');
   await expect(page.getByRole('heading', { level: 2, name: '页面结构' })).toBeVisible();

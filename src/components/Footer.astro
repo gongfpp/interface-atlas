@@ -19,6 +19,9 @@ const { locale } = Astro.props;
       <a class="hover:text-accent" href={localePath('/gallery', locale)}>
         {locale === 'zh' ? '灵感图库' : 'Gallery'}
       </a>
+      <a class="hover:text-accent" href={localePath('/board', locale)}>
+        {locale === 'zh' ? '留言板' : 'Board'}
+      </a>
     </nav>
     <p class="font-serif text-ink-2">界面图谱 · Interface Atlas</p>
     <p>{t('footerNote', locale)}</p>

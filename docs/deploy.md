@@ -70,7 +70,20 @@ Actions 构建的站点，analytics 变量要配在仓库 **Settings → Secrets
 
 > 该统计不使用 cookie、不采集个人信息，符合 PRD 隐私约定。
 
-## 站点域名与子路径
+## 留言板（giscus / GitHub Discussions）
+
+`/board`（中英共用同一讨论串）通过 [giscus](https://giscus.app) 把评论挂在本仓库的 GitHub Discussions 上：纯静态可用、免费、留言公开可见，评论需 GitHub 登录，数据在 GitHub，审核也在 GitHub。
+
+一次性配置（仓库 Owner）：
+
+1. 仓库 **Settings → General → Features → Discussions** 勾选启用（本仓库已启用）。
+2. 安装 giscus GitHub App：打开 <https://github.com/apps/giscus> → **Install** → 选择 `gongfpp/interface-atlas`。**未安装时评论区会报错/空白，这一步必须做。**
+3. 在 <https://giscus.app> 填入仓库名，选择 Discussions 分类（当前用 `General`）与 `specific` 映射，把生成的 `data-repo-id` / `data-category-id` 填进 `src/components/GiscusComments.astro` 的 `GISCUS` 常量。
+4. 删除/锁定/转移留言在 GitHub Discussions 页面操作；被 giscus 拉起的每个线程标题即 `data-term`（当前 `interface-atlas-board`）。
+
+> 主题跟随站点深色/浅色切换（组件内 MutationObserver 监听 `<html class>`）。giscus 不写入站点域名的 cookie；登录态与主题偏好由 giscus.app 的 iframe 管理。
+
+
 
 - `PUBLIC_SITE_URL`（如 `https://your-domain.com`）决定 canonical / sitemap / hreflang；不设置时回落到 `https://interface-atlas.dev`。
 - `PUBLIC_BASE_PATH`（如 `/interface-atlas`）决定部署子路径；根部署留空。所有站内链接、资源、robots、sitemap、`/api/*.json`、`llms.txt` 都会自动带上该前缀。

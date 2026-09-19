@@ -1,9 +1,11 @@
 # 中文前端设计参考库 PRD
 
-版本：v0.12
+版本：v0.13
 项目阶段：MVP
 中文名称：界面图谱
 英文名称：Interface Atlas（MVP 使用工作名，域名后定，改名成本 = 文案 + 301）
+
+> v0.13 变更摘要（留言板）：新增 `/board`（中英双语，共用同一讨论串）——基于 giscus 把评论挂在本仓库的 GitHub Discussions，纯静态部署可用、留言公开可见；评论需 GitHub 登录，数据与审核都在 GitHub。页脚新增入口。
 
 > v0.12 变更摘要（搜索简化）：移除浏览器端 embedding 语义层（transformers.js + multilingual-e5-small，约 27MB）及其向量索引，搜索统一为关键词/别名加权匹配（§9.1）。依据：95 条目规模下语义层对 30 条黄金查询几乎无增量（关键词 Top-3 已 100%、Top-1 86.7%，语义层 Top-1 90%），却带来明显下载与初始化延迟。搜索索引降为单个约 80KB 的 `search-docs.json`，删除 `@huggingface/transformers` 依赖。
 
@@ -694,3 +696,12 @@ get_agent_prompt()
 
 - 新增图集：补一个 `src/content/gallery/<id>.yaml` + `public/images/gallery/<id>/` 图片目录即可，Schema 校验与搜索集成自动生效。
 - Prompt 模板原则：固定版式描述（背景色、标题结构、5 条目网格、关键词格式），只把"编号 / 主题 / 模式名清单"作为变量——这是整套图风格一致的关键。
+
+---
+
+# 44. 留言板（v0.13 新增）
+
+- `/board` + `/en/board`（中英双语），两页共用同一 Discussion 串（giscus `specific` 映射，term `interface-atlas-board`）。
+- 基于仓库 GitHub Discussions（giscus）：纯静态部署可用、免费、留言公开可见；评论需 GitHub 登录，数据与审核都在 GitHub，站点侧无需后端。
+- 定位：收集"缺哪个概念 / 内容纠错 / 功能建议"，与 §9.3 的搜索弱命中日志互补（后者只记未命中查询，不公开）。
+- 主题跟随站点深色/浅色切换；页脚新增入口。配置与维护见 `docs/deploy.md` 的「留言板」小节。
