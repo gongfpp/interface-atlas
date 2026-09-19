@@ -7,18 +7,28 @@ import { readFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { search } from '../src/lib/search-core.mjs';
+import { decodeVectors } from '../src/lib/vector-codec.mjs';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const fixturesPath = join(root, 'fixtures', 'search-golden.json');
-const indexPath = join(root, 'public', 'data', 'search-index.json');
+const docsPath = join(root, 'public', 'data', 'search-docs.json');
+const vectorsPath = join(root, 'public', 'data', 'search-vectors.json');
 
 const golden = JSON.parse(readFileSync(fixturesPath, 'utf8'));
 
-if (!existsSync(indexPath)) {
-  console.error('✗ 缺少 public/data/search-index.json，请先运行 npm run search:build');
+if (!existsSync(docsPath)) {
+  console.error('✗ 缺少 public/data/search-docs.json，请先运行 npm run search:build');
   process.exit(1);
 }
-const { docs, vectors, model } = JSON.parse(readFileSync(indexPath, 'utf8'));
+const { docs } = JSON.parse(readFileSync(docsPath, 'utf8'));
+
+let vectors = null;
+let model = null;
+if (existsSync(vectorsPath)) {
+  const payload = JSON.parse(readFileSync(vectorsPath, 'utf8'));
+  model = payload.model;
+  vectors = model && payload.count ? decodeVectors(payload) : null;
+}
 
 let queryVectors = null;
 if (vectors && model) {

@@ -1,11 +1,14 @@
 /**
  * 构建搜索索引（PRD §9）：关键词字段 + 本地 embedding（多语 e5-small，q8 量化）。
- * 产出 public/data/search-index.json，浏览器懒加载。
+ * 拆成两个文件，浏览器按需加载：
+ * - public/data/search-docs.json    关键词层（~58KB），首次交互即加载，先出结果
+ * - public/data/search-vectors.json 向量层（聚焦弱命中时懒加载，base64 float32 压缩）
  */
 import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { load as yamlLoad } from 'js-yaml';
+import { encodeVectors } from '../src/lib/vector-codec.mjs';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const TYPES = ['components', 'patterns', 'styles', 'pages', 'motion'];
@@ -112,8 +115,19 @@ try {
 
 const outDir = join(root, 'public', 'data');
 mkdirSync(outDir, { recursive: true });
-writeFileSync(
-  join(outDir, 'search-index.json'),
-  JSON.stringify({ docs, vectors, model }),
-);
-console.log(`写入 public/data/search-index.json（${(JSON.stringify({ docs, vectors }).length / 1024 / 1024).toFixed(2)} MB）`);
+
+const docsPayload = JSON.stringify({ docs });
+writeFileSync(join(outDir, 'search-docs.json'), docsPayload);
+console.log(`写入 public/data/search-docs.json（${(docsPayload.length / 1024).toFixed(1)} KB）`);
+
+if (vectors && model) {
+  const encoded = encodeVectors(vectors);
+  const vectorsPayload = JSON.stringify({ model, ...encoded });
+  writeFileSync(join(outDir, 'search-vectors.json'), vectorsPayload);
+  console.log(
+    `写入 public/data/search-vectors.json（${(vectorsPayload.length / 1024).toFixed(1)} KB，${encoded.count}×${encoded.dim}）`,
+  );
+} else {
+  writeFileSync(join(outDir, 'search-vectors.json'), JSON.stringify({ model: null, count: 0, dim: 0, data: '' }));
+  console.log('未生成 embedding，向量层为空（搜索降级为纯关键词）');
+}

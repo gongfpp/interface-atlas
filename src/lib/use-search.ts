@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { search } from '@/lib/search-core.mjs';
+import { decodeVectors } from '@/lib/vector-codec.mjs';
 import { withBase } from '@/lib/i18n';
 import { beacon, track } from '@/lib/track';
 
@@ -19,11 +20,14 @@ export interface SearchHit {
   kw: number;
 }
 
-interface IndexPayload {
-  docs: SearchDoc[];
-  vectors: number[][] | null;
+interface VectorsPayload {
   model: string | null;
+  count: number;
+  dim: number;
+  data: string;
 }
+
+type Extractor = (text: string, opts: Record<string, unknown>) => Promise<{ data: Float32Array }>;
 
 /** PII 清洗：去除邮箱、连续数字（手机号/单号等），截断到 120 字符 */
 function scrubQuery(q: string) {
@@ -39,68 +43,104 @@ function logSearch(q: string) {
   beacon('/api/log-search', { q: cleaned });
 }
 
-// 索引懒加载并跨实例复用（顶部弹窗与首页内联搜索共享同一次 fetch）
-let indexPromise: Promise<IndexPayload> | null = null;
-function loadIndex() {
-  if (!indexPromise) {
-    indexPromise = fetch(withBase('/data/search-index.json'))
+// 关键词层（~58KB）：首次交互即加载，先出结果
+let docsPromise: Promise<SearchDoc[]> | null = null;
+function loadDocs() {
+  if (!docsPromise) {
+    docsPromise = fetch(withBase('/data/search-docs.json'))
       .then((r) => r.json())
-      .catch(() => ({ docs: [], vectors: null, model: null }));
+      .then((p: { docs?: SearchDoc[] }) => p.docs ?? [])
+      .catch(() => []);
   }
-  return indexPromise;
+  return docsPromise;
+}
+
+// 向量层（base64 float32）：只在关键词弱命中时才加载
+let vectorsPromise: Promise<{ vectors: number[][] | null; model: string | null }> | null = null;
+function loadVectors() {
+  if (!vectorsPromise) {
+    vectorsPromise = fetch(withBase('/data/search-vectors.json'))
+      .then((r) => r.json())
+      .then((p: VectorsPayload) =>
+        p.model && p.count ? { model: p.model, vectors: decodeVectors(p) } : { model: null, vectors: null },
+      )
+      .catch(() => ({ model: null, vectors: null }));
+  }
+  return vectorsPromise;
+}
+
+// 模型 pipeline 初始化较重，跨查询/跨实例只做一次
+let extractorPromise: Promise<Extractor> | null = null;
+function loadExtractor(model: string): Promise<Extractor> {
+  if (!extractorPromise) {
+    extractorPromise = import('@huggingface/transformers').then(
+      ({ pipeline }) =>
+        pipeline('feature-extraction', model, { dtype: 'q8' }) as unknown as Extractor,
+    );
+  }
+  return extractorPromise;
 }
 
 /**
- * 搜索数据层（PRD §9）：关键词命中 + 弱命中时懒加载本地 embedding 重排。
- * 只负责查询与结果状态，弹窗 / 内联两种展示形态各自管理自己的可见性。
+ * 搜索数据层（PRD §9）：渐进式两段结果。
+ * 1. 关键词层就绪后立即给结果（同步、无模型）；
+ * 2. 仅当关键词弱命中时，后台加载向量 + 本地 embedding 模型重排，完成后原地升级结果。
  */
 export function useSearch(initialQuery = '') {
   const [query, setQuery] = useState(initialQuery);
-  const [index, setIndex] = useState<IndexPayload | null>(null);
+  const [docs, setDocs] = useState<SearchDoc[] | null>(null);
   const [results, setResults] = useState<SearchHit[]>([]);
   const [active, setActive] = useState(0);
   const [loadingModel, setLoadingModel] = useState(false);
+  const reqId = useRef(0);
   const logTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // 首次交互（打开弹窗 / 聚焦内联框）时才加载 832K 索引
   const ensureIndex = useCallback(() => {
-    loadIndex().then((idx) => setIndex((cur) => cur ?? idx));
+    loadDocs().then((d) => setDocs((cur) => cur ?? d));
   }, []);
 
-  const runSearch = useCallback(async (q: string, idx: IndexPayload) => {
-    const kwScored = search(q, idx.docs, null, null);
-    let scored = kwScored;
+  const runSearch = useCallback(async (q: string, list: SearchDoc[]) => {
+    const id = ++reqId.current;
 
-    // 关键词层弱命中时，懒加载本地模型做 embedding 重排（PRD §9 增强层）
-    const weak = !kwScored[0] || kwScored[0].kw < 30;
-    if (weak && idx.vectors && idx.model && q.trim().length >= 2) {
-      try {
-        setLoadingModel(true);
-        const { pipeline } = await import('@huggingface/transformers');
-        const extractor = await pipeline('feature-extraction', idx.model, { dtype: 'q8' });
-        const out = await extractor(`query: ${q}`, { pooling: 'mean', normalize: true });
-        const qv = Array.from(out.data as Float32Array);
-        scored = search(q, idx.docs, idx.vectors, qv);
-      } catch {
-        scored = kwScored;
-      } finally {
-        setLoadingModel(false);
-      }
-    }
-    setResults(scored.slice(0, 12));
+    // 第一段：关键词结果立即展示（只保留真正命中的条目，避免无关结果刷屏）
+    const kwScored = search(q, list, null, null).filter((h: SearchHit) => h.kw > 0);
+    setResults(kwScored.slice(0, 12));
     setActive(0);
+
+    // 第二段：弱命中才做语义重排，结果后续原地替换
+    const weak = !kwScored[0] || kwScored[0].kw < 30;
+    if (!weak || q.trim().length < 2) {
+      setLoadingModel(false);
+      return;
+    }
+
+    setLoadingModel(true);
+    try {
+      const { vectors, model } = await loadVectors();
+      if (reqId.current !== id || !vectors || !model) return;
+      const extractor = await loadExtractor(model);
+      if (reqId.current !== id) return;
+      const out = await extractor(`query: ${q}`, { pooling: 'mean', normalize: true });
+      if (reqId.current !== id) return;
+      setResults(search(q, list, vectors, Array.from(out.data)).slice(0, 12));
+      setActive(0);
+    } catch {
+      /* 语义层不可用时保留已展示的关键词结果 */
+    } finally {
+      if (reqId.current === id) setLoadingModel(false);
+    }
   }, []);
 
   useEffect(() => {
-    if (!index) return;
+    if (!docs) return;
     // 延迟到下一个宏任务执行搜索，避免 effect 内同步 setState 触发级联渲染
-    const t = setTimeout(() => runSearch(query, index), 0);
+    const t = setTimeout(() => runSearch(query, docs), 0);
     return () => clearTimeout(t);
-  }, [query, index, runSearch]);
+  }, [query, docs, runSearch]);
 
   // 查询日志回流（PRD §9.3）：只记录无结果 / 弱命中查询，防止把强命中原文全部入库
   useEffect(() => {
-    if (!query.trim() || loadingModel) return;
+    if (!query.trim() || loadingModel || !docs) return;
     const top = results[0];
     const weak = !top || top.kw < 30;
     if (!weak) return;
@@ -110,7 +150,7 @@ export function useSearch(initialQuery = '') {
     return () => {
       if (logTimer.current) clearTimeout(logTimer.current);
     };
-  }, [query, results, loadingModel]);
+  }, [query, results, loadingModel, docs]);
 
-  return { query, setQuery, results, active, setActive, loadingModel, loadingIndex: !index, ensureIndex };
+  return { query, setQuery, results, active, setActive, loadingModel, loadingIndex: !docs, ensureIndex };
 }

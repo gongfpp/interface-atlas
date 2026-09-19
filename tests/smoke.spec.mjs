@@ -42,6 +42,20 @@ test('home hero: type directly, inline results, navigate to concept', async ({ p
   await expect(page.getByRole('heading', { level: 1 })).toContainText(/骨架屏|Skeleton/);
 });
 
+test('hero search: keyword results render without the vector index', async ({ page }) => {
+  // 向量层失败/未就绪时，关键词结果仍应立即可用（渐进式两段搜索）
+  await page.route('**/search-vectors.json', (route) => route.abort());
+  await page.goto('/');
+
+  const combo = page.getByRole('combobox');
+  await combo.click();
+  await combo.fill('下拉刷新');
+  await expect(page.getByRole('option').first()).toBeVisible({ timeout: 10_000 });
+
+  await combo.fill('zzzzqqq');
+  await expect(page.getByText(/没有找到|Nothing found/)).toBeVisible({ timeout: 10_000 });
+});
+
 test('/search landing opens the search dialog', async ({ page }) => {
   await page.goto('/search');
   await expect(page.getByRole('dialog').getByRole('textbox')).toBeVisible();

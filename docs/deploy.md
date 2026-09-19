@@ -33,7 +33,8 @@ Actions 构建的站点，analytics 变量要配在仓库 **Settings → Secrets
 
 - Framework preset: **Astro**
 - Build command: `npm run build:fast`
-  （= api:build + astro build。搜索索引 public/data/search-index.json 已提交入库，
+  （= api:build + astro build。搜索索引 public/data/search-docs.json（关键词层）与
+  search-vectors.json（向量层）已提交入库，
   内容更新时由本地/CI 的完整管线刷新；避免在 CF 构建环境下载 30MB embedding 模型）
 - Build output: `dist`
 - Node version: 22（环境变量 `NODE_VERSION=22`）
