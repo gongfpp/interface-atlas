@@ -5,7 +5,7 @@
 站点：**https://gongfpp.github.io/interface-atlas/**（项目站点，挂在子路径 `/interface-atlas/`）
 
 - 由 `.github/workflows/deploy-pages.yml` 在 push 到 `main` 时自动构建并发布。
-- 构建命令 `npm run build:fast`（复用已提交的搜索索引，避免在 CI 下载 embedding 模型），并注入：
+- 构建命令 `npm run build:fast`（复用已提交的关键词搜索索引，无需在 CI 生成），并注入：
   - `PUBLIC_SITE_URL=https://gongfpp.github.io`
   - `PUBLIC_BASE_PATH=/interface-atlas`（所有站内链接/资源/robots/sitemap/canonical 都会带此前缀）
   - `PUBLIC_LOG_API=off`（GitHub Pages 无 Functions/KV，关闭查询落库，避免 404）
@@ -33,9 +33,8 @@ Actions 构建的站点，analytics 变量要配在仓库 **Settings → Secrets
 
 - Framework preset: **Astro**
 - Build command: `npm run build:fast`
-  （= api:build + astro build。搜索索引 public/data/search-docs.json（关键词层）与
-  search-vectors.json（向量层）已提交入库，
-  内容更新时由本地/CI 的完整管线刷新；避免在 CF 构建环境下载 30MB embedding 模型）
+  （= api:build + astro build。关键词搜索索引 public/data/search-docs.json 已提交入库，
+  内容更新时由本地/CI 的完整管线刷新）
 - Build output: `dist`
 - Node version: 22（环境变量 `NODE_VERSION=22`）
 - `PUBLIC_BASE_PATH` 留空（根部署，base 为空）；`PUBLIC_SITE_URL` 设为 CF 分配/自定义域名

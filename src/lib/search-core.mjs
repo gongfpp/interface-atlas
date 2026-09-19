@@ -1,6 +1,6 @@
 /**
- * 搜索核心（PRD §9）：关键词加权 + embedding 余弦融合。
- * 浏览器（搜索弹窗）与 Node（黄金测试集回归）共用本模块。
+ * 搜索核心（PRD §9）：中英名称 + Alias + Tags + Category + 正文的加权关键词匹配。
+ * 浏览器（搜索框）与 Node（黄金测试集回归）共用本模块。
  */
 
 function normalize(s) {
@@ -60,30 +60,13 @@ export function keywordScore(query, doc) {
   return best + Math.min(hits - 1, 4) * 5;
 }
 
-export function cosine(a, b) {
-  let dot = 0;
-  let na = 0;
-  let nb = 0;
-  for (let i = 0; i < a.length; i++) {
-    dot += a[i] * b[i];
-    na += a[i] * a[i];
-    nb += b[i] * b[i];
-  }
-  return dot / (Math.sqrt(na) * Math.sqrt(nb) || 1);
-}
-
 /**
  * @param {string} query
  * @param {Array} docs
- * @param {number[][] | null} vectors 与 docs 对齐的 embedding；null 时纯关键词
- * @param {number[] | null} queryVector
+ * @returns {Array<{doc: object, kw: number}>} 按关键词得分降序
  */
-export function search(query, docs, vectors = null, queryVector = null) {
-  const scored = docs.map((doc, i) => {
-    const kw = keywordScore(query, doc);
-    const sim = vectors && queryVector ? cosine(queryVector, vectors[i]) : 0;
-    return { doc, score: kw + 40 * sim, kw, sim };
-  });
-  scored.sort((a, b) => b.score - a.score);
-  return scored;
+export function search(query, docs) {
+  return docs
+    .map((doc) => ({ doc, kw: keywordScore(query, doc) }))
+    .sort((a, b) => b.kw - a.kw);
 }

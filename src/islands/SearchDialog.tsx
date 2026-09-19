@@ -9,7 +9,7 @@ export default function SearchDialog({ locale, autoOpen = false }: { locale: 'zh
   const initialQuery =
     typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('q') : null;
   const [open, setOpen] = useState(() => autoOpen || Boolean(initialQuery));
-  const { query, setQuery, results, active, setActive, loadingModel, loadingIndex, ensureIndex } = useSearch(initialQuery ?? '');
+  const { query, setQuery, results, active, setActive, loadingIndex, ensureIndex } = useSearch(initialQuery ?? '');
   const inputRef = useRef<HTMLInputElement>(null);
 
   // 首次打开时懒加载索引
@@ -49,7 +49,7 @@ export default function SearchDialog({ locale, autoOpen = false }: { locale: 'zh
 
   if (!open) return null;
 
-  const empty = !loadingIndex && !loadingModel && results.length === 0 && Boolean(query);
+  const empty = !loadingIndex && results.length === 0 && Boolean(query);
 
   return (
     <div
@@ -81,11 +81,6 @@ export default function SearchDialog({ locale, autoOpen = false }: { locale: 'zh
           {loadingIndex && (
             <p className="px-3 py-3 text-sm text-ink-3">
               {locale === 'zh' ? '正在加载搜索索引…' : 'Loading search index…'}
-            </p>
-          )}
-          {loadingModel && !loadingIndex && (
-            <p className="px-3 py-2 text-xs text-ink-3">
-              {locale === 'zh' ? '正在加载语义检索模型…' : 'Loading semantic model…'}
             </p>
           )}
           {empty && (

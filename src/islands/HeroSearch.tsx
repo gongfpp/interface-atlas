@@ -8,7 +8,7 @@ import { localePath, t } from '@/lib/i18n';
  * 不弹出新窗口。⌘K 仍由 SearchDialog 的命令面板承接。
  */
 export default function HeroSearch({ locale }: { locale: 'zh' | 'en' }) {
-  const { query, setQuery, results, active, setActive, loadingModel, loadingIndex, ensureIndex } = useSearch();
+  const { query, setQuery, results, active, setActive, loadingIndex, ensureIndex } = useSearch();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -31,7 +31,7 @@ export default function HeroSearch({ locale }: { locale: 'zh' | 'en' }) {
   };
 
   const showPanel = open && query.trim().length > 0;
-  const empty = showPanel && !loadingIndex && !loadingModel && results.length === 0;
+  const empty = showPanel && !loadingIndex && results.length === 0;
   const activeId = showPanel && results[active] ? `hero-opt-${results[active].doc.id}` : undefined;
 
   return (
@@ -76,11 +76,6 @@ export default function HeroSearch({ locale }: { locale: 'zh' | 'en' }) {
           {loadingIndex && (
             <p className="px-3 py-3 text-sm text-ink-3">
               {locale === 'zh' ? '正在加载搜索索引…' : 'Loading search index…'}
-            </p>
-          )}
-          {loadingModel && !loadingIndex && (
-            <p className="px-3 py-2 text-xs text-ink-3">
-              {locale === 'zh' ? '正在加载语义检索模型…' : 'Loading semantic model…'}
             </p>
           )}
           {empty && (

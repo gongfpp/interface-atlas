@@ -42,9 +42,7 @@ test('home hero: type directly, inline results, navigate to concept', async ({ p
   await expect(page.getByRole('heading', { level: 1 })).toContainText(/骨架屏|Skeleton/);
 });
 
-test('hero search: keyword results render without the vector index', async ({ page }) => {
-  // 向量层失败/未就绪时，关键词结果仍应立即可用（渐进式两段搜索）
-  await page.route('**/search-vectors.json', (route) => route.abort());
+test('hero search: matches render, nonsense shows empty state', async ({ page }) => {
   await page.goto('/');
 
   const combo = page.getByRole('combobox');

@@ -1,9 +1,11 @@
 # 中文前端设计参考库 PRD
 
-版本：v0.11
+版本：v0.12
 项目阶段：MVP
 中文名称：界面图谱
 英文名称：Interface Atlas（MVP 使用工作名，域名后定，改名成本 = 文案 + 301）
+
+> v0.12 变更摘要（搜索简化）：移除浏览器端 embedding 语义层（transformers.js + multilingual-e5-small，约 27MB）及其向量索引，搜索统一为关键词/别名加权匹配（§9.1）。依据：95 条目规模下语义层对 30 条黄金查询几乎无增量（关键词 Top-3 已 100%、Top-1 86.7%，语义层 Top-1 90%），却带来明显下载与初始化延迟。搜索索引降为单个约 80KB 的 `search-docs.json`，删除 `@huggingface/transformers` 依赖。
 
 > v0.11 变更摘要（部署）：新增 GitHub Pages 自动部署（`.github/workflows/deploy-pages.yml`，站点 `https://gongfpp.github.io/interface-atlas/`）；引入 `PUBLIC_BASE_PATH` 子路径支持——所有站内链接/资源/robots/sitemap/canonical/`/api/*.json`/`llms.txt` 自动带 base，根部署（Cloudflare）行为不变；无后端部署可用 `PUBLIC_LOG_API=off` 关闭查询落库。
 
@@ -158,17 +160,18 @@ MVP 不建立社区、商城和复杂账户体系。
 
 搜索是核心闭环（§31）的成败点。**目标不是"能搜"，而是达到 §38 的口语化模糊查询验收。**
 
-## 9.1 检索方案（两层）
+## 9.1 检索方案（关键词）
 
-1. **基线层**：中英名称 + Alias + Tags + Keywords + Related Terms + Description Keywords 的加权匹配（结构化数据见 §33）。
-2. **增强层**：构建时对每个条目的 description + aliases 生成 embedding；运行时对全库（约 90 条）做内存余弦检索。不训练模型、不依赖运行时 LLM，兜住"按钮点下去缩一下"这类与维护词表不重合的口语查询。**选型（v0.5 更正）：本地 transformers.js + Xenova/multilingual-e5-small（q8 量化）**，构建脚本生成索引，无 API key、无持续费用、结果可复现；中英双语。模型仅在关键词弱命中时于浏览器端懒加载（约 27MB WASM），90 条规模下优先做好 alias 运营，语义层贡献待实测后再评估增减。
+中英名称 + Alias + Tags + Category + Description 的加权匹配（结构化数据见 §33）。构建脚本产出静态索引 `public/data/search-docs.json`（约 80 KB），运行时浏览器内存排序，无运行时模型、无 API 依赖。
+
+**决策（v0.12）**：曾实现"构建时 embedding + 浏览器本地模型重排"两层方案（transformers.js + multilingual-e5-small，约 27MB）。95 条目规模下实测语义层几乎无增量——30 条黄金查询关键词 Top-3 已 100%、Top-1 86.7%，语义层 Top-1 90%——却带来 27MB 模型下载与明显延迟。故移除语义层与向量索引，专注 alias / keywords 运营（§9.3、§32）。待条目规模显著增长或关键词命中率下降时再评估，届时优先服务端 embedding，而非浏览器模型。
 
 搜索结果页按五大类型（Component / Pattern / Style / Page / Motion）分组展示。
 
 ## 9.2 黄金测试集与验收线
 
 - 把 §38 的 5 个用例扩充为 **20～30 条黄金查询**，存放于仓库（`fixtures/search-golden.*`），每条查询对应期望命中的 concept id 列表。
-- CI 跑搜索回归，验收线：**Top-3 命中率 ≥ 80%**。不达标不算 MVP 完成。
+- CI 跑关键词搜索回归（`scripts/test-golden-queries.mjs`，与浏览器同一评分模块），验收线：**Top-3 命中率 ≥ 80%**。不达标不算 MVP 完成。
 
 ## 9.3 查询日志回流
 
@@ -360,7 +363,7 @@ Sources（引用来源，v0.2 新增必填）
 # 27. MVP P0 功能
 
 ```text
-首页 / 全文搜索（§9 两层方案）/ 五大分类
+首页 / 全文搜索（§9 关键词方案）/ 五大分类
 Concept 列表 / Concept 详情页（1 + 5 模板）
 Live Demo / Variants / Related Concepts
 中英文名称 / Tags / Prompt Copy（4 层）
@@ -655,7 +658,7 @@ get_agent_prompt()
 - 双语口吻一致：英文同为词典风。
 
 ## 42.3 里程碑
-- **M1（竖井）**：站点框架（五大分类页、i18n 路由、两层搜索、埋点、CI 校验、Motion 播放器）+ 首批 5 样板条目全流程走通，部署 Cloudflare Pages 可访问；黄金测试集先覆盖 5 条。
+- **M1（竖井）**：站点框架（五大分类页、i18n 路由、关键词搜索、埋点、CI 校验、Motion 播放器）+ 首批 5 样板条目全流程走通，部署 Cloudflare Pages 可访问；黄金测试集先覆盖 5 条。
 - **M2 起（横扩）**：用验证过的流水线批量生产剩余 85 条，每批 CI 回归；随后竞品对标（NameThatUI / Mobbin / Component Gallery / 21st.dev 等）取长补短，补全缺失的风格与元素类型条目。
 
 ## 42.4 内容生产模式

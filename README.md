@@ -29,7 +29,7 @@
 "卡片鼠标放上去浮起来"    → Hover Lift
 ```
 
-两层实现：关键词/Alias 加权匹配 + 构建时本地 embedding（multilingual-e5-small，无 API 依赖）。
+关键词/Alias/Tags/正文加权匹配，构建时生成约 80 KB 的静态索引，无运行时模型、无 API 依赖。
 30 条黄金查询回归测试，验收线 Top-3 命中率 ≥ 80%（`npm run search:test`）。
 
 ## 开发
