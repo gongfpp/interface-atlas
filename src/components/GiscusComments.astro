@@ -1,20 +1,21 @@
 ---
 /**
- * 留言板评论组件（giscus → 仓库 GitHub Discussions）。
+ * 留言板评论组件（giscus → GitHub Discussions）。
  *
+ * 挂在公开的构建/部署仓库 gongfpp/interface-atlas-web（源仓库为 private，不能承载 giscus）。
  * 前置条件（一次性，需仓库 Owner 操作）：
- * 1. 仓库已启用 Discussions（本仓库已开）。
- * 2. 安装 giscus GitHub App：https://github.com/apps/giscus → Configure → 选中本仓库。
+ * 1. 公开仓库已启用 Discussions（已开）。
+ * 2. 安装 giscus GitHub App 并授权该公开仓库：https://github.com/apps/giscus。
  * 配置取自 giscus.app 生成的值（均为公开信息，非密钥）。
  */
 interface Props { locale: 'zh' | 'en' }
 const { locale } = Astro.props;
 
 const GISCUS = {
-  repo: 'gongfpp/interface-atlas',
-  repoId: 'R_kgDOUfKALg',
+  repo: 'gongfpp/interface-atlas-web',
+  repoId: 'R_kgDOUhlQJQ',
   category: 'General',
-  categoryId: 'DIC_kwDOUfKALs4DF9eD',
+  categoryId: 'DIC_kwDOUhlQJc4DF9l1',
   // specific + term：中英两个页面共用一个讨论串，保证留言都在同一块板子上
   term: 'interface-atlas-board',
 };

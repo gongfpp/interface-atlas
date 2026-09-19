@@ -1,9 +1,11 @@
 # 中文前端设计参考库 PRD
 
-版本：v0.13
+版本：v0.14
 项目阶段：MVP
 中文名称：界面图谱
 英文名称：Interface Atlas（MVP 使用工作名，域名后定，改名成本 = 文案 + 301）
+
+> v0.14 变更摘要（仓库隔离）：源仓库 `gongfpp/interface-atlas` 转为 **private**，只保留源码与 CI；新增公开构建/部署仓库 `gongfpp/interface-atlas-web`——源仓库 `.github/workflows/deploy-web.yml` 构建后，用 SSH Deploy Key（secret `WEB_DEPLOY_KEY`）把 `dist/` 强制 push 到其 `main`，由该仓库 GitHub Pages（branch `main`，`/`，legacy）发布。站点 URL 变为 `https://gongfpp.github.io/interface-atlas-web/`；giscus 留言板改挂到公开仓库。
 
 > v0.13 变更摘要（留言板）：新增 `/board`（中英双语，共用同一讨论串）——基于 giscus 把评论挂在本仓库的 GitHub Discussions，纯静态部署可用、留言公开可见；评论需 GitHub 登录，数据与审核都在 GitHub。页脚新增入口。
 
@@ -702,6 +704,6 @@ get_agent_prompt()
 # 44. 留言板（v0.13 新增）
 
 - `/board` + `/en/board`（中英双语），两页共用同一 Discussion 串（giscus `specific` 映射，term `interface-atlas-board`）。
-- 基于仓库 GitHub Discussions（giscus）：纯静态部署可用、免费、留言公开可见；评论需 GitHub 登录，数据与审核都在 GitHub，站点侧无需后端。
+- 基于公开构建仓库 `gongfpp/interface-atlas-web` 的 GitHub Discussions（giscus；源仓库为 private 不能承载）：纯静态部署可用、免费、留言公开可见；评论需 GitHub 登录，数据与审核都在 GitHub，站点侧无需后端。
 - 定位：收集"缺哪个概念 / 内容纠错 / 功能建议"，与 §9.3 的搜索弱命中日志互补（后者只记未命中查询，不公开）。
 - 主题跟随站点深色/浅色切换；页脚新增入口。配置与维护见 `docs/deploy.md` 的「留言板」小节。

@@ -28,7 +28,8 @@ Project profile: `project`
 
 ## 项目 Git 约定
 
-- 远端：`github.com/gongfpp/interface-atlas`（public），`main` 为默认分支。
+- 源仓库：`github.com/gongfpp/interface-atlas`（**private**），`main` 为默认分支。只放源码与 CI。
+- 发布走公开构建仓库 `github.com/gongfpp/interface-atlas-web`：源仓库 `.github/workflows/deploy-web.yml` 构建后把 `dist/` 强制 push 到它的 `main`，由该仓库 GitHub Pages 发布（<https://gongfpp.github.io/interface-atlas-web/>）。不要在该公开仓库手工改文件，产物由源仓库覆盖。
 - **每次更新（任务完成并验证后）都必须 commit 并 push 到 `origin/main`**——用户已明确授权持续 push，无需逐次询问。
 - 提交遵循 Conventional Commits；一个逻辑完整的阶段一个 commit。
 - 本机网络对 github.com 时好时坏：push 失败时重试（API 与 git 端点可用性不同步）。

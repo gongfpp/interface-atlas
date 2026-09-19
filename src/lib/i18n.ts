@@ -1,7 +1,7 @@
 export type Locale = 'zh' | 'en';
 export const LOCALES: Locale[] = ['zh', 'en'];
 
-/** 部署子路径（GitHub Pages 项目站点为 `/interface-atlas`，根部署为 `''`）。 */
+/** 部署子路径（GitHub Pages 项目站点为 `/interface-atlas-web`，根部署为 `''`）。 */
 export const BASE = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
 /** 给站内绝对路径加上部署 base。 */

@@ -1,0 +1,63 @@
+name: Deploy site to interface-atlas-web
+
+# 源仓库保持 private；构建产物 push 到公开的 gongfpp/interface-atlas-web，
+# 由该仓库的 GitHub Pages（branch: main, /）对外发布。机制与 Iscream → Iscream-web 一致。
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-web
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      WEB_REPOSITORY: git@github.com:gongfpp/interface-atlas-web.git
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # build:fast 复用已提交的关键词搜索索引；埋点变量在源仓库 Variables 配置（未配置则跳过）
+      - name: Build
+        run: npm run build:fast
+        env:
+          PUBLIC_SITE_URL: https://gongfpp.github.io
+          PUBLIC_BASE_PATH: /interface-atlas-web
+          # GitHub Pages 无 Functions/KV 后端，关闭查询落库，避免 404
+          PUBLIC_LOG_API: 'off'
+          PUBLIC_UMAMI_SRC: ${{ vars.PUBLIC_UMAMI_SRC }}
+          PUBLIC_UMAMI_ID: ${{ vars.PUBLIC_UMAMI_ID }}
+          PUBLIC_CF_BEACON_TOKEN: ${{ vars.PUBLIC_CF_BEACON_TOKEN }}
+
+      - name: Publish to gongfpp/interface-atlas-web
+        env:
+          DEPLOY_KEY: ${{ secrets.WEB_DEPLOY_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          # Astro 输出 /_astro/ 目录，必须禁用 Jekyll 处理
+          touch dist/.nojekyll
+          cd dist
+          git init -q
+          git config user.name "interface-atlas-deploy"
+          git config user.email "gongfpp@users.noreply.github.com"
+          git add -A
+          git commit -qm "deploy ${GITHUB_SHA}"
+          git branch -M main
+          git remote add origin "$WEB_REPOSITORY"
+          GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" git push -f origin main
