@@ -1,0 +1,148 @@
+{
+  "id": "rating",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "评分",
+    "en": "Rating"
+  },
+  "aliases": [
+    "点星星评分",
+    "五颗星评价",
+    "满意度打分",
+    "star rating"
+  ],
+  "category": [
+    "Feedback"
+  ],
+  "description": {
+    "zh": "用有限等级收集主观评价的输入组件，常见形式是星级或带文字的满意度选项。悬停表示候选分值，点击或键盘选择才提交当前值。应提供每一档的文字含义，区分尚未评分与最低分；只读平均分则应明确标注统计数量，避免让用户误以为可以操作。",
+    "en": "An input for a bounded subjective score, often represented by stars or labeled satisfaction levels. Hover previews a value; pointer or keyboard selection commits it. Give each level a text meaning, distinguish no rating from the lowest score, and label read-only averages and their sample counts clearly."
+  },
+  "use_when": [
+    {
+      "zh": "收集一次服务或产品体验的满意度。",
+      "en": "Collect satisfaction after a service or product experience."
+    },
+    {
+      "zh": "有明确等级定义的轻量反馈。",
+      "en": "Gather lightweight feedback with defined score levels."
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "需要解释问题原因时还应提供文本反馈。",
+      "en": "Add text feedback when reasons matter."
+    },
+    {
+      "zh": "精确的数量或测量值应使用数字输入。",
+      "en": "Use numeric input for precise quantities or measurements."
+    }
+  ],
+  "tags": [
+    "rating",
+    "feedback"
+  ],
+  "variants": [
+    {
+      "id": "stars",
+      "name": {
+        "zh": "星级评分",
+        "en": "Stars"
+      },
+      "note": {
+        "zh": "五级星标，每档带文字说明。",
+        "en": "Five stars with labeled score levels."
+      }
+    },
+    {
+      "id": "sentiment",
+      "name": {
+        "zh": "感受评分",
+        "en": "Sentiment"
+      },
+      "note": {
+        "zh": "用表情或符号表达满意程度。",
+        "en": "Use expressive symbols to indicate satisfaction."
+      }
+    }
+  ],
+  "anatomy": [
+    "评分组 / Group",
+    "评分选项 / Score",
+    "反馈文案 / Feedback"
+  ],
+  "related": [
+    {
+      "id": "radio",
+      "relation": "similar_to"
+    },
+    {
+      "id": "slider",
+      "relation": "similar_to"
+    },
+    {
+      "id": "button",
+      "relation": "similar_to"
+    }
+  ],
+  "demo": {
+    "component": "rating",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "W3C WAI — Accessible interaction patterns",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/radio/"
+    }
+  ],
+  "implementation": {
+    "css": [
+      ":checked",
+      ":focus-visible",
+      "transform: scale()"
+    ],
+    "notes": {
+      "zh": "单选评分可使用同名 radio。每档设置可访问名称，悬停预览不能覆盖已确认分值。未评分时禁用提交；尊重 reduced-motion。只读星级不要使用可交互角色。",
+      "en": "Use same-name radios for one score. Label each value and keep hover preview separate from the committed score. Disable submission before selection and respect reduced motion. Do not use interactive roles for read-only ratings."
+    }
+  },
+  "playground": {
+    "task": {
+      "zh": "悬停预览分数，再点击或用键盘选择。移开鼠标后确认所选分值，再提交。",
+      "en": "Preview with hover, choose with pointer or keyboard, then move away to verify the committed score before submitting."
+    },
+    "checks": [
+      {
+        "zh": "悬停只预览，移开后恢复已选分数。",
+        "en": "Hover is temporary; leaving restores the selected score."
+      },
+      {
+        "zh": "零分值代表未选择，提交后有明确反馈。",
+        "en": "An unset value is distinct from a score; submission gives feedback."
+      }
+    ]
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建评分组件。收集一次服务或产品体验的满意度。",
+      "en": "Create a Rating component. Collect satisfaction after a service or product experience."
+    },
+    "design": {
+      "zh": "设计评分，以清楚的层级、可见的状态和明确的反馈为优先。五级星标，每档带文字说明。用表情或符号表达满意程度。悬停只预览，移开后恢复已选分数。零分值代表未选择，提交后有明确反馈。",
+      "en": "Design a Rating with clear hierarchy and state feedback. Five stars with labeled score levels. Use expressive symbols to indicate satisfaction. Hover is temporary; leaving restores the selected score. An unset value is distinct from a score; submission gives feedback."
+    },
+    "implementation": {
+      "zh": "单选评分可使用同名 radio。每档设置可访问名称，悬停预览不能覆盖已确认分值。未评分时禁用提交；尊重 reduced-motion。只读星级不要使用可交互角色。",
+      "en": "Use same-name radios for one score. Label each value and keep hover preview separate from the committed score. Disable submission before selection and respect reduced motion. Do not use interactive roles for read-only ratings."
+    },
+    "agent": {
+      "zh": "先检查当前项目的组件与样式体系，复用已有能力实现评分。\n要求：\n- 单选评分可使用同名 radio。每档设置可访问名称，悬停预览不能覆盖已确认分值。未评分时禁用提交；尊重 reduced-motion。只读星级不要使用可交互角色。\n- 悬停只预览，移开后恢复已选分数。\n- 零分值代表未选择，提交后有明确反馈。\n- 窄屏可用，深浅色一致，尊重 reduced-motion。\n- 不新增依赖。\n运行项目现有检查，并列出修改文件及验证结果。",
+      "en": "Inspect existing components and tokens before implementing Rating.\nRequirements:\n- Use same-name radios for one score. Label each value and keep hover preview separate from the committed score. Disable submission before selection and respect reduced motion. Do not use interactive roles for read-only ratings.\n- Hover is temporary; leaving restores the selected score.\n- An unset value is distinct from a score; submission gives feedback.\n- Support narrow screens, both themes and reduced motion.\n- Add no dependencies.\nRun existing checks and list changed files and validation results."
+    }
+  }
+}

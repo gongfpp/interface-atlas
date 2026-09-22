@@ -187,5 +187,21 @@
       "zh": "在当前项目中实现抽屉（Drawer）组件。\n\n先检查现有组件体系与 Design Token，优先复用现有的表面色、层级与阴影变量。\n用途：列表详情查看与移动端导航。\n要求：\n- 右侧滑入 + 遮罩，Esc 与点击遮罩关闭\n- 打开时锁定滚动、焦点移入面板\n- 滑动动画用 transform，尊重 prefers-reduced-motion\n- 支持左侧滑入与底部抽屉两种变体\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
       "en": "Implement a Drawer component in the current project.\n\nInspect the existing component system and design tokens first; reuse existing\nsurface, elevation and shadow variables.\nUsage: list detail viewing and mobile navigation.\nRequirements:\n- Right-edge slide-in with backdrop; close on Esc and backdrop click\n- Lock scroll and move focus into the panel while open\n- Transform-based slide animation, respecting prefers-reduced-motion\n- Support left-edge and bottom-sheet variants\n- No new dependencies\nRun existing checks when done and list modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "打开侧边面板，完成查看后关闭，再比较不同展开方向。",
+      "en": "Open the side panel, inspect it and dismiss it; compare placement variants."
+    },
+    "checks": [
+      {
+        "zh": "关闭入口应可见，模态抽屉还应支持 Esc。",
+        "en": "Keep dismissal visible; modal drawers should support Escape."
+      },
+      {
+        "zh": "长内容在面板内部滚动，背景状态应保留。",
+        "en": "Scroll long content inside the panel and preserve the background state."
+      }
+    ]
   }
 }

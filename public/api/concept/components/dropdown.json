@@ -196,5 +196,21 @@
       "zh": "在当前项目中实现下拉菜单组件。\n\n先检查现有弹出层组件与 z-index 约定，保持层级一致。\n要求：\n- 受控 open，触发器就近弹出面板\n- 菜单项带图标，危险项红色 + 分隔线隔离\n- 点击外部 / Escape 关闭，键盘上下选择\n- 深浅色主题一致，动画尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement a dropdown component in the current project.\n\nInspect existing overlay components and z-index conventions first; keep layers consistent.\nRequirements:\n- Controlled open, panel pops near the trigger\n- Items with icons; danger item in red isolated by a divider\n- Close on outside click / Escape; arrow-key selection\n- Consistent light/dark themes; animation respects prefers-reduced-motion\n- No new dependencies\nRun existing project checks when done and list the modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "打开操作菜单，用方向键选择重命名或删除，尝试撤销。",
+      "en": "Open the action menu, navigate with arrows, rename or delete, then undo."
+    },
+    "checks": [
+      {
+        "zh": "选择动作后关闭菜单，焦点返回触发按钮。",
+        "en": "Close after an action and return focus to the trigger."
+      },
+      {
+        "zh": "删除需要清楚的确认与可理解的恢复方式。",
+        "en": "Make deletion confirmation and recovery clear."
+      }
+    ]
   }
 }

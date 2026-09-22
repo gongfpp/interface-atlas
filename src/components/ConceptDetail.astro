@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ConceptCard from '@/components/ConceptCard.astro';
 import CompareTable from '@/components/CompareTable.astro';
@@ -10,7 +11,7 @@ import ConceptActions from '@/islands/ConceptActions';
 import { conceptPath, resolveRelated, getAllConcepts, type Concept } from '@/lib/content';
 import { comparePath } from '@/lib/compare';
 import { getStylePreviews } from '@/lib/style-previews';
-import { TYPE_LABELS, localePath, type Locale } from '@/lib/i18n';
+import { TYPE_LABELS, localePath, withBase, type Locale } from '@/lib/i18n';
 
 interface Props {
   concept: Concept;
@@ -38,6 +39,7 @@ const styleSpec = concept.conceptType === 'styles'
   ? (await getStylePreviews()).find((s) => s.slug === concept.id)
   : undefined;
 
+const references = (await getCollection('gallery')).filter(g => g.data.status === 'published' && (g.data.related_component === concept.id || (concept.id === 'menu' && g.data.related_component === 'dropdown')));
 const sectionTitle = 'mb-4 font-serif text-xl font-semibold';
 const card = 'rounded-xl border border-line bg-raised p-5';
 ---
@@ -48,7 +50,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
   locale={locale}
   enPath={`/${concept.conceptType}/${concept.id}`}
 >
-  <article class="pt-10">
+  <article class="pt-10 min-w-0">
     <header class="border-b border-line pb-8">
       <a href={localePath(`/${concept.conceptType}`, locale)}
          class="text-xs uppercase tracking-[0.2em] text-accent">
@@ -74,7 +76,15 @@ const card = 'rounded-xl border border-line bg-raised p-5';
       </div>
     </header>
 
-    <section class="py-10">
+    <nav class="detail-nav" aria-label={locale === 'zh' ? '本页目录' : 'On this page'}>
+      <a href="#overview">{locale === 'zh' ? '概览' : 'Overview'}</a>
+      {d.demo && <a href="#playground">{locale === 'zh' ? '交互实验室' : 'Playground'}</a>}
+      <a href="#variants">{locale === 'zh' ? '形式与用法' : 'Variants'}</a>
+      {references.length > 0 && <a href="#references">{locale === 'zh' ? '设计参考' : 'Visual references'}</a>}
+      <a href="#implementation">{locale === 'zh' ? '实现要点' : 'Implementation'}</a>
+      <a href="#prompts">{locale === 'zh' ? '复制 Prompt' : 'Prompts'}</a>
+    </nav>
+    <section id="overview" class="py-8">
       <h2 class={sectionTitle}>{locale === 'zh' ? '这是什么' : 'What is it'}</h2>
       <p class="max-w-3xl leading-relaxed text-ink-2">{d.description[locale]}</p>
     </section>
@@ -107,8 +117,12 @@ const card = 'rounded-xl border border-line bg-raised p-5';
     )}
 
     {d.demo && (
-      <section class="pb-10">
-        <h2 class={sectionTitle}>{locale === 'zh' ? '可运行示例' : 'Live demo'}</h2>
+      <section id="playground" class="pb-10">
+        <div class="mb-5 flex flex-wrap items-baseline justify-between gap-2">
+          <h2 class="detail-section-title font-serif text-2xl font-semibold" data-number="01">{locale === 'zh' ? '交互实验室' : 'Interactive playground'}</h2>
+          <span class="text-xs text-ink-3">{locale === 'zh' ? '试一试，再决定怎么用' : 'Try it. Make an informed choice.'}</span>
+        </div>
+        {d.playground && <p class="mb-4 max-w-3xl text-sm leading-relaxed text-ink-2">{d.playground.task[locale]}</p>}
         <DemoMount
           client:visible
           component={d.demo.component}
@@ -117,8 +131,23 @@ const card = 'rounded-xl border border-line bg-raised p-5';
           anatomy={d.anatomy}
           motion={concept.conceptType === 'motion'}
         />
+        {d.playground && <div class="mt-4 rounded-xl border border-line bg-raised p-5">
+          <h3 class="mb-3 text-sm font-semibold">{locale === 'zh' ? '使用时关注什么' : 'What to look for'}</h3>
+          <ul class="grid gap-3 text-sm leading-relaxed text-ink-2 md:grid-cols-2">{d.playground.checks.map((check, i) => <li class="flex gap-3"><span class="font-mono text-xs text-accent">0{i + 1}</span><span>{check[locale]}</span></li>)}</ul>
+        </div>}
       </section>
     )}
+
+    {references.length > 0 && <section id="references" class="pb-10">
+      <div class="mb-5 flex flex-wrap items-baseline justify-between gap-3">
+        <h2 class={sectionTitle}>{locale === 'zh' ? '从参考到实践' : 'From reference to practice'}</h2>
+        <p class="text-xs text-ink-3">{locale === 'zh' ? 'AI 生成的视觉参考 · 点击查看完整图集' : 'AI-generated visual references · Open the full collection'}</p>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-3">{references[0].data.images.slice(0, 3).map((img, i) => <a class="reference-card group" href={localePath(`/gallery/${references[0].id}`, locale)}>
+        <div class="h-56 overflow-hidden bg-code-bg"><img class="w-full transition-transform duration-300 group-hover:scale-105" src={withBase(img.file)} alt={img.title[locale]} loading="lazy" width="800" height="1067" /></div>
+        <p class="flex gap-3 border-t border-line p-4 text-sm"><span class="font-mono text-xs text-accent">0{i + 1}</span>{img.title[locale]} <span class="ml-auto">↗</span></p>
+      </a>)}</div>
+    </section>}
 
     <section class="grid gap-5 pb-10 md:grid-cols-2">
       <div class={card}>
@@ -140,7 +169,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
     </section>
 
     {d.variants.length > 0 && (
-      <section class="pb-10">
+      <section id="variants" class="pb-10">
         <h2 class={sectionTitle}>{locale === 'zh' ? '常见形式' : 'Variants'}</h2>
         <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
           {d.variants.map((v) => (
@@ -172,7 +201,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
     )}
 
     {d.implementation && (
-      <section class="pb-10">
+      <section id="implementation" class="pb-10">
         <h2 class={sectionTitle}>{locale === 'zh' ? '实现要点' : 'Implementation'}</h2>
         <div class={card}>
           <div class="mb-3 flex flex-wrap gap-2">
@@ -208,7 +237,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
       </section>
     )}
 
-    <section class="pb-10">
+    <section id="prompts" class="pb-10">
       <h2 class={sectionTitle}>{locale === 'zh' ? '交给 AI' : 'Agent prompts'}</h2>
       <PromptBlock client:visible prompts={d.prompts} locale={locale} conceptName={concept.id} />
     </section>

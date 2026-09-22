@@ -19,6 +19,7 @@ export default function SearchDialog({ locale, autoOpen = false }: { locale: 'zh
 
   useEffect(() => {
     const onOpen = () => {
+      delete document.documentElement.dataset.searchRequested;
       ensureIndex();
       setOpen(true);
       requestAnimationFrame(() => inputRef.current?.focus());
@@ -33,6 +34,7 @@ export default function SearchDialog({ locale, autoOpen = false }: { locale: 'zh
       if (e.key === 'Escape') setOpen(false);
     };
     window.addEventListener('ia:search-open', onOpen);
+    if (document.documentElement.dataset.searchRequested === 'true') onOpen();
     window.addEventListener('keydown', onKey);
     return () => {
       window.removeEventListener('ia:search-open', onOpen);

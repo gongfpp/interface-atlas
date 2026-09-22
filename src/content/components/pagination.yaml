@@ -146,3 +146,12 @@ prompts:
       - Keyboard accessible (page buttons; jump input submits on Enter)
       - No unnecessary dependencies
       Run existing project checks when done and list the modified files.
+playground:
+  task:
+    zh: 切换页码与前后页，观察首尾边界。
+    en: Try page numbers and previous/next controls, including boundaries.
+  checks:
+    - zh: 第一页不能继续向前，最后一页不能继续向后。
+      en: Disable movement before the first or beyond the last page.
+    - zh: 页码变化时同时更新内容，不只改变按钮颜色。
+      en: Changing pages must update content as well as button styling.

@@ -113,6 +113,7 @@ const baseSchema = z
       .min(1),
 
     anatomy: z.array(z.string()).default([]),
+    playground: z.object({ task: bilingualText, checks: bilingualList.min(2) }).optional(),
 
     /** 竞品改进 #1：对应 Web 平台 API 符号（元素 / ARIA role / 关键属性），仅适用条目填写 */
     api: z.array(z.string()).default([]),

@@ -142,3 +142,12 @@ prompts:
       - Imperative API (toast.show) or a Provider-based usage
       - No new dependencies
       Run existing checks when done and list modified files.
+playground:
+  task:
+    zh: 触发不同反馈，观察自动消失与手动关闭。
+    en: Trigger notifications and compare timeout and manual dismissal.
+  checks:
+    - zh: 提示不能抢夺焦点，重要任务结果也要留在页面中。
+      en: Do not steal focus; preserve important outcomes in the page.
+    - zh: 有操作的提示需要足够阅读和响应时间。
+      en: Allow enough time to read and use notification actions.

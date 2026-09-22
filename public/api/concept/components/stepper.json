@@ -1,0 +1,149 @@
+{
+  "id": "stepper",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "步骤条",
+    "en": "Stepper"
+  },
+  "aliases": [
+    "分步表单",
+    "第几步那个进度",
+    "步骤指示器",
+    "wizard steps"
+  ],
+  "category": [
+    "Feedback"
+  ],
+  "description": {
+    "zh": "用有序节点展示任务的阶段、当前位置和已完成步骤的进度组件。它通常与分步表单配合，把较长任务拆成易理解的阶段。步骤条负责说明进度，下一步和上一步负责推进流程；进入下一步前应校验当前输入，返回时应保留已经填写的信息。",
+    "en": "An ordered progress indicator that explains the stages of a task, the current step and completed work. Pair it with a multi-step form to make a long task easier to understand. Validate before advancing, preserve values when going back, and keep progress indication distinct from the controls that move the flow forward."
+  },
+  "use_when": [
+    {
+      "zh": "注册、配置、结账等有明确顺序的任务。",
+      "en": "Ordered setup, registration or checkout flows."
+    },
+    {
+      "zh": "用户需要了解剩余工作量的多步操作。",
+      "en": "Tasks where people need to see how much work remains."
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "步骤只有一项，或可以同时完成所有字段。",
+      "en": "A single step or a short form that fits together."
+    },
+    {
+      "zh": "流程会频繁分叉且无法预测总步骤数。",
+      "en": "Highly branching flows with an unpredictable number of stages."
+    }
+  ],
+  "tags": [
+    "stepper",
+    "feedback"
+  ],
+  "variants": [
+    {
+      "id": "horizontal",
+      "name": {
+        "zh": "水平步骤",
+        "en": "Horizontal"
+      },
+      "note": {
+        "zh": "桌面空间充足时横向显示进度。",
+        "en": "Show progress across a wide canvas."
+      }
+    },
+    {
+      "id": "vertical",
+      "name": {
+        "zh": "垂直步骤",
+        "en": "Vertical"
+      },
+      "note": {
+        "zh": "窄屏或较长步骤标题使用纵向结构。",
+        "en": "Stack stages for narrow screens or longer labels."
+      }
+    }
+  ],
+  "anatomy": [
+    "步骤列表 / Steps",
+    "当前步骤 / Current step",
+    "步骤内容 / Content",
+    "前进与返回 / Controls"
+  ],
+  "related": [
+    {
+      "id": "progress-bar",
+      "relation": "similar_to"
+    },
+    {
+      "id": "input",
+      "relation": "similar_to"
+    },
+    {
+      "id": "button",
+      "relation": "similar_to"
+    }
+  ],
+  "demo": {
+    "component": "stepper",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "W3C WAI — Accessible interaction patterns",
+      "url": "https://www.w3.org/WAI/tutorials/forms/multi-page/"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "display: flex",
+      "aria-current=\"step\"",
+      "gap"
+    ],
+    "notes": {
+      "zh": "用 ol 表示有序阶段，用 aria-current=\"step\" 标记当前位置。表单值由流程持有，不能在回退时丢失。校验失败留在原步骤并解释原因；完成状态应有明确文字。",
+      "en": "Represent ordered stages with ol and mark the current stage with aria-current=\"step\". Keep form values in the flow owner so going back preserves them. Explain validation failures in place and provide a clear completion message."
+    }
+  },
+  "playground": {
+    "task": {
+      "zh": "先尝试空名称继续，再填写名称，选择用途，回到上一步检查内容是否保留。",
+      "en": "Try continuing with an empty name, then fill it in, choose a type and go back to check value preservation."
+    },
+    "checks": [
+      {
+        "zh": "错误输入阻止前进，同时给出可修正的提示。",
+        "en": "Invalid input blocks advancement with an actionable message."
+      },
+      {
+        "zh": "回退保留数据，最后一步显示完整确认信息。",
+        "en": "Going back preserves values; the last step summarizes them."
+      }
+    ]
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建步骤条组件。注册、配置、结账等有明确顺序的任务。",
+      "en": "Create a Stepper component. Ordered setup, registration or checkout flows."
+    },
+    "design": {
+      "zh": "设计步骤条，以清楚的层级、可见的状态和明确的反馈为优先。桌面空间充足时横向显示进度。窄屏或较长步骤标题使用纵向结构。错误输入阻止前进，同时给出可修正的提示。回退保留数据，最后一步显示完整确认信息。",
+      "en": "Design a Stepper with clear hierarchy and state feedback. Show progress across a wide canvas. Stack stages for narrow screens or longer labels. Invalid input blocks advancement with an actionable message. Going back preserves values; the last step summarizes them."
+    },
+    "implementation": {
+      "zh": "用 ol 表示有序阶段，用 aria-current=\"step\" 标记当前位置。表单值由流程持有，不能在回退时丢失。校验失败留在原步骤并解释原因；完成状态应有明确文字。",
+      "en": "Represent ordered stages with ol and mark the current stage with aria-current=\"step\". Keep form values in the flow owner so going back preserves them. Explain validation failures in place and provide a clear completion message."
+    },
+    "agent": {
+      "zh": "先检查当前项目的组件与样式体系，复用已有能力实现步骤条。\n要求：\n- 用 ol 表示有序阶段，用 aria-current=\"step\" 标记当前位置。表单值由流程持有，不能在回退时丢失。校验失败留在原步骤并解释原因；完成状态应有明确文字。\n- 错误输入阻止前进，同时给出可修正的提示。\n- 回退保留数据，最后一步显示完整确认信息。\n- 窄屏可用，深浅色一致，尊重 reduced-motion。\n- 不新增依赖。\n运行项目现有检查，并列出修改文件及验证结果。",
+      "en": "Inspect existing components and tokens before implementing Stepper.\nRequirements:\n- Represent ordered stages with ol and mark the current stage with aria-current=\"step\". Keep form values in the flow owner so going back preserves them. Explain validation failures in place and provide a clear completion message.\n- Invalid input blocks advancement with an actionable message.\n- Going back preserves values; the last step summarizes them.\n- Support narrow screens, both themes and reduced motion.\n- Add no dependencies.\nRun existing checks and list changed files and validation results."
+    }
+  }
+}

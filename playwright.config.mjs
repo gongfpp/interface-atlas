@@ -5,13 +5,13 @@ export default defineConfig({
   timeout: 30_000,
   retries: 0,
   use: {
-    baseURL: 'http://localhost:4321',
+    baseURL: 'http://127.0.0.1:4337',
     ...devices['Desktop Chrome'],
   },
   webServer: {
-    command: 'npm run preview',
-    url: 'http://localhost:4321',
-    reuseExistingServer: !process.env.CI,
+    command: 'npm run preview -- --host 127.0.0.1 --port 4337 --ignore-lock',
+    url: 'http://127.0.0.1:4337',
+    reuseExistingServer: false,
     timeout: 60_000,
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],

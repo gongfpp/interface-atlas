@@ -186,5 +186,21 @@
       "zh": "在当前项目中实现命令面板（Command Palette）。\n\n先检查现有弹层 / Dialog 组件与 Design Token，优先复用。\n要求：\n- ⌘K / Ctrl+K 全局唤出，Esc 关闭\n- 输入即筛，结果按「命令 / 页面」分组\n- 完整键盘导航与 aria 属性（dialog、listbox、option）\n- 弹出动画轻微，尊重 prefers-reduced-motion\n- 支持注册自定义命令（提供 useCommands 或类似 API）\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
       "en": "Implement a Command Palette in the current project.\n\nInspect existing dialog primitives and design tokens first; reuse them.\nRequirements:\n- Global ⌘K / Ctrl+K toggle, Esc to close\n- Filter-as-you-type, grouped results (commands / pages)\n- Full keyboard nav + aria attributes (dialog, listbox, option)\n- Subtle entrance animation, respects prefers-reduced-motion\n- Custom command registration (a useCommands-like API)\n- No new dependencies\nRun existing checks when done and list modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "打开面板，输入关键词，再尝试选择命令与退出。",
+      "en": "Open the palette, type a query, select a command and dismiss it."
+    },
+    "checks": [
+      {
+        "zh": "搜索应覆盖命令别名，并给出无结果反馈。",
+        "en": "Search command aliases and explain empty results."
+      },
+      {
+        "zh": "关闭后焦点应回到触发入口。",
+        "en": "Return focus to the trigger after closing."
+      }
+    ]
   }
 }

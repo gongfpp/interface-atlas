@@ -1,0 +1,195 @@
+{
+  "id": "neumorphism",
+  "type": "styles",
+  "status": "published",
+  "name": {
+    "zh": "新拟态",
+    "en": "Neumorphism"
+  },
+  "aliases": [
+    "软浮雕风格",
+    "凹凸按钮",
+    "柔和双阴影",
+    "soft UI"
+  ],
+  "category": [
+    "Style",
+    "Visual Language"
+  ],
+  "description": {
+    "zh": "通过同色背景上的明暗双阴影表现凸起和凹陷的界面风格。元素像从同一块柔软材质中压出，适合少量控件的展示场景。它的视觉边界较弱，因此不能只靠阴影表达可点击、选中或禁用状态；需要明确文字、焦点轮廓与足够对比，并为深色主题重新计算阴影。",
+    "en": "A soft relief style that uses paired light and dark shadows on similarly colored surfaces. Controls appear pressed into or raised from a shared material. It works best with a small number of elements. Shadows alone cannot communicate interactivity, selection or disabled states; retain labels, visible focus and sufficient contrast."
+  },
+  "use_when": [
+    {
+      "zh": "音乐控制、轻量工具或概念性产品展示。",
+      "en": "Music controls, lightweight utilities and product demonstrations."
+    },
+    {
+      "zh": "控件较少且需要柔软材质感的页面。",
+      "en": "Sparse interfaces that benefit from a soft material feel."
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "密集表格和强对比需求的复杂业务界面。",
+      "en": "Dense tables and complex interfaces requiring strong boundaries."
+    },
+    {
+      "zh": "不可把明暗阴影当作唯一的状态信号。",
+      "en": "Never make shadow direction the only state signal."
+    }
+  ],
+  "tags": [
+    "neumorphism",
+    "visual-language"
+  ],
+  "variants": [
+    {
+      "id": "raised",
+      "name": {
+        "zh": "凸起表面",
+        "en": "Raised"
+      },
+      "note": {
+        "zh": "外部双阴影表现悬浮按钮。",
+        "en": "Paired outer shadows suggest raised controls."
+      }
+    },
+    {
+      "id": "inset",
+      "name": {
+        "zh": "凹陷表面",
+        "en": "Inset"
+      },
+      "note": {
+        "zh": "内阴影用于按下状态或轨道。",
+        "en": "Inset shadows suggest pressed controls or tracks."
+      }
+    }
+  ],
+  "applicable_components": [
+    "button",
+    "card",
+    "input"
+  ],
+  "applicable_pages": [
+    "landing-page",
+    "profile"
+  ],
+  "related": [
+    {
+      "id": "skeuomorphism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "claymorphism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "minimalism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "button",
+      "relation": "affects"
+    }
+  ],
+  "demo": {
+    "component": "neumorphism",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "MDN — box-shadow",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "box-shadow",
+      "inset",
+      "border-radius",
+      ":focus-visible"
+    ],
+    "notes": {
+      "zh": "阴影颜色从统一背景派生，凸起使用正负偏移的两层阴影，按下切换 inset。焦点与选中状态同时使用文字或图标反馈。不要在每次交互中大范围动画阴影，保留 reduced-motion 支持。",
+      "en": "Derive shadows from the shared surface; use positive and negative offsets for raised controls and inset for pressed states. Reinforce focus and selection with labels or icons. Avoid large animated shadows and support reduced motion."
+    }
+  },
+  "style_spec": {
+    "typography": {
+      "zh": "清晰无衬线字体，避免过细字重。",
+      "en": "Clear sans-serif type; avoid overly light weights."
+    },
+    "color": {
+      "zh": "浅灰蓝同色底，深色文字和蓝色强调。",
+      "en": "Light blue-grey surfaces, dark text and blue accents."
+    },
+    "border": {
+      "zh": "中大圆角；焦点保留可见外轮廓。",
+      "en": "Medium to large radii with a visible focus outline."
+    },
+    "shadow": {
+      "zh": "双向外阴影表现凸起，内阴影表现按下。",
+      "en": "Paired outer shadows for elevation; inset shadows for pressing."
+    },
+    "spacing": {
+      "zh": "控件间距充足，避免阴影彼此挤压。",
+      "en": "Space controls so shadows do not collide."
+    }
+  },
+  "preview": {
+    "order": 18,
+    "keywords": {
+      "zh": "新拟态 · 材质与排版",
+      "en": "NEUMORPHISM"
+    },
+    "url": "https://neumorphism.example",
+    "scene": "generic",
+    "brand": "STILL",
+    "nav": [
+      "Collection",
+      "About"
+    ],
+    "heroTitle": "A softer",
+    "heroTitle2": "focus.",
+    "heroSub": "用柔和的层次，安放每一个专注时刻。",
+    "cta": "Explore",
+    "panel": "device",
+    "tokens": {
+      "bg": "#e7ebf0",
+      "fg": "#3e4858",
+      "sub": "#536174",
+      "accent": "#627cae",
+      "accentFg": "#fff",
+      "card": "#e7ebf0",
+      "cardBorder": "#c5cbd3",
+      "radius": "24px",
+      "shadow": "6px 6px 14px #c5cbd3, -6px -6px 14px #fff",
+      "font": "system-ui, sans-serif"
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "使用新拟态风格设计品牌展示页面。通过同色背景上的明暗双阴影表现凸起和凹陷的界面风格。元素像从同一块柔软材质中压出，适合少量控件的展示场景。它的视觉边界较弱，因此不能只靠阴影表达可点击、选中或禁用状态；需要明确文字、焦点轮廓与足够对比，并为深色主题重新计算阴影。",
+      "en": "Design a brand page in Neumorphism. A soft relief style that uses paired light and dark shadows on similarly colored surfaces. Controls appear pressed into or raised from a shared material. It works best with a small number of elements. Shadows alone cannot communicate interactivity, selection or disabled states; retain labels, visible focus and sufficient contrast."
+    },
+    "design": {
+      "zh": "清晰无衬线字体，避免过细字重。浅灰蓝同色底，深色文字和蓝色强调。中大圆角；焦点保留可见外轮廓。双向外阴影表现凸起，内阴影表现按下。控件间距充足，避免阴影彼此挤压。",
+      "en": "Clear sans-serif type; avoid overly light weights. Light blue-grey surfaces, dark text and blue accents. Medium to large radii with a visible focus outline. Paired outer shadows for elevation; inset shadows for pressing. Space controls so shadows do not collide."
+    },
+    "implementation": {
+      "zh": "阴影颜色从统一背景派生，凸起使用正负偏移的两层阴影，按下切换 inset。焦点与选中状态同时使用文字或图标反馈。不要在每次交互中大范围动画阴影，保留 reduced-motion 支持。",
+      "en": "Derive shadows from the shared surface; use positive and negative offsets for raised controls and inset for pressed states. Reinforce focus and selection with labels or icons. Avoid large animated shadows and support reduced motion."
+    },
+    "agent": {
+      "zh": "先检查项目的布局、字体和主题变量，以新拟态风格完成一个可交互品牌场景。\n清晰无衬线字体，避免过细字重。浅灰蓝同色底，深色文字和蓝色强调。中大圆角；焦点保留可见外轮廓。双向外阴影表现凸起，内阴影表现按下。控件间距充足，避免阴影彼此挤压。\n阴影颜色从统一背景派生，凸起使用正负偏移的两层阴影，按下切换 inset。焦点与选中状态同时使用文字或图标反馈。不要在每次交互中大范围动画阴影，保留 reduced-motion 支持。\n按钮必须有明确反馈，窄屏可用，保留焦点和 reduced-motion 支持，不新增依赖。完成后运行检查并列出修改文件。",
+      "en": "Inspect existing layouts, typography and theme tokens, then build an interactive Neumorphism brand scene.\nClear sans-serif type; avoid overly light weights. Light blue-grey surfaces, dark text and blue accents. Medium to large radii with a visible focus outline. Paired outer shadows for elevation; inset shadows for pressing. Space controls so shadows do not collide.\nDerive shadows from the shared surface; use positive and negative offsets for raised controls and inset for pressed states. Reinforce focus and selection with labels or icons. Avoid large animated shadows and support reduced motion.\nMake controls give clear feedback, support narrow screens, focus and reduced motion, and add no dependencies. Run checks and list modified files."
+    }
+  }
+}

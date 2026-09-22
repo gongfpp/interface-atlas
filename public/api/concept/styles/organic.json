@@ -1,0 +1,193 @@
+{
+  "id": "organic",
+  "type": "styles",
+  "status": "published",
+  "name": {
+    "zh": "有机自然",
+    "en": "Organic"
+  },
+  "aliases": [
+    "自然系设计",
+    "植物感网页",
+    "大地色风格",
+    "organic design"
+  ],
+  "category": [
+    "Style",
+    "Visual Language"
+  ],
+  "description": {
+    "zh": "以自然形态、温暖材质和低饱和大地色建立亲近感的视觉语言。页面通过不规则曲线、圆润容器和宽松留白形成舒展节奏，文字与按钮仍保持明确边界。适合生活方式与可持续主题；自然装饰应衬托内容，而不能牺牲可读性、信息层级或操作效率。",
+    "en": "A visual language of natural shapes, warm materials and muted earth tones. Soft contours and generous spacing create an unhurried rhythm while text and controls keep clear boundaries. It suits lifestyle and sustainability themes, provided organic decoration supports content without weakening readability or interaction."
+  },
+  "use_when": [
+    {
+      "zh": "家居、生活方式、园艺与手工艺品牌。",
+      "en": "Home, lifestyle, gardening and craft brands."
+    },
+    {
+      "zh": "需要温暖、舒适、安静气质的内容展示。",
+      "en": "Content that calls for a warm, calm and comfortable atmosphere."
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "高密度交易界面不宜使用大量不规则装饰。",
+      "en": "Avoid elaborate organic decoration in dense transactional interfaces."
+    },
+    {
+      "zh": "浅色文字叠加纹理会降低阅读清晰度。",
+      "en": "Avoid pale text over textured surfaces."
+    }
+  ],
+  "tags": [
+    "organic",
+    "visual-language"
+  ],
+  "variants": [
+    {
+      "id": "earth",
+      "name": {
+        "zh": "大地色",
+        "en": "Earthy"
+      },
+      "note": {
+        "zh": "米白、陶土、苔绿构成低饱和色板。",
+        "en": "Cream, clay and moss form a muted palette."
+      }
+    },
+    {
+      "id": "botanical",
+      "name": {
+        "zh": "植物形态",
+        "en": "Botanical"
+      },
+      "note": {
+        "zh": "叶片曲线与拱形画面构成视觉焦点。",
+        "en": "Leaf contours and arched scenes form a focal point."
+      }
+    }
+  ],
+  "applicable_components": [
+    "button",
+    "card",
+    "input"
+  ],
+  "applicable_pages": [
+    "landing-page",
+    "profile"
+  ],
+  "related": [
+    {
+      "id": "minimalism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "editorial",
+      "relation": "similar_to"
+    },
+    {
+      "id": "claymorphism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "button",
+      "relation": "affects"
+    }
+  ],
+  "demo": {
+    "component": "organic",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "V&A — Arts and Crafts",
+      "url": "https://www.vam.ac.uk/articles/arts-and-crafts-an-introduction"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "border-radius",
+      "linear-gradient()",
+      "grid"
+    ],
+    "notes": {
+      "zh": "用主题变量统一米白与深绿；曲线只用于展示区，保留按钮的稳定矩形点击范围。用 CSS 形状即可构建植物和陶器意象，装饰节点设 aria-hidden。文字对比度优先于低饱和观感。",
+      "en": "Unify cream and deep green with tokens. Use curves in display areas while keeping predictable button targets. CSS shapes can evoke plants and ceramics; mark decoration aria-hidden. Prioritize text contrast over a muted aesthetic."
+    }
+  },
+  "style_spec": {
+    "typography": {
+      "zh": "衬线标题与清楚的无衬线正文。",
+      "en": "Serif headlines with clear sans-serif body text."
+    },
+    "color": {
+      "zh": "米白、苔绿与陶土色；正文使用深绿。",
+      "en": "Cream, moss and clay; deep green for body text."
+    },
+    "border": {
+      "zh": "柔和圆角与少量拱形，不扭曲表单控件。",
+      "en": "Soft radii and occasional arches; keep controls predictable."
+    },
+    "shadow": {
+      "zh": "轻微接触阴影，不使用强发光。",
+      "en": "Gentle contact shadows without strong glow."
+    },
+    "spacing": {
+      "zh": "大段留白与宽松行距，窄屏堆叠。",
+      "en": "Generous whitespace and leading, stacked on narrow screens."
+    }
+  },
+  "preview": {
+    "order": 16,
+    "keywords": {
+      "zh": "有机自然 · 材质与排版",
+      "en": "ORGANIC"
+    },
+    "url": "https://organic.example",
+    "scene": "generic",
+    "brand": "mori / 森",
+    "nav": [
+      "Collection",
+      "About"
+    ],
+    "heroTitle": "Closer to",
+    "heroTitle2": "nature.",
+    "heroSub": "让设计回到生活本来的样子。",
+    "cta": "Explore",
+    "panel": "photo",
+    "tokens": {
+      "bg": "#f1efe5",
+      "fg": "#29392b",
+      "sub": "#526445",
+      "accent": "#526445",
+      "accentFg": "#fff",
+      "card": "#e3e5d6",
+      "cardBorder": "#b7bd9f",
+      "radius": "24px",
+      "font": "Georgia, serif"
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "使用有机自然风格设计品牌展示页面。以自然形态、温暖材质和低饱和大地色建立亲近感的视觉语言。页面通过不规则曲线、圆润容器和宽松留白形成舒展节奏，文字与按钮仍保持明确边界。适合生活方式与可持续主题；自然装饰应衬托内容，而不能牺牲可读性、信息层级或操作效率。",
+      "en": "Design a brand page in Organic. A visual language of natural shapes, warm materials and muted earth tones. Soft contours and generous spacing create an unhurried rhythm while text and controls keep clear boundaries. It suits lifestyle and sustainability themes, provided organic decoration supports content without weakening readability or interaction."
+    },
+    "design": {
+      "zh": "衬线标题与清楚的无衬线正文。米白、苔绿与陶土色；正文使用深绿。柔和圆角与少量拱形，不扭曲表单控件。轻微接触阴影，不使用强发光。大段留白与宽松行距，窄屏堆叠。",
+      "en": "Serif headlines with clear sans-serif body text. Cream, moss and clay; deep green for body text. Soft radii and occasional arches; keep controls predictable. Gentle contact shadows without strong glow. Generous whitespace and leading, stacked on narrow screens."
+    },
+    "implementation": {
+      "zh": "用主题变量统一米白与深绿；曲线只用于展示区，保留按钮的稳定矩形点击范围。用 CSS 形状即可构建植物和陶器意象，装饰节点设 aria-hidden。文字对比度优先于低饱和观感。",
+      "en": "Unify cream and deep green with tokens. Use curves in display areas while keeping predictable button targets. CSS shapes can evoke plants and ceramics; mark decoration aria-hidden. Prioritize text contrast over a muted aesthetic."
+    },
+    "agent": {
+      "zh": "先检查项目的布局、字体和主题变量，以有机自然风格完成一个可交互品牌场景。\n衬线标题与清楚的无衬线正文。米白、苔绿与陶土色；正文使用深绿。柔和圆角与少量拱形，不扭曲表单控件。轻微接触阴影，不使用强发光。大段留白与宽松行距，窄屏堆叠。\n用主题变量统一米白与深绿；曲线只用于展示区，保留按钮的稳定矩形点击范围。用 CSS 形状即可构建植物和陶器意象，装饰节点设 aria-hidden。文字对比度优先于低饱和观感。\n按钮必须有明确反馈，窄屏可用，保留焦点和 reduced-motion 支持，不新增依赖。完成后运行检查并列出修改文件。",
+      "en": "Inspect existing layouts, typography and theme tokens, then build an interactive Organic brand scene.\nSerif headlines with clear sans-serif body text. Cream, moss and clay; deep green for body text. Soft radii and occasional arches; keep controls predictable. Gentle contact shadows without strong glow. Generous whitespace and leading, stacked on narrow screens.\nUnify cream and deep green with tokens. Use curves in display areas while keeping predictable button targets. CSS shapes can evoke plants and ceramics; mark decoration aria-hidden. Prioritize text contrast over a muted aesthetic.\nMake controls give clear feedback, support narrow screens, focus and reduced motion, and add no dependencies. Run checks and list modified files."
+    }
+  }
+}

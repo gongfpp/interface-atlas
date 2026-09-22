@@ -1,112 +1,140 @@
-import { useState } from 'react';
-import type { DemoComponent } from '@/islands/DemoStage';
+import { useId, useState } from "react";
+import type { DemoComponent } from "@/islands/DemoStage";
 
-function Field({
-  label,
-  hint,
-  error,
-  children,
-}: {
-  label: string;
-  hint?: string;
-  error?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <label className="block text-sm">
-      <span data-anatomy="1" className="mb-1.5 block text-xs font-medium text-ink-2">
-        {label}
-      </span>
-      {children}
-      <span
-        data-anatomy="4"
-        className={`mt-1.5 block text-[11px] ${error ? 'text-red-500' : 'text-ink-3'}`}
-      >
-        {error ?? hint}
-      </span>
-    </label>
-  );
-}
-
-const base =
-  'h-9 w-full rounded-lg border bg-raised px-3 text-xs text-ink outline-none transition-shadow placeholder:text-ink-3';
-
-function InputPlayground() {
-  const [value, setValue] = useState('acme');
+const InputDemo: DemoComponent = ({ mode, locale = "zh" }) => {
+  const en = locale === "en";
+  const id = useId();
+  const [email, setEmail] = useState("lin@example.com");
   const [touched, setTouched] = useState(false);
-
-  const invalid = touched && !/^[a-z0-9-]{3,16}$/.test(value);
-  const error = invalid ? '仅限小写字母、数字与中划线，3～16 位' : undefined;
-
+  const [saved, setSaved] = useState(false);
+  const [shape, setShape] = useState("outline");
+  const invalid = touched && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const choices = [
+    ["outline", "描边", "Outlined"],
+    ["filled", "填充", "Filled"],
+    ["underline", "下划线", "Underline"],
+  ];
   return (
-    <div className="mx-auto max-w-sm rounded-xl border border-line bg-paper p-4">
-      <Field
-        label="团队 ID"
-        hint="将用于访问地址：acme.app/team/…"
-        error={error}
+    <div className="specimen">
+      <p className="specimen-eyebrow">FORM & STRUCTURE / 01</p>
+      <h3 className="specimen-title">
+        {en ? "A place for your next idea." : "让好想法，有个开始。"}
+      </h3>
+      <p className="specimen-note mb-6">
+        {en
+          ? "Edit the field, clear it, or submit an invalid email to explore feedback."
+          : "修改内容、清空输入，或提交错误邮箱，观察状态的变化。"}
+      </p>
+      <div className="mb-5 flex flex-wrap gap-2">
+        {choices.map(([v, zh, english]) => (
+          <button
+            className="demo-tool border border-line"
+            key={v}
+            aria-pressed={shape === v}
+            onClick={() => setShape(v)}
+          >
+            {en ? english : zh}
+          </button>
+        ))}
+      </div>
+      <form
+        noValidate
+        onSubmit={(e) => {
+          e.preventDefault();
+          setTouched(true);
+          setSaved(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+        }}
       >
-        <span className="relative block">
-          <span data-anatomy="3" className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-3">
-            ＠
-          </span>
+        <label
+          htmlFor={`${id}-email`}
+          data-anatomy="1"
+          className="mb-2 block text-sm font-medium"
+        >
+          {en ? "Work email" : "工作邮箱"}
+        </label>
+        <div className="relative">
           <input
+            id={`${id}-email`}
+            type="email"
+            autoComplete="email"
+            value={email}
             data-anatomy="2"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
+            aria-invalid={invalid}
+            aria-describedby={`${id}-hint`}
             onBlur={() => setTouched(true)}
-            placeholder="输入团队 ID"
-            aria-invalid={invalid || undefined}
-            className={`${base} border-line pr-8 pl-8 focus:border-accent focus:ring-2 focus:ring-accent/30 ${
-              error ? 'border-red-400' : ''
-            }`}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setSaved(false);
+            }}
+            placeholder="you@example.com"
+            className={`specimen-field pr-12 ${shape === "filled" ? "!bg-code-bg !border-transparent" : shape === "underline" ? "!rounded-none !border-0 !border-b !bg-transparent" : ""} ${invalid ? "!border-red-500" : ""}`}
           />
-          {value && (
+          {email && (
             <button
+              data-anatomy="3"
+              type="button"
+              aria-label={en ? "Clear email" : "清空邮箱"}
               onClick={() => {
-                setValue('');
+                setEmail("");
+                setSaved(false);
                 setTouched(false);
+                document.getElementById(`${id}-email`)?.focus();
               }}
-              aria-label="清空"
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded px-1 text-xs text-ink-3 hover:text-ink"
+              className="absolute right-1 top-1 h-10 w-10 text-ink-3"
             >
-              ✕
+              ×
             </button>
           )}
-        </span>
-      </Field>
+        </div>
+        <p
+          id={`${id}-hint`}
+          data-anatomy="4"
+          className={`mt-2 min-h-5 text-xs ${invalid ? "text-red-600 dark:text-red-400" : "text-ink-2"}`}
+        >
+          {invalid
+            ? en
+              ? "Enter a valid email, for example lin@example.com."
+              : "请输入完整邮箱，例如 lin@example.com。"
+            : en
+              ? "Used for project notifications. Demo only; nothing is sent."
+              : "用于接收项目通知。此处仅演示，不会发送邮件。"}
+        </p>
+        <div className="mt-5 flex flex-wrap items-center gap-4">
+          <button className="specimen-button">
+            {en ? "Save preference →" : "保存偏好 →"}
+          </button>
+          <p
+            role="status"
+            className="text-xs text-emerald-700 dark:text-emerald-400"
+          >
+            {saved
+              ? en
+                ? "✓ Preference saved in this preview"
+                : "✓ 已在当前演示中保存"
+              : ""}
+          </p>
+        </div>
+      </form>
+      {mode === "variants" && (
+        <div className="specimen-grid mt-6 border-t border-line pt-6">
+          <label className="relative block pt-2">
+            <input placeholder=" " className="specimen-field peer" />
+            <span className="absolute left-3 top-0 bg-raised px-1 text-xs text-ink-2 transition-all peer-placeholder-shown:top-5 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs">
+              {en ? "Floating label" : "浮动标签"}
+            </span>
+          </label>
+          <label className="block rounded-lg border border-line bg-code-bg px-3 py-2">
+            <span className="block text-[10px] text-ink-2">
+              {en ? "Inset label" : "内嵌标签"}
+            </span>
+            <input
+              className="w-full bg-transparent text-sm outline-none"
+              defaultValue={en ? "Autumn design project" : "秋季设计计划"}
+            />
+          </label>
+        </div>
+      )}
     </div>
   );
-}
-
-function VariantSheet() {
-  const [filled, setFilled] = useState('');
-  return (
-    <div className="mx-auto flex max-w-md flex-col gap-4 text-sm">
-      <div>
-        <p className="mb-1 text-[10px] uppercase tracking-wider text-ink-3">描边 Outline</p>
-        <input className={`${base} border-line focus:border-accent focus:ring-2 focus:ring-accent/30`} placeholder="描边样式" />
-      </div>
-      <div>
-        <p className="mb-1 text-[10px] uppercase tracking-wider text-ink-3">填充 Filled</p>
-        <input
-          value={filled}
-          onChange={(e) => setFilled(e.target.value)}
-          className="h-9 w-full rounded-t-lg border-b border-line bg-code-bg px-3 text-xs text-ink outline-none placeholder:text-ink-3 focus:border-b-2 focus:border-accent"
-          placeholder="填充样式"
-        />
-      </div>
-      <div>
-        <p className="mb-1 text-[10px] uppercase tracking-wider text-ink-3">错误 Error</p>
-        <input className={`${base} border-red-400 focus:ring-2 focus:ring-red-400/30`} defaultValue="中文标题!" aria-invalid="true" />
-        <p className="mt-1 text-[11px] text-red-500">标题不能包含特殊字符</p>
-      </div>
-    </div>
-  );
-}
-
-const InputDemo: DemoComponent = ({ mode }) => {
-  if (mode === 'variants') return <VariantSheet />;
-  return <InputPlayground />;
 };
-
 export default InputDemo;

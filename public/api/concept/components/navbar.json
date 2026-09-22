@@ -196,5 +196,21 @@
       "zh": "在当前项目中实现顶部导航栏。\n\n先检查现有路由结构与导航数据来源，复用现有品牌资源与 Design Token。\n要求：\n- sticky 置顶，含品牌区、导航链接、搜索入口、用户区\n- 当前路由高亮（aria-current=\"page\"）\n- 移动端折叠为汉堡菜单，展开动画平滑\n- 深浅色主题一致\n- 不新增不必要的依赖\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement a navbar in the current project.\n\nCheck the existing routing structure and nav data source first; reuse brand assets and design tokens.\nRequirements:\n- Sticky top bar with brand, links, search entry and user area\n- Active route highlighted (aria-current=\"page\")\n- Folds into a hamburger menu on mobile with smooth animation\n- Consistent light/dark themes\n- No unnecessary dependencies\nRun existing project checks when done and list the modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "切换导航栏目，展开菜单，搜索资源并体验开始按钮。",
+      "en": "Switch sections, expand navigation, search resources and try the primary action."
+    },
+    "checks": [
+      {
+        "zh": "当前栏目与展示内容应对应。",
+        "en": "The active section should agree with displayed content."
+      },
+      {
+        "zh": "窄屏下导航仍有可发现的入口。",
+        "en": "Keep navigation discoverable in narrow layouts."
+      }
+    ]
   }
 }

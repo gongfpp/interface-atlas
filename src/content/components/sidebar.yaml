@@ -144,3 +144,12 @@ prompts:
       - Consistent light/dark themes
       - No new dependencies
       Run existing checks when done and list modified files.
+playground:
+  task:
+    zh: 切换侧栏入口，比较展开和收起后的信息密度。
+    en: Switch navigation items and compare expanded and collapsed density.
+  checks:
+    - zh: 当前页面有明确标记，收起后保留可理解名称。
+      en: Mark the current page and retain accessible names when collapsed.
+    - zh: 窄屏要避免侧栏长期占用内容宽度。
+      en: Avoid permanently reserving sidebar width on narrow screens.

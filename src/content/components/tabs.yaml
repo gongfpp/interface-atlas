@@ -134,3 +134,12 @@ prompts:
       - Preserve per-panel scroll or form state (keep-mounted or caching strategy)
       - No unnecessary dependencies
       Run existing project checks when done and list the modified files.
+playground:
+  task:
+    zh: 切换外观，再用 ← →、Home、End 切换内容面板。
+    en: Choose an appearance, then navigate panels with arrows, Home and End.
+  checks:
+    - zh: 焦点与选中标签同步，面板与标签有语义关联。
+      en: Synchronize focus and selection; connect tabs to their panels.
+    - zh: 切换不会改变页面路由，相关内容留在同一上下文。
+      en: Switch related content within the same context rather than navigating away.

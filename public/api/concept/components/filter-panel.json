@@ -167,5 +167,21 @@
       "zh": "在当前项目中实现筛选面板（Filter Panel）。\n\n先检查现有组件体系、路由参数与数据源，保持状态同步方式一致。\n用途：检索结果页与后台列表。\n要求：\n- 分组复选 + facet 数量 + 实时过滤\n- 结果数与「清除全部」常驻，已选条件胶囊回显\n- 无结果时给出空态与清除入口\n- URL 参数或状态可恢复，深浅色主题一致\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
       "en": "Implement a Filter Panel in the current project.\n\nInspect the existing component system, route params and data source first; keep the\nstate-sync approach consistent.\nUsage: search results pages and admin lists.\nRequirements:\n- Grouped checkboxes + facet counts + live filtering\n- Persistent result count and clear-all; selections echoed as chips\n- An empty state with a clear entry when nothing matches\n- Restorable from URL params or state; consistent light/dark themes\n- No new dependencies\nRun existing checks when done and list modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "组合筛选条件，再重置，观察结果数量如何变化。",
+      "en": "Combine filters, reset them and watch the result count change."
+    },
+    "checks": [
+      {
+        "zh": "已应用条件与结果数量应一起更新。",
+        "en": "Update applied filters and result counts together."
+      },
+      {
+        "zh": "无匹配结果时，应提供清除或放宽条件的路径。",
+        "en": "Offer a way to clear or relax filters when nothing matches."
+      }
+    ]
   }
 }

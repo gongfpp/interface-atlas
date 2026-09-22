@@ -140,3 +140,12 @@ prompts:
       - Subtle enter animation, respecting prefers-reduced-motion
       - No new dependencies
       Run existing checks when done and list modified files.
+playground:
+  task:
+    zh: 点击触发入口打开浮层，检查内容与关闭方式。
+    en: Open the popover and inspect its content and dismissal.
+  checks:
+    - zh: 浮层应靠近触发位置，避免遮住关键操作。
+      en: Position it near its trigger without obscuring essential actions.
+    - zh: 若内容可交互，必须支持键盘访问。
+      en: Interactive content must remain keyboard accessible.

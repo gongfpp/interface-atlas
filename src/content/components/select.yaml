@@ -136,3 +136,12 @@ prompts:
       - Consistent light/dark themes
       - No new dependencies
       Run existing project checks when done and list the modified files.
+playground:
+  task:
+    zh: 打开选项列表并切换值，比较原生与自定义选择方式。
+    en: Open the list, change the value and compare selection variants.
+  checks:
+    - zh: 选中值应在关闭后继续清楚展示。
+      en: Keep the selected value visible after closing.
+    - zh: 选项过多时考虑可搜索选择框。
+      en: Consider a combobox for a large option set.

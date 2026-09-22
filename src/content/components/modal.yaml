@@ -145,3 +145,12 @@ prompts:
       - Consistent light/dark themes
       - No new dependencies
       Run existing checks when done and list modified files.
+playground:
+  task:
+    zh: 打开对话框，尝试确认、取消与关闭。
+    en: Open the dialog and explore confirmation and dismissal.
+  checks:
+    - zh: 模态开启期间焦点应留在对话框内。
+      en: Keep focus inside while the modal is open.
+    - zh: 关闭后回到触发入口，避免丢失操作位置。
+      en: Return focus to the trigger after dismissal.

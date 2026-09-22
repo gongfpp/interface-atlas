@@ -146,3 +146,12 @@ prompts:
       - Persistent, no auto-dismiss
       - Consistent light/dark themes, no new dependencies
       Run existing checks when done and list modified files.
+playground:
+  task:
+    zh: 观察信息、成功、警告与错误提示的层级，尝试关闭可关闭的提示。
+    en: Compare information, success, warning and error messages; try dismissing a dismissible alert.
+  checks:
+    - zh: 关键信息同时用文字表达，不只依赖颜色。
+      en: Communicate importance with text as well as color.
+    - zh: 阻断任务的错误应说明恢复路径。
+      en: Blocking errors should explain how to recover.

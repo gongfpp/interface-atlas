@@ -175,5 +175,21 @@
       "zh": "在当前项目中实现滑块组件。\n\n先检查现有表单组件与 accent 色变量，保持一致。\n要求：\n- 受控 value，拖动实时更新数值与填充轨道\n- 支持单值与双端区间两种形态\n- 键盘箭头可步进，aria-valuenow 同步\n- 深浅色主题一致\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement a slider component in the current project.\n\nInspect existing form components and the accent color variable first; stay consistent.\nRequirements:\n- Controlled value updating number and filled track while dragging\n- Single-value and dual-handle range forms\n- Arrow-key stepping with aria-valuenow in sync\n- Consistent light/dark themes\n- No new dependencies\nRun existing project checks when done and list the modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "拖动滑块或用键盘调整，观察数值变化。",
+      "en": "Drag or use arrow keys and watch the value change."
+    },
+    "checks": [
+      {
+        "zh": "显示单位、最小值与最大值，避免模糊数值。",
+        "en": "Expose units, minimum and maximum values."
+      },
+      {
+        "zh": "精确输入需求应有数字输入作为补充。",
+        "en": "Pair with numeric entry when precision matters."
+      }
+    ]
   }
 }

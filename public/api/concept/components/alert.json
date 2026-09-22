@@ -190,5 +190,21 @@
       "zh": "在当前项目中实现警告提示（Alert）组件。\n\n先检查现有组件体系与 Design Token，优先复用现有的状态色与语义色变量。\n用途：表单错误汇总与系统级通知。\n要求：\n- 支持 info/success/warning/error 四种状态\n- 图标 + 标题 + 描述 + 可选操作与关闭\n- 不只靠颜色传达状态（图标 + 文字）\n- 常驻显示，不自动消失\n- 深浅色主题一致，不新增依赖\n完成后运行现有检查，说明修改文件。",
       "en": "Implement an Alert component in the current project.\n\nInspect the existing component system and design tokens first; reuse existing\nstatus and semantic colour variables.\nUsage: form error summaries and system-level notices.\nRequirements:\n- info/success/warning/error variants\n- Icon + title + description + optional actions and close\n- Never colour-only: icons and text accompany status\n- Persistent, no auto-dismiss\n- Consistent light/dark themes, no new dependencies\nRun existing checks when done and list modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "观察信息、成功、警告与错误提示的层级，尝试关闭可关闭的提示。",
+      "en": "Compare information, success, warning and error messages; try dismissing a dismissible alert."
+    },
+    "checks": [
+      {
+        "zh": "关键信息同时用文字表达，不只依赖颜色。",
+        "en": "Communicate importance with text as well as color."
+      },
+      {
+        "zh": "阻断任务的错误应说明恢复路径。",
+        "en": "Blocking errors should explain how to recover."
+      }
+    ]
   }
 }

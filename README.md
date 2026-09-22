@@ -8,12 +8,16 @@
 
 ## 这是什么
 
-- **风格**（15）：Editorial Minimal 站点本身 + 15 种视觉语言的完整迷你网页示范
-- **组件**（30）：每个概念带可交互 Live Demo、Variants、Anatomy
+- **风格**（18）：Editorial Minimal 站点本身 + 18 种视觉语言的完整迷你网页示范
+- **组件**（36）：每个概念带可交互 Live Demo、Variants、Anatomy
 - **交互模式**（15）：解决某类交互问题的方法
 - **动效**（20）：真实可运行，带播放器（Play / Replay / Slow Motion / Before-After）
 - **页面**（10）：页面类型的结构拆解与布局变体
 - **灵感图库**（5 套 / 40 张）：AI 生成的设计参考图集，每套附可复现的生图 Prompt
+
+组件详情增加交互任务与使用检查点；演示区支持重置、窄屏预览、模式切换与结构高亮，并可直接浏览对应参考图集。
+
+新增组件：分段控制器、步骤条、可搜索选择框、文件上传区、评分、时间线。新增风格：有机自然、装饰艺术、新拟态。
 
 每个 Concept 都包含：中英双语名称 / Aliases（含口语描述）/ 定义 / When to Use / **When NOT to Use** / Variants / Related / Compare / 实现要点 / 4 层 Agent Prompt / 参考来源。
 

@@ -14,10 +14,12 @@
 - [Button / 按钮](/api/concept/components/button.json): 用可点击的色块触发一个明确的动作，是界面中最基础的操作入口。 通过填充、描边、幽灵等视觉层级区分主次操作，按压时有即时的下沉反馈， 繁忙时进入加载态并禁用点击，
 - [Card / 卡片](/api/concept/components/card.json): 用圆角边框或底色围出一块自包含内容的矩形容器，一块卡片聚合一组相关信息： 封面图、标题、摘要与操作。是内容流、仪表盘与电商列表的通用显示单元。
 - [Checkbox / 复选框](/api/concept/components/checkbox.json): 用方形勾选框表示一组可多选的独立开关项，点击在选中与未选中间切换。 父级项可呈现半选态（部分子项选中），常用于批量选择、筛选与同意条款。
+- [Combobox / 可搜索选择框](/api/concept/components/combobox.json): 把文本输入和候选选项组合在一起的选择组件。用户可以输入关键词缩小范围，再通过鼠标或键盘确定一个值。输入文本、当前高亮项和最终选中值是不同状态；当没有匹配项时，应
 - [Command Palette / 命令面板](/api/concept/components/command-palette.json): 用快捷键（⌘K / Ctrl+K）唤出的浮动搜索面板：输入即筛选命令、页面或内容， 键盘上下选择、回车执行。macOS Spotlight 把它带入大众视野， 
 - [Date Picker / 日期选择器](/api/concept/components/date-picker.json): 用日历网格选择日期的复合控件，通常由输入框触发弹出，也常内嵌展示。 头部提供年月切换，网格按周排列日期并高亮今天与选中日； 范围形态用两个日期夹出区间。避免手输
 - [Drawer / 抽屉](/api/concept/components/drawer.json): 从屏幕边缘（多为右侧或左侧）滑入、通常带遮罩的面板。比模态框轻：能承载较长内容又不离开当前页面， 关闭后原样回到上下文；移动端常以左滑导航或底部抽屉的形式出现。
 - [Dropdown / 下拉菜单](/api/concept/components/dropdown.json): 由触发按钮就近弹出的一组操作菜单，用于收纳次要操作，保持界面整洁。 典型形态是「···」更多按钮；面板带阴影浮于内容之上，点击菜单项即执行并关闭， 危险操作以红
+- [File Upload / 文件上传区](/api/concept/components/file-upload.json): 用于选择文件、展示校验反馈并管理待处理文件列表的表单区域。常见形式为原生文件选择按钮或可拖放区域；拖拽必须有按钮选择作为替代。选择文件不代表已经上传，界面应清楚
 - [Filter Panel / 筛选面板](/api/concept/components/filter-panel.json): 集中承载筛选条件的面板，常驻列表侧边或以抽屉、浮层唤起：复选组、单选、滑杆组合出当前查询。 与列表实时联动刷新结果数，并支持已选条件回显与一键清除。
 - [Input / 输入框](/api/concept/components/input.json): 用一条带边框的水平输入区收集单行文本，是表单的基本单元。 占位符提示期望格式，聚焦时高亮边框引导视线，校验失败时切换错误色 并附提示文案；可内嵌前后缀图标与清除
 - [Menu / 菜单](/api/concept/components/menu.json): 点击或右键触发的临时操作列表浮层：平铺或分组的命令项，选中即执行并关闭。 用于收纳非高频操作（更多、设置、删除），通常以「⋯」按钮或右键唤起。
@@ -27,13 +29,17 @@
 - [Popover / 气泡卡片](/api/concept/components/popover.json): 点击触发元素后在其旁边弹出的非模态浮层，可承载文字说明、小型表单、日期选择等中等复杂内容。 无遮罩、不阻断页面其余部分，点击外部区域或 Esc 即关闭。
 - [Progress Bar / 进度条](/api/concept/components/progress-bar.json): 用横条从左到右填充来表示任务完成比例的加载指示，常配百分比或步骤文字。 适用于时长可预测的确定性任务：上传、下载、安装与分步表单。
 - [Radio / 单选框](/api/concept/components/radio.json): 用一组圆形按钮表示互斥选项，同组内只能选中一个且不可取消。 与复选框的核心区别是多选与单选；选中圆点用填充动画反馈， 选项少（2～5 个）时平铺展示比下拉选择效
+- [Rating / 评分](/api/concept/components/rating.json): 用有限等级收集主观评价的输入组件，常见形式是星级或带文字的满意度选项。悬停表示候选分值，点击或键盘选择才提交当前值。应提供每一档的文字含义，区分尚未评分与最低分
+- [Segmented Control / 分段控制器](/api/concept/components/segmented-control.json): 将少量互斥选项并排放在同一个容器中的选择控件。选中状态通过底色、文字和边界同时表达，切换后立即更新当前视图或设置。它适合时间范围、显示方式等轻量选择；选项应简短
 - [Select / 下拉选择](/api/concept/components/select.json): 用收起的单行控件承载一组互斥选项，点击展开面板后选择其一，选中值常驻显示在触发器上。 比 radio 更省空间，适合选项多于 5 个的场景；面板支持滚动、分组或
 - [Sidebar / 侧边栏](/api/concept/components/sidebar.json): 固定在页面一侧（通常左侧）的垂直导航区，承载产品的主要层级入口。 后台管理系统的事实标准：顶部放品牌与全局搜索，侧边栏放模块树，内容区专注任务。
 - [Slider / 滑块](/api/concept/components/slider.json): 用轨道上可拖动的手柄在连续区间内取值，拖动时数值与已填充轨道实时跟随。 适合调音量、亮度、价格区间等量级选择，比输入框更直观； 可带刻度标记、步进与双端区间形态
+- [Stepper / 步骤条](/api/concept/components/stepper.json): 用有序节点展示任务的阶段、当前位置和已完成步骤的进度组件。它通常与分步表单配合，把较长任务拆成易理解的阶段。步骤条负责说明进度，下一步和上一步负责推进流程；进入
 - [Switch / 开关](/api/concept/components/switch.json): 用滑轨上的圆形滑块表示二元设置的开与关，拨动立即生效，无需确认。 滑块位移与轨道变色同时反馈状态，右侧或内嵌「开 / 关」文字辅助辨认， 是设置页的标准控件。
 - [Table / 表格](/api/concept/components/table.json): 用行与列精确对齐数据的二维表格：一行一条记录、一列一个字段，适合逐列比较、排序与大容量数据浏览。 行可悬停高亮、点击选中，列头通常带排序控制。
 - [Tabs / 标签页](/api/concept/components/tabs.json): 用一排可切换的标签把同一区域的内容分成互斥视图：标签头常驻可点击，仅当前 标签对应的面板可见，其余隐藏。适合把高度相关的几类内容压缩在同一区域内 就地切换，避免
 - [Textarea / 多行输入框](/api/concept/components/textarea.json): 用一块可多行增长的输入区收集长文本，如简介、备注、留言与反馈。 支持手动或自动增高，常配字数统计与提交按钮；超出上限时计数变红提醒， 内容换行显示而非溢出截断。
+- [Timeline / 时间线](/api/concept/components/timeline.json): 沿时间顺序组织事件的展示组件，通过时间、节点和内容说明事件之间的先后关系。它适合展示活动日志、项目进展或订单状态。时间线呈现已经发生或计划发生的事件，而步骤条强
 - [Toast / 轻提示](/api/concept/components/toast.json): 在视口角落短暂出现、自动消失的小消息条，用来告知操作结果（已保存、已复制、上传完成）。 不打断当前流程，通常附一个操作入口（撤销、查看），停留约 3~5 秒后淡
 - [Tooltip / 工具提示](/api/concept/components/tooltip.json): 悬停在元素上短暂出现的小型文字气泡，用来解释图标按钮、缩写或被截断的文本。 纯提示、不可交互，移开即消失；通常延迟约 300ms 出现以避免扫过时闪烁。
 - [Drag & Drop Sorting / 拖拽排序](/api/concept/patterns/drag-and-drop-sorting.json): 用直接拖动的方式调整列表项的先后顺序：按住条目（或把手）拖到目标位置，其余条目实时让位并给出落点提示。 它把"排序"从抽象的上下移按钮变成所见即所得的空间操作，
@@ -51,6 +57,7 @@
 - [Search Filtering / 搜索筛选](/api/concept/patterns/search-filtering.json): 用即时过滤把大列表缩到与当前输入相关的一小部分：用户在搜索框敲字，列表随之实时收窄， 并显示命中数量与空结果提示。它把"查找"变成"修剪"，不用提交、不用等跳转
 - [Skeleton Loading / 骨架屏](/api/concept/patterns/skeleton-loading.json): 用与真实内容结构一致的灰色占位块表示加载状态，通常带轻微的微光扫过或呼吸动画。 它告诉用户"内容马上就位，结构长这样"，而不是让用户盯着空白或转圈等待。
 - [Undo Action / 撤销操作](/api/concept/patterns/undo-action.json): 用"先执行、给反悔窗口"的方式处理高风险操作：删除等动作立即生效并展示结果，同时在底部弹出 带倒计时的撤销条，窗口期内一键恢复，倒计时结束才真正提交。相比弹窗确
+- [Art Deco / 装饰艺术](/api/concept/styles/art-deco.json): 以几何秩序、对称构图、放射线和阶梯轮廓构成鲜明装饰感的视觉语言。网页中的现代演绎常使用深色底、金属色细线和展示字体，强调仪式感与主次节奏。装饰应集中于标题、边框
 - [Aurora Gradient / 极光渐变](/api/concept/styles/aurora.json): 用大面积流动渐变光斑营造氛围的视觉语言：青绿 紫 蓝 多色模糊色块在背景 中缓慢漂移融合，前景内容保持极简克制。色彩是主角——像极光一样柔和 跨 色相 渐次过渡
 - [Bauhaus / 包豪斯](/api/concept/styles/bauhaus.json): 用基础几何与三原色做构成游戏的视觉语言：圆 三角 方三种形状，红 黄 蓝 三原色加黑，不对称但平衡的构图，装饰服从功能。每一块色面与线条都参与 结构，海报像一场
 - [Bento Grid / 便当盒网格](/api/concept/styles/bento-grid.json): 把界面装进便当盒的布局语言：一组圆角矩形像分格便当一样拼合，各格跨度不同 ——大格承载主内容，小格陈列数据与点缀，格与格之间留窄缝对齐同一套网格。 它是卡片网格
@@ -62,6 +69,8 @@
 - [Memphis Design / 孟菲斯风格](/api/concept/styles/memphis.json): 反功能主义的后现代视觉语言：波浪线 圆点 锯齿 斑点等天真涂鸦元素，与高饱和 撞色、黑色粗描边一起铺满画面，故意打破网格与秩序。它拥抱廉价与热闹，用 "丑得快乐
 - [Minimalism / 极简主义](/api/concept/styles/minimalism.json): 以"少即是多"为准则的视觉语言：用大量留白、克制的黑白灰配色与有限字体层级 来凸显内容本身，删除一切装饰性元素，层级完全依靠空间、字重与疏密建立。 安静、克制、
 - [Neobrutalism / 新粗野主义](/api/concept/styles/neobrutalism.json): 用粗黑描边、高饱和撞色与生硬的偏移实心阴影构成的高对比视觉语言：元素像彩色 贴纸一样直接砸在页面上，配合夸张的圆角与醒目标签。它刻意拒绝精致与圆滑， 以"丑得理
+- [Neumorphism / 新拟态](/api/concept/styles/neumorphism.json): 通过同色背景上的明暗双阴影表现凸起和凹陷的界面风格。元素像从同一块柔软材质中压出，适合少量控件的展示场景。它的视觉边界较弱，因此不能只靠阴影表达可点击、选中或禁
+- [Organic / 有机自然](/api/concept/styles/organic.json): 以自然形态、温暖材质和低饱和大地色建立亲近感的视觉语言。页面通过不规则曲线、圆润容器和宽松留白形成舒展节奏，文字与按钮仍保持明确边界。适合生活方式与可持续主题；
 - [Retro-Futurism / 复古未来主义](/api/concept/styles/retro-futurism.json): "过去的人想象中的未来"的视觉语言：奶油橙棕的暖色底、粗圆角机身、轨道线 与星球贴纸、像素化屏幕与 CRT 荧光，乐观却已过时的科技感。它把登机舱 仪表盘、老式
 - [Skeuomorphism / 拟物化](/api/concept/styles/skeuomorphism.json): 用现实世界的材质与物理形态表示数字控件的视觉语言：皮革缝线、木质纹理、拉丝 金属、玻璃光泽，按钮做成可以按压的实体，开关做成拨杆。界面元件拥有高光、 投影与倒角
 - [Swiss Style / 瑞士风格](/api/concept/styles/swiss-style.json): 以客观网格与排版传达信息的视觉语言：严密的数学网格、无衬线字体、左对齐、 黑白加一个强调色（经典为红），用留白与字号对比建立秩序。装饰被视为噪音， 设计的目标是

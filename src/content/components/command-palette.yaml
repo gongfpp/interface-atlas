@@ -142,3 +142,12 @@ prompts:
       - Custom command registration (a useCommands-like API)
       - No new dependencies
       Run existing checks when done and list modified files.
+playground:
+  task:
+    zh: 打开面板，输入关键词，再尝试选择命令与退出。
+    en: Open the palette, type a query, select a command and dismiss it.
+  checks:
+    - zh: 搜索应覆盖命令别名，并给出无结果反馈。
+      en: Search command aliases and explain empty results.
+    - zh: 关闭后焦点应回到触发入口。
+      en: Return focus to the trigger after closing.

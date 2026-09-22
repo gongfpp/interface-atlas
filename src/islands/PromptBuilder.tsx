@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useClipboard } from './shared/useClipboard';
 import { track } from '@/lib/track';
 
 interface StyleOption {
@@ -50,17 +51,7 @@ export default function PromptBuilder({ conceptName, agentPrompt, styles, locale
     return parts.join('\n');
   }, [agentPrompt, styles, styleId, toggles, zh, locale]);
 
-  const [copied, setCopied] = useState(false);
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      track('prompt-builder-copy', { concept: conceptName, style: styleId || 'none' });
-      setTimeout(() => setCopied(false), 1500);
-    } catch {
-      /* 剪贴板不可用 */
-    }
-  };
+  const { copy, copied, failed } = useClipboard(text, () => track('prompt-builder-copy', { concept: conceptName, style: styleId || 'none' }));
 
   return (
     <div className="rounded-xl border border-line bg-raised">
@@ -104,6 +95,7 @@ export default function PromptBuilder({ conceptName, agentPrompt, styles, locale
         ))}
       </div>
 
+      <p role="status" className="px-4 pt-2 text-xs text-accent">{failed ? (zh ? '无法访问剪贴板，请选中下方文本手动复制。' : 'Clipboard unavailable. Select the text below to copy manually.') : copied ? (zh ? '已复制，可粘贴到你的项目中。' : 'Copied. Paste it into your project.') : ''}</p>
       <pre className="max-h-72 overflow-auto whitespace-pre-wrap p-4 font-mono text-xs leading-relaxed text-ink-2">
         {text}
       </pre>

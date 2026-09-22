@@ -174,5 +174,21 @@
       "zh": "在当前项目中实现多行输入框组件。\n\n先检查现有表单组件与 Design Token，保持风格一致。\n要求：\n- 受控多行输入，支持自动增高与手动拖拽\n- 实时字数统计，超限变红并禁用提交\n- 聚焦描边与无障碍标注（label 关联）\n- 深浅色主题一致\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement a textarea component in the current project.\n\nInspect existing form components and design tokens first; stay consistent.\nRequirements:\n- Controlled multi-line input with autosize and manual resize\n- Live character counter, red past the limit with submit disabled\n- Focus ring and accessibility labels\n- Consistent light/dark themes\n- No new dependencies\nRun existing project checks when done and list the modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "输入多行内容，观察字数与尺寸变化。",
+      "en": "Enter several lines and inspect length and sizing behavior."
+    },
+    "checks": [
+      {
+        "zh": "标签与字数限制始终可见，不能只写在占位符中。",
+        "en": "Keep the label and length limit visible beyond the placeholder."
+      },
+      {
+        "zh": "调整高度时避免遮挡后续操作。",
+        "en": "Keep later actions reachable as the field grows."
+      }
+    ]
   }
 }

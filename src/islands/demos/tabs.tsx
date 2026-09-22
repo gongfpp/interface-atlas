@@ -1,159 +1,144 @@
-import { useState } from 'react';
-import type { DemoComponent } from '@/islands/DemoStage';
-
-const TABS = [
-  {
-    id: 'overview',
-    label: '概览',
-    lines: ['成员 128 · 项目 12', '本周活跃度 ▁▂▄▃▆', '存储用量 42%'],
-  },
-  {
-    id: 'activity',
-    label: '动态',
-    lines: ['Rin 部署了 v2.4.1', 'Mao 邀请了 2 位成员', '系统 03:00 例行维护完成'],
-  },
-  {
-    id: 'settings',
-    label: '设置',
-    lines: ['命名空间：acme-prod', '默认分支：main', '危险区：转让 / 删除'],
-  },
-];
-
-function useRovingKeys(count: number, active: number, onMove: (i: number) => void) {
-  return (e: React.KeyboardEvent) => {
-    if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      onMove((active + 1) % count);
-    } else if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      onMove((active - 1 + count) % count);
-    }
-  };
-}
-
-function UnderlineTabs({ framed = true }: { framed?: boolean }) {
+import { useId, useRef, useState } from "react";
+import type { DemoComponent } from "@/islands/DemoStage";
+const TabsDemo: DemoComponent = ({ mode, locale = "zh" }) => {
+  const en = locale === "en";
   const [active, setActive] = useState(0);
-  const onKey = useRovingKeys(TABS.length, active, setActive);
-  const tab = TABS[active];
-
+  const [style, setStyle] = useState(
+    mode === "variants" ? "pill" : "underline",
+  );
+  const id = useId();
+  const refs = useRef<(HTMLButtonElement | null)[]>([]);
+  const labels = en
+    ? ["Overview", "Activity", "Files"]
+    : ["项目概览", "最近动态", "设计文件"];
   return (
-    <div className={`mx-auto max-w-xl text-sm ${framed ? 'rounded-xl border border-line bg-paper' : ''}`}>
-      <div data-anatomy="1" role="tablist" aria-label="标签页" className="relative flex" onKeyDown={onKey}>
-        {TABS.map((t, i) => (
+    <div className="specimen">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p className="specimen-eyebrow">WORKSPACE / ATELIER</p>
+        <select
+          aria-label={en ? "Tab appearance" : "标签页外观"}
+          className="rounded-md border border-line bg-paper px-2 py-1 text-xs"
+          value={style}
+          onChange={(e) => setStyle(e.target.value)}
+        >
+          <option value="underline">{en ? "Underline" : "下划线"}</option>
+          <option value="pill">{en ? "Segmented" : "胶囊分段"}</option>
+          <option value="card">{en ? "Card" : "卡片式"}</option>
+        </select>
+      </div>
+      <h3 className="specimen-title mb-6">
+        {en ? "Brand studio" : "品牌设计工作室"}
+      </h3>
+      <div
+        data-anatomy="1"
+        role="tablist"
+        aria-label={en ? "Project" : "项目内容"}
+        className={`flex gap-1 ${style === "pill" ? "rounded-xl bg-code-bg p-1" : "border-b border-line"}`}
+      >
+        {labels.map((label, i) => (
           <button
-            key={t.id}
+            key={label}
+            id={`${id}-tab-${i}`}
+            ref={(el) => {
+              refs.current[i] = el;
+            }}
             role="tab"
             aria-selected={i === active}
+            aria-controls={`${id}-panel`}
             tabIndex={i === active ? 0 : -1}
             onClick={() => setActive(i)}
-            className={`flex-1 border-b border-line py-2.5 text-xs transition-colors ${
-              i === active ? 'text-accent' : 'text-ink-2 hover:text-ink'
-            }`}
+            onKeyDown={(e) => {
+              let next: number;
+              if (e.key === "ArrowRight") next = (active + 1) % 3;
+              else if (e.key === "ArrowLeft") next = (active + 2) % 3;
+              else if (e.key === "Home") next = 0;
+              else if (e.key === "End") next = 2;
+              else return;
+              e.preventDefault();
+              setActive(next);
+              refs.current[next]?.focus();
+            }}
+            className={`flex-1 px-2 py-3 text-xs transition-colors ${active === i ? (style === "underline" ? "border-b-2 border-accent text-accent" : "rounded-lg bg-raised text-ink shadow-sm") : "text-ink-2"}`}
+            data-anatomy={i === active ? "2" : undefined}
           >
-            {t.label}
+            {label}
           </button>
         ))}
-        <span
-          data-anatomy="2"
-          aria-hidden="true"
-          className="absolute bottom-0 h-0.5 bg-accent transition-transform"
-          style={{
-            width: `${100 / TABS.length}%`,
-            transform: `translateX(${active * 100}%)`,
-            transitionDuration: 'calc(220ms * var(--demo-speed, 1))',
-          }}
-        />
       </div>
       <div
-        data-anatomy="3"
+        id={`${id}-panel`}
         role="tabpanel"
-        aria-labelledby={tab.id}
-        key={tab.id}
-        className="p-4"
-        style={{ animation: 'tabs-fade calc(180ms * var(--demo-speed, 1)) both' }}
+        aria-labelledby={`${id}-tab-${active}`}
+        tabIndex={0}
+        data-anatomy="3"
+        className="min-h-40 pt-6"
       >
-        {tab.lines.map((line) => (
-          <p key={line} className="border-b border-line py-2 text-xs text-ink-2 last:border-0">
-            {line}
-          </p>
-        ))}
+        {active === 0 ? (
+          <div className="specimen-grid">
+            <div className="rounded-xl bg-code-bg p-4">
+              <p className="specimen-note">
+                {en ? "Design progress" : "设计完成度"}
+              </p>
+              <p className="my-2 text-3xl font-semibold">
+                72<span className="text-lg text-ink-3">%</span>
+              </p>
+              <progress
+                value="72"
+                max="100"
+                aria-label={en ? "Design progress" : "设计完成度"}
+                className="h-1.5 w-full accent-accent"
+              />
+            </div>
+            <div className="p-4">
+              <p className="specimen-note">
+                {en ? "Next milestone" : "下一个里程碑"}
+              </p>
+              <p className="mt-2 text-lg font-medium">
+                {en ? "Visual review" : "视觉方案评审"}
+              </p>
+              <p className="specimen-note mt-2">
+                {en
+                  ? "Friday · 14:00 · 4 collaborators"
+                  : "周五 · 14:00 · 4 位协作者"}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <ul className="space-y-3">
+            {(active === 1
+              ? en
+                ? [
+                    "Lin updated the color palette",
+                    "Alex added 6 components",
+                    "You approved the type scale",
+                  ]
+                : [
+                    "林舟更新了品牌色板",
+                    "小夏添加了 6 个组件",
+                    "你确认了字体层级方案",
+                  ]
+              : ["Brand guidelines.pdf", "Design system.fig", "Icons.svg"]
+            ).map((x, i) => (
+              <li
+                key={x}
+                className="flex items-center gap-3 border-b border-line pb-3 text-sm"
+              >
+                <span className="text-xs text-accent">0{i + 1}</span>
+                {x}
+                <span className="ml-auto text-xs text-ink-3">
+                  {active === 1 ? `${i + 1}h` : `${i + 1}.2 MB`}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-      <style>{`@keyframes tabs-fade { from { opacity: 0; transform: translateY(4px) } to { opacity: 1; transform: none } }`}</style>
+      <p className="specimen-note mt-3">
+        {en
+          ? "Use ← →, Home and End while a tab is focused."
+          : "聚焦标签后，可用 ← →、Home 和 End 切换。"}
+      </p>
     </div>
   );
-}
-
-function PillTabs() {
-  const [active, setActive] = useState(0);
-  return (
-    <div role="tablist" aria-label="胶囊标签" className="flex gap-1 rounded-lg bg-code-bg p-1">
-      {TABS.map((t, i) => (
-        <button
-          key={t.id}
-          role="tab"
-          aria-selected={i === active}
-          onClick={() => setActive(i)}
-          className={`flex-1 rounded-md px-2 py-1.5 text-xs transition-all ${
-            i === active ? 'bg-raised text-ink shadow-sm' : 'text-ink-2'
-          }`}
-        >
-          {t.label}
-        </button>
-      ))}
-    </div>
-  );
-}
-
-function CardTabs() {
-  const [active, setActive] = useState(0);
-  return (
-    <div>
-      <div role="tablist" aria-label="卡片标签" className="flex gap-1 px-1">
-        {TABS.map((t, i) => (
-          <button
-            key={t.id}
-            role="tab"
-            aria-selected={i === active}
-            onClick={() => setActive(i)}
-            className={`rounded-t-lg border border-b-0 px-3 py-1.5 text-xs transition-colors ${
-              i === active ? 'border-line bg-raised text-ink' : 'border-transparent text-ink-2 hover:text-ink'
-            }`}
-          >
-            {t.label}
-          </button>
-        ))}
-      </div>
-      <div className="rounded-lg rounded-tl-none border border-line bg-raised p-3 text-xs text-ink-2">
-        {TABS[active].lines[0]}
-      </div>
-    </div>
-  );
-}
-
-const TabsDemo: DemoComponent = ({ mode }) => {
-  if (mode === 'variants') {
-    return (
-      <div className="mx-auto flex max-w-xl flex-col gap-3 text-sm">
-        <div>
-          <p className="mb-1 text-[10px] uppercase tracking-wider text-ink-3">下划线式 Underline</p>
-          <UnderlineTabs framed={false} />
-        </div>
-        <div>
-          <p className="mb-1 text-[10px] uppercase tracking-wider text-ink-3">胶囊分段式 Pill / Segmented</p>
-          <PillFrame><PillTabs /></PillFrame>
-        </div>
-        <div>
-          <p className="mb-1 text-[10px] uppercase tracking-wider text-ink-3">卡片式 Card</p>
-          <PillFrame><CardTabs /></PillFrame>
-        </div>
-      </div>
-    );
-  }
-  return <UnderlineTabs />;
 };
-
-function PillFrame({ children }: { children: React.ReactNode }) {
-  return <div className="rounded-xl border border-line bg-paper p-3">{children}</div>;
-}
-
 export default TabsDemo;

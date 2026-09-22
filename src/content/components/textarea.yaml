@@ -132,3 +132,12 @@ prompts:
       - Consistent light/dark themes
       - No new dependencies
       Run existing project checks when done and list the modified files.
+playground:
+  task:
+    zh: 输入多行内容，观察字数与尺寸变化。
+    en: Enter several lines and inspect length and sizing behavior.
+  checks:
+    - zh: 标签与字数限制始终可见，不能只写在占位符中。
+      en: Keep the label and length limit visible beyond the placeholder.
+    - zh: 调整高度时避免遮挡后续操作。
+      en: Keep later actions reachable as the field grows.

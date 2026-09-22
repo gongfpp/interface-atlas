@@ -176,5 +176,21 @@
       "zh": "在当前项目中实现日期选择器组件。\n\n先检查现有表单与弹出层组件，保持风格与 z-index 层级一致。\n要求：\n- 触发输入框 + 弹出日历，受控 value\n- 高亮今日与选中日，支持前后翻月\n- 范围选择形态（可选）\n- 点击外部 / Escape 关闭，键盘可达\n- 深浅色主题一致，不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement a date picker component in the current project.\n\nInspect existing form and overlay components first; keep styles and z-index consistent.\nRequirements:\n- Trigger input + popup calendar, controlled value\n- Highlight today and the selection; navigate months\n- Range selection form (optional)\n- Close on outside click / Escape, keyboard accessible\n- Consistent light/dark themes, no new dependencies\nRun existing project checks when done and list the modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "切换月份并选择日期，观察当前日期与选中日期的区别。",
+      "en": "Move between months and compare today with the selected date."
+    },
+    "checks": [
+      {
+        "zh": "今天和所选日期是两种不同状态。",
+        "en": "Today and the selected day are separate states."
+      },
+      {
+        "zh": "不可选日期需要可见说明，不能仅隐藏交互。",
+        "en": "Explain unavailable dates instead of only disabling interaction."
+      }
+    ]
   }
 }

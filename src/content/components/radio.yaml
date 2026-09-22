@@ -134,3 +134,12 @@ prompts:
       - Consistent light/dark themes; animation respects prefers-reduced-motion
       - No new dependencies
       Run existing project checks when done and list the modified files.
+playground:
+  task:
+    zh: 在互斥选项间切换，用方向键检查组内选择。
+    en: Switch mutually exclusive options and try arrow-key selection.
+  checks:
+    - zh: 同组只有一个当前值，标签描述选择后果。
+      en: Keep one value per group and explain each choice.
+    - zh: 不能依赖占位说明传达组的名称。
+      en: Give the group a visible, persistent name.

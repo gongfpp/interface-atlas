@@ -156,3 +156,12 @@ prompts:
       - Consistent light/dark themes, respect prefers-reduced-motion
       - No new dependencies
       Run existing project checks when done and list the modified files.
+playground:
+  task:
+    zh: 点击主要与次要操作，比较加载、禁用和不同外观。
+    en: Try primary and secondary actions and compare loading, disabled and visual variants.
+  checks:
+    - zh: 同一区域通常只有一个最突出的主操作。
+      en: Usually give one action the strongest emphasis in a region.
+    - zh: 处理中的操作应防止重复触发并保留结果反馈。
+      en: Prevent duplicate activation while processing and show the result.

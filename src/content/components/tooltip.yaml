@@ -129,3 +129,12 @@ prompts:
       - Animation respects prefers-reduced-motion
       - No new dependencies
       Run existing checks when done and list modified files.
+playground:
+  task:
+    zh: 悬停或聚焦触发元素，查看补充说明。
+    en: Hover or focus the trigger to view supporting text.
+  checks:
+    - zh: 提示补充标签，不承载唯一的关键说明。
+      en: Supplement labels rather than hide essential instructions.
+    - zh: 不能只支持鼠标悬停，键盘聚焦也应可见。
+      en: Expose the same hint on keyboard focus, not only hover.

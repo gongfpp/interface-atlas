@@ -1,0 +1,148 @@
+{
+  "id": "timeline",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "时间线",
+    "en": "Timeline"
+  },
+  "aliases": [
+    "按时间排的记录",
+    "活动时间轴",
+    "事件进展记录",
+    "activity timeline"
+  ],
+  "category": [
+    "Data Display"
+  ],
+  "description": {
+    "zh": "沿时间顺序组织事件的展示组件，通过时间、节点和内容说明事件之间的先后关系。它适合展示活动日志、项目进展或订单状态。时间线呈现已经发生或计划发生的事件，而步骤条强调需要用户完成的任务阶段；当事件可展开时，应保留事件标题和时间，避免用户失去位置。",
+    "en": "A display that orders events by time, using timestamps, markers and content to explain sequence. It works for activity logs, project journals or order history. Unlike a stepper, which emphasizes task stages to complete, a timeline tells an event story. Keep titles and times visible when details expand."
+  },
+  "use_when": [
+    {
+      "zh": "项目事件、订单流转和操作记录。",
+      "en": "Project events, order history and activity logs."
+    },
+    {
+      "zh": "需要理解先后关系的叙事内容。",
+      "en": "Stories where temporal sequence matters."
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "只需显示一个当前状态时使用徽标。",
+      "en": "Use a badge for a single current state."
+    },
+    {
+      "zh": "需要精确比较数值时使用表格或图表。",
+      "en": "Use a table or chart for quantitative comparisons."
+    }
+  ],
+  "tags": [
+    "timeline",
+    "data-display"
+  ],
+  "variants": [
+    {
+      "id": "connected",
+      "name": {
+        "zh": "连线时间轴",
+        "en": "Connected"
+      },
+      "note": {
+        "zh": "节点与连线强调事件顺序。",
+        "en": "Markers and a connecting line emphasize sequence."
+      }
+    },
+    {
+      "id": "cards",
+      "name": {
+        "zh": "事件卡片",
+        "en": "Event cards"
+      },
+      "note": {
+        "zh": "独立卡片容纳较长事件描述。",
+        "en": "Separate cards accommodate longer event descriptions."
+      }
+    }
+  ],
+  "anatomy": [
+    "事件序列 / Sequence",
+    "事件节点 / Marker",
+    "展开详情 / Detail"
+  ],
+  "related": [
+    {
+      "id": "accordion",
+      "relation": "similar_to"
+    },
+    {
+      "id": "card",
+      "relation": "similar_to"
+    },
+    {
+      "id": "badge",
+      "relation": "similar_to"
+    }
+  ],
+  "demo": {
+    "component": "timeline",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "MDN — HTML reference",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/time"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "border-inline-start",
+      "position: relative",
+      "display: grid"
+    ],
+    "notes": {
+      "zh": "用有序列表表达顺序，真实业务时间用 time 与 datetime。展开入口用按钮和 aria-expanded，排序改变时保留当前展开事件的稳定 ID。节点与连线只是装饰，不替代文字状态。",
+      "en": "Use an ordered list and time with datetime for real timestamps. Expand with buttons and aria-expanded. Preserve the stable event ID when ordering changes. Treat markers and connecting lines as decoration, not substitutes for text."
+    }
+  },
+  "playground": {
+    "task": {
+      "zh": "展开一个事件查看详情，然后切换顺序，观察展开状态是否仍属于同一事件。",
+      "en": "Expand an event, reverse the order and check that the detail remains attached to the same event."
+    },
+    "checks": [
+      {
+        "zh": "切换顺序不改变事件与详情的对应关系。",
+        "en": "Reordering preserves the event-detail relationship."
+      },
+      {
+        "zh": "折叠后仍保留时间和标题，按钮可被键盘操作。",
+        "en": "Time and title remain visible when collapsed; expansion is keyboard accessible."
+      }
+    ]
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建时间线组件。项目事件、订单流转和操作记录。",
+      "en": "Create a Timeline component. Project events, order history and activity logs."
+    },
+    "design": {
+      "zh": "设计时间线，以清楚的层级、可见的状态和明确的反馈为优先。节点与连线强调事件顺序。独立卡片容纳较长事件描述。切换顺序不改变事件与详情的对应关系。折叠后仍保留时间和标题，按钮可被键盘操作。",
+      "en": "Design a Timeline with clear hierarchy and state feedback. Markers and a connecting line emphasize sequence. Separate cards accommodate longer event descriptions. Reordering preserves the event-detail relationship. Time and title remain visible when collapsed; expansion is keyboard accessible."
+    },
+    "implementation": {
+      "zh": "用有序列表表达顺序，真实业务时间用 time 与 datetime。展开入口用按钮和 aria-expanded，排序改变时保留当前展开事件的稳定 ID。节点与连线只是装饰，不替代文字状态。",
+      "en": "Use an ordered list and time with datetime for real timestamps. Expand with buttons and aria-expanded. Preserve the stable event ID when ordering changes. Treat markers and connecting lines as decoration, not substitutes for text."
+    },
+    "agent": {
+      "zh": "先检查当前项目的组件与样式体系，复用已有能力实现时间线。\n要求：\n- 用有序列表表达顺序，真实业务时间用 time 与 datetime。展开入口用按钮和 aria-expanded，排序改变时保留当前展开事件的稳定 ID。节点与连线只是装饰，不替代文字状态。\n- 切换顺序不改变事件与详情的对应关系。\n- 折叠后仍保留时间和标题，按钮可被键盘操作。\n- 窄屏可用，深浅色一致，尊重 reduced-motion。\n- 不新增依赖。\n运行项目现有检查，并列出修改文件及验证结果。",
+      "en": "Inspect existing components and tokens before implementing Timeline.\nRequirements:\n- Use an ordered list and time with datetime for real timestamps. Expand with buttons and aria-expanded. Preserve the stable event ID when ordering changes. Treat markers and connecting lines as decoration, not substitutes for text.\n- Reordering preserves the event-detail relationship.\n- Time and title remain visible when collapsed; expansion is keyboard accessible.\n- Support narrow screens, both themes and reduced motion.\n- Add no dependencies.\nRun existing checks and list changed files and validation results."
+    }
+  }
+}

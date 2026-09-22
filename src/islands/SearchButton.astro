@@ -20,6 +20,7 @@ const label = locale === 'zh' ? '搜索' : 'Search';
 
 <script is:inline>
   document.getElementById('search-open')?.addEventListener('click', () => {
+    document.documentElement.dataset.searchRequested = 'true';
     window.dispatchEvent(new CustomEvent('ia:search-open'));
   });
 </script>

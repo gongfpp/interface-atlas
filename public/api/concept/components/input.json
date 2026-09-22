@@ -177,5 +177,21 @@
       "zh": "在当前项目中实现输入框组件。\n\n先检查现有表单组件与 Design Token，保持风格一致。\n要求：\n- 受控输入，支持 label、placeholder、prefix/suffix\n- 聚焦描边与错误态（错误文案由外部校验逻辑传入）\n- 非空时显示清除按钮\n- 深浅色主题一致，无障碍标注齐全\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement an input component in the current project.\n\nInspect the existing form components and design tokens first; stay consistent.\nRequirements:\n- Controlled input with label, placeholder, prefix/suffix\n- Focus ring and error state (message passed in from external validation)\n- Clear button when non-empty\n- Consistent light/dark themes and complete accessibility labels\n- No new dependencies\nRun existing project checks when done and list the modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "修改邮箱、切换外观，尝试清空和错误输入，再保存偏好。",
+      "en": "Edit the email, switch appearance, clear it, try an invalid value and save."
+    },
+    "checks": [
+      {
+        "zh": "占位符不能代替标签；错误必须说明如何修正。",
+        "en": "Placeholders are not labels; errors must explain the fix."
+      },
+      {
+        "zh": "清空后焦点留在输入框，方便继续输入。",
+        "en": "Keep focus in the field after clearing."
+      }
+    ]
   }
 }

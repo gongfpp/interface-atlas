@@ -180,5 +180,21 @@
       "zh": "在当前项目中实现下拉选择组件。\n\n先检查现有表单组件与弹出层实现，保持风格与层级（z-index）一致。\n要求：\n- 受控单选，触发器显示当前值 + 旋转 chevron\n- 展开面板：滚动、当前项高亮、点击外部与 Escape 关闭\n- 无障碍：aria-expanded、role=listbox/option、键盘上下选择\n- 深浅色主题一致\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement a select component in the current project.\n\nInspect existing form components and overlay implementations first; keep styles and z-index consistent.\nRequirements:\n- Controlled single select; trigger shows the value + rotating chevron\n- Panel: scrollable, highlighted current option, closes on outside click and Escape\n- Accessibility: aria-expanded, role=listbox/option, arrow-key selection\n- Consistent light/dark themes\n- No new dependencies\nRun existing project checks when done and list the modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "打开选项列表并切换值，比较原生与自定义选择方式。",
+      "en": "Open the list, change the value and compare selection variants."
+    },
+    "checks": [
+      {
+        "zh": "选中值应在关闭后继续清楚展示。",
+        "en": "Keep the selected value visible after closing."
+      },
+      {
+        "zh": "选项过多时考虑可搜索选择框。",
+        "en": "Consider a combobox for a large option set."
+      }
+    ]
   }
 }

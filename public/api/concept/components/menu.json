@@ -184,5 +184,21 @@
       "zh": "在当前项目中实现菜单（Menu）组件。\n\n先检查现有组件体系与 Design Token，优先复用现有的表面色与阴影变量。\n用途：列表行的「更多」操作与右键上下文。\n要求：\n- 锚定触发器弹出，贴近边缘自动翻转\n- 键盘可用：↑↓ 循环、Enter 执行、Esc 关闭\n- 危险项红色 + 分隔线，触发二次确认的钩子\n- 点击外部关闭，深浅色主题一致\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
       "en": "Implement a Menu component in the current project.\n\nInspect the existing component system and design tokens first; reuse existing\nsurface and shadow variables.\nUsage: row \"more\" actions and right-click context.\nRequirements:\n- Anchored to the trigger, flips near screen edges\n- Keyboard: ↑↓ cycling, Enter to execute, Esc to close\n- Destructive items in red with a divider and a confirm hook\n- Closes on outside click; consistent light/dark themes\n- No new dependencies\nRun existing checks when done and list modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "用鼠标与键盘选择动作，体验重命名、删除确认与撤销。",
+      "en": "Try pointer and keyboard actions, rename, confirm deletion and undo."
+    },
+    "checks": [
+      {
+        "zh": "所有菜单项包括危险项都应可用键盘到达。",
+        "en": "Every action, including destructive ones, must be keyboard reachable."
+      },
+      {
+        "zh": "点外部与 Esc 都能关闭，焦点不应丢失。",
+        "en": "Outside click and Escape should dismiss without losing focus."
+      }
+    ]
   }
 }

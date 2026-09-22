@@ -132,3 +132,12 @@ prompts:
       - Consistent light/dark themes
       - No new dependencies
       Run existing project checks when done and list the modified files.
+playground:
+  task:
+    zh: 勾选与取消多个选项，观察选择结果。
+    en: Select and clear several independent options.
+  checks:
+    - zh: 多项可同时选择，不要用它表达互斥值。
+      en: Allow independent choices; do not use checkboxes for exclusive values.
+    - zh: 文字标签与方框应共享点击目标。
+      en: Make the label and box share a click target.

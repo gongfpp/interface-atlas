@@ -176,5 +176,21 @@
       "zh": "在当前项目中实现单选框组件。\n\n先检查现有表单组件与 Design Token，保持风格一致。\n要求：\n- 受控单选，组内互斥、始终有选中项\n- 支持默认 / 卡片式两种样式\n- 键盘可达（原生 radio 行为 + label 关联）\n- 深浅色主题一致，动画尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement a radio group component in the current project.\n\nInspect existing form components and design tokens first; stay consistent.\nRequirements:\n- Controlled single selection, exclusive, always one selected\n- Default and card styles\n- Keyboard accessible (native radio behavior + label association)\n- Consistent light/dark themes; animation respects prefers-reduced-motion\n- No new dependencies\nRun existing project checks when done and list the modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "在互斥选项间切换，用方向键检查组内选择。",
+      "en": "Switch mutually exclusive options and try arrow-key selection."
+    },
+    "checks": [
+      {
+        "zh": "同组只有一个当前值，标签描述选择后果。",
+        "en": "Keep one value per group and explain each choice."
+      },
+      {
+        "zh": "不能依赖占位说明传达组的名称。",
+        "en": "Give the group a visible, persistent name."
+      }
+    ]
   }
 }

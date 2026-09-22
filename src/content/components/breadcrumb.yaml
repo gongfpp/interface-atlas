@@ -135,3 +135,12 @@ prompts:
       - Respect prefers-reduced-motion (an instant expand is fine)
       - No unnecessary dependencies
       Run existing project checks when done and list the modified files.
+playground:
+  task:
+    zh: 点击上级层级，比较短路径与多层路径的定位能力。
+    en: Inspect ancestor navigation and compare short and deep paths.
+  checks:
+    - zh: 最后一项表示当前位置，通常不需要再次导航。
+      en: The last item indicates the current location and usually needs no link.
+    - zh: 窄屏不能让路径挤出页面。
+      en: Keep long paths within the narrow viewport.

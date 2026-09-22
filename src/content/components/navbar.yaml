@@ -147,3 +147,12 @@ prompts:
       - Consistent light/dark themes
       - No unnecessary dependencies
       Run existing project checks when done and list the modified files.
+playground:
+  task:
+    zh: 切换导航栏目，展开菜单，搜索资源并体验开始按钮。
+    en: Switch sections, expand navigation, search resources and try the primary action.
+  checks:
+    - zh: 当前栏目与展示内容应对应。
+      en: The active section should agree with displayed content.
+    - zh: 窄屏下导航仍有可发现的入口。
+      en: Keep navigation discoverable in narrow layouts.

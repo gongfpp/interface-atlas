@@ -166,5 +166,21 @@
       "zh": "在当前项目中实现工具提示（Tooltip）组件。\n\n先检查现有组件体系与 Design Token，优先复用现有的表面色与圆角变量。\n用途：图标按钮的文字说明。\n要求：\n- 悬停延迟约 300ms 显示，移开立即消失\n- 气泡 pointer-events: none，支持四方向放置\n- focus 时同样显示，触发元素加 aria-describedby\n- 动画尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
       "en": "Implement a Tooltip component in the current project.\n\nInspect the existing component system and design tokens first; reuse existing\nsurface and radius variables.\nUsage: text labels for icon-only buttons.\nRequirements:\n- ~300ms hover delay to show, immediate hide on leave\n- pointer-events: none bubble, four placements supported\n- Also shows on focus; trigger carries aria-describedby\n- Animation respects prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "悬停或聚焦触发元素，查看补充说明。",
+      "en": "Hover or focus the trigger to view supporting text."
+    },
+    "checks": [
+      {
+        "zh": "提示补充标签，不承载唯一的关键说明。",
+        "en": "Supplement labels rather than hide essential instructions."
+      },
+      {
+        "zh": "不能只支持鼠标悬停，键盘聚焦也应可见。",
+        "en": "Expose the same hint on keyboard focus, not only hover."
+      }
+    ]
   }
 }

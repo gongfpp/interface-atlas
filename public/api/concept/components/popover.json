@@ -184,5 +184,21 @@
       "zh": "在当前项目中实现气泡卡片（Popover）组件。\n\n先检查现有组件体系与 Design Token，优先复用现有的表面色、圆角与阴影变量。\n用途：帮助说明与小型操作面板。\n要求：\n- 锚定触发元素，贴近屏幕边缘时自动翻转\n- 点击外部与 Esc 关闭，焦点管理正确\n- 入场动画轻微，尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
       "en": "Implement a Popover component in the current project.\n\nInspect the existing component system and design tokens first; reuse existing\nsurface, radius and shadow variables.\nUsage: help explanations and small action panels.\nRequirements:\n- Anchored to the trigger, flips near screen edges\n- Closes on outside click and Esc, with correct focus management\n- Subtle enter animation, respecting prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "点击触发入口打开浮层，检查内容与关闭方式。",
+      "en": "Open the popover and inspect its content and dismissal."
+    },
+    "checks": [
+      {
+        "zh": "浮层应靠近触发位置，避免遮住关键操作。",
+        "en": "Position it near its trigger without obscuring essential actions."
+      },
+      {
+        "zh": "若内容可交互，必须支持键盘访问。",
+        "en": "Interactive content must remain keyboard accessible."
+      }
+    ]
   }
 }

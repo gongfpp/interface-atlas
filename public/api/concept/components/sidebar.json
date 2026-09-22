@@ -191,5 +191,21 @@
       "zh": "在当前项目中实现后台侧边栏。\n\n先检查现有路由结构与导航数据来源，保持一致。\n要求：\n- 固定 240px，可折叠为 64px 图标栏（记忆折叠状态）\n- 分组导航数据驱动，当前路由项高亮（aria-current）\n- 移动端转为抽屉 + 遮罩\n- 深浅色主题一致\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
       "en": "Implement an admin sidebar in the current project.\n\nCheck the existing routing structure and navigation data source first; stay consistent.\nRequirements:\n- Fixed 240px, collapsible to a 64px icon rail (persist collapsed state)\n- Data-driven grouped nav; active route highlighted (aria-current)\n- Becomes a drawer with backdrop on mobile\n- Consistent light/dark themes\n- No new dependencies\nRun existing checks when done and list modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "切换侧栏入口，比较展开和收起后的信息密度。",
+      "en": "Switch navigation items and compare expanded and collapsed density."
+    },
+    "checks": [
+      {
+        "zh": "当前页面有明确标记，收起后保留可理解名称。",
+        "en": "Mark the current page and retain accessible names when collapsed."
+      },
+      {
+        "zh": "窄屏要避免侧栏长期占用内容宽度。",
+        "en": "Avoid permanently reserving sidebar width on narrow screens."
+      }
+    ]
   }
 }

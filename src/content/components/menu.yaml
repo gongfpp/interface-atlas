@@ -142,3 +142,12 @@ prompts:
       - Closes on outside click; consistent light/dark themes
       - No new dependencies
       Run existing checks when done and list modified files.
+playground:
+  task:
+    zh: 用鼠标与键盘选择动作，体验重命名、删除确认与撤销。
+    en: Try pointer and keyboard actions, rename, confirm deletion and undo.
+  checks:
+    - zh: 所有菜单项包括危险项都应可用键盘到达。
+      en: Every action, including destructive ones, must be keyboard reachable.
+    - zh: 点外部与 Esc 都能关闭，焦点不应丢失。
+      en: Outside click and Escape should dismiss without losing focus.

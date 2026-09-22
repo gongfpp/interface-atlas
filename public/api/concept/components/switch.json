@@ -168,5 +168,21 @@
       "zh": "在当前项目中实现开关组件。\n\n先检查现有表单组件与 accent 色变量，保持一致。\n要求：\n- 受控 checked，拨动立即生效\n- 滑块位移与轨道变色过渡尊重 prefers-reduced-motion\n- role=\"switch\" + aria-checked + 键盘空格切换\n- 深浅色主题一致\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement a switch component in the current project.\n\nInspect existing form components and the accent color variable first; stay consistent.\nRequirements:\n- Controlled checked, effect applied on toggle\n- Thumb travel and track color transitions respecting prefers-reduced-motion\n- role=\"switch\" + aria-checked + space-key toggling\n- Consistent light/dark themes\n- No new dependencies\nRun existing project checks when done and list the modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "切换开关，观察设置的即时状态。",
+      "en": "Toggle the switch and inspect the immediate setting state."
+    },
+    "checks": [
+      {
+        "zh": "开关表达立即生效的设置，不用来提交表单。",
+        "en": "Use switches for immediate settings rather than form submission."
+      },
+      {
+        "zh": "标签保持稳定，用状态说明开或关。",
+        "en": "Keep the label stable and communicate on/off state separately."
+      }
+    ]
   }
 }

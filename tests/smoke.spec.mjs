@@ -97,7 +97,7 @@ test('explore: type filter narrows the grid', async ({ page }) => {
   await page.locator('.explore-chip[data-filter="motion"]').click();
   await expect(page.locator('[data-explore-item]:not(.hidden)')).toHaveCount(20);
   await page.locator('.explore-chip[data-filter="all"]').click();
-  await expect(page.locator('[data-explore-item]:not(.hidden)')).toHaveCount(90);
+  await expect(page.locator('[data-explore-item]:not(.hidden)')).toHaveCount(99);
 });
 
 test('saved: save a concept then see it on /saved', async ({ page }) => {
@@ -116,7 +116,7 @@ test('list filter: category chip narrows the grid', async ({ page }) => {
   await page.locator('.list-chip[data-list-cat="Navigation"]').click();
   await expect(page.locator('[data-list-item]:not(.hidden)')).toHaveCount(10);
   await page.locator('.list-chip[data-list-cat="all"]').click();
-  await expect(page.locator('[data-list-item]:not(.hidden)')).toHaveCount(30);
+  await expect(page.locator('[data-list-item]:not(.hidden)')).toHaveCount(36);
 });
 
 test('prompt builder: style selection composes the prompt', async ({ page }) => {

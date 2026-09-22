@@ -183,5 +183,21 @@
       "zh": "在当前项目中实现卡片（Card）组件。\n\n先检查现有组件体系与 Design Token，优先复用现有的表面色、圆角与阴影变量。\n用途：内容流与仪表盘摘要。\n要求：\n- 容器 + 可选媒体区 + 标题/描述 + 操作区\n- 支持整卡可点（注意语义与嵌套交互）\n- hover 反馈克制，尊重 prefers-reduced-motion\n- 深浅色主题一致，不新增依赖\n完成后运行现有检查，说明修改文件。",
       "en": "Implement a Card component in the current project.\n\nInspect the existing component system and design tokens first; reuse existing\nsurface, radius and shadow variables.\nUsage: content feeds and dashboard summaries.\nRequirements:\n- Container + optional media + title/description + action row\n- Optional whole-card click (mind semantics and nested interactives)\n- Restrained hover feedback, respecting prefers-reduced-motion\n- Consistent light/dark themes, no new dependencies\nRun existing checks when done and list modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "查看卡片中的标题、内容与操作，比较不同布局。",
+      "en": "Explore the title, content and actions across card layouts."
+    },
+    "checks": [
+      {
+        "zh": "整个卡片可点时，内部操作应避免嵌套链接。",
+        "en": "Avoid nested links when the entire card is clickable."
+      },
+      {
+        "zh": "标题、辅助信息与操作需要清楚的层级。",
+        "en": "Separate title, supporting information and actions clearly."
+      }
+    ]
   }
 }

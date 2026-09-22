@@ -1,0 +1,148 @@
+{
+  "id": "combobox",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "可搜索选择框",
+    "en": "Combobox"
+  },
+  "aliases": [
+    "可以搜索的下拉框",
+    "输入筛选选项",
+    "自动补全选择",
+    "autocomplete"
+  ],
+  "category": [
+    "Form"
+  ],
+  "description": {
+    "zh": "把文本输入和候选选项组合在一起的选择组件。用户可以输入关键词缩小范围，再通过鼠标或键盘确定一个值。输入文本、当前高亮项和最终选中值是不同状态；当没有匹配项时，应解释结果并允许清空重选。它适合选项较多、用户又可能记得部分名称的场景。",
+    "en": "A text field paired with a list of suggestions. People type to narrow a set, then commit a value with pointer or keyboard. Typed text, the active suggestion and the committed selection are separate states. Provide a clear empty result and a way to clear the field when nothing matches."
+  },
+  "use_when": [
+    {
+      "zh": "从较多城市、成员或风格中选择已知选项。",
+      "en": "Choose a city, team member or style from a sizable known set."
+    },
+    {
+      "zh": "需要在输入中快速筛选并保留明确选中值。",
+      "en": "Filter while typing while preserving a clear committed value."
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "只有两三个选项，使用 radio 更直接。",
+      "en": "Use radios for only two or three choices."
+    },
+    {
+      "zh": "允许任意输入且没有候选数据，使用普通输入框。",
+      "en": "Use a plain input when there is no suggestion set."
+    }
+  ],
+  "tags": [
+    "combobox",
+    "form"
+  ],
+  "variants": [
+    {
+      "id": "editable",
+      "name": {
+        "zh": "可输入筛选",
+        "en": "Editable"
+      },
+      "note": {
+        "zh": "键入关键词过滤候选项。",
+        "en": "Type to filter suggestions."
+      }
+    },
+    {
+      "id": "select-only",
+      "name": {
+        "zh": "只选不输",
+        "en": "Select only"
+      },
+      "note": {
+        "zh": "选项固定，通过菜单选择。",
+        "en": "Choose a fixed value without free-form input."
+      }
+    }
+  ],
+  "anatomy": [
+    "字段标签 / Label",
+    "查询输入 / Input",
+    "候选列表 / Suggestions"
+  ],
+  "related": [
+    {
+      "id": "input",
+      "relation": "similar_to"
+    },
+    {
+      "id": "select",
+      "relation": "similar_to"
+    },
+    {
+      "id": "command-palette",
+      "relation": "similar_to"
+    }
+  ],
+  "demo": {
+    "component": "combobox",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "W3C WAI — Accessible interaction patterns",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "position: relative",
+      "overflow-y: auto",
+      ":focus-visible"
+    ],
+    "notes": {
+      "zh": "焦点留在输入框，用 aria-activedescendant 指向当前选项。配合 aria-expanded、aria-controls、listbox 和 option 表达结构。支持方向键、Enter、Escape，输入变化时重置高亮索引。",
+      "en": "Keep focus in the input and point aria-activedescendant at the active option. Connect aria-expanded, aria-controls, listbox and option semantics. Support arrows, Enter and Escape, and reset the active index when filtering changes."
+    }
+  },
+  "playground": {
+    "task": {
+      "zh": "输入一个关键词筛选风格，用方向键与 Enter 选择，再尝试无结果和清空。",
+      "en": "Type a keyword, choose with arrows and Enter, then try no results and clear the selection."
+    },
+    "checks": [
+      {
+        "zh": "键盘高亮必须指向仍存在的候选项。",
+        "en": "The active descendant must reference an existing option."
+      },
+      {
+        "zh": "清空后恢复全部选项，Esc 只关闭列表。",
+        "en": "Clearing restores options; Escape closes the list."
+      }
+    ]
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建可搜索选择框组件。从较多城市、成员或风格中选择已知选项。",
+      "en": "Create a Combobox component. Choose a city, team member or style from a sizable known set."
+    },
+    "design": {
+      "zh": "设计可搜索选择框，以清楚的层级、可见的状态和明确的反馈为优先。键入关键词过滤候选项。选项固定，通过菜单选择。键盘高亮必须指向仍存在的候选项。清空后恢复全部选项，Esc 只关闭列表。",
+      "en": "Design a Combobox with clear hierarchy and state feedback. Type to filter suggestions. Choose a fixed value without free-form input. The active descendant must reference an existing option. Clearing restores options; Escape closes the list."
+    },
+    "implementation": {
+      "zh": "焦点留在输入框，用 aria-activedescendant 指向当前选项。配合 aria-expanded、aria-controls、listbox 和 option 表达结构。支持方向键、Enter、Escape，输入变化时重置高亮索引。",
+      "en": "Keep focus in the input and point aria-activedescendant at the active option. Connect aria-expanded, aria-controls, listbox and option semantics. Support arrows, Enter and Escape, and reset the active index when filtering changes."
+    },
+    "agent": {
+      "zh": "先检查当前项目的组件与样式体系，复用已有能力实现可搜索选择框。\n要求：\n- 焦点留在输入框，用 aria-activedescendant 指向当前选项。配合 aria-expanded、aria-controls、listbox 和 option 表达结构。支持方向键、Enter、Escape，输入变化时重置高亮索引。\n- 键盘高亮必须指向仍存在的候选项。\n- 清空后恢复全部选项，Esc 只关闭列表。\n- 窄屏可用，深浅色一致，尊重 reduced-motion。\n- 不新增依赖。\n运行项目现有检查，并列出修改文件及验证结果。",
+      "en": "Inspect existing components and tokens before implementing Combobox.\nRequirements:\n- Keep focus in the input and point aria-activedescendant at the active option. Connect aria-expanded, aria-controls, listbox and option semantics. Support arrows, Enter and Escape, and reset the active index when filtering changes.\n- The active descendant must reference an existing option.\n- Clearing restores options; Escape closes the list.\n- Support narrow screens, both themes and reduced motion.\n- Add no dependencies.\nRun existing checks and list changed files and validation results."
+    }
+  }
+}

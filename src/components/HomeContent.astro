@@ -33,15 +33,30 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
 );
 ---
 
-<section class="pt-16 pb-12 md:pt-20">
-  <p class="mb-3 text-xs uppercase tracking-[0.2em] text-accent">{t('tagline', locale)}</p>
-  <h1 class="font-serif text-4xl font-semibold leading-tight md:text-6xl">{t('heroTitle', locale)}</h1>
-  <p class="mt-4 text-sm text-ink-3" data-testid="stats">
-    {total} {t('entriesCount', locale)} · {all.length} {locale === 'zh' ? '大类型' : 'types'} · 中 / EN
-  </p>
+<section class="home-hero">
+  <div class="min-w-0">
+    <p class="mb-5 font-mono text-[10px] tracking-[.22em] text-accent">A FIELD GUIDE TO DIGITAL INTERFACES</p>
+    <h1 class="font-serif text-4xl font-semibold leading-[1.2] tracking-tight md:text-5xl">{locale === 'zh' ? '看见好设计，' : 'Discover the design.'}<br/><span class="text-accent">{locale === 'zh' ? '也看懂好设计。' : 'Understand the details.'}</span></h1>
+    <p class="mt-5 max-w-lg text-sm leading-7 text-ink-2">{locale === 'zh' ? '从「这个叫什么」到「我也能实现」。探索视觉风格，亲手试用组件，把灵感变成下一次创作。' : 'From “what is that called?” to “I can build that.” Explore visual styles, try real components and turn inspiration into your next creation.'}</p>
+    <HeroSearch client:load locale={locale} />
+    <p class="mt-3 text-xs text-ink-3">{t('searchHint', locale)}</p>
+    <div class="mt-6 flex flex-wrap gap-2">{[['/components', '探索组件', 'Explore components'], ['/styles', '寻找风格', 'Find a style'], ['/gallery', '浏览参考图', 'Visual references']].map(([path,zh,en]) => <a href={localePath(path,locale)} class="rounded-full border border-line bg-raised px-4 py-2 text-xs transition-colors hover:border-accent hover:text-accent">{locale === 'zh' ? zh : en} ↗</a>)}</div>
+    <p class="mt-6 font-mono text-[11px] text-ink-3" data-testid="stats">{total} {t('entriesCount', locale)} · {all.length} {locale === 'zh' ? '大类型' : 'types'} · 中 / EN</p>
+  </div>
+  <div class="home-specimens" aria-label={locale === 'zh' ? '设计标本' : 'Design specimens'}>
+    <a href={localePath('/styles/organic', locale)} class="home-organic"><span class="font-mono text-[9px] tracking-widest">01 / ORGANIC</span><span class="mt-5 block font-serif text-4xl leading-tight">Closer to<br/><i>nature.</i></span><span class="home-leaf" aria-hidden="true"></span><span class="mt-6 block text-xs">{locale === 'zh' ? '有机自然 · 探索风格' : 'Organic · Explore the style'} ↗</span></a>
+    <a href={localePath('/components/tabs', locale)} class="home-mini"><span class="font-mono text-[9px] text-ink-3">02 / COMPONENTS</span><div class="my-4 flex gap-1 rounded-lg bg-code-bg p-1 text-[10px]"><span class="rounded-md bg-raised px-3 py-1.5 shadow-sm">{locale === 'zh' ? '概览' : 'Overview'}</span><span class="px-3 py-1.5 text-ink-3">{locale === 'zh' ? '动态' : 'Activity'}</span></div><span class="font-serif text-xl">{locale === 'zh' ? '细节，可以亲手体验。' : 'Details you can feel.'}</span><span class="mt-4 block text-xs text-accent">{locale === 'zh' ? '试用标签页' : 'Try tabs'} ↗</span></a>
+    <a href={localePath('/styles/art-deco',locale)} class="home-deco"><span class="font-mono text-[9px] tracking-widest">03 / ART DECO</span><span class="my-4 block font-serif text-2xl">The art of<br/>the extraordinary.</span><span class="text-[10px] tracking-widest">{locale === 'zh' ? '装饰艺术' : 'ART DECO'} ↗</span></a>
+  </div>
+</section>
 
-  <HeroSearch client:load locale={locale} />
-  <p class="mt-3 text-sm text-ink-3">{t('searchHint', locale)}</p>
+<section class="mb-12 border-y border-line py-5">
+  <div class="grid gap-4 md:grid-cols-3">{(locale === 'zh' ? [['01','发现','按风格、组件或口语描述找到灵感。'],['02','体验','切换形式与尺寸，在真实交互中理解细节。'],['03','实现','复制说明与 Prompt，接入自己的项目。']] : [['01','Discover','Find an idea by style, component or plain language.'],['02','Explore','Try forms and sizes through real interactions.'],['03','Build','Bring the guidance and prompts into your own project.']]).map(([num,title,desc]) => <div class="flex gap-4"><span class="pt-1 font-mono text-xs text-accent">{num}</span><div><p class="text-sm font-medium">{title}</p><p class="mt-1 text-xs leading-6 text-ink-3">{desc}</p></div></div>)}</div>
+</section>
+
+<section class="pb-16">
+  <div class="mb-5 flex flex-wrap items-end justify-between gap-3"><div><p class="mb-2 font-mono text-[10px] tracking-[.18em] text-accent">FRESH IN THE ATLAS</p><h2 class="font-serif text-2xl font-semibold">{locale === 'zh' ? '让界面更完整的六个组件' : 'Six more pieces of a complete interface'}</h2></div><a href={localePath('/components',locale)} class="text-sm text-accent">{t('viewAll',locale)} →</a></div>
+  <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">{all.flatMap(g=>g.concepts).filter(c=>['combobox','stepper','file-upload','rating','segmented-control','timeline'].includes(c.id)).map(c=><ConceptCard concept={c} locale={locale} />)}</div>
 </section>
 
 <!-- 风格 = 首页主视觉 -->
@@ -49,12 +64,12 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
   <div class="mb-6 flex items-baseline justify-between">
     <div>
       <h2 class="font-serif text-2xl font-semibold md:text-3xl">{locale === 'zh' ? '先看风格' : 'Start with a style'}</h2>
-      <p class="mt-1 text-sm text-ink-3">{locale === 'zh' ? '15 种视觉语言，点开就是完整页面示范' : 'Fifteen visual languages — every card is a live page demo'}</p>
+      <p class="mt-1 text-sm text-ink-3">{locale === 'zh' ? `${styleSpecs.length} 种视觉语言，点开就是完整页面示范` : `${styleSpecs.length} visual languages — every card is a live page demo`}</p>
     </div>
     <a href={localePath('/styles', locale)} class="text-sm text-accent hover:underline">{t('viewAll', locale)} →</a>
   </div>
   <div class="grid gap-5 md:grid-cols-2">
-    {styleSpecs.map((spec) => (
+    {styleSpecs.slice(0, 6).map((spec) => (
       <a
         href={localePath(`/styles/${spec.slug}`, locale)}
         class="group transition-transform duration-300 hover:-translate-y-1"

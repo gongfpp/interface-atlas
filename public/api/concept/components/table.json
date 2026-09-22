@@ -185,5 +185,21 @@
       "zh": "在当前项目中实现数据表格（Table）组件。\n\n先检查现有组件体系与 Design Token，优先复用现有的表面色与文本层级变量。\n用途：后台订单/成员列表。\n要求：\n- 列头点击排序（aria-sort），支持升序/降序切换\n- 数字列右对齐，文本列左对齐\n- 行悬停高亮，支持斑马纹变体\n- 窄屏 overflow-x 处理，深浅色主题一致\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
       "en": "Implement a data Table component in the current project.\n\nInspect the existing component system and design tokens first; reuse existing\nsurface and text hierarchy variables.\nUsage: admin order/member lists.\nRequirements:\n- Click-to-sort headers (aria-sort) with ascending/descending toggle\n- Right-aligned numeric columns, left-aligned text columns\n- Row hover highlight and a striped variant\n- overflow-x handling on narrow screens; consistent light/dark themes\n- No new dependencies\nRun existing checks when done and list modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "尝试排序、选择行与操作，比较表头和内容的对齐。",
+      "en": "Try sorting, selection and row actions; inspect header alignment."
+    },
+    "checks": [
+      {
+        "zh": "数值对齐方便比较，排序方向有明确提示。",
+        "en": "Align comparable numbers and indicate sort direction."
+      },
+      {
+        "zh": "窄屏可横向查看表格，但页面本身不应溢出。",
+        "en": "Allow local table scrolling without overflowing the page."
+      }
+    ]
   }
 }

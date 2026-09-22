@@ -145,3 +145,12 @@ prompts:
       - Support left-edge and bottom-sheet variants
       - No new dependencies
       Run existing checks when done and list modified files.
+playground:
+  task:
+    zh: 打开侧边面板，完成查看后关闭，再比较不同展开方向。
+    en: Open the side panel, inspect it and dismiss it; compare placement variants.
+  checks:
+    - zh: 关闭入口应可见，模态抽屉还应支持 Esc。
+      en: Keep dismissal visible; modal drawers should support Escape.
+    - zh: 长内容在面板内部滚动，背景状态应保留。
+      en: Scroll long content inside the panel and preserve the background state.

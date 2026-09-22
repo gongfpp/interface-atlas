@@ -1,0 +1,148 @@
+{
+  "id": "file-upload",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "文件上传区",
+    "en": "File Upload"
+  },
+  "aliases": [
+    "拖文件进去上传",
+    "拖拽上传框",
+    "选文件的地方",
+    "dropzone"
+  ],
+  "category": [
+    "Form"
+  ],
+  "description": {
+    "zh": "用于选择文件、展示校验反馈并管理待处理文件列表的表单区域。常见形式为原生文件选择按钮或可拖放区域；拖拽必须有按钮选择作为替代。选择文件不代表已经上传，界面应清楚区分待上传、处理中、成功和失败，并说明允许的格式与大小。",
+    "en": "A form region for selecting files, checking constraints and managing a pending list. It may use a native picker or a drop zone, but drag-and-drop must have a picker alternative. Selection is not upload completion: distinguish pending, processing, success and failure, and explain accepted types and size limits."
+  },
+  "use_when": [
+    {
+      "zh": "提交图片、附件、PDF 等用户文件。",
+      "en": "Select user images, attachments or PDFs."
+    },
+    {
+      "zh": "多文件任务需要逐项查看和移除。",
+      "en": "Review and remove individual files in a batch."
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "只需要一个网址时使用文本输入。",
+      "en": "Use a text field when only a URL is needed."
+    },
+    {
+      "zh": "未明确数据用途或上传目标时不要自动上传。",
+      "en": "Do not auto-upload without explaining the purpose and destination."
+    }
+  ],
+  "tags": [
+    "file-upload",
+    "form"
+  ],
+  "variants": [
+    {
+      "id": "dropzone",
+      "name": {
+        "zh": "拖放区域",
+        "en": "Drop zone"
+      },
+      "note": {
+        "zh": "同时提供拖放与文件选择入口。",
+        "en": "Support both dropping files and a file picker."
+      }
+    },
+    {
+      "id": "button",
+      "name": {
+        "zh": "按钮选择",
+        "en": "Picker button"
+      },
+      "note": {
+        "zh": "空间紧凑时使用原生文件选择。",
+        "en": "Use a native picker in a compact layout."
+      }
+    }
+  ],
+  "anatomy": [
+    "拖放区域 / Drop zone",
+    "选择入口 / File picker",
+    "文件清单 / File list"
+  ],
+  "related": [
+    {
+      "id": "input",
+      "relation": "similar_to"
+    },
+    {
+      "id": "progress-bar",
+      "relation": "similar_to"
+    },
+    {
+      "id": "alert",
+      "relation": "similar_to"
+    }
+  ],
+  "demo": {
+    "component": "file-upload",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "MDN — HTML reference",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/file"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "border-style: dashed",
+      ":focus-visible",
+      "overflow: hidden"
+    ],
+    "notes": {
+      "zh": "保留原生 input type=\"file\"，accept 只是筛选提示，还需校验类型与大小；服务端也必须验证上传内容。拖放阻止浏览器默认打开文件，错误明确到限制条件。示例不联网，只展示选择结果。",
+      "en": "Retain a native file input. The accept attribute is a picker hint; validate size and type and verify uploads on the server. Prevent the browser from navigating to dropped files. Explain constraints in errors. This demo only lists local selections."
+    }
+  },
+  "playground": {
+    "task": {
+      "zh": "选择或拖入 PNG、JPG、PDF，再尝试不支持的文件类型，并移除已选文件。",
+      "en": "Choose or drop a PNG, JPG or PDF, try an unsupported type, then remove a selected file."
+    },
+    "checks": [
+      {
+        "zh": "文件选择与拖放采用相同限制，拒绝时不丢失已选文件。",
+        "en": "Picker and drop share constraints; a rejection preserves previous files."
+      },
+      {
+        "zh": "选择成功不能显示为上传成功；这里没有上传请求。",
+        "en": "Do not label a selected file as uploaded; this demo sends no upload request."
+      }
+    ]
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建文件上传区组件。提交图片、附件、PDF 等用户文件。",
+      "en": "Create a File Upload component. Select user images, attachments or PDFs."
+    },
+    "design": {
+      "zh": "设计文件上传区，以清楚的层级、可见的状态和明确的反馈为优先。同时提供拖放与文件选择入口。空间紧凑时使用原生文件选择。文件选择与拖放采用相同限制，拒绝时不丢失已选文件。选择成功不能显示为上传成功；这里没有上传请求。",
+      "en": "Design a File Upload with clear hierarchy and state feedback. Support both dropping files and a file picker. Use a native picker in a compact layout. Picker and drop share constraints; a rejection preserves previous files. Do not label a selected file as uploaded; this demo sends no upload request."
+    },
+    "implementation": {
+      "zh": "保留原生 input type=\"file\"，accept 只是筛选提示，还需校验类型与大小；服务端也必须验证上传内容。拖放阻止浏览器默认打开文件，错误明确到限制条件。示例不联网，只展示选择结果。",
+      "en": "Retain a native file input. The accept attribute is a picker hint; validate size and type and verify uploads on the server. Prevent the browser from navigating to dropped files. Explain constraints in errors. This demo only lists local selections."
+    },
+    "agent": {
+      "zh": "先检查当前项目的组件与样式体系，复用已有能力实现文件上传区。\n要求：\n- 保留原生 input type=\"file\"，accept 只是筛选提示，还需校验类型与大小；服务端也必须验证上传内容。拖放阻止浏览器默认打开文件，错误明确到限制条件。示例不联网，只展示选择结果。\n- 文件选择与拖放采用相同限制，拒绝时不丢失已选文件。\n- 选择成功不能显示为上传成功；这里没有上传请求。\n- 窄屏可用，深浅色一致，尊重 reduced-motion。\n- 不新增依赖。\n运行项目现有检查，并列出修改文件及验证结果。",
+      "en": "Inspect existing components and tokens before implementing File Upload.\nRequirements:\n- Retain a native file input. The accept attribute is a picker hint; validate size and type and verify uploads on the server. Prevent the browser from navigating to dropped files. Explain constraints in errors. This demo only lists local selections.\n- Picker and drop share constraints; a rejection preserves previous files.\n- Do not label a selected file as uploaded; this demo sends no upload request.\n- Support narrow screens, both themes and reduced motion.\n- Add no dependencies.\nRun existing checks and list changed files and validation results."
+    }
+  }
+}

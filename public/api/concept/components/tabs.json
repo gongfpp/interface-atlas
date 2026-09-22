@@ -178,5 +178,21 @@
       "zh": "在当前项目中实现标签页组件。\n\n先检查现有组件体系是否已有 Tabs 或分段控件，优先扩展而非重写。\n要求：\n- 完整 ARIA 语义（tablist / tab / tabpanel / aria-selected）\n- 左右方向键切换（roving tabindex）\n- 激活指示器滑动动画，尊重 prefers-reduced-motion\n- 面板切换时保持各自的滚动或表单状态（keep-mounted 或缓存策略）\n- 不新增不必要的依赖\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement a Tabs component in the current project.\n\nCheck whether a tabs or segmented control already exists; extend rather than rewrite.\nRequirements:\n- Full ARIA semantics (tablist / tab / tabpanel / aria-selected)\n- Arrow-key switching (roving tabindex)\n- Sliding active indicator that respects prefers-reduced-motion\n- Preserve per-panel scroll or form state (keep-mounted or caching strategy)\n- No unnecessary dependencies\nRun existing project checks when done and list the modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "切换外观，再用 ← →、Home、End 切换内容面板。",
+      "en": "Choose an appearance, then navigate panels with arrows, Home and End."
+    },
+    "checks": [
+      {
+        "zh": "焦点与选中标签同步，面板与标签有语义关联。",
+        "en": "Synchronize focus and selection; connect tabs to their panels."
+      },
+      {
+        "zh": "切换不会改变页面路由，相关内容留在同一上下文。",
+        "en": "Switch related content within the same context rather than navigating away."
+      }
+    ]
   }
 }

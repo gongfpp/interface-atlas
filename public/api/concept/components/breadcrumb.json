@@ -179,5 +179,21 @@
       "zh": "在当前项目中实现面包屑导航。\n\n先检查现有路由结构，确认能否从路由元数据推导层级。\n要求：\n- nav + ol 语义结构，aria-label=\"面包屑\"\n- 上级可点击返回，当前页 aria-current=\"page\" 且不可点\n- 层级超过 5 层时中间折叠为可展开省略号\n- 尊重 prefers-reduced-motion（展开无动画突变即可）\n- 不新增不必要的依赖\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement breadcrumbs in the current project.\n\nCheck the existing routing structure first; derive hierarchy from route metadata if possible.\nRequirements:\n- nav + ol semantics with aria-label=\"Breadcrumb\"\n- Ancestors link back; current page is non-clickable with aria-current=\"page\"\n- Beyond 5 levels fold the middle into an expandable ellipsis\n- Respect prefers-reduced-motion (an instant expand is fine)\n- No unnecessary dependencies\nRun existing project checks when done and list the modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "点击上级层级，比较短路径与多层路径的定位能力。",
+      "en": "Inspect ancestor navigation and compare short and deep paths."
+    },
+    "checks": [
+      {
+        "zh": "最后一项表示当前位置，通常不需要再次导航。",
+        "en": "The last item indicates the current location and usually needs no link."
+      },
+      {
+        "zh": "窄屏不能让路径挤出页面。",
+        "en": "Keep long paths within the narrow viewport."
+      }
+    ]
   }
 }

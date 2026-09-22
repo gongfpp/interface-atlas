@@ -130,3 +130,12 @@ prompts:
       - Restorable from URL params or state; consistent light/dark themes
       - No new dependencies
       Run existing checks when done and list modified files.
+playground:
+  task:
+    zh: 组合筛选条件，再重置，观察结果数量如何变化。
+    en: Combine filters, reset them and watch the result count change.
+  checks:
+    - zh: 已应用条件与结果数量应一起更新。
+      en: Update applied filters and result counts together.
+    - zh: 无匹配结果时，应提供清除或放宽条件的路径。
+      en: Offer a way to clear or relax filters when nothing matches.

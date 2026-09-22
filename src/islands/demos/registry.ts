@@ -7,6 +7,7 @@ import type { DemoComponent } from '@/islands/DemoStage';
 import AccordionDemo from './accordion';
 import AccordionExpandDemo from './accordion-expand';
 import AlertDemo from './alert';
+import ArtDecoDemo from './art-deco';
 import AuroraDemo from './aurora';
 import AvatarDemo from './avatar';
 import BadgeDemo from './badge';
@@ -18,6 +19,7 @@ import CardDemo from './card';
 import CheckboxDemo from './checkbox';
 import CheckoutDemo from './checkout';
 import ClaymorphismDemo from './claymorphism';
+import ComboboxDemo from './combobox';
 import CommandPaletteDemo from './command-palette';
 import ConfettiDemo from './confetti';
 import CyberpunkDemo from './cyberpunk';
@@ -31,6 +33,7 @@ import DropdownDemo from './dropdown';
 import EditorialDemo from './editorial';
 import ElasticBounceDemo from './elastic-bounce';
 import EmptyStateDemo from './empty-state';
+import FileUploadDemo from './file-upload';
 import FilterPanelDemo from './filter-panel';
 import FlatDesignDemo from './flat-design';
 import FormValidationDemo from './form-validation';
@@ -55,9 +58,11 @@ import ModalDemo from './modal';
 import MorphingIconDemo from './morphing-icon';
 import NavbarDemo from './navbar';
 import NeobrutalismDemo from './neobrutalism';
+import NeumorphismDemo from './neumorphism';
 import NumberCounterDemo from './number-counter';
 import OnboardingTourDemo from './onboarding-tour';
 import OptimisticUiDemo from './optimistic-ui';
+import OrganicDemo from './organic';
 import PageTransitionDemo from './page-transition';
 import PaginationDemo from './pagination';
 import ParallaxDemo from './parallax';
@@ -69,11 +74,13 @@ import ProgressBarDemo from './progress-bar';
 import ProgressiveDisclosureDemo from './progressive-disclosure';
 import PullToRefreshDemo from './pull-to-refresh';
 import RadioDemo from './radio';
+import RatingDemo from './rating';
 import RetroFuturismDemo from './retro-futurism';
 import RippleDemo from './ripple';
 import ScrollRevealDemo from './scroll-reveal';
 import SearchDemo from './search';
 import SearchFilteringDemo from './search-filtering';
+import SegmentedControlDemo from './segmented-control';
 import SelectDemo from './select';
 import SettingsDemo from './settings';
 import SharedElementTransitionDemo from './shared-element-transition';
@@ -83,12 +90,14 @@ import SkeletonLoadingDemo from './skeleton-loading';
 import SkeuomorphismDemo from './skeuomorphism';
 import SliderDemo from './slider';
 import StaggerRevealDemo from './stagger-reveal';
+import StepperDemo from './stepper';
 import SwissStyleDemo from './swiss-style';
 import SwitchDemo from './switch';
 import TableDemo from './table';
 import TabsDemo from './tabs';
 import TextRevealDemo from './text-reveal';
 import TextareaDemo from './textarea';
+import TimelineDemo from './timeline';
 import ToastDemo from './toast';
 import ToastSlideInDemo from './toast-slide-in';
 import TooltipDemo from './tooltip';
@@ -99,6 +108,7 @@ export const demos: Record<string, DemoComponent> = {
   'accordion': AccordionDemo,
   'accordion-expand': AccordionExpandDemo,
   'alert': AlertDemo,
+  'art-deco': ArtDecoDemo,
   'aurora': AuroraDemo,
   'avatar': AvatarDemo,
   'badge': BadgeDemo,
@@ -110,6 +120,7 @@ export const demos: Record<string, DemoComponent> = {
   'checkbox': CheckboxDemo,
   'checkout': CheckoutDemo,
   'claymorphism': ClaymorphismDemo,
+  'combobox': ComboboxDemo,
   'command-palette': CommandPaletteDemo,
   'confetti': ConfettiDemo,
   'cyberpunk': CyberpunkDemo,
@@ -123,6 +134,7 @@ export const demos: Record<string, DemoComponent> = {
   'editorial': EditorialDemo,
   'elastic-bounce': ElasticBounceDemo,
   'empty-state': EmptyStateDemo,
+  'file-upload': FileUploadDemo,
   'filter-panel': FilterPanelDemo,
   'flat-design': FlatDesignDemo,
   'form-validation': FormValidationDemo,
@@ -147,9 +159,11 @@ export const demos: Record<string, DemoComponent> = {
   'morphing-icon': MorphingIconDemo,
   'navbar': NavbarDemo,
   'neobrutalism': NeobrutalismDemo,
+  'neumorphism': NeumorphismDemo,
   'number-counter': NumberCounterDemo,
   'onboarding-tour': OnboardingTourDemo,
   'optimistic-ui': OptimisticUiDemo,
+  'organic': OrganicDemo,
   'page-transition': PageTransitionDemo,
   'pagination': PaginationDemo,
   'parallax': ParallaxDemo,
@@ -161,11 +175,13 @@ export const demos: Record<string, DemoComponent> = {
   'progressive-disclosure': ProgressiveDisclosureDemo,
   'pull-to-refresh': PullToRefreshDemo,
   'radio': RadioDemo,
+  'rating': RatingDemo,
   'retro-futurism': RetroFuturismDemo,
   'ripple': RippleDemo,
   'scroll-reveal': ScrollRevealDemo,
   'search': SearchDemo,
   'search-filtering': SearchFilteringDemo,
+  'segmented-control': SegmentedControlDemo,
   'select': SelectDemo,
   'settings': SettingsDemo,
   'shared-element-transition': SharedElementTransitionDemo,
@@ -175,12 +191,14 @@ export const demos: Record<string, DemoComponent> = {
   'skeuomorphism': SkeuomorphismDemo,
   'slider': SliderDemo,
   'stagger-reveal': StaggerRevealDemo,
+  'stepper': StepperDemo,
   'swiss-style': SwissStyleDemo,
   'switch': SwitchDemo,
   'table': TableDemo,
   'tabs': TabsDemo,
   'text-reveal': TextRevealDemo,
   'textarea': TextareaDemo,
+  'timeline': TimelineDemo,
   'toast': ToastDemo,
   'toast-slide-in': ToastSlideInDemo,
   'tooltip': TooltipDemo,

@@ -146,3 +146,12 @@ prompts:
       - Animations respect prefers-reduced-motion
       - No new dependencies
       Run existing checks when done and list modified files.
+playground:
+  task:
+    zh: 观察进度变化，比较确定进度与不确定进度。
+    en: Compare determinate progress with an indeterminate indicator.
+  checks:
+    - zh: 已知总量才显示百分比，不伪造处理进度。
+      en: Show percentages only when the total is known.
+    - zh: 进度完成后应切换为明确的成功或失败反馈。
+      en: Follow completion with a clear success or failure message.

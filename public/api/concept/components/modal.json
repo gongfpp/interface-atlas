@@ -187,5 +187,21 @@
       "zh": "在当前项目中实现模态框（Modal）组件。\n\n先检查现有组件体系与 Design Token，优先复用现有的表面色、圆角与阴影变量。\n用途：删除确认与快速编辑。\n要求：\n- 遮罩 + 居中面板，Esc 与点击遮罩关闭\n- 打开时锁定滚动、焦点移入面板\n- 入场动画轻微，尊重 prefers-reduced-motion\n- 深浅色主题一致\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
       "en": "Implement a Modal component in the current project.\n\nInspect the existing component system and design tokens first; reuse existing\nsurface, radius and shadow variables.\nUsage: delete confirmation and quick edit.\nRequirements:\n- Backdrop + centered panel; close on Esc and backdrop click\n- Lock scroll and move focus into the panel while open\n- Subtle enter animation, respecting prefers-reduced-motion\n- Consistent light/dark themes\n- No new dependencies\nRun existing checks when done and list modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "打开对话框，尝试确认、取消与关闭。",
+      "en": "Open the dialog and explore confirmation and dismissal."
+    },
+    "checks": [
+      {
+        "zh": "模态开启期间焦点应留在对话框内。",
+        "en": "Keep focus inside while the modal is open."
+      },
+      {
+        "zh": "关闭后回到触发入口，避免丢失操作位置。",
+        "en": "Return focus to the trigger after dismissal."
+      }
+    ]
   }
 }

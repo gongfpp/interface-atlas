@@ -193,5 +193,21 @@
       "zh": "在当前项目中实现分页组件。\n\n先检查现有列表 / 表格的数据获取方式，分页状态应与路由查询参数同步。\n要求：\n- page / total 受控，URL 同步（?page=n）\n- 页码窗口折叠省略号，当前页 aria-current=\"page\"\n- 边界正确禁用上一页 / 下一页\n- 切页后列表滚动位置回到顶部\n- 键盘可达（页码为 button，跳页输入回车提交）\n- 不新增不必要的依赖\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement pagination in the current project.\n\nCheck how existing lists or tables fetch data; page state should sync with the route query (?page=n).\nRequirements:\n- Controlled page / total, URL-synced\n- Windowed numbers with ellipses, aria-current=\"page\" on the active one\n- Prev / next correctly disabled at the edges\n- Scroll the list back to the top after switching\n- Keyboard accessible (page buttons; jump input submits on Enter)\n- No unnecessary dependencies\nRun existing project checks when done and list the modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "切换页码与前后页，观察首尾边界。",
+      "en": "Try page numbers and previous/next controls, including boundaries."
+    },
+    "checks": [
+      {
+        "zh": "第一页不能继续向前，最后一页不能继续向后。",
+        "en": "Disable movement before the first or beyond the last page."
+      },
+      {
+        "zh": "页码变化时同时更新内容，不只改变按钮颜色。",
+        "en": "Changing pages must update content as well as button styling."
+      }
+    ]
   }
 }

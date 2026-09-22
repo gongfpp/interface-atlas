@@ -37,6 +37,8 @@ compare:                             # 仅当同组 ≥2 成员才写（组名�
                                      # 英文维度标签在 src/lib/i18n.ts 的 DIMENSION_LABELS 维护，新增维度需同步补 en
 ```
 
+组件条目应填写 `playground.task`（双语体验任务）与 `playground.checks`（至少两条双语使用检查点）；描述需要验证的体验，不把检查点写成尚未验证的合格声明。Demo 可接收 `locale`，新增示例应提供中英文文案。
+
 ### 1.2 aliases 是搜索语料，不是阅读文本
 
 大胆收录口语："下拉选择"、"左边菜单"、"加载灰色一闪一闪"、"苹果那种透明玻璃效果"。
@@ -104,15 +106,15 @@ export default XDemo;
   播放器契约（MotionPlayer）：慢速 = 把 --demo-speed 调大到 3（时长变长），暂停 = `.motion-paused` 类
   （对全部后代 animation-play-state: paused），重播 = key 重挂载。Demo 要么循环播放，要么自带触发按钮。
 - 不引入任何新依赖；不写测试文件。
-- 尺寸克制：演示画布高度 ≤ 320px，内容居中。
+- 尺寸克制：常规示例优先控制在 240～480px；完整表单和多变体允许自然增高，不裁切内容，内容居中。
 
-## 3. 全库 id 清单（90，引用只允许这里面）
+## 3. 全库 id 清单（99；新增时同步更新此处，并以内容校验结果为准）
 
-**components (30)**：button, input, select, textarea, checkbox, radio, switch, slider, date-picker, navbar, sidebar, breadcrumb, tabs, pagination, modal, drawer, popover, tooltip, toast, alert, card, table, progress-bar, avatar, badge, accordion, dropdown, menu, command-palette, filter-panel
+**components (36)**：button, input, select, textarea, checkbox, radio, switch, slider, date-picker, navbar, sidebar, breadcrumb, tabs, pagination, modal, drawer, popover, tooltip, toast, alert, card, table, progress-bar, avatar, badge, accordion, dropdown, menu, command-palette, filter-panel, segmented-control, stepper, combobox, file-upload, rating, timeline
 
 **patterns (15)**：infinite-scroll, progressive-disclosure, master-detail, inline-editing, optimistic-ui, empty-state, pull-to-refresh, lazy-loading, form-validation, drag-and-drop-sorting, undo-action, search-filtering, onboarding-tour, kanban-board, skeleton-loading
 
-**styles (15)**：minimalism, neobrutalism, glassmorphism, skeuomorphism, flat-design, swiss-style, bauhaus, y2k, cyberpunk, memphis, bento-grid, editorial, retro-futurism, claymorphism, aurora
+**styles (18)**：minimalism, neobrutalism, glassmorphism, skeuomorphism, flat-design, swiss-style, bauhaus, y2k, cyberpunk, memphis, bento-grid, editorial, retro-futurism, claymorphism, aurora, organic, art-deco, neumorphism
 
 **pages (10)**：dashboard, landing-page, login, pricing, settings, profile, search, checkout, documentation, signup
 

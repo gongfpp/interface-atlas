@@ -1,0 +1,195 @@
+{
+  "id": "art-deco",
+  "type": "styles",
+  "status": "published",
+  "name": {
+    "zh": "装饰艺术",
+    "en": "Art Deco"
+  },
+  "aliases": [
+    "盖茨比风格",
+    "黑金几何风",
+    "对称奢华风",
+    "deco"
+  ],
+  "category": [
+    "Style",
+    "Visual Language"
+  ],
+  "description": {
+    "zh": "以几何秩序、对称构图、放射线和阶梯轮廓构成鲜明装饰感的视觉语言。网页中的现代演绎常使用深色底、金属色细线和展示字体，强调仪式感与主次节奏。装饰应集中于标题、边框和关键视觉；正文、表单和导航仍需保留简洁清楚的阅读与操作方式。",
+    "en": "A decorative visual language built from geometry, symmetry, radiating lines and stepped forms. A contemporary web interpretation often pairs dark surfaces with metallic hairlines and display typography. Concentrate decoration in headings, frames and key visuals while keeping body text, forms and navigation straightforward."
+  },
+  "use_when": [
+    {
+      "zh": "精品酒店、文化活动、餐饮与展览页面。",
+      "en": "Boutique hospitality, cultural events, dining and exhibitions."
+    },
+    {
+      "zh": "希望表达典雅与仪式感的品牌首屏。",
+      "en": "Brand introductions that call for elegance and ceremony."
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "高频业务后台不宜使用繁复装饰。",
+      "en": "Avoid elaborate ornament in frequently used business tools."
+    },
+    {
+      "zh": "细金线不能替代文字和控件的可见边界。",
+      "en": "Fine gold lines cannot replace readable text and clear controls."
+    }
+  ],
+  "tags": [
+    "art-deco",
+    "visual-language"
+  ],
+  "variants": [
+    {
+      "id": "midnight",
+      "name": {
+        "zh": "午夜黑金",
+        "en": "Midnight gold"
+      },
+      "note": {
+        "zh": "深蓝黑与暖金组成戏剧性对比。",
+        "en": "Deep blue-black and warm gold create dramatic contrast."
+      }
+    },
+    {
+      "id": "emerald",
+      "name": {
+        "zh": "翡翠金",
+        "en": "Emerald gold"
+      },
+      "note": {
+        "zh": "深绿底色配对称几何结构。",
+        "en": "Deep green surfaces with symmetric geometry."
+      }
+    }
+  ],
+  "applicable_components": [
+    "button",
+    "card",
+    "input"
+  ],
+  "applicable_pages": [
+    "landing-page",
+    "profile"
+  ],
+  "related": [
+    {
+      "id": "bauhaus",
+      "relation": "similar_to"
+    },
+    {
+      "id": "editorial",
+      "relation": "similar_to"
+    },
+    {
+      "id": "retro-futurism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "button",
+      "relation": "affects"
+    }
+  ],
+  "demo": {
+    "component": "art-deco",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "V&A — Art Deco",
+      "url": "https://www.vam.ac.uk/collections/art-deco"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "border",
+      "letter-spacing",
+      "SVG path",
+      "grid"
+    ],
+    "notes": {
+      "zh": "用 SVG 绘制放射线和阶梯形装饰，语义内容独立于装饰层。金色只作为强调，正文需有足够对比。窄屏保持标题和表单的完整宽度，减少外围装饰。",
+      "en": "Draw radiating and stepped ornament with SVG, independent of semantic content. Use gold as an accent while keeping body contrast strong. Preserve title and form width on narrow screens by reducing surrounding ornament."
+    }
+  },
+  "style_spec": {
+    "typography": {
+      "zh": "展示性衬线标题，短标签增加字距。",
+      "en": "Display serif titles with tracked short labels."
+    },
+    "color": {
+      "zh": "午夜蓝黑、暖金；正文用柔和浅色。",
+      "en": "Midnight blue-black and warm gold; soft light body text."
+    },
+    "border": {
+      "zh": "细直线、双层边框、阶梯轮廓。",
+      "en": "Hairlines, double frames and stepped outlines."
+    },
+    "shadow": {
+      "zh": "不依赖阴影，以边线分出层次。",
+      "en": "Use borders for hierarchy instead of shadows."
+    },
+    "spacing": {
+      "zh": "轴线对齐，留白对称，移动端收敛装饰。",
+      "en": "Axial alignment and balanced space; reduce ornament on mobile."
+    }
+  },
+  "preview": {
+    "order": 17,
+    "keywords": {
+      "zh": "装饰艺术 · 材质与排版",
+      "en": "ART DECO"
+    },
+    "url": "https://art-deco.example",
+    "scene": "generic",
+    "brand": "THE AURELIA",
+    "nav": [
+      "Collection",
+      "About"
+    ],
+    "heroTitle": "An evening,",
+    "heroTitle2": "extraordinary.",
+    "heroSub": "为值得铭记的夜晚，预留一个位置。",
+    "cta": "Explore",
+    "panel": "shapes",
+    "tokens": {
+      "bg": "#151c24",
+      "fg": "#e8ce92",
+      "sub": "#c7bfae",
+      "accent": "#d7b571",
+      "accentFg": "#151c24",
+      "card": "#25312e",
+      "cardBorder": "#a88b51",
+      "radius": "0px",
+      "font": "Georgia, serif",
+      "upper": true
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "使用装饰艺术风格设计品牌展示页面。以几何秩序、对称构图、放射线和阶梯轮廓构成鲜明装饰感的视觉语言。网页中的现代演绎常使用深色底、金属色细线和展示字体，强调仪式感与主次节奏。装饰应集中于标题、边框和关键视觉；正文、表单和导航仍需保留简洁清楚的阅读与操作方式。",
+      "en": "Design a brand page in Art Deco. A decorative visual language built from geometry, symmetry, radiating lines and stepped forms. A contemporary web interpretation often pairs dark surfaces with metallic hairlines and display typography. Concentrate decoration in headings, frames and key visuals while keeping body text, forms and navigation straightforward."
+    },
+    "design": {
+      "zh": "展示性衬线标题，短标签增加字距。午夜蓝黑、暖金；正文用柔和浅色。细直线、双层边框、阶梯轮廓。不依赖阴影，以边线分出层次。轴线对齐，留白对称，移动端收敛装饰。",
+      "en": "Display serif titles with tracked short labels. Midnight blue-black and warm gold; soft light body text. Hairlines, double frames and stepped outlines. Use borders for hierarchy instead of shadows. Axial alignment and balanced space; reduce ornament on mobile."
+    },
+    "implementation": {
+      "zh": "用 SVG 绘制放射线和阶梯形装饰，语义内容独立于装饰层。金色只作为强调，正文需有足够对比。窄屏保持标题和表单的完整宽度，减少外围装饰。",
+      "en": "Draw radiating and stepped ornament with SVG, independent of semantic content. Use gold as an accent while keeping body contrast strong. Preserve title and form width on narrow screens by reducing surrounding ornament."
+    },
+    "agent": {
+      "zh": "先检查项目的布局、字体和主题变量，以装饰艺术风格完成一个可交互品牌场景。\n展示性衬线标题，短标签增加字距。午夜蓝黑、暖金；正文用柔和浅色。细直线、双层边框、阶梯轮廓。不依赖阴影，以边线分出层次。轴线对齐，留白对称，移动端收敛装饰。\n用 SVG 绘制放射线和阶梯形装饰，语义内容独立于装饰层。金色只作为强调，正文需有足够对比。窄屏保持标题和表单的完整宽度，减少外围装饰。\n按钮必须有明确反馈，窄屏可用，保留焦点和 reduced-motion 支持，不新增依赖。完成后运行检查并列出修改文件。",
+      "en": "Inspect existing layouts, typography and theme tokens, then build an interactive Art Deco brand scene.\nDisplay serif titles with tracked short labels. Midnight blue-black and warm gold; soft light body text. Hairlines, double frames and stepped outlines. Use borders for hierarchy instead of shadows. Axial alignment and balanced space; reduce ornament on mobile.\nDraw radiating and stepped ornament with SVG, independent of semantic content. Use gold as an accent while keeping body contrast strong. Preserve title and form width on narrow screens by reducing surrounding ornament.\nMake controls give clear feedback, support narrow screens, focus and reduced motion, and add no dependencies. Run checks and list modified files."
+    }
+  }
+}

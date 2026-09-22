@@ -174,5 +174,21 @@
       "zh": "在当前项目中实现复选框组件。\n\n先检查现有表单组件与颜色变量，保持一致。\n要求：\n- 受控 checked，支持单项 / 分组 / 半选\n- 对勾选中动画尊重 prefers-reduced-motion\n- 键盘可达（空格切换，label 关联）\n- 深浅色主题一致\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement a checkbox component in the current project.\n\nInspect existing form components and color variables first; stay consistent.\nRequirements:\n- Controlled checked; single / group / indeterminate support\n- Check animation respecting prefers-reduced-motion\n- Keyboard accessible (space to toggle, label association)\n- Consistent light/dark themes\n- No new dependencies\nRun existing project checks when done and list the modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "勾选与取消多个选项，观察选择结果。",
+      "en": "Select and clear several independent options."
+    },
+    "checks": [
+      {
+        "zh": "多项可同时选择，不要用它表达互斥值。",
+        "en": "Allow independent choices; do not use checkboxes for exclusive values."
+      },
+      {
+        "zh": "文字标签与方框应共享点击目标。",
+        "en": "Make the label and box share a click target."
+      }
+    ]
   }
 }

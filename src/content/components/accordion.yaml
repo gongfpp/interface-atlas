@@ -128,3 +128,12 @@ prompts:
       - Keyboard accessible: button headers + aria-expanded/aria-controls
       - Consistent light/dark themes, no new dependencies
       Run existing checks when done and list modified files.
+playground:
+  task:
+    zh: 展开与收起不同分组，比较单项和多项展开的阅读节奏。
+    en: Expand different sections and compare the reading flow.
+  checks:
+    - zh: 标题应始终可见，折叠不能让用户失去位置。
+      en: Keep headings visible when details collapse.
+    - zh: 展开状态通过 aria-expanded 表达，按钮保留焦点。
+      en: Expose expansion with aria-expanded and retain button focus.

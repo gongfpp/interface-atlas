@@ -143,3 +143,12 @@ prompts:
       - overflow-x handling on narrow screens; consistent light/dark themes
       - No new dependencies
       Run existing checks when done and list modified files.
+playground:
+  task:
+    zh: 尝试排序、选择行与操作，比较表头和内容的对齐。
+    en: Try sorting, selection and row actions; inspect header alignment.
+  checks:
+    - zh: 数值对齐方便比较，排序方向有明确提示。
+      en: Align comparable numbers and indicate sort direction.
+    - zh: 窄屏可横向查看表格，但页面本身不应溢出。
+      en: Allow local table scrolling without overflowing the page.

@@ -209,5 +209,21 @@
       "zh": "在当前项目中实现按钮组件。\n\n先检查现有的 Design Token 与按钮类样式，优先复用现有颜色与圆角变量。\n要求：\n- 主要 / 次要 / 幽灵 / 危险四种样式\n- 按压反馈与 focus-visible 键盘焦点样式\n- 加载态：spinner + disabled + 宽度不变\n- 深浅色主题一致，尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement a button component in the current project.\n\nInspect the existing design tokens and button-like styles first; reuse existing color and radius variables.\nRequirements:\n- Primary / secondary / ghost / danger variants\n- Press feedback and a focus-visible keyboard focus style\n- Loading state: spinner + disabled + unchanged width\n- Consistent light/dark themes, respect prefers-reduced-motion\n- No new dependencies\nRun existing project checks when done and list the modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "点击主要与次要操作，比较加载、禁用和不同外观。",
+      "en": "Try primary and secondary actions and compare loading, disabled and visual variants."
+    },
+    "checks": [
+      {
+        "zh": "同一区域通常只有一个最突出的主操作。",
+        "en": "Usually give one action the strongest emphasis in a region."
+      },
+      {
+        "zh": "处理中的操作应防止重复触发并保留结果反馈。",
+        "en": "Prevent duplicate activation while processing and show the result."
+      }
+    ]
   }
 }

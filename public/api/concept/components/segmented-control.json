@@ -1,0 +1,148 @@
+{
+  "id": "segmented-control",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "分段控制器",
+    "en": "Segmented Control"
+  },
+  "aliases": [
+    "分段选择",
+    "几个按钮连在一起",
+    "周月年切换",
+    "segmented buttons"
+  ],
+  "category": [
+    "Selection"
+  ],
+  "description": {
+    "zh": "将少量互斥选项并排放在同一个容器中的选择控件。选中状态通过底色、文字和边界同时表达，切换后立即更新当前视图或设置。它适合时间范围、显示方式等轻量选择；选项应简短、稳定且始终可见。与标签页不同，它通常修改同一内容的呈现方式，而不是进入另一组内容。",
+    "en": "A compact group of mutually exclusive choices with an immediately visible selection. Use it to change a time range or display mode within the same view. Keep labels short and all choices visible. Unlike tabs, it usually changes how the current content is presented rather than moving between separate panels."
+  },
+  "use_when": [
+    {
+      "zh": "在统计图中选择周、月、年。",
+      "en": "Choose a week, month or year for a chart."
+    },
+    {
+      "zh": "在同一内容中切换显示密度或排序方式。",
+      "en": "Change density or ordering in one view."
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "选项过多或名称较长时使用选择框。",
+      "en": "Use a select for many or lengthy options."
+    },
+    {
+      "zh": "允许同时选中多个值时使用复选框。",
+      "en": "Use checkboxes for multiple selections."
+    }
+  ],
+  "tags": [
+    "segmented-control",
+    "selection"
+  ],
+  "variants": [
+    {
+      "id": "filled",
+      "name": {
+        "zh": "填充分段",
+        "en": "Filled"
+      },
+      "note": {
+        "zh": "共享底板，选中项抬高，适合工具界面。",
+        "en": "A shared surface with a raised selection for utility interfaces."
+      }
+    },
+    {
+      "id": "outline",
+      "name": {
+        "zh": "描边分段",
+        "en": "Outlined"
+      },
+      "note": {
+        "zh": "外边框包裹，选中项用强调色表达。",
+        "en": "An outer border with an accented selection."
+      }
+    }
+  ],
+  "anatomy": [
+    "选项容器 / Group",
+    "选中项 / Selection",
+    "关联结果 / Result"
+  ],
+  "related": [
+    {
+      "id": "radio",
+      "relation": "similar_to"
+    },
+    {
+      "id": "tabs",
+      "relation": "similar_to"
+    },
+    {
+      "id": "switch",
+      "relation": "similar_to"
+    }
+  ],
+  "demo": {
+    "component": "segmented-control",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "W3C WAI — Accessible interaction patterns",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/radio/"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "display: flex",
+      ":checked",
+      ":focus-visible"
+    ],
+    "notes": {
+      "zh": "互斥值优先使用原生同名 radio，保留方向键操作。整段共用一个可访问名称；不要只靠颜色表示选中状态。每个选项至少提供 40px 的点击高度，结果随选择同步更新。",
+      "en": "Use native radios with the same name to retain arrow-key navigation. Give the group an accessible name and make selection visible beyond color. Aim for a 40px target height and update the result immediately."
+    }
+  },
+  "playground": {
+    "task": {
+      "zh": "用鼠标或方向键切换周、月、年，观察统计数值和图表同步变化。",
+      "en": "Switch between week, month and year with pointer or arrow keys; watch both the metric and chart update."
+    },
+    "checks": [
+      {
+        "zh": "选中项和展示结果应始终一致。",
+        "en": "The selected option must agree with the displayed result."
+      },
+      {
+        "zh": "一组只能选中一项，方向键可以连续切换。",
+        "en": "Exactly one option is selected; arrow keys move through the group."
+      }
+    ]
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建分段控制器组件。在统计图中选择周、月、年。",
+      "en": "Create a Segmented Control component. Choose a week, month or year for a chart."
+    },
+    "design": {
+      "zh": "设计分段控制器，以清楚的层级、可见的状态和明确的反馈为优先。共享底板，选中项抬高，适合工具界面。外边框包裹，选中项用强调色表达。选中项和展示结果应始终一致。一组只能选中一项，方向键可以连续切换。",
+      "en": "Design a Segmented Control with clear hierarchy and state feedback. A shared surface with a raised selection for utility interfaces. An outer border with an accented selection. The selected option must agree with the displayed result. Exactly one option is selected; arrow keys move through the group."
+    },
+    "implementation": {
+      "zh": "互斥值优先使用原生同名 radio，保留方向键操作。整段共用一个可访问名称；不要只靠颜色表示选中状态。每个选项至少提供 40px 的点击高度，结果随选择同步更新。",
+      "en": "Use native radios with the same name to retain arrow-key navigation. Give the group an accessible name and make selection visible beyond color. Aim for a 40px target height and update the result immediately."
+    },
+    "agent": {
+      "zh": "先检查当前项目的组件与样式体系，复用已有能力实现分段控制器。\n要求：\n- 互斥值优先使用原生同名 radio，保留方向键操作。整段共用一个可访问名称；不要只靠颜色表示选中状态。每个选项至少提供 40px 的点击高度，结果随选择同步更新。\n- 选中项和展示结果应始终一致。\n- 一组只能选中一项，方向键可以连续切换。\n- 窄屏可用，深浅色一致，尊重 reduced-motion。\n- 不新增依赖。\n运行项目现有检查，并列出修改文件及验证结果。",
+      "en": "Inspect existing components and tokens before implementing Segmented Control.\nRequirements:\n- Use native radios with the same name to retain arrow-key navigation. Give the group an accessible name and make selection visible beyond color. Aim for a 40px target height and update the result immediately.\n- The selected option must agree with the displayed result.\n- Exactly one option is selected; arrow keys move through the group.\n- Support narrow screens, both themes and reduced motion.\n- Add no dependencies.\nRun existing checks and list changed files and validation results."
+    }
+  }
+}

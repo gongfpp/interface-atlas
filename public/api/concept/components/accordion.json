@@ -167,5 +167,21 @@
       "zh": "在当前项目中实现手风琴（Accordion）组件。\n\n先检查现有组件体系与 Design Token，优先复用现有的表面色与圆角变量。\n用途：FAQ 与设置页分组。\n要求：\n- 支持单开（互斥）与多开两种模式\n- 高度展开动画，尊重 prefers-reduced-motion\n- 键盘可用：button 标题 + aria-expanded/aria-controls\n- 深浅色主题一致，不新增依赖\n完成后运行现有检查，说明修改文件。",
       "en": "Implement an Accordion component in the current project.\n\nInspect the existing component system and design tokens first; reuse existing\nsurface and radius variables.\nUsage: FAQs and grouped settings.\nRequirements:\n- Single-open (exclusive) and multiple-open modes\n- Height expand animation, respecting prefers-reduced-motion\n- Keyboard accessible: button headers + aria-expanded/aria-controls\n- Consistent light/dark themes, no new dependencies\nRun existing checks when done and list modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "展开与收起不同分组，比较单项和多项展开的阅读节奏。",
+      "en": "Expand different sections and compare the reading flow."
+    },
+    "checks": [
+      {
+        "zh": "标题应始终可见，折叠不能让用户失去位置。",
+        "en": "Keep headings visible when details collapse."
+      },
+      {
+        "zh": "展开状态通过 aria-expanded 表达，按钮保留焦点。",
+        "en": "Expose expansion with aria-expanded and retain button focus."
+      }
+    ]
   }
 }

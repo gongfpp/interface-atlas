@@ -189,5 +189,21 @@
       "zh": "在当前项目中实现进度条（Progress Bar）组件。\n\n先检查现有组件体系与 Design Token，优先复用现有的强调色与表面色变量。\n用途：文件上传与分步表单。\n要求：\n- 确定态绑定真实进度值，不定态用往复动画\n- role=\"progressbar\" + aria-valuenow 可达性\n- 完成态有明确的视觉变化\n- 动画尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
       "en": "Implement a Progress Bar component in the current project.\n\nInspect the existing component system and design tokens first; reuse existing\naccent and surface colour variables.\nUsage: file uploads and multi-step forms.\nRequirements:\n- Determinate mode bound to real progress; indeterminate loop animation\n- role=\"progressbar\" + aria-valuenow accessibility\n- Clear visual change on completion\n- Animations respect prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
     }
+  },
+  "playground": {
+    "task": {
+      "zh": "观察进度变化，比较确定进度与不确定进度。",
+      "en": "Compare determinate progress with an indeterminate indicator."
+    },
+    "checks": [
+      {
+        "zh": "已知总量才显示百分比，不伪造处理进度。",
+        "en": "Show percentages only when the total is known."
+      },
+      {
+        "zh": "进度完成后应切换为明确的成功或失败反馈。",
+        "en": "Follow completion with a clear success or failure message."
+      }
+    ]
   }
 }

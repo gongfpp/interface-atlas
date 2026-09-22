@@ -135,3 +135,12 @@ prompts:
       - Consistent light/dark themes and complete accessibility labels
       - No new dependencies
       Run existing project checks when done and list the modified files.
+playground:
+  task:
+    zh: 修改邮箱、切换外观，尝试清空和错误输入，再保存偏好。
+    en: Edit the email, switch appearance, clear it, try an invalid value and save.
+  checks:
+    - zh: 占位符不能代替标签；错误必须说明如何修正。
+      en: Placeholders are not labels; errors must explain the fix.
+    - zh: 清空后焦点留在输入框，方便继续输入。
+      en: Keep focus in the field after clearing.

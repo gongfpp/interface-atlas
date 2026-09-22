@@ -126,3 +126,12 @@ prompts:
       - Accessibility: meaningful alt, aria-hidden when decorative
       - No new dependencies
       Run existing checks when done and list modified files.
+playground:
+  task:
+    zh: 比较单人头像、默认头像与叠放头像组。
+    en: Compare individual, fallback and grouped avatars.
+  checks:
+    - zh: 图片缺失时仍能识别姓名或身份。
+      en: Keep identity recognizable when an image is unavailable.
+    - zh: 头像组超出可见数量时，用计数说明剩余成员。
+      en: Indicate additional group members with an overflow count.

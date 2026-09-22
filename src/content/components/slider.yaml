@@ -133,3 +133,12 @@ prompts:
       - Consistent light/dark themes
       - No new dependencies
       Run existing project checks when done and list the modified files.
+playground:
+  task:
+    zh: 拖动滑块或用键盘调整，观察数值变化。
+    en: Drag or use arrow keys and watch the value change.
+  checks:
+    - zh: 显示单位、最小值与最大值，避免模糊数值。
+      en: Expose units, minimum and maximum values.
+    - zh: 精确输入需求应有数字输入作为补充。
+      en: Pair with numeric entry when precision matters.

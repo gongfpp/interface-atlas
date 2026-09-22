@@ -126,3 +126,12 @@ prompts:
       - Never colour-only (aria-label or text)
       - No new dependencies
       Run existing checks when done and list modified files.
+playground:
+  task:
+    zh: 比较状态标记与数字角标，注意它们和主内容的关系。
+    en: Compare status labels and count badges in relation to primary content.
+  checks:
+    - zh: 状态名称短而准确，不能只显示一个色点。
+      en: Use a concise status label instead of only a colored dot.
+    - zh: 较大计数应保持角标尺寸稳定。
+      en: Large counts should not destabilize badge dimensions.

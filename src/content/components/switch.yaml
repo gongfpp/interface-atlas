@@ -128,3 +128,12 @@ prompts:
       - Consistent light/dark themes
       - No new dependencies
       Run existing project checks when done and list the modified files.
+playground:
+  task:
+    zh: 切换开关，观察设置的即时状态。
+    en: Toggle the switch and inspect the immediate setting state.
+  checks:
+    - zh: 开关表达立即生效的设置，不用来提交表单。
+      en: Use switches for immediate settings rather than form submission.
+    - zh: 标签保持稳定，用状态说明开或关。
+      en: Keep the label stable and communicate on/off state separately.

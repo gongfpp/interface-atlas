@@ -134,3 +134,12 @@ prompts:
       - Close on outside click / Escape, keyboard accessible
       - Consistent light/dark themes, no new dependencies
       Run existing project checks when done and list the modified files.
+playground:
+  task:
+    zh: 切换月份并选择日期，观察当前日期与选中日期的区别。
+    en: Move between months and compare today with the selected date.
+  checks:
+    - zh: 今天和所选日期是两种不同状态。
+      en: Today and the selected day are separate states.
+    - zh: 不可选日期需要可见说明，不能仅隐藏交互。
+      en: Explain unavailable dates instead of only disabling interaction.

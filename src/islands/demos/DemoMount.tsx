@@ -21,7 +21,7 @@ export default function DemoMount({ component, modes, locale, anatomy = [], moti
     );
   }
   if (motion) {
-    return <MotionPlayer locale={locale} render={() => <Demo mode="default" />} />;
+    return <MotionPlayer locale={locale} render={() => <Demo mode="default" locale={locale} />} />;
   }
   return (
     <DemoStage
@@ -29,7 +29,7 @@ export default function DemoMount({ component, modes, locale, anatomy = [], moti
       modes={modes}
       locale={locale}
       anatomy={anatomy}
-      render={(mode) => <Demo mode={mode} />}
+      render={(mode) => <Demo mode={mode} locale={locale} />}
     />
   );
 }

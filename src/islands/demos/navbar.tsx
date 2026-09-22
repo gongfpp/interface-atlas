@@ -1,183 +1,172 @@
-import { useState } from 'react';
-import type { DemoComponent } from '@/islands/DemoStage';
-
-const LINKS = ['产品', '文档', '定价', '博客'];
-
-function Brand() {
-  return (
-    <span data-anatomy="1" className="flex shrink-0 items-center gap-2">
-      <span className="h-5 w-5 rounded bg-accent" />
-      <span className="font-serif text-sm font-semibold">Acme</span>
-    </span>
+import { useId, useState } from "react";
+import type { DemoComponent } from "@/islands/DemoStage";
+const NavbarDemo: DemoComponent = ({ mode, locale = "zh" }) => {
+  const en = locale === "en";
+  const [active, setActive] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [joined, setJoined] = useState(false);
+  const [appearance, setAppearance] = useState(
+    mode === "variants" ? "floating" : "standard",
   );
-}
-
-function NavLinks({ active, onSelect, className = '' }: {
-  active: string;
-  onSelect: (v: string) => void;
-  className?: string;
-}) {
+  const id = useId();
+  const links = en
+    ? ["Product", "Resources", "Pricing"]
+    : ["产品", "资源", "定价"];
+  const titles = en
+    ? [
+        "Make room for better ideas.",
+        "A little inspiration goes a long way.",
+        "Start small. Grow together.",
+      ]
+    : [
+        "为更好的想法，留点空间。",
+        "好设计，从一点灵感开始。",
+        "轻松开始，一起成长。",
+      ];
+  const cards = en
+    ? ["Shared canvas", "Design library", "Team workspace"]
+    : ["共享画布", "设计素材库", "团队工作区"];
   return (
-    <nav data-anatomy="2" className={`flex items-center gap-1 ${className}`} aria-label="主导航">
-      {LINKS.map((link) => (
-        <button
-          key={link}
-          onClick={() => onSelect(link)}
-          aria-current={active === link ? 'page' : undefined}
-          className={`rounded-md px-2.5 py-1 text-xs transition-colors ${
-            active === link ? 'bg-accent-soft text-accent' : 'text-ink-2 hover:text-ink'
-          }`}
-        >
-          {link}
-        </button>
-      ))}
-    </nav>
-  );
-}
-
-function SearchAndUser() {
-  return (
-    <div className="ml-auto flex shrink-0 items-center gap-2">
-      <input
-        data-anatomy="3"
-        placeholder="搜索…"
-        aria-label="搜索"
-        className="h-7 w-24 rounded-md border border-line bg-code-bg px-2 text-xs outline-none placeholder:text-ink-3 focus:border-accent"
-      />
-      <button
-        data-anatomy="4"
-        className="flex h-7 w-7 items-center justify-center rounded-full bg-ink-3/30 text-[10px]"
-        aria-label="用户菜单"
-      >
-        R
-      </button>
-    </div>
-  );
-}
-
-/** 通用导航条：centered 时链接绝对居中 */
-function NavBar({ centered = false }: { centered?: boolean }) {
-  const [active, setActive] = useState('产品');
-  return (
-    <header className="relative flex h-11 items-center border-b border-line bg-raised px-3">
-      <Brand />
-      <NavLinks
-        active={active}
-        onSelect={setActive}
-        className={centered ? 'absolute left-1/2 -translate-x-1/2' : 'ml-2'}
-      />
-      <SearchAndUser />
-    </header>
-  );
-}
-
-/** 默认形态：含汉堡菜单的标准导航 + 内容区 */
-function StandardNav() {
-  const [active, setActive] = useState('产品');
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  return (
-    <div className="mx-auto max-w-xl overflow-hidden rounded-xl border border-line bg-paper text-sm">
-      <header className="border-b border-line bg-raised">
-        <div className="flex h-11 items-center gap-3 px-3">
+    <div className="mx-auto max-w-3xl">
+      <div className="mb-3 flex gap-2">
+        {["standard", "floating", "centered"].map((v, i) => (
           <button
-            onClick={() => setMenuOpen((o) => !o)}
-            aria-label="打开菜单"
-            aria-expanded={menuOpen}
-            className="flex h-7 w-7 items-center justify-center rounded-md border border-line text-xs text-ink-2 hover:border-accent hover:text-accent"
+            className="demo-tool"
+            aria-pressed={v === appearance}
+            key={v}
+            onClick={() => setAppearance(v)}
           >
-            ☰
+            {
+              (en
+                ? ["Standard", "Floating", "Centered"]
+                : ["标准", "悬浮", "居中"])[i]
+            }
           </button>
-          <Brand />
-          <NavLinks active={active} onSelect={setActive} className="ml-2" />
-          <SearchAndUser />
-        </div>
+        ))}
+      </div>
+      <div className="rounded-2xl border border-line bg-raised p-4">
         <div
-          className="overflow-hidden border-line transition-all"
-          style={{
-            maxHeight: menuOpen ? '10rem' : '0rem',
-            borderBottomWidth: menuOpen ? 1 : 0,
-            transitionDuration: 'calc(200ms * var(--demo-speed, 1))',
-          }}
+          className={`flex flex-wrap items-center gap-3 border-line p-3 ${appearance === "floating" ? "rounded-xl border bg-code-bg shadow-sm" : "border-b"}`}
         >
-          <nav className="flex flex-col gap-0.5 p-2" aria-label="移动端导航">
-            {LINKS.map((link) => (
+          <span data-anatomy="1" className="font-serif text-lg font-bold">
+            ◈ forma
+          </span>
+          <nav
+            data-anatomy="2"
+            aria-label={en ? "Demo navigation" : "示例导航"}
+            className={`specimen-desktop flex gap-1 ${appearance === "centered" ? "mx-auto" : ""}`}
+          >
+            {links.map((link, i) => (
               <button
                 key={link}
-                onClick={() => {
-                  setActive(link);
-                  setMenuOpen(false);
-                }}
-                aria-current={active === link ? 'page' : undefined}
-                className={`rounded-md px-2 py-1.5 text-left text-xs ${
-                  active === link ? 'bg-accent-soft text-accent' : 'text-ink-2'
-                }`}
+                aria-current={i === active ? "page" : undefined}
+                className={`demo-tool ${active === i ? "bg-accent-soft !text-accent" : ""}`}
+                onClick={() => setActive(i)}
               >
                 {link}
               </button>
             ))}
           </nav>
+          <button
+            className="demo-tool ml-auto border border-line"
+            aria-label={en ? "Toggle navigation" : "展开导航"}
+            aria-expanded={open}
+            aria-controls={id}
+            onClick={() => setOpen(!open)}
+          >
+            ☰
+          </button>
+          <button
+            data-anatomy="4"
+            className="specimen-button"
+            onClick={() => setJoined(!joined)}
+          >
+            {joined
+              ? en
+                ? "✓ Joined"
+                : "✓ 已加入"
+              : en
+                ? "Get started"
+                : "开始体验"}
+          </button>
         </div>
-      </header>
-      <div className="p-4">
-        <p className="mb-3 text-xs text-ink-3">内容区 — 当前「{active}」</p>
-        <div className="grid grid-cols-3 gap-3">
-          {[0, 1, 2].map((i) => (
-            <div key={i} className="rounded-lg border border-line bg-raised p-3">
-              <div className="mb-2 h-2 w-2/3 rounded bg-ink-3/25" />
-              <div className="h-5 w-1/2 rounded bg-ink-3/15" />
-            </div>
-          ))}
+        {open && (
+          <nav
+            id={id}
+            className="grid gap-1 border-b border-line py-3"
+            aria-label={en ? "Expanded navigation" : "展开的导航"}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                setOpen(false);
+                document
+                  .querySelector<HTMLButtonElement>(`[aria-controls="${id}"]`)
+                  ?.focus();
+              }
+            }}
+          >
+            {links.map((link, i) => (
+              <button
+                key={link}
+                className="demo-tool text-left"
+                onClick={() => {
+                  setActive(i);
+                  setOpen(false);
+                }}
+              >
+                {link}
+              </button>
+            ))}
+          </nav>
+        )}
+        <div className="p-4 pt-8">
+          <p className="specimen-eyebrow">
+            {links[active]} / FOR CREATIVE TEAMS
+          </p>
+          <h3 className="my-3 max-w-md font-serif text-3xl leading-snug">
+            {titles[active]}
+          </h3>
+          <p className="specimen-note mb-5" role="status">
+            {joined
+              ? en
+                ? "Your demo workspace is ready. Explore the resources below."
+                : "演示工作区已准备好，可以探索下方资源。"
+              : en
+                ? "One shared place to collect, create and collaborate."
+                : "在同一个地方，收集灵感、创作与协作。"}
+          </p>
+          <input
+            data-anatomy="3"
+            className="specimen-field mb-4"
+            aria-label={en ? "Search resources" : "搜索资源"}
+            placeholder={en ? "Search resources…" : "搜索下方资源…"}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <div className="flex flex-wrap gap-2">
+            {cards
+              .filter((x) => x.toLowerCase().includes(query.toLowerCase()))
+              .map((x) => (
+                <span
+                  key={x}
+                  className="rounded-lg border border-line bg-paper px-4 py-3 text-xs"
+                >
+                  ↗ {x}
+                </span>
+              ))}
+            {!cards.some((x) =>
+              x.toLowerCase().includes(query.toLowerCase()),
+            ) && (
+              <p className="specimen-note">
+                {en
+                  ? "No resources found. Try another keyword."
+                  : "没有匹配资源，请换个关键词。"}
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
-}
-
-/** 透明悬浮形态：压在首屏内容上 */
-function OverlayBar() {
-  const [active, setActive] = useState('产品');
-  return (
-    <div className="relative h-24 overflow-hidden rounded-xl bg-code-bg">
-      <div className="absolute inset-x-0 top-0 bg-gradient-to-b from-ink/20 to-transparent p-3 pt-14">
-        <p className="mb-2 h-2 w-1/3 rounded bg-ink-3/20" />
-        <p className="h-2 w-2/3 rounded bg-ink-3/15" />
-      </div>
-      <header className="absolute inset-x-0 top-0 flex h-11 items-center px-3">
-        <Brand />
-        <NavLinks active={active} onSelect={setActive} className="ml-6" />
-        <SearchAndUser />
-      </header>
-    </div>
-  );
-}
-
-function VariantFrame({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <p className="mb-1 text-[10px] uppercase tracking-wider text-ink-3">{label}</p>
-      <div className="overflow-hidden rounded-xl border border-line bg-paper">{children}</div>
-    </div>
-  );
-}
-
-const NavbarDemo: DemoComponent = ({ mode }) => {
-  if (mode === 'variants') {
-    return (
-      <div className="mx-auto flex max-w-xl flex-col gap-3 text-sm">
-        <VariantFrame label="标准 Standard">
-          <NavBar />
-        </VariantFrame>
-        <VariantFrame label="居中 Centered">
-          <NavBar centered />
-        </VariantFrame>
-        <VariantFrame label="透明悬浮 Overlay">
-          <OverlayBar />
-        </VariantFrame>
-      </div>
-    );
-  }
-  return <StandardNav />;
 };
-
 export default NavbarDemo;

@@ -27,6 +27,13 @@ const switchTo = localePath(stripBase(Astro.url.pathname).replace(/^\/en(?=\/|$)
       </a>
     </nav>
     <div class="ml-auto flex items-center gap-3">
+      <details class="relative md:hidden">
+        <summary aria-label={locale === 'zh' ? '浏览分类' : 'Browse categories'} class="list-none rounded-full border border-line px-2.5 py-1.5 text-sm">☰</summary>
+        <nav class="absolute right-0 top-11 z-50 grid w-48 gap-1 rounded-xl border border-line bg-raised p-2 shadow-lg" aria-label={locale === 'zh' ? '移动端导航' : 'Mobile navigation'}>
+          {types.map(type => <a class="rounded-lg px-3 py-2.5 text-sm hover:bg-accent-soft hover:text-accent" href={localePath(`/${type}`, locale)}>{TYPE_LABELS[type][locale]}</a>)}
+          <a class="rounded-lg px-3 py-2.5 text-sm hover:bg-accent-soft hover:text-accent" href={localePath('/gallery', locale)}>{locale === 'zh' ? '灵感图库' : 'Gallery'}</a>
+        </nav>
+      </details>
       <SearchButton locale={locale} />
       <a href={switchTo} class="text-sm text-ink-2 hover:text-accent" lang={otherLocale}>
         {otherLocale === 'en' ? 'EN' : '中文'}
