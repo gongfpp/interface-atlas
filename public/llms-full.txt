@@ -5,7 +5,7 @@
 ## a11y/alt-text — Alt Text / 替代文本
 
 - Type: a11y · Aliases: 替代文本 · 图片描述 · 图说 · alt 文本 · 图片替代文本 · alt text
-- Page: /a11y/alt-text · JSON: alt,aria-label,role="presentation" · MD: /a11y/alt-text.md
+- Page: /a11y/alt-text · JSON: /api/concept/a11y/alt-text.json · MD: /a11y/alt-text.md
 
 **What / 这是什么:** 给图片写一句文本替代：信息图传达同样的信息，装饰图写空 alt 让读屏跳过，功能图描述动作而非画面。读屏用户、图片加载失败的用户和搜索引擎都靠这句话理解图在说什么。
 
@@ -32,7 +32,7 @@
 ## a11y/aria-live — ARIA Live Region / 实时区域
 
 - Type: a11y · Aliases: 实时区域 · 实时播报 · 播报区域 · 读屏播报 · aria-live · live region
-- Page: /a11y/aria-live · JSON: aria-live,role="status",role="alert",aria-atomic · MD: /a11y/aria-live.md
+- Page: /a11y/aria-live · JSON: /api/concept/a11y/aria-live.json · MD: /a11y/aria-live.md
 
 **What / 这是什么:** 在页面上预留一块播报区，内容动态更新时把消息念给屏幕阅读器，而不移动焦点。保存成功、筛选结果数、异步校验这类「看得见变了但焦点没动」的信息，读屏用户不靠它就会漏掉。
 
@@ -59,7 +59,7 @@
 ## a11y/focus-ring — Focus Ring / 焦点环
 
 - Type: a11y · Aliases: 焦点环 · 键盘焦点框 · 键盘框 · 蓝框 · 聚焦框 · focus outline · focus ring
-- Page: /a11y/focus-ring · JSON: :focus-visible,outline,outline-offset,focus() · MD: /a11y/focus-ring.md
+- Page: /a11y/focus-ring · JSON: /api/concept/a11y/focus-ring.json · MD: /a11y/focus-ring.md
 
 **What / 这是什么:** 用可见轮廓标记当前键盘焦点位置，让用户知道下一个按键会落在哪里。鼠标点击往往不需要它，但键盘与辅助技术用户必须始终看见焦点在哪，否则只能盲操作。通常用 :focus-visible 控制——键盘聚焦才显示，鼠标点击不打扰。
 
@@ -86,7 +86,7 @@
 ## a11y/keyboard-navigation — Keyboard Navigation / 键盘导航
 
 - Type: a11y · Aliases: 键盘导航 · 键盘操作 · 键盘可达 · tab 顺序 · 不用鼠标操作 · keyboard nav
-- Page: /a11y/keyboard-navigation · JSON: tabindex,keydown,:focus-visible · MD: /a11y/keyboard-navigation.md
+- Page: /a11y/keyboard-navigation · JSON: /api/concept/a11y/keyboard-navigation.json · MD: /a11y/keyboard-navigation.md
 
 **What / 这是什么:** 让所有功能都能只用键盘完成：Tab/Shift+Tab 按合理顺序移动焦点，复合组件内用方向键漫游并配 roving tabindex，Escape 关闭浮层并归还焦点。这是焦点环之外的一整套焦点秩序，规则写在 ARIA APG 里。
 
@@ -113,7 +113,7 @@
 ## a11y/reduced-motion — Reduced Motion / 减弱动效
 
 - Type: a11y · Aliases: 减弱动效 · 减弱动态效果 · 减少动画 · 动效降级 · 关掉动画 · reduced motion
-- Page: /a11y/reduced-motion · JSON: prefers-reduced-motion,matchMedia,animation: none · MD: /a11y/reduced-motion.md
+- Page: /a11y/reduced-motion · JSON: /api/concept/a11y/reduced-motion.json · MD: /a11y/reduced-motion.md
 
 **What / 这是什么:** 尊重系统「减弱动态效果」偏好，把大幅位移、缩放、视差动画降级为淡入甚至直接呈现。前庭敏感的用户会被大幅动效诱发眩晕恶心，这不是审美偏好而是健康风险；WCAG 2.3.3 要求非必要动画可被关闭。
 
@@ -140,7 +140,7 @@
 ## a11y/skip-link — Skip Link / 跳过链接
 
 - Type: a11y · Aliases: 跳过导航 · 跳到主内容 · 跳过链接 · 一键跳正文 · skip nav · skip navigation
-- Page: /a11y/skip-link · JSON: <a href="#main">,tabindex,landmark roles · MD: /a11y/skip-link.md
+- Page: /a11y/skip-link · JSON: /api/concept/a11y/skip-link.json · MD: /a11y/skip-link.md
 
 **What / 这是什么:** 页面第一个可聚焦元素，通常是视觉上隐藏的链接；键盘用户按下第一个 Tab 就能看见它，激活后直接跳到主内容区，不必逐个穿过顶部导航链接。长导航站点的必备逃生口，WCAG 称之为「跳过区块」。
 
@@ -167,7 +167,7 @@
 ## components/accordion — Accordion / 手风琴
 
 - Type: components · Aliases: 手风琴 · 折叠面板 · 折叠菜单 · 展开收起 · 可折叠区块 · FAQ 折叠列表 · 点标题展开的那种列表
-- Page: /components/accordion · JSON: <details>,<summary> · MD: /components/accordion.md
+- Page: /components/accordion · JSON: /api/concept/components/accordion.json · MD: /components/accordion.md
 
 **What / 这是什么:** 由多个可折叠区块组成的垂直列表：点击标题展开内容、再点收起，可互斥（同时只开一项） 也可多开。用于在有限空间里收纳成组内容，让用户按需展开。
 
@@ -195,7 +195,7 @@
 ## components/alert — Alert / 警告提示
 
 - Type: components · Aliases: 警告条 · 提示横幅 · 警告框 · 通知横幅 · 错误提示条 · 页面顶部提示 · 表单提交后的错误提示
-- Page: /components/alert · JSON: role="alert",aria-live="assertive" · MD: /components/alert.md
+- Page: /components/alert · JSON: /api/concept/components/alert.json · MD: /components/alert.md
 
 **What / 这是什么:** 嵌在页面流内、带状态色底色的横条，用于必须被看见的消息：错误、警告、重要通知。 它占据文档流而不是覆盖内容，通常常驻直到问题被处理或用户手动关闭。
 
@@ -224,7 +224,7 @@
 ## components/avatar — Avatar / 头像
 
 - Type: components · Aliases: 头像 · 用户头像 · 圆形头像 · 人员头像 · 账号图片 · 首字母头像 · 名字前面的小圆图
-- Page: /components/avatar · JSON: <img> · MD: /components/avatar.md
+- Page: /components/avatar · JSON: /api/concept/components/avatar.json · MD: /components/avatar.md
 
 **What / 这是什么:** 以圆形或圆角方形小图代表用户或组织：照片、姓名首字母或图标占位。 常与姓名一起出现在导航、评论与成员列表，可附在线状态点或多人叠加。
 
@@ -253,7 +253,7 @@
 ## components/badge — Badge / 徽标
 
 - Type: components · Aliases: 徽章 · 小红点 · 角标 · 状态标签 · 计数气泡 · 数字角标 · 图标右上角的小圆点
-- Page: /components/badge · JSON: <span> · MD: /components/badge.md
+- Page: /components/badge · JSON: /api/concept/components/badge.json · MD: /components/badge.md
 
 **What / 这是什么:** 附着在元素角落或行内的小型状态标记：圆点、数字计数或短文字标签。用于表达未读数量、 状态（新、已废弃）或分类；不参与交互，视觉上从属于宿主元素。
 
@@ -282,7 +282,7 @@
 ## components/bottom-sheet — Bottom Sheet / 底部抽屉
 
 - Type: components · Aliases: 底部抽屉 · 底部面板 · 上拉面板 · 手机底部弹出来的面板 · 底部弹层 · bottom sheet · action sheet
-- Page: /components/bottom-sheet · JSON: <dialog>,role="dialog",aria-modal="true" · MD: /components/bottom-sheet.md
+- Page: /components/bottom-sheet · JSON: /api/concept/components/bottom-sheet.json · MD: /components/bottom-sheet.md
 
 **What / 这是什么:** 从屏幕底边升起、覆盖在当前页面之上的面板，顶部有抓手可供拖动或下滑关闭。打断程度介于模态框与 气泡卡片之间：有遮罩但拇指可及、可下滑快速收起。是移动端承接筛选、分享、短表单的默认容器， 桌面端应改用侧边抽屉或居中对话框。
 
@@ -306,7 +306,7 @@
 ## components/breadcrumb — Breadcrumb / 面包屑
 
 - Type: components · Aliases: 面包屑导航 · 路径导航 · 层级路径 · 位置导航 · 首页大于分类那种路径 · 网站路径条 · trail
-- Page: /components/breadcrumb · JSON: <nav aria-label="Breadcrumb">,<ol>,<li> · MD: /components/breadcrumb.md
+- Page: /components/breadcrumb · JSON: /api/concept/components/breadcrumb.json · MD: /components/breadcrumb.md
 
 **What / 这是什么:** 用"首页 / 分类 / 子类 / 当前页"的层级路径表示用户在信息架构中所处的位置： 每个上级都可点击跳回，末项为当前页不可点。这是防止用户迷路成本最低的手段， 命名源自童话中沿途撒下用来标记归路的面包屑。常置于页面标题上方。
 
@@ -334,7 +334,7 @@
 ## components/button — Button / 按钮
 
 - Type: components · Aliases: 按钮 · 按键 · 点击按钮 · 主按钮 · 提交按钮 · CTA 按钮
-- Page: /components/button · JSON: <button>,type,role="button" · MD: /components/button.md
+- Page: /components/button · JSON: /api/concept/components/button.json · MD: /components/button.md
 
 **What / 这是什么:** 用可点击的色块触发一个明确的动作，是界面中最基础的操作入口。 通过填充、描边、幽灵等视觉层级区分主次操作，按压时有即时的下沉反馈， 繁忙时进入加载态并禁用点击，防止重复提交。
 
@@ -362,7 +362,7 @@
 ## components/card — Card / 卡片
 
 - Type: components · Aliases: 卡片 · 卡片容器 · 信息卡 · 内容卡片 · 卡片式布局 · 商品卡片 · 一块一块的内容板
-- Page: /components/card · JSON: <article> · MD: /components/card.md
+- Page: /components/card · JSON: /api/concept/components/card.json · MD: /components/card.md
 
 **What / 这是什么:** 用圆角边框或底色围出一块自包含内容的矩形容器，一块卡片聚合一组相关信息： 封面图、标题、摘要与操作。是内容流、仪表盘与电商列表的通用显示单元。
 
@@ -390,7 +390,7 @@
 ## components/carousel — Carousel / 轮播
 
 - Type: components · Aliases: 轮播 · 图片轮播 · 轮播图 · banner 切换 · 跑马灯切换 · carousel · slider gallery
-- Page: /components/carousel · JSON: aria-roledescription="carousel",scroll-snap-type,aria-live · MD: /components/carousel.md
+- Page: /components/carousel · JSON: /api/concept/components/carousel.json · MD: /components/carousel.md
 
 **What / 这是什么:** 用水平滑动的轨道展示一组内容，同一时刻只突出一项，其余滑出视野或露出边缘作暗示。通过分页点、 箭头或自动播放切换，常用于首屏 Banner、图片画廊与推荐位。适合「一组同类内容、逐个浏览」的场景， 不适合需要并排对照的信息。
 
@@ -413,7 +413,7 @@
 ## components/checkbox — Checkbox / 复选框
 
 - Type: components · Aliases: 复选框 · 勾选框 · 多选框 · 打勾框 · 勾选项 · 勾选框选择
-- Page: /components/checkbox · JSON: <input type="checkbox">,role="checkbox" · MD: /components/checkbox.md
+- Page: /components/checkbox · JSON: /api/concept/components/checkbox.json · MD: /components/checkbox.md
 
 **What / 这是什么:** 用方形勾选框表示一组可多选的独立开关项，点击在选中与未选中间切换。 父级项可呈现半选态（部分子项选中），常用于批量选择、筛选与同意条款。
 
@@ -441,7 +441,7 @@
 ## components/color-picker — Color Picker / 色彩选择器
 
 - Type: components · Aliases: 取色器 · 选色器 · 颜色选择 · 挑颜色的控件 · color picker
-- Page: /components/color-picker · JSON: input[type="color"],color-mix(),oklch() · MD: /components/color-picker.md
+- Page: /components/color-picker · JSON: /api/concept/components/color-picker.json · MD: /components/color-picker.md
 
 **What / 这是什么:** 用于选定颜色值的控件，形式包括色板网格、渐变取色区加色相滑杆，或直接调用系统取色器。输出十六进制、RGB 或 OKLCH 等颜色值，常与文本输入、透明度滑杆组合；设计工具与主题配置中最常见。
 
@@ -495,7 +495,7 @@
 ## components/command-palette — Command Palette / 命令面板
 
 - Type: components · Aliases: 命令搜索框 · 快捷搜索框 · 快速操作面板 · spotlight 搜索 · ctrl+k 搜索 · Mac 那种快捷搜索框 · cmd+k
-- Page: /components/command-palette · JSON: <dialog>,role="combobox" · MD: /components/command-palette.md
+- Page: /components/command-palette · JSON: /api/concept/components/command-palette.json · MD: /components/command-palette.md
 
 **What / 这是什么:** 用快捷键（⌘K / Ctrl+K）唤出的浮动搜索面板：输入即筛选命令、页面或内容， 键盘上下选择、回车执行。macOS Spotlight 把它带入大众视野， 现在是效率工具和开发者产品的标配。
 
@@ -524,7 +524,7 @@
 ## components/date-picker — Date Picker / 日期选择器
 
 - Type: components · Aliases: 日期选择器 · 日历选择 · 选日期控件 · 日历弹层 · 日期输入框 · 时间选择
-- Page: /components/date-picker · JSON: <input type="date">,aria-haspopup,role="dialog" · MD: /components/date-picker.md
+- Page: /components/date-picker · JSON: /api/concept/components/date-picker.json · MD: /components/date-picker.md
 
 **What / 这是什么:** 用日历网格选择日期的复合控件，通常由输入框触发弹出，也常内嵌展示。 头部提供年月切换，网格按周排列日期并高亮今天与选中日； 范围形态用两个日期夹出区间。避免手输日期的格式错误。
 
@@ -552,7 +552,7 @@
 ## components/drawer — Drawer / 抽屉
 
 - Type: components · Aliases: 抽屉 · 侧滑面板 · 滑出面板 · 侧边抽屉 · 侧拉页面 · 汉堡菜单点开的面板 · 手机上滑出来的面板
-- Page: /components/drawer · JSON: <dialog>,role="dialog",aria-modal="true" · MD: /components/drawer.md
+- Page: /components/drawer · JSON: /api/concept/components/drawer.json · MD: /components/drawer.md
 
 **What / 这是什么:** 从屏幕边缘（多为右侧或左侧）滑入、通常带遮罩的面板。比模态框轻：能承载较长内容又不离开当前页面， 关闭后原样回到上下文；移动端常以左滑导航或底部抽屉的形式出现。
 
@@ -581,7 +581,7 @@
 ## components/dropdown — Dropdown / 下拉菜单
 
 - Type: components · Aliases: 下拉菜单 · 下拉选项 · 更多菜单 · 操作菜单 · 溢出菜单 · 三个点菜单
-- Page: /components/dropdown · JSON: role="menu",role="menuitem",aria-haspopup · MD: /components/dropdown.md
+- Page: /components/dropdown · JSON: /api/concept/components/dropdown.json · MD: /components/dropdown.md
 
 **What / 这是什么:** 由触发按钮就近弹出的一组操作菜单，用于收纳次要操作，保持界面整洁。 典型形态是「···」更多按钮；面板带阴影浮于内容之上，点击菜单项即执行并关闭， 危险操作以红色项与分隔线隔离。
 
@@ -609,7 +609,7 @@
 ## components/fab — Floating Action Button / 悬浮按钮
 
 - Type: components · Aliases: 悬浮按钮 · 浮动按钮 · 悬浮球 · 右下角那个圆按钮 · FAB · floating action button
-- Page: /components/fab · JSON: <button>,position,box-shadow,aria-expanded · MD: /components/fab.md
+- Page: /components/fab · JSON: /api/concept/components/fab.json · MD: /components/fab.md
 
 **What / 这是什么:** 锚在视口角落、悬浮于内容之上的圆形按钮，承载当前页面唯一的主操作（新建、撰写、扫码）。 用阴影和位置宣告「我在所有内容之上」，比行内主按钮更醒目，但一屏只应有一个。点击后可展开 为带标签的扩展形态，或扇出一组快捷动作。
 
@@ -659,7 +659,7 @@
 ## components/filter-panel — Filter Panel / 筛选面板
 
 - Type: components · Aliases: 筛选面板 · 过滤器 · 筛选器 · 过滤面板 · 条件筛选 · 侧边筛选 · 左边勾选条件的那种面板
-- Page: /components/filter-panel · JSON: <fieldset>,<form> · MD: /components/filter-panel.md
+- Page: /components/filter-panel · JSON: /api/concept/components/filter-panel.json · MD: /components/filter-panel.md
 
 **What / 这是什么:** 集中承载筛选条件的面板，常驻列表侧边或以抽屉、浮层唤起：复选组、单选、滑杆组合出当前查询。 与列表实时联动刷新结果数，并支持已选条件回显与一键清除。
 
@@ -688,7 +688,7 @@
 ## components/input — Input / 输入框
 
 - Type: components · Aliases: 输入框 · 文本输入框 · 文本框 · 输入栏 · 表单输入框 · 单行输入框
-- Page: /components/input · JSON: <input>,type,role="textbox" · MD: /components/input.md
+- Page: /components/input · JSON: /api/concept/components/input.json · MD: /components/input.md
 
 **What / 这是什么:** 用一条带边框的水平输入区收集单行文本，是表单的基本单元。 占位符提示期望格式，聚焦时高亮边框引导视线，校验失败时切换错误色 并附提示文案；可内嵌前后缀图标与清除按钮，受控管理输入值。
 
@@ -716,7 +716,7 @@
 ## components/lightbox — Lightbox / 灯箱
 
 - Type: components · Aliases: 图片灯箱 · 大图预览 · 图片放大预览 · 看大图 · lightbox
-- Page: /components/lightbox · JSON: <dialog>,role="dialog",aria-modal="true" · MD: /components/lightbox.md
+- Page: /components/lightbox · JSON: /api/concept/components/lightbox.json · MD: /components/lightbox.md
 
 **What / 这是什么:** 以压暗遮罩放大展示图片或视频的媒体浮层，原页面暂时失去交互。内容居中呈现，常配左右切换、缩放与关闭；它是媒体专用的模态框，与通用对话框的区别在于主体是可观赏的视觉内容而非表单或文案。
 
@@ -744,7 +744,7 @@
 ## components/menu — Menu / 菜单
 
 - Type: components · Aliases: 菜单 · 下拉菜单 · 右键菜单 · 上下文菜单 · 操作菜单 · 更多操作 · 三个点点出来的菜单
-- Page: /components/menu · JSON: role="menu",role="menuitem" · MD: /components/menu.md
+- Page: /components/menu · JSON: /api/concept/components/menu.json · MD: /components/menu.md
 
 **What / 这是什么:** 点击或右键触发的临时操作列表浮层：平铺或分组的命令项，选中即执行并关闭。 用于收纳非高频操作（更多、设置、删除），通常以「⋯」按钮或右键唤起。
 
@@ -773,7 +773,7 @@
 ## components/modal — Modal / 模态框
 
 - Type: components · Aliases: 弹窗 · 对话框 · 模态弹窗 · 确认弹窗 · 弹出对话框 · 遮罩弹窗 · 网页中间弹出来的窗口
-- Page: /components/modal · JSON: <dialog>,role="dialog",aria-modal="true" · MD: /components/modal.md
+- Page: /components/modal · JSON: /api/concept/components/modal.json · MD: /components/modal.md
 
 **What / 这是什么:** 覆盖在页面之上、带半透明遮罩的对话框，打断用户当前流程，要求先完成弹窗内的任务或决策。 遮罩阻断与底层页面的交互，焦点被暂时困在弹窗内，是容器类浮层中打断程度最高的一种。
 
@@ -802,7 +802,7 @@
 ## components/multi-select — Multi-select / 多选框组
 
 - Type: components · Aliases: 多选 · 多选下拉 · 可多选的选择框 · 多选框 · multi select
-- Page: /components/multi-select · JSON: role="listbox",aria-multiselectable,aria-selected · MD: /components/multi-select.md
+- Page: /components/multi-select · JSON: /api/concept/components/multi-select.json · MD: /components/multi-select.md
 
 **What / 这是什么:** 允许从一组选项中挑选多个值，并以标签形式回显已选集合的选择控件。与单选下拉不同，展开面板在选择后保持打开，已选项可逐个移除；适合标签、权限、筛选条件等需要累积多个值的表单场景。选项很多时应配合搜索。
 
@@ -825,7 +825,7 @@
 ## components/navbar — Navbar / 顶部导航栏
 
 - Type: components · Aliases: 导航栏 · 顶部菜单 · 页面最上面那一条 · header 导航 · 页头导航 · 汉堡菜单那条栏 · top bar
-- Page: /components/navbar · JSON: <nav>,role="navigation" · MD: /components/navbar.md
+- Page: /components/navbar · JSON: /api/concept/components/navbar.json · MD: /components/navbar.md
 
 **What / 这是什么:** 固定在页面顶部的水平导航条：左侧品牌标识，中间主导航链接，右侧搜索、 入口按钮与用户头像。它是网站的"门面导航"，把最重要的三到七个入口压进 一条横向空间，移动端折叠为汉堡菜单。常配合 position: sticky 在滚动时保持可见。
 
@@ -853,7 +853,7 @@
 ## components/pagination — Pagination / 分页
 
 - Type: components · Aliases: 分页器 · 翻页 · 页码 · 上一页下一页 · 页码条 · pager
-- Page: /components/pagination · JSON: <nav aria-label="Pagination">,role="navigation" · MD: /components/pagination.md
+- Page: /components/pagination · JSON: /api/concept/components/pagination.json · MD: /components/pagination.md
 
 **What / 这是什么:** 用带页码的控件把长结果集切分为离散页面：用户显式点击页码或上一页 / 下一页 按钮取回对应片段，当前位置永远可知、可分享、可回退。与无限滚动的"失控 漂移"相对，它是数据浏览中最可控的方式，也是搜索结果与后台表格的默认选择。
 
@@ -882,7 +882,7 @@
 ## components/popover — Popover / 气泡卡片
 
 - Type: components · Aliases: 气泡卡片 · 弹出卡片 · 浮层 · 气泡框 · 弹出面板 · 点击弹出的小卡片 · 帮助气泡
-- Page: /components/popover · JSON: popover,[popover],role="dialog" · MD: /components/popover.md
+- Page: /components/popover · JSON: /api/concept/components/popover.json · MD: /components/popover.md
 
 **What / 这是什么:** 点击触发元素后在其旁边弹出的非模态浮层，可承载文字说明、小型表单、日期选择等中等复杂内容。 无遮罩、不阻断页面其余部分，点击外部区域或 Esc 即关闭。
 
@@ -910,7 +910,7 @@
 ## components/progress-bar — Progress Bar / 进度条
 
 - Type: components · Aliases: 进度条 · 加载进度 · 进度指示条 · 百分比进度条 · 上传进度条 · linear progress · 显示百分之多少的横条
-- Page: /components/progress-bar · JSON: <progress>,role="progressbar",aria-valuenow · MD: /components/progress-bar.md
+- Page: /components/progress-bar · JSON: /api/concept/components/progress-bar.json · MD: /components/progress-bar.md
 
 **What / 这是什么:** 用横条从左到右填充来表示任务完成比例的加载指示，常配百分比或步骤文字。 适用于时长可预测的确定性任务：上传、下载、安装与分步表单。
 
@@ -939,7 +939,7 @@
 ## components/radio — Radio / 单选框
 
 - Type: components · Aliases: 单选框 · 单选按钮 · radio 按钮 · 圆形单选 · 单选项 · 单选选择器
-- Page: /components/radio · JSON: <input type="radio">,role="radio",role="radiogroup" · MD: /components/radio.md
+- Page: /components/radio · JSON: /api/concept/components/radio.json · MD: /components/radio.md
 
 **What / 这是什么:** 用一组圆形按钮表示互斥选项，同组内只能选中一个且不可取消。 与复选框的核心区别是多选与单选；选中圆点用填充动画反馈， 选项少（2～5 个）时平铺展示比下拉选择效率更高。
 
@@ -1019,7 +1019,7 @@
 ## components/select — Select / 下拉选择
 
 - Type: components · Aliases: 下拉选择 · 下拉框 · 选择器 · 下拉列表 · 下拉选项框 · select 下拉
-- Page: /components/select · JSON: <select>,role="listbox",role="option" · MD: /components/select.md
+- Page: /components/select · JSON: /api/concept/components/select.json · MD: /components/select.md
 
 **What / 这是什么:** 用收起的单行控件承载一组互斥选项，点击展开面板后选择其一，选中值常驻显示在触发器上。 比 radio 更省空间，适合选项多于 5 个的场景；面板支持滚动、分组或搜索，选择即关闭。
 
@@ -1047,7 +1047,7 @@
 ## components/sidebar — Sidebar / 侧边栏
 
 - Type: components · Aliases: 左侧菜单 · 侧栏 · 左边菜单 · 导航侧栏 · 固定菜单 · 网页左边固定菜单 · 侧边导航
-- Page: /components/sidebar · JSON: <aside>,<nav> · MD: /components/sidebar.md
+- Page: /components/sidebar · JSON: /api/concept/components/sidebar.json · MD: /components/sidebar.md
 
 **What / 这是什么:** 固定在页面一侧（通常左侧）的垂直导航区，承载产品的主要层级入口。 后台管理系统的事实标准：顶部放品牌与全局搜索，侧边栏放模块树，内容区专注任务。
 
@@ -1075,7 +1075,7 @@
 ## components/slider — Slider / 滑块
 
 - Type: components · Aliases: 滑块 · 滑动条 · 拖动条 · 调节杆 · 滑杆 · range 滑块
-- Page: /components/slider · JSON: <input type="range">,role="slider" · MD: /components/slider.md
+- Page: /components/slider · JSON: /api/concept/components/slider.json · MD: /components/slider.md
 
 **What / 这是什么:** 用轨道上可拖动的手柄在连续区间内取值，拖动时数值与已填充轨道实时跟随。 适合调音量、亮度、价格区间等量级选择，比输入框更直观； 可带刻度标记、步进与双端区间形态。
 
@@ -1103,7 +1103,7 @@
 ## components/split-button — Split Button / 分体按钮
 
 - Type: components · Aliases: 分裂按钮 · 组合按钮 · 带下拉的按钮 · 主副按钮 · split button
-- Page: /components/split-button · JSON: <button>,aria-haspopup="menu",aria-expanded · MD: /components/split-button.md
+- Page: /components/split-button · JSON: /api/concept/components/split-button.json · MD: /components/split-button.md
 
 **What / 这是什么:** 由主操作区与附属箭头组成的复合按钮：主区直接执行默认动作，箭头展开同组的备选菜单。比「按钮加独立下拉」少一次定位，比整键打开菜单的下拉按钮更快命中高频操作，常用于保存、发送、新建等带变体的动作。
 
@@ -1157,7 +1157,7 @@
 ## components/switch — Switch / 开关
 
 - Type: components · Aliases: 开关 · 拨动开关 · 切换开关 · toggle 开关 · 滑动开关 · 开关键
-- Page: /components/switch · JSON: <input type="checkbox" role="switch"> · MD: /components/switch.md
+- Page: /components/switch · JSON: /api/concept/components/switch.json · MD: /components/switch.md
 
 **What / 这是什么:** 用滑轨上的圆形滑块表示二元设置的开与关，拨动立即生效，无需确认。 滑块位移与轨道变色同时反馈状态，右侧或内嵌「开 / 关」文字辅助辨认， 是设置页的标准控件。
 
@@ -1185,7 +1185,7 @@
 ## components/table — Table / 表格
 
 - Type: components · Aliases: 表格 · 数据表格 · 数据列表 · 二维表 · 可排序表格 · 后台数据列表 · 订单列表那种表
-- Page: /components/table · JSON: <table>,<thead>,<tbody> · MD: /components/table.md
+- Page: /components/table · JSON: /api/concept/components/table.json · MD: /components/table.md
 
 **What / 这是什么:** 用行与列精确对齐数据的二维表格：一行一条记录、一列一个字段，适合逐列比较、排序与大容量数据浏览。 行可悬停高亮、点击选中，列头通常带排序控制。
 
@@ -1214,7 +1214,7 @@
 ## components/tabs — Tabs / 标签页
 
 - Type: components · Aliases: 选项卡 · tab 切换 · 页签 · 切换标签 · 浏览器那种标签 · 分栏切换
-- Page: /components/tabs · JSON: role="tablist",role="tab",role="tabpanel" · MD: /components/tabs.md
+- Page: /components/tabs · JSON: /api/concept/components/tabs.json · MD: /components/tabs.md
 
 **What / 这是什么:** 用一排可切换的标签把同一区域的内容分成互斥视图：标签头常驻可点击，仅当前 标签对应的面板可见，其余隐藏。适合把高度相关的几类内容压缩在同一区域内 就地切换，避免整页跳转。键盘上用左右方向键在标签间移动，是可访问性的经典范例。
 
@@ -1242,7 +1242,7 @@
 ## components/tag-input — Tag Input / 标签输入
 
 - Type: components · Aliases: 标签输入 · 标签框 · 打标签的输入框 · chips 输入 · token input · tag box
-- Page: /components/tag-input · JSON: <input>,role="listbox",aria-live,keydown · MD: /components/tag-input.md
+- Page: /components/tag-input · JSON: /api/concept/components/tag-input.json · MD: /components/tag-input.md
 
 **What / 这是什么:** 在文本框里回车或输入分隔符，就把当前内容固化成一枚可删除的标签（chip），标签在框内横向排列， 输入光标始终停在末尾。兼顾「自由输入」与「逐项管理」，常用于收件人、话题标签、文件名与 过滤条件。Backspace 删最后一枚，点 × 删指定项。
 
@@ -1266,7 +1266,7 @@
 ## components/textarea — Textarea / 多行输入框
 
 - Type: components · Aliases: 多行输入框 · 文本域 · 大输入框 · 留言框 · 备注框 · 富文本输入区
-- Page: /components/textarea · JSON: <textarea> · MD: /components/textarea.md
+- Page: /components/textarea · JSON: /api/concept/components/textarea.json · MD: /components/textarea.md
 
 **What / 这是什么:** 用一块可多行增长的输入区收集长文本，如简介、备注、留言与反馈。 支持手动或自动增高，常配字数统计与提交按钮；超出上限时计数变红提醒， 内容换行显示而非溢出截断。
 
@@ -1320,7 +1320,7 @@
 ## components/toast — Toast / 轻提示
 
 - Type: components · Aliases: 消息提示条 · 吐司 · 轻提示 · 通知条 · snackbar · 自动消失提示 · 右下角弹出的小提示
-- Page: /components/toast · JSON: role="status",aria-live="polite" · MD: /components/toast.md
+- Page: /components/toast · JSON: /api/concept/components/toast.json · MD: /components/toast.md
 
 **What / 这是什么:** 在视口角落短暂出现、自动消失的小消息条，用来告知操作结果（已保存、已复制、上传完成）。 不打断当前流程，通常附一个操作入口（撤销、查看），停留约 3~5 秒后淡出。
 
@@ -1349,7 +1349,7 @@
 ## components/toolbar — Toolbar / 工具条
 
 - Type: components · Aliases: 工具条 · 工具栏 · 操作栏 · 快捷操作那一排 · toolbar · tool bar
-- Page: /components/toolbar · JSON: role="toolbar",aria-label,roving tabindex · MD: /components/toolbar.md
+- Page: /components/toolbar · JSON: /api/concept/components/toolbar.json · MD: /components/toolbar.md
 
 **What / 这是什么:** 把作用于当前视图或选中项的操作按钮压成一条横向（偶尔纵向）控件带，按功能分组并用分隔线 划分。工具条管「动作」，菜单管「选项」，站点导航管「去哪」。典型如编辑器的加粗 / 斜体排版条、 图片查看器的旋转下载条、列表页的批量操作条。
 
@@ -1373,7 +1373,7 @@
 ## components/tooltip — Tooltip / 工具提示
 
 - Type: components · Aliases: 提示气泡 · 悬浮提示 · 气泡提示 · 悬停提示 · 小黑框提示 · title 提示 · 鼠标放上去显示的小提示
-- Page: /components/tooltip · JSON: role="tooltip",aria-describedby · MD: /components/tooltip.md
+- Page: /components/tooltip · JSON: /api/concept/components/tooltip.json · MD: /components/tooltip.md
 
 **What / 这是什么:** 悬停在元素上短暂出现的小型文字气泡，用来解释图标按钮、缩写或被截断的文本。 纯提示、不可交互，移开即消失；通常延迟约 300ms 出现以避免扫过时闪烁。
 
@@ -1402,7 +1402,7 @@
 ## components/tree-view — Tree View / 树形控件
 
 - Type: components · Aliases: 树形列表 · 文件树 · 目录树 · 树结构 · tree
-- Page: /components/tree-view · JSON: role="tree",role="treeitem",aria-expanded · MD: /components/tree-view.md
+- Page: /components/tree-view · JSON: /api/concept/components/tree-view.json · MD: /components/tree-view.md
 
 **What / 这是什么:** 以嵌套分支展示层级结构的可展开列表，每层节点可折叠或展开，子节点缩进排布于父节点之下。适合文件目录、组织架构、分类体系等天然成树的数据；节点可单选或多选，展开状态与选中状态相互独立。
 
@@ -1430,7 +1430,7 @@
 ## foundation/color-palette — Color Palette / 调色板
 
 - Type: foundation · Aliases: 调色板 · 配色 · 色板 · 色阶 · 颜色系统 · color palette · palette
-- Page: /foundation/color-palette · JSON: color-mix(),oklch(),hsl() · MD: /foundation/color-palette.md
+- Page: /foundation/color-palette · JSON: /api/concept/foundation/color-palette.json · MD: /foundation/color-palette.md
 
 **What / 这是什么:** 从一个基色出发生成有规律的色阶（50～900），再分配主色、辅助色、点缀色与中性色角色。色阶靠明度递进而非随手取色，保证 hover、disabled、边框都有对应深度可选；角色先于色值被命名，主题才换得动。
 
@@ -1457,7 +1457,7 @@
 ## foundation/contrast-ratio — Contrast Ratio / 对比度
 
 - Type: foundation · Aliases: 对比度 · 文字对比度 · 可读性对比 · WCAG 对比 · 看不清 · contrast ratio · color contrast
-- Page: /foundation/contrast-ratio · JSON: WCAG 2.1,APCA,contrast-ratio() · MD: /foundation/contrast-ratio.md
+- Page: /foundation/contrast-ratio · JSON: /api/concept/foundation/contrast-ratio.json · MD: /foundation/contrast-ratio.md
 
 **What / 这是什么:** 前景与背景的亮度比值，衡量文字是否看得清。WCAG 2.1 给出硬性门槛：正文 AA 4.5:1、AAA 7:1，大号文字降到 3:1 与 4.5:1。APCA 按字重与字号给出更贴近感知的建议值。先算比值再选色，不要靠肉眼验收。
 
@@ -1484,7 +1484,7 @@
 ## foundation/elevation — Elevation / 层级
 
 - Type: foundation · Aliases: 层级 · 投影层级 · 阴影层级 · 海拔 · z-depth · elevation · shadow level
-- Page: /foundation/elevation · JSON: box-shadow,env(safe-area-inset-*),z-index · MD: /foundation/elevation.md
+- Page: /foundation/elevation · JSON: /api/concept/foundation/elevation.json · MD: /foundation/elevation.md
 
 **What / 这是什么:** 用阴影的深浅表达元素离纸面的远近：0 贴平、1～2 浮起、3 以上成浮层。一套阴影由本影、半影、环境三层叠加而成，档位越高投影越大越淡。层级只用来表达叠放关系，不要拿它当装饰。
 
@@ -1511,7 +1511,7 @@
 ## foundation/font-stack — Font Stack / 字体栈
 
 - Type: foundation · Aliases: 字体栈 · 字体回退 · 备用字体 · 字体族 · 字体列表 · font stack · font-family
-- Page: /foundation/font-stack · JSON: font-family,@font-face,font-display,font-weight · MD: /foundation/font-stack.md
+- Page: /foundation/font-stack · JSON: /api/concept/foundation/font-stack.json · MD: /foundation/font-stack.md
 
 **What / 这是什么:** 按优先级排列的字体回退链：首选字体缺席时依次落到下一个，最后由通用族兜底。系统栈零下载、即时渲染，网络字体保品牌气质但要配 font-display 控制闪烁，本地优先则两者之间取平衡。栈的顺序就是渲染的决策顺序。
 
@@ -1538,7 +1538,7 @@
 ## foundation/line-height — Line Height / 行高
 
 - Type: foundation · Aliases: 行高 · 行距 · leading · 行间距 · 排得挤不挤 · 松紧 · line height
-- Page: /foundation/line-height · JSON: line-height,leading · MD: /foundation/line-height.md
+- Page: /foundation/line-height · JSON: /api/concept/foundation/line-height.json · MD: /foundation/line-height.md
 
 **What / 这是什么:** 一行文字占的垂直空间，决定段落的松紧与呼吸。标题收紧（1.1～1.3）显得挺拔，正文放宽（1.5～1.8）利于逐行阅读，引文可以更松。优先用无单位倍数，让行高随字号缩放，而不是写死像素值。
 
@@ -1565,7 +1565,7 @@
 ## foundation/measure — Measure / 行宽
 
 - Type: foundation · Aliases: 行宽 · 行长 · 每行字数 · 一行多少字 · 字符数每行 · measure · characters per line
-- Page: /foundation/measure · JSON: max-width,ch,text-wrap,hyphens · MD: /foundation/measure.md
+- Page: /foundation/measure · JSON: /api/concept/foundation/measure.json · MD: /foundation/measure.md
 
 **What / 这是什么:** 一段文字每行容纳的字符数，决定眼睛回行是否省力。舒适区大约 45～75 个拉丁字符（中文 28～40 字），最常用 65ch 左右。行太窄回行太频繁，太宽则跟丢行；用 max-width 以 ch 为单位控制，比按像素猜更可靠。
 
@@ -1592,7 +1592,7 @@
 ## foundation/semantic-color — Semantic Color Token / 语义色
 
 - Type: foundation · Aliases: 语义色 · 语义色 token · 角色色 · 主题色变量 · 换肤 · semantic color · color token
-- Page: /foundation/semantic-color · JSON: :root,color-scheme,CSS custom properties · MD: /foundation/semantic-color.md
+- Page: /foundation/semantic-color · JSON: /api/concept/foundation/semantic-color.json · MD: /foundation/semantic-color.md
 
 **What / 这是什么:** 按用途而非色相命名的颜色变量：bg、surface、text、muted、accent、danger。组件只认角色，主题切换时在映射层换指向即可，不必改组件。浅色、深色、高对比、品牌皮肤都是同一套角色的不同取值表。
 
@@ -1619,7 +1619,7 @@
 ## foundation/type-scale — Type Scale / 字号阶梯
 
 - Type: foundation · Aliases: 字号阶梯 · 标题比例 · 字级 · 字体大小层级 · 字号系统 · type scale · modular scale
-- Page: /foundation/type-scale · JSON: font-size,clamp(),rem,calc() · MD: /foundation/type-scale.md
+- Page: /foundation/type-scale · JSON: /api/concept/foundation/type-scale.json · MD: /foundation/type-scale.md
 
 **What / 这是什么:** 用一组按比例递增的字号定义标题与正文层级，让排版有稳定节奏。以正文基准字号乘以固定比例（如 1.25 大三度、1.333 纯四度）逐级放大，标题之间形成可预期的视觉落差，不必逐档拍脑袋定 px；也可用 sm/md/lg 尺码或 clamp() 流式档位落地。
 
@@ -2063,7 +2063,7 @@
 ## motion/scroll-driven-animation — Scroll-driven Animation / 滚动驱动动画
 
 - Type: motion · Aliases: 滚动驱动动画 · 滚动动画 · 随滚动动 · 滑到哪动到哪 · scroll animation · scroll-driven · scroll-linked animation
-- Page: /motion/scroll-driven-animation · JSON: animation-timeline: scroll(),scroll(),Intersection Observer · MD: /motion/scroll-driven-animation.md
+- Page: /motion/scroll-driven-animation · JSON: /api/concept/motion/scroll-driven-animation.json · MD: /motion/scroll-driven-animation.md
 
 **What / 这是什么:** 动画进度绑定滚动位置而非时间：滚到哪、动到哪，可来回擦洗。能做滚动进度条、随滚动展开的叙事与视差层。与滚动显现不同，它不是触发后播完，而是由滚动位置精确擦洗进度。
 
@@ -2147,7 +2147,7 @@
 ## motion/spring-animation — Spring Animation / 弹簧动画
 
 - Type: motion · Aliases: 弹簧动画 · 弹簧效果 · 弹一下 · 物理动画 · 回弹落位 · spring animation · spring physics · springy motion
-- Page: /motion/spring-animation · JSON: linear(),cubic-bezier(),offset-path · MD: /motion/spring-animation.md
+- Page: /motion/spring-animation · JSON: /api/concept/motion/spring-animation.json · MD: /motion/spring-animation.md
 
 **What / 这是什么:** 用弹簧物理（刚度、阻尼）驱动的运动：可冲过终点再回落稳定，也可临界阻尼稳稳停住。比固定缓动更有质量感与连续性，适合拖拽落位、开关拨动与强调出现。过冲幅度需克制，避免失控感。
 
@@ -2257,7 +2257,7 @@
 ## motion/view-transition — View Transition / 视图过渡
 
 - Type: motion · Aliases: 视图过渡 · 页面过渡动画 · 切换动画 · 换页过渡 · view transition · view transitions api
-- Page: /motion/view-transition · JSON: document.startViewTransition(),view-transition-name · MD: /motion/view-transition.md
+- Page: /motion/view-transition · JSON: /api/concept/motion/view-transition.json · MD: /motion/view-transition.md
 
 **What / 这是什么:** 用浏览器原生 View Transitions API 在页面状态切换时做平滑过渡：旧视图淡出、新视图淡入，关键元素可共享形变。它把状态跳变藏进连续的空间叙事，让"换了一屏"读起来像"移了一步"，而不是硬切。
 
@@ -2623,7 +2623,7 @@
 ## patterns/drag-and-drop — Drag and Drop / 拖放
 
 - Type: patterns · Aliases: 拖放 · 拖拽移动 · 拖过去 · 拖到那边 · 拖来拖去 · drag and drop · dnd · drag to move
-- Page: /patterns/drag-and-drop · JSON: draggable,drop,Pointer Events · MD: /patterns/drag-and-drop.md
+- Page: /patterns/drag-and-drop · JSON: /api/concept/patterns/drag-and-drop.json · MD: /patterns/drag-and-drop.md
 
 **What / 这是什么:** 用按住—拖动—松手的直接操作，把对象移动到新位置或新容器。所见即所得，比菜单命令更贴近空间直觉；拖动中要有清晰落点指示，目标容器需给出接受反馈。范围比拖拽排序更广：移动、归位、跨列表投递都算。
 
@@ -2825,7 +2825,7 @@
 ## patterns/keyboard-shortcuts — Keyboard Shortcuts / 快捷键
 
 - Type: patterns · Aliases: 快捷键 · 键盘快捷键 · 快捷键提示 · 键盘加速键 · 按键操作 · keyboard shortcuts · hotkeys · key bindings
-- Page: /patterns/keyboard-shortcuts · JSON: keydown,KeyboardEvent,:focus-visible · MD: /patterns/keyboard-shortcuts.md
+- Page: /patterns/keyboard-shortcuts · JSON: /api/concept/patterns/keyboard-shortcuts.json · MD: /patterns/keyboard-shortcuts.md
 
 **What / 这是什么:** 为高频操作提供可发现的键盘加速键，并配帮助入口。提示可用工具条标注、快捷键对话框（⌘K 风格）或 vim 式序列。它服务专家用户提速，同时必须保证焦点可见、不抢夺输入框按键，新手也能查到怎么按。
 

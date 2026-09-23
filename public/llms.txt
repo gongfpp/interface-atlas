@@ -11,62 +11,62 @@
 
 ## Concepts
 
-- [Accordion / 手风琴](<details>,<summary>): 由多个可折叠区块组成的垂直列表：点击标题展开内容、再点收起，可互斥（同时只开一项） 也可多开。用于在有限空间里收纳成组内容，让用户按需展开。
-- [Alert / 警告提示](role="alert",aria-live="assertive"): 嵌在页面流内、带状态色底色的横条，用于必须被看见的消息：错误、警告、重要通知。 它占据文档流而不是覆盖内容，通常常驻直到问题被处理或用户手动关闭。
-- [Avatar / 头像](<img>): 以圆形或圆角方形小图代表用户或组织：照片、姓名首字母或图标占位。 常与姓名一起出现在导航、评论与成员列表，可附在线状态点或多人叠加。
-- [Badge / 徽标](<span>): 附着在元素角落或行内的小型状态标记：圆点、数字计数或短文字标签。用于表达未读数量、 状态（新、已废弃）或分类；不参与交互，视觉上从属于宿主元素。
-- [Bottom Sheet / 底部抽屉](<dialog>,role="dialog",aria-modal="true"): 从屏幕底边升起、覆盖在当前页面之上的面板，顶部有抓手可供拖动或下滑关闭。打断程度介于模态框与 气泡卡片之间：有遮罩但拇指可及、可下滑快速收起。是移动端承接筛选、
-- [Breadcrumb / 面包屑](<nav aria-label="Breadcrumb">,<ol>,<li>): 用"首页 / 分类 / 子类 / 当前页"的层级路径表示用户在信息架构中所处的位置： 每个上级都可点击跳回，末项为当前页不可点。这是防止用户迷路成本最低的手段，
-- [Button / 按钮](<button>,type,role="button"): 用可点击的色块触发一个明确的动作，是界面中最基础的操作入口。 通过填充、描边、幽灵等视觉层级区分主次操作，按压时有即时的下沉反馈， 繁忙时进入加载态并禁用点击，
-- [Card / 卡片](<article>): 用圆角边框或底色围出一块自包含内容的矩形容器，一块卡片聚合一组相关信息： 封面图、标题、摘要与操作。是内容流、仪表盘与电商列表的通用显示单元。
-- [Carousel / 轮播](aria-roledescription="carousel",scroll-snap-type,aria-live): 用水平滑动的轨道展示一组内容，同一时刻只突出一项，其余滑出视野或露出边缘作暗示。通过分页点、 箭头或自动播放切换，常用于首屏 Banner、图片画廊与推荐位。适
-- [Checkbox / 复选框](<input type="checkbox">,role="checkbox"): 用方形勾选框表示一组可多选的独立开关项，点击在选中与未选中间切换。 父级项可呈现半选态（部分子项选中），常用于批量选择、筛选与同意条款。
-- [Color Picker / 色彩选择器](input[type="color"],color-mix(),oklch()): 用于选定颜色值的控件，形式包括色板网格、渐变取色区加色相滑杆，或直接调用系统取色器。输出十六进制、RGB 或 OKLCH 等颜色值，常与文本输入、透明度滑杆组合
+- [Accordion / 手风琴](/api/concept/components/accordion.json): 由多个可折叠区块组成的垂直列表：点击标题展开内容、再点收起，可互斥（同时只开一项） 也可多开。用于在有限空间里收纳成组内容，让用户按需展开。
+- [Alert / 警告提示](/api/concept/components/alert.json): 嵌在页面流内、带状态色底色的横条，用于必须被看见的消息：错误、警告、重要通知。 它占据文档流而不是覆盖内容，通常常驻直到问题被处理或用户手动关闭。
+- [Avatar / 头像](/api/concept/components/avatar.json): 以圆形或圆角方形小图代表用户或组织：照片、姓名首字母或图标占位。 常与姓名一起出现在导航、评论与成员列表，可附在线状态点或多人叠加。
+- [Badge / 徽标](/api/concept/components/badge.json): 附着在元素角落或行内的小型状态标记：圆点、数字计数或短文字标签。用于表达未读数量、 状态（新、已废弃）或分类；不参与交互，视觉上从属于宿主元素。
+- [Bottom Sheet / 底部抽屉](/api/concept/components/bottom-sheet.json): 从屏幕底边升起、覆盖在当前页面之上的面板，顶部有抓手可供拖动或下滑关闭。打断程度介于模态框与 气泡卡片之间：有遮罩但拇指可及、可下滑快速收起。是移动端承接筛选、
+- [Breadcrumb / 面包屑](/api/concept/components/breadcrumb.json): 用"首页 / 分类 / 子类 / 当前页"的层级路径表示用户在信息架构中所处的位置： 每个上级都可点击跳回，末项为当前页不可点。这是防止用户迷路成本最低的手段，
+- [Button / 按钮](/api/concept/components/button.json): 用可点击的色块触发一个明确的动作，是界面中最基础的操作入口。 通过填充、描边、幽灵等视觉层级区分主次操作，按压时有即时的下沉反馈， 繁忙时进入加载态并禁用点击，
+- [Card / 卡片](/api/concept/components/card.json): 用圆角边框或底色围出一块自包含内容的矩形容器，一块卡片聚合一组相关信息： 封面图、标题、摘要与操作。是内容流、仪表盘与电商列表的通用显示单元。
+- [Carousel / 轮播](/api/concept/components/carousel.json): 用水平滑动的轨道展示一组内容，同一时刻只突出一项，其余滑出视野或露出边缘作暗示。通过分页点、 箭头或自动播放切换，常用于首屏 Banner、图片画廊与推荐位。适
+- [Checkbox / 复选框](/api/concept/components/checkbox.json): 用方形勾选框表示一组可多选的独立开关项，点击在选中与未选中间切换。 父级项可呈现半选态（部分子项选中），常用于批量选择、筛选与同意条款。
+- [Color Picker / 色彩选择器](/api/concept/components/color-picker.json): 用于选定颜色值的控件，形式包括色板网格、渐变取色区加色相滑杆，或直接调用系统取色器。输出十六进制、RGB 或 OKLCH 等颜色值，常与文本输入、透明度滑杆组合
 - [Combobox / 可搜索选择框](/api/concept/components/combobox.json): 把文本输入和候选选项组合在一起的选择组件。用户可以输入关键词缩小范围，再通过鼠标或键盘确定一个值。输入文本、当前高亮项和最终选中值是不同状态；当没有匹配项时，应
-- [Command Palette / 命令面板](<dialog>,role="combobox"): 用快捷键（⌘K / Ctrl+K）唤出的浮动搜索面板：输入即筛选命令、页面或内容， 键盘上下选择、回车执行。macOS Spotlight 把它带入大众视野， 
-- [Date Picker / 日期选择器](<input type="date">,aria-haspopup,role="dialog"): 用日历网格选择日期的复合控件，通常由输入框触发弹出，也常内嵌展示。 头部提供年月切换，网格按周排列日期并高亮今天与选中日； 范围形态用两个日期夹出区间。避免手输
-- [Drawer / 抽屉](<dialog>,role="dialog",aria-modal="true"): 从屏幕边缘（多为右侧或左侧）滑入、通常带遮罩的面板。比模态框轻：能承载较长内容又不离开当前页面， 关闭后原样回到上下文；移动端常以左滑导航或底部抽屉的形式出现。
-- [Dropdown / 下拉菜单](role="menu",role="menuitem",aria-haspopup): 由触发按钮就近弹出的一组操作菜单，用于收纳次要操作，保持界面整洁。 典型形态是「···」更多按钮；面板带阴影浮于内容之上，点击菜单项即执行并关闭， 危险操作以红
-- [Floating Action Button / 悬浮按钮](<button>,position,box-shadow,aria-expanded): 锚在视口角落、悬浮于内容之上的圆形按钮，承载当前页面唯一的主操作（新建、撰写、扫码）。 用阴影和位置宣告「我在所有内容之上」，比行内主按钮更醒目，但一屏只应有一
+- [Command Palette / 命令面板](/api/concept/components/command-palette.json): 用快捷键（⌘K / Ctrl+K）唤出的浮动搜索面板：输入即筛选命令、页面或内容， 键盘上下选择、回车执行。macOS Spotlight 把它带入大众视野， 
+- [Date Picker / 日期选择器](/api/concept/components/date-picker.json): 用日历网格选择日期的复合控件，通常由输入框触发弹出，也常内嵌展示。 头部提供年月切换，网格按周排列日期并高亮今天与选中日； 范围形态用两个日期夹出区间。避免手输
+- [Drawer / 抽屉](/api/concept/components/drawer.json): 从屏幕边缘（多为右侧或左侧）滑入、通常带遮罩的面板。比模态框轻：能承载较长内容又不离开当前页面， 关闭后原样回到上下文；移动端常以左滑导航或底部抽屉的形式出现。
+- [Dropdown / 下拉菜单](/api/concept/components/dropdown.json): 由触发按钮就近弹出的一组操作菜单，用于收纳次要操作，保持界面整洁。 典型形态是「···」更多按钮；面板带阴影浮于内容之上，点击菜单项即执行并关闭， 危险操作以红
+- [Floating Action Button / 悬浮按钮](/api/concept/components/fab.json): 锚在视口角落、悬浮于内容之上的圆形按钮，承载当前页面唯一的主操作（新建、撰写、扫码）。 用阴影和位置宣告「我在所有内容之上」，比行内主按钮更醒目，但一屏只应有一
 - [File Upload / 文件上传区](/api/concept/components/file-upload.json): 用于选择文件、展示校验反馈并管理待处理文件列表的表单区域。常见形式为原生文件选择按钮或可拖放区域；拖拽必须有按钮选择作为替代。选择文件不代表已经上传，界面应清楚
-- [Filter Panel / 筛选面板](<fieldset>,<form>): 集中承载筛选条件的面板，常驻列表侧边或以抽屉、浮层唤起：复选组、单选、滑杆组合出当前查询。 与列表实时联动刷新结果数，并支持已选条件回显与一键清除。
-- [Input / 输入框](<input>,type,role="textbox"): 用一条带边框的水平输入区收集单行文本，是表单的基本单元。 占位符提示期望格式，聚焦时高亮边框引导视线，校验失败时切换错误色 并附提示文案；可内嵌前后缀图标与清除
-- [Lightbox / 灯箱](<dialog>,role="dialog",aria-modal="true"): 以压暗遮罩放大展示图片或视频的媒体浮层，原页面暂时失去交互。内容居中呈现，常配左右切换、缩放与关闭；它是媒体专用的模态框，与通用对话框的区别在于主体是可观赏的视
-- [Menu / 菜单](role="menu",role="menuitem"): 点击或右键触发的临时操作列表浮层：平铺或分组的命令项，选中即执行并关闭。 用于收纳非高频操作（更多、设置、删除），通常以「⋯」按钮或右键唤起。
-- [Modal / 模态框](<dialog>,role="dialog",aria-modal="true"): 覆盖在页面之上、带半透明遮罩的对话框，打断用户当前流程，要求先完成弹窗内的任务或决策。 遮罩阻断与底层页面的交互，焦点被暂时困在弹窗内，是容器类浮层中打断程度最
-- [Multi-select / 多选框组](role="listbox",aria-multiselectable,aria-selected): 允许从一组选项中挑选多个值，并以标签形式回显已选集合的选择控件。与单选下拉不同，展开面板在选择后保持打开，已选项可逐个移除；适合标签、权限、筛选条件等需要累积多
-- [Navbar / 顶部导航栏](<nav>,role="navigation"): 固定在页面顶部的水平导航条：左侧品牌标识，中间主导航链接，右侧搜索、 入口按钮与用户头像。它是网站的"门面导航"，把最重要的三到七个入口压进 一条横向空间，移动
-- [Pagination / 分页](<nav aria-label="Pagination">,role="navigation"): 用带页码的控件把长结果集切分为离散页面：用户显式点击页码或上一页 / 下一页 按钮取回对应片段，当前位置永远可知、可分享、可回退。与无限滚动的"失控 漂移"相对
-- [Popover / 气泡卡片](popover,[popover],role="dialog"): 点击触发元素后在其旁边弹出的非模态浮层，可承载文字说明、小型表单、日期选择等中等复杂内容。 无遮罩、不阻断页面其余部分，点击外部区域或 Esc 即关闭。
-- [Progress Bar / 进度条](<progress>,role="progressbar",aria-valuenow): 用横条从左到右填充来表示任务完成比例的加载指示，常配百分比或步骤文字。 适用于时长可预测的确定性任务：上传、下载、安装与分步表单。
-- [Radio / 单选框](<input type="radio">,role="radio",role="radiogroup"): 用一组圆形按钮表示互斥选项，同组内只能选中一个且不可取消。 与复选框的核心区别是多选与单选；选中圆点用填充动画反馈， 选项少（2～5 个）时平铺展示比下拉选择效
+- [Filter Panel / 筛选面板](/api/concept/components/filter-panel.json): 集中承载筛选条件的面板，常驻列表侧边或以抽屉、浮层唤起：复选组、单选、滑杆组合出当前查询。 与列表实时联动刷新结果数，并支持已选条件回显与一键清除。
+- [Input / 输入框](/api/concept/components/input.json): 用一条带边框的水平输入区收集单行文本，是表单的基本单元。 占位符提示期望格式，聚焦时高亮边框引导视线，校验失败时切换错误色 并附提示文案；可内嵌前后缀图标与清除
+- [Lightbox / 灯箱](/api/concept/components/lightbox.json): 以压暗遮罩放大展示图片或视频的媒体浮层，原页面暂时失去交互。内容居中呈现，常配左右切换、缩放与关闭；它是媒体专用的模态框，与通用对话框的区别在于主体是可观赏的视
+- [Menu / 菜单](/api/concept/components/menu.json): 点击或右键触发的临时操作列表浮层：平铺或分组的命令项，选中即执行并关闭。 用于收纳非高频操作（更多、设置、删除），通常以「⋯」按钮或右键唤起。
+- [Modal / 模态框](/api/concept/components/modal.json): 覆盖在页面之上、带半透明遮罩的对话框，打断用户当前流程，要求先完成弹窗内的任务或决策。 遮罩阻断与底层页面的交互，焦点被暂时困在弹窗内，是容器类浮层中打断程度最
+- [Multi-select / 多选框组](/api/concept/components/multi-select.json): 允许从一组选项中挑选多个值，并以标签形式回显已选集合的选择控件。与单选下拉不同，展开面板在选择后保持打开，已选项可逐个移除；适合标签、权限、筛选条件等需要累积多
+- [Navbar / 顶部导航栏](/api/concept/components/navbar.json): 固定在页面顶部的水平导航条：左侧品牌标识，中间主导航链接，右侧搜索、 入口按钮与用户头像。它是网站的"门面导航"，把最重要的三到七个入口压进 一条横向空间，移动
+- [Pagination / 分页](/api/concept/components/pagination.json): 用带页码的控件把长结果集切分为离散页面：用户显式点击页码或上一页 / 下一页 按钮取回对应片段，当前位置永远可知、可分享、可回退。与无限滚动的"失控 漂移"相对
+- [Popover / 气泡卡片](/api/concept/components/popover.json): 点击触发元素后在其旁边弹出的非模态浮层，可承载文字说明、小型表单、日期选择等中等复杂内容。 无遮罩、不阻断页面其余部分，点击外部区域或 Esc 即关闭。
+- [Progress Bar / 进度条](/api/concept/components/progress-bar.json): 用横条从左到右填充来表示任务完成比例的加载指示，常配百分比或步骤文字。 适用于时长可预测的确定性任务：上传、下载、安装与分步表单。
+- [Radio / 单选框](/api/concept/components/radio.json): 用一组圆形按钮表示互斥选项，同组内只能选中一个且不可取消。 与复选框的核心区别是多选与单选；选中圆点用填充动画反馈， 选项少（2～5 个）时平铺展示比下拉选择效
 - [Rating / 评分](/api/concept/components/rating.json): 用有限等级收集主观评价的输入组件，常见形式是星级或带文字的满意度选项。悬停表示候选分值，点击或键盘选择才提交当前值。应提供每一档的文字含义，区分尚未评分与最低分
 - [Segmented Control / 分段控制器](/api/concept/components/segmented-control.json): 将少量互斥选项并排放在同一个容器中的选择控件。选中状态通过底色、文字和边界同时表达，切换后立即更新当前视图或设置。它适合时间范围、显示方式等轻量选择；选项应简短
-- [Select / 下拉选择](<select>,role="listbox",role="option"): 用收起的单行控件承载一组互斥选项，点击展开面板后选择其一，选中值常驻显示在触发器上。 比 radio 更省空间，适合选项多于 5 个的场景；面板支持滚动、分组或
-- [Sidebar / 侧边栏](<aside>,<nav>): 固定在页面一侧（通常左侧）的垂直导航区，承载产品的主要层级入口。 后台管理系统的事实标准：顶部放品牌与全局搜索，侧边栏放模块树，内容区专注任务。
-- [Slider / 滑块](<input type="range">,role="slider"): 用轨道上可拖动的手柄在连续区间内取值，拖动时数值与已填充轨道实时跟随。 适合调音量、亮度、价格区间等量级选择，比输入框更直观； 可带刻度标记、步进与双端区间形态
-- [Split Button / 分体按钮](<button>,aria-haspopup="menu",aria-expanded): 由主操作区与附属箭头组成的复合按钮：主区直接执行默认动作，箭头展开同组的备选菜单。比「按钮加独立下拉」少一次定位，比整键打开菜单的下拉按钮更快命中高频操作，常用
+- [Select / 下拉选择](/api/concept/components/select.json): 用收起的单行控件承载一组互斥选项，点击展开面板后选择其一，选中值常驻显示在触发器上。 比 radio 更省空间，适合选项多于 5 个的场景；面板支持滚动、分组或
+- [Sidebar / 侧边栏](/api/concept/components/sidebar.json): 固定在页面一侧（通常左侧）的垂直导航区，承载产品的主要层级入口。 后台管理系统的事实标准：顶部放品牌与全局搜索，侧边栏放模块树，内容区专注任务。
+- [Slider / 滑块](/api/concept/components/slider.json): 用轨道上可拖动的手柄在连续区间内取值，拖动时数值与已填充轨道实时跟随。 适合调音量、亮度、价格区间等量级选择，比输入框更直观； 可带刻度标记、步进与双端区间形态
+- [Split Button / 分体按钮](/api/concept/components/split-button.json): 由主操作区与附属箭头组成的复合按钮：主区直接执行默认动作，箭头展开同组的备选菜单。比「按钮加独立下拉」少一次定位，比整键打开菜单的下拉按钮更快命中高频操作，常用
 - [Stepper / 步骤条](/api/concept/components/stepper.json): 用有序节点展示任务的阶段、当前位置和已完成步骤的进度组件。它通常与分步表单配合，把较长任务拆成易理解的阶段。步骤条负责说明进度，下一步和上一步负责推进流程；进入
-- [Switch / 开关](<input type="checkbox" role="switch">): 用滑轨上的圆形滑块表示二元设置的开与关，拨动立即生效，无需确认。 滑块位移与轨道变色同时反馈状态，右侧或内嵌「开 / 关」文字辅助辨认， 是设置页的标准控件。
-- [Table / 表格](<table>,<thead>,<tbody>): 用行与列精确对齐数据的二维表格：一行一条记录、一列一个字段，适合逐列比较、排序与大容量数据浏览。 行可悬停高亮、点击选中，列头通常带排序控制。
-- [Tabs / 标签页](role="tablist",role="tab",role="tabpanel"): 用一排可切换的标签把同一区域的内容分成互斥视图：标签头常驻可点击，仅当前 标签对应的面板可见，其余隐藏。适合把高度相关的几类内容压缩在同一区域内 就地切换，避免
-- [Tag Input / 标签输入](<input>,role="listbox",aria-live,keydown): 在文本框里回车或输入分隔符，就把当前内容固化成一枚可删除的标签（chip），标签在框内横向排列， 输入光标始终停在末尾。兼顾「自由输入」与「逐项管理」，常用于收
-- [Textarea / 多行输入框](<textarea>): 用一块可多行增长的输入区收集长文本，如简介、备注、留言与反馈。 支持手动或自动增高，常配字数统计与提交按钮；超出上限时计数变红提醒， 内容换行显示而非溢出截断。
+- [Switch / 开关](/api/concept/components/switch.json): 用滑轨上的圆形滑块表示二元设置的开与关，拨动立即生效，无需确认。 滑块位移与轨道变色同时反馈状态，右侧或内嵌「开 / 关」文字辅助辨认， 是设置页的标准控件。
+- [Table / 表格](/api/concept/components/table.json): 用行与列精确对齐数据的二维表格：一行一条记录、一列一个字段，适合逐列比较、排序与大容量数据浏览。 行可悬停高亮、点击选中，列头通常带排序控制。
+- [Tabs / 标签页](/api/concept/components/tabs.json): 用一排可切换的标签把同一区域的内容分成互斥视图：标签头常驻可点击，仅当前 标签对应的面板可见，其余隐藏。适合把高度相关的几类内容压缩在同一区域内 就地切换，避免
+- [Tag Input / 标签输入](/api/concept/components/tag-input.json): 在文本框里回车或输入分隔符，就把当前内容固化成一枚可删除的标签（chip），标签在框内横向排列， 输入光标始终停在末尾。兼顾「自由输入」与「逐项管理」，常用于收
+- [Textarea / 多行输入框](/api/concept/components/textarea.json): 用一块可多行增长的输入区收集长文本，如简介、备注、留言与反馈。 支持手动或自动增高，常配字数统计与提交按钮；超出上限时计数变红提醒， 内容换行显示而非溢出截断。
 - [Timeline / 时间线](/api/concept/components/timeline.json): 沿时间顺序组织事件的展示组件，通过时间、节点和内容说明事件之间的先后关系。它适合展示活动日志、项目进展或订单状态。时间线呈现已经发生或计划发生的事件，而步骤条强
-- [Toast / 轻提示](role="status",aria-live="polite"): 在视口角落短暂出现、自动消失的小消息条，用来告知操作结果（已保存、已复制、上传完成）。 不打断当前流程，通常附一个操作入口（撤销、查看），停留约 3~5 秒后淡
-- [Toolbar / 工具条](role="toolbar",aria-label,roving tabindex): 把作用于当前视图或选中项的操作按钮压成一条横向（偶尔纵向）控件带，按功能分组并用分隔线 划分。工具条管「动作」，菜单管「选项」，站点导航管「去哪」。典型如编辑器
-- [Tooltip / 工具提示](role="tooltip",aria-describedby): 悬停在元素上短暂出现的小型文字气泡，用来解释图标按钮、缩写或被截断的文本。 纯提示、不可交互，移开即消失；通常延迟约 300ms 出现以避免扫过时闪烁。
-- [Tree View / 树形控件](role="tree",role="treeitem",aria-expanded): 以嵌套分支展示层级结构的可展开列表，每层节点可折叠或展开，子节点缩进排布于父节点之下。适合文件目录、组织架构、分类体系等天然成树的数据；节点可单选或多选，展开状
+- [Toast / 轻提示](/api/concept/components/toast.json): 在视口角落短暂出现、自动消失的小消息条，用来告知操作结果（已保存、已复制、上传完成）。 不打断当前流程，通常附一个操作入口（撤销、查看），停留约 3~5 秒后淡
+- [Toolbar / 工具条](/api/concept/components/toolbar.json): 把作用于当前视图或选中项的操作按钮压成一条横向（偶尔纵向）控件带，按功能分组并用分隔线 划分。工具条管「动作」，菜单管「选项」，站点导航管「去哪」。典型如编辑器
+- [Tooltip / 工具提示](/api/concept/components/tooltip.json): 悬停在元素上短暂出现的小型文字气泡，用来解释图标按钮、缩写或被截断的文本。 纯提示、不可交互，移开即消失；通常延迟约 300ms 出现以避免扫过时闪烁。
+- [Tree View / 树形控件](/api/concept/components/tree-view.json): 以嵌套分支展示层级结构的可展开列表，每层节点可折叠或展开，子节点缩进排布于父节点之下。适合文件目录、组织架构、分类体系等天然成树的数据；节点可单选或多选，展开状
 - [Bulk Actions / 批量操作](/api/concept/patterns/bulk-actions.json): 先用复选框勾选多行数据，再对整个选择集一次性执行同一操作。选择时操作栏浮现，给出已选计数与撤销入口。它把重复的单条点击合并为一次批量决策，适合清理、归档、打标、
 - [Cookie Consent Banner / Cookie 同意条](/api/concept/patterns/cookie-consent.json): 在写入非必要 Cookie 前向用户征求同意的横幅或浮层，属于合规门槛而非系统告警。提供接受、拒绝或颗粒度选项，并记住选择；未作出选择前不得落下追踪类 Cook
 - [Drag & Drop Sorting / 拖拽排序](/api/concept/patterns/drag-and-drop-sorting.json): 用直接拖动的方式调整列表项的先后顺序：按住条目（或把手）拖到目标位置，其余条目实时让位并给出落点提示。 它把"排序"从抽象的上下移按钮变成所见即所得的空间操作，
-- [Drag and Drop / 拖放](draggable,drop,Pointer Events): 用按住—拖动—松手的直接操作，把对象移动到新位置或新容器。所见即所得，比菜单命令更贴近空间直觉；拖动中要有清晰落点指示，目标容器需给出接受反馈。范围比拖拽排序更
+- [Drag and Drop / 拖放](/api/concept/patterns/drag-and-drop.json): 用按住—拖动—松手的直接操作，把对象移动到新位置或新容器。所见即所得，比菜单命令更贴近空间直觉；拖动中要有清晰落点指示，目标容器需给出接受反馈。范围比拖拽排序更
 - [Empty State / 空状态](/api/concept/patterns/empty-state.json): 当列表或页面没有数据时，不留一片空白，而是用插图、一句说明和一个明确的下一步操作填充。 它解决的是"用户面对空白不知道发生了什么、也不知道该做什么"的问题—— 
 - [Form Validation / 表单校验](/api/concept/patterns/form-validation.json): 在用户填写表单的过程中或提交时检查输入合法性，并把错误就地显示在对应字段旁边。 目标是让用户在离错误最近的位置、以最小的打断成本知道"哪里错了、怎么改"，而不是
 - [Infinite Scroll / 无限滚动](/api/concept/patterns/infinite-scroll.json): 用"滚动到底自动追加下一页"取代传统分页：用户持续下滑，新内容不断出现， 底部以加载指示或哨兵元素衔接。它解决的是浏览节奏被打断的问题—— 用户不必寻找"下一页
 - [Inline Editing / 行内编辑](/api/concept/patterns/inline-editing.json): 页面上的文本本身即可编辑：单击把文本原位变成输入框，Enter 或失焦确认，Esc 取消， 改完所见即所得。它解决的是"小改动也要跳转完整编辑页"的问题—— 把
 - [Kanban Board / 看板](/api/concept/patterns/kanban-board.json): 按状态分列的任务面板—— 通常"待办 / 进行中 / 已完成"三列， 卡片随状态推进在列间移动。 列的位置即流程阶段， 卡片的所在即任务状态， 一眼看清全局进展
-- [Keyboard Shortcuts / 快捷键](keydown,KeyboardEvent,:focus-visible): 为高频操作提供可发现的键盘加速键，并配帮助入口。提示可用工具条标注、快捷键对话框（⌘K 风格）或 vim 式序列。它服务专家用户提速，同时必须保证焦点可见、不抢
+- [Keyboard Shortcuts / 快捷键](/api/concept/patterns/keyboard-shortcuts.json): 为高频操作提供可发现的键盘加速键，并配帮助入口。提示可用工具条标注、快捷键对话框（⌘K 风格）或 vim 式序列。它服务专家用户提速，同时必须保证焦点可见、不抢
 - [Lazy Loading / 懒加载](/api/concept/patterns/lazy-loading.json): 用"推迟加载"的方式处理暂不在视口内的资源：图片、列表分块、组件等在接近或进入可视区域时才真正请求和渲染。 首屏只承担可见部分的开销，配合占位骨架避免突然撑开布
 - [Master Detail / 主从视图](/api/concept/patterns/master-detail.json): 左侧一列摘要条目，右侧展示选中项的完整详情，点击左侧条目右侧即时联动更新。 它解决的是"在列表页与详情页之间来回跳转"的问题——总览与细读同屏共存， 用户切换条
 - [Onboarding Tour / 新手引导](/api/concept/patterns/onboarding-tour.json): 用"蒙层 + 聚光高亮 + 分步气泡"的方式带用户认识界面：每一步只露出一个关键区域并就地解释， 上一步/下一步与步骤指示器控制节奏，可随时跳过。它把功能说明放
@@ -127,25 +127,25 @@
 - [Parallax / 视差滚动](/api/concept/motion/parallax.json): 滚动时不同图层以不同速度移动——背景慢、前景快—— 用速度差制造纵深。 是"2D 里伪造 3D"最便宜的手段， 常见于首屏大图与滚动叙事页面。
 - [Press Feedback / 按压反馈](/api/concept/motion/press-feedback.json): 用户按下按钮、卡片等可点击元素时，元素轻微缩小（通常 0.95～0.98）， 松开后弹回。一个几十毫秒的细节，让界面"手感"立刻从网页变成实体按键。
 - [Ripple / 点击涟漪](/api/concept/motion/ripple.json): 点击位置向外扩散一圈半透明圆形波纹后消散，把"点中了哪里"可视化。 Material Design 的标志性按压反馈， 让无生命的点击立刻获得物理感——像石头落
-- [Scroll-driven Animation / 滚动驱动动画](animation-timeline: scroll(),scroll(),Intersection Observer): 动画进度绑定滚动位置而非时间：滚到哪、动到哪，可来回擦洗。能做滚动进度条、随滚动展开的叙事与视差层。与滚动显现不同，它不是触发后播完，而是由滚动位置精确擦洗进度
+- [Scroll-driven Animation / 滚动驱动动画](/api/concept/motion/scroll-driven-animation.json): 动画进度绑定滚动位置而非时间：滚到哪、动到哪，可来回擦洗。能做滚动进度条、随滚动展开的叙事与视差层。与滚动显现不同，它不是触发后播完，而是由滚动位置精确擦洗进度
 - [Scroll Reveal / 滚动显现](/api/concept/motion/scroll-reveal.json): 元素滚动进入视口时才播放淡入、上浮或滑入动画，之前保持隐藏或占位。 把"一次性呈现全部内容"变成"随阅读节奏逐段揭示"，让长页面的信息 更有秩序感。通常由 In
 - [Shared Element Transition / 共享元素转场](/api/concept/motion/shared-element-transition.json): 列表里的缩略图或卡片在打开详情时"飞"成详情页主图—— 同一个元素跨两个视图连续运动， 而不是各自出现。 元素身份在转场中保持连续， 是最强的上下文延续。
-- [Spring Animation / 弹簧动画](linear(),cubic-bezier(),offset-path): 用弹簧物理（刚度、阻尼）驱动的运动：可冲过终点再回落稳定，也可临界阻尼稳稳停住。比固定缓动更有质量感与连续性，适合拖拽落位、开关拨动与强调出现。过冲幅度需克制，
+- [Spring Animation / 弹簧动画](/api/concept/motion/spring-animation.json): 用弹簧物理（刚度、阻尼）驱动的运动：可冲过终点再回落稳定，也可临界阻尼稳稳停住。比固定缓动更有质量感与连续性，适合拖拽落位、开关拨动与强调出现。过冲幅度需克制，
 - [Stagger Reveal / 逐项浮现](/api/concept/motion/stagger-reveal.json): 一组元素不一起出现，而是按固定间隔依次淡入或上浮，像点名一样逐个到位。 间隔 40～120ms 即可让列表"有秩序地醒来"， 比整块淡入更有生命感，也比真实逐项
 - [Text Reveal / 文字显现](/api/concept/motion/text-reveal.json): 把标题或段落按行、按词逐个显现，而不是整块淡入。文字"被说出来"的节奏感让信息有先后与分量， 常用于落地页首屏大标题、章节开场与滚动叙事， 通常进入视口时触发一
 - [Toast Slide-in / 提示滑入](/api/concept/motion/toast-slide-in.json): 操作结果以一条短提示从屏幕边缘滑入（常为底部或右上角）， 停留数秒后自动滑出。 动效分三段：滑入—停留—滑出， 方向与来源一致——从边缘来，回边缘去。
-- [View Transition / 视图过渡](document.startViewTransition(),view-transition-name): 用浏览器原生 View Transitions API 在页面状态切换时做平滑过渡：旧视图淡出、新视图淡入，关键元素可共享形变。它把状态跳变藏进连续的空间叙事，
-- [Color Palette / 调色板](color-mix(),oklch(),hsl()): 从一个基色出发生成有规律的色阶（50～900），再分配主色、辅助色、点缀色与中性色角色。色阶靠明度递进而非随手取色，保证 hover、disabled、边框都有
-- [Contrast Ratio / 对比度](WCAG 2.1,APCA,contrast-ratio()): 前景与背景的亮度比值，衡量文字是否看得清。WCAG 2.1 给出硬性门槛：正文 AA 4.5:1、AAA 7:1，大号文字降到 3:1 与 4.5:1。APCA
-- [Elevation / 层级](box-shadow,env(safe-area-inset-*),z-index): 用阴影的深浅表达元素离纸面的远近：0 贴平、1～2 浮起、3 以上成浮层。一套阴影由本影、半影、环境三层叠加而成，档位越高投影越大越淡。层级只用来表达叠放关系，
-- [Font Stack / 字体栈](font-family,@font-face,font-display,font-weight): 按优先级排列的字体回退链：首选字体缺席时依次落到下一个，最后由通用族兜底。系统栈零下载、即时渲染，网络字体保品牌气质但要配 font-display 控制闪烁，
-- [Line Height / 行高](line-height,leading): 一行文字占的垂直空间，决定段落的松紧与呼吸。标题收紧（1.1～1.3）显得挺拔，正文放宽（1.5～1.8）利于逐行阅读，引文可以更松。优先用无单位倍数，让行高随
-- [Measure / 行宽](max-width,ch,text-wrap,hyphens): 一段文字每行容纳的字符数，决定眼睛回行是否省力。舒适区大约 45～75 个拉丁字符（中文 28～40 字），最常用 65ch 左右。行太窄回行太频繁，太宽则跟丢
-- [Semantic Color Token / 语义色](:root,color-scheme,CSS custom properties): 按用途而非色相命名的颜色变量：bg、surface、text、muted、accent、danger。组件只认角色，主题切换时在映射层换指向即可，不必改组件。浅
-- [Type Scale / 字号阶梯](font-size,clamp(),rem,calc()): 用一组按比例递增的字号定义标题与正文层级，让排版有稳定节奏。以正文基准字号乘以固定比例（如 1.25 大三度、1.333 纯四度）逐级放大，标题之间形成可预期的
-- [Alt Text / 替代文本](alt,aria-label,role="presentation"): 给图片写一句文本替代：信息图传达同样的信息，装饰图写空 alt 让读屏跳过，功能图描述动作而非画面。读屏用户、图片加载失败的用户和搜索引擎都靠这句话理解图在说什
-- [ARIA Live Region / 实时区域](aria-live,role="status",role="alert",aria-atomic): 在页面上预留一块播报区，内容动态更新时把消息念给屏幕阅读器，而不移动焦点。保存成功、筛选结果数、异步校验这类「看得见变了但焦点没动」的信息，读屏用户不靠它就会漏
-- [Focus Ring / 焦点环](:focus-visible,outline,outline-offset,focus()): 用可见轮廓标记当前键盘焦点位置，让用户知道下一个按键会落在哪里。鼠标点击往往不需要它，但键盘与辅助技术用户必须始终看见焦点在哪，否则只能盲操作。通常用 :foc
-- [Keyboard Navigation / 键盘导航](tabindex,keydown,:focus-visible): 让所有功能都能只用键盘完成：Tab/Shift+Tab 按合理顺序移动焦点，复合组件内用方向键漫游并配 roving tabindex，Escape 关闭浮层并
-- [Reduced Motion / 减弱动效](prefers-reduced-motion,matchMedia,animation: none): 尊重系统「减弱动态效果」偏好，把大幅位移、缩放、视差动画降级为淡入甚至直接呈现。前庭敏感的用户会被大幅动效诱发眩晕恶心，这不是审美偏好而是健康风险；WCAG 2
-- [Skip Link / 跳过链接](<a href="#main">,tabindex,landmark roles): 页面第一个可聚焦元素，通常是视觉上隐藏的链接；键盘用户按下第一个 Tab 就能看见它，激活后直接跳到主内容区，不必逐个穿过顶部导航链接。长导航站点的必备逃生口，
+- [View Transition / 视图过渡](/api/concept/motion/view-transition.json): 用浏览器原生 View Transitions API 在页面状态切换时做平滑过渡：旧视图淡出、新视图淡入，关键元素可共享形变。它把状态跳变藏进连续的空间叙事，
+- [Color Palette / 调色板](/api/concept/foundation/color-palette.json): 从一个基色出发生成有规律的色阶（50～900），再分配主色、辅助色、点缀色与中性色角色。色阶靠明度递进而非随手取色，保证 hover、disabled、边框都有
+- [Contrast Ratio / 对比度](/api/concept/foundation/contrast-ratio.json): 前景与背景的亮度比值，衡量文字是否看得清。WCAG 2.1 给出硬性门槛：正文 AA 4.5:1、AAA 7:1，大号文字降到 3:1 与 4.5:1。APCA
+- [Elevation / 层级](/api/concept/foundation/elevation.json): 用阴影的深浅表达元素离纸面的远近：0 贴平、1～2 浮起、3 以上成浮层。一套阴影由本影、半影、环境三层叠加而成，档位越高投影越大越淡。层级只用来表达叠放关系，
+- [Font Stack / 字体栈](/api/concept/foundation/font-stack.json): 按优先级排列的字体回退链：首选字体缺席时依次落到下一个，最后由通用族兜底。系统栈零下载、即时渲染，网络字体保品牌气质但要配 font-display 控制闪烁，
+- [Line Height / 行高](/api/concept/foundation/line-height.json): 一行文字占的垂直空间，决定段落的松紧与呼吸。标题收紧（1.1～1.3）显得挺拔，正文放宽（1.5～1.8）利于逐行阅读，引文可以更松。优先用无单位倍数，让行高随
+- [Measure / 行宽](/api/concept/foundation/measure.json): 一段文字每行容纳的字符数，决定眼睛回行是否省力。舒适区大约 45～75 个拉丁字符（中文 28～40 字），最常用 65ch 左右。行太窄回行太频繁，太宽则跟丢
+- [Semantic Color Token / 语义色](/api/concept/foundation/semantic-color.json): 按用途而非色相命名的颜色变量：bg、surface、text、muted、accent、danger。组件只认角色，主题切换时在映射层换指向即可，不必改组件。浅
+- [Type Scale / 字号阶梯](/api/concept/foundation/type-scale.json): 用一组按比例递增的字号定义标题与正文层级，让排版有稳定节奏。以正文基准字号乘以固定比例（如 1.25 大三度、1.333 纯四度）逐级放大，标题之间形成可预期的
+- [Alt Text / 替代文本](/api/concept/a11y/alt-text.json): 给图片写一句文本替代：信息图传达同样的信息，装饰图写空 alt 让读屏跳过，功能图描述动作而非画面。读屏用户、图片加载失败的用户和搜索引擎都靠这句话理解图在说什
+- [ARIA Live Region / 实时区域](/api/concept/a11y/aria-live.json): 在页面上预留一块播报区，内容动态更新时把消息念给屏幕阅读器，而不移动焦点。保存成功、筛选结果数、异步校验这类「看得见变了但焦点没动」的信息，读屏用户不靠它就会漏
+- [Focus Ring / 焦点环](/api/concept/a11y/focus-ring.json): 用可见轮廓标记当前键盘焦点位置，让用户知道下一个按键会落在哪里。鼠标点击往往不需要它，但键盘与辅助技术用户必须始终看见焦点在哪，否则只能盲操作。通常用 :foc
+- [Keyboard Navigation / 键盘导航](/api/concept/a11y/keyboard-navigation.json): 让所有功能都能只用键盘完成：Tab/Shift+Tab 按合理顺序移动焦点，复合组件内用方向键漫游并配 roving tabindex，Escape 关闭浮层并
+- [Reduced Motion / 减弱动效](/api/concept/a11y/reduced-motion.json): 尊重系统「减弱动态效果」偏好，把大幅位移、缩放、视差动画降级为淡入甚至直接呈现。前庭敏感的用户会被大幅动效诱发眩晕恶心，这不是审美偏好而是健康风险；WCAG 2
+- [Skip Link / 跳过链接](/api/concept/a11y/skip-link.json): 页面第一个可聚焦元素，通常是视觉上隐藏的链接；键盘用户按下第一个 Tab 就能看见它，激活后直接跳到主内容区，不必逐个穿过顶部导航链接。长导航站点的必备逃生口，

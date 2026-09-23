@@ -17,11 +17,7 @@
       "id": "alt-text",
       "type": "a11y",
       "url": "/a11y/alt-text",
-      "api": [
-        "alt",
-        "aria-label",
-        "role=\"presentation\""
-      ],
+      "apiUrl": "/api/concept/a11y/alt-text.json",
       "md": "/a11y/alt-text.md",
       "status": "published",
       "name": {
@@ -77,6 +73,11 @@
         "content",
         "images",
         "aria"
+      ],
+      "api": [
+        "alt",
+        "aria-label",
+        "role=\"presentation\""
       ],
       "framework_names": [
         {
@@ -208,12 +209,7 @@
       "id": "aria-live",
       "type": "a11y",
       "url": "/a11y/aria-live",
-      "api": [
-        "aria-live",
-        "role=\"status\"",
-        "role=\"alert\"",
-        "aria-atomic"
-      ],
+      "apiUrl": "/api/concept/a11y/aria-live.json",
       "md": "/a11y/aria-live.md",
       "status": "published",
       "name": {
@@ -269,6 +265,12 @@
         "feedback",
         "screen-reader",
         "aria"
+      ],
+      "api": [
+        "aria-live",
+        "role=\"status\"",
+        "role=\"alert\"",
+        "aria-atomic"
       ],
       "framework_names": [
         {
@@ -402,12 +404,7 @@
       "id": "focus-ring",
       "type": "a11y",
       "url": "/a11y/focus-ring",
-      "api": [
-        ":focus-visible",
-        "outline",
-        "outline-offset",
-        "focus()"
-      ],
+      "apiUrl": "/api/concept/a11y/focus-ring.json",
       "md": "/a11y/focus-ring.md",
       "status": "published",
       "name": {
@@ -464,6 +461,12 @@
         "keyboard",
         "focus",
         "outline"
+      ],
+      "api": [
+        ":focus-visible",
+        "outline",
+        "outline-offset",
+        "focus()"
       ],
       "framework_names": [
         {
@@ -595,11 +598,7 @@
       "id": "keyboard-navigation",
       "type": "a11y",
       "url": "/a11y/keyboard-navigation",
-      "api": [
-        "tabindex",
-        "keydown",
-        ":focus-visible"
-      ],
+      "apiUrl": "/api/concept/a11y/keyboard-navigation.json",
       "md": "/a11y/keyboard-navigation.md",
       "status": "published",
       "name": {
@@ -655,6 +654,11 @@
         "keyboard",
         "focus",
         "apg"
+      ],
+      "api": [
+        "tabindex",
+        "keydown",
+        ":focus-visible"
       ],
       "framework_names": [
         {
@@ -791,11 +795,7 @@
       "id": "reduced-motion",
       "type": "a11y",
       "url": "/a11y/reduced-motion",
-      "api": [
-        "prefers-reduced-motion",
-        "matchMedia",
-        "animation: none"
-      ],
+      "apiUrl": "/api/concept/a11y/reduced-motion.json",
       "md": "/a11y/reduced-motion.md",
       "status": "published",
       "name": {
@@ -851,6 +851,11 @@
         "motion",
         "preference",
         "vestibular"
+      ],
+      "api": [
+        "prefers-reduced-motion",
+        "matchMedia",
+        "animation: none"
       ],
       "framework_names": [
         {
@@ -983,11 +988,7 @@
       "id": "skip-link",
       "type": "a11y",
       "url": "/a11y/skip-link",
-      "api": [
-        "<a href=\"#main\">",
-        "tabindex",
-        "landmark roles"
-      ],
+      "apiUrl": "/api/concept/a11y/skip-link.json",
       "md": "/a11y/skip-link.md",
       "status": "published",
       "name": {
@@ -1043,6 +1044,11 @@
         "navigation",
         "keyboard",
         "landmark"
+      ],
+      "api": [
+        "<a href=\"#main\">",
+        "tabindex",
+        "landmark roles"
       ],
       "framework_names": [
         {
@@ -1175,10 +1181,7 @@
       "id": "accordion",
       "type": "components",
       "url": "/components/accordion",
-      "api": [
-        "<details>",
-        "<summary>"
-      ],
+      "apiUrl": "/api/concept/components/accordion.json",
       "md": "/components/accordion.md",
       "status": "published",
       "name": {
@@ -1235,6 +1238,10 @@
         "layout",
         "progressive",
         "faq"
+      ],
+      "api": [
+        "<details>",
+        "<summary>"
       ],
       "framework_names": [
         {
@@ -1386,10 +1393,7 @@
       "id": "alert",
       "type": "components",
       "url": "/components/alert",
-      "api": [
-        "role=\"alert\"",
-        "aria-live=\"assertive\""
-      ],
+      "apiUrl": "/api/concept/components/alert.json",
       "md": "/components/alert.md",
       "status": "published",
       "name": {
@@ -1445,6 +1449,10 @@
         "error",
         "warning",
         "inline"
+      ],
+      "api": [
+        "role=\"alert\"",
+        "aria-live=\"assertive\""
       ],
       "framework_names": [
         {
@@ -1639,9 +1647,7 @@
       "id": "avatar",
       "type": "components",
       "url": "/components/avatar",
-      "api": [
-        "<img>"
-      ],
+      "apiUrl": "/api/concept/components/avatar.json",
       "md": "/components/avatar.md",
       "status": "published",
       "name": {
@@ -1698,6 +1704,9 @@
         "display",
         "image",
         "user"
+      ],
+      "api": [
+        "<img>"
       ],
       "variants": [
         {
@@ -1822,9 +1831,7 @@
       "id": "badge",
       "type": "components",
       "url": "/components/badge",
-      "api": [
-        "<span>"
-      ],
+      "apiUrl": "/api/concept/components/badge.json",
       "md": "/components/badge.md",
       "status": "published",
       "name": {
@@ -1881,6 +1888,9 @@
         "display",
         "marker",
         "count"
+      ],
+      "api": [
+        "<span>"
       ],
       "variants": [
         {
@@ -2005,11 +2015,7 @@
       "id": "bottom-sheet",
       "type": "components",
       "url": "/components/bottom-sheet",
-      "api": [
-        "<dialog>",
-        "role=\"dialog\"",
-        "aria-modal=\"true\""
-      ],
+      "apiUrl": "/api/concept/components/bottom-sheet.json",
       "md": "/components/bottom-sheet.md",
       "status": "published",
       "name": {
@@ -2110,6 +2116,11 @@
         "遮罩层（Backdrop）",
         "抓手（Grabber）",
         "面板内容（Panel body）"
+      ],
+      "api": [
+        "<dialog>",
+        "role=\"dialog\"",
+        "aria-modal=\"true\""
       ],
       "framework_names": [
         {
@@ -2248,11 +2259,7 @@
       "id": "breadcrumb",
       "type": "components",
       "url": "/components/breadcrumb",
-      "api": [
-        "<nav aria-label=\"Breadcrumb\">",
-        "<ol>",
-        "<li>"
-      ],
+      "apiUrl": "/api/concept/components/breadcrumb.json",
       "md": "/components/breadcrumb.md",
       "status": "published",
       "name": {
@@ -2307,6 +2314,11 @@
         "navigation",
         "hierarchy",
         "location"
+      ],
+      "api": [
+        "<nav aria-label=\"Breadcrumb\">",
+        "<ol>",
+        "<li>"
       ],
       "variants": [
         {
@@ -2449,11 +2461,7 @@
       "id": "button",
       "type": "components",
       "url": "/components/button",
-      "api": [
-        "<button>",
-        "type",
-        "role=\"button\""
-      ],
+      "apiUrl": "/api/concept/components/button.json",
       "md": "/components/button.md",
       "status": "published",
       "name": {
@@ -2508,6 +2516,11 @@
         "action",
         "form",
         "interaction"
+      ],
+      "api": [
+        "<button>",
+        "type",
+        "role=\"button\""
       ],
       "framework_names": [
         {
@@ -2702,9 +2715,7 @@
       "id": "card",
       "type": "components",
       "url": "/components/card",
-      "api": [
-        "<article>"
-      ],
+      "apiUrl": "/api/concept/components/card.json",
       "md": "/components/card.md",
       "status": "published",
       "name": {
@@ -2761,6 +2772,9 @@
         "display",
         "container",
         "content"
+      ],
+      "api": [
+        "<article>"
       ],
       "variants": [
         {
@@ -2907,11 +2921,7 @@
       "id": "carousel",
       "type": "components",
       "url": "/components/carousel",
-      "api": [
-        "aria-roledescription=\"carousel\"",
-        "scroll-snap-type",
-        "aria-live"
-      ],
+      "apiUrl": "/api/concept/components/carousel.json",
       "md": "/components/carousel.md",
       "status": "published",
       "name": {
@@ -3008,6 +3018,11 @@
         "轨道（Track）",
         "项目（Item）",
         "控件（Controls）"
+      ],
+      "api": [
+        "aria-roledescription=\"carousel\"",
+        "scroll-snap-type",
+        "aria-live"
       ],
       "framework_names": [
         {
@@ -3107,10 +3122,7 @@
       "id": "checkbox",
       "type": "components",
       "url": "/components/checkbox",
-      "api": [
-        "<input type=\"checkbox\">",
-        "role=\"checkbox\""
-      ],
+      "apiUrl": "/api/concept/components/checkbox.json",
       "md": "/components/checkbox.md",
       "status": "published",
       "name": {
@@ -3165,6 +3177,10 @@
         "form",
         "input",
         "selection"
+      ],
+      "api": [
+        "<input type=\"checkbox\">",
+        "role=\"checkbox\""
       ],
       "framework_names": [
         {
@@ -3325,11 +3341,7 @@
       "id": "color-picker",
       "type": "components",
       "url": "/components/color-picker",
-      "api": [
-        "input[type=\"color\"]",
-        "color-mix()",
-        "oklch()"
-      ],
+      "apiUrl": "/api/concept/components/color-picker.json",
       "md": "/components/color-picker.md",
       "status": "published",
       "name": {
@@ -3383,6 +3395,11 @@
         "form",
         "input",
         "color"
+      ],
+      "api": [
+        "input[type=\"color\"]",
+        "color-mix()",
+        "oklch()"
       ],
       "variants": [
         {
@@ -3548,7 +3565,7 @@
       "id": "combobox",
       "type": "components",
       "url": "/components/combobox",
-      "api": "/api/concept/components/combobox.json",
+      "apiUrl": "/api/concept/components/combobox.json",
       "md": "/components/combobox.md",
       "status": "published",
       "name": {
@@ -3699,10 +3716,7 @@
       "id": "command-palette",
       "type": "components",
       "url": "/components/command-palette",
-      "api": [
-        "<dialog>",
-        "role=\"combobox\""
-      ],
+      "apiUrl": "/api/concept/components/command-palette.json",
       "md": "/components/command-palette.md",
       "status": "published",
       "name": {
@@ -3759,6 +3773,10 @@
         "search",
         "keyboard",
         "productivity"
+      ],
+      "api": [
+        "<dialog>",
+        "role=\"combobox\""
       ],
       "variants": [
         {
@@ -3907,11 +3925,7 @@
       "id": "date-picker",
       "type": "components",
       "url": "/components/date-picker",
-      "api": [
-        "<input type=\"date\">",
-        "aria-haspopup",
-        "role=\"dialog\""
-      ],
+      "apiUrl": "/api/concept/components/date-picker.json",
       "md": "/components/date-picker.md",
       "status": "published",
       "name": {
@@ -3966,6 +3980,11 @@
         "form",
         "input",
         "calendar"
+      ],
+      "api": [
+        "<input type=\"date\">",
+        "aria-haspopup",
+        "role=\"dialog\""
       ],
       "variants": [
         {
@@ -4105,11 +4124,7 @@
       "id": "drawer",
       "type": "components",
       "url": "/components/drawer",
-      "api": [
-        "<dialog>",
-        "role=\"dialog\"",
-        "aria-modal=\"true\""
-      ],
+      "apiUrl": "/api/concept/components/drawer.json",
       "md": "/components/drawer.md",
       "status": "published",
       "name": {
@@ -4166,6 +4181,11 @@
         "navigation",
         "panel",
         "mobile"
+      ],
+      "api": [
+        "<dialog>",
+        "role=\"dialog\"",
+        "aria-modal=\"true\""
       ],
       "variants": [
         {
@@ -4314,11 +4334,7 @@
       "id": "dropdown",
       "type": "components",
       "url": "/components/dropdown",
-      "api": [
-        "role=\"menu\"",
-        "role=\"menuitem\"",
-        "aria-haspopup"
-      ],
+      "apiUrl": "/api/concept/components/dropdown.json",
       "md": "/components/dropdown.md",
       "status": "published",
       "name": {
@@ -4373,6 +4389,11 @@
         "navigation",
         "overlay",
         "menu"
+      ],
+      "api": [
+        "role=\"menu\"",
+        "role=\"menuitem\"",
+        "aria-haspopup"
       ],
       "framework_names": [
         {
@@ -4581,12 +4602,7 @@
       "id": "fab",
       "type": "components",
       "url": "/components/fab",
-      "api": [
-        "<button>",
-        "position",
-        "box-shadow",
-        "aria-expanded"
-      ],
+      "apiUrl": "/api/concept/components/fab.json",
       "md": "/components/fab.md",
       "status": "published",
       "name": {
@@ -4685,6 +4701,12 @@
         "按钮主体（Button body）",
         "图标（Icon）",
         "扩展标签 / 子动作（Label / Speed dial actions）"
+      ],
+      "api": [
+        "<button>",
+        "position",
+        "box-shadow",
+        "aria-expanded"
       ],
       "framework_names": [
         {
@@ -4787,7 +4809,7 @@
       "id": "file-upload",
       "type": "components",
       "url": "/components/file-upload",
-      "api": "/api/concept/components/file-upload.json",
+      "apiUrl": "/api/concept/components/file-upload.json",
       "md": "/components/file-upload.md",
       "status": "published",
       "name": {
@@ -4938,10 +4960,7 @@
       "id": "filter-panel",
       "type": "components",
       "url": "/components/filter-panel",
-      "api": [
-        "<fieldset>",
-        "<form>"
-      ],
+      "apiUrl": "/api/concept/components/filter-panel.json",
       "md": "/components/filter-panel.md",
       "status": "published",
       "name": {
@@ -4998,6 +5017,10 @@
         "filtering",
         "search",
         "facets"
+      ],
+      "api": [
+        "<fieldset>",
+        "<form>"
       ],
       "variants": [
         {
@@ -5127,11 +5150,7 @@
       "id": "input",
       "type": "components",
       "url": "/components/input",
-      "api": [
-        "<input>",
-        "type",
-        "role=\"textbox\""
-      ],
+      "apiUrl": "/api/concept/components/input.json",
       "md": "/components/input.md",
       "status": "published",
       "name": {
@@ -5186,6 +5205,11 @@
         "form",
         "input",
         "text"
+      ],
+      "api": [
+        "<input>",
+        "type",
+        "role=\"textbox\""
       ],
       "framework_names": [
         {
@@ -5348,11 +5372,7 @@
       "id": "lightbox",
       "type": "components",
       "url": "/components/lightbox",
-      "api": [
-        "<dialog>",
-        "role=\"dialog\"",
-        "aria-modal=\"true\""
-      ],
+      "apiUrl": "/api/concept/components/lightbox.json",
       "md": "/components/lightbox.md",
       "status": "published",
       "name": {
@@ -5406,6 +5426,11 @@
         "overlay",
         "media",
         "dialog"
+      ],
+      "api": [
+        "<dialog>",
+        "role=\"dialog\"",
+        "aria-modal=\"true\""
       ],
       "variants": [
         {
@@ -5572,10 +5597,7 @@
       "id": "menu",
       "type": "components",
       "url": "/components/menu",
-      "api": [
-        "role=\"menu\"",
-        "role=\"menuitem\""
-      ],
+      "apiUrl": "/api/concept/components/menu.json",
       "md": "/components/menu.md",
       "status": "published",
       "name": {
@@ -5632,6 +5654,10 @@
         "overlay",
         "actions",
         "context"
+      ],
+      "api": [
+        "role=\"menu\"",
+        "role=\"menuitem\""
       ],
       "disambiguation": {
         "zh": "菜单（Menu）是命令列表，点选即执行；导航（Navbar/Sidebar）是页面目的地；下拉（Dropdown）是「按钮 + 菜单」的组合控件。",
@@ -5805,11 +5831,7 @@
       "id": "modal",
       "type": "components",
       "url": "/components/modal",
-      "api": [
-        "<dialog>",
-        "role=\"dialog\"",
-        "aria-modal=\"true\""
-      ],
+      "apiUrl": "/api/concept/components/modal.json",
       "md": "/components/modal.md",
       "status": "published",
       "name": {
@@ -5866,6 +5888,11 @@
         "dialog",
         "interruption",
         "feedback"
+      ],
+      "api": [
+        "<dialog>",
+        "role=\"dialog\"",
+        "aria-modal=\"true\""
       ],
       "framework_names": [
         {
@@ -6070,11 +6097,7 @@
       "id": "multi-select",
       "type": "components",
       "url": "/components/multi-select",
-      "api": [
-        "role=\"listbox\"",
-        "aria-multiselectable",
-        "aria-selected"
-      ],
+      "apiUrl": "/api/concept/components/multi-select.json",
       "md": "/components/multi-select.md",
       "status": "published",
       "name": {
@@ -6128,6 +6151,11 @@
         "form",
         "selection",
         "input"
+      ],
+      "api": [
+        "role=\"listbox\"",
+        "aria-multiselectable",
+        "aria-selected"
       ],
       "variants": [
         {
@@ -6291,10 +6319,7 @@
       "id": "navbar",
       "type": "components",
       "url": "/components/navbar",
-      "api": [
-        "<nav>",
-        "role=\"navigation\""
-      ],
+      "apiUrl": "/api/concept/components/navbar.json",
       "md": "/components/navbar.md",
       "status": "published",
       "name": {
@@ -6349,6 +6374,10 @@
         "navigation",
         "header",
         "layout"
+      ],
+      "api": [
+        "<nav>",
+        "role=\"navigation\""
       ],
       "variants": [
         {
@@ -6509,10 +6538,7 @@
       "id": "pagination",
       "type": "components",
       "url": "/components/pagination",
-      "api": [
-        "<nav aria-label=\"Pagination\">",
-        "role=\"navigation\""
-      ],
+      "apiUrl": "/api/concept/components/pagination.json",
       "md": "/components/pagination.md",
       "status": "published",
       "name": {
@@ -6567,6 +6593,10 @@
         "navigation",
         "data",
         "list"
+      ],
+      "api": [
+        "<nav aria-label=\"Pagination\">",
+        "role=\"navigation\""
       ],
       "variants": [
         {
@@ -6724,11 +6754,7 @@
       "id": "popover",
       "type": "components",
       "url": "/components/popover",
-      "api": [
-        "popover",
-        "[popover]",
-        "role=\"dialog\""
-      ],
+      "apiUrl": "/api/concept/components/popover.json",
       "md": "/components/popover.md",
       "status": "published",
       "name": {
@@ -6784,6 +6810,11 @@
         "container",
         "click",
         "floating"
+      ],
+      "api": [
+        "popover",
+        "[popover]",
+        "role=\"dialog\""
       ],
       "framework_names": [
         {
@@ -6979,11 +7010,7 @@
       "id": "progress-bar",
       "type": "components",
       "url": "/components/progress-bar",
-      "api": [
-        "<progress>",
-        "role=\"progressbar\"",
-        "aria-valuenow"
-      ],
+      "apiUrl": "/api/concept/components/progress-bar.json",
       "md": "/components/progress-bar.md",
       "status": "published",
       "name": {
@@ -7040,6 +7067,11 @@
         "feedback",
         "progress",
         "determinate"
+      ],
+      "api": [
+        "<progress>",
+        "role=\"progressbar\"",
+        "aria-valuenow"
       ],
       "framework_names": [
         {
@@ -7211,11 +7243,7 @@
       "id": "radio",
       "type": "components",
       "url": "/components/radio",
-      "api": [
-        "<input type=\"radio\">",
-        "role=\"radio\"",
-        "role=\"radiogroup\""
-      ],
+      "apiUrl": "/api/concept/components/radio.json",
       "md": "/components/radio.md",
       "status": "published",
       "name": {
@@ -7270,6 +7298,11 @@
         "form",
         "input",
         "selection"
+      ],
+      "api": [
+        "<input type=\"radio\">",
+        "role=\"radio\"",
+        "role=\"radiogroup\""
       ],
       "framework_names": [
         {
@@ -7431,7 +7464,7 @@
       "id": "rating",
       "type": "components",
       "url": "/components/rating",
-      "api": "/api/concept/components/rating.json",
+      "apiUrl": "/api/concept/components/rating.json",
       "md": "/components/rating.md",
       "status": "published",
       "name": {
@@ -7582,7 +7615,7 @@
       "id": "segmented-control",
       "type": "components",
       "url": "/components/segmented-control",
-      "api": "/api/concept/components/segmented-control.json",
+      "apiUrl": "/api/concept/components/segmented-control.json",
       "md": "/components/segmented-control.md",
       "status": "published",
       "name": {
@@ -7760,11 +7793,7 @@
       "id": "select",
       "type": "components",
       "url": "/components/select",
-      "api": [
-        "<select>",
-        "role=\"listbox\"",
-        "role=\"option\""
-      ],
+      "apiUrl": "/api/concept/components/select.json",
       "md": "/components/select.md",
       "status": "published",
       "name": {
@@ -7819,6 +7848,11 @@
         "form",
         "input",
         "selection"
+      ],
+      "api": [
+        "<select>",
+        "role=\"listbox\"",
+        "role=\"option\""
       ],
       "framework_names": [
         {
@@ -7984,10 +8018,7 @@
       "id": "sidebar",
       "type": "components",
       "url": "/components/sidebar",
-      "api": [
-        "<aside>",
-        "<nav>"
-      ],
+      "apiUrl": "/api/concept/components/sidebar.json",
       "md": "/components/sidebar.md",
       "status": "published",
       "name": {
@@ -8042,6 +8073,10 @@
         "navigation",
         "layout",
         "dashboard"
+      ],
+      "api": [
+        "<aside>",
+        "<nav>"
       ],
       "variants": [
         {
@@ -8197,10 +8232,7 @@
       "id": "slider",
       "type": "components",
       "url": "/components/slider",
-      "api": [
-        "<input type=\"range\">",
-        "role=\"slider\""
-      ],
+      "apiUrl": "/api/concept/components/slider.json",
       "md": "/components/slider.md",
       "status": "published",
       "name": {
@@ -8255,6 +8287,10 @@
         "form",
         "input",
         "range"
+      ],
+      "api": [
+        "<input type=\"range\">",
+        "role=\"slider\""
       ],
       "variants": [
         {
@@ -8394,11 +8430,7 @@
       "id": "split-button",
       "type": "components",
       "url": "/components/split-button",
-      "api": [
-        "<button>",
-        "aria-haspopup=\"menu\"",
-        "aria-expanded"
-      ],
+      "apiUrl": "/api/concept/components/split-button.json",
       "md": "/components/split-button.md",
       "status": "published",
       "name": {
@@ -8451,6 +8483,11 @@
         "action",
         "button",
         "menu"
+      ],
+      "api": [
+        "<button>",
+        "aria-haspopup=\"menu\"",
+        "aria-expanded"
       ],
       "variants": [
         {
@@ -8616,7 +8653,7 @@
       "id": "stepper",
       "type": "components",
       "url": "/components/stepper",
-      "api": "/api/concept/components/stepper.json",
+      "apiUrl": "/api/concept/components/stepper.json",
       "md": "/components/stepper.md",
       "status": "published",
       "name": {
@@ -8795,9 +8832,7 @@
       "id": "switch",
       "type": "components",
       "url": "/components/switch",
-      "api": [
-        "<input type=\"checkbox\" role=\"switch\">"
-      ],
+      "apiUrl": "/api/concept/components/switch.json",
       "md": "/components/switch.md",
       "status": "published",
       "name": {
@@ -8852,6 +8887,9 @@
         "form",
         "input",
         "toggle"
+      ],
+      "api": [
+        "<input type=\"checkbox\" role=\"switch\">"
       ],
       "framework_names": [
         {
@@ -9006,11 +9044,7 @@
       "id": "table",
       "type": "components",
       "url": "/components/table",
-      "api": [
-        "<table>",
-        "<thead>",
-        "<tbody>"
-      ],
+      "apiUrl": "/api/concept/components/table.json",
       "md": "/components/table.md",
       "status": "published",
       "name": {
@@ -9067,6 +9101,11 @@
         "display",
         "density",
         "sorting"
+      ],
+      "api": [
+        "<table>",
+        "<thead>",
+        "<tbody>"
       ],
       "variants": [
         {
@@ -9213,11 +9252,7 @@
       "id": "tabs",
       "type": "components",
       "url": "/components/tabs",
-      "api": [
-        "role=\"tablist\"",
-        "role=\"tab\"",
-        "role=\"tabpanel\""
-      ],
+      "apiUrl": "/api/concept/components/tabs.json",
       "md": "/components/tabs.md",
       "status": "published",
       "name": {
@@ -9272,6 +9307,11 @@
         "navigation",
         "layout",
         "content-switching"
+      ],
+      "api": [
+        "role=\"tablist\"",
+        "role=\"tab\"",
+        "role=\"tabpanel\""
       ],
       "framework_names": [
         {
@@ -9462,12 +9502,7 @@
       "id": "tag-input",
       "type": "components",
       "url": "/components/tag-input",
-      "api": [
-        "<input>",
-        "role=\"listbox\"",
-        "aria-live",
-        "keydown"
-      ],
+      "apiUrl": "/api/concept/components/tag-input.json",
       "md": "/components/tag-input.md",
       "status": "published",
       "name": {
@@ -9563,6 +9598,12 @@
         "标签列表（Tag list）",
         "输入框（Input）",
         "移除按钮（Remove）"
+      ],
+      "api": [
+        "<input>",
+        "role=\"listbox\"",
+        "aria-live",
+        "keydown"
       ],
       "framework_names": [
         {
@@ -9672,9 +9713,7 @@
       "id": "textarea",
       "type": "components",
       "url": "/components/textarea",
-      "api": [
-        "<textarea>"
-      ],
+      "apiUrl": "/api/concept/components/textarea.json",
       "md": "/components/textarea.md",
       "status": "published",
       "name": {
@@ -9729,6 +9768,9 @@
         "form",
         "input",
         "text"
+      ],
+      "api": [
+        "<textarea>"
       ],
       "framework_names": [
         {
@@ -9890,7 +9932,7 @@
       "id": "timeline",
       "type": "components",
       "url": "/components/timeline",
-      "api": "/api/concept/components/timeline.json",
+      "apiUrl": "/api/concept/components/timeline.json",
       "md": "/components/timeline.md",
       "status": "published",
       "name": {
@@ -10041,10 +10083,7 @@
       "id": "toast",
       "type": "components",
       "url": "/components/toast",
-      "api": [
-        "role=\"status\"",
-        "aria-live=\"polite\""
-      ],
+      "apiUrl": "/api/concept/components/toast.json",
       "md": "/components/toast.md",
       "status": "published",
       "name": {
@@ -10101,6 +10140,10 @@
         "notification",
         "transient",
         "animation"
+      ],
+      "api": [
+        "role=\"status\"",
+        "aria-live=\"polite\""
       ],
       "framework_names": [
         {
@@ -10292,11 +10335,7 @@
       "id": "toolbar",
       "type": "components",
       "url": "/components/toolbar",
-      "api": [
-        "role=\"toolbar\"",
-        "aria-label",
-        "roving tabindex"
-      ],
+      "apiUrl": "/api/concept/components/toolbar.json",
       "md": "/components/toolbar.md",
       "status": "published",
       "name": {
@@ -10396,6 +10435,11 @@
         "分组（Group）",
         "按钮（Button）",
         "分隔符（Separator）"
+      ],
+      "api": [
+        "role=\"toolbar\"",
+        "aria-label",
+        "roving tabindex"
       ],
       "framework_names": [
         {
@@ -10518,10 +10562,7 @@
       "id": "tooltip",
       "type": "components",
       "url": "/components/tooltip",
-      "api": [
-        "role=\"tooltip\"",
-        "aria-describedby"
-      ],
+      "apiUrl": "/api/concept/components/tooltip.json",
       "md": "/components/tooltip.md",
       "status": "published",
       "name": {
@@ -10578,6 +10619,10 @@
         "hover",
         "hint",
         "accessibility"
+      ],
+      "api": [
+        "role=\"tooltip\"",
+        "aria-describedby"
       ],
       "framework_names": [
         {
@@ -10748,11 +10793,7 @@
       "id": "tree-view",
       "type": "components",
       "url": "/components/tree-view",
-      "api": [
-        "role=\"tree\"",
-        "role=\"treeitem\"",
-        "aria-expanded"
-      ],
+      "apiUrl": "/api/concept/components/tree-view.json",
       "md": "/components/tree-view.md",
       "status": "published",
       "name": {
@@ -10806,6 +10847,11 @@
         "data-display",
         "navigation",
         "hierarchy"
+      ],
+      "api": [
+        "role=\"tree\"",
+        "role=\"treeitem\"",
+        "aria-expanded"
       ],
       "variants": [
         {
@@ -10971,11 +11017,7 @@
       "id": "color-palette",
       "type": "foundation",
       "url": "/foundation/color-palette",
-      "api": [
-        "color-mix()",
-        "oklch()",
-        "hsl()"
-      ],
+      "apiUrl": "/api/concept/foundation/color-palette.json",
       "md": "/foundation/color-palette.md",
       "status": "published",
       "name": {
@@ -11032,6 +11074,11 @@
         "foundation",
         "palette",
         "tokens"
+      ],
+      "api": [
+        "color-mix()",
+        "oklch()",
+        "hsl()"
       ],
       "framework_names": [
         {
@@ -11165,11 +11212,7 @@
       "id": "contrast-ratio",
       "type": "foundation",
       "url": "/foundation/contrast-ratio",
-      "api": [
-        "WCAG 2.1",
-        "APCA",
-        "contrast-ratio()"
-      ],
+      "apiUrl": "/api/concept/foundation/contrast-ratio.json",
       "md": "/foundation/contrast-ratio.md",
       "status": "published",
       "name": {
@@ -11226,6 +11269,11 @@
         "foundation",
         "accessibility",
         "readability"
+      ],
+      "api": [
+        "WCAG 2.1",
+        "APCA",
+        "contrast-ratio()"
       ],
       "framework_names": [
         {
@@ -11360,11 +11408,7 @@
       "id": "elevation",
       "type": "foundation",
       "url": "/foundation/elevation",
-      "api": [
-        "box-shadow",
-        "env(safe-area-inset-*)",
-        "z-index"
-      ],
+      "apiUrl": "/api/concept/foundation/elevation.json",
       "md": "/foundation/elevation.md",
       "status": "published",
       "name": {
@@ -11421,6 +11465,11 @@
         "foundation",
         "shadow",
         "depth"
+      ],
+      "api": [
+        "box-shadow",
+        "env(safe-area-inset-*)",
+        "z-index"
       ],
       "framework_names": [
         {
@@ -11550,12 +11599,7 @@
       "id": "font-stack",
       "type": "foundation",
       "url": "/foundation/font-stack",
-      "api": [
-        "font-family",
-        "@font-face",
-        "font-display",
-        "font-weight"
-      ],
+      "apiUrl": "/api/concept/foundation/font-stack.json",
       "md": "/foundation/font-stack.md",
       "status": "published",
       "name": {
@@ -11612,6 +11656,12 @@
         "foundation",
         "font",
         "fallback"
+      ],
+      "api": [
+        "font-family",
+        "@font-face",
+        "font-display",
+        "font-weight"
       ],
       "framework_names": [
         {
@@ -11745,10 +11795,7 @@
       "id": "line-height",
       "type": "foundation",
       "url": "/foundation/line-height",
-      "api": [
-        "line-height",
-        "leading"
-      ],
+      "apiUrl": "/api/concept/foundation/line-height.json",
       "md": "/foundation/line-height.md",
       "status": "published",
       "name": {
@@ -11805,6 +11852,10 @@
         "foundation",
         "leading",
         "readability"
+      ],
+      "api": [
+        "line-height",
+        "leading"
       ],
       "framework_names": [
         {
@@ -11941,12 +11992,7 @@
       "id": "measure",
       "type": "foundation",
       "url": "/foundation/measure",
-      "api": [
-        "max-width",
-        "ch",
-        "text-wrap",
-        "hyphens"
-      ],
+      "apiUrl": "/api/concept/foundation/measure.json",
       "md": "/foundation/measure.md",
       "status": "published",
       "name": {
@@ -12003,6 +12049,12 @@
         "foundation",
         "readability",
         "layout"
+      ],
+      "api": [
+        "max-width",
+        "ch",
+        "text-wrap",
+        "hyphens"
       ],
       "framework_names": [
         {
@@ -12152,11 +12204,7 @@
       "id": "semantic-color",
       "type": "foundation",
       "url": "/foundation/semantic-color",
-      "api": [
-        ":root",
-        "color-scheme",
-        "CSS custom properties"
-      ],
+      "apiUrl": "/api/concept/foundation/semantic-color.json",
       "md": "/foundation/semantic-color.md",
       "status": "published",
       "name": {
@@ -12213,6 +12261,11 @@
         "foundation",
         "tokens",
         "theme"
+      ],
+      "api": [
+        ":root",
+        "color-scheme",
+        "CSS custom properties"
       ],
       "framework_names": [
         {
@@ -12346,12 +12399,7 @@
       "id": "type-scale",
       "type": "foundation",
       "url": "/foundation/type-scale",
-      "api": [
-        "font-size",
-        "clamp()",
-        "rem",
-        "calc()"
-      ],
+      "apiUrl": "/api/concept/foundation/type-scale.json",
       "md": "/foundation/type-scale.md",
       "status": "published",
       "name": {
@@ -12408,6 +12456,12 @@
         "foundation",
         "scale",
         "hierarchy"
+      ],
+      "api": [
+        "font-size",
+        "clamp()",
+        "rem",
+        "calc()"
       ],
       "framework_names": [
         {
@@ -12562,7 +12616,7 @@
       "id": "accordion-expand",
       "type": "motion",
       "url": "/motion/accordion-expand",
-      "api": "/api/concept/motion/accordion-expand.json",
+      "apiUrl": "/api/concept/motion/accordion-expand.json",
       "md": "/motion/accordion-expand.md",
       "status": "published",
       "name": {
@@ -12720,7 +12774,7 @@
       "id": "confetti",
       "type": "motion",
       "url": "/motion/confetti",
-      "api": "/api/concept/motion/confetti.json",
+      "apiUrl": "/api/concept/motion/confetti.json",
       "md": "/motion/confetti.md",
       "status": "published",
       "name": {
@@ -12878,7 +12932,7 @@
       "id": "drawer-slide",
       "type": "motion",
       "url": "/motion/drawer-slide",
-      "api": "/api/concept/motion/drawer-slide.json",
+      "apiUrl": "/api/concept/motion/drawer-slide.json",
       "md": "/motion/drawer-slide.md",
       "status": "published",
       "name": {
@@ -13036,7 +13090,7 @@
       "id": "elastic-bounce",
       "type": "motion",
       "url": "/motion/elastic-bounce",
-      "api": "/api/concept/motion/elastic-bounce.json",
+      "apiUrl": "/api/concept/motion/elastic-bounce.json",
       "md": "/motion/elastic-bounce.md",
       "status": "published",
       "name": {
@@ -13193,7 +13247,7 @@
       "id": "hover-glow",
       "type": "motion",
       "url": "/motion/hover-glow",
-      "api": "/api/concept/motion/hover-glow.json",
+      "apiUrl": "/api/concept/motion/hover-glow.json",
       "md": "/motion/hover-glow.md",
       "status": "published",
       "name": {
@@ -13370,7 +13424,7 @@
       "id": "hover-lift",
       "type": "motion",
       "url": "/motion/hover-lift",
-      "api": "/api/concept/motion/hover-lift.json",
+      "apiUrl": "/api/concept/motion/hover-lift.json",
       "md": "/motion/hover-lift.md",
       "status": "published",
       "name": {
@@ -13551,7 +13605,7 @@
       "id": "loading-spinner",
       "type": "motion",
       "url": "/motion/loading-spinner",
-      "api": "/api/concept/motion/loading-spinner.json",
+      "apiUrl": "/api/concept/motion/loading-spinner.json",
       "md": "/motion/loading-spinner.md",
       "status": "published",
       "name": {
@@ -13726,7 +13780,7 @@
       "id": "magnetic-button",
       "type": "motion",
       "url": "/motion/magnetic-button",
-      "api": "/api/concept/motion/magnetic-button.json",
+      "apiUrl": "/api/concept/motion/magnetic-button.json",
       "md": "/motion/magnetic-button.md",
       "status": "published",
       "name": {
@@ -13886,7 +13940,7 @@
       "id": "marquee",
       "type": "motion",
       "url": "/motion/marquee",
-      "api": "/api/concept/motion/marquee.json",
+      "apiUrl": "/api/concept/motion/marquee.json",
       "md": "/motion/marquee.md",
       "status": "published",
       "name": {
@@ -14044,7 +14098,7 @@
       "id": "morphing-icon",
       "type": "motion",
       "url": "/motion/morphing-icon",
-      "api": "/api/concept/motion/morphing-icon.json",
+      "apiUrl": "/api/concept/motion/morphing-icon.json",
       "md": "/motion/morphing-icon.md",
       "status": "published",
       "name": {
@@ -14201,7 +14255,7 @@
       "id": "number-counter",
       "type": "motion",
       "url": "/motion/number-counter",
-      "api": "/api/concept/motion/number-counter.json",
+      "apiUrl": "/api/concept/motion/number-counter.json",
       "md": "/motion/number-counter.md",
       "status": "published",
       "name": {
@@ -14359,7 +14413,7 @@
       "id": "page-transition",
       "type": "motion",
       "url": "/motion/page-transition",
-      "api": "/api/concept/motion/page-transition.json",
+      "apiUrl": "/api/concept/motion/page-transition.json",
       "md": "/motion/page-transition.md",
       "status": "published",
       "name": {
@@ -14516,7 +14570,7 @@
       "id": "parallax",
       "type": "motion",
       "url": "/motion/parallax",
-      "api": "/api/concept/motion/parallax.json",
+      "apiUrl": "/api/concept/motion/parallax.json",
       "md": "/motion/parallax.md",
       "status": "published",
       "name": {
@@ -14673,7 +14727,7 @@
       "id": "press-feedback",
       "type": "motion",
       "url": "/motion/press-feedback",
-      "api": "/api/concept/motion/press-feedback.json",
+      "apiUrl": "/api/concept/motion/press-feedback.json",
       "md": "/motion/press-feedback.md",
       "status": "published",
       "name": {
@@ -14853,7 +14907,7 @@
       "id": "ripple",
       "type": "motion",
       "url": "/motion/ripple",
-      "api": "/api/concept/motion/ripple.json",
+      "apiUrl": "/api/concept/motion/ripple.json",
       "md": "/motion/ripple.md",
       "status": "published",
       "name": {
@@ -15011,11 +15065,7 @@
       "id": "scroll-driven-animation",
       "type": "motion",
       "url": "/motion/scroll-driven-animation",
-      "api": [
-        "animation-timeline: scroll()",
-        "scroll()",
-        "Intersection Observer"
-      ],
+      "apiUrl": "/api/concept/motion/scroll-driven-animation.json",
       "md": "/motion/scroll-driven-animation.md",
       "status": "published",
       "name": {
@@ -15072,6 +15122,11 @@
         "scroll",
         "timeline",
         "narrative"
+      ],
+      "api": [
+        "animation-timeline: scroll()",
+        "scroll()",
+        "Intersection Observer"
       ],
       "variants": [
         {
@@ -15184,7 +15239,7 @@
       "id": "scroll-reveal",
       "type": "motion",
       "url": "/motion/scroll-reveal",
-      "api": "/api/concept/motion/scroll-reveal.json",
+      "apiUrl": "/api/concept/motion/scroll-reveal.json",
       "md": "/motion/scroll-reveal.md",
       "status": "published",
       "name": {
@@ -15342,7 +15397,7 @@
       "id": "shared-element-transition",
       "type": "motion",
       "url": "/motion/shared-element-transition",
-      "api": "/api/concept/motion/shared-element-transition.json",
+      "apiUrl": "/api/concept/motion/shared-element-transition.json",
       "md": "/motion/shared-element-transition.md",
       "status": "published",
       "name": {
@@ -15500,11 +15555,7 @@
       "id": "spring-animation",
       "type": "motion",
       "url": "/motion/spring-animation",
-      "api": [
-        "linear()",
-        "cubic-bezier()",
-        "offset-path"
-      ],
+      "apiUrl": "/api/concept/motion/spring-animation.json",
       "md": "/motion/spring-animation.md",
       "status": "published",
       "name": {
@@ -15562,6 +15613,11 @@
         "spring",
         "physics",
         "easing"
+      ],
+      "api": [
+        "linear()",
+        "cubic-bezier()",
+        "offset-path"
       ],
       "variants": [
         {
@@ -15674,7 +15730,7 @@
       "id": "stagger-reveal",
       "type": "motion",
       "url": "/motion/stagger-reveal",
-      "api": "/api/concept/motion/stagger-reveal.json",
+      "apiUrl": "/api/concept/motion/stagger-reveal.json",
       "md": "/motion/stagger-reveal.md",
       "status": "published",
       "name": {
@@ -15832,7 +15888,7 @@
       "id": "text-reveal",
       "type": "motion",
       "url": "/motion/text-reveal",
-      "api": "/api/concept/motion/text-reveal.json",
+      "apiUrl": "/api/concept/motion/text-reveal.json",
       "md": "/motion/text-reveal.md",
       "status": "published",
       "name": {
@@ -15994,7 +16050,7 @@
       "id": "toast-slide-in",
       "type": "motion",
       "url": "/motion/toast-slide-in",
-      "api": "/api/concept/motion/toast-slide-in.json",
+      "apiUrl": "/api/concept/motion/toast-slide-in.json",
       "md": "/motion/toast-slide-in.md",
       "status": "published",
       "name": {
@@ -16152,10 +16208,7 @@
       "id": "view-transition",
       "type": "motion",
       "url": "/motion/view-transition",
-      "api": [
-        "document.startViewTransition()",
-        "view-transition-name"
-      ],
+      "apiUrl": "/api/concept/motion/view-transition.json",
       "md": "/motion/view-transition.md",
       "status": "published",
       "name": {
@@ -16211,6 +16264,10 @@
         "navigation",
         "transition",
         "view-transitions"
+      ],
+      "api": [
+        "document.startViewTransition()",
+        "view-transition-name"
       ],
       "variants": [
         {
@@ -16323,7 +16380,7 @@
       "id": "checkout",
       "type": "pages",
       "url": "/pages/checkout",
-      "api": "/api/concept/pages/checkout.json",
+      "apiUrl": "/api/concept/pages/checkout.json",
       "md": "/pages/checkout.md",
       "status": "published",
       "name": {
@@ -16561,7 +16618,7 @@
       "id": "dashboard",
       "type": "pages",
       "url": "/pages/dashboard",
-      "api": "/api/concept/pages/dashboard.json",
+      "apiUrl": "/api/concept/pages/dashboard.json",
       "md": "/pages/dashboard.md",
       "status": "published",
       "name": {
@@ -16821,7 +16878,7 @@
       "id": "documentation",
       "type": "pages",
       "url": "/pages/documentation",
-      "api": "/api/concept/pages/documentation.json",
+      "apiUrl": "/api/concept/pages/documentation.json",
       "md": "/pages/documentation.md",
       "status": "published",
       "name": {
@@ -17059,7 +17116,7 @@
       "id": "landing-page",
       "type": "pages",
       "url": "/pages/landing-page",
-      "api": "/api/concept/pages/landing-page.json",
+      "apiUrl": "/api/concept/pages/landing-page.json",
       "md": "/pages/landing-page.md",
       "status": "published",
       "name": {
@@ -17308,7 +17365,7 @@
       "id": "login",
       "type": "pages",
       "url": "/pages/login",
-      "api": "/api/concept/pages/login.json",
+      "apiUrl": "/api/concept/pages/login.json",
       "md": "/pages/login.md",
       "status": "published",
       "name": {
@@ -17559,7 +17616,7 @@
       "id": "pricing",
       "type": "pages",
       "url": "/pages/pricing",
-      "api": "/api/concept/pages/pricing.json",
+      "apiUrl": "/api/concept/pages/pricing.json",
       "md": "/pages/pricing.md",
       "status": "published",
       "name": {
@@ -17797,7 +17854,7 @@
       "id": "profile",
       "type": "pages",
       "url": "/pages/profile",
-      "api": "/api/concept/pages/profile.json",
+      "apiUrl": "/api/concept/pages/profile.json",
       "md": "/pages/profile.md",
       "status": "published",
       "name": {
@@ -18035,7 +18092,7 @@
       "id": "search",
       "type": "pages",
       "url": "/pages/search",
-      "api": "/api/concept/pages/search.json",
+      "apiUrl": "/api/concept/pages/search.json",
       "md": "/pages/search.md",
       "status": "published",
       "name": {
@@ -18273,7 +18330,7 @@
       "id": "settings",
       "type": "pages",
       "url": "/pages/settings",
-      "api": "/api/concept/pages/settings.json",
+      "apiUrl": "/api/concept/pages/settings.json",
       "md": "/pages/settings.md",
       "status": "published",
       "name": {
@@ -18511,7 +18568,7 @@
       "id": "signup",
       "type": "pages",
       "url": "/pages/signup",
-      "api": "/api/concept/pages/signup.json",
+      "apiUrl": "/api/concept/pages/signup.json",
       "md": "/pages/signup.md",
       "status": "published",
       "name": {
@@ -18762,7 +18819,7 @@
       "id": "bulk-actions",
       "type": "patterns",
       "url": "/patterns/bulk-actions",
-      "api": "/api/concept/patterns/bulk-actions.json",
+      "apiUrl": "/api/concept/patterns/bulk-actions.json",
       "md": "/patterns/bulk-actions.md",
       "status": "published",
       "name": {
@@ -18937,7 +18994,7 @@
       "id": "cookie-consent",
       "type": "patterns",
       "url": "/patterns/cookie-consent",
-      "api": "/api/concept/patterns/cookie-consent.json",
+      "apiUrl": "/api/concept/patterns/cookie-consent.json",
       "md": "/patterns/cookie-consent.md",
       "status": "published",
       "name": {
@@ -19112,11 +19169,7 @@
       "id": "drag-and-drop",
       "type": "patterns",
       "url": "/patterns/drag-and-drop",
-      "api": [
-        "draggable",
-        "drop",
-        "Pointer Events"
-      ],
+      "apiUrl": "/api/concept/patterns/drag-and-drop.json",
       "md": "/patterns/drag-and-drop.md",
       "status": "published",
       "name": {
@@ -19174,6 +19227,11 @@
         "drop",
         "direct-manipulation",
         "interaction"
+      ],
+      "api": [
+        "draggable",
+        "drop",
+        "Pointer Events"
       ],
       "variants": [
         {
@@ -19288,7 +19346,7 @@
       "id": "drag-and-drop-sorting",
       "type": "patterns",
       "url": "/patterns/drag-and-drop-sorting",
-      "api": "/api/concept/patterns/drag-and-drop-sorting.json",
+      "apiUrl": "/api/concept/patterns/drag-and-drop-sorting.json",
       "md": "/patterns/drag-and-drop-sorting.md",
       "status": "published",
       "name": {
@@ -19472,7 +19530,7 @@
       "id": "empty-state",
       "type": "patterns",
       "url": "/patterns/empty-state",
-      "api": "/api/concept/patterns/empty-state.json",
+      "apiUrl": "/api/concept/patterns/empty-state.json",
       "md": "/patterns/empty-state.md",
       "status": "published",
       "name": {
@@ -19653,7 +19711,7 @@
       "id": "form-validation",
       "type": "patterns",
       "url": "/patterns/form-validation",
-      "api": "/api/concept/patterns/form-validation.json",
+      "apiUrl": "/api/concept/patterns/form-validation.json",
       "md": "/patterns/form-validation.md",
       "status": "published",
       "name": {
@@ -19855,7 +19913,7 @@
       "id": "infinite-scroll",
       "type": "patterns",
       "url": "/patterns/infinite-scroll",
-      "api": "/api/concept/patterns/infinite-scroll.json",
+      "apiUrl": "/api/concept/patterns/infinite-scroll.json",
       "md": "/patterns/infinite-scroll.md",
       "status": "published",
       "name": {
@@ -20050,7 +20108,7 @@
       "id": "inline-editing",
       "type": "patterns",
       "url": "/patterns/inline-editing",
-      "api": "/api/concept/patterns/inline-editing.json",
+      "apiUrl": "/api/concept/patterns/inline-editing.json",
       "md": "/patterns/inline-editing.md",
       "status": "published",
       "name": {
@@ -20232,7 +20290,7 @@
       "id": "kanban-board",
       "type": "patterns",
       "url": "/patterns/kanban-board",
-      "api": "/api/concept/patterns/kanban-board.json",
+      "apiUrl": "/api/concept/patterns/kanban-board.json",
       "md": "/patterns/kanban-board.md",
       "status": "published",
       "name": {
@@ -20408,11 +20466,7 @@
       "id": "keyboard-shortcuts",
       "type": "patterns",
       "url": "/patterns/keyboard-shortcuts",
-      "api": [
-        "keydown",
-        "KeyboardEvent",
-        ":focus-visible"
-      ],
+      "apiUrl": "/api/concept/patterns/keyboard-shortcuts.json",
       "md": "/patterns/keyboard-shortcuts.md",
       "status": "published",
       "name": {
@@ -20470,6 +20524,11 @@
         "shortcut",
         "accessibility",
         "power-user"
+      ],
+      "api": [
+        "keydown",
+        "KeyboardEvent",
+        ":focus-visible"
       ],
       "variants": [
         {
@@ -20587,7 +20646,7 @@
       "id": "lazy-loading",
       "type": "patterns",
       "url": "/patterns/lazy-loading",
-      "api": "/api/concept/patterns/lazy-loading.json",
+      "apiUrl": "/api/concept/patterns/lazy-loading.json",
       "md": "/patterns/lazy-loading.md",
       "status": "published",
       "name": {
@@ -20771,7 +20830,7 @@
       "id": "master-detail",
       "type": "patterns",
       "url": "/patterns/master-detail",
-      "api": "/api/concept/patterns/master-detail.json",
+      "apiUrl": "/api/concept/patterns/master-detail.json",
       "md": "/patterns/master-detail.md",
       "status": "published",
       "name": {
@@ -20953,7 +21012,7 @@
       "id": "onboarding-tour",
       "type": "patterns",
       "url": "/patterns/onboarding-tour",
-      "api": "/api/concept/patterns/onboarding-tour.json",
+      "apiUrl": "/api/concept/patterns/onboarding-tour.json",
       "md": "/patterns/onboarding-tour.md",
       "status": "published",
       "name": {
@@ -21138,7 +21197,7 @@
       "id": "optimistic-ui",
       "type": "patterns",
       "url": "/patterns/optimistic-ui",
-      "api": "/api/concept/patterns/optimistic-ui.json",
+      "apiUrl": "/api/concept/patterns/optimistic-ui.json",
       "md": "/patterns/optimistic-ui.md",
       "status": "published",
       "name": {
@@ -21318,7 +21377,7 @@
       "id": "paywall",
       "type": "patterns",
       "url": "/patterns/paywall",
-      "api": "/api/concept/patterns/paywall.json",
+      "apiUrl": "/api/concept/patterns/paywall.json",
       "md": "/patterns/paywall.md",
       "status": "published",
       "name": {
@@ -21493,7 +21552,7 @@
       "id": "progressive-disclosure",
       "type": "patterns",
       "url": "/patterns/progressive-disclosure",
-      "api": "/api/concept/patterns/progressive-disclosure.json",
+      "apiUrl": "/api/concept/patterns/progressive-disclosure.json",
       "md": "/patterns/progressive-disclosure.md",
       "status": "published",
       "name": {
@@ -21674,7 +21733,7 @@
       "id": "pull-to-refresh",
       "type": "patterns",
       "url": "/patterns/pull-to-refresh",
-      "api": "/api/concept/patterns/pull-to-refresh.json",
+      "apiUrl": "/api/concept/patterns/pull-to-refresh.json",
       "md": "/patterns/pull-to-refresh.md",
       "status": "published",
       "name": {
@@ -21869,7 +21928,7 @@
       "id": "search-filtering",
       "type": "patterns",
       "url": "/patterns/search-filtering",
-      "api": "/api/concept/patterns/search-filtering.json",
+      "apiUrl": "/api/concept/patterns/search-filtering.json",
       "md": "/patterns/search-filtering.md",
       "status": "published",
       "name": {
@@ -22055,7 +22114,7 @@
       "id": "skeleton-loading",
       "type": "patterns",
       "url": "/patterns/skeleton-loading",
-      "api": "/api/concept/patterns/skeleton-loading.json",
+      "apiUrl": "/api/concept/patterns/skeleton-loading.json",
       "md": "/patterns/skeleton-loading.md",
       "status": "published",
       "name": {
@@ -22257,7 +22316,7 @@
       "id": "undo-action",
       "type": "patterns",
       "url": "/patterns/undo-action",
-      "api": "/api/concept/patterns/undo-action.json",
+      "apiUrl": "/api/concept/patterns/undo-action.json",
       "md": "/patterns/undo-action.md",
       "status": "published",
       "name": {
@@ -22440,7 +22499,7 @@
       "id": "wizard",
       "type": "patterns",
       "url": "/patterns/wizard",
-      "api": "/api/concept/patterns/wizard.json",
+      "apiUrl": "/api/concept/patterns/wizard.json",
       "md": "/patterns/wizard.md",
       "status": "published",
       "name": {
@@ -22613,7 +22672,7 @@
       "id": "art-deco",
       "type": "styles",
       "url": "/styles/art-deco",
-      "api": "/api/concept/styles/art-deco.json",
+      "apiUrl": "/api/concept/styles/art-deco.json",
       "md": "/styles/art-deco.md",
       "status": "published",
       "name": {
@@ -22811,7 +22870,7 @@
       "id": "aurora",
       "type": "styles",
       "url": "/styles/aurora",
-      "api": "/api/concept/styles/aurora.json",
+      "apiUrl": "/api/concept/styles/aurora.json",
       "md": "/styles/aurora.md",
       "status": "published",
       "name": {
@@ -23060,7 +23119,7 @@
       "id": "bauhaus",
       "type": "styles",
       "url": "/styles/bauhaus",
-      "api": "/api/concept/styles/bauhaus.json",
+      "apiUrl": "/api/concept/styles/bauhaus.json",
       "md": "/styles/bauhaus.md",
       "status": "published",
       "name": {
@@ -23315,7 +23374,7 @@
       "id": "bento-grid",
       "type": "styles",
       "url": "/styles/bento-grid",
-      "api": "/api/concept/styles/bento-grid.json",
+      "apiUrl": "/api/concept/styles/bento-grid.json",
       "md": "/styles/bento-grid.md",
       "status": "published",
       "name": {
@@ -23566,7 +23625,7 @@
       "id": "brutalism",
       "type": "styles",
       "url": "/styles/brutalism",
-      "api": "/api/concept/styles/brutalism.json",
+      "apiUrl": "/api/concept/styles/brutalism.json",
       "md": "/styles/brutalism.md",
       "status": "published",
       "name": {
@@ -23829,7 +23888,7 @@
       "id": "claymorphism",
       "type": "styles",
       "url": "/styles/claymorphism",
-      "api": "/api/concept/styles/claymorphism.json",
+      "apiUrl": "/api/concept/styles/claymorphism.json",
       "md": "/styles/claymorphism.md",
       "status": "published",
       "name": {
@@ -24078,7 +24137,7 @@
       "id": "corporate-memphis",
       "type": "styles",
       "url": "/styles/corporate-memphis",
-      "api": "/api/concept/styles/corporate-memphis.json",
+      "apiUrl": "/api/concept/styles/corporate-memphis.json",
       "md": "/styles/corporate-memphis.md",
       "status": "published",
       "name": {
@@ -24347,7 +24406,7 @@
       "id": "cyberpunk",
       "type": "styles",
       "url": "/styles/cyberpunk",
-      "api": "/api/concept/styles/cyberpunk.json",
+      "apiUrl": "/api/concept/styles/cyberpunk.json",
       "md": "/styles/cyberpunk.md",
       "status": "published",
       "name": {
@@ -24598,7 +24657,7 @@
       "id": "editorial",
       "type": "styles",
       "url": "/styles/editorial",
-      "api": "/api/concept/styles/editorial.json",
+      "apiUrl": "/api/concept/styles/editorial.json",
       "md": "/styles/editorial.md",
       "status": "published",
       "name": {
@@ -24847,7 +24906,7 @@
       "id": "flat-design",
       "type": "styles",
       "url": "/styles/flat-design",
-      "api": "/api/concept/styles/flat-design.json",
+      "apiUrl": "/api/concept/styles/flat-design.json",
       "md": "/styles/flat-design.md",
       "status": "published",
       "name": {
@@ -25100,7 +25159,7 @@
       "id": "glassmorphism",
       "type": "styles",
       "url": "/styles/glassmorphism",
-      "api": "/api/concept/styles/glassmorphism.json",
+      "apiUrl": "/api/concept/styles/glassmorphism.json",
       "md": "/styles/glassmorphism.md",
       "status": "published",
       "name": {
@@ -25350,7 +25409,7 @@
       "id": "hand-drawn",
       "type": "styles",
       "url": "/styles/hand-drawn",
-      "api": "/api/concept/styles/hand-drawn.json",
+      "apiUrl": "/api/concept/styles/hand-drawn.json",
       "md": "/styles/hand-drawn.md",
       "status": "published",
       "name": {
@@ -25605,7 +25664,7 @@
       "id": "liquid-glass",
       "type": "styles",
       "url": "/styles/liquid-glass",
-      "api": "/api/concept/styles/liquid-glass.json",
+      "apiUrl": "/api/concept/styles/liquid-glass.json",
       "md": "/styles/liquid-glass.md",
       "status": "published",
       "name": {
@@ -25865,7 +25924,7 @@
       "id": "memphis",
       "type": "styles",
       "url": "/styles/memphis",
-      "api": "/api/concept/styles/memphis.json",
+      "apiUrl": "/api/concept/styles/memphis.json",
       "md": "/styles/memphis.md",
       "status": "published",
       "name": {
@@ -26120,7 +26179,7 @@
       "id": "minimalism",
       "type": "styles",
       "url": "/styles/minimalism",
-      "api": "/api/concept/styles/minimalism.json",
+      "apiUrl": "/api/concept/styles/minimalism.json",
       "md": "/styles/minimalism.md",
       "status": "published",
       "name": {
@@ -26375,7 +26434,7 @@
       "id": "neobrutalism",
       "type": "styles",
       "url": "/styles/neobrutalism",
-      "api": "/api/concept/styles/neobrutalism.json",
+      "apiUrl": "/api/concept/styles/neobrutalism.json",
       "md": "/styles/neobrutalism.md",
       "status": "published",
       "name": {
@@ -26628,7 +26687,7 @@
       "id": "neumorphism",
       "type": "styles",
       "url": "/styles/neumorphism",
-      "api": "/api/concept/styles/neumorphism.json",
+      "apiUrl": "/api/concept/styles/neumorphism.json",
       "md": "/styles/neumorphism.md",
       "status": "published",
       "name": {
@@ -26826,7 +26885,7 @@
       "id": "organic",
       "type": "styles",
       "url": "/styles/organic",
-      "api": "/api/concept/styles/organic.json",
+      "apiUrl": "/api/concept/styles/organic.json",
       "md": "/styles/organic.md",
       "status": "published",
       "name": {
@@ -27022,7 +27081,7 @@
       "id": "pixel-art",
       "type": "styles",
       "url": "/styles/pixel-art",
-      "api": "/api/concept/styles/pixel-art.json",
+      "apiUrl": "/api/concept/styles/pixel-art.json",
       "md": "/styles/pixel-art.md",
       "status": "published",
       "name": {
@@ -27277,7 +27336,7 @@
       "id": "retro-futurism",
       "type": "styles",
       "url": "/styles/retro-futurism",
-      "api": "/api/concept/styles/retro-futurism.json",
+      "apiUrl": "/api/concept/styles/retro-futurism.json",
       "md": "/styles/retro-futurism.md",
       "status": "published",
       "name": {
@@ -27527,7 +27586,7 @@
       "id": "skeuomorphism",
       "type": "styles",
       "url": "/styles/skeuomorphism",
-      "api": "/api/concept/styles/skeuomorphism.json",
+      "apiUrl": "/api/concept/styles/skeuomorphism.json",
       "md": "/styles/skeuomorphism.md",
       "status": "published",
       "name": {
@@ -27776,7 +27835,7 @@
       "id": "swiss-style",
       "type": "styles",
       "url": "/styles/swiss-style",
-      "api": "/api/concept/styles/swiss-style.json",
+      "apiUrl": "/api/concept/styles/swiss-style.json",
       "md": "/styles/swiss-style.md",
       "status": "published",
       "name": {
@@ -28011,7 +28070,7 @@
       "id": "vaporwave",
       "type": "styles",
       "url": "/styles/vaporwave",
-      "api": "/api/concept/styles/vaporwave.json",
+      "apiUrl": "/api/concept/styles/vaporwave.json",
       "md": "/styles/vaporwave.md",
       "status": "published",
       "name": {
@@ -28266,7 +28325,7 @@
       "id": "y2k",
       "type": "styles",
       "url": "/styles/y2k",
-      "api": "/api/concept/styles/y2k.json",
+      "apiUrl": "/api/concept/styles/y2k.json",
       "md": "/styles/y2k.md",
       "status": "published",
       "name": {

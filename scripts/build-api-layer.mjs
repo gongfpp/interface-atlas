@@ -38,7 +38,7 @@ for (const type of TYPES) {
       id,
       type,
       url: `${BASE}/${type}/${id}`,
-      api: `${BASE}/api/concept/${type}/${id}.json`,
+      apiUrl: `${BASE}/api/concept/${type}/${id}.json`,
       md: `${BASE}/${type}/${id}.md`,
       ...data,
     };
@@ -48,7 +48,7 @@ for (const type of TYPES) {
       type,
       name: data.name,
       url: entry.url,
-      api: entry.api,
+      apiUrl: entry.apiUrl,
       md: entry.md,
       summary: data.description?.zh?.slice(0, 80) ?? '',
     });
@@ -87,7 +87,7 @@ const llms = [
   '',
   '## Concepts',
   '',
-  ...index.map((c) => `- [${c.name.en} / ${c.name.zh}](${c.api}): ${c.summary}`),
+  ...index.map((c) => `- [${c.name.en} / ${c.name.zh}](${c.apiUrl}): ${c.summary}`),
   '',
 ].join('\n');
 
@@ -103,7 +103,7 @@ const full = [
       `## ${c.type}/${c.id} — ${c.name.en} / ${c.name.zh}`,
       '',
       `- Type: ${c.type} · Aliases: ${(c.aliases || []).join(' · ') || '—'}`,
-      `- Page: ${c.url} · JSON: ${c.api} · MD: ${c.md}`,
+      `- Page: ${c.url} · JSON: ${c.apiUrl} · MD: ${c.md}`,
       '',
       `**What / 这是什么:** ${c.description?.zh ?? ''}`,
       '',
