@@ -29,6 +29,8 @@ export const TYPE_LABELS: Record<string, Record<Locale, string>> = {
   patterns: { zh: '交互模式', en: 'Patterns' },
   motion: { zh: '动效', en: 'Motion' },
   pages: { zh: '页面', en: 'Pages' },
+  foundation: { zh: '基础', en: 'Foundation' },
+  a11y: { zh: '无障碍', en: 'Accessibility' },
 };
 
 /** related 边标签（PRD §24 内容关系模型） */
@@ -69,6 +71,9 @@ export const DIMENSION_LABELS: Record<string, Record<Locale, string>> = {
   用户状态: { zh: '用户状态', en: 'User state' },
   核心目标: { zh: '核心目标', en: 'Core goal' },
   安全要求: { zh: '安全要求', en: 'Safety requirement' },
+  适用文本: { zh: '适用文本', en: 'Best for text' },
+  调节粒度: { zh: '调节粒度', en: 'Adjust granularity' },
+  响应式: { zh: '响应式', en: 'Responsive' },
 };
 
 export function dimensionLabel(key: string, locale: Locale): string {
@@ -115,6 +120,10 @@ export const UI = {
     zh: '帮助你和 AI 精准谈论前端设计。',
     en: 'Helping you and your AI talk precisely about frontend design.',
   },
+  confusableWith: { zh: '容易混淆', en: 'Not to be confused with' },
+  alsoCalled: { zh: '代码里叫什么', en: 'In code' },
+  disambiguationLabel: { zh: '名词辨析', en: 'Name disambiguation' },
+  mdMirror: { zh: 'Markdown 版', en: 'Markdown' },
 } as const satisfies Record<string, Record<Locale, string>>;
 
 export function t(key: keyof typeof UI, locale: Locale): string {

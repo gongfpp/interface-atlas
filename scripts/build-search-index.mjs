@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { load as yamlLoad } from 'js-yaml';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const TYPES = ['components', 'patterns', 'styles', 'pages', 'motion'];
+const TYPES = ['components', 'patterns', 'styles', 'pages', 'motion', 'foundation', 'a11y'];
 
 function loadGallery() {
   const dir = join(root, 'src', 'content', 'gallery');

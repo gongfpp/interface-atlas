@@ -14,9 +14,8 @@ import { fileURLToPath } from 'node:url';
 import { load as yamlLoad } from 'js-yaml';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const TYPES = ['components', 'patterns', 'styles', 'pages', 'motion'];
+const TYPES = ['components', 'patterns', 'styles', 'pages', 'motion', 'foundation', 'a11y'];
 const IS_CI = process.env.CI === 'true';
-
 const errors = [];
 const warnings = [];
 const entries = new Map(); // id -> { type, rel, data }
@@ -59,7 +58,7 @@ for (const type of TYPES) {
 }
 
 // ---- 第二遍：统一校验 ----
-const REF_FIELDS = ['related', 'applicable_styles', 'applicable_components', 'applicable_pages'];
+const REF_FIELDS = ['related', 'confusable', 'applicable_styles', 'applicable_components', 'applicable_pages'];
 const TYPE_PREFIX = {
   applicable_styles: 'styles',
   applicable_components: 'components',
@@ -123,8 +122,7 @@ for (const [id, { type, rel, data }] of entries) {
       }
       if (refField === 'related' && item && typeof item === 'object' && !RELATIONS.has(item.relation)) {
         fail(`related「${ref}」的 relation 非法：${item.relation}`);
-      }
-      const target = entries.get(ref);
+      }      const target = entries.get(ref);
       if (!target) {
         fail(`${refField} 引用不存在的 id「${ref}」`);
         continue;

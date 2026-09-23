@@ -118,6 +118,31 @@ const baseSchema = z
     /** 竞品改进 #1：对应 Web 平台 API 符号（元素 / ARIA role / 关键属性），仅适用条目填写 */
     api: z.array(z.string()).default([]),
 
+    /** 竞品改进：多框架命名对照（NameThatUI「In code」），组件类建议给 */
+    framework_names: z
+      .array(
+        z.object({
+          framework: z.string().min(1),
+          name: z.string().min(1),
+          url: z.string().url().optional(),
+          note: bilingualText.optional(),
+        }),
+      )
+      .default([]),
+
+    /** 一名两义辨析（uiterms Stepper 模式）：这个词还可能指什么 */
+    disambiguation: bilingualText.optional(),
+
+    /** 易混淆概念：id + 一句辨析 */
+    confusable: z
+      .array(
+        z.object({
+          id: z.string(),
+          note: bilingualText,
+        }),
+      )
+      .default([]),
+
     applicable_styles: z.array(z.string()).default([]),
     applicable_components: z.array(z.string()).default([]),
     applicable_pages: z.array(z.string()).default([]),
@@ -237,6 +262,14 @@ export const collections = {
     loader: glob({ pattern: '*.yaml', base: './src/content/motion' }),
     schema: baseSchema,
   }),
+  foundation: defineCollection({
+    loader: glob({ pattern: '*.yaml', base: './src/content/foundation' }),
+    schema: baseSchema,
+  }),
+  a11y: defineCollection({
+    loader: glob({ pattern: '*.yaml', base: './src/content/a11y' }),
+    schema: baseSchema,
+  }),
   /**
    * 灵感图库（PRD §43）：AI 生成的组件设计参考图集 + 可复现的生图 Prompt。
    */
@@ -263,5 +296,13 @@ export const collections = {
   }),
 };
 
-export const CONCEPT_TYPES = ['components', 'patterns', 'styles', 'pages', 'motion'] as const;
+export const CONCEPT_TYPES = [
+  'components',
+  'patterns',
+  'styles',
+  'pages',
+  'motion',
+  'foundation',
+  'a11y',
+] as const;
 export type ConceptType = (typeof CONCEPT_TYPES)[number];

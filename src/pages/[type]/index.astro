@@ -7,7 +7,7 @@ import { TYPE_LABELS, type Locale } from '@/lib/i18n';
 import { getStylePreviews } from '@/lib/style-previews';
 
 export async function getStaticPaths() {
-  const types = ['components', 'patterns', 'styles', 'pages', 'motion'];
+  const types = ['components', 'patterns', 'styles', 'pages', 'motion', 'foundation', 'a11y'];
   return types.map((type) => ({ params: { type } }));
 }
 

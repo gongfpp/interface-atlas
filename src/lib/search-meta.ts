@@ -1,6 +1,15 @@
 import type { SearchHit } from '@/lib/use-search';
 
-export const TYPE_ORDER = ['styles', 'components', 'patterns', 'motion', 'pages', 'gallery'];
+export const TYPE_ORDER = [
+  'styles',
+  'components',
+  'patterns',
+  'motion',
+  'pages',
+  'foundation',
+  'a11y',
+  'gallery',
+];
 
 export const TYPE_LABEL: Record<string, { zh: string; en: string }> = {
   styles: { zh: '风格', en: 'Styles' },
@@ -8,6 +17,8 @@ export const TYPE_LABEL: Record<string, { zh: string; en: string }> = {
   patterns: { zh: '交互模式', en: 'Patterns' },
   motion: { zh: '动效', en: 'Motion' },
   pages: { zh: '页面', en: 'Pages' },
+  foundation: { zh: '基础', en: 'Foundation' },
+  a11y: { zh: '无障碍', en: 'Accessibility' },
   gallery: { zh: '灵感图库', en: 'Gallery' },
 };
 
