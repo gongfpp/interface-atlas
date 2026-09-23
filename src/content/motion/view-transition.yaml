@@ -1,0 +1,146 @@
+status: published
+name:
+  zh: 视图过渡
+  en: View Transition
+aliases:
+  - 视图过渡
+  - 页面过渡动画
+  - 切换动画
+  - 换页过渡
+  - view transition
+  - view transitions api
+category:
+  - Motion
+  - Navigation
+description:
+  zh: >-
+    用浏览器原生 View Transitions API 在页面状态切换时做平滑过渡：旧视图淡出、新视图淡入，关键元素可共享形变。它把状态跳变藏进连续的空间叙事，让"换了一屏"读起来像"移了一步"，而不是硬切。
+  en: >-
+    A browser-native transition between page states via the View Transitions API: the old view fades
+    out, the new one fades in, and key elements can morph as shared targets. It hides the jump inside
+    continuous spatial narrative so "a new screen" reads as "one step over" rather than a hard cut.
+use_when:
+  - zh: 同文档内状态或路由切换需要连续感（列表↔详情）
+    en: In-document state or route changes needing continuity — list to detail
+  - zh: 存在应保持视觉连续的关键元素（标题、图片、按钮）
+    en: Key elements that should persist visually — titles, images, buttons
+  - zh: 目标浏览器已支持 View Transitions API
+    en: Target browsers already support the View Transitions API
+avoid_when:
+  - zh: 每次切换都播长动画，高频导航会被拖慢
+    en: Long animations on every hop — frequent navigation bogs down
+  - zh: 旧新视图结构差异过大，形变会扭曲内容
+    en: Old and new views differ wildly — morphing distorts content
+  - zh: 需要兼容无 API 环境且不愿做回退分支
+    en: Must support no-API environments without a fallback path
+tags:
+  - animation
+  - navigation
+  - transition
+  - view-transitions
+api:
+  - document.startViewTransition()
+  - view-transition-name
+variants:
+  - id: cross-fade
+    name:
+      zh: 交叉淡入
+      en: Cross-fade
+    note:
+      zh: 旧淡出新淡入，最稳妥的默认
+      en: Old fades out, new fades in — the safe default
+  - id: slide
+    name:
+      zh: 滑动
+      en: Slide
+    note:
+      zh: 沿导航方向推入推出，前进后退语义清晰
+      en: Push in/out along the navigation axis — clear forward/back semantics
+  - id: shared-axis
+    name:
+      zh: 共享轴
+      en: Shared-axis
+    note:
+      zh: 共同元素原地形变，其余沿轴移动
+      en: Shared elements morph in place; the rest moves along an axis
+anatomy:
+  - 旧视图（Old view）
+  - 新视图（New view）
+  - 共享元素（Shared element）
+related:
+  - id: page-transition
+    relation: alternative_to
+  - id: shared-element-transition
+    relation: similar_to
+  - id: morphing-icon
+    relation: used_with
+demo:
+  component: view-transition
+  modes:
+    - default
+    - dark
+    - variants
+sources:
+  - name: MDN — View Transitions API
+    url: https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API
+  - name: W3C — CSS View Transitions Module Level 1
+    url: https://www.w3.org/TR/css-view-transitions-1/
+  - name: MDN — view-transition-name
+    url: https://developer.mozilla.org/en-US/docs/Web/CSS/view-transition-name
+implementation:
+  css:
+    - '@keyframes'
+    - opacity
+    - 'transform: translate'
+    - view-transition-name
+  notes:
+    zh: >-
+      原生路径用 document.startViewTransition(() => updateDOM())，为需形变的元素指定
+      view-transition-name。无 API 时用 CSS animation 兜底：旧视图 fade/slide 出、新视图入，
+      时长一律 calc(<时长> * var(--demo-speed, 1))。尊重 prefers-reduced-motion，退化为瞬时切换。
+    en: >-
+      The native path calls document.startViewTransition(() => updateDOM()) and assigns
+      view-transition-name to elements that should morph. Without the API fall back to CSS animation:
+      the old view fades or slides out as the new one enters, all durations written
+      calc(<duration> * var(--demo-speed, 1)). Respect prefers-reduced-motion by cutting instantly.
+prompts:
+  basic:
+    zh: 给列表与详情之间的切换添加视图过渡动画。
+    en: Add a view transition between list and detail states.
+  design:
+    zh: 列表卡片点开时，标题与图片保持视觉连续地形变为详情页对应元素，其余内容交叉淡入，约 300ms；返回时反向播放。
+    en: >-
+      Opening a card morphs its title and image into the detail counterparts while the rest
+      cross-fades over ~300ms; going back reverses the move.
+  implementation:
+    zh: >-
+      优先用 document.startViewTransition + view-transition-name；无 API 时用 @keyframes 兜底，
+      旧新视图绝对定位叠放做交叉淡入或滑动。所有时长写 calc(<时长> * var(--demo-speed, 1))。
+      尊重 prefers-reduced-motion。
+    en: >-
+      Prefer document.startViewTransition with view-transition-name; fall back to @keyframes with
+      stacked absolute views cross-fading or sliding. Write every duration as
+      calc(<duration> * var(--demo-speed, 1)). Respect prefers-reduced-motion.
+  agent:
+    zh: |-
+      在当前项目中实现视图过渡。
+
+      先检查现有组件体系和 Design Token，优先复用当前组件。
+      保持现有项目视觉风格。不要新增不必要依赖。
+      要求：
+      - 状态或路由切换有连续过渡，关键元素保持视觉连续
+      - 无 View Transitions API 时有 CSS 兜底
+      - 所有动画时长写 calc(<时长> * var(--demo-speed, 1))
+      - 尊重 prefers-reduced-motion
+      完成后运行项目现有检查，并列出修改的文件。
+    en: |-
+      Implement view transitions in the current project.
+
+      Inspect the existing component system and design tokens first; reuse existing components.
+      Keep the project's visual style. Add no unnecessary dependencies.
+      Requirements:
+      - State or route changes transition continuously, with key elements staying visually continuous
+      - CSS fallback when the View Transitions API is missing
+      - All animation durations written calc(<duration> * var(--demo-speed, 1))
+      - Respect prefers-reduced-motion
+      Run existing project checks when done and list the modified files.

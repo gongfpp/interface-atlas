@@ -60,6 +60,28 @@
     "role=\"radio\"",
     "role=\"radiogroup\""
   ],
+  "framework_names": [
+    {
+      "framework": "HTML",
+      "name": "<input type=\"radio\">",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio"
+    },
+    {
+      "framework": "shadcn/ui",
+      "name": "RadioGroup",
+      "url": "https://ui.shadcn.com/docs/components/radio-group"
+    },
+    {
+      "framework": "MUI",
+      "name": "Radio / RadioGroup",
+      "url": "https://mui.com/material-ui/react-radio-button/"
+    },
+    {
+      "framework": "AntD",
+      "name": "Radio",
+      "url": "https://ant.design/components/radio"
+    }
+  ],
   "variants": [
     {
       "id": "default",

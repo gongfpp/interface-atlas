@@ -37,6 +37,19 @@ api:
   - <select>
   - role="listbox"
   - role="option"
+framework_names:
+  - framework: HTML
+    name: <select>
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
+  - framework: shadcn/ui
+    name: Select
+    url: https://ui.shadcn.com/docs/components/select
+  - framework: MUI
+    name: Select
+    url: https://mui.com/material-ui/react-select/
+  - framework: AntD
+    name: Select
+    url: https://ant.design/components/select
 variants:
   - id: native
     name:

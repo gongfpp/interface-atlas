@@ -35,6 +35,19 @@ tags:
   - text
 api:
   - <textarea>
+framework_names:
+  - framework: HTML
+    name: <textarea>
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea
+  - framework: shadcn/ui
+    name: Textarea
+    url: https://ui.shadcn.com/docs/components/textarea
+  - framework: MUI
+    name: TextField multiline
+    url: https://mui.com/material-ui/react-text-field/
+  - framework: AntD
+    name: Input.TextArea
+    url: https://ant.design/components/input
 variants:
   - id: fixed
     name:

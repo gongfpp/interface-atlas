@@ -1,0 +1,193 @@
+{
+  "id": "font-stack",
+  "type": "foundation",
+  "status": "published",
+  "name": {
+    "zh": "字体栈",
+    "en": "Font Stack"
+  },
+  "aliases": [
+    "字体栈",
+    "字体回退",
+    "备用字体",
+    "字体族",
+    "字体列表",
+    "font stack",
+    "font-family"
+  ],
+  "category": [
+    "Typography",
+    "Foundation"
+  ],
+  "description": {
+    "zh": "按优先级排列的字体回退链：首选字体缺席时依次落到下一个，最后由通用族兜底。系统栈零下载、即时渲染，网络字体保品牌气质但要配 font-display 控制闪烁，本地优先则两者之间取平衡。栈的顺序就是渲染的决策顺序。",
+    "en": "An ordered fallback chain of typefaces: when the first face is missing the browser walks down to the next, with a generic family as the final safety net. System stacks cost nothing and render instantly; web fonts carry brand character but need font-display to tame flashing; local-first splits the difference. The order of the stack is the order of rendering decisions."
+  },
+  "use_when": [
+    {
+      "zh": "正文与 UI 文字需要在任何设备上稳定渲染",
+      "en": "Body and UI text must render reliably on any device"
+    },
+    {
+      "zh": "品牌字体只覆盖部分字重或字符集，需要可靠回退",
+      "en": "Brand fonts cover only some weights or scripts and need a solid fallback"
+    },
+    {
+      "zh": "首屏性能敏感，不希望字体请求阻塞文字显示",
+      "en": "First paint matters and font requests must not block text"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "排版完全依赖单一展示字体且缺失即失效（如 Logo 字标）",
+      "en": "Layout collapses without one display face — e.g. a logotype"
+    },
+    {
+      "zh": "栈里堆了七八个几乎相同的字体，决策成本高却无收益",
+      "en": "Seven or eight near-identical faces — decision cost with no payoff"
+    },
+    {
+      "zh": "不同回退字体字宽差异过大，换字后版式崩坏",
+      "en": "Fallbacks with wildly different metrics that break the layout on swap"
+    }
+  ],
+  "tags": [
+    "typography",
+    "foundation",
+    "font",
+    "fallback"
+  ],
+  "api": [
+    "font-family",
+    "@font-face",
+    "font-display",
+    "font-weight"
+  ],
+  "framework_names": [
+    {
+      "framework": "CSS",
+      "name": "font-family",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-family"
+    },
+    {
+      "framework": "CSS",
+      "name": "@font-face",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face"
+    },
+    {
+      "framework": "Next.js",
+      "name": "next/font",
+      "url": "https://nextjs.org/docs/app/building-your-application/optimizing/fonts",
+      "note": {
+        "zh": "自动子集化与 size-adjust 对齐",
+        "en": "Automatic subsetting and size-adjust matching"
+      }
+    }
+  ],
+  "variants": [
+    {
+      "id": "system",
+      "name": {
+        "zh": "系统栈",
+        "en": "System stack"
+      },
+      "note": {
+        "zh": "零下载零闪烁，随操作系统变化而变化",
+        "en": "Zero download, zero flash — varies with the OS"
+      }
+    },
+    {
+      "id": "web",
+      "name": {
+        "zh": "网络字体 + 回退",
+        "en": "Web font + fallback"
+      },
+      "note": {
+        "zh": "品牌一致性优先，需 font-display 与字宽度量对齐",
+        "en": "Brand consistency first — needs font-display and metric matching"
+      }
+    },
+    {
+      "id": "local-first",
+      "name": {
+        "zh": "本地优先",
+        "en": "Local-first"
+      },
+      "note": {
+        "zh": "先用同名本地字体，缺了再下载，兼顾速度与气质",
+        "en": "Use the local face when present, download only when missing"
+      }
+    }
+  ],
+  "anatomy": [
+    "首选字体（Primary face）",
+    "回退字体（Fallbacks）",
+    "通用族（Generic family）"
+  ],
+  "related": [
+    {
+      "id": "type-scale",
+      "relation": "used_with"
+    },
+    {
+      "id": "line-height",
+      "relation": "used_with"
+    },
+    {
+      "id": "minimalism",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "font-stack",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "MDN — font-family",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-family"
+    },
+    {
+      "name": "MDN — @font-face font-display",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display"
+    },
+    {
+      "name": "CSS-Tricks — Using System Font Stack",
+      "url": "https://css-tricks.com/snippets/css/system-font-stack/"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "font-family",
+      "@font-face",
+      "font-display",
+      "size-adjust"
+    ],
+    "notes": {
+      "zh": "字体栈写成一行：'Inter', 'PingFang SC', system-ui, sans-serif。中文场景务必在拉丁字体后接中文族，否则汉字会落到丑陋的默认宋体。网络字体用 font-display: swap 或 optional；用 size-adjust / ascent-override 把回退字的字宽字高对齐到首选字体，换字瞬间不跳版。等宽场景单独维护 mono 栈。",
+      "en": "Write the stack in one line: 'Inter', 'PingFang SC', system-ui, sans-serif. For CJK, always place a Chinese family after the Latin face or glyphs fall to an ugly default. Load web fonts with font-display: swap or optional; use size-adjust and ascent-override to match fallback metrics so nothing jumps on swap. Keep a separate mono stack for code."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "为项目建立字体栈：定义正文、标题、等宽三套 font-family 回退链。",
+      "en": "Set up font stacks — three font-family fallback chains for body, display and mono."
+    },
+    "design": {
+      "zh": "字体栈规范：正文 'Inter', 'PingFang SC', system-ui, sans-serif；标题可用高对比衬线并给出中文回退；等宽 'JetBrains Mono', 'SF Mono', Menlo, monospace。网络字体 font-display: swap，并用 size-adjust 对齐回退度量；每条栈末尾必须有 sans-serif / serif / monospace 通用族。",
+      "en": "Font stack spec: body 'Inter', 'PingFang SC', system-ui, sans-serif; display may use a high-contrast serif with a CJK fallback; mono 'JetBrains Mono', 'SF Mono', Menlo, monospace. Web fonts load with font-display: swap and size-adjust metric matching. Every stack ends in a generic sans-serif / serif / monospace."
+    },
+    "implementation": {
+      "zh": "用 CSS 变量集中管理字体栈：:root { --font-sans: 'Inter', 'PingFang SC', system-ui, sans-serif; --font-mono: 'JetBrains Mono', Menlo, monospace; }。@font-face 声明里写 font-display: swap 与 size-adjust；Tailwind 侧映射 font-sans / font-serif / font-mono。禁止在组件内散写 font-family 字符串。",
+      "en": "Centralise stacks in CSS variables: :root { --font-sans: 'Inter', 'PingFang SC', system-ui, sans-serif; --font-mono: 'JetBrains Mono', Menlo, monospace; }. Declare font-display: swap and size-adjust on @font-face; map to Tailwind font-sans / font-serif / font-mono. Never scatter raw font-family strings inside components."
+    },
+    "agent": {
+      "zh": "在当前项目中实现字体栈。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- 正文 / 标题 / 等宽三套 font-family 回退链，末尾带通用族\n- 网络字体用 font-display 控制闪烁，并对齐回退字度量\n- 中文回退族紧跟拉丁字体之后\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement font stacks in the current project.\nInspect the existing component system and design tokens first; reuse what is already there.\nRequirements:\n- Three font-family chains for body / display / mono, each ending in a generic family\n- Web fonts use font-display and metric-matched fallbacks\n- CJK fallback sits directly after the Latin face\nKeep the project's existing visual style. Do not add unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

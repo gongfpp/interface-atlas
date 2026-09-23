@@ -61,6 +61,48 @@
     "role=\"tooltip\"",
     "aria-describedby"
   ],
+  "framework_names": [
+    {
+      "framework": "ARIA APG",
+      "name": "Tooltip",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/"
+    },
+    {
+      "framework": "shadcn/ui",
+      "name": "Tooltip",
+      "url": "https://ui.shadcn.com/docs/components/tooltip"
+    },
+    {
+      "framework": "MUI",
+      "name": "Tooltip",
+      "url": "https://mui.com/material-ui/react-tooltip/"
+    },
+    {
+      "framework": "AntD",
+      "name": "Tooltip",
+      "url": "https://ant.design/components/tooltip"
+    }
+  ],
+  "disambiguation": {
+    "zh": "Tooltip 是悬停/聚焦时的简短说明；Popover 可交互；Label 是常驻表单标签。Tooltip 不应承载交互或关键信息。",
+    "en": "A tooltip is a brief hover/focus hint. A popover is interactive. A label is a persistent form tag. Tooltips must not hold interactions or essential info."
+  },
+  "confusable": [
+    {
+      "id": "popover",
+      "note": {
+        "zh": "Popover 点击出现、可交互；Tooltip 悬停出现、只读。",
+        "en": "A popover opens on click and is interactive; a tooltip shows on hover and is read-only."
+      }
+    },
+    {
+      "id": "toast",
+      "note": {
+        "zh": "Toast 是系统反馈、自动消失；Tooltip 解释控件、跟随指针。",
+        "en": "Toast is system feedback that auto-dismisses; a tooltip explains a control near the pointer."
+      }
+    }
+  ],
   "variants": [
     {
       "id": "dark",

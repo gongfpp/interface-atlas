@@ -1,0 +1,219 @@
+{
+  "id": "multi-select",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "多选框组",
+    "en": "Multi-select"
+  },
+  "aliases": [
+    "多选",
+    "多选下拉",
+    "可多选的选择框",
+    "多选框",
+    "multi select"
+  ],
+  "category": [
+    "Form",
+    "Input"
+  ],
+  "description": {
+    "zh": "允许从一组选项中挑选多个值，并以标签形式回显已选集合的选择控件。与单选下拉不同，展开面板在选择后保持打开，已选项可逐个移除；适合标签、权限、筛选条件等需要累积多个值的表单场景。选项很多时应配合搜索。",
+    "en": "A control for picking several values from one option set, echoing the chosen ones as removable chips. Unlike a single select, the panel stays open after each pick and every chip can be removed on its own. Fits tags, permissions and filter facets; pair it with search when the set is large."
+  },
+  "use_when": [
+    {
+      "zh": "需要一次提交多个值，如标签、权限、筛选条件",
+      "en": "Several values must be committed at once — tags, permissions, filter facets"
+    },
+    {
+      "zh": "已选项需要随时可见并可单独删除",
+      "en": "Selections must stay visible and individually removable"
+    },
+    {
+      "zh": "选项集合固定，且可能较多、需要搜索或分组",
+      "en": "A fixed option set that may grow large and need search or grouping"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "只能选一个值，用 select 或 combobox 更准确",
+      "en": "Only one value is allowed — select or combobox states that better"
+    },
+    {
+      "zh": "选项少于 5 个且无需回显，平铺 checkbox 更快",
+      "en": "Fewer than 5 options with no echo needed — visible checkboxes are faster"
+    },
+    {
+      "zh": "值由用户自由创造而非从列表挑选，用 tag-input",
+      "en": "Values are free-form inventions rather than list picks — use a tag input"
+    }
+  ],
+  "tags": [
+    "form",
+    "selection",
+    "input"
+  ],
+  "api": [
+    "role=\"listbox\"",
+    "aria-multiselectable",
+    "aria-selected"
+  ],
+  "variants": [
+    {
+      "id": "chips",
+      "name": {
+        "zh": "标签回显",
+        "en": "Chip echo"
+      },
+      "note": {
+        "zh": "已选项以可删除标签排布在控制区内，最常见形态",
+        "en": "Selected values sit in the control as removable chips"
+      }
+    },
+    {
+      "id": "checkbox-list",
+      "name": {
+        "zh": "复选列表",
+        "en": "Checkbox list"
+      },
+      "note": {
+        "zh": "选项平铺为复选框组，所见即所得",
+        "en": "Options laid out as checkboxes — what you see is what you get"
+      }
+    },
+    {
+      "id": "dual-listbox",
+      "name": {
+        "zh": "双列表",
+        "en": "Dual listbox"
+      },
+      "note": {
+        "zh": "左右两个列表加转移按钮，适合大量已选项的管理",
+        "en": "Two panes with transfer buttons for managing large selections"
+      }
+    }
+  ],
+  "anatomy": [
+    "选择框（Control）",
+    "下拉列表（Listbox）",
+    "已选标签（Chips）"
+  ],
+  "framework_names": [
+    {
+      "framework": "ARIA APG",
+      "name": "Listbox (multi-select)",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/listbox/"
+    },
+    {
+      "framework": "shadcn/ui",
+      "name": "Combobox (multiple)",
+      "url": "https://ui.shadcn.com/docs/components/combobox"
+    },
+    {
+      "framework": "React Select",
+      "name": "isMulti",
+      "url": "https://react-select.com/advanced"
+    }
+  ],
+  "playground": {
+    "task": {
+      "zh": "用鼠标和键盘各完成一次多选与删除标签。",
+      "en": "Complete a multi-select and chip-remove once with mouse and once with keyboard."
+    },
+    "checks": [
+      {
+        "zh": "每个已选项可单独移除",
+        "en": "Each selected item can be removed individually"
+      },
+      {
+        "zh": "空状态或搜索无结果时有提示",
+        "en": "Empty / no-result states are explained"
+      }
+    ]
+  },
+  "related": [
+    {
+      "id": "select",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "combobox",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "tag-input",
+      "relation": "similar_to"
+    }
+  ],
+  "confusable": [
+    {
+      "id": "select",
+      "note": {
+        "zh": "select 是互斥单选，多选框组累积多个值并以标签回显",
+        "en": "Select commits one value; multi-select accumulates many and echoes them as chips"
+      }
+    },
+    {
+      "id": "combobox",
+      "note": {
+        "zh": "combobox 强调输入检索并提交单值，多选框组强调集合管理",
+        "en": "Combobox searches and commits one value; multi-select manages a set"
+      }
+    }
+  ],
+  "disambiguation": {
+    "zh": "「多选」口语上也可能指 checkbox 复选框本身；本词条专指带列表与标签回显的组合选择控件。",
+    "en": "Colloquially \"multi-select\" may mean a plain checkbox; this entry covers the list-plus-chips composite control."
+  },
+  "demo": {
+    "component": "multi-select",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ARIA APG Listbox",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/listbox/"
+    },
+    {
+      "name": "Material Design — Chips",
+      "url": "https://m3.material.io/components/chips/overview"
+    },
+    {
+      "name": "MDN — ARIA listbox role",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/listbox_role"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "flex-wrap",
+      "scroll"
+    ],
+    "notes": {
+      "zh": "控制区用 flex-wrap 排布标签，高度随已选项增长；列表绝对定位在下方，max-height + overflow-y-auto 控制高度。选择不关闭面板，Escape 收起，点击外部关闭。键盘在选项间移动并用 aria-selected 标注，标签的删除按钮需可聚焦。",
+      "en": "Lay chips out with flex-wrap so the control grows with the selection; park the listbox below with max-height and overflow-y-auto. Picking keeps the panel open, Escape collapses it and outside click closes it. Mark choices with aria-selected, and keep each chip's remove button focusable."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建一个多选框组组件，可从列表挑选多个值，已选项以标签回显并可单独删除。",
+      "en": "Create a multi-select that picks several values from a list and echoes them as individually removable chips."
+    },
+    "design": {
+      "zh": "设计多选框组。要求：控制区内已选项以标签回显，标签带删除按钮；展开列表中已选项有勾选态；空状态与无结果均有说明文案；选择后面板保持打开；深浅色主题一致。",
+      "en": "Design a multi-select. Requirements: selected values echo as chips with remove buttons inside the control; open options show a checked state; empty and no-result cases are explained; the panel stays open after picking; consistent light and dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现多选框组：value 为字符串数组；列表 role=\"listbox\" 且 aria-multiselectable=\"true\"，选项 role=\"option\" + aria-selected；点击选项切换成员而不关闭面板；标签删除按钮与选项均可用键盘访问；支持清空全部。",
+      "en": "React + Tailwind multi-select: value is a string array; the list uses role=\"listbox\" with aria-multiselectable=\"true\" and options use role=\"option\" plus aria-selected; toggling membership keeps the panel open; chip remove buttons and options are keyboard reachable; provide clear-all."
+    },
+    "agent": {
+      "zh": "在当前项目中实现一个 Multi-select 多选控件。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion，支持键盘操作。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a Multi-select control in the current project.\nInspect the existing component system and design tokens first and reuse what is already there.\nKeep the current visual style. Add no unnecessary dependencies.\nRespect prefers-reduced-motion and support keyboard operation.\nRun the existing project checks when done and list the modified files."
+    }
+  }
+}

@@ -1,0 +1,3841 @@
+# Interface Atlas — Full Catalog
+
+> 138 concepts. Per-concept JSON at /api/concept/<type>/<id>.json · Markdown at /<type>/<id>.md
+
+## a11y/alt-text — Alt Text / 替代文本
+
+- Type: a11y · Aliases: 替代文本 · 图片描述 · 图说 · alt 文本 · 图片替代文本 · alt text
+- Page: /a11y/alt-text · JSON: alt,aria-label,role="presentation" · MD: /a11y/alt-text.md
+
+**What / 这是什么:** 给图片写一句文本替代：信息图传达同样的信息，装饰图写空 alt 让读屏跳过，功能图描述动作而非画面。读屏用户、图片加载失败的用户和搜索引擎都靠这句话理解图在说什么。
+
+**What (en):** A text alternative for every image: informative images convey the same information, decorative images get empty alt so readers skip them, functional images describe the action rather than the pixels. Screen-reader users, users on failed image loads and search engines all lean on this one line.
+
+**When to use:** 承载信息的图片、图表、插画、二维码；头像、商品图、文章配图等语义内容；图片是链接或按钮的唯一内容时
+
+**When not to use:** 给装饰性纹理、分隔线写「图片」「image」占位；把长篇说明塞进 alt（应配 visible caption 或 aria-describedby）；相邻文字已完整描述时再把同一句念一遍
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现图片替代文本规范。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 所有信息图有表达信息结论的 alt
+- 装饰图 alt=""，读屏可跳过
+- 图标按钮与链接用 aria-label 描述动作
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## a11y/aria-live — ARIA Live Region / 实时区域
+
+- Type: a11y · Aliases: 实时区域 · 实时播报 · 播报区域 · 读屏播报 · aria-live · live region
+- Page: /a11y/aria-live · JSON: aria-live,role="status",role="alert",aria-atomic · MD: /a11y/aria-live.md
+
+**What / 这是什么:** 在页面上预留一块播报区，内容动态更新时把消息念给屏幕阅读器，而不移动焦点。保存成功、筛选结果数、异步校验这类「看得见变了但焦点没动」的信息，读屏用户不靠它就会漏掉。
+
+**What (en):** A reserved region on the page that speaks dynamic updates to screen readers without moving focus. Saved states, result counts, async validation — the "it changed on screen but focus didn't move" class of news that blind users simply miss without it.
+
+**When to use:** 操作结果反馈（已保存、已复制、已提交）；异步结果与筛选计数等无焦点移动的更新；表单校验错误需要在字段之外被朗读
+
+**When not to use:** 用播报区代替把焦点移到错误字段（字段级错误仍要 focus）；高频连续插入导致读屏被消息刷屏；必须被立即处理的阻断性错误只用 polite
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现实时区域播报。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 预置 live region，动态更新写入文本
+- polite / assertive / status 三档按消息重要性选择
+- toast 与表单校验结果同步播报
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## a11y/focus-ring — Focus Ring / 焦点环
+
+- Type: a11y · Aliases: 焦点环 · 键盘焦点框 · 键盘框 · 蓝框 · 聚焦框 · focus outline · focus ring
+- Page: /a11y/focus-ring · JSON: :focus-visible,outline,outline-offset,focus() · MD: /a11y/focus-ring.md
+
+**What / 这是什么:** 用可见轮廓标记当前键盘焦点位置，让用户知道下一个按键会落在哪里。鼠标点击往往不需要它，但键盘与辅助技术用户必须始终看见焦点在哪，否则只能盲操作。通常用 :focus-visible 控制——键盘聚焦才显示，鼠标点击不打扰。
+
+**What (en):** A visible outline marking the currently focused element, so users know where the next keystroke will land. Pointer users rarely need it, but keyboard and assistive-tech users must always see focus or they are operating blind. Usually driven by :focus-visible — shown for keyboard focus, silent for mouse clicks.
+
+**When to use:** 任何可聚焦元素（按钮、链接、输入框、自定义控件）；用 :focus-visible 而非 :focus，避免鼠标点击也弹框；自定义控件覆盖了浏览器默认轮廓之后
+
+**When not to use:** outline: none 之后不给任何替代指示（键盘用户直接失联）；把焦点环做成 hover 高亮的复制品，只在鼠标下可见；焦点环对比度不足 3:1，或被邻近元素裁切遮挡
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现可见键盘焦点环。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- :focus-visible 显示 2px 强调色轮廓，offset 3px，鼠标点击不显示
+- 全项目禁止无替代的 outline: none
+- 自定义圆角组件用 box-shadow 环跟随形状
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## a11y/keyboard-navigation — Keyboard Navigation / 键盘导航
+
+- Type: a11y · Aliases: 键盘导航 · 键盘操作 · 键盘可达 · tab 顺序 · 不用鼠标操作 · keyboard nav
+- Page: /a11y/keyboard-navigation · JSON: tabindex,keydown,:focus-visible · MD: /a11y/keyboard-navigation.md
+
+**What / 这是什么:** 让所有功能都能只用键盘完成：Tab/Shift+Tab 按合理顺序移动焦点，复合组件内用方向键漫游并配 roving tabindex，Escape 关闭浮层并归还焦点。这是焦点环之外的一整套焦点秩序，规则写在 ARIA APG 里。
+
+**What (en):** Make every feature operable by keyboard alone: Tab/Shift+Tab move focus in a sane order, composite widgets roam with arrow keys over a roving tabindex, Escape dismisses overlays and returns focus. The full focus discipline beyond the focus ring, codified in the ARIA APG.
+
+**When to use:** 工具栏、菜单、标签页等复合组件的组内焦点管理；弹层、抽屉、对话框需要打开与关闭的焦点闭环；任何必须「无鼠标可完成」的核心流程
+
+**When not to use:** 用 tabindex="0" 把非交互元素强行拉进 Tab 序；组内每个项都 tabindex="0"，方向键又不能漫游；Escape 关掉浮层后焦点掉回 body 顶
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现完整键盘导航。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- Tab 顺序与视觉顺序一致，不使用正数 tabindex
+- 复合组件方向键漫游 + roving tabindex
+- 浮层 Escape 关闭并把焦点还给触发元素
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## a11y/reduced-motion — Reduced Motion / 减弱动效
+
+- Type: a11y · Aliases: 减弱动效 · 减弱动态效果 · 减少动画 · 动效降级 · 关掉动画 · reduced motion
+- Page: /a11y/reduced-motion · JSON: prefers-reduced-motion,matchMedia,animation: none · MD: /a11y/reduced-motion.md
+
+**What / 这是什么:** 尊重系统「减弱动态效果」偏好，把大幅位移、缩放、视差动画降级为淡入甚至直接呈现。前庭敏感的用户会被大幅动效诱发眩晕恶心，这不是审美偏好而是健康风险；WCAG 2.3.3 要求非必要动画可被关闭。
+
+**What (en):** Honour the OS "reduce motion" preference by demoting large translations, zooms and parallax to a plain fade or no motion at all. Large motion can trigger nausea and vertigo in vestibular-sensitive users — a health risk, not a taste question. WCAG 2.3.3 requires non-essential animation to be disable-able.
+
+**When to use:** 落地页、转场、视差等大幅位移或缩放动画；自动播放的装饰动效（跑马灯、弹性弹跳、数字滚动）；用 JS 驱动的动画库补上 CSS 之外的降级分支
+
+**When not to use:** 把按下态、加载态这些功能反馈也一刀切砍光；用减弱动效代替真正的无障碍修复（比如补焦点环）；只降级 CSS 动画，JS 弹跳/视差仍强制播放
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现减弱动效支持。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 全局尊重 prefers-reduced-motion，位移/缩放类动画降级为淡入或取消
+- JS 驱动动画用 matchMedia 读取并响应 change
+- 功能性反馈（按下、加载）保留
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## a11y/skip-link — Skip Link / 跳过链接
+
+- Type: a11y · Aliases: 跳过导航 · 跳到主内容 · 跳过链接 · 一键跳正文 · skip nav · skip navigation
+- Page: /a11y/skip-link · JSON: <a href="#main">,tabindex,landmark roles · MD: /a11y/skip-link.md
+
+**What / 这是什么:** 页面第一个可聚焦元素，通常是视觉上隐藏的链接；键盘用户按下第一个 Tab 就能看见它，激活后直接跳到主内容区，不必逐个穿过顶部导航链接。长导航站点的必备逃生口，WCAG 称之为「跳过区块」。
+
+**What (en):** The first focusable element on the page — usually a visually hidden link. Keyboard users meet it on the first Tab, activate it, and land straight in the main content without walking every nav link. The mandatory escape hatch on nav-heavy sites; WCAG calls it "bypass blocks".
+
+**When to use:** 顶部导航链接超过 5 个，且每页重复出现；单页应用路由切换后焦点需要有处可去；页头含搜索、登录、语言切换等大量可聚焦项
+
+**When not to use:** 导航只有两三个链接，跳过收益小于复杂度；把「跳过」做成页头第一个常驻菜单项而不是隐藏链接；跳过目标没有 tabindex="-1"，锚点落点不可聚焦
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现跳过链接。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 链接位于文档流最前，视觉隐藏、聚焦可见
+- 激活后焦点与滚动位置落到主内容地标
+- 与现有页头/导航结构集成，不改变视觉稿
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/accordion — Accordion / 手风琴
+
+- Type: components · Aliases: 手风琴 · 折叠面板 · 折叠菜单 · 展开收起 · 可折叠区块 · FAQ 折叠列表 · 点标题展开的那种列表
+- Page: /components/accordion · JSON: <details>,<summary> · MD: /components/accordion.md
+
+**What / 这是什么:** 由多个可折叠区块组成的垂直列表：点击标题展开内容、再点收起，可互斥（同时只开一项） 也可多开。用于在有限空间里收纳成组内容，让用户按需展开。
+
+**What (en):** A vertical list of collapsible sections: clicking a header expands its content and clicking again collapses it, either exclusively (one open at a time) or independently. Packs grouped content into limited space for on-demand expansion.
+
+**When to use:** FAQ、帮助中心的分组问题；设置页分组长表单（高级选项默认收起）；移动端长内容分期呈现
+
+**When not to use:** 用户需要同时对照多块内容；核心内容应默认可见（收起会藏关键信息）；打印或 SEO 需要全量文本（需处理展开态）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现手风琴（Accordion）组件。
+
+先检查现有组件体系与 Design Token，优先复用现有的表面色与圆角变量。
+用途：FAQ 与设置页分组。
+要求：
+- 支持单开（互斥）与多开两种模式
+- 高度展开动画，尊重 prefers-reduced-motion
+- 键盘可用：button 标题 + aria-expanded/aria-controls
+- 深浅色主题一致，不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/alert — Alert / 警告提示
+
+- Type: components · Aliases: 警告条 · 提示横幅 · 警告框 · 通知横幅 · 错误提示条 · 页面顶部提示 · 表单提交后的错误提示
+- Page: /components/alert · JSON: role="alert",aria-live="assertive" · MD: /components/alert.md
+
+**What / 这是什么:** 嵌在页面流内、带状态色底色的横条，用于必须被看见的消息：错误、警告、重要通知。 它占据文档流而不是覆盖内容，通常常驻直到问题被处理或用户手动关闭。
+
+**What (en):** An inline, status-coloured banner inside the page flow for messages that must be seen: errors, warnings, important notices. It takes layout space instead of overlaying, and stays until the issue is resolved or the user dismisses it.
+
+**When to use:** 表单提交后的整体错误汇总；系统级通知（维护、额度将满）；破坏性操作前的页面内警告
+
+**When not to use:** 轻量的成功反馈（改用 toast）；只与单个字段相关（改用字段内联错误）；多处滥用会稀释注意力，保持克制
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现警告提示（Alert）组件。
+
+先检查现有组件体系与 Design Token，优先复用现有的状态色与语义色变量。
+用途：表单错误汇总与系统级通知。
+要求：
+- 支持 info/success/warning/error 四种状态
+- 图标 + 标题 + 描述 + 可选操作与关闭
+- 不只靠颜色传达状态（图标 + 文字）
+- 常驻显示，不自动消失
+- 深浅色主题一致，不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/avatar — Avatar / 头像
+
+- Type: components · Aliases: 头像 · 用户头像 · 圆形头像 · 人员头像 · 账号图片 · 首字母头像 · 名字前面的小圆图
+- Page: /components/avatar · JSON: <img> · MD: /components/avatar.md
+
+**What / 这是什么:** 以圆形或圆角方形小图代表用户或组织：照片、姓名首字母或图标占位。 常与姓名一起出现在导航、评论与成员列表，可附在线状态点或多人叠加。
+
+**What (en):** A small round or rounded-square image representing a user or organisation: photo, initials or an icon placeholder. Appears with names in navs, comments and member lists; can carry a status dot or stack several people together.
+
+**When to use:** 用户身份的稳定视觉锚点（导航、评论、成员）；无图时用姓名首字母 + 品牌底色兜底；群组、多负责人场景做叠加展示
+
+**When not to use:** 非人格化的系统对象（改用图标）；图片本身是内容主体（用完整图片展示）；需要展示丰富个人信息（用 profile 页或卡片）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现头像（Avatar）组件。
+
+先检查现有组件体系与 Design Token，优先复用现有的表面色变量。
+用途：导航用户区、评论列表与成员叠加。
+要求：
+- 图片 / 首字母两种内容，加载失败自动降级
+- 首字母颜色按名字散列且稳定
+- 尺寸档位 + 可选在线状态点 + 叠加形态
+- 可访问性：有意义的 alt，装饰时 aria-hidden
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/badge — Badge / 徽标
+
+- Type: components · Aliases: 徽章 · 小红点 · 角标 · 状态标签 · 计数气泡 · 数字角标 · 图标右上角的小圆点
+- Page: /components/badge · JSON: <span> · MD: /components/badge.md
+
+**What / 这是什么:** 附着在元素角落或行内的小型状态标记：圆点、数字计数或短文字标签。用于表达未读数量、 状态（新、已废弃）或分类；不参与交互，视觉上从属于宿主元素。
+
+**What (en):** A small status marker attached to an element's corner or inline: a dot, a count or a short label. It signals unread counts, status (new, deprecated) or category; non-interactive and visually subordinate to its host element.
+
+**When to use:** 未读消息数、购物车数量；行内状态标注（成功、过期、Beta）；图标右上角的小红点提醒
+
+**When not to use:** 需要点击响应（那是按钮或标签 chip）；数值超过上限要截断（99+）并避免频繁跳动；大段文字说明（改用 alert 或正文）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现徽标（Badge）组件。
+
+先检查现有组件体系与 Design Token，优先复用现有的状态色变量。
+用途：未读计数与状态标注。
+要求：
+- 计数 / 圆点 / 文字标签三种形态
+- 计数 99+ 截断，数字不抖动
+- 描边与宿主底色衔接自然，深浅色主题一致
+- 不只靠颜色传达（aria-label 或文字）
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/bottom-sheet — Bottom Sheet / 底部抽屉
+
+- Type: components · Aliases: 底部抽屉 · 底部面板 · 上拉面板 · 手机底部弹出来的面板 · 底部弹层 · bottom sheet · action sheet
+- Page: /components/bottom-sheet · JSON: <dialog>,role="dialog",aria-modal="true" · MD: /components/bottom-sheet.md
+
+**What / 这是什么:** 从屏幕底边升起、覆盖在当前页面之上的面板，顶部有抓手可供拖动或下滑关闭。打断程度介于模态框与 气泡卡片之间：有遮罩但拇指可及、可下滑快速收起。是移动端承接筛选、分享、短表单的默认容器， 桌面端应改用侧边抽屉或居中对话框。
+
+**What (en):** A panel that rises from the bottom edge over the current page, with a grabber for dragging or swipe-to-dismiss. Its interruption level sits between a modal and a popover: there is a backdrop, yet it is thumb-reachable and collapses on a downward swipe. The default mobile container for filters, sharing and short forms; on desktop prefer a side drawer or centered dialog.
+
+**When to use:** 移动端筛选、排序、分享等短任务，需覆盖在当前页上；操作列表或选项数量有限，单手拇指可达；内容比一行 tooltip 多、比整页流程短
+
+**When not to use:** 桌面端为主的界面（改用 drawer 或 modal）；需要强制决策、不可轻易关闭（改用 modal）；长表单或长篇阅读（改为全屏页面更稳）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现一个 Bottom Sheet 底部抽屉组件。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+与侧边 Drawer、居中 Modal 明确区分，只从底边升起。
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion，支持键盘与拖拽操作。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/breadcrumb — Breadcrumb / 面包屑
+
+- Type: components · Aliases: 面包屑导航 · 路径导航 · 层级路径 · 位置导航 · 首页大于分类那种路径 · 网站路径条 · trail
+- Page: /components/breadcrumb · JSON: <nav aria-label="Breadcrumb">,<ol>,<li> · MD: /components/breadcrumb.md
+
+**What / 这是什么:** 用"首页 / 分类 / 子类 / 当前页"的层级路径表示用户在信息架构中所处的位置： 每个上级都可点击跳回，末项为当前页不可点。这是防止用户迷路成本最低的手段， 命名源自童话中沿途撒下用来标记归路的面包屑。常置于页面标题上方。
+
+**What (en):** A hierarchical path like "Home / Library / Page" that states where the user sits in the information architecture: every ancestor is a link back, and the last item marks the current page. The cheapest way to keep users oriented — the name comes from the breadcrumbs Hansel dropped to find his way home. Usually placed above the page title.
+
+**When to use:** 层级深于两层的内容型站点（文档、电商类目）；用户可能从搜索或外链直达深层页面；需要低成本的逐级回退路径
+
+**When not to use:** 扁平单层的应用，面包屑只是噪音；无稳定层级的个性化信息流；移动端空间极紧且层级浅（可省略）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现面包屑导航。
+
+先检查现有路由结构，确认能否从路由元数据推导层级。
+要求：
+- nav + ol 语义结构，aria-label="面包屑"
+- 上级可点击返回，当前页 aria-current="page" 且不可点
+- 层级超过 5 层时中间折叠为可展开省略号
+- 尊重 prefers-reduced-motion（展开无动画突变即可）
+- 不新增不必要的依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/button — Button / 按钮
+
+- Type: components · Aliases: 按钮 · 按键 · 点击按钮 · 主按钮 · 提交按钮 · CTA 按钮
+- Page: /components/button · JSON: <button>,type,role="button" · MD: /components/button.md
+
+**What / 这是什么:** 用可点击的色块触发一个明确的动作，是界面中最基础的操作入口。 通过填充、描边、幽灵等视觉层级区分主次操作，按压时有即时的下沉反馈， 繁忙时进入加载态并禁用点击，防止重复提交。
+
+**What (en):** A clickable block that triggers one clear action — the most basic interactive element of any interface. Fill, outline and ghost styles rank primary against secondary actions; presses give instant sink-in feedback, and a busy state disables further clicks to prevent double submission.
+
+**When to use:** 需要用户主动触发一个明确动作（提交、创建、确认）；同一区域存在主次多个操作，需要视觉分层；操作会改变数据或状态，需要防止误触与重复提交
+
+**When not to use:** 动作只是导航到另一页，用链接更符合预期；操作可逆且频繁切换，用开关或复选框更合适；一屏内大量重复的次要操作，弱化为文字按钮避免视觉噪音
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现按钮组件。
+
+先检查现有的 Design Token 与按钮类样式，优先复用现有颜色与圆角变量。
+要求：
+- 主要 / 次要 / 幽灵 / 危险四种样式
+- 按压反馈与 focus-visible 键盘焦点样式
+- 加载态：spinner + disabled + 宽度不变
+- 深浅色主题一致，尊重 prefers-reduced-motion
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/card — Card / 卡片
+
+- Type: components · Aliases: 卡片 · 卡片容器 · 信息卡 · 内容卡片 · 卡片式布局 · 商品卡片 · 一块一块的内容板
+- Page: /components/card · JSON: <article> · MD: /components/card.md
+
+**What / 这是什么:** 用圆角边框或底色围出一块自包含内容的矩形容器，一块卡片聚合一组相关信息： 封面图、标题、摘要与操作。是内容流、仪表盘与电商列表的通用显示单元。
+
+**What (en):** A self-contained rectangular container outlined by rounded borders or a surface colour, aggregating related content: cover, title, excerpt and actions. The universal display unit of content feeds, dashboards and commerce lists.
+
+**When to use:** 封面图 + 标题 + 摘要的流式内容展示；仪表盘中并列的多块摘要指标；可点击跳转的聚合入口（商品、文章、项目）
+
+**When not to use:** 需要逐行精确对齐比较（改用 table）；密度极高的数据展示（改用 table）；纯装饰性包裹会稀释信息，宁可用留白分隔
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现卡片（Card）组件。
+
+先检查现有组件体系与 Design Token，优先复用现有的表面色、圆角与阴影变量。
+用途：内容流与仪表盘摘要。
+要求：
+- 容器 + 可选媒体区 + 标题/描述 + 操作区
+- 支持整卡可点（注意语义与嵌套交互）
+- hover 反馈克制，尊重 prefers-reduced-motion
+- 深浅色主题一致，不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/carousel — Carousel / 轮播
+
+- Type: components · Aliases: 轮播 · 图片轮播 · 轮播图 · banner 切换 · 跑马灯切换 · carousel · slider gallery
+- Page: /components/carousel · JSON: aria-roledescription="carousel",scroll-snap-type,aria-live · MD: /components/carousel.md
+
+**What / 这是什么:** 用水平滑动的轨道展示一组内容，同一时刻只突出一项，其余滑出视野或露出边缘作暗示。通过分页点、 箭头或自动播放切换，常用于首屏 Banner、图片画廊与推荐位。适合「一组同类内容、逐个浏览」的场景， 不适合需要并排对照的信息。
+
+**What (en):** A horizontally scrolling track of items where one slide takes focus at a time and the rest slide out or peek at the edge as a hint. Switching uses dots, arrows or autoplay — common in hero banners, image galleries and recommendation rails. Fits "browse one item after another" content, not information that must be compared side by side.
+
+**When to use:** 一组同类内容需要逐个浏览（Banner、图集、推荐位）；横向空间有限，又想保留「还有更多」的暗示；图片或卡片为主、文字说明简短
+
+**When not to use:** 用户需要并排对照多个项目（用卡片网格或表格）；内容只有三五条且全部重要（直接平铺，别藏起来）；关键操作或表单藏在某一页里（切换会打断任务）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现一个 Carousel 轮播组件。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion，支持键盘操作。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/checkbox — Checkbox / 复选框
+
+- Type: components · Aliases: 复选框 · 勾选框 · 多选框 · 打勾框 · 勾选项 · 勾选框选择
+- Page: /components/checkbox · JSON: <input type="checkbox">,role="checkbox" · MD: /components/checkbox.md
+
+**What / 这是什么:** 用方形勾选框表示一组可多选的独立开关项，点击在选中与未选中间切换。 父级项可呈现半选态（部分子项选中），常用于批量选择、筛选与同意条款。
+
+**What (en):** Square toggles for a set of independently selectable items, flipping between checked and unchecked on click. A parent can show an indeterminate state when only some children are checked — used for bulk selection, filters and consent.
+
+**When to use:** 多个选项可以同时选中、互不影响；批量操作前勾选列表项；「同意条款」等单条独立确认
+
+**When not to use:** 选项互斥只能选一个，用 radio；即时生效的开关型设置，用 switch 更直观；选项超过约 15 个且需检索，改用可搜索的多选下拉
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现复选框组件。
+
+先检查现有表单组件与颜色变量，保持一致。
+要求：
+- 受控 checked，支持单项 / 分组 / 半选
+- 对勾选中动画尊重 prefers-reduced-motion
+- 键盘可达（空格切换，label 关联）
+- 深浅色主题一致
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/color-picker — Color Picker / 色彩选择器
+
+- Type: components · Aliases: 取色器 · 选色器 · 颜色选择 · 挑颜色的控件 · color picker
+- Page: /components/color-picker · JSON: input[type="color"],color-mix(),oklch() · MD: /components/color-picker.md
+
+**What / 这是什么:** 用于选定颜色值的控件，形式包括色板网格、渐变取色区加色相滑杆，或直接调用系统取色器。输出十六进制、RGB 或 OKLCH 等颜色值，常与文本输入、透明度滑杆组合；设计工具与主题配置中最常见。
+
+**What (en):** A control for choosing a colour, taking the form of a swatch grid, a gradient canvas with hue sliders, or the OS picker. It outputs hex, RGB or OKLCH values and often pairs with a text field and an opacity slider. Most at home in design tools and theme settings.
+
+**When to use:** 用户需要指定品牌色、主题色或标注色；预设色板足够覆盖需求；需要精确微调色相、饱和度与透明度
+
+**When not to use:** 只在几个固定色中选择，用 segmented-control 或 radio；颜色是结果展示而非输入，用 badge 或色块展示；亮度或数值调节，用 slider 更直接
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现色彩选择器（Color Picker）组件。
+先检查现有表单控件与 Design Token，优先复用滑杆、输入框与色板样式。
+用途：品牌色、主题色与标注色的选定。
+要求：
+- 提供色板与取色区两种取色方式
+- 颜色值可键入且与预览同步
+- 输出合法颜色值（hex / OKLCH）
+- 尊重 prefers-reduced-motion，支持键盘操作
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/combobox — Combobox / 可搜索选择框
+
+- Type: components · Aliases: 可以搜索的下拉框 · 输入筛选选项 · 自动补全选择 · autocomplete
+- Page: /components/combobox · JSON: /api/concept/components/combobox.json · MD: /components/combobox.md
+
+**What / 这是什么:** 把文本输入和候选选项组合在一起的选择组件。用户可以输入关键词缩小范围，再通过鼠标或键盘确定一个值。输入文本、当前高亮项和最终选中值是不同状态；当没有匹配项时，应解释结果并允许清空重选。它适合选项较多、用户又可能记得部分名称的场景。
+
+**What (en):** A text field paired with a list of suggestions. People type to narrow a set, then commit a value with pointer or keyboard. Typed text, the active suggestion and the committed selection are separate states. Provide a clear empty result and a way to clear the field when nothing matches.
+
+**When to use:** 从较多城市、成员或风格中选择已知选项。；需要在输入中快速筛选并保留明确选中值。
+
+**When not to use:** 只有两三个选项，使用 radio 更直接。；允许任意输入且没有候选数据，使用普通输入框。
+
+**Agent prompt (zh):**
+
+```text
+先检查当前项目的组件与样式体系，复用已有能力实现可搜索选择框。
+要求：
+- 焦点留在输入框，用 aria-activedescendant 指向当前选项。配合 aria-expanded、aria-controls、listbox 和 option 表达结构。支持方向键、Enter、Escape，输入变化时重置高亮索引。
+- 键盘高亮必须指向仍存在的候选项。
+- 清空后恢复全部选项，Esc 只关闭列表。
+- 窄屏可用，深浅色一致，尊重 reduced-motion。
+- 不新增依赖。
+运行项目现有检查，并列出修改文件及验证结果。
+```
+
+## components/command-palette — Command Palette / 命令面板
+
+- Type: components · Aliases: 命令搜索框 · 快捷搜索框 · 快速操作面板 · spotlight 搜索 · ctrl+k 搜索 · Mac 那种快捷搜索框 · cmd+k
+- Page: /components/command-palette · JSON: <dialog>,role="combobox" · MD: /components/command-palette.md
+
+**What / 这是什么:** 用快捷键（⌘K / Ctrl+K）唤出的浮动搜索面板：输入即筛选命令、页面或内容， 键盘上下选择、回车执行。macOS Spotlight 把它带入大众视野， 现在是效率工具和开发者产品的标配。
+
+**What (en):** A floating search panel summoned with ⌘K / Ctrl+K: type to filter commands, pages or content, navigate with arrow keys, execute with Enter. Popularized by macOS Spotlight; now standard in power-user products.
+
+**When to use:** 功能多、层级深的产品（后台、开发工具、笔记软件）；目标用户是高频操作的高阶用户；想减少导航层级、直达任何地方
+
+**When not to use:** 面向大众的浅层应用，用户不知道快捷键文化；移动端为主要场景（虚拟键盘体验差），改用底部搜索；命令总数极少（< 10 个），普通菜单就够了
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现命令面板（Command Palette）。
+
+先检查现有弹层 / Dialog 组件与 Design Token，优先复用。
+要求：
+- ⌘K / Ctrl+K 全局唤出，Esc 关闭
+- 输入即筛，结果按「命令 / 页面」分组
+- 完整键盘导航与 aria 属性（dialog、listbox、option）
+- 弹出动画轻微，尊重 prefers-reduced-motion
+- 支持注册自定义命令（提供 useCommands 或类似 API）
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/date-picker — Date Picker / 日期选择器
+
+- Type: components · Aliases: 日期选择器 · 日历选择 · 选日期控件 · 日历弹层 · 日期输入框 · 时间选择
+- Page: /components/date-picker · JSON: <input type="date">,aria-haspopup,role="dialog" · MD: /components/date-picker.md
+
+**What / 这是什么:** 用日历网格选择日期的复合控件，通常由输入框触发弹出，也常内嵌展示。 头部提供年月切换，网格按周排列日期并高亮今天与选中日； 范围形态用两个日期夹出区间。避免手输日期的格式错误。
+
+**What (en):** A composite control picking dates on a calendar grid, usually popped from a trigger input but often shown inline. The header navigates months, the grid lays days out by week highlighting today and the selection; the range form bounds an interval with two dates. It avoids manual date-entry mistakes.
+
+**When to use:** 表单需要选择日期且格式易错（预订、报表）；需要直观查看日期所在星期与月份结构；选择区间（入住退房、活动起止）
+
+**When not to use:** 只选年份或月份，用更轻的年月选择器；移动端简单日期，原生日期输入体验更好；高频输入日期的录入场景，快捷键 + 手输更快
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现日期选择器组件。
+
+先检查现有表单与弹出层组件，保持风格与 z-index 层级一致。
+要求：
+- 触发输入框 + 弹出日历，受控 value
+- 高亮今日与选中日，支持前后翻月
+- 范围选择形态（可选）
+- 点击外部 / Escape 关闭，键盘可达
+- 深浅色主题一致，不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/drawer — Drawer / 抽屉
+
+- Type: components · Aliases: 抽屉 · 侧滑面板 · 滑出面板 · 侧边抽屉 · 侧拉页面 · 汉堡菜单点开的面板 · 手机上滑出来的面板
+- Page: /components/drawer · JSON: <dialog>,role="dialog",aria-modal="true" · MD: /components/drawer.md
+
+**What / 这是什么:** 从屏幕边缘（多为右侧或左侧）滑入、通常带遮罩的面板。比模态框轻：能承载较长内容又不离开当前页面， 关闭后原样回到上下文；移动端常以左滑导航或底部抽屉的形式出现。
+
+**What (en):** A panel that slides in from a screen edge (usually right or left), usually with a backdrop. Lighter than a modal: it carries longer content without leaving the page, and closing restores the original context. On mobile it appears as a nav drawer or a bottom sheet.
+
+**When to use:** 查看详情但不想离开列表（邮件、订单）；移动端承载侧边导航；快速编辑或筛选，且需要保留底层上下文
+
+**When not to use:** 需要用户强制决策（改用模态框）；内容只有一两行（改用 popover 或 tooltip）；桌面端常驻导航（改用 sidebar）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现抽屉（Drawer）组件。
+
+先检查现有组件体系与 Design Token，优先复用现有的表面色、层级与阴影变量。
+用途：列表详情查看与移动端导航。
+要求：
+- 右侧滑入 + 遮罩，Esc 与点击遮罩关闭
+- 打开时锁定滚动、焦点移入面板
+- 滑动动画用 transform，尊重 prefers-reduced-motion
+- 支持左侧滑入与底部抽屉两种变体
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/dropdown — Dropdown / 下拉菜单
+
+- Type: components · Aliases: 下拉菜单 · 下拉选项 · 更多菜单 · 操作菜单 · 溢出菜单 · 三个点菜单
+- Page: /components/dropdown · JSON: role="menu",role="menuitem",aria-haspopup · MD: /components/dropdown.md
+
+**What / 这是什么:** 由触发按钮就近弹出的一组操作菜单，用于收纳次要操作，保持界面整洁。 典型形态是「···」更多按钮；面板带阴影浮于内容之上，点击菜单项即执行并关闭， 危险操作以红色项与分隔线隔离。
+
+**What (en):** A menu of actions popping near its trigger to tuck away secondary operations and keep the interface tidy — the classic form being a "···" more button. The panel floats over content with a shadow; picking an item executes and closes, and destructive actions sit isolated below a divider in red.
+
+**When to use:** 次要操作较多但不值得常驻展示；列表行的行内操作收纳进「···」按钮；工具栏空间有限，需要折叠操作集
+
+**When not to use:** 高频主要操作，直接放按钮更高效；需要在多项输入间选择并提交，用下拉选择；触屏端深度超过一层的嵌套菜单，改为抽屉或页面
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现下拉菜单组件。
+
+先检查现有弹出层组件与 z-index 约定，保持层级一致。
+要求：
+- 受控 open，触发器就近弹出面板
+- 菜单项带图标，危险项红色 + 分隔线隔离
+- 点击外部 / Escape 关闭，键盘上下选择
+- 深浅色主题一致，动画尊重 prefers-reduced-motion
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/fab — Floating Action Button / 悬浮按钮
+
+- Type: components · Aliases: 悬浮按钮 · 浮动按钮 · 悬浮球 · 右下角那个圆按钮 · FAB · floating action button
+- Page: /components/fab · JSON: <button>,position,box-shadow,aria-expanded · MD: /components/fab.md
+
+**What / 这是什么:** 锚在视口角落、悬浮于内容之上的圆形按钮，承载当前页面唯一的主操作（新建、撰写、扫码）。 用阴影和位置宣告「我在所有内容之上」，比行内主按钮更醒目，但一屏只应有一个。点击后可展开 为带标签的扩展形态，或扇出一组快捷动作。
+
+**What (en):** A circular button anchored to a corner of the viewport, floating above the content and carrying the one primary action of the current view (create, compose, scan). Shadow and placement declare "I sit above everything" — louder than an inline primary button, but there should be only one per screen. On click it may expand into a labeled bar or fan out into a set of quick actions.
+
+**When to use:** 页面有唯一、高频、正向的主操作（新建、撰写）；底部拇指热区需要常驻入口；工具型界面需要比行内按钮更强的操作召唤
+
+**When not to use:** 有多个并列主操作（并列会互相削弱，用底部操作条）；操作是破坏性的（删除、清空）；会遮挡关键内容或底部导航
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现一个 FAB 悬浮按钮组件。
+先检查现有组件体系和 Design Token，优先复用当前按钮与阴影变量。
+与行内主按钮区分：悬浮、常驻、一屏一个。
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion，支持键盘操作。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/file-upload — File Upload / 文件上传区
+
+- Type: components · Aliases: 拖文件进去上传 · 拖拽上传框 · 选文件的地方 · dropzone
+- Page: /components/file-upload · JSON: /api/concept/components/file-upload.json · MD: /components/file-upload.md
+
+**What / 这是什么:** 用于选择文件、展示校验反馈并管理待处理文件列表的表单区域。常见形式为原生文件选择按钮或可拖放区域；拖拽必须有按钮选择作为替代。选择文件不代表已经上传，界面应清楚区分待上传、处理中、成功和失败，并说明允许的格式与大小。
+
+**What (en):** A form region for selecting files, checking constraints and managing a pending list. It may use a native picker or a drop zone, but drag-and-drop must have a picker alternative. Selection is not upload completion: distinguish pending, processing, success and failure, and explain accepted types and size limits.
+
+**When to use:** 提交图片、附件、PDF 等用户文件。；多文件任务需要逐项查看和移除。
+
+**When not to use:** 只需要一个网址时使用文本输入。；未明确数据用途或上传目标时不要自动上传。
+
+**Agent prompt (zh):**
+
+```text
+先检查当前项目的组件与样式体系，复用已有能力实现文件上传区。
+要求：
+- 保留原生 input type="file"，accept 只是筛选提示，还需校验类型与大小；服务端也必须验证上传内容。拖放阻止浏览器默认打开文件，错误明确到限制条件。示例不联网，只展示选择结果。
+- 文件选择与拖放采用相同限制，拒绝时不丢失已选文件。
+- 选择成功不能显示为上传成功；这里没有上传请求。
+- 窄屏可用，深浅色一致，尊重 reduced-motion。
+- 不新增依赖。
+运行项目现有检查，并列出修改文件及验证结果。
+```
+
+## components/filter-panel — Filter Panel / 筛选面板
+
+- Type: components · Aliases: 筛选面板 · 过滤器 · 筛选器 · 过滤面板 · 条件筛选 · 侧边筛选 · 左边勾选条件的那种面板
+- Page: /components/filter-panel · JSON: <fieldset>,<form> · MD: /components/filter-panel.md
+
+**What / 这是什么:** 集中承载筛选条件的面板，常驻列表侧边或以抽屉、浮层唤起：复选组、单选、滑杆组合出当前查询。 与列表实时联动刷新结果数，并支持已选条件回显与一键清除。
+
+**What (en):** A panel concentrating filter controls beside the list (or revealed in a drawer or popover): checkbox groups, radios and sliders compose the current query. It syncs with the list to refresh result counts, echoes selected conditions and offers clear-all.
+
+**When to use:** 电商、检索结果等多维度数据浏览；后台列表需要组合条件定位记录；需要展示各选项的结果数（facet count）
+
+**When not to use:** 维度极少（1~2 个，用下拉或搜索框即可）；筛选计算很慢（需要防抖与加载态）；移动端直接堆砌（收进底部抽屉承载）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现筛选面板（Filter Panel）。
+
+先检查现有组件体系、路由参数与数据源，保持状态同步方式一致。
+用途：检索结果页与后台列表。
+要求：
+- 分组复选 + facet 数量 + 实时过滤
+- 结果数与「清除全部」常驻，已选条件胶囊回显
+- 无结果时给出空态与清除入口
+- URL 参数或状态可恢复，深浅色主题一致
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/input — Input / 输入框
+
+- Type: components · Aliases: 输入框 · 文本输入框 · 文本框 · 输入栏 · 表单输入框 · 单行输入框
+- Page: /components/input · JSON: <input>,type,role="textbox" · MD: /components/input.md
+
+**What / 这是什么:** 用一条带边框的水平输入区收集单行文本，是表单的基本单元。 占位符提示期望格式，聚焦时高亮边框引导视线，校验失败时切换错误色 并附提示文案；可内嵌前后缀图标与清除按钮，受控管理输入值。
+
+**What (en):** A single-line bordered field for collecting text — the basic unit of every form. Placeholder hints the expected format, focus highlights the border to guide the eye, and failed validation switches to an error color with a hint. Prefix and suffix icons or a clear button can live inside, and the value is controlled state.
+
+**When to use:** 收集用户名、邮箱、标题等单行短文本；表单校验需要即时反馈错误与格式提示；搜索等需要前后缀图标或清除按钮的场景
+
+**When not to use:** 长段落、简介等多行内容，改用 textarea；选项固定且少于 5 个，用 radio 或 select 更高效；需要复杂格式编辑（富文本、日期），用专用组件
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现输入框组件。
+
+先检查现有表单组件与 Design Token，保持风格一致。
+要求：
+- 受控输入，支持 label、placeholder、prefix/suffix
+- 聚焦描边与错误态（错误文案由外部校验逻辑传入）
+- 非空时显示清除按钮
+- 深浅色主题一致，无障碍标注齐全
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/lightbox — Lightbox / 灯箱
+
+- Type: components · Aliases: 图片灯箱 · 大图预览 · 图片放大预览 · 看大图 · lightbox
+- Page: /components/lightbox · JSON: <dialog>,role="dialog",aria-modal="true" · MD: /components/lightbox.md
+
+**What / 这是什么:** 以压暗遮罩放大展示图片或视频的媒体浮层，原页面暂时失去交互。内容居中呈现，常配左右切换、缩放与关闭；它是媒体专用的模态框，与通用对话框的区别在于主体是可观赏的视觉内容而非表单或文案。
+
+**What (en):** A media overlay that enlarges an image or video over a dimmed, temporarily inert page. The media is centered and usually paired with prev/next, zoom and close. It is a modal specialised for viewing rather than for forms or copy — that is what separates it from a generic dialog.
+
+**When to use:** 需要查看图片细节、原图或成组照片；视频需要脱离页面布局专注播放；缩略图点击后预期放大预览
+
+**When not to use:** 内容是表单、说明或确认操作，用 modal；用户需要边看边操作底层页面，用 drawer 或 popover；媒体本身就是页面主体，直接用画廊页或视频播放页
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现灯箱（Lightbox）组件。
+先检查现有浮层与 Design Token，优先复用遮罩、圆角与阴影变量。
+用途：图片与视频的放大预览。
+要求：
+- 压暗遮罩 + 居中媒体，支持左右切换与关闭
+- 焦点困在浮层内，关闭后焦点回到触发元素
+- 图片加载失败有替代说明
+- 尊重 prefers-reduced-motion，支持键盘操作
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/menu — Menu / 菜单
+
+- Type: components · Aliases: 菜单 · 下拉菜单 · 右键菜单 · 上下文菜单 · 操作菜单 · 更多操作 · 三个点点出来的菜单
+- Page: /components/menu · JSON: role="menu",role="menuitem" · MD: /components/menu.md
+
+**What / 这是什么:** 点击或右键触发的临时操作列表浮层：平铺或分组的命令项，选中即执行并关闭。 用于收纳非高频操作（更多、设置、删除），通常以「⋯」按钮或右键唤起。
+
+**What (en):** A temporary overlay listing actions, opened by click or right-click: flat or grouped command items that execute and close on selection. It houses infrequent actions (more, settings, delete), usually behind a "⋯" button or a context click.
+
+**When to use:** 收纳低频操作，避免界面堆满按钮；右键唤起的上下文操作（文件、画布元素）；顶部导航的站点栏目入口
+
+**When not to use:** 高频主操作（直接露出按钮）；层级很深的树（改用侧边栏或命令面板）；破坏性操作需二次确认，不能一触即发
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现菜单（Menu）组件。
+
+先检查现有组件体系与 Design Token，优先复用现有的表面色与阴影变量。
+用途：列表行的「更多」操作与右键上下文。
+要求：
+- 锚定触发器弹出，贴近边缘自动翻转
+- 键盘可用：↑↓ 循环、Enter 执行、Esc 关闭
+- 危险项红色 + 分隔线，触发二次确认的钩子
+- 点击外部关闭，深浅色主题一致
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/modal — Modal / 模态框
+
+- Type: components · Aliases: 弹窗 · 对话框 · 模态弹窗 · 确认弹窗 · 弹出对话框 · 遮罩弹窗 · 网页中间弹出来的窗口
+- Page: /components/modal · JSON: <dialog>,role="dialog",aria-modal="true" · MD: /components/modal.md
+
+**What / 这是什么:** 覆盖在页面之上、带半透明遮罩的对话框，打断用户当前流程，要求先完成弹窗内的任务或决策。 遮罩阻断与底层页面的交互，焦点被暂时困在弹窗内，是容器类浮层中打断程度最高的一种。
+
+**What (en):** A dialog rendered above the page with a translucent backdrop that interrupts the current flow and demands a task or decision first. The backdrop blocks interaction with the underlying page and focus is temporarily trapped inside — the most disruptive of the overlay containers.
+
+**When to use:** 需要明确决策的破坏性操作（删除、支付）；任务必须完成后流程才能继续（向导、登录）；需要专注处理的临时内容（详情、快速编辑）
+
+**When not to use:** 内容是辅助性的、可随时关闭（改用 popover 或 tooltip）；用户需要对照底层页面操作（改用 drawer）；移动端长内容滚动（改为全屏页面更稳）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现模态框（Modal）组件。
+
+先检查现有组件体系与 Design Token，优先复用现有的表面色、圆角与阴影变量。
+用途：删除确认与快速编辑。
+要求：
+- 遮罩 + 居中面板，Esc 与点击遮罩关闭
+- 打开时锁定滚动、焦点移入面板
+- 入场动画轻微，尊重 prefers-reduced-motion
+- 深浅色主题一致
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/multi-select — Multi-select / 多选框组
+
+- Type: components · Aliases: 多选 · 多选下拉 · 可多选的选择框 · 多选框 · multi select
+- Page: /components/multi-select · JSON: role="listbox",aria-multiselectable,aria-selected · MD: /components/multi-select.md
+
+**What / 这是什么:** 允许从一组选项中挑选多个值，并以标签形式回显已选集合的选择控件。与单选下拉不同，展开面板在选择后保持打开，已选项可逐个移除；适合标签、权限、筛选条件等需要累积多个值的表单场景。选项很多时应配合搜索。
+
+**What (en):** A control for picking several values from one option set, echoing the chosen ones as removable chips. Unlike a single select, the panel stays open after each pick and every chip can be removed on its own. Fits tags, permissions and filter facets; pair it with search when the set is large.
+
+**When to use:** 需要一次提交多个值，如标签、权限、筛选条件；已选项需要随时可见并可单独删除；选项集合固定，且可能较多、需要搜索或分组
+
+**When not to use:** 只能选一个值，用 select 或 combobox 更准确；选项少于 5 个且无需回显，平铺 checkbox 更快；值由用户自由创造而非从列表挑选，用 tag-input
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现一个 Multi-select 多选控件。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion，支持键盘操作。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/navbar — Navbar / 顶部导航栏
+
+- Type: components · Aliases: 导航栏 · 顶部菜单 · 页面最上面那一条 · header 导航 · 页头导航 · 汉堡菜单那条栏 · top bar
+- Page: /components/navbar · JSON: <nav>,role="navigation" · MD: /components/navbar.md
+
+**What / 这是什么:** 固定在页面顶部的水平导航条：左侧品牌标识，中间主导航链接，右侧搜索、 入口按钮与用户头像。它是网站的"门面导航"，把最重要的三到七个入口压进 一条横向空间，移动端折叠为汉堡菜单。常配合 position: sticky 在滚动时保持可见。
+
+**What (en):** A horizontal navigation bar pinned to the top of the page: brand on the left, primary links in the middle, search, actions and avatar on the right. It is the front door of a site — the 3–7 most important destinations compressed into one strip, folding into a hamburger menu on mobile. Usually kept visible with position: sticky.
+
+**When to use:** 入口少而扁平的官网、产品站、文档站；品牌与全局动作需要常驻首屏；页面结构上下流动、适合顶部横向空间
+
+**When not to use:** 层级深、模块多的后台（侧边栏更合适）；需要同时扫视大量导航项；沉浸式阅读、编辑器等全屏场景
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现顶部导航栏。
+
+先检查现有路由结构与导航数据来源，复用现有品牌资源与 Design Token。
+要求：
+- sticky 置顶，含品牌区、导航链接、搜索入口、用户区
+- 当前路由高亮（aria-current="page"）
+- 移动端折叠为汉堡菜单，展开动画平滑
+- 深浅色主题一致
+- 不新增不必要的依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/pagination — Pagination / 分页
+
+- Type: components · Aliases: 分页器 · 翻页 · 页码 · 上一页下一页 · 页码条 · pager
+- Page: /components/pagination · JSON: <nav aria-label="Pagination">,role="navigation" · MD: /components/pagination.md
+
+**What / 这是什么:** 用带页码的控件把长结果集切分为离散页面：用户显式点击页码或上一页 / 下一页 按钮取回对应片段，当前位置永远可知、可分享、可回退。与无限滚动的"失控 漂移"相对，它是数据浏览中最可控的方式，也是搜索结果与后台表格的默认选择。
+
+**What (en):** A page-numbered control that slices long result sets into discrete pages: users explicitly click a page number or prev / next to fetch that slice, so the current position is always known, shareable and reversible. The controlled counterpart to infinite scrolling's endless drift — the default for search results and admin tables.
+
+**When to use:** 结果集有序、用户需要定位与回溯；需要可分享的页码 URL（搜索、后台表格）；需要跳到末页或精确页码
+
+**When not to use:** 休闲浏览的无限信息流；结果集很小，一页即可容纳；内容无法均匀切分且顺序常变
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现分页组件。
+
+先检查现有列表 / 表格的数据获取方式，分页状态应与路由查询参数同步。
+要求：
+- page / total 受控，URL 同步（?page=n）
+- 页码窗口折叠省略号，当前页 aria-current="page"
+- 边界正确禁用上一页 / 下一页
+- 切页后列表滚动位置回到顶部
+- 键盘可达（页码为 button，跳页输入回车提交）
+- 不新增不必要的依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/popover — Popover / 气泡卡片
+
+- Type: components · Aliases: 气泡卡片 · 弹出卡片 · 浮层 · 气泡框 · 弹出面板 · 点击弹出的小卡片 · 帮助气泡
+- Page: /components/popover · JSON: popover,[popover],role="dialog" · MD: /components/popover.md
+
+**What / 这是什么:** 点击触发元素后在其旁边弹出的非模态浮层，可承载文字说明、小型表单、日期选择等中等复杂内容。 无遮罩、不阻断页面其余部分，点击外部区域或 Esc 即关闭。
+
+**What (en):** A non-modal layer that pops up beside its trigger on click, carrying medium-complex content such as text, a mini-form or a date picker. No backdrop and no blocking of the rest of the page; clicking outside or pressing Esc closes it.
+
+**When to use:** 点击后需要承载可交互内容（小表单、过滤、颜色选择）；补充说明的信息量超过一行 tooltip；需要保持底层页面可见且可用
+
+**When not to use:** 只有一句话说明（改用 tooltip）；强制确认或长流程（改用 modal）；内容需要大量滚动（改用 drawer）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现气泡卡片（Popover）组件。
+
+先检查现有组件体系与 Design Token，优先复用现有的表面色、圆角与阴影变量。
+用途：帮助说明与小型操作面板。
+要求：
+- 锚定触发元素，贴近屏幕边缘时自动翻转
+- 点击外部与 Esc 关闭，焦点管理正确
+- 入场动画轻微，尊重 prefers-reduced-motion
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/progress-bar — Progress Bar / 进度条
+
+- Type: components · Aliases: 进度条 · 加载进度 · 进度指示条 · 百分比进度条 · 上传进度条 · linear progress · 显示百分之多少的横条
+- Page: /components/progress-bar · JSON: <progress>,role="progressbar",aria-valuenow · MD: /components/progress-bar.md
+
+**What / 这是什么:** 用横条从左到右填充来表示任务完成比例的加载指示，常配百分比或步骤文字。 适用于时长可预测的确定性任务：上传、下载、安装与分步表单。
+
+**What (en):** A loading indicator where a horizontal bar fills left to right to express task completion, usually with a percentage or step label. For determinate tasks with predictable duration: uploads, downloads, installs and multi-step forms.
+
+**When to use:** 时长可预测的确定性任务（上传、导出）；分步流程中展示当前进行到第几步；时长超过 3 秒、需要传达量感
+
+**When not to use:** 时长不可知（用 loading-spinner 或骨架屏）；极短任务（< 1 秒，直接完成即可）；无法给出真实进度（宁可显示不定态，避免假进度）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现进度条（Progress Bar）组件。
+
+先检查现有组件体系与 Design Token，优先复用现有的强调色与表面色变量。
+用途：文件上传与分步表单。
+要求：
+- 确定态绑定真实进度值，不定态用往复动画
+- role="progressbar" + aria-valuenow 可达性
+- 完成态有明确的视觉变化
+- 动画尊重 prefers-reduced-motion
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/radio — Radio / 单选框
+
+- Type: components · Aliases: 单选框 · 单选按钮 · radio 按钮 · 圆形单选 · 单选项 · 单选选择器
+- Page: /components/radio · JSON: <input type="radio">,role="radio",role="radiogroup" · MD: /components/radio.md
+
+**What / 这是什么:** 用一组圆形按钮表示互斥选项，同组内只能选中一个且不可取消。 与复选框的核心区别是多选与单选；选中圆点用填充动画反馈， 选项少（2～5 个）时平铺展示比下拉选择效率更高。
+
+**What (en):** A set of circular buttons for mutually exclusive options — exactly one selected per group, never unset. The core contrast with checkboxes is single versus multi selection; the dot fills with animation on select, and with 2–5 options a visible radio group beats a dropdown.
+
+**When to use:** 选项 2～5 个且互斥，需要一眼看全；默认选中项明确、无需取消选择；支付方式、配送方式等并列方案选择
+
+**When not to use:** 需要多选，用复选框；选项多于 5 个，用下拉选择节省空间；开 / 关二元即时切换，用 switch
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现单选框组件。
+
+先检查现有表单组件与 Design Token，保持风格一致。
+要求：
+- 受控单选，组内互斥、始终有选中项
+- 支持默认 / 卡片式两种样式
+- 键盘可达（原生 radio 行为 + label 关联）
+- 深浅色主题一致，动画尊重 prefers-reduced-motion
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/rating — Rating / 评分
+
+- Type: components · Aliases: 点星星评分 · 五颗星评价 · 满意度打分 · star rating
+- Page: /components/rating · JSON: /api/concept/components/rating.json · MD: /components/rating.md
+
+**What / 这是什么:** 用有限等级收集主观评价的输入组件，常见形式是星级或带文字的满意度选项。悬停表示候选分值，点击或键盘选择才提交当前值。应提供每一档的文字含义，区分尚未评分与最低分；只读平均分则应明确标注统计数量，避免让用户误以为可以操作。
+
+**What (en):** An input for a bounded subjective score, often represented by stars or labeled satisfaction levels. Hover previews a value; pointer or keyboard selection commits it. Give each level a text meaning, distinguish no rating from the lowest score, and label read-only averages and their sample counts clearly.
+
+**When to use:** 收集一次服务或产品体验的满意度。；有明确等级定义的轻量反馈。
+
+**When not to use:** 需要解释问题原因时还应提供文本反馈。；精确的数量或测量值应使用数字输入。
+
+**Agent prompt (zh):**
+
+```text
+先检查当前项目的组件与样式体系，复用已有能力实现评分。
+要求：
+- 单选评分可使用同名 radio。每档设置可访问名称，悬停预览不能覆盖已确认分值。未评分时禁用提交；尊重 reduced-motion。只读星级不要使用可交互角色。
+- 悬停只预览，移开后恢复已选分数。
+- 零分值代表未选择，提交后有明确反馈。
+- 窄屏可用，深浅色一致，尊重 reduced-motion。
+- 不新增依赖。
+运行项目现有检查，并列出修改文件及验证结果。
+```
+
+## components/segmented-control — Segmented Control / 分段控制器
+
+- Type: components · Aliases: 分段选择 · 几个按钮连在一起 · 周月年切换 · segmented buttons
+- Page: /components/segmented-control · JSON: /api/concept/components/segmented-control.json · MD: /components/segmented-control.md
+
+**What / 这是什么:** 将少量互斥选项并排放在同一个容器中的选择控件。选中状态通过底色、文字和边界同时表达，切换后立即更新当前视图或设置。它适合时间范围、显示方式等轻量选择；选项应简短、稳定且始终可见。与标签页不同，它通常修改同一内容的呈现方式，而不是进入另一组内容。
+
+**What (en):** A compact group of mutually exclusive choices with an immediately visible selection. Use it to change a time range or display mode within the same view. Keep labels short and all choices visible. Unlike tabs, it usually changes how the current content is presented rather than moving between separate panels.
+
+**When to use:** 在统计图中选择周、月、年。；在同一内容中切换显示密度或排序方式。
+
+**When not to use:** 选项过多或名称较长时使用选择框。；允许同时选中多个值时使用复选框。
+
+**Agent prompt (zh):**
+
+```text
+先检查当前项目的组件与样式体系，复用已有能力实现分段控制器。
+要求：
+- 互斥值优先使用原生同名 radio，保留方向键操作。整段共用一个可访问名称；不要只靠颜色表示选中状态。每个选项至少提供 40px 的点击高度，结果随选择同步更新。
+- 选中项和展示结果应始终一致。
+- 一组只能选中一项，方向键可以连续切换。
+- 窄屏可用，深浅色一致，尊重 reduced-motion。
+- 不新增依赖。
+运行项目现有检查，并列出修改文件及验证结果。
+```
+
+## components/select — Select / 下拉选择
+
+- Type: components · Aliases: 下拉选择 · 下拉框 · 选择器 · 下拉列表 · 下拉选项框 · select 下拉
+- Page: /components/select · JSON: <select>,role="listbox",role="option" · MD: /components/select.md
+
+**What / 这是什么:** 用收起的单行控件承载一组互斥选项，点击展开面板后选择其一，选中值常驻显示在触发器上。 比 radio 更省空间，适合选项多于 5 个的场景；面板支持滚动、分组或搜索，选择即关闭。
+
+**What (en):** A collapsed single-line control holding a set of mutually exclusive options; expanding the panel reveals them and the chosen value stays on the trigger. More space-efficient than radios, suited to more than 5 options; the panel can scroll, group or search, and picking one closes it.
+
+**When to use:** 选项数量多于 5 个且互斥单选；表单空间有限，需要收起选项列表；选项可分组或较长（国家、时区、分类）
+
+**When not to use:** 选项少于 5 个，直接平铺 radio 更快；选项很多且需要键盘快速检索，用可搜索的下拉或命令面板；允许多选时需明确多选语义，避免误用单选下拉
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现下拉选择组件。
+
+先检查现有表单组件与弹出层实现，保持风格与层级（z-index）一致。
+要求：
+- 受控单选，触发器显示当前值 + 旋转 chevron
+- 展开面板：滚动、当前项高亮、点击外部与 Escape 关闭
+- 无障碍：aria-expanded、role=listbox/option、键盘上下选择
+- 深浅色主题一致
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/sidebar — Sidebar / 侧边栏
+
+- Type: components · Aliases: 左侧菜单 · 侧栏 · 左边菜单 · 导航侧栏 · 固定菜单 · 网页左边固定菜单 · 侧边导航
+- Page: /components/sidebar · JSON: <aside>,<nav> · MD: /components/sidebar.md
+
+**What / 这是什么:** 固定在页面一侧（通常左侧）的垂直导航区，承载产品的主要层级入口。 后台管理系统的事实标准：顶部放品牌与全局搜索，侧边栏放模块树，内容区专注任务。
+
+**What (en):** A vertical navigation area pinned to one side of the page (usually the left), carrying the primary hierarchy of a product. The de facto standard of admin systems: brand and global search on top, module tree in the sidebar, content focused on the task.
+
+**When to use:** 层级较多的后台、文档站、管理面板；导航项需要常驻可见、随时切换；桌面端为主的宽屏布局
+
+**When not to use:** 移动端（改为抽屉或底部导航）；层级极少的简单官网（顶部导航更轻）；内容需要最大化宽度（如阅读、编辑器写作模式）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现后台侧边栏。
+
+先检查现有路由结构与导航数据来源，保持一致。
+要求：
+- 固定 240px，可折叠为 64px 图标栏（记忆折叠状态）
+- 分组导航数据驱动，当前路由项高亮（aria-current）
+- 移动端转为抽屉 + 遮罩
+- 深浅色主题一致
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/slider — Slider / 滑块
+
+- Type: components · Aliases: 滑块 · 滑动条 · 拖动条 · 调节杆 · 滑杆 · range 滑块
+- Page: /components/slider · JSON: <input type="range">,role="slider" · MD: /components/slider.md
+
+**What / 这是什么:** 用轨道上可拖动的手柄在连续区间内取值，拖动时数值与已填充轨道实时跟随。 适合调音量、亮度、价格区间等量级选择，比输入框更直观； 可带刻度标记、步进与双端区间形态。
+
+**What (en):** A draggable handle on a track picks a value from a continuous range, with the number and filled track following in real time. Ideal for magnitudes like volume, brightness or price ranges — more intuitive than a text box; supports tick marks, steps and a dual-handle range form.
+
+**When to use:** 在连续区间内选量级（音量、透明度、预算）；精确数值不重要，相对大小即可；双端选择价格区间等范围场景
+
+**When not to use:** 需要精确输入，用带验证的数字输入框；离散选项少于 5 个，用 radio 或分段控件；触控目标过小且无键盘替代，导致拖动困难
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现滑块组件。
+
+先检查现有表单组件与 accent 色变量，保持一致。
+要求：
+- 受控 value，拖动实时更新数值与填充轨道
+- 支持单值与双端区间两种形态
+- 键盘箭头可步进，aria-valuenow 同步
+- 深浅色主题一致
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/split-button — Split Button / 分体按钮
+
+- Type: components · Aliases: 分裂按钮 · 组合按钮 · 带下拉的按钮 · 主副按钮 · split button
+- Page: /components/split-button · JSON: <button>,aria-haspopup="menu",aria-expanded · MD: /components/split-button.md
+
+**What / 这是什么:** 由主操作区与附属箭头组成的复合按钮：主区直接执行默认动作，箭头展开同组的备选菜单。比「按钮加独立下拉」少一次定位，比整键打开菜单的下拉按钮更快命中高频操作，常用于保存、发送、新建等带变体的动作。
+
+**What (en):** A two-part button whose main area runs the default action while an attached arrow opens a menu of related ones. It saves a targeting step compared with a separate button and menu, and hits the frequent action faster than a dropdown whose whole face opens a list. Common for save, send and new-with-variants.
+
+**When to use:** 存在一个高频默认动作，外加若干同组变体；希望默认动作一次点击即可执行；工具栏或表单操作区空间紧凑
+
+**When not to use:** 没有明确默认动作，所有选项同等重要，用 dropdown；备选动作与主动作无关，拆成 button 加 menu 更清晰；只有一个动作，普通 button 足够
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现分体按钮（Split Button）组件。
+先检查现有按钮与菜单组件，优先复用配色、高度与浮层实现。
+用途：保存、发送、新建等带变体的高频动作。
+要求：
+- 主区直接执行默认动作，箭头展开同组备选菜单
+- 两个热区独立可聚焦，菜单打开态有可见反馈
+- Esc 关闭菜单并把焦点还给箭头
+- 尊重 prefers-reduced-motion，深浅色一致
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/stepper — Stepper / 步骤条
+
+- Type: components · Aliases: 分步表单 · 第几步那个进度 · 步骤指示器 · wizard steps
+- Page: /components/stepper · JSON: /api/concept/components/stepper.json · MD: /components/stepper.md
+
+**What / 这是什么:** 用有序节点展示任务的阶段、当前位置和已完成步骤的进度组件。它通常与分步表单配合，把较长任务拆成易理解的阶段。步骤条负责说明进度，下一步和上一步负责推进流程；进入下一步前应校验当前输入，返回时应保留已经填写的信息。
+
+**What (en):** An ordered progress indicator that explains the stages of a task, the current step and completed work. Pair it with a multi-step form to make a long task easier to understand. Validate before advancing, preserve values when going back, and keep progress indication distinct from the controls that move the flow forward.
+
+**When to use:** 注册、配置、结账等有明确顺序的任务。；用户需要了解剩余工作量的多步操作。
+
+**When not to use:** 步骤只有一项，或可以同时完成所有字段。；流程会频繁分叉且无法预测总步骤数。
+
+**Agent prompt (zh):**
+
+```text
+先检查当前项目的组件与样式体系，复用已有能力实现步骤条。
+要求：
+- 用 ol 表示有序阶段，用 aria-current="step" 标记当前位置。表单值由流程持有，不能在回退时丢失。校验失败留在原步骤并解释原因；完成状态应有明确文字。
+- 错误输入阻止前进，同时给出可修正的提示。
+- 回退保留数据，最后一步显示完整确认信息。
+- 窄屏可用，深浅色一致，尊重 reduced-motion。
+- 不新增依赖。
+运行项目现有检查，并列出修改文件及验证结果。
+```
+
+## components/switch — Switch / 开关
+
+- Type: components · Aliases: 开关 · 拨动开关 · 切换开关 · toggle 开关 · 滑动开关 · 开关键
+- Page: /components/switch · JSON: <input type="checkbox" role="switch"> · MD: /components/switch.md
+
+**What / 这是什么:** 用滑轨上的圆形滑块表示二元设置的开与关，拨动立即生效，无需确认。 滑块位移与轨道变色同时反馈状态，右侧或内嵌「开 / 关」文字辅助辨认， 是设置页的标准控件。
+
+**What (en):** A thumb sliding on a track represents a binary setting that takes effect immediately, no confirmation needed. Thumb travel and track color change together signal the state, with an on/off text hint beside or inside — the standard control of settings pages.
+
+**When to use:** 二元设置拨动后立即生效（通知、深色模式）；状态改变无需提交即可见；设置页等以「开 / 关」心智组织的场景
+
+**When not to use:** 修改后需要点保存才生效，用 checkbox + 表单；语义是「从列表多选几项」，用 checkbox；需要第三个中间状态，用分段控件
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现开关组件。
+
+先检查现有表单组件与 accent 色变量，保持一致。
+要求：
+- 受控 checked，拨动立即生效
+- 滑块位移与轨道变色过渡尊重 prefers-reduced-motion
+- role="switch" + aria-checked + 键盘空格切换
+- 深浅色主题一致
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/table — Table / 表格
+
+- Type: components · Aliases: 表格 · 数据表格 · 数据列表 · 二维表 · 可排序表格 · 后台数据列表 · 订单列表那种表
+- Page: /components/table · JSON: <table>,<thead>,<tbody> · MD: /components/table.md
+
+**What / 这是什么:** 用行与列精确对齐数据的二维表格：一行一条记录、一列一个字段，适合逐列比较、排序与大容量数据浏览。 行可悬停高亮、点击选中，列头通常带排序控制。
+
+**What (en):** A two-dimensional grid aligning data in rows and columns — one record per row, one field per column — built for column-by-column comparison, sorting and high-volume browsing. Rows highlight on hover and support selection; column headers usually carry sort controls.
+
+**When to use:** 字段多、需要逐列比较的数据；后台管理列表（订单、用户、日志）；需要排序、筛选、批量操作的密集数据
+
+**When not to use:** 移动端窄屏放不下列（转为卡片列表）；内容以浏览为主、比较为辅（用 card 流）；每条记录字段很少且强调视觉（用卡片或列表）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现数据表格（Table）组件。
+
+先检查现有组件体系与 Design Token，优先复用现有的表面色与文本层级变量。
+用途：后台订单/成员列表。
+要求：
+- 列头点击排序（aria-sort），支持升序/降序切换
+- 数字列右对齐，文本列左对齐
+- 行悬停高亮，支持斑马纹变体
+- 窄屏 overflow-x 处理，深浅色主题一致
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/tabs — Tabs / 标签页
+
+- Type: components · Aliases: 选项卡 · tab 切换 · 页签 · 切换标签 · 浏览器那种标签 · 分栏切换
+- Page: /components/tabs · JSON: role="tablist",role="tab",role="tabpanel" · MD: /components/tabs.md
+
+**What / 这是什么:** 用一排可切换的标签把同一区域的内容分成互斥视图：标签头常驻可点击，仅当前 标签对应的面板可见，其余隐藏。适合把高度相关的几类内容压缩在同一区域内 就地切换，避免整页跳转。键盘上用左右方向键在标签间移动，是可访问性的经典范例。
+
+**What (en):** A row of switchable labels that divide one region into mutually exclusive views: the tab headers stay visible and clickable, and only the active tab's panel shows while the rest stay hidden. Packs several tightly related contents into one area to switch in place instead of full-page navigation. Arrow-key navigation between tabs makes it a classic accessibility showcase.
+
+**When to use:** 同一对象的几个平行视图（概览 / 动态 / 设置）；想就地切换、避免整页跳转；内容高度相关且标签数 ≤ 7
+
+**When not to use:** 各标签内容不相关，应拆成独立页面或路由；需要同时对照两个标签的内容；有先后顺序的多步流程（用分步指示器）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现标签页组件。
+
+先检查现有组件体系是否已有 Tabs 或分段控件，优先扩展而非重写。
+要求：
+- 完整 ARIA 语义（tablist / tab / tabpanel / aria-selected）
+- 左右方向键切换（roving tabindex）
+- 激活指示器滑动动画，尊重 prefers-reduced-motion
+- 面板切换时保持各自的滚动或表单状态（keep-mounted 或缓存策略）
+- 不新增不必要的依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/tag-input — Tag Input / 标签输入
+
+- Type: components · Aliases: 标签输入 · 标签框 · 打标签的输入框 · chips 输入 · token input · tag box
+- Page: /components/tag-input · JSON: <input>,role="listbox",aria-live,keydown · MD: /components/tag-input.md
+
+**What / 这是什么:** 在文本框里回车或输入分隔符，就把当前内容固化成一枚可删除的标签（chip），标签在框内横向排列， 输入光标始终停在末尾。兼顾「自由输入」与「逐项管理」，常用于收件人、话题标签、文件名与 过滤条件。Backspace 删最后一枚，点 × 删指定项。
+
+**What (en):** Pressing Enter or typing a separator turns the current text into a removable chip; chips line up inside the field while the caret stays at the end. It mixes free typing with per-item management — common for recipients, hashtags, file names and filter terms. Backspace removes the last chip, the × removes a specific one.
+
+**When to use:** 多值输入且每项可单独删除（收件人、标签、过滤词）；选项集合开放，允许用户创造新值；需要在输入过程中一眼看清「已经选了什么」
+
+**When not to use:** 选项固定且数量少（用 select 或 radio）；只需要一个短文本（用普通 input）；需要对选项排序或分组（用 multi-select 或 transfer）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现一个 Tag Input 标签输入组件。
+先检查现有组件体系和 Design Token，优先复用输入框与徽标样式。
+支持自由输入、自动补全与文件名三种形态。
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion，支持键盘操作。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/textarea — Textarea / 多行输入框
+
+- Type: components · Aliases: 多行输入框 · 文本域 · 大输入框 · 留言框 · 备注框 · 富文本输入区
+- Page: /components/textarea · JSON: <textarea> · MD: /components/textarea.md
+
+**What / 这是什么:** 用一块可多行增长的输入区收集长文本，如简介、备注、留言与反馈。 支持手动或自动增高，常配字数统计与提交按钮；超出上限时计数变红提醒， 内容换行显示而非溢出截断。
+
+**What (en):** A growing multi-line field for long text — bios, notes, messages and feedback. It grows manually or automatically, usually paired with a counter and submit button; the count turns red past the limit and content wraps instead of clipping.
+
+**When to use:** 收集简介、备注、留言等多段落长文本；用户需要换行组织内容结构；字数有限制，需要实时统计反馈
+
+**When not to use:** 单行短字段（姓名、邮箱），用 input 更紧凑；需要加粗、标题等格式，用富文本编辑器；结构化输入（键值对、标签），用专用控件
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现多行输入框组件。
+
+先检查现有表单组件与 Design Token，保持风格一致。
+要求：
+- 受控多行输入，支持自动增高与手动拖拽
+- 实时字数统计，超限变红并禁用提交
+- 聚焦描边与无障碍标注（label 关联）
+- 深浅色主题一致
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/timeline — Timeline / 时间线
+
+- Type: components · Aliases: 按时间排的记录 · 活动时间轴 · 事件进展记录 · activity timeline
+- Page: /components/timeline · JSON: /api/concept/components/timeline.json · MD: /components/timeline.md
+
+**What / 这是什么:** 沿时间顺序组织事件的展示组件，通过时间、节点和内容说明事件之间的先后关系。它适合展示活动日志、项目进展或订单状态。时间线呈现已经发生或计划发生的事件，而步骤条强调需要用户完成的任务阶段；当事件可展开时，应保留事件标题和时间，避免用户失去位置。
+
+**What (en):** A display that orders events by time, using timestamps, markers and content to explain sequence. It works for activity logs, project journals or order history. Unlike a stepper, which emphasizes task stages to complete, a timeline tells an event story. Keep titles and times visible when details expand.
+
+**When to use:** 项目事件、订单流转和操作记录。；需要理解先后关系的叙事内容。
+
+**When not to use:** 只需显示一个当前状态时使用徽标。；需要精确比较数值时使用表格或图表。
+
+**Agent prompt (zh):**
+
+```text
+先检查当前项目的组件与样式体系，复用已有能力实现时间线。
+要求：
+- 用有序列表表达顺序，真实业务时间用 time 与 datetime。展开入口用按钮和 aria-expanded，排序改变时保留当前展开事件的稳定 ID。节点与连线只是装饰，不替代文字状态。
+- 切换顺序不改变事件与详情的对应关系。
+- 折叠后仍保留时间和标题，按钮可被键盘操作。
+- 窄屏可用，深浅色一致，尊重 reduced-motion。
+- 不新增依赖。
+运行项目现有检查，并列出修改文件及验证结果。
+```
+
+## components/toast — Toast / 轻提示
+
+- Type: components · Aliases: 消息提示条 · 吐司 · 轻提示 · 通知条 · snackbar · 自动消失提示 · 右下角弹出的小提示
+- Page: /components/toast · JSON: role="status",aria-live="polite" · MD: /components/toast.md
+
+**What / 这是什么:** 在视口角落短暂出现、自动消失的小消息条，用来告知操作结果（已保存、已复制、上传完成）。 不打断当前流程，通常附一个操作入口（撤销、查看），停留约 3~5 秒后淡出。
+
+**What (en):** A small message bar that appears in a viewport corner and dismisses itself, reporting an operation result (saved, copied, upload done). Non-blocking, usually with one action (undo, view), lingering for about 3–5 seconds before fading out.
+
+**When to use:** 操作成功、状态更新等轻量反馈；配合撤销动作（删除后可撤销）；后台任务完成通知（上传、导出）
+
+**When not to use:** 必须被看到并处理的错误（改用 alert 或表单内联错误）；长消息或多条排队（改用通知中心）；需要用户做出决策（改用模态框）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现轻提示（Toast）组件。
+
+先检查现有组件体系与 Design Token，优先复用现有的表面色与状态色变量。
+用途：操作结果反馈（保存成功、复制成功、删除后撤销）。
+要求：
+- 固定视口角落，自动消失，hover 暂停计时
+- 支持成功/错误两种状态与一个可选操作按钮
+- 多条栈式叠放，动画用 transform，尊重 prefers-reduced-motion
+- 提供命令式 API（toast.show）或 Provider 用法
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/toolbar — Toolbar / 工具条
+
+- Type: components · Aliases: 工具条 · 工具栏 · 操作栏 · 快捷操作那一排 · toolbar · tool bar
+- Page: /components/toolbar · JSON: role="toolbar",aria-label,roving tabindex · MD: /components/toolbar.md
+
+**What / 这是什么:** 把作用于当前视图或选中项的操作按钮压成一条横向（偶尔纵向）控件带，按功能分组并用分隔线 划分。工具条管「动作」，菜单管「选项」，站点导航管「去哪」。典型如编辑器的加粗 / 斜体排版条、 图片查看器的旋转下载条、列表页的批量操作条。
+
+**What (en):** A strip of controls that act on the current view or selection, grouped by function and split by separators. A toolbar runs actions; a menu lists options; site navigation says where to go. Think of an editor's bold/italic bar, an image viewer's rotate/download bar, or a list page's bulk-action bar.
+
+**When to use:** 对当前视图或选中项有一组高频动作（格式化、批量操作）；动作需要常驻可见、一次点击即达；图标足以表达含义，可省略文字标签
+
+**When not to use:** 动作低频或有争议（收进溢出菜单或更多按钮）；用户要从固定选项中选一个（那是菜单或 select）；负责全站目的地跳转（那是 navbar 或 sidebar）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现一个 Toolbar 工具条组件。
+先检查现有组件体系和 Design Token，优先复用现有按钮。
+与导航条、菜单条区分：这里只放作用于当前上下文的动作。
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion，支持键盘操作（roving tabindex）。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## components/tooltip — Tooltip / 工具提示
+
+- Type: components · Aliases: 提示气泡 · 悬浮提示 · 气泡提示 · 悬停提示 · 小黑框提示 · title 提示 · 鼠标放上去显示的小提示
+- Page: /components/tooltip · JSON: role="tooltip",aria-describedby · MD: /components/tooltip.md
+
+**What / 这是什么:** 悬停在元素上短暂出现的小型文字气泡，用来解释图标按钮、缩写或被截断的文本。 纯提示、不可交互，移开即消失；通常延迟约 300ms 出现以避免扫过时闪烁。
+
+**What (en):** A small text bubble that appears briefly on hover, explaining icon buttons, abbreviations or truncated text. Purely informational and non-interactive, it disappears on mouse leave; usually shows after a ~300ms delay to avoid flicker while moving across the screen.
+
+**When to use:** 纯图标按钮需要文字说明；文本被截断，需要展示完整内容；补充不关键的专业术语或快捷键
+
+**When not to use:** 信息必须长期可读（改用可见文字或帮助 popover）；触屏设备没有 hover（禁用或换 long-press）；气泡内含链接、按钮等交互元素（改用 popover）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现工具提示（Tooltip）组件。
+
+先检查现有组件体系与 Design Token，优先复用现有的表面色与圆角变量。
+用途：图标按钮的文字说明。
+要求：
+- 悬停延迟约 300ms 显示，移开立即消失
+- 气泡 pointer-events: none，支持四方向放置
+- focus 时同样显示，触发元素加 aria-describedby
+- 动画尊重 prefers-reduced-motion
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## components/tree-view — Tree View / 树形控件
+
+- Type: components · Aliases: 树形列表 · 文件树 · 目录树 · 树结构 · tree
+- Page: /components/tree-view · JSON: role="tree",role="treeitem",aria-expanded · MD: /components/tree-view.md
+
+**What / 这是什么:** 以嵌套分支展示层级结构的可展开列表，每层节点可折叠或展开，子节点缩进排布于父节点之下。适合文件目录、组织架构、分类体系等天然成树的数据；节点可单选或多选，展开状态与选中状态相互独立。
+
+**What (en):** An expandable list that shows hierarchy as nested branches: each node folds or opens and its children indent underneath. Fits file directories, org charts and taxonomies. Nodes may be single- or multi-select, and expanded state stays independent of selection.
+
+**When to use:** 数据天然分层，如目录、组织架构、分类树；需要折叠分支以管理大量同级节点；层级关系本身是信息的一部分
+
+**When not to use:** 只有两层且每层几项，用 accordion 或分组列表；层级是导航框架而非内容，用 sidebar 或 menu；扁平长列表更适合，用 table 或 list
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现树形控件（Tree View）组件。
+先检查现有列表、折叠与 Design Token，优先复用缩进、图标与高亮样式。
+用途：文件目录、组织架构、分类体系。
+要求：
+- 嵌套节点可展开折叠，展开态与选中态独立
+- role=tree / treeitem，aria-expanded 正确标注
+- 键盘可在节点间连续移动并选中
+- 尊重 prefers-reduced-motion，深浅色一致
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## foundation/color-palette — Color Palette / 调色板
+
+- Type: foundation · Aliases: 调色板 · 配色 · 色板 · 色阶 · 颜色系统 · color palette · palette
+- Page: /foundation/color-palette · JSON: color-mix(),oklch(),hsl() · MD: /foundation/color-palette.md
+
+**What / 这是什么:** 从一个基色出发生成有规律的色阶（50～900），再分配主色、辅助色、点缀色与中性色角色。色阶靠明度递进而非随手取色，保证 hover、disabled、边框都有对应深度可选；角色先于色值被命名，主题才换得动。
+
+**What (en):** Start from one base hue and generate an ordered ramp (50–900), then assign primary, secondary, accent and neutral roles. Steps advance by lightness rather than ad-hoc picks, so hover, disabled and border always have the right depth on hand. Name roles before hex values and themes stay swappable.
+
+**When to use:** 产品需要一套可扩展的品牌色与中性灰体系；同一色相需要 hover、active、disabled 等多个深度；深浅主题共用同一套角色，只换色阶取值
+
+**When not to use:** 插画或营销页一次性用色，不需要系统化；把十种高饱和色直接堆进界面，无主次；只有黑白灰两色且永不扩展——写死即可
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现调色板。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 基色生成 50～900 色阶，明度递进
+- 主色 / 辅助 / 点缀 / 中性四类角色
+- 命名按角色与档位，不写死色相名
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## foundation/contrast-ratio — Contrast Ratio / 对比度
+
+- Type: foundation · Aliases: 对比度 · 文字对比度 · 可读性对比 · WCAG 对比 · 看不清 · contrast ratio · color contrast
+- Page: /foundation/contrast-ratio · JSON: WCAG 2.1,APCA,contrast-ratio() · MD: /foundation/contrast-ratio.md
+
+**What / 这是什么:** 前景与背景的亮度比值，衡量文字是否看得清。WCAG 2.1 给出硬性门槛：正文 AA 4.5:1、AAA 7:1，大号文字降到 3:1 与 4.5:1。APCA 按字重与字号给出更贴近感知的建议值。先算比值再选色，不要靠肉眼验收。
+
+**What (en):** The luminance ratio between foreground and background — the measure of whether text can be read. WCAG 2.1 sets hard floors: 4.5:1 for AA body, 7:1 for AAA, dropping to 3:1 and 4.5:1 for large text. APCA refines this by weight and size against perception. Compute the ratio before picking colours; never sign off by eye.
+
+**When to use:** 正文、标签、按钮文字需要满足无障碍基线；深浅主题切换后需要重新验证文字可读性；灰阶辅助文字（muted）容易不知不觉掉到 3:1 以下
+
+**When not to use:** 装饰性大字或纯图形标识（另有非文本对比 3:1 要求）；被禁用的控件文字（WCAG 明确豁免）；把 AAA 当作所有界面的强制标准，导致设计空间过窄
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现对比度。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 文字组合过 WCAG AA（正文 4.5:1 / 大号 3:1）
+- 提供比值计算与达标判定工具函数
+- 高对比主题走独立角色表或 prefers-contrast
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## foundation/elevation — Elevation / 层级
+
+- Type: foundation · Aliases: 层级 · 投影层级 · 阴影层级 · 海拔 · z-depth · elevation · shadow level
+- Page: /foundation/elevation · JSON: box-shadow,env(safe-area-inset-*),z-index · MD: /foundation/elevation.md
+
+**What / 这是什么:** 用阴影的深浅表达元素离纸面的远近：0 贴平、1～2 浮起、3 以上成浮层。一套阴影由本影、半影、环境三层叠加而成，档位越高投影越大越淡。层级只用来表达叠放关系，不要拿它当装饰。
+
+**What (en):** Shadow depth expresses how far an element sits from the page: 0 rests flat, 1–2 lift, 3 and above become overlays. Each shadow stacks umbra, penumbra and ambient layers — higher levels mean larger, softer casts. Use elevation to describe stacking relations, never as ornament.
+
+**When to use:** 卡片、菜单、弹层需要可感知的叠放次序；可点击块要暗示“浮在页面之上”；模态与吸顶栏需要比内容更高的投影档位
+
+**When not to use:** 扁平风格或新粗野主义，投影与语言冲突；全屏堆满高档位投影，层级通胀后无人可信；用投影代替分隔线或留白来划分区域
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现层级。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 0～5 档投影令牌，档位越高越扩散越淡
+- 卡片 / 弹层 / 模态各自固定档位
+- 深色模式用描边或表面提亮补偿
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## foundation/font-stack — Font Stack / 字体栈
+
+- Type: foundation · Aliases: 字体栈 · 字体回退 · 备用字体 · 字体族 · 字体列表 · font stack · font-family
+- Page: /foundation/font-stack · JSON: font-family,@font-face,font-display,font-weight · MD: /foundation/font-stack.md
+
+**What / 这是什么:** 按优先级排列的字体回退链：首选字体缺席时依次落到下一个，最后由通用族兜底。系统栈零下载、即时渲染，网络字体保品牌气质但要配 font-display 控制闪烁，本地优先则两者之间取平衡。栈的顺序就是渲染的决策顺序。
+
+**What (en):** An ordered fallback chain of typefaces: when the first face is missing the browser walks down to the next, with a generic family as the final safety net. System stacks cost nothing and render instantly; web fonts carry brand character but need font-display to tame flashing; local-first splits the difference. The order of the stack is the order of rendering decisions.
+
+**When to use:** 正文与 UI 文字需要在任何设备上稳定渲染；品牌字体只覆盖部分字重或字符集，需要可靠回退；首屏性能敏感，不希望字体请求阻塞文字显示
+
+**When not to use:** 排版完全依赖单一展示字体且缺失即失效（如 Logo 字标）；栈里堆了七八个几乎相同的字体，决策成本高却无收益；不同回退字体字宽差异过大，换字后版式崩坏
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现字体栈。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 正文 / 标题 / 等宽三套 font-family 回退链，末尾带通用族
+- 网络字体用 font-display 控制闪烁，并对齐回退字度量
+- 中文回退族紧跟拉丁字体之后
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## foundation/line-height — Line Height / 行高
+
+- Type: foundation · Aliases: 行高 · 行距 · leading · 行间距 · 排得挤不挤 · 松紧 · line height
+- Page: /foundation/line-height · JSON: line-height,leading · MD: /foundation/line-height.md
+
+**What / 这是什么:** 一行文字占的垂直空间，决定段落的松紧与呼吸。标题收紧（1.1～1.3）显得挺拔，正文放宽（1.5～1.8）利于逐行阅读，引文可以更松。优先用无单位倍数，让行高随字号缩放，而不是写死像素值。
+
+**What (en):** The vertical space one line of text occupies — it sets how tight or airy a paragraph feels. Display type tightens (1.1–1.3) to look built; body loosens (1.5–1.8) to support line-by-line reading; quotes can go looser still. Prefer unitless multiples so leading scales with font size instead of freezing in pixels.
+
+**When to use:** 长段落正文需要可逐行追踪的阅读节奏；标题与正文混排，需要通过行高拉开层级；字号会响应式变化，行高必须跟着缩放
+
+**When not to use:** 单行标签、按钮文字——行高只用来垂直居中时改用 flex；行高设得过松（> 2.0 正文），行与行失去联系；用 px 锁死行高，字号一变就出现裁切或重叠
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现行高。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 标题 / 正文 / 辅助三级无单位行高令牌
+- 与字号阶梯成对引用，禁止写死 px 行高
+- 中文正文适当放宽
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## foundation/measure — Measure / 行宽
+
+- Type: foundation · Aliases: 行宽 · 行长 · 每行字数 · 一行多少字 · 字符数每行 · measure · characters per line
+- Page: /foundation/measure · JSON: max-width,ch,text-wrap,hyphens · MD: /foundation/measure.md
+
+**What / 这是什么:** 一段文字每行容纳的字符数，决定眼睛回行是否省力。舒适区大约 45～75 个拉丁字符（中文 28～40 字），最常用 65ch 左右。行太窄回行太频繁，太宽则跟丢行；用 max-width 以 ch 为单位控制，比按像素猜更可靠。
+
+**What (en):** How many characters fit on one line — it decides whether the eye can return to the next line without effort. The comfort zone is roughly 45–75 Latin characters (28–40 CJK glyphs), with 65ch the usual target. Too narrow and the eye turns constantly; too wide and it loses the line. Control it with max-width in ch rather than guessing in pixels.
+
+**When to use:** 长文阅读、文章正文、帮助文档等逐行阅读场景；容器宽度随屏幕变化，需要给正文一个稳定上限；多栏排版，每栏正文需要独立约束行长
+
+**When not to use:** 表格、数据密集列表——行宽由列结构决定；单行输入框、按钮标签等非段落文字；在 65ch 上继续做复杂断行调优，收益极低
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现行宽。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 长文正文容器 max-width 65ch 左右，外层保持流体
+- 多栏每栏独立限宽
+- 与行高、字号阶梯配套，不写死像素行长
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## foundation/semantic-color — Semantic Color Token / 语义色
+
+- Type: foundation · Aliases: 语义色 · 语义色 token · 角色色 · 主题色变量 · 换肤 · semantic color · color token
+- Page: /foundation/semantic-color · JSON: :root,color-scheme,CSS custom properties · MD: /foundation/semantic-color.md
+
+**What / 这是什么:** 按用途而非色相命名的颜色变量：bg、surface、text、muted、accent、danger。组件只认角色，主题切换时在映射层换指向即可，不必改组件。浅色、深色、高对比、品牌皮肤都是同一套角色的不同取值表。
+
+**What (en):** Colour variables named by purpose, not hue: bg, surface, text, muted, accent, danger. Components consume roles only, so a theme switch re-points the mapping layer instead of touching components. Light, dark, high-contrast and brand skins are simply different value tables over the same roles.
+
+**When to use:** 需要浅色 / 深色双主题或可换肤；组件库要跨产品复用，颜色含义必须稳定；无障碍要求高对比主题或强制配色
+
+**When not to use:** 单页营销稿，颜色即最终视觉，无需抽象；角色名起得比色值还多（--color-card-header-icon-hover）；把插画专用色也塞进语义层
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现语义色。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- bg / surface / text / muted / accent / danger 角色层
+- 浅深双主题取值表，组件不写死色值
+- 配 color-scheme，组合对比度过 AA
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## foundation/type-scale — Type Scale / 字号阶梯
+
+- Type: foundation · Aliases: 字号阶梯 · 标题比例 · 字级 · 字体大小层级 · 字号系统 · type scale · modular scale
+- Page: /foundation/type-scale · JSON: font-size,clamp(),rem,calc() · MD: /foundation/type-scale.md
+
+**What / 这是什么:** 用一组按比例递增的字号定义标题与正文层级，让排版有稳定节奏。以正文基准字号乘以固定比例（如 1.25 大三度、1.333 纯四度）逐级放大，标题之间形成可预期的视觉落差，不必逐档拍脑袋定 px；也可用 sm/md/lg 尺码或 clamp() 流式档位落地。
+
+**What (en):** A ratio-based set of font sizes that assigns heading and body levels a stable rhythm. Multiply a base body size by a fixed ratio (1.25 major third, 1.333 perfect fourth) to step upward, producing predictable contrast between headings instead of hand-picked pixels. Ship it as sm/md/lg tokens or fluid clamp() steps.
+
+**When to use:** 页面存在标题、正文、辅助文字等多级文本层级；多人协作需要统一字号，避免各自随手写 13px、15px；响应式排版希望字号随视口连续或按断点有节制地变化
+
+**When not to use:** 单一字号就够的极简控件条、图标工具栏；像素级还原设计稿且不允许任何取整合并；比例档位过多（超过 8 档），层级反而失去可辨识度
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现字号阶梯。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 用 CSS 变量定义 6～8 档字号，按 1.25 或 1.333 比例生成
+- 标题与正文共用同一阶梯，组件内禁止写死 px
+- 需要响应式时用 clamp() 流式档位，两端封顶
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## motion/accordion-expand — Accordion Expand / 手风琴展开
+
+- Type: motion · Aliases: 手风琴展开 · 折叠展开 · 展开收起动画 · 下拉展开 · 折叠面板
+- Page: /motion/accordion-expand · JSON: /api/concept/motion/accordion-expand.json · MD: /motion/accordion-expand.md
+
+**What / 这是什么:** 点击标题后内容区在高度方向展开或收起，像手风琴风箱。 关键是用 grid-template-rows 从 0fr 到 1fr 的高度动画， 让内容"推开来"而不是瞬间出现， 同时箭头旋转呼应状态。
+
+**What (en):** Tapping a header expands or collapses the content vertically, like a bellows. The crux is animating grid-template-rows from 0fr to 1fr so content unfolds instead of popping in, with the chevron rotating in sync.
+
+**When to use:** FAQ、设置分组、详情页补充信息；长页面需要折叠低优先级内容；同组内容一次只看一个（互斥手风琴）
+
+**When not to use:** 用户需要对比多个展开项（互斥会烦）；内容超过两屏（滚动比折叠更自然）；关键操作路径上的步骤（隐藏即摩擦）
+
+**Agent prompt (zh):**
+
+```text
+为项目 FAQ 区添加手风琴展开动效。
+
+先检查现有 accordion/折叠组件，避免重复实现。
+要求：
+- grid-template-rows 0fr→1fr 高度动画，300ms
+- 同组互斥（可配置多开），箭头同步旋转
+- aria-expanded 正确、键盘可操作
+- 尊重 prefers-reduced-motion
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/confetti — Confetti / 撒花彩带
+
+- Type: motion · Aliases: 撒花 · 彩带动画 · 庆祝特效 · 五彩纸屑 · 撒花庆祝
+- Page: /motion/confetti · JSON: /api/concept/motion/confetti.json · MD: /motion/confetti.md
+
+**What / 这是什么:** 完成关键动作后从一点爆出彩色纸屑飘落，用一次性高能量庆祝"做成了"。 只在里程碑出现：提交成功、任务完成、订阅达成—— 正因为稀有，才有庆祝的分量。
+
+**What (en):** On completing a key action, a burst of coloured pieces erupts and falls — a one-shot, high-energy celebration. It belongs only to milestones: submission success, task done, subscription reached. Rarity is what gives it weight.
+
+**When to use:** 里程碑完成（首次发布、支付成功、目标达成）；空状态被首次打破、成就解锁；品牌调性允许庆祝的 C 端产品
+
+**When not to use:** 高频操作（每次保存都撒花即灾难）；严肃或专业工具界面；会遮挡关键结果信息的时机
+
+**Agent prompt (zh):**
+
+```text
+为项目里程碑时刻添加撒花庆祝动效。
+
+先检查产品调性与触发时机清单，确认撒花是合适的（低频正向）。
+要求：
+- 30～60 枚纸屑，1～2s 抛物线飘落后清理 DOM
+- 一次性触发，颜色用品牌令牌
+- 不遮挡结果信息，pointer-events 不拦截点击
+- 尊重 prefers-reduced-motion
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/drawer-slide — Drawer Slide / 抽屉滑入
+
+- Type: motion · Aliases: 抽屉滑入 · 侧滑面板 · 侧边栏滑出 · 底部抽屉 · 滑出层
+- Page: /motion/drawer-slide · JSON: /api/concept/motion/drawer-slide.json · MD: /motion/drawer-slide.md
+
+**What / 这是什么:** 面板从屏幕边缘（常为右侧或底部）滑入并带遮罩，像从抽屉里拉出来。 转场方向即空间隐喻：从边缘滑入表示"叠加的临时层"， 关闭时原路滑回，保持心智模型不换。
+
+**What (en):** A panel slides in from a screen edge — usually right or bottom — over a scrim, like pulling out a drawer. Direction carries the spatial metaphor: entering from the edge marks it as a temporary layer, and it exits back the same way, keeping the mental model intact.
+
+**When to use:** 移动端筛选、设置、详情等次级内容；需要保留主页面上下文的侧边操作；底部抽屉（bottom sheet）承载移动端快捷操作
+
+**When not to use:** 不可跳过的强制任务（抽屉可随手关掉）；内容复杂需要大空间（改用整页或 modal）；滑入动画超过 300ms（等待感明显）
+
+**Agent prompt (zh):**
+
+```text
+为项目添加抽屉滑入转场（右侧筛选抽屉）。
+
+先检查现有 drawer/modal 组件，复用其焦点与滚动锁定逻辑。
+要求：
+- transform 滑入 260～300ms，材料抽屉曲线
+- 遮罩同步淡入，Esc/遮罩点击可关
+- 只动 transform/opacity，无布局位移
+- 尊重 prefers-reduced-motion（改为淡入淡出）
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/elastic-bounce — Elastic Bounce / 弹性回跳
+
+- Type: motion · Aliases: 弹性回跳 · 果冻效果 · 回弹动画 · 弹簧动效 · Q弹效果
+- Page: /motion/elastic-bounce · JSON: /api/concept/motion/elastic-bounce.json · MD: /motion/elastic-bounce.md
+
+**What / 这是什么:** 元素到位后不是稳稳停住，而是带一两次越过后回弹的振荡， 像有弹性地"Q 一下"。 给界面注入物理感和俏皮感， 常用于成功状态、奖励时刻或品牌化入场。
+
+**What (en):** The element overshoots its resting point and oscillates once or twice before settling — a springy "boing". It injects physics and playfulness, best saved for success states, reward moments and branded entrances.
+
+**When to use:** 成功、奖励、升级等正向关键时刻；品牌调性活泼，需要记忆点；拖拽松手后的回弹落位
+
+**When not to use:** 高频操作按钮（每次都弹，很快变烦）；严肃场景（支付、医疗、法律）；弹跳幅度过大（超过元素尺寸 10% 显得失控）
+
+**Agent prompt (zh):**
+
+```text
+为项目成功/奖励时刻添加弹性回跳动效。
+
+先检查现有动效令牌与缓动变量，避免私加曲线。
+要求：
+- 过冲幅度 ≤ 元素尺寸 10%，总时长 ≤ 600ms
+- 只用于低频正向时刻，不挂在常规按钮上
+- transform-origin 居中，不影响布局
+- 尊重 prefers-reduced-motion
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/hover-glow — Hover Glow / 悬停发光
+
+- Type: motion · Aliases: 悬浮发光 · hover 发光 · 按钮发光 · 鼠标放上去发光 · 边缘光晕 · glow effect
+- Page: /motion/hover-glow · JSON: /api/concept/motion/hover-glow.json · MD: /motion/hover-glow.md
+
+**What / 这是什么:** 鼠标悬停时元素边缘泛出柔和光晕，用外发光阴影或径向渐变沿边框晕开， 颜色多为品牌强调色。相比投影的"物理抬升"，光晕暗示的是"能量"与"可交互"， 常用于深色界面、游戏感产品与霓虹风格按钮。
+
+**What (en):** On hover, a soft glow blooms around the element's edges — an outer box-shadow or radial gradient tinted with the brand accent. Unlike a shadow's physical lift, glow signals energy and interactivity; common on dark UIs, gaming products and neon-style buttons.
+
+**When to use:** 深色界面上突出主操作按钮或图标；霓虹 / 游戏 / 科技感的产品调性；与 hover-lift 二选一，避免同时叠加
+
+**When not to use:** 浅色背景上低对比光晕（几乎不可见）；大面积元素整块发光（刺眼且廉价）；信息密集的工具界面（光晕分散注意力）
+
+**Agent prompt (zh):**
+
+```text
+为当前项目的主操作按钮添加 hover 发光反馈。
+
+先检查现有按钮层级与强调色令牌，保持一致。
+要求：
+- hover 时 1px 描边 + 24px 强调色外发光，200ms 过渡
+- 仅主按钮发光，次要按钮降级为描边着色
+- 仅在支持 hover 的设备启用（@media hover:hover）
+- 尊重 prefers-reduced-motion
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/hover-lift — Hover Lift / 悬浮上浮
+
+- Type: motion · Aliases: 卡片悬浮 · hover 浮起 · 鼠标放上去浮起来 · 上浮效果 · 悬停抬升 · 卡片浮起来
+- Page: /motion/hover-lift · JSON: /api/concept/motion/hover-lift.json · MD: /motion/hover-lift.md
+
+**What / 这是什么:** 鼠标悬停时卡片或按钮轻轻上浮（translateY -2～6px）并加深投影， 像被无形的手托起。最常见的"这个可以点"的桌面端暗示， 成本极低但立刻让页面有层次和呼吸感。
+
+**What (en):** On hover, a card or button lifts slightly (translateY -2–6px) while its shadow deepens — as if raised by an invisible hand. The most common desktop affordance for "this is clickable": nearly free, instantly adds depth and life.
+
+**When to use:** 卡片网格、商品卡、文章卡等可点击块；桌面端为主的交互（hover 是桌面专属语言）；平面层级需要区分可交互与静态元素
+
+**When not to use:** 触屏设备（没有 hover，会粘滞），改用按压反馈；页面上所有元素都上浮（通胀，暗示失效）；大幅位移（> 8px 会显得跳动）
+
+**Agent prompt (zh):**
+
+```text
+为当前项目的卡片列表添加 hover 上浮反馈。
+
+先检查现有卡片组件，保持圆角与阴影令牌一致。
+要求：
+- hover 上移 4px + 阴影加深，200ms 过渡
+- 仅在支持 hover 的设备启用（@media hover:hover）
+- 尊重 prefers-reduced-motion
+- 不影响布局（transform 实现）
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/loading-spinner — Loading Spinner / 加载指示器
+
+- Type: motion · Aliases: 加载图标 · 转圈加载 · 加载中图标 · 转圈圈 · loading 转圈 · 旋转加载
+- Page: /motion/loading-spinner · JSON: /api/concept/motion/loading-spinner.json · MD: /motion/loading-spinner.md
+
+**What / 这是什么:** 用一个持续旋转的圆环或圆点表示"正在处理"。占用空间极小、语义全球通用， 适合嵌入按钮内、跟随光标或作为局部区块的轻量加载反馈。 它只表达"忙碌"，不表达进度多少，也不预告还剩多久。
+
+**What (en):** A continuously rotating ring or dots that says "work in progress". Tiny in footprint and universally understood, it fits inside buttons, cursors or small regions as lightweight feedback. It communicates busyness only — neither progress amount nor time remaining.
+
+**When to use:** 1～5 秒的短时等待（请求、提交、刷新）；按钮内联表示"点击已生效，处理中"；局部小区域加载，不值得整页骨架屏
+
+**When not to use:** 超过 5～10 秒的等待（改用进度条）；首屏内容加载（改用骨架屏保布局）；无限旋转但任务可能失败（需可取消/可退出）
+
+**Agent prompt (zh):**
+
+```text
+为项目中的异步按钮与局部区块统一加载指示器。
+
+先检查现有 loading 组件与令牌，避免重复造轮子。
+要求：
+- 16px 圆环指示器，0.8s 匀速旋转，颜色用强调色令牌
+- 按钮场景禁用交互并锁定宽度防抖动
+- 可访问性：role="status" + aria-label
+- 尊重 prefers-reduced-motion
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/magnetic-button — Magnetic Button / 磁吸按钮
+
+- Type: motion · Aliases: 磁吸按钮 · 磁性按钮 · 按钮被鼠标吸过去 · 鼠标靠近按钮偏移 · magnetic effect · 磁力吸附
+- Page: /motion/magnetic-button · JSON: /api/concept/motion/magnetic-button.json · MD: /motion/magnetic-button.md
+
+**What / 这是什么:** 鼠标靠近按钮时，按钮像被磁铁吸住一样朝光标方向偏移一小段距离， 离开后弹性归位。偏移量按光标与按钮中心的距离计算，通常限制在 8～20px。 一种高"手感"的桌面端彩蛋交互，常出现在作品集与创意官网。
+
+**What (en):** As the cursor approaches, the button is pulled toward it like iron to a magnet, then springs home on leave. The offset is computed from cursor-to-center distance and usually clamped to 8–20px. A tactile desktop flourish common on portfolios and creative sites.
+
+**When to use:** 落地页的 CTA、导航图标等少量关键按钮；创意类 / 作品集网站的品牌调性；桌面端为主、留白充足的布局
+
+**When not to use:** 触屏设备（没有 hover，效果失效）；表单控件与密集操作区（偏移破坏瞄准）；页面大量按钮全部磁吸（眩晕且廉价）
+
+**Agent prompt (zh):**
+
+```text
+为项目的主 CTA 按钮添加磁吸交互。
+
+先确认按钮组件结构与强调色令牌，保持一致。
+要求：
+- 热区 1.5 倍按钮大小，偏移上限 12px，跟随 100ms 弹回 400ms
+- 键盘焦点与触屏行为不受影响
+- 尊重 prefers-reduced-motion
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/marquee — Marquee / 跑马灯
+
+- Type: motion · Aliases: 横向滚动广告位 · 跑马灯 · 无限滚动条带 · 循环滚动横幅 · 滚动字幕
+- Page: /motion/marquee · JSON: /api/concept/motion/marquee.json · MD: /motion/marquee.md
+
+**What / 这是什么:** 一条内容带在水平方向匀速循环滚动，首尾无缝衔接。 用于 logo 墙、合作方名单、公告与促销横幅——用"连续流动"表达数量多与不间断， 而不是引导用户逐条读完。
+
+**What (en):** A horizontal strip of content scrolling continuously and looping seamlessly. Used for logo walls, partner lists, announcements and promo banners — the endless flow signals abundance; it never asks users to read every item.
+
+**When to use:** 合作方/logo 墙，展示"很多谁在用我们"；公告条、促销横幅的循环展示；内容远超容器宽度且无需逐条阅读
+
+**When not to use:** 用户必须读完的关键信息（读不完就焦虑）；需要停顿细看、可交互的条目；移动端窄屏塞长条带（速度感知更快更晕）
+
+**Agent prompt (zh):**
+
+```text
+为项目落地页添加合作方 logo 跑马灯。
+
+先检查现有 logo 资源与间距令牌。
+要求：
+- 内容复制两份实现无缝循环，匀速不缓动
+- 悬停暂停；聚焦时也暂停（可访问性）
+- 装饰属性：aria-hidden，不进入无障碍阅读流
+- 尊重 prefers-reduced-motion
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/morphing-icon — Morphing Icon / 图标变形
+
+- Type: motion · Aliases: 图标变形 · 汉堡变叉 · 图标切换动画 · 菜单变关闭 · 图标过渡
+- Page: /motion/morphing-icon · JSON: /api/concept/motion/morphing-icon.json · MD: /motion/morphing-icon.md
+
+**What / 这是什么:** 一个图标在两种状态间平滑变形，而不是替换—— 最经典是汉堡三横变关闭叉。 用同一组线条的旋转、位移与透明度组合完成， 传达"同一个控件换了状态"。
+
+**What (en):** One icon smoothly morphs between two states instead of being swapped — classically the hamburger turning into a close X. Built from the same strokes rotating, translating and fading, it says "same control, new state".
+
+**When to use:** 汉堡菜单 ↔ 关闭、播放 ↔ 暂停等成对状态；同一位置的切换型图标按钮；需要强调"状态变了"而空间不变
+
+**When not to use:** 两个语义无关的图标（变形反而误导）；变形前后形状差异过大（中间帧生硬）；图标极小（小于 16px 变形细节看不清）
+
+**Agent prompt (zh):**
+
+```text
+为项目导航按钮实现汉堡变叉图标变形。
+
+先检查现有图标体系（SVG 或 iconfont），选择可行的实现层。
+要求：
+- 同一组线条的 rotate/translate/opacity 过渡，300ms
+- aria-label 随状态切换，键盘可触发
+- 图标占位尺寸不变，无布局位移
+- 尊重 prefers-reduced-motion
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/number-counter — Number Counter / 数字滚动
+
+- Type: motion · Aliases: 数字滚动增长 · 数字从小到大 · 计数动画 · 数字跳到目标值 · 数据滚动
+- Page: /motion/number-counter · JSON: /api/concept/motion/number-counter.json · MD: /motion/number-counter.md
+
+**What / 这是什么:** 数字从 0（或旧值）滚动增长到目标值，让计数过程本身表达"数据在增长"。 常用于数据看板大数字、统计区与里程碑（"10 万用户"）。 数字成为动效的主角，比静态数值更有说服力。
+
+**What (en):** Animates a number from zero (or a previous value) up to its target, so the counting itself tells the story of growth. Common on dashboard KPIs, stats sections and milestones ("100k users") — the digit becomes the animation, far more persuasive than a static figure.
+
+**When to use:** 首屏或统计区的大数字（KPI、用户数、下载量）；数字进入视口时触发一次，强调里程碑；数值更新时从旧值过渡到新值，保持连续感
+
+**When not to use:** 高频刷新的实时数值（一直在滚，读不了）；需要精确抄录的数字（金额、账号、验证码）；表格内的密集小数字（噪音大于价值）
+
+**Agent prompt (zh):**
+
+```text
+为项目统计区的大数字添加计数动画。
+
+先检查现有数字展示组件，避免与实时刷新逻辑冲突。
+要求：
+- rAF + ease-out 插值，1～2s，进入视口触发一次
+- tabular-nums 防宽度抖动，千分位格式化
+- reduced-motion 或 JS 失效时直接显示终值
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/page-transition — Page Transition / 页面切换过渡
+
+- Type: motion · Aliases: 页面转场 · 切换动画 · 页面跳转动画 · 转场效果 · 路由过渡 · page switch animation
+- Page: /motion/page-transition · JSON: /api/concept/motion/page-transition.json · MD: /motion/page-transition.md
+
+**What / 这是什么:** 页面之间切换时，旧页面滑出或淡出、新页面滑入或淡入，让路由跳转 从"硬切"变成一段 200～400ms 的连续运动。方向应与信息层级一致： 进入下级页面向左推入，返回时向右退出，帮助用户建立空间心智模型。
+
+**What (en):** When navigating, the outgoing page slides or fades away while the incoming one arrives — turning a hard cut into 200–400ms of continuous motion. Direction should mirror hierarchy: pushing left to go deeper, exiting right to go back, building a spatial mental model.
+
+**When to use:** SPA 路由切换、分步向导、tab 式页面流；需要表达页面间父子层级关系；原生 App 风格的 Web 产品调性
+
+**When not to use:** 每次 300ms 以上的长过渡（拖慢浏览节奏）；用户频繁快速切换（动画跟不上点击）；传统多页站点整页刷新（没有过渡载体）
+
+**Agent prompt (zh):**
+
+```text
+为当前 SPA 的路由切换添加页面过渡。
+
+先确认路由方案与页面容器结构。
+要求：
+- 前进/返回方向相反的滑入淡出，280ms ease-out
+- 快速连续切换时不叠加错乱动画
+- 首次加载不播放过渡
+- 尊重 prefers-reduced-motion
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/parallax — Parallax / 视差滚动
+
+- Type: motion · Aliases: 视差滚动 · 背景慢速滚动 · 分层滚动 · 视差效果
+- Page: /motion/parallax · JSON: /api/concept/motion/parallax.json · MD: /motion/parallax.md
+
+**What / 这是什么:** 滚动时不同图层以不同速度移动——背景慢、前景快—— 用速度差制造纵深。 是"2D 里伪造 3D"最便宜的手段， 常见于首屏大图与滚动叙事页面。
+
+**What (en):** On scroll, layers move at different speeds — background slower, foreground faster — and the velocity gap reads as depth. The cheapest way to fake 3D in 2D; a staple of hero sections and scrollytelling.
+
+**When to use:** 首屏大图或插画需要纵深与电影感；滚动叙事页面，图层分段讲述；装饰性背景纹理缓慢移动
+
+**When not to use:** 长文阅读页面（滚动与文字错位致晕）；移动端大规模视差（性能差且眩晕）；视差影响可读性或遮挡操作目标
+
+**Agent prompt (zh):**
+
+```text
+为项目首屏添加视差滚动效果。
+
+先检查首屏结构与滚动容器，确认性能预算。
+要求：
+- 分层不同速率，只动 transform（合成层）
+- rAF 节流或 CSS scroll-timeline 实现
+- 不影响可读性与滚动性能（避免 scroll 监听重排）
+- 移动端与 reduced-motion 默认关闭
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/press-feedback — Press Feedback / 按压反馈
+
+- Type: motion · Aliases: 点击反馈 · 按钮缩一下 · 按下缩放 · 按压缩小 · tap feedback · active scale
+- Page: /motion/press-feedback · JSON: /api/concept/motion/press-feedback.json · MD: /motion/press-feedback.md
+
+**What / 这是什么:** 用户按下按钮、卡片等可点击元素时，元素轻微缩小（通常 0.95～0.98）， 松开后弹回。一个几十毫秒的细节，让界面"手感"立刻从网页变成实体按键。
+
+**What (en):** When users press a clickable element it scales down slightly (typically 0.95–0.98) and springs back on release. A few tens of milliseconds that make a UI feel like physical buttons instead of flat web pages.
+
+**When to use:** 所有可点击元素：按钮、卡片、图标按钮；移动端与触屏界面（按压是最主要操作）；需要"实体感"的产品调性
+
+**When not to use:** 大面积区域点击（整卡缩放会带动文字晃动）；列表行内小操作，避免整行抖动；已有其他强反馈（如下压阴影 + 填充动画）叠加过度
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中为所有可点击元素统一添加按压反馈。
+
+先检查是否已有全局按钮样式或交互规范，保持一致。
+要求：
+- 按下 scale(0.96) + 阴影收紧，80ms 缩下 150ms 回弹
+- 覆盖 Button 组件与可点击卡片
+- 触屏设备可靠触发
+- 尊重 prefers-reduced-motion
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/ripple — Ripple / 点击涟漪
+
+- Type: motion · Aliases: 水波纹 · 点击涟漪 · 波纹扩散 · material 点击效果 · 涟漪动画
+- Page: /motion/ripple · JSON: /api/concept/motion/ripple.json · MD: /motion/ripple.md
+
+**What / 这是什么:** 点击位置向外扩散一圈半透明圆形波纹后消散，把"点中了哪里"可视化。 Material Design 的标志性按压反馈， 让无生命的点击立刻获得物理感——像石头落进水面。
+
+**What (en):** A translucent circle expands from the exact tap point and fades out, visualising where the press landed. Material Design's signature press feedback — it gives clicks a physical sense, like a stone dropped on water.
+
+**When to use:** 按钮、列表项、卡片等大面积可点击元素；触屏为主的界面（按压即触发，不依赖 hover）；密集列表中需要明确"点在了哪里"
+
+**When not to use:** 极小图标按钮（波纹大于按钮，显得溢出）；高频连续点击的工具栏（波纹糊成一片）；已有强按压反馈（scale/阴影）的组件，叠加冗余
+
+**Agent prompt (zh):**
+
+```text
+为项目按钮与列表项添加点击涟漪反馈。
+
+先检查现有按钮组件与按压反馈，避免双重反馈冲突。
+要求：
+- 从真实触点扩散，波纹被圆角裁剪
+- 400ms 内完成，动画节点及时清理防内存泄漏
+- 不影响布局（transform + opacity）
+- 尊重 prefers-reduced-motion
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/scroll-driven-animation — Scroll-driven Animation / 滚动驱动动画
+
+- Type: motion · Aliases: 滚动驱动动画 · 滚动动画 · 随滚动动 · 滑到哪动到哪 · scroll animation · scroll-driven · scroll-linked animation
+- Page: /motion/scroll-driven-animation · JSON: animation-timeline: scroll(),scroll(),Intersection Observer · MD: /motion/scroll-driven-animation.md
+
+**What / 这是什么:** 动画进度绑定滚动位置而非时间：滚到哪、动到哪，可来回擦洗。能做滚动进度条、随滚动展开的叙事与视差层。与滚动显现不同，它不是触发后播完，而是由滚动位置精确擦洗进度。
+
+**What (en):** Animation progress is tied to scroll position rather than time: scrub to where you want, even backwards. It powers scroll-linked progress bars, scroll-unfurled storytelling and parallax layers. Unlike scroll reveal it does not play once after a trigger — scroll position scrubs the timeline.
+
+**When to use:** 叙事随滚动展开，进度要与阅读位置同步；需要滚动进度指示或阅读深度反馈；视差层、粘性章节等空间层次表达
+
+**When not to use:** 用户一滚到底找信息，动画反而拖慢到达；滚动容器嵌套复杂，进度归属不清；只需一次性入场，用滚动显现更简单
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现滚动驱动动画。
+
+先检查现有组件体系和 Design Token，优先复用当前组件。
+保持现有项目视觉风格。不要新增不必要依赖。
+要求：
+- 动画进度绑定滚动位置，可反向擦洗
+- 优先使用 animation-timeline: scroll()，并提供 JS 兜底
+- 定时动画时长写 calc(<时长> * var(--demo-speed, 1))
+- 尊重 prefers-reduced-motion
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## motion/scroll-reveal — Scroll Reveal / 滚动显现
+
+- Type: motion · Aliases: 滚动显现 · 滚动淡入 · 进入视口动画 · 滑到那里才出现 · 滚动出现 · scroll into view animation
+- Page: /motion/scroll-reveal · JSON: /api/concept/motion/scroll-reveal.json · MD: /motion/scroll-reveal.md
+
+**What / 这是什么:** 元素滚动进入视口时才播放淡入、上浮或滑入动画，之前保持隐藏或占位。 把"一次性呈现全部内容"变成"随阅读节奏逐段揭示"，让长页面的信息 更有秩序感。通常由 IntersectionObserver 触发，只播一次。
+
+**What (en):** Elements stay hidden until they enter the viewport, then play a fade, rise or slide-in — once. It replaces "dump everything at once" with content revealed at the pace of reading, giving long pages a sense of order. Usually triggered by IntersectionObserver.
+
+**When to use:** 长落地页的分区内容逐段呈现；文章、案例展示等线性阅读内容；需要引导视线自上而下移动
+
+**When not to use:** 用户要找的东西被藏进动画（迟到即伤害）；表单、价格等决策关键信息；整页元素全部滚动显现（等待感堆积）
+
+**Agent prompt (zh):**
+
+```text
+为项目落地页的分区内容添加滚动显现动画。
+
+先检查是否已有 reveal/observer 工具，复用而非新写。
+要求：
+- 进入视口淡入上浮 24px，600ms，只播一次
+- 同屏元素 80ms 错峰
+- 无 JS 或 SSR 首屏内容不被隐藏
+- 尊重 prefers-reduced-motion
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/shared-element-transition — Shared Element Transition / 共享元素转场
+
+- Type: motion · Aliases: 共享元素转场 · 元素飞入详情 · 卡片放大成页面 · 无缝转场 · hero 动画
+- Page: /motion/shared-element-transition · JSON: /api/concept/motion/shared-element-transition.json · MD: /motion/shared-element-transition.md
+
+**What / 这是什么:** 列表里的缩略图或卡片在打开详情时"飞"成详情页主图—— 同一个元素跨两个视图连续运动， 而不是各自出现。 元素身份在转场中保持连续， 是最强的上下文延续。
+
+**What (en):** A thumbnail in a list "flies" into the hero of the detail view — the same element moving continuously across two states instead of both views fading. Identity stays continuous through the transition: the strongest form of context preservation.
+
+**When to use:** 列表 → 详情（图片、卡片、商品）；需要强调"还是那件东西"的选中场景；媒体浏览、相册、文件预览
+
+**When not to use:** 两视图布局差异过大（飞行轨迹扭曲难看）；低端设备上的大图跨页动画（掉帧破坏错觉）；转场时间超过 400ms（用户开始等）
+
+**Agent prompt (zh):**
+
+```text
+为项目列表到详情添加共享元素转场。
+
+先检查路由/视图切换方式与现有转场实现，选择 FLIP 或 View Transitions。
+要求：
+- 元素连续运动，250～400ms，只动 transform/opacity
+- 关闭时原路返回；不支持时退化为淡切
+- 不破坏滚动位置与焦点管理
+- 尊重 prefers-reduced-motion
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/spring-animation — Spring Animation / 弹簧动画
+
+- Type: motion · Aliases: 弹簧动画 · 弹簧效果 · 弹一下 · 物理动画 · 回弹落位 · spring animation · spring physics · springy motion
+- Page: /motion/spring-animation · JSON: linear(),cubic-bezier(),offset-path · MD: /motion/spring-animation.md
+
+**What / 这是什么:** 用弹簧物理（刚度、阻尼）驱动的运动：可冲过终点再回落稳定，也可临界阻尼稳稳停住。比固定缓动更有质量感与连续性，适合拖拽落位、开关拨动与强调出现。过冲幅度需克制，避免失控感。
+
+**What (en):** Motion driven by spring physics (stiffness, damping): it may overshoot and settle, or stop dead at critical damping. Compared with fixed easing it carries mass and continuity — good for drag snap-into-place, switch throws and emphatic entrances. Keep overshoot modest or it reads as broken.
+
+**When to use:** 拖拽松手、开关拨动等需要"落位感"的时刻；界面要表达质量、惯性与连续物理；强调出现或共享元素归位
+
+**When not to use:** 高频微操作每次弹跳，很快变吵；严肃流程（支付、医疗）需要克制而非活泼；只需一次性淡入淡出，弹簧是多余复杂度
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中为落位与强调时刻实现弹簧动画。
+
+先检查现有组件体系和 Design Token，优先复用当前组件。
+保持现有项目视觉风格。不要新增不必要依赖。
+要求：
+- 用弹簧式缓动或振荡关键帧表达过冲与稳定
+- 过冲幅度克制，所有时长写 calc(<时长> * var(--demo-speed, 1))
+- 只用于低频关键时刻，不挂在高频控件上
+- 尊重 prefers-reduced-motion
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## motion/stagger-reveal — Stagger Reveal / 逐项浮现
+
+- Type: motion · Aliases: 逐项浮现 · 列表交错出现 · 依次淡入 · 逐个加载出现 · 瀑布式出现
+- Page: /motion/stagger-reveal · JSON: /api/concept/motion/stagger-reveal.json · MD: /motion/stagger-reveal.md
+
+**What / 这是什么:** 一组元素不一起出现，而是按固定间隔依次淡入或上浮，像点名一样逐个到位。 间隔 40～120ms 即可让列表"有秩序地醒来"， 比整块淡入更有生命感，也比真实逐项加载等待感更低。
+
+**What (en):** Instead of appearing at once, a group of items enters one after another at a fixed interval — like roll call. A 40–120ms gap lets a list wake up in order: livelier than a single fade, less impatient than true sequential loading.
+
+**When to use:** 列表、卡片网格、导航项首次进入视口；弹层内的成组内容（菜单项、通知列表）；强调"一批结果"的整体感与顺序
+
+**When not to use:** 项数很多（超过 15 项，最后一项等到不耐烦）；高频操作界面（延迟即成本）；间隔过大（超过 150ms 显得拖沓做作）
+
+**Agent prompt (zh):**
+
+```text
+为项目列表页添加逐项浮现入场。
+
+先检查现有入场动画与滚动触发逻辑，保持一致。
+要求：
+- 统一 keyframes，仅用 animation-delay 交错（40～120ms）
+- fill-mode both，避免延迟期闪现
+- 进入视口触发一次，尊重 prefers-reduced-motion
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/text-reveal — Text Reveal / 文字显现
+
+- Type: motion · Aliases: 文字一段一段出现 · 文字逐行出现 · 标题文字渐显 · 一行一行浮现 · 打字机出现
+- Page: /motion/text-reveal · JSON: /api/concept/motion/text-reveal.json · MD: /motion/text-reveal.md
+
+**What / 这是什么:** 把标题或段落按行、按词逐个显现，而不是整块淡入。文字"被说出来"的节奏感让信息有先后与分量， 常用于落地页首屏大标题、章节开场与滚动叙事， 通常进入视口时触发一次。
+
+**What (en):** Reveals a headline line by line or word by word instead of fading the whole block in. The spoken-rhythm staggering gives copy order and weight — a staple of landing-page hero titles, section intros and scrollytelling, usually triggered once on entering the viewport.
+
+**When to use:** 落地页首屏大标题、品牌口号需要登场感；滚动到视口时逐段显现，引导阅读顺序；编辑排版类页面，文字本身是主角
+
+**When not to use:** 正文段落逐词动画（阅读被拖慢，用户会烦）；需要快速扫读的界面（后台、表格、文档）；一屏多组文字同时做入场动画（互相打架）
+
+**Agent prompt (zh):**
+
+```text
+为当前项目落地页的首屏标题添加逐行文字显现。
+
+先检查现有入场动画与令牌，保持节奏一致。
+要求：
+- 行遮罩上滑，行间延迟 80～120ms，600ms 内完成
+- 只在进入视口后触发一次
+- 无 JS 时文字可直接可见（渐进增强）
+- 尊重 prefers-reduced-motion
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/toast-slide-in — Toast Slide-in / 提示滑入
+
+- Type: motion · Aliases: 消息提示滑入 · 弹出提示 · toast 动画 · 通知滑入 · 底部提示浮现
+- Page: /motion/toast-slide-in · JSON: /api/concept/motion/toast-slide-in.json · MD: /motion/toast-slide-in.md
+
+**What / 这是什么:** 操作结果以一条短提示从屏幕边缘滑入（常为底部或右上角）， 停留数秒后自动滑出。 动效分三段：滑入—停留—滑出， 方向与来源一致——从边缘来，回边缘去。
+
+**What (en):** A short notice slides in from a screen edge — bottom or top-right — lingers a few seconds, then slides back out. Three phases: enter, hold, exit; it always returns toward the edge it came from.
+
+**When to use:** 操作成功、失败、已撤销等轻量结果反馈；不打断当前任务的异步完成通知；配合撤销操作的短时窗口提示
+
+**When not to use:** 必须处理的信息（改用 alert 或 modal）；同屏堆叠多条长文本（读不完即消失）；关键错误（toast 易被错过，需可恢复方案）
+
+**Agent prompt (zh):**
+
+```text
+为项目操作结果添加 toast 滑入反馈。
+
+先检查现有 toast/通知组件，复用其队列与计时逻辑。
+要求：
+- 入场 200～250ms ease-out，出场反向 150～200ms
+- 停留 3～5s 自动消失，hover 暂停倒计时
+- aria-live 播报，reduced-motion 降级为淡入淡出
+- 不引入新依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## motion/view-transition — View Transition / 视图过渡
+
+- Type: motion · Aliases: 视图过渡 · 页面过渡动画 · 切换动画 · 换页过渡 · view transition · view transitions api
+- Page: /motion/view-transition · JSON: document.startViewTransition(),view-transition-name · MD: /motion/view-transition.md
+
+**What / 这是什么:** 用浏览器原生 View Transitions API 在页面状态切换时做平滑过渡：旧视图淡出、新视图淡入，关键元素可共享形变。它把状态跳变藏进连续的空间叙事，让"换了一屏"读起来像"移了一步"，而不是硬切。
+
+**What (en):** A browser-native transition between page states via the View Transitions API: the old view fades out, the new one fades in, and key elements can morph as shared targets. It hides the jump inside continuous spatial narrative so "a new screen" reads as "one step over" rather than a hard cut.
+
+**When to use:** 同文档内状态或路由切换需要连续感（列表↔详情）；存在应保持视觉连续的关键元素（标题、图片、按钮）；目标浏览器已支持 View Transitions API
+
+**When not to use:** 每次切换都播长动画，高频导航会被拖慢；旧新视图结构差异过大，形变会扭曲内容；需要兼容无 API 环境且不愿做回退分支
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现视图过渡。
+
+先检查现有组件体系和 Design Token，优先复用当前组件。
+保持现有项目视觉风格。不要新增不必要依赖。
+要求：
+- 状态或路由切换有连续过渡，关键元素保持视觉连续
+- 无 View Transitions API 时有 CSS 兜底
+- 所有动画时长写 calc(<时长> * var(--demo-speed, 1))
+- 尊重 prefers-reduced-motion
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## pages/checkout — Checkout Page / 结账页
+
+- Type: pages · Aliases: 结账页 · 下单页 · 付款页面 · 收银台 · 提交订单页 · 支付页面 · 买的东西确认页
+- Page: /pages/checkout · JSON: /api/concept/pages/checkout.json · MD: /pages/checkout.md
+
+**What / 这是什么:** 电商转化的最后一公里：页面把收货信息、配送方式、支付方式和订单摘要组织成一条 不可回头的短流程，步骤条标示进度，表单尽量预填与自动更正，摘要常驻展示金额明细。 核心原则是每一步只问必要的信息，任何犹豫点（运费、总金额）都要提前说清楚。
+
+**What (en):** The last mile of e-commerce conversion: shipping info, delivery method, payment and the order summary are arranged into one short forward-only flow — a stepper marks progress, forms are prefilled and auto-corrected, and the summary keeps totals always visible. Ask only what is necessary per step, and surface hesitation points (shipping cost, total) before they become objections.
+
+**When to use:** 购物车到支付的完整下单流程；需要分步收集收货、配送、支付信息；需要同时展示金额明细与优惠减免
+
+**When not to use:** 单件虚拟商品的极简购买（一屏内完成更优）；浏览和挑选商品的商城首页；订阅升级（用定价页的升级弹层更轻）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现结账页。
+
+先检查购物车数据结构、支付接口与表单组件，保持一致。
+要求：
+- 步骤条 + 分步表单（可回退），每步校验
+- 订单摘要 sticky，金额明细完整
+- 提交态防重复下单，成功跳转确认页
+- 移动端摘要折叠
+- 深浅色一致，不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/dashboard — Dashboard / 仪表盘
+
+- Type: pages · Aliases: 后台管理首页 · 仪表盘 · 后台首页 · 数据看板 · 管理面板首页 · 数据大盘 · admin 后台
+- Page: /pages/dashboard · JSON: /api/concept/pages/dashboard.json · MD: /pages/dashboard.md
+
+**What / 这是什么:** 把关键数据与操作入口聚在一屏内的后台首页，用区域化网格组织：顶栏与侧栏负责导航， 中部依次铺指标卡、图表区和主表格，让用户打开就能看到系统当前状态并直接下钻。 它是后台产品信息架构的核心页面，密度与分区方式决定了整站的阅读节奏。
+
+**What (en):** An admin home screen that concentrates key data and entry points into one view, organized as regional grids: header and sidebar handle navigation, while KPI cards, charts and a primary table fill the content area so users grasp system status at a glance and drill down directly. It anchors the information architecture of the product.
+
+**When to use:** 需要一屏总览业务关键指标的后台系统；用户进入后先看状态、再下钻到详情；多种数据形态（数字、图表、表格）需要同屏
+
+**When not to use:** 面向公众的营销页（用落地页更合适）；只有单一操作、无数据可看的工具页；移动端主流程（指标应降级为列表或卡片流）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现后台仪表盘首页。
+
+先检查现有路由、布局壳与图表/表格组件，优先复用。
+要求：
+- 布局：侧栏 + 顶栏 + 12 列内容网格
+- 指标卡、图表、表格均为独立组件，支持加载骨架
+- 时间范围筛选驱动图表与表格刷新
+- 深浅色主题一致，尊重 prefers-reduced-motion
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/documentation — Documentation Page / 文档页
+
+- Type: pages · Aliases: 文档站 · 帮助文档 · 开发者文档 · 使用手册 · 说明文档 · API 文档 · 帮助中心页面
+- Page: /pages/documentation · JSON: /api/concept/pages/documentation.json · MD: /pages/documentation.md
+
+**What / 这是什么:** 以阅读为中心的长驻内容页面：一侧是可折叠的文档树导航，正文栏承载标题层级、段落、 代码块与提示框，宽屏下再加页内目录（TOC）标示当前阅读位置。页面靠永久链接与 上一页/下一页串联成站，搜索是第一入口，结构稳定到可以背下来。
+
+**What (en):** A long-lived, reading-first content page: a collapsible docs tree on one side, the article column carrying heading hierarchy, paragraphs, code blocks and callouts, and on wide screens a page TOC marking the current position. Permanent links and prev/next links chain pages into a site; search is the primary entry; the structure is stable enough to memorize.
+
+**When to use:** 产品文档、API 参考、教程手册；内容长期沉淀、需要稳定结构与会深链；读者边读边操作、需要代码可复制
+
+**When not to use:** 时效性强的营销内容（用落地页或博客更合适）；需要频繁协作编辑的内容（用编辑器或知识库工具）；纯展示型图文页面
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现文档页。
+
+先检查现有路由、Markdown 管线与 sidebar 组件，保持一致。
+要求：
+- 三栏布局（树 / 正文 / TOC），响应式降级
+- 代码块复制按钮、提示框等正文组件
+- TOC 滚动联动高亮
+- Prev/Next 与 slug 深链
+- 深浅色一致，不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/landing-page — Landing Page / 落地页
+
+- Type: pages · Aliases: 落地页 · 卖东西的落地页 · 产品主页 · 官网首页 · 营销首页 · 产品介绍页 · 转化页
+- Page: /pages/landing-page · JSON: /api/concept/pages/landing-page.json · MD: /pages/landing-page.md
+
+**What / 这是什么:** 围绕单一转化目标纵向组织信息的营销页面：顶部导航与 Hero 主视觉先讲清楚"这是什么、好在哪"， 中段用功能区、信任区（客户 logo、评价、数据）逐层打消顾虑，末端以强视觉的行动按钮收口。 页面按说服顺序分区，每一屏都在回答用户下一步的疑问。
+
+**What (en):** A marketing page organized vertically around one conversion goal: nav and hero explain "what is this and why it's good", mid-sections use features and social proof (logos, testimonials, numbers) to dissolve objections, and a strong call-to-action closes. Sections follow the persuasion order — each screen answers the visitor's next question.
+
+**When to use:** 推广单一产品或活动、追求注册/购买转化；来自广告或外链的访客需要快速理解价值；需要在无登录状态下完成首次转化
+
+**When not to use:** 已登录用户的日常工作界面；信息层级复杂、需长期维护的内容站（用文档站更合适）；需要频繁检索的数据库型页面
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现产品落地页。
+
+先检查现有设计 Token、品牌色与已有营销页组件，保持一致。
+要求：
+- 语义化 section 结构与锚点导航
+- Hero + 邮箱收集表单（校验 + 成功态）
+- 功能卡片、信任区、重复 CTA
+- 响应式与深浅色一致，动画尊重 prefers-reduced-motion
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/login — Login Page / 登录页
+
+- Type: pages · Aliases: 登录页面 · 登陆页 · 登录界面 · 登录表单 · 登录框 · 输密码进系统的页面 · 账号登录页
+- Page: /pages/login · JSON: /api/concept/pages/login.json · MD: /pages/login.md
+
+**What / 这是什么:** 用最小干扰让已有账号用户进入系统的门面页：核心只有身份识别表单（邮箱/密码）与一个主按钮， 辅以第三方登录、忘记密码和注册入口。页面刻意保持极简——少一个字段，转化就高一分； 所有装饰都让位于"快点进去"这一目标。
+
+**What (en):** The gateway page that gets existing users in with minimal friction: an identity form (email/password) and one primary button, supported by third-party login, password recovery and a signup link. Deliberately minimal — every removed field raises conversion, and all decoration yields to the single goal of getting in fast.
+
+**When to use:** 已有账号体系的产品的入口；回访用户需要快速恢复会话；需要对接 SSO 或第三方身份提供方
+
+**When not to use:** 新用户首次创建账号（用注册页承接）；一次性工具、无需身份识别；内嵌到弹窗的轻量验证（用模态登录更轻）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现登录页。
+
+先检查现有认证接口、路由守卫与表单组件，保持一致。
+要求：
+- 邮箱 + 密码表单，autocomplete 与内联错误提示
+- 第三方登录按钮与注册入口
+- 提交态防重复提交
+- 深浅色一致，键盘可访问
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/pricing — Pricing Page / 定价页
+
+- Type: pages · Aliases: 价格方案页面 · 定价页 · 套餐价格页 · 收费方案 · 花多少钱的页面 · 订阅方案页 · 价格表
+- Page: /pages/pricing · JSON: /api/concept/pages/pricing.json · MD: /pages/pricing.md
+
+**What / 这是什么:** 把付费方式讲清楚的商业页面：页面通常以标题与计费周期切换开头，主体是并排的套餐卡 （价格、功能清单、行动按钮），推荐档位用视觉强调；下方补功能对比表和 FAQ 兜底疑虑。 组织逻辑是"先选周期、再选档位、最后消除犹豫"。
+
+**What (en):** A commercial page that makes the offer legible: it opens with a headline and billing-period toggle, the body is a row of tier cards (price, feature list, action button) with the recommended tier visually emphasized, and a comparison table plus FAQ resolve remaining doubts. The order is fixed — pick a period, pick a tier, remove hesitation.
+
+**When to use:** 订阅制或有多个档位的产品售卖；访客需要在购买前比较不同方案；需要引导用户从免费档向付费档升级
+
+**When not to use:** 只有一个固定价格（并入落地页即可）；完全定制报价、按项目计费（用联系销售页更合适）；已登录用户的账户账单管理（属于设置/账单页）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现定价页。
+
+先检查品牌色、现有卡片/手风琴组件与路由，保持一致。
+要求：
+- 月/年切换驱动价格与折扣角标
+- 推荐档位视觉强调（边框 + 徽标）
+- 功能对比表（移动端可横向滚动）
+- FAQ 手风琴
+- 深浅色一致，响应式
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/profile — Profile Page / 个人主页
+
+- Type: pages · Aliases: 个人主页 · 个人资料页 · 用户主页 · 个人介绍页 · 头像主页 · 空间主页 · 介绍一下自己的页面
+- Page: /pages/profile · JSON: /api/concept/pages/profile.json · MD: /pages/profile.md
+
+**What / 这是什么:** 以身份为中心展示"这是谁、有什么、在做什么"的页面：封面与头像建立视觉身份， 下方是姓名、简介与统计数字，再用页签切换动态、作品或文章等内容流。 他人视角配关注/私信按钮，本人视角配编辑入口，页面结构相同而操作不同。
+
+**What (en):** An identity-centered page answering "who is this, what do they have, what do they do": cover and avatar establish visual identity, name, bio and stats follow, and tabs switch between content streams like posts, works or articles. Visitors see follow/message actions; the owner sees edit entries — same structure, different actions.
+
+**When to use:** 社区、创作者平台展示用户身份与内容；团队成员/作者等人物介绍页；用户需要查看或管理自己的公开形象
+
+**When not to use:** 纯功能性的账号信息修改（并入设置页）；无内容流、只留联系方式的极简名片（静态区块即可）；需要强营销转化的官方品牌页
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现个人主页。
+
+先检查用户数据结构与现有 avatar/tabs 组件，保持一致。
+要求：
+- 封面 + 叠放头像 + 身份信息 + 统计
+- 页签切换内容流（支持空态）
+- 关注按钮三态；本人/访客视角区分
+- 深浅色一致，响应式
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/search — Search Page / 搜索页
+
+- Type: pages · Aliases: 搜索结果页 · 搜索页面 · 搜东西的页面 · 全站搜索 · 查询结果页 · 搜索列表页 · 搜一搜
+- Page: /pages/search · JSON: /api/concept/pages/search.json · MD: /pages/search.md
+
+**What / 这是什么:** 承接查询意图并返回结果的内容发现页面：顶部常驻搜索框（保留查询词、可修改重搜）， 一侧是类型与筛选器，主体按相关度排列结果条目（标题 + 摘要 + 高亮命中词）， 底部用分页或无限滚动续接。空结果和无结果关键词是必须设计好的两个状态。
+
+**What (en):** A content-discovery page answering a query: a persistent search box on top (keeping the term, editable to re-search), type and facet filters on one side, and results ranked by relevance in the body (title + snippet + highlighted hits), continued by pagination or infinite scroll. Empty state and no-results state must be designed explicitly.
+
+**When to use:** 内容量大、用户靠关键词定位信息；结果需要按类型、时间、标签过滤；查询词与结果的匹配过程需要透明（高亮、计数）
+
+**When not to use:** 内容量极小、浏览即可覆盖；结构化数据的精确查询（用筛选器或表格更直接）；命令式快捷操作（用命令面板更轻）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现搜索结果页。
+
+先检查现有搜索接口与筛选组件，保持一致。
+要求：
+- 常驻搜索框（保留词、可清除）
+- 筛选器与结果联动，状态同步到 URL
+- 命中词高亮 + 结果计数
+- 无结果空态设计
+- 深浅色一致，键盘可访问
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/settings — Settings Page / 设置页
+
+- Type: pages · Aliases: 设置页面 · 设置面板 · 偏好设置 · 系统设置页 · 账号设置 · 配置页面 · 个人设置
+- Page: /pages/settings · JSON: /api/concept/pages/settings.json · MD: /pages/settings.md
+
+**What / 这是什么:** 集中管理账号偏好与系统配置的功能页面：一侧是稳定的设置导航（通用、通知、安全等分区）， 另一侧是行式表单列表——每行一个"标签 + 控件 + 说明"，低频修改、即改即存。 页面按配置域分区而非按任务流组织，用户靠扫读标题定位，改完即走。
+
+**What (en):** A utility page for managing account preferences and system configuration: a stable settings nav on one side (general, notifications, security…), and rows of "label + control + hint" forms on the other — low-frequency edits, saved as they change. Organized by configuration domain rather than task flow; users locate sections by scanning titles, change, and leave.
+
+**When to use:** 账号资料、通知、安全等偏好集中管理；配置项多、需要分区导航定位；修改低频但需要随时可达的入口
+
+**When not to use:** 高频操作流（应放进对应工作界面）；只有 2～3 个开关的极简产品（并入菜单即可）；需要管理员审核的审批流页面
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现设置页。
+
+先检查现有设置入口、表单组件与 Design Token，保持一致。
+要求：
+- 分区导航 + 行式表单（数据驱动）
+- 开关、输入受控，有未保存提示与保存反馈
+- 危险区二次确认
+- 深浅色一致，键盘可访问
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/signup — Signup Page / 注册页
+
+- Type: pages · Aliases: 注册页面 · 注册账号 · 创建账号页面 · 新用户注册 · 立即注册页 · 开户页 · 注册表单
+- Page: /pages/signup · JSON: /api/concept/pages/signup.json · MD: /pages/signup.md
+
+**What / 这是什么:** 把陌生访客变成账号的转化页：表单只保留起步必需的字段（邮箱 + 密码），其余信息 延后到产品内补齐；辅以第三方注册、密码强度提示和服务条款勾选。与登录页共用 布局骨架，但每一处设计都在回答"注册这件事值不值得、麻不麻烦"。
+
+**What (en):** The conversion page turning strangers into accounts: the form keeps only the fields needed to start (email + password) and defers everything else into the product, supported by third-party signup, a password strength hint and terms consent. It shares a layout skeleton with the login page, but every design decision answers "is signing up worth it and painless?"
+
+**When to use:** 需要创建新账号的转化入口；产品承诺注册后即可开始使用（先试后买）；需要引导式补全资料的多步 onboarding 前置
+
+**When not to use:** 已有账号用户的登录（勿让回访用户误入）；邀请制/企业 SSO 自动开户（无需自助注册）；匿名试用优先的产品（试用后再索要账号）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现注册页。
+
+先检查现有认证接口、注册流程与表单组件，保持一致。
+要求：
+- 最少字段（邮箱 + 密码），即时校验与强度提示
+- 第三方注册与登录入口
+- 服务条款勾选联动提交按钮
+- 深浅色一致，键盘可访问
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## patterns/bulk-actions — Bulk Actions / 批量操作
+
+- Type: patterns · Aliases: 批量操作 · 批量处理 · 勾选后操作 · 多选了一起弄 · 全选后删除 · bulk actions · batch actions · mass actions
+- Page: /patterns/bulk-actions · JSON: /api/concept/patterns/bulk-actions.json · MD: /patterns/bulk-actions.md
+
+**What / 这是什么:** 先用复选框勾选多行数据，再对整个选择集一次性执行同一操作。选择时操作栏浮现，给出已选计数与撤销入口。它把重复的单条点击合并为一次批量决策，适合清理、归档、打标、导出等列表维护场景。
+
+**What (en):** Tick many rows with checkboxes, then run one command against the whole selection at once. An action bar surfaces on selection with a count and an undo affordance. It collapses repetitive single-row clicks into one batch decision — ideal for list maintenance such as cleanup, archive, tagging and export.
+
+**When to use:** 同一操作要施加在大量行上（删除、归档、改状态）；列表是数据维护主界面（后台、收件箱、素材库）；误操作成本可控，且能提供撤销
+
+**When not to use:** 一行只有零星操作，逐条点并不费力；操作不可逆且无审计/撤销，批量放大风险；移动端窄屏塞不下操作栏，勾选易误触
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现表格批量操作。
+
+先检查现有组件体系和 Design Token，优先复用当前组件。
+保持现有项目视觉风格。不要新增不必要依赖。
+要求：
+- 复选框列 + 表头全选三态
+- 有选中时浮现操作栏，显示已选计数
+- 批量执行后提供撤销入口
+- 尊重 prefers-reduced-motion
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/cookie-consent — Cookie Consent Banner / Cookie 同意条
+
+- Type: patterns · Aliases: Cookie 同意条 · Cookie 提示条 · cookie 小横幅 · 隐私同意条 · 追踪同意弹条 · cookie banner · cookie consent · consent banner
+- Page: /patterns/cookie-consent · JSON: /api/concept/patterns/cookie-consent.json · MD: /patterns/cookie-consent.md
+
+**What / 这是什么:** 在写入非必要 Cookie 前向用户征求同意的横幅或浮层，属于合规门槛而非系统告警。提供接受、拒绝或颗粒度选项，并记住选择；未作出选择前不得落下追踪类 Cookie。常驻底部或首入居中，不应遮挡核心操作。
+
+**What (en):** A banner or overlay that asks consent before setting non-essential cookies — a compliance gate, not a system alert. Offer accept, reject or granular choices and remember the decision; tracking cookies must not fire before an answer. Docked at the bottom or centered on first visit, never covering the primary task.
+
+**When to use:** 站点要写入分析、广告等非必要 Cookie；面向 GDPR / ePrivacy 等有同意要求的地区；需要记录并可撤回用户的同意选择
+
+**When not to use:** 只用严格必要 Cookie，无需打扰用户；把它当通用公告条复用（语义与法律效力都错位）；拒绝按钮比接受更难找到（暗黑模式，合规与信任双输）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现 Cookie 同意条。
+
+先检查现有组件体系和 Design Token，优先复用当前组件。
+保持现有项目视觉风格。不要新增不必要依赖。
+要求：
+- 同意前不加载非必要脚本
+- 接受、拒绝、颗粒度偏好三类入口，拒绝同等可发现
+- 选择可持久化并可从设置撤回
+- 尊重 prefers-reduced-motion
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/drag-and-drop — Drag and Drop / 拖放
+
+- Type: patterns · Aliases: 拖放 · 拖拽移动 · 拖过去 · 拖到那边 · 拖来拖去 · drag and drop · dnd · drag to move
+- Page: /patterns/drag-and-drop · JSON: draggable,drop,Pointer Events · MD: /patterns/drag-and-drop.md
+
+**What / 这是什么:** 用按住—拖动—松手的直接操作，把对象移动到新位置或新容器。所见即所得，比菜单命令更贴近空间直觉；拖动中要有清晰落点指示，目标容器需给出接受反馈。范围比拖拽排序更广：移动、归位、跨列表投递都算。
+
+**What (en):** Move an object to a new slot or container by press-drag-release direct manipulation. It is spatial and immediate, closer to intuition than menu commands; a clear drop indicator and an accepting target are required while dragging. Broader than mere reordering — moving, filing and cross-list delivery all count.
+
+**When to use:** 对象需要在不同容器或位置之间移动（文件归档、素材入库）；空间位置本身就有语义（看板列、画布、网格布局）；用户群体以鼠标/触控板为主，拖拽是自然手势
+
+**When not to use:** 仅需调整顺序，用拖拽排序或上移下移按钮更精准；目标位置不可见或需跨屏，落点极易投错；键盘与读屏是主要通道，却没有等价按钮兜底
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现拖放（Drag and Drop）交互。
+
+先检查现有组件体系和 Design Token，优先复用当前组件。
+保持现有项目视觉风格。不要新增不必要依赖。
+要求：
+- 按住—拖动—松手完成移动，拖动中有占位与落点指示
+- 目标容器给出接受高亮
+- 提供按钮或菜单等键盘可达兜底
+- 尊重 prefers-reduced-motion
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/drag-and-drop-sorting — Drag & Drop Sorting / 拖拽排序
+
+- Type: patterns · Aliases: 拖拽排序 · 拖动调整顺序 · 拖动排序 · 上下移动排序 · 拖拽换位置 · 拖放排列
+- Page: /patterns/drag-and-drop-sorting · JSON: /api/concept/patterns/drag-and-drop-sorting.json · MD: /patterns/drag-and-drop-sorting.md
+
+**What / 这是什么:** 用直接拖动的方式调整列表项的先后顺序：按住条目（或把手）拖到目标位置，其余条目实时让位并给出落点提示。 它把"排序"从抽象的上下移按钮变成所见即所得的空间操作，同时保留按钮作为可达性兜底。
+
+**What (en):** Reorders list items by direct manipulation: press an item (or its handle), drag it to a target slot while neighbours give way and a drop hint appears. It turns ordering into a spatial, what-you-see-is-what-you-get action — with buttons kept as an accessible fallback.
+
+**When to use:** 用户需要自由决定条目顺序（播放列表、任务清单、栏目配置）；列表项数量适中，一屏内能看清全局；顺序调整频繁，按钮逐级移动太低效
+
+**When not to use:** 顺序由规则决定（按时间、按字母），无需手动调；列表很长且跨屏拖动容易迷失落点；主要用户在触屏上且行高太小，拖拽误触率高
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现列表拖拽排序（Drag & Drop Sorting）。
+
+先检查现有列表组件与排序交互，保持风格一致。
+用途：设置页的栏目顺序配置。
+要求：
+- HTML5 draggable 实现整行拖动，drop 后重排数据
+- 每行提供上移/下移按钮，支持键盘操作
+- 拖动中显示占位与目标高亮
+- 不引入 dnd 等新依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/empty-state — Empty State / 空状态
+
+- Type: patterns · Aliases: Empty State · 空状态页面 · 空白页占位 · 无数据占位 · 空数据提示 · 零数据状态 · 暂无内容
+- Page: /patterns/empty-state · JSON: /api/concept/patterns/empty-state.json · MD: /patterns/empty-state.md
+
+**What / 这是什么:** 当列表或页面没有数据时，不留一片空白，而是用插图、一句说明和一个明确的下一步操作填充。 它解决的是"用户面对空白不知道发生了什么、也不知道该做什么"的问题—— 把空档变成引导起点：首次使用教用户开始，搜索无结果给出路。
+
+**What (en):** When a list or page has no data, don't leave a void — fill it with an illustration, one sentence of explanation and a clear next action. It solves the "blank screen" problem where users can't tell what happened or what to do next, turning dead space into a starting point: onboarding for first use, a way out for fruitless searches.
+
+**When to use:** 首次使用，账号尚未产生数据；搜索或筛选没有匹配结果；操作清空了内容，需要引导恢复
+
+**When not to use:** 只是加载的瞬间，应使用骨架屏；数据缺失由错误导致，应区分错误态；编辑类画布，用户需要空白自由度
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现空状态（Empty State）。
+
+先检查现有插画资源与按钮组件，优先复用现有的描边插图风格与 CTA 样式。
+用途：项目列表首次使用与搜索无结果两种空态。
+要求：
+- 插图 + 说明文案 + 单个主 CTA 的标准结构
+- 无结果空态提供"清除筛选"出路
+- 空态与有数据态高度接近，切换不跳动
+- 与错误态区分，错误不复用空态
+- 支持 Dark Mode
+- 不新增不必要的依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/form-validation — Form Validation / 表单校验
+
+- Type: patterns · Aliases: 表单校验 · 输入报错 · 实时校验 · 表单验证 · 输入错误提示 · 红框报错
+- Page: /patterns/form-validation · JSON: /api/concept/patterns/form-validation.json · MD: /patterns/form-validation.md
+
+**What / 这是什么:** 在用户填写表单的过程中或提交时检查输入合法性，并把错误就地显示在对应字段旁边。 目标是让用户在离错误最近的位置、以最小的打断成本知道"哪里错了、怎么改"，而不是提交后被一整个错误页打回。
+
+**What (en):** Checks input validity during typing or at submit and surfaces errors right next to the offending field. The goal is to tell users, with minimal interruption and maximum locality, what went wrong and how to fix it — instead of bouncing them back with a page of errors after submit.
+
+**When to use:** 注册、登录、结账等字段正确性直接影响流程的表单；字段有明确格式约束（邮箱、手机号、密码规则）；表单较长，用户需要在提交前发现并修正问题
+
+**When not to use:** 用户还在输入中途就狂报错，造成干扰；纯偏好类选项没有对错，无需校验；错误信息含糊（"输入无效"），用户无法据此修正
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现表单校验（Form Validation）。
+
+先检查现有表单组件与错误提示样式，保持一致。
+用途：注册表单的邮箱字段。
+要求：
+- 失焦后实时校验，提交时兜底并聚焦首个错误字段
+- 错误信息就地显示在字段下方，写明原因与改法
+- aria-invalid 与 role="alert" 无障碍标注
+- 不引入表单库等新依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/infinite-scroll — Infinite Scroll / 无限滚动
+
+- Type: patterns · Aliases: Infinite Scroll · 无限加载 · 滚动到底自动加载 · 下滑加载更多 · 滚动加载 · 自动翻页
+- Page: /patterns/infinite-scroll · JSON: /api/concept/patterns/infinite-scroll.json · MD: /patterns/infinite-scroll.md
+
+**What / 这是什么:** 用"滚动到底自动追加下一页"取代传统分页：用户持续下滑，新内容不断出现， 底部以加载指示或哨兵元素衔接。它解决的是浏览节奏被打断的问题—— 用户不必寻找"下一页"按钮，注意力始终停留在内容流上，长列表被拆成一次次无感的追加。
+
+**What (en):** Replaces pagination with automatic loading: as the user scrolls to the bottom, the next page of content appends seamlessly, bridged by a loading indicator or sentinel element. It solves the broken browsing rhythm of hunting for a "next page" button — attention stays on the feed while long lists arrive in imperceptible chunks.
+
+**When to use:** 信息流、时间线等按时间追加的内容；浏览型任务，用户不追求精确定位；内容体量大、单页翻页成本高
+
+**When not to use:** 用户需要跳页、定位或回找特定条目；页脚内容重要，会被无限推远而难以触达；需要明确"共 N 条"的总量边界感
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现无限滚动（Infinite Scroll）。
+
+先检查现有列表组件与请求层，优先复用现有的加载指示与空态。
+用途：信息流页面自动加载下一页。
+要求：
+- 滚动到底自动触发加载，接近底部提前请求
+- 加载中加锁防重复触发，显示轻量加载指示
+- 失败时提供"加载更多"兜底按钮，耗尽时显示到底提示
+- 保留滚动位置，插入内容避免布局跳动
+- 尊重 prefers-reduced-motion
+- 不新增不必要的依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/inline-editing — Inline Editing / 行内编辑
+
+- Type: patterns · Aliases: Inline Editing · 行内编辑 · 就地编辑 · 点击变输入框 · 原地编辑 · 即点即改 · 单击编辑
+- Page: /patterns/inline-editing · JSON: /api/concept/patterns/inline-editing.json · MD: /patterns/inline-editing.md
+
+**What / 这是什么:** 页面上的文本本身即可编辑：单击把文本原位变成输入框，Enter 或失焦确认，Esc 取消， 改完所见即所得。它解决的是"小改动也要跳转完整编辑页"的问题—— 把修改成本降到一次点击，特别适合单字段的快速修订场景。
+
+**What (en):** The text on the page is itself the editor: a click swaps it for an input in place, Enter or blur commits, Escape cancels — what you fix is what you see. It solves the overhead of a full edit page for tiny changes, driving the cost of a correction down to a single click, ideal for quick single-field revisions.
+
+**When to use:** 文档标题、昵称等单字段的快速修改；看板卡片、表格单元格的轻量修订；低风险、易恢复的文本内容
+
+**When not to use:** 字段有复杂校验或多字段联动；误触成本高的区域（缺乏明确编辑入口时）；需要草稿、版本等编辑上下文的场景
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现行内编辑（Inline Editing）。
+
+先检查现有输入组件与表单校验体系，优先复用现有的输入框样式与提交逻辑。
+用途：个人资料页昵称与简介的快速修改。
+要求：
+- 点击文本原位切换为输入框，自动聚焦并全选
+- Enter 或失焦确认，Esc 取消还原，空值回退
+- 悬停有可编辑提示（虚线下划线或铅笔图标）
+- 多行字段支持 Shift+Enter 换行
+- 尊重 prefers-reduced-motion
+- 不新增不必要的依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/kanban-board — Kanban Board / 看板
+
+- Type: patterns · Aliases: 看板 · 任务看板 · kanban · 拖拽看板 · 任务面板
+- Page: /patterns/kanban-board · JSON: /api/concept/patterns/kanban-board.json · MD: /patterns/kanban-board.md
+
+**What / 这是什么:** 按状态分列的任务面板—— 通常"待办 / 进行中 / 已完成"三列， 卡片随状态推进在列间移动。 列的位置即流程阶段， 卡片的所在即任务状态， 一眼看清全局进展与瓶颈列。
+
+**What (en):** A column-per-status task board — usually "To do / In progress / Done" — where cards move between columns as work advances. Column position is the process stage, a card's home is its status: the whole flow and its bottleneck column are visible at a glance.
+
+**When to use:** 流程稳定、状态有限的任务管理（开发、招聘、内容生产）；团队需要一眼看出瓶颈（哪列堆积）；个人项目按阶段推进的轻量管理
+
+**When not to use:** 状态维度超过 4～5 列（认知负担陡增）；任务间有复杂依赖与层级（用甘特或树状）；纯时间维度的排程（日历更合适）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现一个任务看板。
+
+先检查现有状态管理与卡片组件，复用既有令牌。
+要求：
+- 三列（待办/进行中/已完成），列头带计数
+- 卡片可在列间移动（按钮或拖拽），乐观更新即时生效
+- 键盘可操作（按钮替代拖拽），空列可放置
+- 支持 Dark Mode
+- 不新增不必要的依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/keyboard-shortcuts — Keyboard Shortcuts / 快捷键
+
+- Type: patterns · Aliases: 快捷键 · 键盘快捷键 · 快捷键提示 · 键盘加速键 · 按键操作 · keyboard shortcuts · hotkeys · key bindings
+- Page: /patterns/keyboard-shortcuts · JSON: keydown,KeyboardEvent,:focus-visible · MD: /patterns/keyboard-shortcuts.md
+
+**What / 这是什么:** 为高频操作提供可发现的键盘加速键，并配帮助入口。提示可用工具条标注、快捷键对话框（⌘K 风格）或 vim 式序列。它服务专家用户提速，同时必须保证焦点可见、不抢夺输入框按键，新手也能查到怎么按。
+
+**What (en):** Discoverable keyboard accelerators for frequent commands, paired with a help entry. Hints can live in tooltips, a shortcuts dialog (⌘K-style) or vim-like sequences. It speeds up experts while keeping focus visible, never stealing keys from text inputs, and staying discoverable for newcomers.
+
+**When to use:** 高频重复操作密集（编辑器、后台、设计工具）；用户以键盘流为主，追求肌肉记忆；已有命令面板，需要补齐按键绑定与帮助
+
+**When not to use:** 表单输入为主的页面，全局劫持按键会毁掉打字；触屏为主的产品，快捷键无处施展；只给快捷键不给可发现入口，新手完全摸不到
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现快捷键体系。
+
+先检查现有组件体系和 Design Token，优先复用当前组件。
+保持现有项目视觉风格。不要新增不必要依赖。
+要求：
+- 高频操作有按键绑定，并在 UI 上可发现
+- 提供快捷键帮助对话框或速查入口
+- 不抢夺输入框按键，焦点环使用 :focus-visible
+- 尊重 prefers-reduced-motion
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/lazy-loading — Lazy Loading / 懒加载
+
+- Type: patterns · Aliases: 懒加载 · 按需加载 · 延迟加载 · 滚动到才加载 · 图片懒加载 · 进入视口加载
+- Page: /patterns/lazy-loading · JSON: /api/concept/patterns/lazy-loading.json · MD: /patterns/lazy-loading.md
+
+**What / 这是什么:** 用"推迟加载"的方式处理暂不在视口内的资源：图片、列表分块、组件等在接近或进入可视区域时才真正请求和渲染。 首屏只承担可见部分的开销，配合占位骨架避免突然撑开布局，让长页面既快又稳。
+
+**What (en):** Defers loading of off-viewport resources: images, list chunks and components are fetched and rendered only when they approach or enter the viewport. The first screen pays only for what is visible, with placeholders preventing layout jumps as content streams in.
+
+**When to use:** 页面含大量图片或长列表，首屏之外的资源较多；首屏加载速度是关键指标，需要削减初始请求；部分内容用户大概率不会滚动看到
+
+**When not to use:** 资源就在首屏内，懒加载反而引入延迟；打印、SEO 或无 JS 环境必须能拿到全部内容；资源极小且数量有限，切分收益低于复杂度成本
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现图片懒加载（Lazy Loading）。
+
+先检查项目内已有的图片组件与加载态，优先复用。
+用途：文章列表与长页面的配图。
+要求：
+- 优先原生 loading="lazy"，需要动画时用 IntersectionObserver
+- 占位与真实图片同宽高，避免布局跳动
+- 加载完成后淡入，尊重 prefers-reduced-motion
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/master-detail — Master Detail / 主从视图
+
+- Type: patterns · Aliases: Master Detail · 主从视图 · 主从布局 · 列表详情联动 · 左右分栏 · 双栏视图 · 左边列表右边详情
+- Page: /patterns/master-detail · JSON: /api/concept/patterns/master-detail.json · MD: /patterns/master-detail.md
+
+**What / 这是什么:** 左侧一列摘要条目，右侧展示选中项的完整详情，点击左侧条目右侧即时联动更新。 它解决的是"在列表页与详情页之间来回跳转"的问题——总览与细读同屏共存， 用户切换条目不丢方向感，浏览和比对多个条目的成本大幅降低。
+
+**What (en):** A summary list on one side with the selected item's full detail on the other; clicking an entry updates the detail pane instantly. It solves the constant back-and-forth between list and detail pages — overview and depth share one screen, so users keep their sense of place and switching or comparing multiple items becomes cheap.
+
+**When to use:** 邮件、文件管理器等条目密集的工具界面；需要在多个条目间快速切换或比对；宽屏空间充足，可容纳两栏
+
+**When not to use:** 屏幕过窄，需退化为列表 + 详情两级页面；详情内容很重，与列表同屏会互相挤压；条目间没有浏览关系，用户只看单个对象
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现主从视图（Master Detail）。
+
+先检查现有列表、侧栏与详情组件，优先复用现有的选中态样式。
+用途：项目列表 + 项目详情的同屏联动界面。
+要求：
+- 左侧摘要列表，右侧详情面板，点选即时联动
+- 选中态清晰（高亮 + 强调条），列表滚动位置不丢失
+- 两栏独立滚动，窄屏退化为堆叠布局并提供返回
+- 支持 Dark Mode
+- 不新增不必要的依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/onboarding-tour — Onboarding Tour / 新手引导
+
+- Type: patterns · Aliases: 新手引导 · 功能引导 · 引导蒙层 · 步骤引导 · 高亮引导 · 首次使用引导
+- Page: /patterns/onboarding-tour · JSON: /api/concept/patterns/onboarding-tour.json · MD: /patterns/onboarding-tour.md
+
+**What / 这是什么:** 用"蒙层 + 聚光高亮 + 分步气泡"的方式带用户认识界面：每一步只露出一个关键区域并就地解释， 上一步/下一步与步骤指示器控制节奏，可随时跳过。它把功能说明放在功能发生的位置， 而不是让用户去文档里自己找。
+
+**What (en):** Introduces an interface with an overlay, a spotlight cutout and step bubbles: each step reveals one key area and explains it in place, paced by prev/next controls and a step indicator, always skippable. The explanation lives where the feature happens instead of making users hunt for docs.
+
+**When to use:** 界面有 3～5 个核心功能值得主动介绍；新版本上线，重要入口的位置或含义变了；目标用户多为首次访问，且功能不易自行发现
+
+**When not to use:** 界面足够简单，用户自己探索更快；步骤太多太长，用户会连点跳过等于白做；每次进入都强制播放，应只在首次出现且可重看
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现新手引导（Onboarding Tour）。
+
+先检查现有 tooltip/popover 组件，气泡样式优先复用。
+用途：工作台首次访问的功能介绍。
+要求：
+- 3～5 步，每步聚光一个关键区域并就地解释
+- 支持上一步/下一步、步骤指示、随时跳过
+- 只在首次访问自动出现，提供重播入口
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/optimistic-ui — Optimistic UI / 乐观界面
+
+- Type: patterns · Aliases: Optimistic UI · 乐观更新 · 乐观界面 · 先改后等 · 即时假成功 · 先显示后确认
+- Page: /patterns/optimistic-ui · JSON: /api/concept/patterns/optimistic-ui.json · MD: /patterns/optimistic-ui.md
+
+**What / 这是什么:** 用户操作后立即按"预计成功"更新界面，真实请求在后台进行，成功则落定， 失败则回滚到原状态并提示。它解决的是"每个操作都要转圈等服务器"的问题—— 用短暂的不确定换取零等待的流畅感，特别适合点赞、收藏这类高频轻操作。
+
+**What (en):** Update the interface immediately as if the operation will succeed while the real request runs in the background; settle on success, roll back to the original state with a notice on failure. It solves the "wait for the server on every action" problem — trading brief uncertainty for a zero-latency feel, ideal for frequent light actions like likes and bookmarks.
+
+**When to use:** 点赞、收藏、关注等高频轻操作；弱网环境下仍想保持操作流畅；失败可回滚且业务后果轻微
+
+**When not to use:** 支付、下单等不可逆或高价值操作；结果决定后续流程的分支走向；回滚成本高，或回滚本身会造成困惑
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现乐观界面（Optimistic UI）。
+
+先检查现有请求层与提示组件，优先复用现有的 toast 与按钮状态样式。
+用途：内容卡片上的点赞 / 收藏操作。
+要求：
+- 点击立即更新界面并进入 pending 态，禁止重复提交
+- 请求成功落定，失败回滚原值并给出提示
+- 连续操作用请求序号防止乱序覆盖
+- 回滚提示可配合撤销操作
+- 尊重 prefers-reduced-motion
+- 不新增不必要的依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/paywall — Paywall / 付费墙
+
+- Type: patterns · Aliases: 付费墙 · 收费墙 · 会员墙 · 订阅墙 · 看一半要钱 · paywall · upgrade wall · subscription gate
+- Page: /patterns/paywall · JSON: /api/concept/patterns/paywall.json · MD: /patterns/paywall.md
+
+**What / 这是什么:** 在内容或功能达到门槛后阻止继续访问，要求付费或订阅才能解锁。可硬性截断、按次数计量，或用预览加升级提示软性引导。它把价值展示与付费决策接在一起，关键是先让用户看清能获得什么，再谈付费。
+
+**What (en):** Blocks content or features once a threshold is reached, requiring payment or subscription to continue. It can hard-cut, meter by count, or tease with previews and an upgrade nudge. It joins value demonstration to the pay decision — show what is gained first, then ask for payment.
+
+**When to use:** 内容或功能有明确付费价值，且免费部分足以体验；订阅制产品需要在关键节点推动升级；用量可计量（篇数、次数、席位）适合按量设门槛
+
+**When not to use:** 免费区太少，用户无法判断价值就先被拦住；一次性买断工具用订阅墙，预期错位；支持文档、法律条款等本该公开的内容
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现付费墙。
+
+先检查现有组件体系和 Design Token，优先复用当前组件。
+保持现有项目视觉风格。不要新增不必要依赖。
+要求：
+- 免费预览足以体验价值，门槛处清晰说明能获得什么
+- 升级 CTA 主操作唯一，价格与条款可发现
+- 服务端仍需拦截未付费请求，前端遮罩只是体验层
+- 尊重 prefers-reduced-motion
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/progressive-disclosure — Progressive Disclosure / 渐进式披露
+
+- Type: patterns · Aliases: Progressive Disclosure · 渐进式披露 · 逐步展开 · 分步显示 · 折叠收起详情 · 点开看更多 · 显示高级选项
+- Page: /patterns/progressive-disclosure · JSON: /api/concept/patterns/progressive-disclosure.json · MD: /patterns/progressive-disclosure.md
+
+**What / 这是什么:** 把信息分层呈现：先给最常用、最必要的部分，把次要细节藏到"展开""下一步""显示更多"后面， 用户主动索取时才展示。它解决的是一次性塞给用户太多内容的问题—— 降低初始认知负担，让界面入门简单，同时保留深度供高级用户按需取用。
+
+**What (en):** Layer the information: show only the most common and necessary parts first, hiding secondary details behind "expand", "next step" or "show more" until the user asks for them. It solves the problem of overwhelming users at once — the initial cognitive load stays low and the surface easy to learn, while depth remains available on demand for advanced users.
+
+**When to use:** 设置页中低频的高级选项；表单中选填或仅在特定条件下需要的字段；长内容的摘要与全文分层
+
+**When not to use:** 高频功能被折叠后难以被发现；用户需要横向对比全部选项；关键路径操作，隐藏会直接阻断任务
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现渐进式披露（Progressive Disclosure）。
+
+先检查现有折叠组件与表单体系，优先复用现有的展开动画与箭头图标。
+用途：发布表单的高级选项区域。
+要求：
+- 默认只显示必要字段，高级选项默认收起
+- 触发器带 aria-expanded / aria-controls，箭头随状态旋转
+- 展开高度平滑过渡，收起时其余布局不跳动
+- 收起的字段不参与校验
+- 尊重 prefers-reduced-motion
+- 不新增不必要的依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/pull-to-refresh — Pull to Refresh / 下拉刷新
+
+- Type: patterns · Aliases: Pull to Refresh · 下拉刷新 · 下拉更新 · 拉动刷新 · 手势刷新 · 下拉加载最新
+- Page: /patterns/pull-to-refresh · JSON: /api/concept/patterns/pull-to-refresh.json · MD: /patterns/pull-to-refresh.md
+
+**What / 这是什么:** 在列表顶部按住并向下拖动，出现随拖动距离变化的加载指示，超过阈值后松手即重新拉取最新数据。 它解决的是"内容可能已经过期"的问题——用户主动、可预期地请求更新， 而不是被动等待自动轮询，刷新的时机和结果都由自己掌控。
+
+**What (en):** Press at the top of a list and drag downward: an indicator tracks the pull distance, and releasing past a threshold refetches the latest data. It solves the "content may be stale" problem — the user requests a refresh deliberately and predictably, staying in control of both timing and outcome instead of waiting for background polling.
+
+**When to use:** 移动端时间线、消息、动态列表；内容有时效性但无需自动轮询；用户已被 iOS / Android 教育过该手势
+
+**When not to use:** 桌面鼠标环境，下拉手势不自然；顶部有重要吸顶操作，下拉容易误触；数据高频变化，应改用自动同步或推送
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现下拉刷新（Pull to Refresh）。
+
+先检查现有列表与加载指示组件，优先复用现有的旋转指示样式。
+用途：移动端动态列表手动刷新。
+要求：
+- 仅在列表位于顶部时接管下拉手势，不干扰正常滚动
+- 指示器随距离位移旋转，过阈值翻转提示，松手触发刷新
+- 刷新中锁住避免重复触发，完成后回弹并更新内容
+- 触摸与鼠标拖拽均可触发，尊重 prefers-reduced-motion
+- 不新增不必要的依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/search-filtering — Search Filtering / 搜索筛选
+
+- Type: patterns · Aliases: 搜索筛选 · 列表过滤 · 即时搜索 · 输入即搜 · 关键字过滤 · 筛选列表
+- Page: /patterns/search-filtering · JSON: /api/concept/patterns/search-filtering.json · MD: /patterns/search-filtering.md
+
+**What / 这是什么:** 用即时过滤把大列表缩到与当前输入相关的一小部分：用户在搜索框敲字，列表随之实时收窄， 并显示命中数量与空结果提示。它把"查找"变成"修剪"，不用提交、不用等跳转，反馈就在眼前。
+
+**What (en):** Narrows a large list to whatever matches the current input: every keystroke filters the list in place, with hit counts and an empty-state hint. Finding becomes pruning — no submit, no page jump, feedback stays right in front of the user.
+
+**When to use:** 列表条目在几十到几百条，一次加载即可全量过滤；用户记得目标的部分名称或标签，扫视比翻页快；设置、通讯录、组件库等查找型页面
+
+**When not to use:** 数据在海量服务端集合上，必须走后端搜索；条目本身无明显关键词可匹配；需要复杂多维条件组合，应交给筛选面板
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现搜索筛选（Search Filtering）。
+
+先检查现有列表与搜索输入组件，优先复用。
+用途：设置页的配置项查找。
+要求：
+- 输入即时过滤，无提交按钮
+- 显示命中数量，空结果给空状态与清除入口
+- 命中片段高亮
+- 不新增搜索类依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/skeleton-loading — Skeleton Loading / 骨架屏
+
+- Type: patterns · Aliases: Skeleton · 骨架加载 · 内容占位 · 灰色占位 · 加载占位图 · shimmer 占位
+- Page: /patterns/skeleton-loading · JSON: /api/concept/patterns/skeleton-loading.json · MD: /patterns/skeleton-loading.md
+
+**What / 这是什么:** 用与真实内容结构一致的灰色占位块表示加载状态，通常带轻微的微光扫过或呼吸动画。 它告诉用户"内容马上就位，结构长这样"，而不是让用户盯着空白或转圈等待。
+
+**What (en):** Grey placeholder blocks that mirror the real content structure while loading, usually with a subtle shimmer or pulse. It tells users "content is coming and it will look like this" instead of a blank page or a bare spinner.
+
+**When to use:** 内容结构相对稳定、可预知；预计加载时间在 1～3 秒之间；列表、卡片流等重复结构的内容页
+
+**When not to use:** 加载极快（< 300ms），骨架屏会闪一下反而干扰；内容结构完全不可预测，占位与结果差异过大；后台操作但页面结构不变，用进度或按钮状态更合适
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现骨架屏（Skeleton Loading）。
+
+先检查现有组件体系和 Design Token，优先复用现有的表面色与圆角变量。
+用途：文章列表加载状态。
+要求：
+- 灰色占位块表示内容结构（头像、标题、正文）
+- 轻微 shimmer 动画，尊重 prefers-reduced-motion
+- 占位尺寸与真实内容基本一致，避免布局跳动
+- 支持 Dark Mode
+- 不新增不必要的依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/undo-action — Undo Action / 撤销操作
+
+- Type: patterns · Aliases: 撤销 · 防误操作 · 撤销删除 · 撤回操作 · 后悔药 · 删除可恢复
+- Page: /patterns/undo-action · JSON: /api/concept/patterns/undo-action.json · MD: /patterns/undo-action.md
+
+**What / 这是什么:** 用"先执行、给反悔窗口"的方式处理高风险操作：删除等动作立即生效并展示结果，同时在底部弹出 带倒计时的撤销条，窗口期内一键恢复，倒计时结束才真正提交。相比弹窗确认，它不打断操作流， 又比"确认一次就完"的弹窗多了一层真正可用的后悔药。
+
+**What (en):** Handles risky actions with "apply first, allow regret": deletions take effect immediately and show the result, while a snackbar with a countdown offers one-tap undo until the timer expires. Unlike confirmation dialogs it never interrupts the flow, and unlike a single confirm it leaves a real window to change one's mind.
+
+**When to use:** 删除、归档、清空等破坏性但可恢复的操作；操作频繁，弹窗确认会严重拖慢节奏；操作结果立即可见，用户需要看到效果后再决定
+
+**When not to use:** 操作不可逆（永久删除、对外发送），撤销条会给出错误安全感；操作影响重大且低频，正式确认对话框更合适；操作在后台静默完成，用户感知不到结果
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现撤销操作（Undo Action）。
+
+先检查现有 toast/snackbar 组件，优先在其内部扩展撤销能力。
+用途：任务列表的删除操作。
+要求：
+- 删除立即生效，底部撤销条提供 5 秒撤销窗口与倒计时进度
+- 撤销恢复原位置，倒计时结束才真正提交删除
+- 不与确认弹窗叠加使用，避免双重打断
+- 不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## patterns/wizard — Wizard / 多步表单
+
+- Type: patterns · Aliases: 多步表单 · 分步填写 · 向导 · 步骤表单 · 一步步填的表单 · wizard · stepper form
+- Page: /patterns/wizard · JSON: /api/concept/patterns/wizard.json · MD: /patterns/wizard.md
+
+**What / 这是什么:** 把长表单拆成有序步骤，每步聚焦少量字段，逐步推进到完成。用步骤指示器标出进度与当前位置，用户可回看已完成步骤、修正后再前进，末步通常汇总确认。它把"填不完的大表单"变成可完成的小任务，降低单屏认知负荷。
+
+**What (en):** A long form split into ordered steps, each focusing on a few fields, advancing toward completion. A step indicator marks progress and the current slot; users can revisit finished steps, correct them, and press on, usually with a final review. It turns an endless form into finishable small tasks and lightens per-screen cognitive load.
+
+**When to use:** 字段超过约 8 个，且可按主题自然分组；填写有先后依赖，后一步答案取决于前一步；注册、预订、开户、理赔等长流程申请
+
+**When not to use:** 字段很少，一屏填完比翻步骤更快；步骤之间毫无依赖，强制线性只会碍事；用户需要反复对照全部字段（如并排比较填写）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现多步表单向导。
+
+先检查现有组件体系和 Design Token，优先复用当前组件。
+保持现有项目视觉风格。不要新增不必要依赖。
+要求：
+- 步骤指示 + 每步少量字段 + 上一步/下一步导航
+- 下一步前校验当前步，数据内存累积、末步提交
+- 当前步标 aria-current="step"，支持键盘 Tab 遍历
+- 尊重 prefers-reduced-motion
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/art-deco — Art Deco / 装饰艺术
+
+- Type: styles · Aliases: 盖茨比风格 · 黑金几何风 · 对称奢华风 · deco
+- Page: /styles/art-deco · JSON: /api/concept/styles/art-deco.json · MD: /styles/art-deco.md
+
+**What / 这是什么:** 以几何秩序、对称构图、放射线和阶梯轮廓构成鲜明装饰感的视觉语言。网页中的现代演绎常使用深色底、金属色细线和展示字体，强调仪式感与主次节奏。装饰应集中于标题、边框和关键视觉；正文、表单和导航仍需保留简洁清楚的阅读与操作方式。
+
+**What (en):** A decorative visual language built from geometry, symmetry, radiating lines and stepped forms. A contemporary web interpretation often pairs dark surfaces with metallic hairlines and display typography. Concentrate decoration in headings, frames and key visuals while keeping body text, forms and navigation straightforward.
+
+**When to use:** 精品酒店、文化活动、餐饮与展览页面。；希望表达典雅与仪式感的品牌首屏。
+
+**When not to use:** 高频业务后台不宜使用繁复装饰。；细金线不能替代文字和控件的可见边界。
+
+**Agent prompt (zh):**
+
+```text
+先检查项目的布局、字体和主题变量，以装饰艺术风格完成一个可交互品牌场景。
+展示性衬线标题，短标签增加字距。午夜蓝黑、暖金；正文用柔和浅色。细直线、双层边框、阶梯轮廓。不依赖阴影，以边线分出层次。轴线对齐，留白对称，移动端收敛装饰。
+用 SVG 绘制放射线和阶梯形装饰，语义内容独立于装饰层。金色只作为强调，正文需有足够对比。窄屏保持标题和表单的完整宽度，减少外围装饰。
+按钮必须有明确反馈，窄屏可用，保留焦点和 reduced-motion 支持，不新增依赖。完成后运行检查并列出修改文件。
+```
+
+## styles/aurora — Aurora Gradient / 极光渐变
+
+- Type: styles · Aliases: 极光渐变 · 极光风格 · 渐变光斑背景 · 流动光晕设计 · 那种绿紫渐变的模糊背景 · 大面积渐变光效 · Aurora Background · Mesh Gradient
+- Page: /styles/aurora · JSON: /api/concept/styles/aurora.json · MD: /styles/aurora.md
+
+**What / 这是什么:** 用大面积流动渐变光斑营造氛围的视觉语言：青绿 紫 蓝 多色模糊色块在背景 中缓慢漂移融合，前景内容保持极简克制。色彩是主角——像极光一样柔和 跨 色相 渐次过渡，界面因此获得呼吸感与情绪温度。
+
+**What (en):** An atmosphere built from large flowing gradient blooms: teal, violet and blue blurred blobs drift and merge across the background while the foreground stays minimal. Color is the protagonist — soft, cross-hue, aurora-like transitions that give the interface breath and warmth.
+
+**When to use:** 落地页 首屏 品牌页，需要第一眼氛围与情绪；AI 创意工具类产品，渐变已成为其品类视觉符号；极简前景 + 需要一点温度的深浅色界面
+
+**When not to use:** 数据密集工具界面，大面积渐变干扰信息读取；可访问性敏感场景，光斑上的文字对比度难保证；大量使用动画光斑时低端设备性能敏感
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中用极光渐变（Aurora Gradient）实现一个氛围感首屏区块。
+
+先检查现有 Design Token 与主题变量，光斑颜色做成主题可配置变量。
+要求：
+- 2～4 个 radial-gradient 模糊光斑，色相跨 2～3 段且部分重叠
+- 前景极简：纯色文字或半透明面板保证对比度
+- 光斑动画只做慢速 transform 漂移，时长乘 var(--demo-speed, 1)，
+  并支持 prefers-reduced-motion 静止
+- 支持深浅两套极光配色
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/bauhaus — Bauhaus / 包豪斯
+
+- Type: styles · Aliases: 包豪斯 · 包豪斯风格 · 几何构成主义 · 红黄蓝几何风 · 原色几何设计 · 圆三角方构成 · Bauhaus Design · Geometric Abstraction
+- Page: /styles/bauhaus · JSON: /api/concept/styles/bauhaus.json · MD: /styles/bauhaus.md
+
+**What / 这是什么:** 用基础几何与三原色做构成游戏的视觉语言：圆 三角 方三种形状，红 黄 蓝 三原色加黑，不对称但平衡的构图，装饰服从功能。每一块色面与线条都参与 结构，海报像一场几何关系的研究。
+
+**What (en):** A visual language of playing composition with geometry: circle, triangle and square in primary red, yellow and blue plus black, asymmetric yet balanced. Decoration obeys function — every plane and line carries structure, and a poster reads as a study in geometric relations.
+
+**When to use:** 品牌 海报 活动页，需要强烈的图形识别与艺术气质；教育 创意工具类产品，传达"创造与构成"的气质；大面积视觉主视觉区，元素少而冲击力要求高
+
+**When not to use:** 信息密集的界面，几何装饰会干扰数据可读性；需要长时间阅读的产品场景；品牌色板已被锁定，无法让位于三原色
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中用包豪斯风格（Bauhaus）实现一个几何构成主视觉区块。
+
+先检查现有 Design Token 与色彩体系，三原色做成独立变量不污染品牌色。
+要求：
+- 圆 三角 方与红 黄 蓝 黑构成非对称平衡的主视觉
+- 几何形用 CSS（border-radius/clip-path）实现，不引入图片素材
+- 文字与几何穿插接触，构图重心平衡
+- 无渐变 无投影 无纹理
+- 支持深色模式
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/bento-grid — Bento Grid / 便当盒网格
+
+- Type: styles · Aliases: 便当盒布局 · 便当格网格 · Bento网格 · 苹果发布会那种格子布局 · 拼块仪表盘 · 不等宽卡片网格 · Bento Box Layout · Bento Grid
+- Page: /styles/bento-grid · JSON: /api/concept/styles/bento-grid.json · MD: /styles/bento-grid.md
+
+**What / 这是什么:** 把界面装进便当盒的布局语言：一组圆角矩形像分格便当一样拼合，各格跨度不同 ——大格承载主内容，小格陈列数据与点缀，格与格之间留窄缝对齐同一套网格。 它是卡片网格的升级：用面积差异直接表达信息优先级。
+
+**What (en):** A layout language that packs the interface like a bento box: rounded tiles of varying spans snap to one grid with narrow gutters — big cells carry the hero content, small cells hold stats and garnish. A card-grid upgrade where area itself encodes priority.
+
+**When to use:** 仪表盘 个人主页 产品概览，内容模块多且优先级分明；功能特性展示页，一格一卖点整齐陈列；想用面积对比引导视觉动线，避免均质卡片海洋
+
+**When not to use:** 内容长度不可控时，格子会被撑破或大量留空；小屏只放得下一列，便当结构失去意义；顺序阅读的长文场景，网格拼接会打断叙事
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中用便当盒网格（Bento Grid）实现一个概览区块。
+
+先检查现有栅格 断点与卡片组件，复用现有间距与圆角变量。
+要求：
+- 一套统一网格，格子按 span 拼合，gap 窄缝对齐
+- 每格一个主题，层级靠面积表达
+- 圆角 内边距全格统一，整体像一个便当盒
+- 移动端降级为 2 列或单列不破格
+- 支持深色模式
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/brutalism — Brutalism / 粗野主义
+
+- Type: styles · Aliases: 粗野主义 · 野兽派网页 · 那种很糙的黑白网页 · 超大字不修边幅 · 原始网页风 · brutalism · web brutalism · brutalist web design
+- Page: /styles/brutalism · JSON: /api/concept/styles/brutalism.json · MD: /styles/brutalism.md
+
+**What / 这是什么:** 用裸露的结构、超大字号和原始对比色强调「反精致」的网页视觉语言。黑白硬切、可见网格、 直角硬边，保留默认 HTML 的诚实感；信息直接砸向读者，拒绝圆角、渐变与装饰性打磨。
+
+**What (en):** Raw structure, oversized type and blunt contrast as an anti-polish web look. Monochrome cuts, visible grids and hard square edges keep the honesty of default HTML. Information hits the reader straight on; radii, gradients and decorative refinement are refused.
+
+**When to use:** 设计师作品集、独立出版、艺术机构官网，态度本身就是内容；想在同质化的精致界面里用「不修边幅」制造强烈记忆点；低密度宣言页、活动页，超大字当海报使
+
+**When not to use:** 金融、医疗、政务等需要稳重可信的操作型产品；长表单与高密度数据后台，硬切对比会加剧阅读疲劳；需要传达精细、高端、呵护感的品牌叙事
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现 Brutalism 粗野主义视觉风格。
+
+先检查现有组件体系和 Design Token，优先复用当前组件，只替换视觉层。
+要求：
+- 全部圆角 0，无渐变无柔和阴影，层级用粗描边或反色块表达
+- 标题超大字号（clamp），系统无衬线或等宽字体
+- 背景可见网格线，单一刺眼强调色（如 #FF3B00），其余黑白
+- 按钮 hover 反色，不做弹跳位移
+- 深色模式反转明度但保持硬切语汇
+- 文字对比度不低于 4.5:1，阅读顺序不被装饰打乱
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/claymorphism — Claymorphism / 黏土风
+
+- Type: styles · Aliases: 黏土风 · 黏土拟物 · 软糖质感设计 · 膨胀立体卡片 · 3D黏土按钮 · 橡皮泥风格 · Clay 3D · Puffy UI
+- Page: /styles/claymorphism · JSON: /api/concept/styles/claymorphism.json · MD: /styles/claymorphism.md
+
+**What / 这是什么:** 把控件捏成软黏土的视觉语言：大圆角、柔和粉彩底色，双重阴影——向内的内 凹阴影加向外的膨胀投影——让元素像充了气的黏土块，圆润 饱满 软乎乎。 它是新拟物与 3D 卡通之间的一种手感化中间态。
+
+**What (en):** A visual language that molds controls from soft clay: generous radii on pastel grounds, with a double shadow — an inner concave plus an outer inflated drop — so elements feel like air-puffed clay: round, plump, squishable. A tactile middle ground between neumorphism and 3D cartoon.
+
+**When to use:** 儿童 教育 休闲游戏类产品，需要亲和与手感；轻松的社交 消费品牌，传达可爱与松弛感；强调触觉反馈的移动端轻交互场景
+
+**When not to use:** 专业 金融 企业级场景，软糖感削弱专业信号；信息密集的后台界面，膨胀阴影消耗空间与注意力；深色重度使用场景，粉彩膨胀感不易维持
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中用黏土风（Claymorphism）实现一组膨胀按钮与卡片区块。
+
+先检查现有 Design Token 与阴影变量，膨胀阴影参数做成可配置变量。
+要求：
+- 大圆角 + 三重阴影（外投影带色 内下压 内上高光）模拟黏土膨胀
+- 按下态外投影收缩 内凹加强，形成捏压反馈
+- 投影与底色同色系，避免灰黑阴影显脏
+- 文字对比度达标；支持深色模式（深灰哑光黏土）
+- 若有动效，尊重 prefers-reduced-motion
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/corporate-memphis — Corporate Memphis / 企业孟菲斯
+
+- Type: styles · Aliases: 企业孟菲斯 · 大厂插画风 · 蓝色小人插画 · 长手长脚扁平小人 · 科技公司插画风 · Alegria · Big Tech illustration · flat blob people
+- Page: /styles/corporate-memphis · JSON: /api/concept/styles/corporate-memphis.json · MD: /styles/corporate-memphis.md
+
+**What / 这是什么:** 用扁平抽象人形与受限纯色表示「友好大厂」的插画视觉语言：小头长肢、无面部细节、 紫黄桃等有限色板，圆润色块构图。生产成本低、人人可画，也因此高度同质。
+
+**What (en):** Flat abstract human figures and a limited solid palette as the friendly big-tech illustration look: small heads, exaggerated limbs, no facial detail, purple-yellow-peach blocks in rounded compositions. Cheap to mass-produce — and therefore highly homogenous.
+
+**When to use:** SaaS、工具类产品的空状态、引导页、营销插画，需要无攻击性的友好感；多人多地协作维护插画系统，要求画风可复制；要传达包容、协作、普惠的抽象价值观
+
+**When not to use:** 品牌需要独特记忆点，同质化插画会让产品淹没在大厂语汇里；高端、奢侈、手作、严肃议题，扁平小人撑不起重量；用插画传达具体产品功能，抽象人形说不清细节
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现 Corporate Memphis 企业孟菲斯视觉风格。
+
+先检查现有插画资产与 Design Token，色板收敛到 3～5 色独立变量。
+要求：
+- 扁平抽象人形（小头长肢、无面部细节、非写实肤色）或抽象圆角色块
+- 纯平涂，无描边、无渐变阴影（渐变变体除外，且仅双色）
+- 胶囊按钮、无边框卡片、大留白
+- 插画装饰 aria-hidden，不承担关键信息
+- 文字对比度达标，深色模式保留高饱和色
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/cyberpunk — Cyberpunk / 赛博朋克
+
+- Type: styles · Aliases: 赛博朋克 · 赛博风格 · 霓虹故障风 · 黑底荧光紫青 · 数字废土风 · 黑客终端风 · Cyberpunk UI · Neon Glitch
+- Page: /styles/cyberpunk · JSON: /api/concept/styles/cyberpunk.json · MD: /styles/cyberpunk.md
+
+**What / 这是什么:** "High tech, low life" 的视觉语言：近黑的深底上，霓虹青与品红发光描边切割 界面，等宽字体与终端符号贯穿，扫描线 故障位移 毛刺纹理营造信息系统过载 的压抑未来感。光是从黑暗里切出来的，界面像一台被劫持的显示器。
+
+**What (en):** "High tech, low life" as a visual language: neon cyan and magenta edges cut through a near-black ground, monospace type and terminal glyphs run throughout, and scanlines plus glitch offsets suggest overloaded systems. Light is sliced out of darkness — the screen feels hijacked.
+
+**When to use:** 游戏 科幻项目 黑客主题社区，风格即世界观；音乐 夜店 电竞品牌，需要强烈的亚文化信号；深色为主的产品，可低成本叠加霓虹点缀
+
+**When not to use:** 无障碍要求高的正文阅读，荧光色对比闪烁伤眼；企业级正式场景，亚文化气质会削弱信任；浅色底为主的现有体系，硬切赛博朋克成本高
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中用赛博朋克风格（Cyberpunk）实现一个终端式输入与面板区块。
+
+先检查现有主题体系，深色霓虹主题以独立 class 作用域隔离，不污染默认主题。
+要求：
+- 近黑深底 + 霓虹青/品红描边与发光，切角面板用 clip-path
+- 等宽字体与终端符号（> _）贯穿
+- 扫描线叠层 opacity ≤ 0.06，故障动画低频短促且尊重 prefers-reduced-motion
+- 关键正文对比度达标，霓虹只做点缀不做正文色
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/editorial — Editorial / 杂志编辑风
+
+- Type: styles · Aliases: 杂志编辑风 · 杂志风 · 编辑排版风 · 报刊风格 · 首字下沉那种排版 · 衬线大标题风 · Magazine Layout · Editorial Design
+- Page: /styles/editorial · JSON: /api/concept/styles/editorial.json · MD: /styles/editorial.md
+
+**What / 这是什么:** 把页面当作杂志版面经营的视觉语言：衬线大标题、首字下沉、细分栏、章节 编号与发丝分隔线，图文穿插而节奏如翻页。黑白灰为底、衬线与无衬线搭配， 用版式语言讲故事，而非用装饰堆砌氛围。
+
+**What (en):** A visual language that lays out the page like a magazine spread: serif display headings, drop caps, hairline column rules, issue numbering and generous margins, with imagery woven into a page-turning rhythm. Black, white and grey grounds, serif-and-sans pairing — the layout tells the story, not ornament.
+
+**When to use:** 内容型产品：长文 数字杂志 作品集 品牌刊物；品牌想传达文化质感与文字的尊严；图片与文字有明确主次关系的叙事页面
+
+**When not to use:** 任务型工具界面，效率优先于阅读体验；需要快速扫读的仪表盘与列表；团队缺乏排版功底，劣质衬线会暴露无遗
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中用杂志编辑风（Editorial）实现一个长文阅读区块。
+
+先检查现有字体栈与排版变量，衬线字体通过现有字体系统引入。
+要求：
+- 衬线大标题 + 眉题 + 正文三级结构，行长 60～75 字符
+- 首字下沉与章节编号用 CSS 实现
+- 分隔只用发丝线与留白，无重投影无重渐变
+- 移动端字号行距同步适配，标题不换行断裂尴尬
+- 支持深色模式（暖黑底保纸感）
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/flat-design — Flat Design / 扁平化设计
+
+- Type: styles · Aliases: 扁平化 · 扁平风格 · 扁平化设计 · 没有阴影那种平面设计 · 色块图标风格 · 扁平UI · Flat UI · Flat Design
+- Page: /styles/flat-design · JSON: /api/concept/styles/flat-design.json · MD: /styles/flat-design.md
+
+**What / 这是什么:** 拒绝一切拟真修饰的视觉语言：纯色块、几何形状、无渐变无投影无纹理，靠颜色、 形状与排版建立层级。它是拟物化的反面——界面不再模仿实物，而是承认自己 是一块发光的平面，用清晰与直接换取效率与一致性。
+
+**What (en):** A visual language that strips out all simulation: solid color blocks, simple geometry, no gradients, shadows or textures. Hierarchy comes from color, shape and typography alone. The opposite of skeuomorphism — the interface admits it is a glowing plane and trades decoration for clarity.
+
+**When to use:** 系统级产品需要跨平台一致与极低成本维护；图标 信息图 后台界面，要求一眼识别 快速扫读；移动端小屏幕，装饰会挤占内容空间
+
+**When not to use:** 层级复杂且用户需要空间线索区分可点与不可点；品牌需要温度 情绪与精致感；大面积灰底上加细线按钮，可点性暗示不足（ Flat 2.0 随之出现）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中用扁平化设计（Flat Design）实现一组卡片与按钮区块。
+
+先检查现有 Design Token 与色彩变量，把风格色板映射进现有变量体系。
+要求：
+- 只用纯色填充，无渐变 无投影 无纹理
+- 交互元素用高饱和强调色，hover 仅改 background-color
+- 层级靠色块面积 明度差与字号字重建立
+- 支持深色模式（独立色板，不做简单反色）
+- 若有过渡动画，尊重 prefers-reduced-motion，150ms 内完成
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/glassmorphism — Glassmorphism / 玻璃拟态
+
+- Type: styles · Aliases: 毛玻璃 · 苹果那种透明玻璃效果 · 玻璃拟态 · 磨砂玻璃 · 玻璃效果 · 半透明模糊背景 · Frosted Glass · Glassmorphism UI
+- Page: /styles/glassmorphism · JSON: /api/concept/styles/glassmorphism.json · MD: /styles/glassmorphism.md
+
+**What / 这是什么:** 用半透明磨砂玻璃质感表示悬浮层级的视觉语言：backdrop-filter 背景模糊 + 低透明度 填充 + 一圈细窄的白色高光描边，让面板像磨砂玻璃片一样透出底下的色彩与图形。 它强调"层"——玻璃之下必须有可透出的丰富背景，否则质感无从谈起。
+
+**What (en):** A visual language that expresses floating layers as frosted glass: a blurred backdrop (backdrop-filter), a low-opacity fill and a thin white rim of light. Panels literally reveal the vivid background beneath them, so the style is about depth — it only works over rich, colorful content worth revealing.
+
+**When to use:** 背景是渐变 照片或彩色内容，需要透出层次；弹层 播放器 系统级悬浮面板，要轻盈不要沉闷；想延续 macOS iOS 的材质语言获得熟悉感
+
+**When not to use:** 背景纯净单调，玻璃无内容可透 出来只剩灰雾；长文本密集区域，模糊底会持续削弱文字对比度；低端设备兼容与性能敏感场景，backdrop-filter 开销大
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中用玻璃拟态风格（Glassmorphism）实现一个悬浮卡片 + 按钮区块。
+
+先检查现有 Design Token 与弹层组件，确认背景层方案（渐变/图片）。
+要求：
+- 页面层提供彩色渐变背景，玻璃面板半透明 + backdrop-filter blur
+- 1px 半透明白描边与顶部高光内阴影表现玻璃厚度
+- @supports 降级：不支持时提高面板不透明度保证可读
+- 深色模式使用更深渐变底（玻璃在深底上最典型）
+- 玻璃上的文字对比度满足可读性要求
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/hand-drawn — Hand-drawn UI / 手绘涂鸦
+
+- Type: styles · Aliases: 手绘风 · 涂鸦风格 · 手绘描边 · 歪歪扭扭的线 · 纸感手写界面 · hand-drawn UI · doodle UI · sketchy UI
+- Page: /styles/hand-drawn · JSON: /api/concept/styles/hand-drawn.json · MD: /styles/hand-drawn.md
+
+**What / 这是什么:** 用抖动线条、歪斜描边、纸张纹理和马克笔高亮表示「人手画的」的界面视觉语言。 圆故意画不圆，边框带手感抖动，图标像随手勾的。以人的温度对抗机器级完美。
+
+**What (en):** Wobbly strokes, skewed borders, paper texture and marker highlights as a human-made interface look. Circles stay imperfect, outlines tremble, icons read as quick sketches. Human warmth against machine-perfect UI.
+
+**When to use:** 独立创作者、手作品牌、教育类产品，需要亲和与在场感；空状态、引导气泡、彩蛋等轻量场景，涂鸦当调味；想打破 AI 生成界面的过度光滑与同质
+
+**When not to use:** 金融、法务、医疗等需要精确与权威的界面；高密度数据表格与仪表盘，抖动线条干扰数字对齐；长文阅读区，纸纹与高亮叠多了伤阅读
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现 Hand-drawn UI 手绘涂鸦视觉风格。
+
+先检查现有组件与纹理资产，手绘效果限制在展示层，不改交互命中区域。
+要求：
+- 非对称圆角抖动描边，2～4 个轻微倾斜元素
+- 纸纹底（横线或噪点，透明度 < 0.12）与马克笔高亮
+- 图标用手绘路径或粗描边简笔，装饰 aria-hidden
+- 按钮命中区域保持规则矩形，只让视觉描边抖动
+- 深色模式牛皮纸深棕底；动效尊重 prefers-reduced-motion
+- 文字对比度达标，不新增依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/liquid-glass — Liquid Glass / 液态玻璃
+
+- Type: styles · Aliases: 液态玻璃 · 苹果新玻璃 · 厚玻璃折射 · 玻璃透镜效果 · Liquid Glass · refractive glass UI
+- Page: /styles/liquid-glass · JSON: /api/concept/styles/liquid-glass.json · MD: /styles/liquid-glass.md
+
+**What / 这是什么:** 用厚折射玻璃层、镜面高光与液体形变表示「功能浮层」的视觉语言。玻璃像一块厚透镜， 折射底下的内容并反射环境光，边缘带 lensing 变形；强调材质的体积与流动性。
+
+**What (en):** Thick refractive glass layers, specular highlights and liquid morphing as a functional overlay look. The glass is a thick lens — it bends content beneath and reflects the room, with edge lensing distortion. Volume and fluidity of the material are the point.
+
+**When to use:** 需要与系统级导航 控制条 浮层保持同一材质语言；底下是彩色照片或丰富内容，折射透出层次才有意义；想要「厚玻璃片」的体积感，而不是一层薄雾
+
+**When not to use:** 长文本密集区，折射与高光会持续干扰阅读；低端设备与性能敏感场景，实时折射开销大；只需要轻量磨砂分层，那用玻璃拟态更省
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现 Liquid Glass 液态玻璃视觉风格。
+
+先检查现有弹层与导航组件，确认底层有可折射的彩色内容。
+要求：
+- 厚玻璃：低透明填充 + backdrop blur/saturate + 顶部镜面高光 + 底部暗边
+- 边缘用半透明白描边暗示 lensing，不用薄磨砂一片雾
+- 控制件浮在独立功能层，玻璃不遮死底层内容
+- @supports 降级为更实填充；深色模式保留高光
+- 文字对比度按折射后的实际背景校验
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/memphis — Memphis Design / 孟菲斯风格
+
+- Type: styles · Aliases: 孟菲斯风格 · 孟菲斯设计 · 八十年代波普风 · 波点波浪线装饰风 · 彩色几何涂鸦风 · 水磨石撞色风 · Memphis Milano · Postmodern Pop
+- Page: /styles/memphis · JSON: /api/concept/styles/memphis.json · MD: /styles/memphis.md
+
+**What / 这是什么:** 反功能主义的后现代视觉语言：波浪线 圆点 锯齿 斑点等天真涂鸦元素，与高饱和 撞色、黑色粗描边一起铺满画面，故意打破网格与秩序。它拥抱廉价与热闹，用 "丑得快乐"对抗优雅的现代主义。
+
+**What (en):** The postmodern anti-functionalist language: squiggles, dots, zigzags and confetti spots in saturated clashing colors with bold black outlines, deliberately breaking grids and order. It embraces the cheap and the festive — happily ugly against modernist good taste.
+
+**When to use:** 潮流 玩具 派对 音乐节等需要欢乐能量的场景；儿童与创意教育产品，热闹无攻击性；短期营销活动，需要一眼难忘的视觉记忆点
+
+**When not to use:** 需要长时间专注使用的工具与阅读产品；品牌调性高级 克制 或面向严肃决策者；信息密集界面，装饰密度会淹没功能
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中用孟菲斯风格（Memphis Design）实现一组撞色卡片与按钮区块。
+
+先检查现有 Design Token 与色彩变量，孟菲斯色板与底纹做独立作用域。
+要求：
+- 黑白几何底纹（波点/条纹）+ 高饱和撞色块 + 黑描边 + 偏移实心阴影
+- 涂鸦点缀元素（波浪 锯齿 形状）控制在 3～5 个
+- 文字对比度达标，装饰不承载关键信息
+- 支持深色模式（墨蓝底，撞色保持饱和）
+- 若有 hover 动效，尊重 prefers-reduced-motion
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/minimalism — Minimalism / 极简主义
+
+- Type: styles · Aliases: 极简风 · 简约风格 · 性冷淡风 · 大量留白那种设计 · 性冷淡设计 · Minimal · Minimalist Design · Less is more
+- Page: /styles/minimalism · JSON: /api/concept/styles/minimalism.json · MD: /styles/minimalism.md
+
+**What / 这是什么:** 以"少即是多"为准则的视觉语言：用大量留白、克制的黑白灰配色与有限字体层级 来凸显内容本身，删除一切装饰性元素，层级完全依靠空间、字重与疏密建立。 安静、克制、内容至上是它的气质。
+
+**What (en):** A visual language built on "less is more": generous whitespace, a restrained monochrome palette and very few type scales let the content speak. All decoration is stripped away; hierarchy is created purely by space, weight and rhythm. Quiet, restrained, content-first.
+
+**When to use:** 内容为王的产品——阅读、写作、摄影、作品集；想传达专业、克制、高端的品牌气质；元素少而结构清晰的页面（官网首屏、详情页）
+
+**When not to use:** 信息密度高的后台与数据界面，过度留白牺牲效率；需要情绪浓度与热闹感的营销、娱乐、节庆场景；可用元素很少时容易显得"空而廉价"，需极强排版功底兜底
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中用极简主义风格（Minimalism）实现一个内容卡片区块。
+
+先检查现有 Design Token 与组件体系，复用既有的字号与间距变量。
+要求：
+- 大量留白，层级只靠字号 字重 空间建立
+- 配色收敛为黑 白 灰 + 至多一个强调色
+- 无投影 无渐变 无纹理，分隔用 1px 发丝线或留白
+- 支持深色模式
+- 若加入任何过渡动画，尊重 prefers-reduced-motion，时长 150ms 内
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/neobrutalism — Neobrutalism / 新粗野主义
+
+- Type: styles · Aliases: 新粗野主义 · 粗野风 · 大黑边风格 · 硬阴影风格 · 新残酷主义 · Neo-brutalism · Brutalist Web Design
+- Page: /styles/neobrutalism · JSON: /api/concept/styles/neobrutalism.json · MD: /styles/neobrutalism.md
+
+**What / 这是什么:** 用粗黑描边、高饱和撞色与生硬的偏移实心阴影构成的高对比视觉语言：元素像彩色 贴纸一样直接砸在页面上，配合夸张的圆角与醒目标签。它刻意拒绝精致与圆滑， 以"丑得理直气壮"的态度换取强烈的记忆点与年轻个性。
+
+**What (en):** A loud visual language of thick black outlines, saturated clashing colors and hard offset shadows: elements sit on the page like bold stickers, paired with chunky radii and punchy badges. It deliberately rejects polish and subtlety, trading refinement for instant recognition and a rebellious, playful voice.
+
+**When to use:** 面向年轻群体的品牌 活动 开发者工具官网；想在千篇一律的精致界面里制造强烈记忆点；营销页 作品集 创意社区等低密度高表现力场景
+
+**When not to use:** 金融 医疗 企业级产品等需要稳重可信的场景；长时间使用的生产力工具，高对比装饰易造成视觉疲劳；内容密集 数据密集的界面，粗边与大色块挤占信息空间
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中用新粗野主义风格（Neobrutalism）实现一个卡片 + 按钮区块。
+
+先检查现有组件与 Design Token，确定是否已有可复用的边框/阴影变量。
+要求：
+- 粗黑描边（2～3px）+ 偏移实心阴影（无模糊）
+- 高饱和撞色，底色用奶油色系
+- 按钮 hover 上浮、active 阴影归零的物理按压感
+- 支持深色模式（近黑底，彩色保持高亮）
+- 过渡动画尊重 prefers-reduced-motion，时长 120ms 内
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/neumorphism — Neumorphism / 新拟态
+
+- Type: styles · Aliases: 软浮雕风格 · 凹凸按钮 · 柔和双阴影 · soft UI
+- Page: /styles/neumorphism · JSON: /api/concept/styles/neumorphism.json · MD: /styles/neumorphism.md
+
+**What / 这是什么:** 通过同色背景上的明暗双阴影表现凸起和凹陷的界面风格。元素像从同一块柔软材质中压出，适合少量控件的展示场景。它的视觉边界较弱，因此不能只靠阴影表达可点击、选中或禁用状态；需要明确文字、焦点轮廓与足够对比，并为深色主题重新计算阴影。
+
+**What (en):** A soft relief style that uses paired light and dark shadows on similarly colored surfaces. Controls appear pressed into or raised from a shared material. It works best with a small number of elements. Shadows alone cannot communicate interactivity, selection or disabled states; retain labels, visible focus and sufficient contrast.
+
+**When to use:** 音乐控制、轻量工具或概念性产品展示。；控件较少且需要柔软材质感的页面。
+
+**When not to use:** 密集表格和强对比需求的复杂业务界面。；不可把明暗阴影当作唯一的状态信号。
+
+**Agent prompt (zh):**
+
+```text
+先检查项目的布局、字体和主题变量，以新拟态风格完成一个可交互品牌场景。
+清晰无衬线字体，避免过细字重。浅灰蓝同色底，深色文字和蓝色强调。中大圆角；焦点保留可见外轮廓。双向外阴影表现凸起，内阴影表现按下。控件间距充足，避免阴影彼此挤压。
+阴影颜色从统一背景派生，凸起使用正负偏移的两层阴影，按下切换 inset。焦点与选中状态同时使用文字或图标反馈。不要在每次交互中大范围动画阴影，保留 reduced-motion 支持。
+按钮必须有明确反馈，窄屏可用，保留焦点和 reduced-motion 支持，不新增依赖。完成后运行检查并列出修改文件。
+```
+
+## styles/organic — Organic / 有机自然
+
+- Type: styles · Aliases: 自然系设计 · 植物感网页 · 大地色风格 · organic design
+- Page: /styles/organic · JSON: /api/concept/styles/organic.json · MD: /styles/organic.md
+
+**What / 这是什么:** 以自然形态、温暖材质和低饱和大地色建立亲近感的视觉语言。页面通过不规则曲线、圆润容器和宽松留白形成舒展节奏，文字与按钮仍保持明确边界。适合生活方式与可持续主题；自然装饰应衬托内容，而不能牺牲可读性、信息层级或操作效率。
+
+**What (en):** A visual language of natural shapes, warm materials and muted earth tones. Soft contours and generous spacing create an unhurried rhythm while text and controls keep clear boundaries. It suits lifestyle and sustainability themes, provided organic decoration supports content without weakening readability or interaction.
+
+**When to use:** 家居、生活方式、园艺与手工艺品牌。；需要温暖、舒适、安静气质的内容展示。
+
+**When not to use:** 高密度交易界面不宜使用大量不规则装饰。；浅色文字叠加纹理会降低阅读清晰度。
+
+**Agent prompt (zh):**
+
+```text
+先检查项目的布局、字体和主题变量，以有机自然风格完成一个可交互品牌场景。
+衬线标题与清楚的无衬线正文。米白、苔绿与陶土色；正文使用深绿。柔和圆角与少量拱形，不扭曲表单控件。轻微接触阴影，不使用强发光。大段留白与宽松行距，窄屏堆叠。
+用主题变量统一米白与深绿；曲线只用于展示区，保留按钮的稳定矩形点击范围。用 CSS 形状即可构建植物和陶器意象，装饰节点设 aria-hidden。文字对比度优先于低饱和观感。
+按钮必须有明确反馈，窄屏可用，保留焦点和 reduced-motion 支持，不新增依赖。完成后运行检查并列出修改文件。
+```
+
+## styles/pixel-art — Pixel Art UI / 像素风
+
+- Type: styles · Aliases: 像素风 · 像素游戏界面 · 8位机风格 · 马赛克复古风 · 点阵字界面 · pixel art UI · 8-bit UI · pixel retro
+- Page: /styles/pixel-art · JSON: /api/concept/styles/pixel-art.json · MD: /styles/pixel-art.md
+
+**What / 这是什么:** 用硬像素边缘、有限色板与点阵字形表示「游戏机记忆」的界面视觉语言。锯齿即正确， 缩放必须整数倍，抖动网点做过渡。刻意站在抗锯齿的对立面。
+
+**What (en):** Hard pixel edges, a limited palette and bitmap faces as a console-nostalgia interface look. Aliasing is correct, scaling must be integer, dithering does the gradients. Deliberately against anti-aliasing.
+
+**When to use:** 游戏、独立游戏发行、复古主题产品，风格即世界观；想用点阵与有限色制造怀旧亲和，或做游戏化进度反馈；徽章、成就、状态点等小尺寸图标需要强识别
+
+**When not to use:** 长文阅读与高密度表格，点阵字放大后可读性崩坏；需要连续渐变、照片展示、平滑动效的场景；正式政企金融界面，像素语汇会削弱可信度
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现 Pixel Art UI 像素风视觉风格。
+
+先检查现有图标与字体资源，像素素材按整数倍缩放管理。
+要求：
+- 硬像素边缘，border-radius 0，描边用纯色像素块
+- 调色板收敛到 6 色以内，渐变一律抖动网点
+- 点阵字或等宽体，字号取整数倍
+- 按钮按下位移吃掉硬阴影；image-rendering: pixelated 用于位图
+- 深色模式换调色板暗档；文字对比度达标
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/retro-futurism — Retro-Futurism / 复古未来主义
+
+- Type: styles · Aliases: 复古未来主义 · 复古未来风 · 太空时代风 · 原子时代设计 · 七八十年代科幻风 · 落日灰壳那种怀旧科技 · Atompunk · Raygun Gothic
+- Page: /styles/retro-futurism · JSON: /api/concept/styles/retro-futurism.json · MD: /styles/retro-futurism.md
+
+**What / 这是什么:** "过去的人想象中的未来"的视觉语言：奶油橙棕的暖色底、粗圆角机身、轨道线 与星球贴纸、像素化屏幕与 CRT 荧光，乐观却已过时的科技感。它把登机舱 仪表盘、老式家电与太空竞赛海报揉成一种温暖的怀旧未来。
+
+**What (en):** The future as imagined by the past: cream-orange-brown warm palettes, chunky rounded casings, orbit lines and planet decals, pixel screens and CRT phosphor — optimistic tech that has aged. Space-age dashboards, vintage appliances and space-race posters fold into one warm nostalgic future.
+
+**When to use:** 游戏 音乐 与怀旧科技主题的品牌叙事；需要温暖乐观的未来感，拒绝冰冷的赛博叙事；概念产品 活动页，"过去的明天"是故事本身
+
+**When not to use:** 现代工具型产品，旧机身隐喻降低效率感知；极简高端品牌，复古装饰稀释品牌信号；需要无障碍大对比的场景，暖色低对比组合常见
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中用复古未来主义（Retro-Futurism）实现一个机身感卡片与按钮区块。
+
+先检查现有 Design Token 与色彩变量，复古暖色板做独立作用域。
+要求：
+- 暖色奶油橙棕色板锁定，不引入冷灰
+- 大圆角 + 双重内阴影模拟塑料机身，按钮有实体按压感
+- 轨道线 网格地平线等点缀元素克制在 2～3 处
+- 支持深色模式（CRT 暖黑 + 荧光琥珀屏显）
+- 若有动效，尊重 prefers-reduced-motion
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/skeuomorphism — Skeuomorphism / 拟物化
+
+- Type: styles · Aliases: 拟物化 · 拟物风格 · 仿真质感设计 · 苹果早期那种真皮缝线效果 · 带纹理立体感的老式UI · 皮革木纹质感界面 · Realistic UI · Skeuomorphic Design
+- Page: /styles/skeuomorphism · JSON: /api/concept/styles/skeuomorphism.json · MD: /styles/skeuomorphism.md
+
+**What / 这是什么:** 用现实世界的材质与物理形态表示数字控件的视觉语言：皮革缝线、木质纹理、拉丝 金属、玻璃光泽，按钮做成可以按压的实体，开关做成拨杆。界面元件拥有高光、 投影与倒角，"看起来像什么"直接暗示"能怎么用"。
+
+**What (en):** A visual language that borrows real-world materials and physical forms for digital controls: leather stitching, wood grain, brushed metal, glass gloss. Buttons look pressable, switches look like levers — highlights, shadows and bevels make "what it looks like" teach "how it works".
+
+**When to use:** 用户不熟悉触屏，需要借助现实隐喻降低学习成本；品牌需要复古 怀旧或高端工艺感（音响 咖啡 笔记本应用）；表达物理操作的乐趣，如拨动 按压 旋转
+
+**When not to use:** 信息密度高的工具类界面，装饰会挤压内容与效率；需要频繁换肤与多平台适配，重度纹理维护成本高；极简品牌语境，拟物会显得过时与俗气
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中用拟物化风格（Skeuomorphism）实现一组立体按钮与开关。
+
+先检查现有 Design Token 与主题变量，材质参数做成可配置变量而非写死。
+要求：
+- 按钮与开关用渐变 + 内高光 + 投影呈现立体按压感，:active 反转内阴影
+- 材质用程序化渐变或内联 SVG，不引入大体积贴图资源
+- 支持键盘聚焦态，对比度满足可读性
+- 深色模式降低材质明度并保留高光结构
+- 若有过渡动画，尊重 prefers-reduced-motion
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/swiss-style — Swiss Style / 瑞士风格
+
+- Type: styles · Aliases: 瑞士风格 · 瑞士平面设计 · 国际主义排版风格 · 网格排版风格 · 黑白红海报风 · Helvetica风格 · International Typographic Style · Swiss Design
+- Page: /styles/swiss-style · JSON: /api/concept/styles/swiss-style.json · MD: /styles/swiss-style.md
+
+**What / 这是什么:** 以客观网格与排版传达信息的视觉语言：严密的数学网格、无衬线字体、左对齐、 黑白加一个强调色（经典为红），用留白与字号对比建立秩序。装饰被视为噪音， 设计的目标是让信息以最短的路径被读懂。
+
+**What (en):** A visual language of objective grids and typography: strict mathematical grids, sans-serif faces, flush-left setting, black and white plus one accent (classically red). Order comes from whitespace and type scale. Decoration is noise; the goal is information read along the shortest path.
+
+**When to use:** 设计系统 博物馆 文化机构，需要客观严谨的秩序感；数据 技术文档 目录类内容，结构化信息为主；海报 期刊封面等需要强烈排版张力的场景
+
+**When not to use:** 品牌需要亲和 温暖或娱乐化的情绪；内容零散无结构，网格反而放大凌乱感；中文与衬线混排为主的阅读场景，风格语言不匹配
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中用瑞士风格（Swiss Style）实现一个排版主导的信息区块。
+
+先检查现有 Design Token 与字体栈，网格间距映射到现有间距变量。
+要求：
+- 建立 12 列网格，所有元素吸附网格线，间距成模数
+- 单一无衬线字体，层级靠字号跳跃不靠加粗渐变
+- 黑白灰 + 单一强调红，红只用于标号与关键线
+- 正文左对齐，分隔用 2px/1px 两种横线
+- 支持深色模式
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/vaporwave — Vaporwave / 蒸汽波
+
+- Type: styles · Aliases: 蒸汽波 · 蒸汽波风格 · 粉紫蓝复古未来 · 霓虹网格地平线 · 80年代商场美学 · vaporwave · synthwave UI · retro mall aesthetic
+- Page: /styles/vaporwave · JSON: /api/concept/styles/vaporwave.json · MD: /styles/vaporwave.md
+
+**What / 这是什么:** 用霓虹粉紫青、透视网格地平线、镀铬 3D 字与棕榈树剪影表示「消费主义怀旧」的视觉语言。 拼贴 80-90 年代商场、早期 CGI 与故障信号，甜腻、迷幻、又带着空洞的乐观。
+
+**What (en):** Neon pink-cyan-purple, a perspective grid horizon, retro 3D chrome type and palm silhouettes as consumer-nostalgia look. It collages 80s-90s mall culture, early CGI and signal glitch — sweet, hazy, hollowly optimistic.
+
+**When to use:** 音乐、夜店、潮牌、复古主题活动，风格即情绪；需要强烈亚文化信号与迷幻氛围的营销页；播放器、票券、虚拟商品等娱乐向界面
+
+**When not to use:** 金融、医疗、政务等需要冷静可信的界面；长文阅读与表单录入，霓虹与闪烁持续消耗注意力；无障碍要求高的场景，粉紫青对比度与闪烁都有风险
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现 Vaporwave 蒸汽波视觉风格。
+
+先检查现有主题与动效体系，蒸汽波色板与效果做独立作用域。
+要求：
+- 粉紫青霓虹色板 + 透视网格地平线 + 镀铬标题字
+- 棕榈树/罗马柱剪影点缀控制在 1～2 处
+- 扫描线 opacity ≤ 0.06，故障动画短促低频并尊重 prefers-reduced-motion
+- 关键正文对比度达标，霓虹只做点缀
+- 深色为主，浅色「商场软调」作为变体
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/y2k — Y2K Aesthetic / Y2K 千禧美学
+
+- Type: styles · Aliases: 千禧风 · Y2K风格 · 千禧年美学 · 镀铬金属质感 · iMac糖果色那种 · 闪亮科技感 · 千禧辣妹风 · Cyber Y2K
+- Page: /styles/y2k · JSON: /api/concept/styles/y2k.json · MD: /styles/y2k.md
+
+**What / 这是什么:** 复刻千禧年前后数码乐观主义的视觉语言：镀铬液态金属、iMac 糖果半透明塑料、 气泡字与闪光星形、粉紫蓝渐变配银白高光。它混合了对未来的天真想象与低分辨率 3D 的笨拙质感，甜腻、闪亮、毫不克制。
+
+**What (en):** A visual language reviving turn-of-the-millennium digital optimism: liquid chrome, iMac translucent candy plastics, bubble type, sparkle stars, and pink-purple-blue gradients on silver highlights. It mixes naive futurism with clumsy low-poly 3D — sweet, shiny, gloriously unrestrained.
+
+**When to use:** 音乐 潮流 时尚品牌，瞄准怀旧千禧的年轻受众；派对 社交 娱乐类产品，需要甜腻高饱和情绪；复古主题营销活动与限定包装
+
+**When not to use:** 金融 医疗 生产力工具，需要可信与克制；长内容阅读场景，高饱和与闪光持续消耗注意力；无障碍要求高的场景，银底浅字对比度普遍不足
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中用 Y2K 千禧美学实现一组胶囊按钮与糖果卡片区块。
+
+先检查现有 Design Token 与色彩体系，把 Y2K 色板隔离在独立作用域。
+要求：
+- 镀铬渐变用多段灰阶 background-clip: text 或填充实现
+- 糖果塑料感用高饱和色 + 顶部白色内阴影模拟
+- 闪光 星形等点缀元素控制在 2～3 处
+- 文字对比度按最终背景校验，关键信息不依赖闪光装饰传达
+- 支持深色模式（紫黑底 + 银铬高亮）
+- 不新增任何依赖
+完成后运行项目现有检查，并列出修改的文件。
+```

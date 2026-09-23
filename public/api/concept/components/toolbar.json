@@ -1,0 +1,224 @@
+{
+  "id": "toolbar",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "工具条",
+    "en": "Toolbar"
+  },
+  "aliases": [
+    "工具条",
+    "工具栏",
+    "操作栏",
+    "快捷操作那一排",
+    "toolbar",
+    "tool bar"
+  ],
+  "category": [
+    "Navigation",
+    "Controls"
+  ],
+  "description": {
+    "zh": "把作用于当前视图或选中项的操作按钮压成一条横向（偶尔纵向）控件带，按功能分组并用分隔线 划分。工具条管「动作」，菜单管「选项」，站点导航管「去哪」。典型如编辑器的加粗 / 斜体排版条、 图片查看器的旋转下载条、列表页的批量操作条。",
+    "en": "A strip of controls that act on the current view or selection, grouped by function and split by separators. A toolbar runs actions; a menu lists options; site navigation says where to go. Think of an editor's bold/italic bar, an image viewer's rotate/download bar, or a list page's bulk-action bar."
+  },
+  "disambiguation": {
+    "zh": "工具条（Toolbar）是动作按钮的集合，按钮点了就执行；菜单条（Menubar）是菜单入口的集合， 点开后还要在列表里再选一次；导航条（Navbar）是站点或应用的目的地入口，点击会改变路由或 页面。看「点完之后发生什么」：执行动作 → 工具条；展开选项 → 菜单；换页面 → 导航。",
+    "en": "A toolbar is a row of action buttons that fire immediately; a menubar is a row of menu triggers that open lists requiring a second choice; a navbar is a set of destinations that change the route or page. Decide by what happens after the click: run an action → toolbar; open options → menu; go somewhere else → navbar."
+  },
+  "use_when": [
+    {
+      "zh": "对当前视图或选中项有一组高频动作（格式化、批量操作）",
+      "en": "A cluster of frequent actions on the current view or selection (format, bulk ops)"
+    },
+    {
+      "zh": "动作需要常驻可见、一次点击即达",
+      "en": "Actions must stay visible and one click away"
+    },
+    {
+      "zh": "图标足以表达含义，可省略文字标签",
+      "en": "Icons carry the meaning and labels can be dropped"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "动作低频或有争议（收进溢出菜单或更多按钮）",
+      "en": "Rare or debatable actions — hide them in an overflow menu"
+    },
+    {
+      "zh": "用户要从固定选项中选一个（那是菜单或 select）",
+      "en": "Picking one option from a set — that is a menu or select"
+    },
+    {
+      "zh": "负责全站目的地跳转（那是 navbar 或 sidebar）",
+      "en": "Global site destinations — that is a navbar or sidebar"
+    }
+  ],
+  "tags": [
+    "navigation",
+    "controls",
+    "actions",
+    "editor"
+  ],
+  "variants": [
+    {
+      "id": "icon",
+      "name": {
+        "zh": "图标工具条",
+        "en": "Icon toolbar"
+      },
+      "note": {
+        "zh": "纯图标按钮，悬浮提示补语义",
+        "en": "Icon-only buttons with tooltips for meaning"
+      }
+    },
+    {
+      "id": "formatting",
+      "name": {
+        "zh": "排版工具条",
+        "en": "Formatting toolbar"
+      },
+      "note": {
+        "zh": "加粗 / 斜体 / 对齐等富文本动作，带激活态",
+        "en": "Bold / italic / align text actions with toggle states"
+      }
+    },
+    {
+      "id": "contextual",
+      "name": {
+        "zh": "上下文工具条",
+        "en": "Contextual toolbar"
+      },
+      "note": {
+        "zh": "仅在选中内容时出现，离开即隐藏",
+        "en": "Appears only on selection and hides when the selection clears"
+      }
+    }
+  ],
+  "anatomy": [
+    "分组（Group）",
+    "按钮（Button）",
+    "分隔符（Separator）"
+  ],
+  "api": [
+    "role=\"toolbar\"",
+    "aria-label",
+    "roving tabindex"
+  ],
+  "framework_names": [
+    {
+      "framework": "ARIA APG",
+      "name": "Toolbar",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/"
+    },
+    {
+      "framework": "Radix",
+      "name": "Toolbar",
+      "url": "https://www.radix-ui.com/primitives/docs/components/toolbar"
+    },
+    {
+      "framework": "MUI",
+      "name": "Toolbar",
+      "url": "https://mui.com/material-ui/react-toolbar/"
+    }
+  ],
+  "confusable": [
+    {
+      "id": "navbar",
+      "note": {
+        "zh": "导航条跳转目的地；工具条执行当前上下文的动作。",
+        "en": "A navbar navigates to destinations; a toolbar runs actions in the current context."
+      }
+    },
+    {
+      "id": "menu",
+      "note": {
+        "zh": "菜单点开后再选一项；工具条按钮点击即执行。",
+        "en": "A menu opens a list to choose from; a toolbar button acts on click."
+      }
+    }
+  ],
+  "related": [
+    {
+      "id": "navbar",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "menu",
+      "relation": "used_with"
+    },
+    {
+      "id": "button",
+      "relation": "used_with"
+    }
+  ],
+  "playground": {
+    "task": {
+      "zh": "用键盘在工具条按钮间左右移动，触发几个动作，观察当前选中态。",
+      "en": "Arrow through the toolbar buttons, fire a few actions and watch the toggle states."
+    },
+    "checks": [
+      {
+        "zh": "同组按钮语义分组，整条只占一个 Tab 站点",
+        "en": "Group buttons semantically so the strip is a single tab stop"
+      },
+      {
+        "zh": "切换型按钮暴露按下 / 弹起状态",
+        "en": "Toggle buttons expose pressed / unpressed state"
+      }
+    ]
+  },
+  "demo": {
+    "component": "toolbar",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ARIA APG — Toolbar",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/"
+    },
+    {
+      "name": "Apple HIG — Toolbars",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/toolbars"
+    },
+    {
+      "name": "MDN — ARIA toolbar role",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/toolbar_role"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "flex",
+      "gap",
+      "border-radius",
+      "background",
+      "transition"
+    ],
+    "notes": {
+      "zh": "容器 role=\"toolbar\" + aria-label，内部按功能分组，分组用 role=\"group\" + aria-label， 分隔符是 aria-hidden 的 1px 竖线。键盘用 roving tabindex：整条只占一个 Tab 站点， 组内左右方向键移动（纵向条用上下），Home / End 跳两端。切换型按钮用 aria-pressed。 窄屏允许换行或收进溢出菜单。",
+      "en": "The container is role=\"toolbar\" with an aria-label; cluster related controls in role=\"group\" regions each labeled, and make separators 1px rules marked aria-hidden. Keyboard uses roving tabindex — one tab stop for the strip, Left/Right (or Up/Down for a vertical bar) moves inside, Home / End jump to the ends. Toggle buttons use aria-pressed. On narrow screens wrap or collapse into an overflow menu."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建一个工具条（Toolbar）组件：一排分组的图标按钮作用于当前内容，支持切换激活态。",
+      "en": "Create a Toolbar: a strip of grouped icon buttons acting on the current content, with toggle states."
+    },
+    "design": {
+      "zh": "创建工具条：浅底圆角条 + 内边距 4px，按钮 32px 方形图标钮，激活态用主色浅底； 组间 1px 分隔线；按钮悬浮加深、按压轻微下沉；窄屏可换行；深浅色主题一致。",
+      "en": "Create a toolbar: a soft rounded strip with 4px padding, 32px square icon buttons whose active state washes with the accent tint, 1px separators between groups, hover deepens and press sinks slightly, wraps on narrow screens; consistent light/dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Toolbar：role=\"toolbar\" + roving tabindex，组内方向键移动； 切换型按钮 aria-pressed 绑定 Set<string> 状态；分隔符 aria-hidden；动作按钮 onClick 执行并写入状态；窄屏 flex-wrap。尊重 prefers-reduced-motion。无新增依赖。",
+      "en": "React + Tailwind toolbar: role=\"toolbar\" with roving tabindex and arrow-key movement inside; toggle buttons bind aria-pressed to a Set<string>; separators are aria-hidden; action buttons run on click and update state; flex-wrap on narrow screens. Respect prefers-reduced-motion. No new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现一个 Toolbar 工具条组件。\n先检查现有组件体系和 Design Token，优先复用现有按钮。\n与导航条、菜单条区分：这里只放作用于当前上下文的动作。\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion，支持键盘操作（roving tabindex）。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a Toolbar component in the current project.\nInspect the existing component system and design tokens first; reuse existing buttons.\nKeep it distinct from navbars and menubars — only actions on the current context belong here.\nKeep the project's visual style. Add no unnecessary dependencies.\nRespect prefers-reduced-motion; support keyboard operation (roving tabindex).\nRun the project's existing checks when done and list the modified files."
+    }
+  }
+}

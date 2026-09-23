@@ -1,0 +1,221 @@
+{
+  "id": "color-picker",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "色彩选择器",
+    "en": "Color Picker"
+  },
+  "aliases": [
+    "取色器",
+    "选色器",
+    "颜色选择",
+    "挑颜色的控件",
+    "color picker"
+  ],
+  "category": [
+    "Form",
+    "Input"
+  ],
+  "description": {
+    "zh": "用于选定颜色值的控件，形式包括色板网格、渐变取色区加色相滑杆，或直接调用系统取色器。输出十六进制、RGB 或 OKLCH 等颜色值，常与文本输入、透明度滑杆组合；设计工具与主题配置中最常见。",
+    "en": "A control for choosing a colour, taking the form of a swatch grid, a gradient canvas with hue sliders, or the OS picker. It outputs hex, RGB or OKLCH values and often pairs with a text field and an opacity slider. Most at home in design tools and theme settings."
+  },
+  "use_when": [
+    {
+      "zh": "用户需要指定品牌色、主题色或标注色",
+      "en": "People must specify a brand, theme or annotation colour"
+    },
+    {
+      "zh": "预设色板足够覆盖需求",
+      "en": "A preset palette already covers the need"
+    },
+    {
+      "zh": "需要精确微调色相、饱和度与透明度",
+      "en": "Hue, saturation and opacity need precise tuning"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "只在几个固定色中选择，用 segmented-control 或 radio",
+      "en": "Only a few fixed colours are allowed — segmented control or radios"
+    },
+    {
+      "zh": "颜色是结果展示而非输入，用 badge 或色块展示",
+      "en": "Colour is output to display, not input — use a badge or swatch"
+    },
+    {
+      "zh": "亮度或数值调节，用 slider 更直接",
+      "en": "Adjusting brightness or a numeric level — a slider is more direct"
+    }
+  ],
+  "tags": [
+    "form",
+    "input",
+    "color"
+  ],
+  "api": [
+    "input[type=\"color\"]",
+    "color-mix()",
+    "oklch()"
+  ],
+  "variants": [
+    {
+      "id": "swatch",
+      "name": {
+        "zh": "色板网格",
+        "en": "Swatch grid"
+      },
+      "note": {
+        "zh": "预设色块平铺，点击即选，决策最快",
+        "en": "Preset swatches laid out flat — the fastest decision"
+      }
+    },
+    {
+      "id": "hsv",
+      "name": {
+        "zh": "HSV 取色区",
+        "en": "HSV area"
+      },
+      "note": {
+        "zh": "渐变面加色相与透明滑杆，可自由取色",
+        "en": "Gradient canvas plus hue and alpha sliders for freeform picking"
+      }
+    },
+    {
+      "id": "native",
+      "name": {
+        "zh": "原生控件",
+        "en": "Native"
+      },
+      "note": {
+        "zh": "input[type=color] 调用系统取色器，零维护",
+        "en": "input[type=color] defers to the OS picker with zero maintenance"
+      }
+    }
+  ],
+  "anatomy": [
+    "取色区（Canvas）",
+    "色相与透明滑杆（Sliders）",
+    "色板（Swatches）",
+    "颜色值（Value）"
+  ],
+  "framework_names": [
+    {
+      "framework": "HTML",
+      "name": "input[type=\"color\"]",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/color"
+    },
+    {
+      "framework": "react-colorful",
+      "name": "HexColorPicker",
+      "url": "https://github.com/omgovich/react-colorful"
+    },
+    {
+      "framework": "Radix Primitives",
+      "name": "Slider",
+      "url": "https://www.radix-ui.com/primitives/docs/components/slider"
+    }
+  ],
+  "playground": {
+    "task": {
+      "zh": "从色板取一色，再到取色区微调色相，并复制颜色值。",
+      "en": "Take a colour from the swatches, refine its hue on the canvas and copy the value."
+    },
+    "checks": [
+      {
+        "zh": "颜色值可编辑且与预览保持同步",
+        "en": "The colour value is editable and stays in sync with the preview"
+      },
+      {
+        "zh": "透明度或对比度不足时有可见反馈",
+        "en": "Low opacity or contrast issues surface visible feedback"
+      }
+    ]
+  },
+  "related": [
+    {
+      "id": "input",
+      "relation": "similar_to"
+    },
+    {
+      "id": "slider",
+      "relation": "used_with"
+    },
+    {
+      "id": "switch",
+      "relation": "used_with"
+    }
+  ],
+  "confusable": [
+    {
+      "id": "slider",
+      "note": {
+        "zh": "slider 调节单一数值维度，color-picker 在颜色空间中定位一点",
+        "en": "Slider tunes one numeric axis; color-picker locates a point in colour space"
+      }
+    },
+    {
+      "id": "input",
+      "note": {
+        "zh": "input 接受任意文本，color-picker 保证输出合法颜色值",
+        "en": "Input accepts any text; color-picker guarantees a valid colour value"
+      }
+    }
+  ],
+  "disambiguation": {
+    "zh": "「取色」有时指吸管工具从屏幕拾取颜色；本词条专指供用户选定颜色值的表单控件，吸管只是其中一个来源。",
+    "en": "Picking colour sometimes means an eyedropper sampling the screen; this entry covers the form control that outputs a colour value, with the eyedropper as just one source."
+  },
+  "demo": {
+    "component": "color-picker",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "MDN — input type color",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/color"
+    },
+    {
+      "name": "CSS Color Module Level 5 — color-mix()",
+      "url": "https://www.w3.org/TR/css-color-5/#color-mix"
+    },
+    {
+      "name": "Material Design — Color",
+      "url": "https://m3.material.io/styles/color/overview"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "linear-gradient",
+      "accent-color",
+      "color-mix()"
+    ],
+    "notes": {
+      "zh": "取色区用两层 linear-gradient（白到透明、透明到黑）叠在纯色背景上模拟 HSV 面；滑杆用原生 range 配渐变轨道。颜色值输出建议同时提供十六进制与 OKLCH 文本框，切换时保持同一颜色。预览块与文字对比不足时给出提示。",
+      "en": "Build the canvas from two linear-gradient layers (white-to-transparent over transparent-to-black) on a solid hue field to fake HSV; style native range inputs with gradient tracks. Offer both hex and OKLCH text fields that stay on the same colour when switching. Warn when the preview swatch and its label lack contrast."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建一个色彩选择器，可从色板或取色区选定颜色，并输出十六进制值。",
+      "en": "Create a color picker that chooses a colour from swatches or a canvas and outputs a hex value."
+    },
+    "design": {
+      "zh": "设计色彩选择器。要求：取色区与滑杆分区清楚；当前色大块预览并显示色值；色板提供常用预设；可直接键入色值并即时预览；深浅色主题一致。",
+      "en": "Design a color picker. Requirements: separate the canvas from the sliders clearly; show a large current-colour preview with its value; offer common presets as swatches; accept typed values with live preview; consistent light and dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现色彩选择器：内部统一存为 HSLA，向外输出 hex 与 OKLCH；取色区用叠加 linear-gradient 与指针事件换算饱和度/明度；色相与透明度用 range input，accent-color 跟随当前色；文本框受控并容错解析。",
+      "en": "React + Tailwind color picker: hold state as HSLA internally and emit hex plus OKLCH; overlay linear-gradients on the canvas and map pointer events to saturation and lightness; drive hue and alpha with range inputs whose accent-color follows the current colour; keep the text field controlled and parse leniently."
+    },
+    "agent": {
+      "zh": "在当前项目中实现色彩选择器（Color Picker）组件。\n先检查现有表单控件与 Design Token，优先复用滑杆、输入框与色板样式。\n用途：品牌色、主题色与标注色的选定。\n要求：\n- 提供色板与取色区两种取色方式\n- 颜色值可键入且与预览同步\n- 输出合法颜色值（hex / OKLCH）\n- 尊重 prefers-reduced-motion，支持键盘操作\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a Color Picker component in the current project.\nInspect existing form controls and design tokens first and reuse slider, input and swatch styles.\nUsage: choosing brand, theme and annotation colours.\nRequirements:\n- Offer both swatch and canvas ways to pick\n- Typed colour values stay in sync with the preview\n- Emit valid colour values (hex / OKLCH)\n- Respect prefers-reduced-motion and support keyboard operation\n- No new dependencies\nRun the existing project checks when done and list the modified files."
+    }
+  }
+}

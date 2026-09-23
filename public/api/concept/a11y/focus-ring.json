@@ -1,0 +1,191 @@
+{
+  "id": "focus-ring",
+  "type": "a11y",
+  "status": "published",
+  "name": {
+    "zh": "焦点环",
+    "en": "Focus Ring"
+  },
+  "aliases": [
+    "焦点环",
+    "键盘焦点框",
+    "键盘框",
+    "蓝框",
+    "聚焦框",
+    "focus outline",
+    "focus ring"
+  ],
+  "category": [
+    "Accessibility",
+    "Keyboard"
+  ],
+  "description": {
+    "zh": "用可见轮廓标记当前键盘焦点位置，让用户知道下一个按键会落在哪里。鼠标点击往往不需要它，但键盘与辅助技术用户必须始终看见焦点在哪，否则只能盲操作。通常用 :focus-visible 控制——键盘聚焦才显示，鼠标点击不打扰。",
+    "en": "A visible outline marking the currently focused element, so users know where the next keystroke will land. Pointer users rarely need it, but keyboard and assistive-tech users must always see focus or they are operating blind. Usually driven by :focus-visible — shown for keyboard focus, silent for mouse clicks."
+  },
+  "use_when": [
+    {
+      "zh": "任何可聚焦元素（按钮、链接、输入框、自定义控件）",
+      "en": "Any focusable element — buttons, links, inputs, custom widgets"
+    },
+    {
+      "zh": "用 :focus-visible 而非 :focus，避免鼠标点击也弹框",
+      "en": "Targeting :focus-visible rather than :focus so clicks stay clean"
+    },
+    {
+      "zh": "自定义控件覆盖了浏览器默认轮廓之后",
+      "en": "After custom styles have overridden the browser default outline"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "outline: none 之后不给任何替代指示（键盘用户直接失联）",
+      "en": "Removing outline: none without a replacement indicator"
+    },
+    {
+      "zh": "把焦点环做成 hover 高亮的复制品，只在鼠标下可见",
+      "en": "Cloning the hover highlight so focus is only visible to the pointer"
+    },
+    {
+      "zh": "焦点环对比度不足 3:1，或被邻近元素裁切遮挡",
+      "en": "Rings below 3:1 contrast, or clipped by neighbouring elements"
+    }
+  ],
+  "tags": [
+    "a11y",
+    "keyboard",
+    "focus",
+    "outline"
+  ],
+  "api": [
+    ":focus-visible",
+    "outline",
+    "outline-offset",
+    "focus()"
+  ],
+  "framework_names": [
+    {
+      "framework": "WCAG",
+      "name": "2.4.7 Focus Visible",
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/focus-visible"
+    },
+    {
+      "framework": "CSS",
+      "name": ":focus-visible",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible"
+    }
+  ],
+  "disambiguation": {
+    "zh": "焦点环不等于 hover 高亮——焦点环服务键盘用户，hover 服务指针用户。",
+    "en": "A focus ring is not a hover highlight — focus serves keyboard users, hover serves pointer users."
+  },
+  "confusable": [
+    {
+      "id": "hover-glow",
+      "note": {
+        "zh": "hover-glow 是鼠标悬停的装饰反馈，焦点环是键盘可达性的必需指示。",
+        "en": "hover-glow is decorative pointer feedback; a focus ring is required keyboard affordance."
+      }
+    }
+  ],
+  "variants": [
+    {
+      "id": "outline",
+      "name": {
+        "zh": "外轮廓",
+        "en": "Outline ring"
+      },
+      "note": {
+        "zh": "outline + outline-offset，最通用、可被 forced-colors 保留",
+        "en": "outline plus outline-offset — universal, survives forced-colors"
+      }
+    },
+    {
+      "id": "shadow-ring",
+      "name": {
+        "zh": "阴影环",
+        "en": "Shadow ring"
+      },
+      "note": {
+        "zh": "box-shadow 双层描边，圆角跟随元素形状",
+        "en": "Layered box-shadow ring that hugs custom border-radius"
+      }
+    },
+    {
+      "id": "border-tint",
+      "name": {
+        "zh": "描边染色",
+        "en": "Border tint"
+      },
+      "note": {
+        "zh": "只变边框色，视觉最弱，需配合加粗才够用",
+        "en": "Border-color only — weakest, needs a weight bump to pass"
+      }
+    }
+  ],
+  "anatomy": [
+    "焦点元素（Focused element）",
+    "轮廓（Ring）"
+  ],
+  "related": [
+    {
+      "id": "keyboard-navigation",
+      "relation": "used_with"
+    },
+    {
+      "id": "skip-link",
+      "relation": "used_with"
+    },
+    {
+      "id": "contrast-ratio",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "focus-ring",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "WCAG 2.1 Focus Visible",
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/focus-visible"
+    },
+    {
+      "name": "MDN — :focus-visible",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible"
+    }
+  ],
+  "implementation": {
+    "css": [
+      ":focus-visible",
+      "outline",
+      "outline-offset"
+    ],
+    "notes": {
+      "zh": "基础写法：:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px }。需要跟随圆角时改用 box-shadow: 0 0 0 2px 两层环。覆盖浏览器默认轮廓后必须提供替代；forced-colors 模式下保留 outline。可用 :focus:not(:focus-visible) 精确去掉鼠标点击的环。",
+      "en": "Base recipe: `:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px }`. Switch to a two-layer `box-shadow` ring when you need it to hug custom radii. Never drop the default outline without a replacement; keep outline under forced-colors. Use `:focus:not(:focus-visible)` to strip click-only rings precisely."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "给项目里的按钮和链接加上清晰的键盘焦点环，Tab 切换时能看见当前位置。",
+      "en": "Add a clear keyboard focus ring to buttons and links so Tab navigation is always visible."
+    },
+    "design": {
+      "zh": "所有可聚焦元素显示 2px 强调色外轮廓，offset 3px，与圆角一致；鼠标点击不显示，键盘聚焦才显示；深浅色主题下对比度均不低于 3:1。",
+      "en": "Every focusable shows a 2px accent outline at 3px offset matching its radius; visible on keyboard focus only; at least 3:1 contrast in both light and dark themes."
+    },
+    "implementation": {
+      "zh": "全局：:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px }；禁止裸写 outline:none；自定义圆角组件用 box-shadow 环替代；:focus:not(:focus-visible) { outline: none } 去掉点击环。",
+      "en": "Global: `:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px }`; never ship bare outline:none; use a box-shadow ring for custom radii; `:focus:not(:focus-visible) { outline: none }` strips click rings."
+    },
+    "agent": {
+      "zh": "在当前项目中实现可见键盘焦点环。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- :focus-visible 显示 2px 强调色轮廓，offset 3px，鼠标点击不显示\n- 全项目禁止无替代的 outline: none\n- 自定义圆角组件用 box-shadow 环跟随形状\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a visible keyboard focus ring in the current project.\nInspect the existing component system and design tokens first; reuse current components.\nRequirements:\n- :focus-visible shows a 2px accent outline at 3px offset; mouse clicks do not\n- No bare outline: none anywhere without a replacement\n- Custom-radius components use a shape-hugging box-shadow ring\nKeep the existing visual style. Add no unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun the project's existing checks when done and list the modified files."
+    }
+  }
+}

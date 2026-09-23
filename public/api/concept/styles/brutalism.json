@@ -1,0 +1,260 @@
+{
+  "id": "brutalism",
+  "type": "styles",
+  "status": "published",
+  "name": {
+    "zh": "粗野主义",
+    "en": "Brutalism"
+  },
+  "aliases": [
+    "粗野主义",
+    "野兽派网页",
+    "那种很糙的黑白网页",
+    "超大字不修边幅",
+    "原始网页风",
+    "brutalism",
+    "web brutalism",
+    "brutalist web design"
+  ],
+  "category": [
+    "Style",
+    "Visual Language"
+  ],
+  "description": {
+    "zh": "用裸露的结构、超大字号和原始对比色强调「反精致」的网页视觉语言。黑白硬切、可见网格、 直角硬边，保留默认 HTML 的诚实感；信息直接砸向读者，拒绝圆角、渐变与装饰性打磨。",
+    "en": "Raw structure, oversized type and blunt contrast as an anti-polish web look. Monochrome cuts, visible grids and hard square edges keep the honesty of default HTML. Information hits the reader straight on; radii, gradients and decorative refinement are refused."
+  },
+  "use_when": [
+    {
+      "zh": "设计师作品集、独立出版、艺术机构官网，态度本身就是内容",
+      "en": "Designer portfolios, indie publishing and art institutions where attitude is the content"
+    },
+    {
+      "zh": "想在同质化的精致界面里用「不修边幅」制造强烈记忆点",
+      "en": "Standing out among polished sites through deliberate unpolish"
+    },
+    {
+      "zh": "低密度宣言页、活动页，超大字当海报使",
+      "en": "Low-density manifesto or campaign pages where type is the poster"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "金融、医疗、政务等需要稳重可信的操作型产品",
+      "en": "Finance, healthcare and civic tools that must feel trustworthy"
+    },
+    {
+      "zh": "长表单与高密度数据后台，硬切对比会加剧阅读疲劳",
+      "en": "Long forms and dense data backends — blunt contrast fatigues reading"
+    },
+    {
+      "zh": "需要传达精细、高端、呵护感的品牌叙事",
+      "en": "Brands that must feel refined, premium or caring"
+    }
+  ],
+  "tags": [
+    "brutalism",
+    "anti-design",
+    "typography",
+    "monochrome",
+    "raw"
+  ],
+  "variants": [
+    {
+      "id": "classic",
+      "name": {
+        "zh": "经典粗野",
+        "en": "Classic brutalism"
+      },
+      "note": {
+        "zh": "黑白灰硬切加单一刺眼强调色，保留默认浏览器气质",
+        "en": "Monochrome cuts with one harsh accent, default-browser honesty kept"
+      }
+    },
+    {
+      "id": "soft-brutalism",
+      "name": {
+        "zh": "软粗野",
+        "en": "Soft brutalism"
+      },
+      "note": {
+        "zh": "保留原始对比与超大字，但放宽圆角与留白",
+        "en": "Raw contrast and oversized type kept, radii and whitespace loosened"
+      }
+    },
+    {
+      "id": "typographic",
+      "name": {
+        "zh": "排印粗野",
+        "en": "Typographic brutalism"
+      },
+      "note": {
+        "zh": "字号、字重、行距承担全部表现力，几乎不用图形",
+        "en": "Size, weight and leading carry everything — almost no graphics"
+      }
+    }
+  ],
+  "applicable_components": [
+    "button",
+    "card",
+    "navbar"
+  ],
+  "applicable_pages": [
+    "landing-page",
+    "documentation"
+  ],
+  "related": [
+    {
+      "id": "neobrutalism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "minimalism",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "swiss-style",
+      "relation": "similar_to"
+    },
+    {
+      "id": "button",
+      "relation": "affects"
+    },
+    {
+      "id": "card",
+      "relation": "affects"
+    },
+    {
+      "id": "navbar",
+      "relation": "affects"
+    }
+  ],
+  "confusable": [
+    {
+      "id": "neobrutalism",
+      "note": {
+        "zh": "粗野主义是原始未修饰的网页，黑白为主；新粗野主义是糖果贴纸加粗黑边与硬阴影，色彩喧闹。",
+        "en": "Brutalism is raw, unstyled web in monochrome; neobrutalism is candy stickers with thick borders and hard shadows."
+      }
+    }
+  ],
+  "demo": {
+    "component": "brutalism",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Wikipedia — Brutalist architecture",
+      "url": "https://en.wikipedia.org/wiki/Brutalist_architecture"
+    },
+    {
+      "name": "NN/g — Brutalism and Antidesign",
+      "url": "https://www.nngroup.com/articles/brutalism-antidesign"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "font-size: clamp(2.5rem, 8vw, 6rem)",
+      "border-radius: 0",
+      "border: 2px solid currentColor",
+      "background-image: repeating-linear-gradient()",
+      "font-family: system-ui, monospace"
+    ],
+    "notes": {
+      "zh": "命门是「不修边幅」：圆角一律 0，阴影不用或只用硬边框替代，字体走系统栈或等宽体。 背景网格用 repeating-linear-gradient 画出来即可，不必真开 CSS Grid。强调色只留一个 （常见刺眼橙红 #FF3B00），其余全黑白。深色模式反转明度关系但保持同样的硬切。 不要为了「像」粗野而降低文字对比度或打乱阅读顺序。",
+      "en": "The point is unpolish: radii stay 0, shadows are replaced by hard borders, type is system or monospace. A repeating-linear-gradient fakes the visible grid — no need for real CSS Grid. Keep exactly one harsh accent (classically #FF3B00); everything else is black and white. Dark mode inverts the value relationship but keeps the same blunt cuts. Never lower text contrast or scramble reading order just to look brutalist."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "用粗野主义风格（Brutalism）设计界面：黑白硬切、超大字号、可见网格、直角硬边，单一刺眼强调色，反精致。",
+      "en": "Design an interface in Brutalism style: monochrome cuts, oversized type, visible grid, hard square edges and one harsh accent — deliberately anti-polish."
+    },
+    "design": {
+      "zh": "粗野主义设计规范：底色纸白 #F5F5F0 或近黑；正文纯黑 #0A0A0A；强调色只用一个刺眼橙红 #FF3B00； 全部圆角 0；标题字号 clamp(2.5rem, 8vw, 6rem)，超粗无衬线或等宽；网格线 1px 实线可见； 按钮用 2px 实线框或纯色块反白，hover 反色即可不做位移；深色模式用近黑底配纸白字，强调色不变。",
+      "en": "\"Brutalism spec: paper white #F5F5F0 or near-black ground; pure black #0A0A0A body; exactly one harsh accent #FF3B00; zero radii everywhere; headings at clamp(2.5rem, 8vw, 6rem) in ultra-bold sans or mono; 1px visible grid rules; buttons as 2px outline or solid inverted blocks, hover just inverts colors; dark mode flips to near-black with paper-white type, accent unchanged.\""
+    },
+    "implementation": {
+      "zh": "用 CSS 实现粗野主义：全局 border-radius: 0；标题用 font-size clamp 与 font-weight 800+； 背景网格 background-image: repeating-linear-gradient(to right, #0A0A0A14 0 1px, transparent 1px 48px), repeating-linear-gradient(to bottom, ...); 按钮 border: 2px solid #0A0A0A，hover 时 background/color 对调； 不用 box-shadow，需要层级时用粗描边或反色块；字体栈 system-ui 或 ui-monospace。",
+      "en": "\"Implement Brutalism in CSS: global border-radius 0; headings with font-size clamp and weight 800+; grid via background-image: repeating-linear-gradient(to right, #0A0A0A14 0 1px, transparent 1px 48px) plus a vertical twin; buttons with border: 2px solid #0A0A0A that invert fill/text on hover; no box-shadow — hierarchy comes from thick strokes or inverted blocks; system-ui or ui-monospace stack.\""
+    },
+    "agent": {
+      "zh": "在当前项目中实现 Brutalism 粗野主义视觉风格。\n\n先检查现有组件体系和 Design Token，优先复用当前组件，只替换视觉层。\n要求：\n- 全部圆角 0，无渐变无柔和阴影，层级用粗描边或反色块表达\n- 标题超大字号（clamp），系统无衬线或等宽字体\n- 背景可见网格线，单一刺眼强调色（如 #FF3B00），其余黑白\n- 按钮 hover 反色，不做弹跳位移\n- 深色模式反转明度但保持硬切语汇\n- 文字对比度不低于 4.5:1，阅读顺序不被装饰打乱\n- 不新增任何依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement Brutalism visual style in the current project.\n\nInspect the existing component system and design tokens first; reuse components and swap only the visual layer.\nRequirements:\n- Zero radii, no gradients, no soft shadows; hierarchy via thick strokes or inverted blocks\n- Oversized clamp headings in system sans or monospace\n- Visible background grid, exactly one harsh accent (#FF3B00), rest monochrome\n- Buttons invert on hover; no bounce or lift\n- Dark mode inverts values while keeping the blunt vocabulary\n- Text contrast at 4.5:1 minimum; reading order never scrambled by decoration\n- No new dependencies\nRun existing project checks when done and list the modified files."
+    }
+  },
+  "style_spec": {
+    "typography": {
+      "zh": "超粗无衬线或等宽体，字号断崖式对比",
+      "en": "Ultra-bold sans or mono with cliff-edge size contrast"
+    },
+    "color": {
+      "zh": "纸白 × 纯黑 × 单一刺眼橙红 #FF3B00",
+      "en": "Paper white, pure black and one harsh orange-red #FF3B00"
+    },
+    "border": {
+      "zh": "2px 实线直角硬边，圆角一律 0",
+      "en": "2px solid square edges, radius always 0"
+    },
+    "shadow": {
+      "zh": "不用投影，需要层级时用反色块或粗描边",
+      "en": "No shadows; inverted blocks or thick strokes instead"
+    },
+    "spacing": {
+      "zh": "紧贴网格线的硬切排布，留白大开大合",
+      "en": "Hard cuts on the grid, whitespace in big blunt blocks"
+    }
+  },
+  "preview": {
+    "order": 19,
+    "keywords": {
+      "zh": "硬切 · 超大字 · 反精致",
+      "en": "RAW STRUCTURE"
+    },
+    "url": "raw.studio",
+    "scene": "generic",
+    "brand": "RAW",
+    "nav": [
+      "作品",
+      "方法",
+      "关于"
+    ],
+    "heroTitle": "不修边幅",
+    "heroTitle2": "也是一种设计",
+    "heroSub": "裸露结构，拒绝打磨。",
+    "cta": "看看作品 →",
+    "heroCaption": "NO RADIUS. NO GRADIENT. NO MERCY.",
+    "features": [
+      {
+        "t": "极端对比",
+        "s": "黑白硬切"
+      },
+      {
+        "t": "裸露结构",
+        "s": "网格可见"
+      },
+      {
+        "t": "超大字号",
+        "s": "标题即海报"
+      }
+    ],
+    "panel": "shapes",
+    "tokens": {
+      "bg": "#F5F5F0",
+      "fg": "#0A0A0A",
+      "sub": "#333333",
+      "accent": "#FF3B00",
+      "accentFg": "#FFFFFF",
+      "card": "#FFFFFF",
+      "cardBorder": "#0A0A0A",
+      "radius": "0px",
+      "font": "Helvetica Neue, Arial, Helvetica, sans-serif",
+      "upper": true,
+      "heroSize": "28px"
+    }
+  }
+}

@@ -43,6 +43,33 @@
     "segmented-control",
     "selection"
   ],
+  "disambiguation": {
+    "zh": "Segmented Control（分段控制器）是紧凑的互斥选择条，常用于模式/筛选；Tabs 切换内容面板；Radio 是表单内互斥选择。",
+    "en": "A segmented control is a compact mutually-exclusive switch for modes or filters. Tabs swap content panels. Radio is in-form single choice."
+  },
+  "confusable": [
+    {
+      "id": "tabs",
+      "note": {
+        "zh": "Tabs 对应内容面板，Segmented Control 对应状态/模式。",
+        "en": "Tabs map to content panels; segmented control to state or mode."
+      }
+    },
+    {
+      "id": "radio",
+      "note": {
+        "zh": "Radio 属表单字段，Segmented Control 属视图切换。",
+        "en": "Radio is a form field; segmented control is a view switch."
+      }
+    },
+    {
+      "id": "switch",
+      "note": {
+        "zh": "Switch 是开/关二态，Segmented Control 是多选一。",
+        "en": "A switch is on/off; a segmented control picks one of several."
+      }
+    }
+  ],
   "variants": [
     {
       "id": "filled",

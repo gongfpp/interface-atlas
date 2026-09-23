@@ -1,0 +1,241 @@
+{
+  "id": "bottom-sheet",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "底部抽屉",
+    "en": "Bottom Sheet"
+  },
+  "aliases": [
+    "底部抽屉",
+    "底部面板",
+    "上拉面板",
+    "手机底部弹出来的面板",
+    "底部弹层",
+    "bottom sheet",
+    "action sheet"
+  ],
+  "category": [
+    "Overlay",
+    "Mobile"
+  ],
+  "description": {
+    "zh": "从屏幕底边升起、覆盖在当前页面之上的面板，顶部有抓手可供拖动或下滑关闭。打断程度介于模态框与 气泡卡片之间：有遮罩但拇指可及、可下滑快速收起。是移动端承接筛选、分享、短表单的默认容器， 桌面端应改用侧边抽屉或居中对话框。",
+    "en": "A panel that rises from the bottom edge over the current page, with a grabber for dragging or swipe-to-dismiss. Its interruption level sits between a modal and a popover: there is a backdrop, yet it is thumb-reachable and collapses on a downward swipe. The default mobile container for filters, sharing and short forms; on desktop prefer a side drawer or centered dialog."
+  },
+  "disambiguation": {
+    "zh": "「抽屉」有歧义：底部抽屉（Bottom Sheet）指从底边升起的面板；侧边抽屉（Drawer）从左右边缘滑入； 系统对话框的 sheet 是居中弹出的文档式窗口；表格软件的 sheet 则指工作表，与浮层无关。",
+    "en": "\"Sheet\" is overloaded: a bottom sheet rises from the bottom edge; a drawer slides from a side edge; a macOS window sheet drops down inside a window; a spreadsheet sheet is a worksheet and has nothing to do with overlays."
+  },
+  "use_when": [
+    {
+      "zh": "移动端筛选、排序、分享等短任务，需覆盖在当前页上",
+      "en": "Short mobile tasks — filter, sort, share — layered over the current page"
+    },
+    {
+      "zh": "操作列表或选项数量有限，单手拇指可达",
+      "en": "A short action or option list that one thumb can reach"
+    },
+    {
+      "zh": "内容比一行 tooltip 多、比整页流程短",
+      "en": "More content than a one-line tooltip, less than a full-page flow"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "桌面端为主的界面（改用 drawer 或 modal）",
+      "en": "Desktop-first interfaces — use a drawer or modal"
+    },
+    {
+      "zh": "需要强制决策、不可轻易关闭（改用 modal）",
+      "en": "A forced decision that must not be dismissed casually — use a modal"
+    },
+    {
+      "zh": "长表单或长篇阅读（改为全屏页面更稳）",
+      "en": "Long forms or long reads — a full page holds up better"
+    }
+  ],
+  "tags": [
+    "overlay",
+    "mobile",
+    "panel",
+    "sheet"
+  ],
+  "variants": [
+    {
+      "id": "fixed-height",
+      "name": {
+        "zh": "固定高度",
+        "en": "Fixed height"
+      },
+      "note": {
+        "zh": "内容量可预期，一次到位不拖拽",
+        "en": "Predictable content size — lands in one shot, no dragging"
+      }
+    },
+    {
+      "id": "draggable",
+      "name": {
+        "zh": "可拖拽档位",
+        "en": "Draggable detents"
+      },
+      "note": {
+        "zh": "抓手拖到半开 / 全开档位，iOS Sheet 风格",
+        "en": "Grabber drags between half and full detents, iOS-sheet style"
+      }
+    },
+    {
+      "id": "full-expand",
+      "name": {
+        "zh": "全屏展开",
+        "en": "Full expand"
+      },
+      "note": {
+        "zh": "上拉占满屏幕，适合长内容或键盘弹出",
+        "en": "Pulls up to full screen for long content or on-screen keyboards"
+      }
+    }
+  ],
+  "anatomy": [
+    "遮罩层（Backdrop）",
+    "抓手（Grabber）",
+    "面板内容（Panel body）"
+  ],
+  "api": [
+    "<dialog>",
+    "role=\"dialog\"",
+    "aria-modal=\"true\""
+  ],
+  "framework_names": [
+    {
+      "framework": "iOS",
+      "name": "UISheetPresentationController",
+      "url": "https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller"
+    },
+    {
+      "framework": "MUI",
+      "name": "SwipeableDrawer",
+      "url": "https://mui.com/material-ui/react-swipeable-drawer/"
+    },
+    {
+      "framework": "Radix",
+      "name": "Dialog",
+      "url": "https://www.radix-ui.com/primitives/docs/components/dialog"
+    }
+  ],
+  "confusable": [
+    {
+      "id": "drawer",
+      "note": {
+        "zh": "侧边抽屉从左右边缘滑入，底部抽屉只从底边升起。",
+        "en": "A drawer slides from a side edge; a bottom sheet only rises from the bottom."
+      }
+    },
+    {
+      "id": "modal",
+      "note": {
+        "zh": "模态框居中且强调强制决策；底部抽屉贴底、可下滑关闭。",
+        "en": "A modal sits centered and demands a decision; a bottom sheet hugs the bottom and swipes away."
+      }
+    }
+  ],
+  "related": [
+    {
+      "id": "drawer",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "modal",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "pull-to-refresh",
+      "relation": "used_with"
+    }
+  ],
+  "playground": {
+    "task": {
+      "zh": "打开底部抽屉，拖动抓手在档位间切换，再下滑关闭，感受它与侧边抽屉的差别。",
+      "en": "Open the sheet, drag the grabber between detents and swipe down to dismiss; feel how it differs from a side drawer."
+    },
+    "checks": [
+      {
+        "zh": "下滑或点遮罩可关闭，Esc 同样有效",
+        "en": "A downward swipe or backdrop tap dismisses; Esc works too"
+      },
+      {
+        "zh": "面板贴底升起，操作按钮落在拇指热区",
+        "en": "The panel rises from the bottom edge with actions in the thumb zone"
+      }
+    ]
+  },
+  "demo": {
+    "component": "bottom-sheet",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "compare": {
+    "group": "overlay-container",
+    "dimensions": {
+      "打断程度": {
+        "zh": "中高，有遮罩但可下滑快速关闭",
+        "en": "Medium-high — backdrop blocks, but a swipe dismisses fast"
+      },
+      "内容容量": {
+        "zh": "中高，适合操作列表与短表单",
+        "en": "Medium-high — action lists and short forms fit"
+      },
+      "移动端友好": {
+        "zh": "优，拇指热区在屏幕底部",
+        "en": "Excellent — the thumb zone is the bottom of the screen"
+      }
+    }
+  },
+  "sources": [
+    {
+      "name": "Apple HIG — Sheets",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/sheets"
+    },
+    {
+      "name": "Material Design — Bottom sheets",
+      "url": "https://m2.material.io/components/bottom-sheets/overview"
+    },
+    {
+      "name": "ARIA APG — Dialog (Modal)",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "position: fixed",
+      "transform",
+      "transition",
+      "touch-action"
+    ],
+    "notes": {
+      "zh": "面板 fixed 贴底，用 transform: translateY(100%) ↔ 0 收放（不要动 height，GPU 友好）； 顶部抓手为 36×4 圆角条。拖拽档位用 pointer 事件跟踪 dy，松手按阈值吸附到最近档位； 下滑超过阈值关闭。遮罩淡入、body 滚动锁定、焦点移入面板，Esc 关闭；尊重 prefers-reduced-motion。",
+      "en": "Pin the panel with fixed positioning and animate transform: translateY(100%) ↔ 0 to show and hide (never animate height — GPU-friendly); the grabber is a 36×4 rounded bar. Detents track dy via pointer events and snap to the nearest stop on release; a swipe past the threshold dismisses. Fade the backdrop in, lock body scroll, move focus into the panel, close on Esc; respect prefers-reduced-motion."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建一个底部抽屉（Bottom Sheet）组件：点击按钮从屏幕底部升起面板，带抓手和遮罩，可下滑关闭。",
+      "en": "Create a Bottom Sheet: a button raises a panel from the bottom of the screen with a grabber and backdrop; a downward swipe closes it."
+    },
+    "design": {
+      "zh": "创建底部抽屉：圆角顶边 + 顶部居中抓手，半透明遮罩；标题行 + 可滚动内容 + 吸底操作按钮； 上滑 / 下滑关闭动画 240ms；抓手可拖到半开与全开两档；深浅色主题一致。",
+      "en": "Create a bottom sheet: rounded top corners with a centered grabber over a translucent backdrop; a title row, scrollable body and pinned footer action; 240ms rise and dismiss animation; the grabber drags between half and full detents; consistent light/dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Bottom Sheet：open 受控；面板 fixed inset-x-0 bottom-0， transform translateY 过渡（时长乘 var(--demo-speed, 1)）；抓手 pointerdown 起拖， 松手按阈值吸附档位或关闭；role=\"dialog\" aria-modal=\"true\"，焦点移入、Esc 与点遮罩关闭； 尊重 prefers-reduced-motion。无新增依赖。",
+      "en": "React + Tailwind bottom sheet: controlled open state; a fixed inset-x-0 bottom-0 panel transitioning transform translateY (duration scaled by var(--demo-speed, 1)); the grabber starts a pointer drag and snaps to a detent or dismisses past a threshold; role=\"dialog\" aria-modal=\"true\", focus moves in, Esc and backdrop click close; respect prefers-reduced-motion. No new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现一个 Bottom Sheet 底部抽屉组件。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n与侧边 Drawer、居中 Modal 明确区分，只从底边升起。\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion，支持键盘与拖拽操作。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a Bottom Sheet component in the current project.\nInspect the existing component system and design tokens first; reuse what is already there.\nKeep it distinct from side drawers and centered modals — it only rises from the bottom edge.\nKeep the project's visual style. Add no unnecessary dependencies.\nRespect prefers-reduced-motion; support keyboard and drag interaction.\nRun the project's existing checks when done and list the modified files."
+    }
+  }
+}

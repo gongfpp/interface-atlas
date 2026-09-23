@@ -62,6 +62,27 @@
     "role=\"progressbar\"",
     "aria-valuenow"
   ],
+  "framework_names": [
+    {
+      "framework": "ARIA",
+      "name": "role=\"progressbar\""
+    },
+    {
+      "framework": "HTML",
+      "name": "<progress>",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress"
+    },
+    {
+      "framework": "shadcn/ui",
+      "name": "Progress",
+      "url": "https://ui.shadcn.com/docs/components/progress"
+    },
+    {
+      "framework": "MUI",
+      "name": "LinearProgress",
+      "url": "https://mui.com/material-ui/react-progress/"
+    }
+  ],
   "variants": [
     {
       "id": "determinate",

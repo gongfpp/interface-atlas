@@ -38,6 +38,34 @@ tags:
 api:
   - role="status"
   - aria-live="polite"
+framework_names:
+  - framework: ARIA
+    name: role="status"
+  - framework: shadcn/ui
+    name: Sonner / Toast
+    url: https://ui.shadcn.com/docs/components/toast
+    note:
+      zh: Sonner 是 shadcn 生态最常用的 toast 库
+      en: Sonner is the default toast in the shadcn ecosystem
+  - framework: MUI
+    name: Snackbar
+    url: https://mui.com/material-ui/react-snackbar/
+  - framework: AntD
+    name: message / notification
+    url: https://ant.design/components/message
+disambiguation:
+  zh: "Toast（Snackbar）是短暂的非打断反馈，自动消失；Alert 常驻；Modal 打断。Toast 不应放关键信息或要求必读。"
+  en: "A toast (snackbar) is brief non-blocking feedback that auto-dismisses. Alerts persist. Modals interrupt. Never put essential info in a toast."
+confusable:
+  - id: alert
+    note:
+      zh: "Alert 常驻可含操作按钮；Toast 短暂、角落出现。"
+      en: "Alert persists and may carry actions; a toast is brief at a corner."
+  - id: tooltip
+    note:
+      zh: "Tooltip 解释控件，Toast 反馈系统事件。"
+      en: "A tooltip explains a control; a toast reports a system event."
+
 variants:
   - id: success
     name:

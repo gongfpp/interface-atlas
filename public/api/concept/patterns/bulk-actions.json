@@ -1,0 +1,172 @@
+{
+  "id": "bulk-actions",
+  "type": "patterns",
+  "status": "published",
+  "name": {
+    "zh": "批量操作",
+    "en": "Bulk Actions"
+  },
+  "aliases": [
+    "批量操作",
+    "批量处理",
+    "勾选后操作",
+    "多选了一起弄",
+    "全选后删除",
+    "bulk actions",
+    "batch actions",
+    "mass actions"
+  ],
+  "category": [
+    "Data",
+    "Actions"
+  ],
+  "description": {
+    "zh": "先用复选框勾选多行数据，再对整个选择集一次性执行同一操作。选择时操作栏浮现，给出已选计数与撤销入口。它把重复的单条点击合并为一次批量决策，适合清理、归档、打标、导出等列表维护场景。",
+    "en": "Tick many rows with checkboxes, then run one command against the whole selection at once. An action bar surfaces on selection with a count and an undo affordance. It collapses repetitive single-row clicks into one batch decision — ideal for list maintenance such as cleanup, archive, tagging and export."
+  },
+  "use_when": [
+    {
+      "zh": "同一操作要施加在大量行上（删除、归档、改状态）",
+      "en": "One action must hit many rows — delete, archive, status change"
+    },
+    {
+      "zh": "列表是数据维护主界面（后台、收件箱、素材库）",
+      "en": "Lists are the maintenance surface — admin, inbox, asset library"
+    },
+    {
+      "zh": "误操作成本可控，且能提供撤销",
+      "en": "Mistakes are recoverable and undo can be offered"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "一行只有零星操作，逐条点并不费力",
+      "en": "Sparse per-row work — one-by-one clicking is fine"
+    },
+    {
+      "zh": "操作不可逆且无审计/撤销，批量放大风险",
+      "en": "Irreversible actions with no audit or undo — batching amplifies risk"
+    },
+    {
+      "zh": "移动端窄屏塞不下操作栏，勾选易误触",
+      "en": "Narrow mobile screens where checkboxes misfire and bars crowd"
+    }
+  ],
+  "tags": [
+    "data",
+    "selection",
+    "actions",
+    "table"
+  ],
+  "variants": [
+    {
+      "id": "checkbox-action-bar",
+      "name": {
+        "zh": "复选框 + 操作栏",
+        "en": "Checkbox + action bar"
+      },
+      "note": {
+        "zh": "有选中时底部或顶部浮现操作栏，最常见",
+        "en": "A bar appears on selection at the bottom or top — the default"
+      }
+    },
+    {
+      "id": "select-all-inverse",
+      "name": {
+        "zh": "全选 + 反选",
+        "en": "Select-all + inverse"
+      },
+      "note": {
+        "zh": "表头全选三态，支持反选缩小选择集",
+        "en": "Tri-state header select-all with invert to narrow the set"
+      }
+    },
+    {
+      "id": "sticky-footer",
+      "name": {
+        "zh": "粘性底栏",
+        "en": "Sticky footer bar"
+      },
+      "note": {
+        "zh": "操作栏固定在视口底部，滚动时始终可见",
+        "en": "Bar pinned to the viewport bottom, always reachable while scrolling"
+      }
+    }
+  ],
+  "anatomy": [
+    "选择列（Checkbox column）",
+    "全选表头（Select-all header）",
+    "批量操作栏（Action bar）",
+    "已选计数与撤销（Count & undo）"
+  ],
+  "related": [
+    {
+      "id": "table",
+      "relation": "used_with"
+    },
+    {
+      "id": "checkbox",
+      "relation": "used_with"
+    },
+    {
+      "id": "undo-action",
+      "relation": "used_with"
+    },
+    {
+      "id": "filter-panel",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "bulk-actions",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "W3C ARIA APG — Grid Pattern",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/grid/"
+    },
+    {
+      "name": "Material Design — Data tables",
+      "url": "https://m3.material.io/components/data-tables/overview"
+    },
+    {
+      "name": "MDN — input checkbox",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "position",
+      "transform",
+      "transition",
+      "opacity"
+    ],
+    "notes": {
+      "zh": "选择集存于 Set 或 id 数组；表头复选框用 indeterminate 表达半选。操作栏在计数大于 0 时 入场（translateY + opacity，时长乘 var(--demo-speed, 1)）。执行后用 toast 提示并提供撤销， 尊重 prefers-reduced-motion。批量接口需服务端幂等，避免重复提交。",
+      "en": "Keep the selection as a Set or id array; the header checkbox uses indeterminate for partial selection. Slide the action bar in (translateY + opacity, durations scaled by var(--demo-speed, 1)) when the count exceeds zero. After running, show a toast with undo and respect prefers-reduced-motion. Bulk endpoints must be idempotent to survive double-submits."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建一个批量操作（Bulk Actions）演示：勾选多行后一次性删除或归档。",
+      "en": "Create a bulk-actions demo: select many rows, then delete or archive them in one go."
+    },
+    "design": {
+      "zh": "创建批量操作演示。要求：数据表首列复选框、表头全选三态；有选中时底部浮现操作栏显示\"N 项已选\"；提供归档、删除与清空选择；执行后 toast 提示并可撤销；支持深浅色主题。",
+      "en": "Create a bulk-actions demo. Requirements: a checkbox column with a tri-state header select-all; a bottom action bar reading \"N selected\" when anything is ticked; Archive, Delete and Clear; a toast with undo after execution; light and dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + useState 维护 Set<string> 选中集；表头 checkbox 设 indeterminate；操作栏 条件渲染并做入场过渡（时长乘 var(--demo-speed, 1)）。删除先乐观移除、toast 提供撤销回滚。 role=\"row\" / aria-selected 表达行选择状态。尊重 prefers-reduced-motion。",
+      "en": "Keep a Set<string> of selected ids in React state; set indeterminate on the header checkbox; conditionally render the action bar with an enter transition (durations scaled by var(--demo-speed, 1)). Delete optimistically and offer undo in the toast. Express row selection with role=\"row\" / aria-selected. Respect prefers-reduced-motion."
+    },
+    "agent": {
+      "zh": "在当前项目中实现表格批量操作。\n\n先检查现有组件体系和 Design Token，优先复用当前组件。\n保持现有项目视觉风格。不要新增不必要依赖。\n要求：\n- 复选框列 + 表头全选三态\n- 有选中时浮现操作栏，显示已选计数\n- 批量执行后提供撤销入口\n- 尊重 prefers-reduced-motion\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement table bulk actions in the current project.\n\nInspect the existing component system and design tokens first; reuse existing components.\nKeep the project's visual style. Add no unnecessary dependencies.\nRequirements:\n- Checkbox column with a tri-state header select-all\n- Action bar appears on selection with a live count\n- Offer undo after a bulk operation\n- Respect prefers-reduced-motion\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

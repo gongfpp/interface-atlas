@@ -1,0 +1,222 @@
+{
+  "id": "lightbox",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "灯箱",
+    "en": "Lightbox"
+  },
+  "aliases": [
+    "图片灯箱",
+    "大图预览",
+    "图片放大预览",
+    "看大图",
+    "lightbox"
+  ],
+  "category": [
+    "Overlay",
+    "Media"
+  ],
+  "description": {
+    "zh": "以压暗遮罩放大展示图片或视频的媒体浮层，原页面暂时失去交互。内容居中呈现，常配左右切换、缩放与关闭；它是媒体专用的模态框，与通用对话框的区别在于主体是可观赏的视觉内容而非表单或文案。",
+    "en": "A media overlay that enlarges an image or video over a dimmed, temporarily inert page. The media is centered and usually paired with prev/next, zoom and close. It is a modal specialised for viewing rather than for forms or copy — that is what separates it from a generic dialog."
+  },
+  "use_when": [
+    {
+      "zh": "需要查看图片细节、原图或成组照片",
+      "en": "Inspecting image detail, full-size originals or photo sets"
+    },
+    {
+      "zh": "视频需要脱离页面布局专注播放",
+      "en": "Video must play focused, free of the page layout"
+    },
+    {
+      "zh": "缩略图点击后预期放大预览",
+      "en": "Thumbnails are expected to open a larger preview on click"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "内容是表单、说明或确认操作，用 modal",
+      "en": "Content is a form, message or confirmation — use a modal"
+    },
+    {
+      "zh": "用户需要边看边操作底层页面，用 drawer 或 popover",
+      "en": "Users must act on the page while looking — use a drawer or popover"
+    },
+    {
+      "zh": "媒体本身就是页面主体，直接用画廊页或视频播放页",
+      "en": "Media is the page itself — use a gallery page or player page"
+    }
+  ],
+  "tags": [
+    "overlay",
+    "media",
+    "dialog"
+  ],
+  "api": [
+    "<dialog>",
+    "role=\"dialog\"",
+    "aria-modal=\"true\""
+  ],
+  "variants": [
+    {
+      "id": "image-zoom",
+      "name": {
+        "zh": "图片放大",
+        "en": "Image zoom"
+      },
+      "note": {
+        "zh": "单图全屏放大，可缩放或平移查看细节",
+        "en": "One image full-screen with zoom or pan for detail"
+      }
+    },
+    {
+      "id": "gallery",
+      "name": {
+        "zh": "画廊切换",
+        "en": "Gallery"
+      },
+      "note": {
+        "zh": "带左右箭头与计数，连续浏览组图",
+        "en": "Arrows plus a counter to step through a set"
+      }
+    },
+    {
+      "id": "video",
+      "name": {
+        "zh": "视频灯箱",
+        "en": "Video lightbox"
+      },
+      "note": {
+        "zh": "浮层内播放视频，常自动播放并可全屏",
+        "en": "Video plays inside the overlay, often autoplaying to full screen"
+      }
+    }
+  ],
+  "anatomy": [
+    "遮罩层（Backdrop）",
+    "媒体舞台（Stage）",
+    "切换箭头（Arrows）",
+    "关闭按钮（Close）"
+  ],
+  "framework_names": [
+    {
+      "framework": "ARIA APG",
+      "name": "Dialog (Modal)",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"
+    },
+    {
+      "framework": "yet-another-react-lightbox",
+      "name": "Lightbox",
+      "url": "https://github.com/igordanchenko/yet-another-react-lightbox"
+    },
+    {
+      "framework": "MUI",
+      "name": "Dialog (full-screen image)",
+      "url": "https://mui.com/material-ui/react-dialog/"
+    }
+  ],
+  "playground": {
+    "task": {
+      "zh": "打开灯箱浏览一组图片，用箭头切换并尝试缩放与关闭。",
+      "en": "Open the lightbox over a photo set, step with arrows and try zoom and close."
+    },
+    "checks": [
+      {
+        "zh": "遮罩外点击或 Esc 可关闭，关闭后焦点回到缩略图",
+        "en": "Outside click or Esc closes; focus returns to the thumbnail"
+      },
+      {
+        "zh": "图片加载失败或视频不可用时有替代说明",
+        "en": "Failed image or video states carry a replacement message"
+      }
+    ]
+  },
+  "related": [
+    {
+      "id": "modal",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "carousel",
+      "relation": "used_with"
+    },
+    {
+      "id": "drawer",
+      "relation": "similar_to"
+    }
+  ],
+  "confusable": [
+    {
+      "id": "modal",
+      "note": {
+        "zh": "modal 承载通用任务与文案，lightbox 专用于放大观赏媒体",
+        "en": "Modal hosts generic tasks and copy; lightbox exists to view media enlarged"
+      }
+    },
+    {
+      "id": "carousel",
+      "note": {
+        "zh": "carousel 在页面内轮播，lightbox 在压暗遮罩上全屏展示",
+        "en": "Carousel rotates in-page; lightbox presents full-screen over a dimmed page"
+      }
+    }
+  ],
+  "disambiguation": {
+    "zh": "Lightbox 是媒体专用的 Modal；Modal 是通用容器。灯箱打开的是「可以看的东西」，对话框打开的是「要你处理的事」。",
+    "en": "A lightbox is a media-focused Modal; Modal is the generic container. A lightbox opens something to look at, a dialog opens something to deal with."
+  },
+  "demo": {
+    "component": "lightbox",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "WAI-ARIA Authoring Practices — Dialog (Modal)",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"
+    },
+    {
+      "name": "MDN — dialog element",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog"
+    },
+    {
+      "name": "Apple Human Interface Guidelines — Full Screen Modal",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/modality"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "position: fixed",
+      "object-fit: contain",
+      "z-index",
+      "background-color"
+    ],
+    "notes": {
+      "zh": "遮罩固定铺满并压暗底层，媒体用 object-fit: contain 居中，避免裁切。打开时锁定页面滚动、焦点困在浮层内；左右箭头与 Esc 均可键盘操作。切换用轻微淡入而非大幅位移，尊重 prefers-reduced-motion。",
+      "en": "Fix a dimmed backdrop across the viewport and center the media with object-fit: contain so nothing is cropped. Lock page scroll and trap focus while open; arrows and Esc work from the keyboard. Cross-fade between items rather than sliding hard, and respect prefers-reduced-motion."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建一个灯箱组件：点击缩略图在压暗遮罩上放大展示图片，支持左右切换与关闭。",
+      "en": "Create a lightbox that opens an enlarged image over a dimmed backdrop, with prev/next and close."
+    },
+    "design": {
+      "zh": "设计灯箱。要求：半透明压暗遮罩 + 居中媒体；底部计数与图注；左右切换箭头与右上角关闭；切换时轻微淡入；Esc 与点击遮罩可关闭；深浅色主题一致。",
+      "en": "Design a lightbox. Requirements: translucent dimmed backdrop with centered media; counter and caption at the bottom; prev/next arrows and a top-right close; gentle cross-fade when switching; close on Esc and backdrop click; consistent light and dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现灯箱：受控 index 与 open 状态；fixed inset-0 遮罩 + flex 居中的 figure；object-fit: contain 限制媒体尺寸；焦点困在浮层内，Esc 关闭并把焦点还给触发缩略图；图片 onError 显示占位说明。",
+      "en": "React + Tailwind lightbox: controlled open and index state; fixed inset-0 backdrop with a flex-centered figure; object-fit: contain bounds the media; trap focus, close on Esc and restore focus to the trigger thumbnail; show a placeholder message on image error."
+    },
+    "agent": {
+      "zh": "在当前项目中实现灯箱（Lightbox）组件。\n先检查现有浮层与 Design Token，优先复用遮罩、圆角与阴影变量。\n用途：图片与视频的放大预览。\n要求：\n- 压暗遮罩 + 居中媒体，支持左右切换与关闭\n- 焦点困在浮层内，关闭后焦点回到触发元素\n- 图片加载失败有替代说明\n- 尊重 prefers-reduced-motion，支持键盘操作\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a Lightbox component in the current project.\nInspect existing overlays and design tokens first and reuse backdrop, radius and shadow variables.\nUsage: enlarged preview of images and video.\nRequirements:\n- Dimmed backdrop with centered media, prev/next and close\n- Focus trapped in the overlay and restored to the trigger on close\n- Replacement message when an image fails to load\n- Respect prefers-reduced-motion and support keyboard operation\n- No new dependencies\nRun the existing project checks when done and list the modified files."
+    }
+  }
+}

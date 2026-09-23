@@ -1,0 +1,192 @@
+{
+  "id": "aria-live",
+  "type": "a11y",
+  "status": "published",
+  "name": {
+    "zh": "实时区域",
+    "en": "ARIA Live Region"
+  },
+  "aliases": [
+    "实时区域",
+    "实时播报",
+    "播报区域",
+    "读屏播报",
+    "aria-live",
+    "live region"
+  ],
+  "category": [
+    "Accessibility",
+    "Feedback"
+  ],
+  "description": {
+    "zh": "在页面上预留一块播报区，内容动态更新时把消息念给屏幕阅读器，而不移动焦点。保存成功、筛选结果数、异步校验这类「看得见变了但焦点没动」的信息，读屏用户不靠它就会漏掉。",
+    "en": "A reserved region on the page that speaks dynamic updates to screen readers without moving focus. Saved states, result counts, async validation — the \"it changed on screen but focus didn't move\" class of news that blind users simply miss without it."
+  },
+  "use_when": [
+    {
+      "zh": "操作结果反馈（已保存、已复制、已提交）",
+      "en": "Operation outcomes — saved, copied, submitted"
+    },
+    {
+      "zh": "异步结果与筛选计数等无焦点移动的更新",
+      "en": "Async results and filter counts with no focus change"
+    },
+    {
+      "zh": "表单校验错误需要在字段之外被朗读",
+      "en": "Form errors that must be announced outside the field"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "用播报区代替把焦点移到错误字段（字段级错误仍要 focus）",
+      "en": "Announcing field errors instead of focusing the field"
+    },
+    {
+      "zh": "高频连续插入导致读屏被消息刷屏",
+      "en": "High-frequency inserts that flood the screen reader queue"
+    },
+    {
+      "zh": "必须被立即处理的阻断性错误只用 polite",
+      "en": "Blocking errors that must interrupt, sent polite only"
+    }
+  ],
+  "tags": [
+    "a11y",
+    "feedback",
+    "screen-reader",
+    "aria"
+  ],
+  "api": [
+    "aria-live",
+    "role=\"status\"",
+    "role=\"alert\"",
+    "aria-atomic"
+  ],
+  "framework_names": [
+    {
+      "framework": "WCAG",
+      "name": "4.1.3 Status Messages",
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/status-messages"
+    },
+    {
+      "framework": "MDN",
+      "name": "ARIA live regions",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions"
+    }
+  ],
+  "disambiguation": {
+    "zh": "aria-live 是不打断焦点的后台播报，modal 是抢走焦点的强制阅读——都在传达更新，一个插话，一个拦路。",
+    "en": "aria-live is non-interrupting background speech; a modal is focus-stealing forced reading — both deliver news, one whispers it, one blocks the door."
+  },
+  "confusable": [
+    {
+      "id": "modal",
+      "note": {
+        "zh": "modal 抢占焦点强制阅读，aria-live 在不夺走焦点的前提下朗读更新。",
+        "en": "modal seizes focus to force reading; aria-live voices updates without taking focus away."
+      }
+    }
+  ],
+  "variants": [
+    {
+      "id": "polite",
+      "name": {
+        "zh": "礼貌播报",
+        "en": "Polite live"
+      },
+      "note": {
+        "zh": "aria-live=\"polite\"，等用户停顿再念，适合一般结果",
+        "en": "aria-live=\"polite\" — waits for a pause, right for ordinary results"
+      }
+    },
+    {
+      "id": "assertive",
+      "name": {
+        "zh": "紧急打断",
+        "en": "Assertive alert"
+      },
+      "note": {
+        "zh": "aria-live=\"assertive\" / role=\"alert\"，立刻打断，仅限关键警告",
+        "en": "aria-live=\"assertive\" / role=\"alert\" — interrupts at once, critical warnings only"
+      }
+    },
+    {
+      "id": "status",
+      "name": {
+        "zh": "状态播报",
+        "en": "Status"
+      },
+      "note": {
+        "zh": "role=\"status\"，隐含 polite，适合加载与完成状态",
+        "en": "role=\"status\" — implicit polite, suits loading and done states"
+      }
+    }
+  ],
+  "anatomy": [
+    "触发按钮（Trigger）",
+    "实时区域（Live region）",
+    "播报日志（Announcement log）"
+  ],
+  "related": [
+    {
+      "id": "toast",
+      "relation": "used_with"
+    },
+    {
+      "id": "alert",
+      "relation": "used_with"
+    },
+    {
+      "id": "form-validation",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "aria-live",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "WCAG 2.1 Status Messages",
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/status-messages"
+    },
+    {
+      "name": "MDN — ARIA live regions",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "aria-live",
+      "role=\"status\"",
+      "role=\"alert\"",
+      "aria-atomic"
+    ],
+    "notes": {
+      "zh": "实时区域必须预先存在于 DOM（空容器即可），再更新文本内容——动态创建的 live region 常常不会被朗读。role=\"status\" 与 role=\"alert\" 自带隐含 aria-live，不必重复声明。aria-atomic=\"true\" 保证整块重读；同一区域连续更新时先清空再写入，避免被合并。视觉隐藏用 sr-only 但保持可朗读。",
+      "en": "The live region must already be in the DOM (an empty container is fine) before its text changes — freshly created regions are often not announced. role=\"status\" and role=\"alert\" imply their own aria-live, so do not stack both. aria-atomic=\"true\" re-reads the whole region; clear then write on rapid updates so messages do not merge. Use sr-only when hiding visually while staying readable."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "给动态更新加上读屏播报：状态变化时屏幕阅读器能读出来。",
+      "en": "Announce dynamic updates so screen readers speak them as state changes."
+    },
+    "design": {
+      "zh": "每个 toast 与异步结果同时写入页面内的播报区；普通结果礼貌排队，阻断性错误立即打断；播报文案与视觉消息一致、简短、含结果动词。",
+      "en": "Every toast and async result also writes into a page live region; ordinary news queues politely, blocking errors interrupt; announcement copy matches the visual message, short and outcome-first."
+    },
+    "implementation": {
+      "zh": "预置 <div aria-live=\"polite\" aria-atomic=\"true\" class=\"sr-only\"> 与 role=\"alert\" 区域；状态变化 setState 写入文本。toast 组件挂载到已存在容器；避免 300ms 内多次写入同一区域。",
+      "en": "Pre-place `<div aria-live=\"polite\" aria-atomic=\"true\" class=\"sr-only\">` plus a role=\"alert\" region; state changes write text in. Mount toasts into an existing container; avoid multiple writes into one region within 300ms."
+    },
+    "agent": {
+      "zh": "在当前项目中实现实时区域播报。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- 预置 live region，动态更新写入文本\n- polite / assertive / status 三档按消息重要性选择\n- toast 与表单校验结果同步播报\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement live-region announcements in the current project.\nInspect the existing component system and design tokens first; reuse current components.\nRequirements:\n- Pre-place live regions and write updates as text\n- Choose polite / assertive / status by message urgency\n- Toasts and form-validation results are announced too\nKeep the existing visual style. Add no unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun the project's existing checks when done and list the modified files."
+    }
+  }
+}

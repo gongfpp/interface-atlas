@@ -1,0 +1,194 @@
+{
+  "id": "keyboard-navigation",
+  "type": "a11y",
+  "status": "published",
+  "name": {
+    "zh": "键盘导航",
+    "en": "Keyboard Navigation"
+  },
+  "aliases": [
+    "键盘导航",
+    "键盘操作",
+    "键盘可达",
+    "tab 顺序",
+    "不用鼠标操作",
+    "keyboard nav"
+  ],
+  "category": [
+    "Accessibility",
+    "Keyboard"
+  ],
+  "description": {
+    "zh": "让所有功能都能只用键盘完成：Tab/Shift+Tab 按合理顺序移动焦点，复合组件内用方向键漫游并配 roving tabindex，Escape 关闭浮层并归还焦点。这是焦点环之外的一整套焦点秩序，规则写在 ARIA APG 里。",
+    "en": "Make every feature operable by keyboard alone: Tab/Shift+Tab move focus in a sane order, composite widgets roam with arrow keys over a roving tabindex, Escape dismisses overlays and returns focus. The full focus discipline beyond the focus ring, codified in the ARIA APG."
+  },
+  "use_when": [
+    {
+      "zh": "工具栏、菜单、标签页等复合组件的组内焦点管理",
+      "en": "Focus management inside composites — toolbars, menus, tab lists"
+    },
+    {
+      "zh": "弹层、抽屉、对话框需要打开与关闭的焦点闭环",
+      "en": "Overlays that need an open/close focus loop"
+    },
+    {
+      "zh": "任何必须「无鼠标可完成」的核心流程",
+      "en": "Any core flow that must be completable without a mouse"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "用 tabindex=\"0\" 把非交互元素强行拉进 Tab 序",
+      "en": "Dragging non-interactive nodes into the tab order with tabindex=\"0\""
+    },
+    {
+      "zh": "组内每个项都 tabindex=\"0\"，方向键又不能漫游",
+      "en": "Making every item tabbable while arrows do not roam"
+    },
+    {
+      "zh": "Escape 关掉浮层后焦点掉回 body 顶",
+      "en": "Escape closing an overlay and dropping focus at the top of body"
+    }
+  ],
+  "tags": [
+    "a11y",
+    "keyboard",
+    "focus",
+    "apg"
+  ],
+  "api": [
+    "tabindex",
+    "keydown",
+    ":focus-visible"
+  ],
+  "framework_names": [
+    {
+      "framework": "WAI-ARIA APG",
+      "name": "Keyboard Interaction",
+      "url": "https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/"
+    },
+    {
+      "framework": "WCAG",
+      "name": "2.4.3 Focus Order",
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/focus-order"
+    }
+  ],
+  "disambiguation": {
+    "zh": "「Tab 键」是移动焦点的按键，「标签页（Tabs）」是一个组件——英文同形，中文口语都可能说成 Tab，一个是输入按键，一个是界面元素。",
+    "en": "The Tab key moves focus; Tabs is a component. Same English word, two completely different things — one is an input key, one is a UI element."
+  },
+  "confusable": [
+    {
+      "id": "tabs",
+      "note": {
+        "zh": "tabs 是标签页组件；keyboard-navigation 里的 Tab 键是焦点移动按键——同名不同物。",
+        "en": "tabs is the tab component; the Tab key in keyboard-navigation is the focus-mover — same word, different things."
+      }
+    }
+  ],
+  "variants": [
+    {
+      "id": "tab-order",
+      "name": {
+        "zh": "线性 Tab 序",
+        "en": "Linear tab order"
+      },
+      "note": {
+        "zh": "DOM 顺序即焦点顺序，页面级默认",
+        "en": "DOM order is focus order — the page-level default"
+      }
+    },
+    {
+      "id": "roving-tabindex",
+      "name": {
+        "zh": "漫游 tabindex",
+        "en": "Roving tabindex"
+      },
+      "note": {
+        "zh": "组内仅一项 tabindex=\"0\"，方向键切换",
+        "en": "One tabindex=\"0\" inside the group, arrows move it"
+      }
+    },
+    {
+      "id": "escape-dismiss",
+      "name": {
+        "zh": "Escape 归还焦点",
+        "en": "Escape dismiss"
+      },
+      "note": {
+        "zh": "关闭浮层后焦点回到触发元素",
+        "en": "Closing an overlay returns focus to its trigger"
+      }
+    }
+  ],
+  "anatomy": [
+    "Tab 顺序（Tab order）",
+    "方向键簇（Arrow cluster）",
+    "Escape 闭环（Escape dismiss）"
+  ],
+  "related": [
+    {
+      "id": "focus-ring",
+      "relation": "used_with"
+    },
+    {
+      "id": "skip-link",
+      "relation": "used_with"
+    },
+    {
+      "id": "menu",
+      "relation": "used_with"
+    },
+    {
+      "id": "command-palette",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "keyboard-navigation",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "WAI-ARIA APG — Keyboard Interaction",
+      "url": "https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/"
+    },
+    {
+      "name": "WCAG 2.1 Keyboard",
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/keyboard"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "tabindex",
+      ":focus-visible",
+      "keydown"
+    ],
+    "notes": {
+      "zh": "页面级用自然 DOM 顺序 + 原生可交互元素，别用正数 tabindex 重排。复合组件按 APG：组内一项 tabindex=\"0\" 其余 -1，keydown 处理方向键/Home/End 并 .focus() 目标项；浮层打开时焦点移入，Escape 关闭并归还触发元素。keydown 里 preventDefault 前先确认按键属于该组件。",
+      "en": "Page level: natural DOM order with native interactive elements — never positive tabindex. Composites per APG: one tabindex=\"0\" in the group, -1 elsewhere; keydown handles arrows/Home/End and focuses the target item. On open, move focus into the overlay; Escape closes and restores the trigger. Only preventDefault a key once you know the widget owns it."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "让页面和组件完整支持键盘操作：Tab 移动、方向键选择、Escape 关闭。",
+      "en": "Make the page and components fully keyboard operable — Tab to move, arrows to pick, Escape to dismiss."
+    },
+    "design": {
+      "zh": "焦点顺序与视觉顺序一致；工具栏与菜单组内只占一个 Tab 站点、方向键漫游；弹层打开焦点移入、Escape 关闭并回到触发按钮；每个焦点位置都有可见焦点环。",
+      "en": "Focus order matches visual order; toolbars and menus occupy one tab stop and roam with arrows; overlays take focus on open and return it to the trigger on Escape; every stop shows a visible focus ring."
+    },
+    "implementation": {
+      "zh": "组合式组件：container role + 项目 refs，state 记录 activeIndex；tabIndex={i === active ? 0 : -1}；onKeyDown 分发 Arrow/Home/End 后 focus(next)。浮层用 dialog/role=\"menu\"，打开 focus 首项、Escape 关闭并 trigger.focus()。",
+      "en": "Composite: container role plus item refs, state tracks activeIndex; `tabIndex={i === active ? 0 : -1}`; onKeyDown maps Arrow/Home/End then focus(next). Overlays use dialog or role=\"menu\", focus the first item on open, Escape closes and calls trigger.focus()."
+    },
+    "agent": {
+      "zh": "在当前项目中实现完整键盘导航。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- Tab 顺序与视觉顺序一致，不使用正数 tabindex\n- 复合组件方向键漫游 + roving tabindex\n- 浮层 Escape 关闭并把焦点还给触发元素\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement complete keyboard navigation in the current project.\nInspect the existing component system and design tokens first; reuse current components.\nRequirements:\n- Focus order matches visual order; no positive tabindex\n- Composites roam with arrow keys over a roving tabindex\n- Escape closes overlays and returns focus to the trigger\nKeep the existing visual style. Add no unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun the project's existing checks when done and list the modified files."
+    }
+  }
+}

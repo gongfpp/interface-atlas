@@ -35,6 +35,18 @@ tags:
   - toggle
 api:
   - <input type="checkbox" role="switch">
+framework_names:
+  - framework: ARIA
+    name: role="switch"
+  - framework: shadcn/ui
+    name: Switch
+    url: https://ui.shadcn.com/docs/components/switch
+  - framework: MUI
+    name: Switch
+    url: https://mui.com/material-ui/react-switch/
+  - framework: AntD
+    name: Switch
+    url: https://ant.design/components/switch
 variants:
   - id: basic
     name:

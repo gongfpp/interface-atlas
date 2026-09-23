@@ -28,6 +28,23 @@ avoid_when:
 tags:
   - stepper
   - feedback
+disambiguation:
+  zh: "Stepper 一名两义：既指数值加减输入框（Input Stepper / Number Input），也指多步流程指示（Progress Stepper）。看场景选词：改数字用前者，看进度用后者。"
+  en: "Stepper is ambiguous: it names both a numeric +/- input (input stepper) and a multi-step progress indicator. Pick by context — changing a number vs reading progress."
+confusable:
+  - id: wizard
+    note:
+      zh: "Wizard 是分步表单流程本身；Stepper（进度义）只是它的指示器。"
+      en: "A wizard is the multi-step flow itself; a progress stepper is only its indicator."
+  - id: slider
+    note:
+      zh: "Slider 在连续区间取值，Input Stepper 按固定步长加减。"
+      en: "A slider picks along a continuum; an input stepper steps by a fixed delta."
+  - id: pagination
+    note:
+      zh: "Pagination 切换数据页，Stepper 推进任务步骤。"
+      en: "Pagination moves through data pages; a stepper advances task steps."
+
 variants:
   - id: horizontal
     name:

@@ -8,11 +8,13 @@
 
 ## 这是什么
 
-- **风格**（18）：Editorial Minimal 站点本身 + 18 种视觉语言的完整迷你网页示范
-- **组件**（36）：每个概念带可交互 Live Demo、Variants、Anatomy
-- **交互模式**（15）：解决某类交互问题的方法
-- **动效**（20）：真实可运行，带播放器（Play / Replay / Slow Motion / Before-After）
+- **风格**（24）：Editorial Minimal 站点本身 + 24 种视觉语言的完整迷你网页示范
+- **组件**（46）：每个概念带可交互 Live Demo、Variants、Anatomy、多框架命名对照
+- **交互模式**（21）：解决某类交互问题的方法
+- **动效**（23）：真实可运行，带播放器（Play / Replay / Slow Motion / Before-After）
 - **页面**（10）：页面类型的结构拆解与布局变体
+- **基础**（8）：字号阶梯、字体栈、行高、行宽、调色板、语义色、对比度、层级
+- **无障碍**（6）：焦点环、跳过链接、减弱动效、键盘导航、实时区域、替代文本
 - **灵感图库**（5 套 / 40 张）：AI 生成的设计参考图集，每套附可复现的生图 Prompt
 
 组件详情增加交互任务与使用检查点；演示区支持重置、窄屏预览、模式切换与结构高亮，并可直接浏览对应参考图集。
@@ -21,7 +23,7 @@
 
 每个 Concept 都包含：中英双语名称 / Aliases（含口语描述）/ 定义 / When to Use / **When NOT to Use** / Variants / Related / Compare / 实现要点 / 4 层 Agent Prompt / 参考来源。
 
-面向 AI 的机器可读层：`/api/concept/<type>/<id>.json` + [`/llms.txt`](public/llms.txt)。
+面向 AI 的机器可读层：`/api/concept/<type>/<id>.json` + [`/llms.txt`](public/llms.txt) + [`/api/terms.json`](public/api/terms.json) 全库打包 + [`/llms-full.txt`](public/llms-full.txt) 定义级全文 + 每页 `/<type>/<id>.md` Markdown 镜像。
 
 ## 搜索
 

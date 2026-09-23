@@ -1,0 +1,252 @@
+{
+  "id": "hand-drawn",
+  "type": "styles",
+  "status": "published",
+  "name": {
+    "zh": "手绘涂鸦",
+    "en": "Hand-drawn UI"
+  },
+  "aliases": [
+    "手绘风",
+    "涂鸦风格",
+    "手绘描边",
+    "歪歪扭扭的线",
+    "纸感手写界面",
+    "hand-drawn UI",
+    "doodle UI",
+    "sketchy UI"
+  ],
+  "category": [
+    "Style",
+    "Visual Language"
+  ],
+  "description": {
+    "zh": "用抖动线条、歪斜描边、纸张纹理和马克笔高亮表示「人手画的」的界面视觉语言。 圆故意画不圆，边框带手感抖动，图标像随手勾的。以人的温度对抗机器级完美。",
+    "en": "Wobbly strokes, skewed borders, paper texture and marker highlights as a human-made interface look. Circles stay imperfect, outlines tremble, icons read as quick sketches. Human warmth against machine-perfect UI."
+  },
+  "use_when": [
+    {
+      "zh": "独立创作者、手作品牌、教育类产品，需要亲和与在场感",
+      "en": "Independent creators, craft brands and education products needing warmth"
+    },
+    {
+      "zh": "空状态、引导气泡、彩蛋等轻量场景，涂鸦当调味",
+      "en": "Empty states, coach marks and easter eggs where doodles season the dish"
+    },
+    {
+      "zh": "想打破 AI 生成界面的过度光滑与同质",
+      "en": "Breaking the over-smooth sameness of AI-generated UI"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "金融、法务、医疗等需要精确与权威的界面",
+      "en": "Finance, legal and medical UIs that must read precise and authoritative"
+    },
+    {
+      "zh": "高密度数据表格与仪表盘，抖动线条干扰数字对齐",
+      "en": "Dense tables and dashboards — wobbly lines wreck numeric alignment"
+    },
+    {
+      "zh": "长文阅读区，纸纹与高亮叠多了伤阅读",
+      "en": "Long reading areas where texture and highlights pile up and hurt"
+    }
+  ],
+  "tags": [
+    "hand-drawn",
+    "doodle",
+    "paper",
+    "sketchy",
+    "warm"
+  ],
+  "variants": [
+    {
+      "id": "marker",
+      "name": {
+        "zh": "马克笔草图",
+        "en": "Marker sketch"
+      },
+      "note": {
+        "zh": "粗头马克笔线，高亮笔刷色块压在字下",
+        "en": "Thick marker strokes with highlighter swipes under the type"
+      }
+    },
+    {
+      "id": "notebook",
+      "name": {
+        "zh": "笔记本涂鸦",
+        "en": "Notebook doodle"
+      },
+      "note": {
+        "zh": "横线纸底 + 圆珠笔细线 + 边角小图标",
+        "en": "Ruled paper, ballpoint thin lines, corner doodles"
+      }
+    },
+    {
+      "id": "sticker",
+      "name": {
+        "zh": "贴纸乱贴",
+        "en": "Sticker chaos"
+      },
+      "note": {
+        "zh": "手绘贴纸元素随机倾斜叠放，像活页本封面",
+        "en": "Tilted doodle stickers stacked like a binder cover"
+      }
+    }
+  ],
+  "applicable_components": [
+    "button",
+    "card",
+    "tooltip",
+    "alert"
+  ],
+  "applicable_pages": [
+    "landing-page"
+  ],
+  "related": [
+    {
+      "id": "organic",
+      "relation": "similar_to"
+    },
+    {
+      "id": "neobrutalism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "minimalism",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "empty-state",
+      "relation": "used_with"
+    },
+    {
+      "id": "button",
+      "relation": "affects"
+    },
+    {
+      "id": "card",
+      "relation": "affects"
+    }
+  ],
+  "demo": {
+    "component": "hand-drawn",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Wikipedia — Doodle",
+      "url": "https://en.wikipedia.org/wiki/Doodle"
+    },
+    {
+      "name": "Wikipedia — Sketch (drawing)",
+      "url": "https://en.wikipedia.org/wiki/Sketch_(drawing)"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px",
+      "border: 2px solid #2B2B2B",
+      "background: linear-gradient() #FFE566 高亮",
+      "transform: rotate(-1deg)",
+      "box-shadow: 2px 2px 0 rgba(0,0,0,0.08)"
+    ],
+    "notes": {
+      "zh": "抖动边框用非对称 border-radius 四角不同值即可，不必上 SVG filter；要更抖可用 SVG feTurbulence 位移， 但要包进 @media (prefers-reduced-motion: no-preference) 或默认静止。马克笔高亮是一条半透明黄色 background 线性渐变压在文字下 60% 高度。纸纹用低透明度噪点或 repeating-linear-gradient 横线，透明度低于 0.12。 每页倾斜元素 2～4 个即可，多了像没做完。",
+      "en": "Fake wobbly borders with asymmetric border-radius values — no SVG filter required. For more tremor use SVG feTurbulence displacement, but keep it static under prefers-reduced-motion. Marker highlight is a translucent yellow linear-gradient band behind the lower 60% of the text. Paper texture is low-opacity noise or repeating horizontal rules under 0.12 opacity. Tilt two to four elements per page; more reads unfinished."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "用手绘涂鸦风格（Hand-drawn UI）设计界面：抖动描边、歪斜圆角、纸张纹理、马克笔高亮，图标像随手勾的。",
+      "en": "Design an interface in Hand-drawn UI style: wobbly outlines, skewed radii, paper texture and marker highlights, with icons that read as quick sketches."
+    },
+    "design": {
+      "zh": "手绘涂鸦设计规范：底色纸白 #FAF6EE，墨色 #2B2B2B，高亮黄 #FFE566，点缀珊瑚 #FF8A65； 所有容器非对称圆角（四角不同值）模拟手画；按钮 2px 抖动描边 + 轻微 rotate(-1deg)； 高亮条压在关键词下；图标用手绘路径或粗描边简笔； 深色模式用牛皮纸深棕底，墨色反成米白，高亮保持。",
+      "en": "\"Hand-drawn spec: paper #FAF6EE, ink #2B2B2B, highlight yellow #FFE566, coral accent #FF8A65; every container gets asymmetric radii (four different corner values); buttons with 2px wobbly strokes and a slight rotate(-1deg); highlighter bars under key words; icons as sketchy paths or thick simple strokes; dark mode on deep kraft brown with cream ink, highlight kept.\""
+    },
+    "implementation": {
+      "zh": "用 CSS 实现抖动容器：.sketchy { border: 2px solid #2B2B2B; border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; } 高亮：background: linear-gradient(transparent 55%, #FFE566 55%); 纸纹：repeating-linear-gradient(#0000 0 27px, #2B2B2B12 27px 28px); 倾斜用 transform: rotate(-1deg) 且过渡尊重 prefers-reduced-motion。",
+      "en": "\"Implement a wobbly container in CSS: .sketchy { border: 2px solid #2B2B2B; border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; } Highlight: background: linear-gradient(transparent 55%, #FFE566 55%); paper: repeating-linear-gradient(#0000 0 27px, #2B2B2B12 27px 28px); tilt via transform: rotate(-1deg) with transitions gated on prefers-reduced-motion.\""
+    },
+    "agent": {
+      "zh": "在当前项目中实现 Hand-drawn UI 手绘涂鸦视觉风格。\n\n先检查现有组件与纹理资产，手绘效果限制在展示层，不改交互命中区域。\n要求：\n- 非对称圆角抖动描边，2～4 个轻微倾斜元素\n- 纸纹底（横线或噪点，透明度 < 0.12）与马克笔高亮\n- 图标用手绘路径或粗描边简笔，装饰 aria-hidden\n- 按钮命中区域保持规则矩形，只让视觉描边抖动\n- 深色模式牛皮纸深棕底；动效尊重 prefers-reduced-motion\n- 文字对比度达标，不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement Hand-drawn UI visual style in the current project.\n\nInspect existing components and texture assets first; keep hand-drawn effects on the visual layer only, hit targets untouched.\nRequirements:\n- Asymmetric wobbly radii and strokes, two to four slightly tilted elements\n- Paper ground (rules or noise under 0.12 opacity) plus marker highlights\n- Sketchy icon paths, decoration aria-hidden\n- Buttons keep regular rectangular hit areas; only the visual stroke wobbles\n- Dark mode on kraft brown; motion respects prefers-reduced-motion\n- Text contrast compliant, no new dependencies\nRun existing project checks when done and list the modified files."
+    }
+  },
+  "style_spec": {
+    "typography": {
+      "zh": "手写感无衬线或圆体，标题略歪",
+      "en": "Hand-feel sans or rounded face, headings slightly tilted"
+    },
+    "color": {
+      "zh": "纸白 #FAF6EE × 墨色 #2B2B2B × 高亮黄 #FFE566",
+      "en": "Paper #FAF6EE, ink #2B2B2B, highlight yellow #FFE566"
+    },
+    "border": {
+      "zh": "2px 抖动描边，非对称圆角",
+      "en": "2px wobbly strokes with asymmetric radii"
+    },
+    "shadow": {
+      "zh": "极浅纸质投影，几乎贴地",
+      "en": "Barely-there paper shadows, hugging the surface"
+    },
+    "spacing": {
+      "zh": "随手贴的错位与轻微倾斜",
+      "en": "Casual misalignment and slight tilts"
+    }
+  },
+  "preview": {
+    "order": 21,
+    "keywords": {
+      "zh": "手感 · 纸纹 · 温度",
+      "en": "WARM & WOBBLY"
+    },
+    "url": "notebook.day",
+    "scene": "paper",
+    "brand": "scribble&",
+    "nav": [
+      "日记",
+      "素材",
+      "关于"
+    ],
+    "heroTitle": "画歪一点",
+    "heroTitle2": "没关系",
+    "heroSub": "人手的温度，比完美的像素更可信。",
+    "cta": "随手记一笔",
+    "heroCaption": "PERFECT CIRCLES ARE A LIE.",
+    "features": [
+      {
+        "t": "抖动描边",
+        "s": "圆画不圆"
+      },
+      {
+        "t": "纸张纹理",
+        "s": "横线本底"
+      },
+      {
+        "t": "马克笔高亮",
+        "s": "划重点"
+      }
+    ],
+    "panel": "photo",
+    "tokens": {
+      "bg": "#FAF6EE",
+      "fg": "#2B2B2B",
+      "sub": "#6B6357",
+      "accent": "#FF8A65",
+      "accentFg": "#2B2B2B",
+      "card": "#FFFDF7",
+      "cardBorder": "#2B2B2B",
+      "radius": "14px 6px 18px 8px",
+      "shadow": "2px 3px 0 rgba(43,43,43,0.08)",
+      "font": "Comic Sans MS, Chalkboard SE, Marker Felt, PingFang SC, sans-serif",
+      "italic": true,
+      "heroSize": "24px"
+    }
+  }
+}

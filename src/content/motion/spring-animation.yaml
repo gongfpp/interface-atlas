@@ -1,0 +1,151 @@
+status: published
+name:
+  zh: 弹簧动画
+  en: Spring Animation
+aliases:
+  - 弹簧动画
+  - 弹簧效果
+  - 弹一下
+  - 物理动画
+  - 回弹落位
+  - spring animation
+  - spring physics
+  - springy motion
+category:
+  - Motion
+  - Physics
+description:
+  zh: >-
+    用弹簧物理（刚度、阻尼）驱动的运动：可冲过终点再回落稳定，也可临界阻尼稳稳停住。比固定缓动更有质量感与连续性，适合拖拽落位、开关拨动与强调出现。过冲幅度需克制，避免失控感。
+  en: >-
+    Motion driven by spring physics (stiffness, damping): it may overshoot and settle, or stop dead at
+    critical damping. Compared with fixed easing it carries mass and continuity — good for drag
+    snap-into-place, switch throws and emphatic entrances. Keep overshoot modest or it reads as broken.
+use_when:
+  - zh: 拖拽松手、开关拨动等需要"落位感"的时刻
+    en: Snap-into-place moments — drag release, switch throws
+  - zh: 界面要表达质量、惯性与连续物理
+    en: The UI should express mass, inertia and physical continuity
+  - zh: 强调出现或共享元素归位
+    en: Emphatic entrances or shared elements snapping home
+avoid_when:
+  - zh: 高频微操作每次弹跳，很快变吵
+    en: High-frequency micro actions — the bounce becomes noise
+  - zh: 严肃流程（支付、医疗）需要克制而非活泼
+    en: Serious flows — payments, healthcare — needing restraint
+  - zh: 只需一次性淡入淡出，弹簧是多余复杂度
+    en: A plain fade suffices — springs add needless complexity
+tags:
+  - animation
+  - spring
+  - physics
+  - easing
+api:
+  - linear()
+  - cubic-bezier()
+  - offset-path
+variants:
+  - id: overshoot
+    name:
+      zh: 过冲弹簧
+      en: Overshoot spring
+    note:
+      zh: 冲过终点再回落，最有弹性
+      en: Passes the target then settles — the springiest
+  - id: critical
+    name:
+      zh: 临界阻尼
+      en: Critically damped
+    note:
+      zh: 最快稳定且不过冲，最稳重
+      en: Fastest settle with zero overshoot — the steadiest
+  - id: bouncy
+    name:
+      zh: 弹跳
+      en: Bouncy
+    note:
+      zh: 多次衰减振荡，俏皮但易过量
+      en: Several decaying oscillations — playful, easy to overdo
+anatomy:
+  - 触发器（Trigger）
+  - 运动主体（Moving body）
+  - 目标位（Settle point）
+related:
+  - id: elastic-bounce
+    relation: alternative_to
+  - id: press-feedback
+    relation: used_with
+  - id: hover-lift
+    relation: used_with
+demo:
+  component: spring-animation
+  modes:
+    - default
+    - dark
+    - variants
+sources:
+  - name: MDN — cubic-bezier()
+    url: https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function/cubic-bezier
+  - name: MDN — linear()
+    url: https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function/linear
+  - name: Material Design — Motion — Emphasized easing
+    url: https://m3.material.io/styles/motion/easing-and-duration
+implementation:
+  css:
+    - 'cubic-bezier()'
+    - linear()
+    - '@keyframes'
+    - 'transform: translate'
+  notes:
+    zh: >-
+      CSS 近似弹簧用带回弹的 cubic-bezier(0.34, 1.56, 0.64, 1) 或 keyframes 显式写振荡序列；
+      精确弹簧可用 linear() 采样或 JS 按 stiffness/damping 积分后写 transform。所有时长写
+      calc(<时长> * var(--demo-speed, 1))。过冲幅度 ≤ 元素尺寸 10%，transform-origin 居中。
+      尊重 prefers-reduced-motion，直接落到终态。
+    en: >-
+      Approximate a spring in CSS with a rebounding cubic-bezier(0.34, 1.56, 0.64, 1) or explicit
+      oscillating keyframes; for exact physics use linear() sampling or JS integrating
+      stiffness/damping into transforms. Write every duration as
+      calc(<duration> * var(--demo-speed, 1)). Keep overshoot within 10% of element size with a
+      centered transform-origin. Respect prefers-reduced-motion by landing on the final state.
+prompts:
+  basic:
+    zh: 给元素落位添加弹簧动画：运动到位时冲过再回落。
+    en: Add a spring animation to element settlement — overshoot the target and ease back.
+  design:
+    zh: 点击触发后方块以约 450ms 弹到目标位，过冲约 8% 再回落稳定；临界阻尼变体不过冲，弹跳变体振荡两三次后停住。
+    en: >-
+      On trigger the box springs to its target over ~450ms, overshooting about 8% before settling;
+      the critically damped variant never overshoots; the bouncy variant oscillates two or three times.
+  implementation:
+    zh: >-
+      CSS 用 cubic-bezier(0.34, 1.56, 0.64, 1) 或 @keyframes 振荡序列；时长一律
+      calc(<时长> * var(--demo-speed, 1))。transform-origin 居中，过冲 ≤ 10%。
+      尊重 prefers-reduced-motion。
+    en: >-
+      Use cubic-bezier(0.34, 1.56, 0.64, 1) or oscillating @keyframes in CSS; write durations as
+      calc(<duration> * var(--demo-speed, 1)). Keep transform-origin centered and overshoot ≤ 10%.
+      Respect prefers-reduced-motion.
+  agent:
+    zh: |-
+      在当前项目中为落位与强调时刻实现弹簧动画。
+
+      先检查现有组件体系和 Design Token，优先复用当前组件。
+      保持现有项目视觉风格。不要新增不必要依赖。
+      要求：
+      - 用弹簧式缓动或振荡关键帧表达过冲与稳定
+      - 过冲幅度克制，所有时长写 calc(<时长> * var(--demo-speed, 1))
+      - 只用于低频关键时刻，不挂在高频控件上
+      - 尊重 prefers-reduced-motion
+      完成后运行项目现有检查，并列出修改的文件。
+    en: |-
+      Implement spring animation for settle and emphasis moments in the current project.
+
+      Inspect the existing component system and design tokens first; reuse existing components.
+      Keep the project's visual style. Add no unnecessary dependencies.
+      Requirements:
+      - Express overshoot and settle with spring easing or oscillating keyframes
+      - Keep overshoot modest; write durations as calc(<duration> * var(--demo-speed, 1))
+      - Reserve for low-frequency key moments, never on high-frequency controls
+      - Respect prefers-reduced-motion
+      Run existing project checks when done and list the modified files.

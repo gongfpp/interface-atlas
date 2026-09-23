@@ -284,5 +284,5 @@ test('mobile category navigation reaches component library', async ({page})=>{
  await page.getByLabel('浏览分类').click();
  await page.getByRole('navigation',{name:'移动端导航'}).getByRole('link',{name:'组件',exact:true}).click();
  await expect(page).toHaveURL(/\/components/);
- await expect(page.locator('[data-list-item]')).toHaveCount(36);
+  await expect(page.locator('[data-list-item]')).toHaveCount(46);
 });

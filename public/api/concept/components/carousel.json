@@ -1,0 +1,198 @@
+{
+  "id": "carousel",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "轮播",
+    "en": "Carousel"
+  },
+  "aliases": [
+    "轮播",
+    "图片轮播",
+    "轮播图",
+    "banner 切换",
+    "跑马灯切换",
+    "carousel",
+    "slider gallery"
+  ],
+  "category": [
+    "Display",
+    "Media"
+  ],
+  "description": {
+    "zh": "用水平滑动的轨道展示一组内容，同一时刻只突出一项，其余滑出视野或露出边缘作暗示。通过分页点、 箭头或自动播放切换，常用于首屏 Banner、图片画廊与推荐位。适合「一组同类内容、逐个浏览」的场景， 不适合需要并排对照的信息。",
+    "en": "A horizontally scrolling track of items where one slide takes focus at a time and the rest slide out or peek at the edge as a hint. Switching uses dots, arrows or autoplay — common in hero banners, image galleries and recommendation rails. Fits \"browse one item after another\" content, not information that must be compared side by side."
+  },
+  "use_when": [
+    {
+      "zh": "一组同类内容需要逐个浏览（Banner、图集、推荐位）",
+      "en": "A set of similar items browsed one at a time (banner, gallery, rails)"
+    },
+    {
+      "zh": "横向空间有限，又想保留「还有更多」的暗示",
+      "en": "Horizontal space is tight but you still want a \"more exists\" cue"
+    },
+    {
+      "zh": "图片或卡片为主、文字说明简短",
+      "en": "Image- or card-led slides with brief captions"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "用户需要并排对照多个项目（用卡片网格或表格）",
+      "en": "Users must compare items side by side — use a card grid or table"
+    },
+    {
+      "zh": "内容只有三五条且全部重要（直接平铺，别藏起来）",
+      "en": "Only three to five equally important items — lay them out flat"
+    },
+    {
+      "zh": "关键操作或表单藏在某一页里（切换会打断任务）",
+      "en": "Critical actions or forms hidden on one slide — switching breaks the task"
+    }
+  ],
+  "tags": [
+    "carousel",
+    "media",
+    "navigation",
+    "gallery"
+  ],
+  "variants": [
+    {
+      "id": "dots",
+      "name": {
+        "zh": "分页点",
+        "en": "Dot pagination"
+      },
+      "note": {
+        "zh": "底部小圆点指示位置，点按直达，最省空间",
+        "en": "Small dots mark position and jump directly — the most compact"
+      }
+    },
+    {
+      "id": "arrows",
+      "name": {
+        "zh": "箭头",
+        "en": "Arrow controls"
+      },
+      "note": {
+        "zh": "左右箭头逐步切换，桌面端最常见",
+        "en": "Prev/next arrows step through slides — the desktop default"
+      }
+    },
+    {
+      "id": "autoplay",
+      "name": {
+        "zh": "自动播放",
+        "en": "Autoplay with pause"
+      },
+      "note": {
+        "zh": "定时前进，悬停或聚焦暂停；必须提供暂停入口",
+        "en": "Timed advance with pause on hover or focus — a pause control is required"
+      }
+    }
+  ],
+  "anatomy": [
+    "轨道（Track）",
+    "项目（Item）",
+    "控件（Controls）"
+  ],
+  "api": [
+    "aria-roledescription=\"carousel\"",
+    "scroll-snap-type",
+    "aria-live"
+  ],
+  "framework_names": [
+    {
+      "framework": "ARIA APG",
+      "name": "Carousel",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/carousel/"
+    },
+    {
+      "framework": "shadcn/ui",
+      "name": "Carousel (Embla)",
+      "url": "https://ui.shadcn.com/docs/components/carousel"
+    },
+    {
+      "framework": "MUI",
+      "name": "Carousel"
+    }
+  ],
+  "playground": {
+    "task": {
+      "zh": "用键盘或箭头浏览完所有项目，观察焦点是否被正确管理。",
+      "en": "Browse every item with arrows or keyboard; check focus is managed."
+    },
+    "checks": [
+      {
+        "zh": "切换后当前项有可见指示",
+        "en": "Current item is visibly indicated after switching"
+      },
+      {
+        "zh": "键盘左右键可切换",
+        "en": "Left/Right keys switch slides"
+      }
+    ]
+  },
+  "related": [
+    {
+      "id": "tabs",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "marquee",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "card",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "carousel",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ARIA APG Carousel",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/carousel/"
+    },
+    {
+      "name": "MDN scroll-snap-type",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "scroll-snap-type",
+      "overflow-x",
+      "transform"
+    ],
+    "notes": {
+      "zh": "轨道用 overflow-x: auto + scroll-snap-type: x mandatory，项目 scroll-snap-align: center， 纯 CSS 即可滑动；控件切换则用 transform: translateX(-index * 100%)。当前项用 aria-hidden 或 inert 降低朗读噪音，容器标 aria-roledescription=\"carousel\"，切换时 aria-live=\"polite\" 播报「第 n / N 项」。自动播放必须提供暂停按钮，并在 prefers-reduced-motion 下关闭。",
+      "en": "The track uses overflow-x: auto with scroll-snap-type: x mandatory and items set scroll-snap-align: center so pure CSS scrolling works; control-driven switching animates transform: translateX(-index * 100%). Mark off-screen items aria-hidden or inert to cut screen-reader noise, label the region aria-roledescription=\"carousel\", and announce \"n of N\" via aria-live=\"polite\" on change. Autoplay needs a pause control and must shut off under prefers-reduced-motion."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建一个轮播组件：水平滑动的轨道展示多个项目，用分页点和左右箭头切换。",
+      "en": "Create a carousel: a horizontally scrolling track of items switched by dots and left/right arrows."
+    },
+    "design": {
+      "zh": "创建轮播：轨道露出下一张边缘作暗示，当前项完整可见；底部分页点（当前项用主色加宽）， 左右箭头半透明悬浮在两侧，悬停显形；切换有 300ms 滑动过渡；深浅色主题一致。",
+      "en": "Create a carousel: the track peeks the next slide as a hint while the current slide sits fully in view; dot pagination below (active dot stretches in the accent color); translucent arrows float at the sides and sharpen on hover; 300ms slide transition; consistent in light and dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Carousel：activeIndex 受控；轨道 flex + overflow-hidden， 内层 translateX 过渡（时长乘 var(--demo-speed, 1)）；分页点与箭头同步 activeIndex； 键盘左右键切换，容器 role=\"group\" + aria-roledescription=\"carousel\"；自动播放用 setInterval，悬停/聚焦/暂停按钮停止；尊重 prefers-reduced-motion。无新增依赖。",
+      "en": "React + Tailwind carousel: controlled activeIndex; a flex track with overflow-hidden and an inner translateX transition (duration scaled by var(--demo-speed, 1)); dots and arrows stay in sync with activeIndex; Left/Right keys switch, the container uses role=\"group\" plus aria-roledescription=\"carousel\"; autoplay via setInterval, stopped on hover, focus or the pause button; respect prefers-reduced-motion. No new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现一个 Carousel 轮播组件。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion，支持键盘操作。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a Carousel component in the current project.\nInspect the existing component system and design tokens first; reuse what is already there.\nKeep the project's visual style. Add no unnecessary dependencies.\nRespect prefers-reduced-motion and support keyboard operation.\nRun the project's existing checks when done and list the modified files."
+    }
+  }
+}

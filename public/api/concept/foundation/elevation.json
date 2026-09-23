@@ -1,0 +1,188 @@
+{
+  "id": "elevation",
+  "type": "foundation",
+  "status": "published",
+  "name": {
+    "zh": "层级",
+    "en": "Elevation"
+  },
+  "aliases": [
+    "层级",
+    "投影层级",
+    "阴影层级",
+    "海拔",
+    "z-depth",
+    "elevation",
+    "shadow level"
+  ],
+  "category": [
+    "Surface",
+    "Foundation"
+  ],
+  "description": {
+    "zh": "用阴影的深浅表达元素离纸面的远近：0 贴平、1～2 浮起、3 以上成浮层。一套阴影由本影、半影、环境三层叠加而成，档位越高投影越大越淡。层级只用来表达叠放关系，不要拿它当装饰。",
+    "en": "Shadow depth expresses how far an element sits from the page: 0 rests flat, 1–2 lift, 3 and above become overlays. Each shadow stacks umbra, penumbra and ambient layers — higher levels mean larger, softer casts. Use elevation to describe stacking relations, never as ornament."
+  },
+  "use_when": [
+    {
+      "zh": "卡片、菜单、弹层需要可感知的叠放次序",
+      "en": "Cards, menus and popovers need a perceivable stacking order"
+    },
+    {
+      "zh": "可点击块要暗示“浮在页面之上”",
+      "en": "Clickable blocks must suggest they float above the page"
+    },
+    {
+      "zh": "模态与吸顶栏需要比内容更高的投影档位",
+      "en": "Modals and sticky bars need a higher level than content"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "扁平风格或新粗野主义，投影与语言冲突",
+      "en": "Flat or neobrutalist languages where shadows clash"
+    },
+    {
+      "zh": "全屏堆满高档位投影，层级通胀后无人可信",
+      "en": "High levels everywhere — inflation destroys the signal"
+    },
+    {
+      "zh": "用投影代替分隔线或留白来划分区域",
+      "en": "Shadows used instead of rules or whitespace to divide regions"
+    }
+  ],
+  "tags": [
+    "surface",
+    "foundation",
+    "shadow",
+    "depth"
+  ],
+  "api": [
+    "box-shadow",
+    "env(safe-area-inset-*)",
+    "z-index"
+  ],
+  "framework_names": [
+    {
+      "framework": "CSS",
+      "name": "box-shadow",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow"
+    },
+    {
+      "framework": "Material Design",
+      "name": "Elevation",
+      "url": "https://m3.material.io/styles/elevation/overview"
+    },
+    {
+      "framework": "Tailwind CSS",
+      "name": "shadow-sm / shadow-md / shadow-xl",
+      "url": "https://tailwindcss.com/docs/box-shadow"
+    }
+  ],
+  "variants": [
+    {
+      "id": "material",
+      "name": {
+        "zh": "双层材质投影",
+        "en": "Material 2-layer"
+      },
+      "note": {
+        "zh": "本影 + 半影双阴影，档位 0～5 清晰",
+        "en": "Umbra plus penumbra — clear levels 0–5"
+      }
+    },
+    {
+      "id": "flat",
+      "name": {
+        "zh": "扁平描边",
+        "en": "Flat border-only"
+      },
+      "note": {
+        "zh": "无投影，靠 1px 边框与底色差",
+        "en": "No shadow — 1px borders and surface tints"
+      }
+    },
+    {
+      "id": "ambient",
+      "name": {
+        "zh": "柔和环境投影",
+        "en": "Soft ambient"
+      },
+      "note": {
+        "zh": "大而淡的单层投影，气质轻盈",
+        "en": "One large, faint cast — airy and light"
+      }
+    }
+  ],
+  "anatomy": [
+    "本影（Umbra）",
+    "半影（Penumbra）",
+    "环境阴影（Ambient）",
+    "海拔档位（Level）"
+  ],
+  "related": [
+    {
+      "id": "semantic-color",
+      "relation": "used_with"
+    },
+    {
+      "id": "glassmorphism",
+      "relation": "used_with"
+    },
+    {
+      "id": "hover-lift",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "elevation",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Material Design — Elevation",
+      "url": "https://m3.material.io/styles/elevation/overview"
+    },
+    {
+      "name": "MDN — box-shadow",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow"
+    },
+    {
+      "name": "Apple HIG — Materials",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/materials"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "box-shadow",
+      "env(safe-area-inset-*)",
+      "z-index"
+    ],
+    "notes": {
+      "zh": "把档位做成令牌：--elev-0: none; --elev-1: 0 1px 2px rgba(0,0,0,.3), 0 1px 3px 1px rgba(0,0,0,.12); 每升一档投影更扩散、更淡。深色模式阴影几乎不可见，改用更亮的描边或提高表面亮度。浮层记得配 z-index 阶梯；贴边浮层用 env(safe-area-inset-*) 避开手势区。",
+      "en": "Tokenise the levels: --elev-0: none; --elev-1: 0 1px 2px rgba(0,0,0,.3), 0 1px 3px 1px rgba(0,0,0,.12); each step spreads wider and lighter. Shadows barely read on dark surfaces — switch to brighter borders or lighter surface tints. Pair overlays with a z-index ladder and keep edge-docked layers clear of gestures via env(safe-area-inset-*)."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "建立投影层级：定义 0～5 档 box-shadow 令牌，让卡片与浮层有清晰的深度差。",
+      "en": "Build an elevation system — 0–5 box-shadow tokens giving cards and overlays clear depth."
+    },
+    "design": {
+      "zh": "层级规范：0 贴平、1～2 卡片、3～4 弹层、5 模态；每档由本影 + 半影 + 环境三层叠加，档位越高投影越大越淡；深色模式改用描边或表面提亮；同屏浮层数量不超过 3 个档位差。投影只表达叠放，不作装饰。",
+      "en": "Elevation spec: 0 flat, 1–2 cards, 3–4 popovers, 5 modals. Each level stacks umbra, penumbra and ambient — higher means larger and fainter. On dark surfaces use borders or lighter tints. Keep at most three level gaps among stacked overlays. Shadows describe stacking only, never decoration."
+    },
+    "implementation": {
+      "zh": "用 CSS 变量定义档位：--elev-0 … --elev-5，组件写 box-shadow: var(--elev-2)。浮层容器配 z-index 令牌（--z-dropdown: 40; --z-modal: 50）。深色模式在 .dark 下覆盖 --elev-* 为描边方案。贴边浮层加 env(safe-area-inset-bottom) 内边距。",
+      "en": "Define --elev-0 … --elev-5 as CSS variables and consume them as box-shadow: var(--elev-2). Overlays get z-index tokens (--z-dropdown: 40; --z-modal: 50). Override --elev-* to a border scheme under .dark. Edge-docked overlays take env(safe-area-inset-bottom) padding."
+    },
+    "agent": {
+      "zh": "在当前项目中实现层级。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- 0～5 档投影令牌，档位越高越扩散越淡\n- 卡片 / 弹层 / 模态各自固定档位\n- 深色模式用描边或表面提亮补偿\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement elevation in the current project.\nInspect the existing component system and design tokens first; reuse what is already there.\nRequirements:\n- Levels 0–5 as shadow tokens, spreading lighter as they rise\n- Fixed levels for cards / popovers / modals\n- Dark mode compensated with borders or lighter surfaces\nKeep the project's existing visual style. Do not add unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

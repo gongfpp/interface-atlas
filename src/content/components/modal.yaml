@@ -39,6 +39,40 @@ api:
   - <dialog>
   - role="dialog"
   - aria-modal="true"
+framework_names:
+  - framework: ARIA
+    name: role="dialog"
+    url: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+  - framework: shadcn/ui
+    name: Dialog
+    url: https://ui.shadcn.com/docs/components/dialog
+  - framework: MUI
+    name: Modal / Dialog
+    url: https://mui.com/material-ui/react-modal/
+  - framework: AntD
+    name: Modal
+    url: https://ant.design/components/modal
+disambiguation:
+  zh: "Modal 居中打断当前任务、要求处理；Drawer 从侧边滑出保留上下文；Popover 锚定触发元素、非打断；Sheet 只罩住当前窗口（macOS）。"
+  en: "A modal interrupts and demands resolution. A drawer slides from the side keeping context. A popover anchors to its trigger without blocking. A sheet covers only the current window on macOS."
+confusable:
+  - id: drawer
+    note:
+      zh: "Drawer 从边缘滑出、空间更大，Modal 居中且更强调打断。"
+      en: "A drawer slides from an edge with more room; a modal is centered and more interrupting."
+  - id: popover
+    note:
+      zh: "Popover 非模态、锚定触发器，Modal 遮罩整页并阻断操作。"
+      en: "A popover is non-modal and anchored; a modal dims the page and blocks."
+  - id: alert
+    note:
+      zh: "Alert 是页内消息条，不打断；Modal 是必须处理的浮层。"
+      en: "Alert is in-page messaging; a modal is a blocking overlay."
+  - id: lightbox
+    note:
+      zh: "Lightbox 专管图片/视频放大，Modal 承载通用任务。"
+      en: "Lightbox is media zoom; a modal hosts general tasks."
+
 variants:
   - id: centered
     name:

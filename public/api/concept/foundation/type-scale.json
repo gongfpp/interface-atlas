@@ -1,0 +1,214 @@
+{
+  "id": "type-scale",
+  "type": "foundation",
+  "status": "published",
+  "name": {
+    "zh": "字号阶梯",
+    "en": "Type Scale"
+  },
+  "aliases": [
+    "字号阶梯",
+    "标题比例",
+    "字级",
+    "字体大小层级",
+    "字号系统",
+    "type scale",
+    "modular scale"
+  ],
+  "category": [
+    "Typography",
+    "Foundation"
+  ],
+  "description": {
+    "zh": "用一组按比例递增的字号定义标题与正文层级，让排版有稳定节奏。以正文基准字号乘以固定比例（如 1.25 大三度、1.333 纯四度）逐级放大，标题之间形成可预期的视觉落差，不必逐档拍脑袋定 px；也可用 sm/md/lg 尺码或 clamp() 流式档位落地。",
+    "en": "A ratio-based set of font sizes that assigns heading and body levels a stable rhythm. Multiply a base body size by a fixed ratio (1.25 major third, 1.333 perfect fourth) to step upward, producing predictable contrast between headings instead of hand-picked pixels. Ship it as sm/md/lg tokens or fluid clamp() steps."
+  },
+  "use_when": [
+    {
+      "zh": "页面存在标题、正文、辅助文字等多级文本层级",
+      "en": "The page carries multiple text levels — headings, body, captions"
+    },
+    {
+      "zh": "多人协作需要统一字号，避免各自随手写 13px、15px",
+      "en": "Teams need one shared size system instead of ad-hoc 13px and 15px"
+    },
+    {
+      "zh": "响应式排版希望字号随视口连续或按断点有节制地变化",
+      "en": "Responsive type should scale fluidly or step at breakpoints with restraint"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "单一字号就够的极简控件条、图标工具栏",
+      "en": "Icon toolbars and micro UI where one size is enough"
+    },
+    {
+      "zh": "像素级还原设计稿且不允许任何取整合并",
+      "en": "Pixel-exact design reproduction that forbids any rounding"
+    },
+    {
+      "zh": "比例档位过多（超过 8 档），层级反而失去可辨识度",
+      "en": "More than eight steps — the hierarchy stops being legible"
+    }
+  ],
+  "tags": [
+    "typography",
+    "foundation",
+    "scale",
+    "hierarchy"
+  ],
+  "api": [
+    "font-size",
+    "clamp()",
+    "rem",
+    "calc()"
+  ],
+  "framework_names": [
+    {
+      "framework": "CSS",
+      "name": "clamp()",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/clamp",
+      "note": {
+        "zh": "流体字号的首选写法",
+        "en": "The go-to for fluid type steps"
+      }
+    },
+    {
+      "framework": "CSS",
+      "name": "font-size",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-size"
+    },
+    {
+      "framework": "Tailwind CSS",
+      "name": "text-sm / text-base / text-lg",
+      "url": "https://tailwindcss.com/docs/font-size"
+    }
+  ],
+  "variants": [
+    {
+      "id": "modular",
+      "name": {
+        "zh": "模数比例",
+        "en": "Modular scale"
+      },
+      "note": {
+        "zh": "基准字号乘固定比例逐级放大，档位离散、节奏稳定",
+        "en": "Base size times a fixed ratio per step — discrete and rhythmic"
+      }
+    },
+    {
+      "id": "fluid",
+      "name": {
+        "zh": "流式字号",
+        "en": "Fluid type"
+      },
+      "note": {
+        "zh": "clamp(最小, 视口插值, 最大)，小屏大屏连续过渡",
+        "en": "clamp(min, viewport interpolation, max) — continuous across viewports"
+      }
+    },
+    {
+      "id": "tshirt",
+      "name": {
+        "zh": "尺码档位",
+        "en": "T-shirt sizes"
+      },
+      "note": {
+        "zh": "sm / md / lg / xl 语义命名，工程侧好引用",
+        "en": "Semantic sm / md / lg / xl tokens — easy to reference in code"
+      }
+    }
+  ],
+  "anatomy": [
+    "基准字号（Base size）",
+    "比例系数（Scale ratio）",
+    "层级档位（Step levels）"
+  ],
+  "related": [
+    {
+      "id": "font-stack",
+      "relation": "used_with"
+    },
+    {
+      "id": "line-height",
+      "relation": "used_with"
+    },
+    {
+      "id": "measure",
+      "relation": "used_with"
+    },
+    {
+      "id": "editorial",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "type-scale",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "compare": {
+    "group": "typography-trio",
+    "dimensions": {
+      "适用文本": {
+        "zh": "标题与正文的全部层级",
+        "en": "Every heading and body level"
+      },
+      "调节粒度": {
+        "zh": "按比例档位跳变，一档一档调",
+        "en": "Steps by ratio — one level at a time"
+      },
+      "响应式": {
+        "zh": "高，clamp() 连续插值",
+        "en": "High — continuous with clamp()"
+      }
+    }
+  },
+  "sources": [
+    {
+      "name": "Type Scale — A Visual Calculator",
+      "url": "https://typescale.com/"
+    },
+    {
+      "name": "MDN — clamp()",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/clamp"
+    },
+    {
+      "name": "Material Design — Typography",
+      "url": "https://m3.material.io/styles/typography"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "clamp()",
+      "rem",
+      "calc()",
+      "font-size: var(--text-lg)"
+    ],
+    "notes": {
+      "zh": "用 rem 定义 6～8 档字号变量（--text-xs 到 --text-3xl），比例写进注释；标题跳档而非连续堆砌，相邻档位差异不小于 1.15 倍才可感知。流式档位写成 clamp(0.95rem, 0.8rem + 0.6vw, 1.25rem)，两端封顶防止 4K 失控。中文正文基准 15～17px，英文 16px 起。字号变更必须同步检查行高与行长。",
+      "en": "Define six to eight rem size variables (--text-xs … --text-3xl) with the ratio noted in a comment. Jump levels rather than stacking near-equal sizes — adjacent steps need at least a 1.15× gap to read. Fluid steps look like clamp(0.95rem, 0.8rem + 0.6vw, 1.25rem) with both ends capped. CJK body starts at 15–17px, Latin at 16px. Any size change must re-check leading and measure."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "建立一套字号阶梯：按比例定义标题与正文的字号层级，并输出为可复用的 Design Token。",
+      "en": "Build a type scale — ratio-based heading and body sizes exposed as reusable design tokens."
+    },
+    "design": {
+      "zh": "字号阶梯设计规范：正文基准 16px，比例 1.25（大三度）或 1.333（纯四度）；共 6～8 档，命名 xs/sm/base/lg/xl/2xl/3xl；标题与正文共用同一阶梯，禁止页外写死 px；移动端用 clamp() 流式插值，两端封顶；每档同步给出对应行高建议。",
+      "en": "Type scale spec: 16px body base, 1.25 (major third) or 1.333 (perfect fourth) ratio; six to eight steps named xs/sm/base/lg/xl/2xl/3xl; headings and body share one ladder — no hard-coded pixels outside it; fluid clamp() interpolation capped at both ends on mobile; pair every step with a leading suggestion."
+    },
+    "implementation": {
+      "zh": "用 CSS 自定义属性落地字号阶梯：:root { --text-base: 1rem; --text-lg: 1.25rem; --text-xl: 1.5625rem; }，标题用 var(--text-2xl) 引用；流式档位 --text-h1: clamp(2rem, 1.2rem + 2.5vw, 3.5rem)。Tailwind 侧映射到 @theme 的 --text-* 令牌。变更阶梯只改根变量，不改组件。",
+      "en": "Ship the scale as CSS custom properties: :root { --text-base: 1rem; --text-lg: 1.25rem; --text-xl: 1.5625rem; } and reference var(--text-2xl) from headings; fluid steps like --text-h1: clamp(2rem, 1.2rem + 2.5vw, 3.5rem). Map them into Tailwind @theme --text-* tokens. Changing the ladder means editing root variables only, never components."
+    },
+    "agent": {
+      "zh": "在当前项目中实现字号阶梯。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- 用 CSS 变量定义 6～8 档字号，按 1.25 或 1.333 比例生成\n- 标题与正文共用同一阶梯，组件内禁止写死 px\n- 需要响应式时用 clamp() 流式档位，两端封顶\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a type scale in the current project.\nInspect the existing component system and design tokens first; reuse what is already there.\nRequirements:\n- Six to eight size variables generated from a 1.25 or 1.333 ratio\n- Headings and body share one ladder; never hard-code pixels in components\n- Use capped clamp() fluid steps where responsiveness is needed\nKeep the project's existing visual style. Do not add unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

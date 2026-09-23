@@ -1,0 +1,252 @@
+{
+  "id": "pixel-art",
+  "type": "styles",
+  "status": "published",
+  "name": {
+    "zh": "像素风",
+    "en": "Pixel Art UI"
+  },
+  "aliases": [
+    "像素风",
+    "像素游戏界面",
+    "8位机风格",
+    "马赛克复古风",
+    "点阵字界面",
+    "pixel art UI",
+    "8-bit UI",
+    "pixel retro"
+  ],
+  "category": [
+    "Style",
+    "Visual Language"
+  ],
+  "description": {
+    "zh": "用硬像素边缘、有限色板与点阵字形表示「游戏机记忆」的界面视觉语言。锯齿即正确， 缩放必须整数倍，抖动网点做过渡。刻意站在抗锯齿的对立面。",
+    "en": "Hard pixel edges, a limited palette and bitmap faces as a console-nostalgia interface look. Aliasing is correct, scaling must be integer, dithering does the gradients. Deliberately against anti-aliasing."
+  },
+  "use_when": [
+    {
+      "zh": "游戏、独立游戏发行、复古主题产品，风格即世界观",
+      "en": "Games, indie releases and retro-themed products where style is worldbuilding"
+    },
+    {
+      "zh": "想用点阵与有限色制造怀旧亲和，或做游戏化进度反馈",
+      "en": "Nostalgic warmth via bitmap and limited color, or gamified progress"
+    },
+    {
+      "zh": "徽章、成就、状态点等小尺寸图标需要强识别",
+      "en": "Badges, achievements and status dots that must read at small size"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "长文阅读与高密度表格，点阵字放大后可读性崩坏",
+      "en": "Long reading and dense tables — bitmap type degrades when scaled"
+    },
+    {
+      "zh": "需要连续渐变、照片展示、平滑动效的场景",
+      "en": "Continuous gradients, photo galleries and smooth motion"
+    },
+    {
+      "zh": "正式政企金融界面，像素语汇会削弱可信度",
+      "en": "Formal enterprise and finance UIs where pixels undercut trust"
+    }
+  ],
+  "tags": [
+    "pixel-art",
+    "8-bit",
+    "bitmap",
+    "dithering",
+    "retro"
+  ],
+  "variants": [
+    {
+      "id": "eight-bit",
+      "name": {
+        "zh": "8位复古",
+        "en": "8-bit retro"
+      },
+      "note": {
+        "zh": "NES 式硬边与 3～6 色调色板，黑描边像素块",
+        "en": "NES-style hard edges, 3–6 color palette, black-outlined blocks"
+      }
+    },
+    {
+      "id": "modern-pixel",
+      "name": {
+        "zh": "现代像素",
+        "en": "Modern pixel"
+      },
+      "note": {
+        "zh": "高分辨率像素网格，色板更宽，圆角用像素阶梯近似",
+        "en": "Finer pixel grid, wider palette, radii as stepped corners"
+      }
+    },
+    {
+      "id": "isometric",
+      "name": {
+        "zh": "等距像素",
+        "en": "Isometric pixel"
+      },
+      "note": {
+        "zh": "2:1 等距投影小场景，像 SimCity 小地图",
+        "en": "2:1 isometric vignettes like a SimCity minimap"
+      }
+    }
+  ],
+  "applicable_components": [
+    "button",
+    "badge",
+    "progress-bar",
+    "avatar"
+  ],
+  "applicable_pages": [
+    "landing-page"
+  ],
+  "related": [
+    {
+      "id": "y2k",
+      "relation": "similar_to"
+    },
+    {
+      "id": "retro-futurism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "cyberpunk",
+      "relation": "used_with"
+    },
+    {
+      "id": "button",
+      "relation": "affects"
+    },
+    {
+      "id": "badge",
+      "relation": "affects"
+    },
+    {
+      "id": "progress-bar",
+      "relation": "affects"
+    }
+  ],
+  "demo": {
+    "component": "pixel-art",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Wikipedia — Pixel art",
+      "url": "https://en.wikipedia.org/wiki/Pixel_art"
+    },
+    {
+      "name": "MDN — image-rendering",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "image-rendering: pixelated",
+      "border-radius: 0",
+      "font-family: monospace",
+      "box-shadow: 多层硬阶梯模拟圆角",
+      "background: repeating-conic-gradient() 抖动网点"
+    ],
+    "notes": {
+      "zh": "像素感的铁律是整数倍缩放：素材按 1x 设计，展示用 transform: scale(整数) 或 image-rendering: pixelated。 圆角用 box-shadow 多层硬阶梯近似，或直接用直角。过渡渐变用抖动：repeating-conic-gradient 交替两色。 字体用点阵字体（如 Press Start 2P）或等宽体加 letter-spacing 模仿。深色模式换调色板但保持同一网格。",
+      "en": "Pixel feel hinges on integer scaling: design assets at 1x and present via transform: scale(integer) or image-rendering: pixelated. Approximate radii with multi-layer hard box-shadow steps — or stay square. Fake gradients with dithering: repeating-conic-gradient alternating two colors. Type is a bitmap face (e.g. Press Start 2P) or monospace with letter-spacing. Dark mode swaps the palette but keeps the same grid."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "用像素风（Pixel Art UI）设计界面：硬像素边缘、有限色板、点阵字形、抖动网点过渡，游戏机怀旧感。",
+      "en": "Design an interface in Pixel Art UI style: hard pixel edges, limited palette, bitmap type and dithered transitions — console nostalgia."
+    },
+    "design": {
+      "zh": "像素风设计规范：调色板锁 6 色内（如 #1A1C2C #5D275D #B13E53 #EF7D57 #FFCD75 #A7F070）； 全部圆角 0；描边 2px 纯黑像素块；按钮用 2px 硬边 + 按下时 2px 位移吃掉描边； 标题点阵字体 16px 整数倍；渐变一律抖动网点；深色模式用同一调色板的暗档。",
+      "en": "\"Pixel Art spec: palette locked to 6 colors (e.g. #1A1C2C #5D275D #B13E53 #EF7D57 #FFCD75 #A7F070); zero radii; 2px pure-black pixel outlines; buttons with 2px hard edges that swallow their outline on press via a 2px shift; bitmap headings at integer 16px multiples; all gradients dithered; dark mode uses the dark tier of the same palette.\""
+    },
+    "implementation": {
+      "zh": "用 CSS 实现像素按钮：.px-btn { border-radius: 0; border: 2px solid #1A1C2C; box-shadow: 4px 4px 0 #1A1C2C; image-rendering: pixelated; } 抖动渐变：background: repeating-conic-gradient(#EF7D57 0% 25%, #FFCD75 0% 50%) 0 0/4px 4px; 缩放容器 transform: scale(2) 并 transform-origin: top left。",
+      "en": "\"Implement a pixel button in CSS: .px-btn { border-radius: 0; border: 2px solid #1A1C2C; box-shadow: 4px 4px 0 #1A1C2C; image-rendering: pixelated; } Dither: background: repeating-conic-gradient(#EF7D57 0% 25%, #FFCD75 0% 50%) 0 0/4px 4px; scale the stage with transform: scale(2) and transform-origin: top left.\""
+    },
+    "agent": {
+      "zh": "在当前项目中实现 Pixel Art UI 像素风视觉风格。\n\n先检查现有图标与字体资源，像素素材按整数倍缩放管理。\n要求：\n- 硬像素边缘，border-radius 0，描边用纯色像素块\n- 调色板收敛到 6 色以内，渐变一律抖动网点\n- 点阵字或等宽体，字号取整数倍\n- 按钮按下位移吃掉硬阴影；image-rendering: pixelated 用于位图\n- 深色模式换调色板暗档；文字对比度达标\n- 不新增任何依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement Pixel Art UI visual style in the current project.\n\nInspect existing icon and font assets first; manage pixel assets at integer scale factors.\nRequirements:\n- Hard pixel edges, border-radius 0, solid pixel-block outlines\n- Palette collapsed to 6 colors or fewer; gradients always dithered\n- Bitmap or monospace type at integer sizes\n- Buttons swallow their hard shadow on press; image-rendering: pixelated for bitmaps\n- Dark mode on the palette's dark tier; text contrast compliant\n- No new dependencies\nRun existing project checks when done and list the modified files."
+    }
+  },
+  "style_spec": {
+    "typography": {
+      "zh": "点阵字体或等宽体，字号整数倍",
+      "en": "Bitmap or monospace face at integer sizes"
+    },
+    "color": {
+      "zh": "6 色以内的有限调色板，高对比硬切",
+      "en": "A palette of six colors or fewer, hard high-contrast cuts"
+    },
+    "border": {
+      "zh": "2px 纯色像素描边，圆角 0",
+      "en": "2px solid pixel outlines, radius 0"
+    },
+    "shadow": {
+      "zh": "硬偏移像素块投影，无模糊",
+      "en": "Hard offset pixel-block shadows, no blur"
+    },
+    "spacing": {
+      "zh": "8px 网格对齐，元素贴像素格",
+      "en": "8px grid alignment, elements snapped to the pixel lattice"
+    }
+  },
+  "preview": {
+    "order": 23,
+    "keywords": {
+      "zh": "硬边 · 点阵 · 有限色",
+      "en": "HARD PIXELS"
+    },
+    "url": "bitmap.pub",
+    "scene": "generic",
+    "brand": "BITMAP",
+    "nav": [
+      "开始",
+      "图鉴",
+      "商店"
+    ],
+    "heroTitle": "PRESS",
+    "heroTitle2": "START",
+    "heroSub": "整数倍缩放，锯齿即正确。",
+    "cta": "INSERT COIN",
+    "heroCaption": "NO ANTI-ALIASING ALLOWED.",
+    "features": [
+      {
+        "t": "硬像素",
+        "s": "不做抗锯齿"
+      },
+      {
+        "t": "有限色板",
+        "s": "六色封顶"
+      },
+      {
+        "t": "抖动网点",
+        "s": "两色交替"
+      }
+    ],
+    "panel": "screen",
+    "tokens": {
+      "bg": "#1A1C2C",
+      "fg": "#F4F4F4",
+      "sub": "#A7A0C0",
+      "accent": "#EF7D57",
+      "accentFg": "#1A1C2C",
+      "card": "#29366F",
+      "cardBorder": "#000000",
+      "radius": "0px",
+      "shadow": "4px 4px 0",
+      "font": "Courier New, ui-monospace, monospace",
+      "upper": true,
+      "heroSize": "22px"
+    }
+  }
+}

@@ -60,6 +60,47 @@
     "role=\"alert\"",
     "aria-live=\"assertive\""
   ],
+  "framework_names": [
+    {
+      "framework": "ARIA",
+      "name": "role=\"alert\""
+    },
+    {
+      "framework": "shadcn/ui",
+      "name": "Alert",
+      "url": "https://ui.shadcn.com/docs/components/alert"
+    },
+    {
+      "framework": "MUI",
+      "name": "Alert",
+      "url": "https://mui.com/material-ui/react-alert/"
+    },
+    {
+      "framework": "AntD",
+      "name": "Alert",
+      "url": "https://ant.design/components/alert"
+    }
+  ],
+  "disambiguation": {
+    "zh": "Alert 是页内持续显示的状态消息；Toast 是短暂浮层反馈；Modal 是必须处理的打断浮层。",
+    "en": "An alert is persistent in-page status messaging. A toast is a brief floating confirmation. A modal is a blocking overlay that demands action."
+  },
+  "confusable": [
+    {
+      "id": "toast",
+      "note": {
+        "zh": "Toast 短暂自动消失，Alert 常驻直到状态消除。",
+        "en": "A toast auto-dismisses; an alert stays until the condition clears."
+      }
+    },
+    {
+      "id": "modal",
+      "note": {
+        "zh": "Modal 阻断并要求操作，Alert 只告知不打断。",
+        "en": "A modal blocks and demands action; an alert only informs."
+      }
+    }
+  ],
   "variants": [
     {
       "id": "info",

@@ -38,6 +38,23 @@ tags:
 api:
   - role="menu"
   - role="menuitem"
+disambiguation:
+  zh: "菜单（Menu）是命令列表，点选即执行；导航（Navbar/Sidebar）是页面目的地；下拉（Dropdown）是「按钮 + 菜单」的组合控件。"
+  en: "A menu lists commands that run on click. Navigation (Navbar/Sidebar) lists destinations. A dropdown is the combined control — a button plus a menu."
+confusable:
+  - id: dropdown
+    note:
+      zh: "Dropdown 是按钮+菜单的完整控件，Menu 只是弹出的命令列表部分。"
+      en: "Dropdown is the full button+menu control; Menu is only the popup command list."
+  - id: navbar
+    note:
+      zh: "Navbar 跳转页面目的地，Menu 执行即时命令。"
+      en: "Navbar jumps to destinations; Menu runs immediate commands."
+  - id: select
+    note:
+      zh: "Select 选中一个值回填表单，Menu 触发一个动作。"
+      en: "Select picks a value for a form; Menu triggers an action."
+
 variants:
   - id: dropdown
     name:

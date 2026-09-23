@@ -1,0 +1,189 @@
+{
+  "id": "alt-text",
+  "type": "a11y",
+  "status": "published",
+  "name": {
+    "zh": "替代文本",
+    "en": "Alt Text"
+  },
+  "aliases": [
+    "替代文本",
+    "图片描述",
+    "图说",
+    "alt 文本",
+    "图片替代文本",
+    "alt text"
+  ],
+  "category": [
+    "Accessibility",
+    "Content"
+  ],
+  "description": {
+    "zh": "给图片写一句文本替代：信息图传达同样的信息，装饰图写空 alt 让读屏跳过，功能图描述动作而非画面。读屏用户、图片加载失败的用户和搜索引擎都靠这句话理解图在说什么。",
+    "en": "A text alternative for every image: informative images convey the same information, decorative images get empty alt so readers skip them, functional images describe the action rather than the pixels. Screen-reader users, users on failed image loads and search engines all lean on this one line."
+  },
+  "use_when": [
+    {
+      "zh": "承载信息的图片、图表、插画、二维码",
+      "en": "Images that carry information — charts, illustrations, QR codes"
+    },
+    {
+      "zh": "头像、商品图、文章配图等语义内容",
+      "en": "Semantic content — avatars, product shots, article figures"
+    },
+    {
+      "zh": "图片是链接或按钮的唯一内容时",
+      "en": "When an image is the sole content of a link or button"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "给装饰性纹理、分隔线写「图片」「image」占位",
+      "en": "Writing \"image\" / \"图片\" for decorative texture or dividers"
+    },
+    {
+      "zh": "把长篇说明塞进 alt（应配 visible caption 或 aria-describedby）",
+      "en": "Stuffing essays into alt — use a visible caption or aria-describedby"
+    },
+    {
+      "zh": "相邻文字已完整描述时再把同一句念一遍",
+      "en": "Re-reading text that the adjacent copy already states"
+    }
+  ],
+  "tags": [
+    "a11y",
+    "content",
+    "images",
+    "aria"
+  ],
+  "api": [
+    "alt",
+    "aria-label",
+    "role=\"presentation\""
+  ],
+  "framework_names": [
+    {
+      "framework": "WCAG",
+      "name": "1.1.1 Non-text Content",
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/non-text-content"
+    },
+    {
+      "framework": "W3C WAI",
+      "name": "Images Tutorial",
+      "url": "https://www.w3.org/WAI/tutorials/images/"
+    }
+  ],
+  "disambiguation": {
+    "zh": "alt 文本是图片的文本替代，tooltip 是指针悬停的补充说明——前者服务读屏与图片失效场景，后者只服务看得见的指针用户。",
+    "en": "Alt text is the image's text alternative; a tooltip is a pointer-hover add-on — the former serves screen readers and failed loads, the latter only sighted pointer users."
+  },
+  "confusable": [
+    {
+      "id": "tooltip",
+      "note": {
+        "zh": "tooltip 是悬停才出现的补充说明，替代文本是图片本身无障碍必需的文本替身。",
+        "en": "tooltip is hover-only supplementary text; alt text is the image's required accessible stand-in."
+      }
+    }
+  ],
+  "variants": [
+    {
+      "id": "informative",
+      "name": {
+        "zh": "信息型",
+        "en": "Informative"
+      },
+      "note": {
+        "zh": "传达图片信息本身，如「3 月销量环比上涨 18%」",
+        "en": "Conveys the image's information — e.g. \"March sales up 18% month over month\""
+      }
+    },
+    {
+      "id": "decorative",
+      "name": {
+        "zh": "装饰型",
+        "en": "Decorative"
+      },
+      "note": {
+        "zh": "alt=\"\" 让读屏直接跳过，不留噪音",
+        "en": "alt=\"\" so readers skip it without noise"
+      }
+    },
+    {
+      "id": "functional",
+      "name": {
+        "zh": "功能型",
+        "en": "Functional"
+      },
+      "note": {
+        "zh": "描述动作：「关闭」而不是「灰色叉号图标」",
+        "en": "Describes the action — \"Close\", not \"grey X icon\""
+      }
+    }
+  ],
+  "anatomy": [
+    "图片（Image）",
+    "替代文本（Alt text）"
+  ],
+  "related": [
+    {
+      "id": "avatar",
+      "relation": "used_with"
+    },
+    {
+      "id": "card",
+      "relation": "used_with"
+    },
+    {
+      "id": "empty-state",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "alt-text",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "WCAG 2.1 Non-text Content",
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/non-text-content"
+    },
+    {
+      "name": "W3C WAI — Images Tutorial",
+      "url": "https://www.w3.org/WAI/tutorials/images/"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "alt",
+      "aria-label",
+      "role=\"presentation\""
+    ],
+    "notes": {
+      "zh": "永远给 <img> 写 alt 属性；纯装饰用 alt=\"\"（或 role=\"presentation\" + aria-hidden），不要省略属性——省略会让读屏念出文件名。图标按钮用 aria-label 或可见文字，不要依赖图标字体的伪元素文本。图内文字尽量搬到 HTML；复杂图表配 aria-describedby 指向长描述。",
+      "en": "Always set alt on <img>. Purely decorative images take alt=\"\" (or role=\"presentation\" + aria-hidden) — omitting the attribute makes readers speak the filename. Icon-only buttons get aria-label or visible text, never icon-font pseudo-element text. Keep text in images out of the bitmap when possible; complex charts point aria-describedby at a long description."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "检查并补齐全站图片的替代文本，装饰图标记为可跳过。",
+      "en": "Audit and fill in alt text for every image, marking decorative ones as skippable."
+    },
+    "design": {
+      "zh": "信息图的 alt 写「信息结论」而不是「画面描述」；装饰图 alt 置空；图标按钮文案说动作；商品图与头像 alt 含关键辨识信息（名称、颜色）。",
+      "en": "Informative alt states the takeaway, not the paint; decorative alt is empty; icon buttons name the action; product and avatar alt carries identifying facts — name, colour."
+    },
+    "implementation": {
+      "zh": "所有 <img> 显式写 alt；装饰图 alt=\"\"；<svg> 装饰加 aria-hidden=\"true\"，有意义则 role=\"img\" + <title>。图标按钮 aria-label。构建期用 lint 阻断缺失 alt 的图片。",
+      "en": "Set alt explicitly on every <img>; decorative images get alt=\"\"; decorative <svg> takes aria-hidden=\"true\", meaningful ones role=\"img\" with a <title>. Icon-only buttons take aria-label. Lint for missing alt at build time."
+    },
+    "agent": {
+      "zh": "在当前项目中实现图片替代文本规范。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- 所有信息图有表达信息结论的 alt\n- 装饰图 alt=\"\"，读屏可跳过\n- 图标按钮与链接用 aria-label 描述动作\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement an alt-text convention in the current project.\nInspect the existing component system and design tokens first; reuse current components.\nRequirements:\n- Every informative image has alt that states the takeaway\n- Decorative images use alt=\"\" so readers skip them\n- Icon buttons and links describe the action via aria-label\nKeep the existing visual style. Add no unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun the project's existing checks when done and list the modified files."
+    }
+  }
+}

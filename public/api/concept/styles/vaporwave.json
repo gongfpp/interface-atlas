@@ -1,0 +1,252 @@
+{
+  "id": "vaporwave",
+  "type": "styles",
+  "status": "published",
+  "name": {
+    "zh": "蒸汽波",
+    "en": "Vaporwave"
+  },
+  "aliases": [
+    "蒸汽波",
+    "蒸汽波风格",
+    "粉紫蓝复古未来",
+    "霓虹网格地平线",
+    "80年代商场美学",
+    "vaporwave",
+    "synthwave UI",
+    "retro mall aesthetic"
+  ],
+  "category": [
+    "Style",
+    "Visual Language"
+  ],
+  "description": {
+    "zh": "用霓虹粉紫青、透视网格地平线、镀铬 3D 字与棕榈树剪影表示「消费主义怀旧」的视觉语言。 拼贴 80-90 年代商场、早期 CGI 与故障信号，甜腻、迷幻、又带着空洞的乐观。",
+    "en": "Neon pink-cyan-purple, a perspective grid horizon, retro 3D chrome type and palm silhouettes as consumer-nostalgia look. It collages 80s-90s mall culture, early CGI and signal glitch — sweet, hazy, hollowly optimistic."
+  },
+  "use_when": [
+    {
+      "zh": "音乐、夜店、潮牌、复古主题活动，风格即情绪",
+      "en": "Music, club, streetwear and retro events where style is the mood"
+    },
+    {
+      "zh": "需要强烈亚文化信号与迷幻氛围的营销页",
+      "en": "Campaign pages that must signal subculture and haze"
+    },
+    {
+      "zh": "播放器、票券、虚拟商品等娱乐向界面",
+      "en": "Players, tickets and virtual goods in entertainment contexts"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "金融、医疗、政务等需要冷静可信的界面",
+      "en": "Finance, healthcare and civic UIs that must stay calm and trustworthy"
+    },
+    {
+      "zh": "长文阅读与表单录入，霓虹与闪烁持续消耗注意力",
+      "en": "Long reading and form entry — neon and flicker drain attention"
+    },
+    {
+      "zh": "无障碍要求高的场景，粉紫青对比度与闪烁都有风险",
+      "en": "Accessibility-critical contexts — pink-purple contrast and flicker are risky"
+    }
+  ],
+  "tags": [
+    "vaporwave",
+    "neon",
+    "retro",
+    "chrome",
+    "glitch"
+  ],
+  "variants": [
+    {
+      "id": "mall-soft",
+      "name": {
+        "zh": "商场软调",
+        "en": "Mall soft"
+      },
+      "note": {
+        "zh": "粉彩大理石、希腊柱与 Windows 95 窗口，甜而空",
+        "en": "Pastel marble, Greek columns and Win95 chrome — sweet and hollow"
+      }
+    },
+    {
+      "id": "neon-glitch",
+      "name": {
+        "zh": "霓虹故障",
+        "en": "Neon glitch"
+      },
+      "note": {
+        "zh": "粉青霓虹 + RGB 错位与扫描线，信号不稳",
+        "en": "Pink-cyan neon with RGB offset and scanlines, signal unstable"
+      }
+    },
+    {
+      "id": "chrome",
+      "name": {
+        "zh": "全息镀铬",
+        "en": "Holographic chrome"
+      },
+      "note": {
+        "zh": "液态金属 3D 字与 CD 幻彩反光",
+        "en": "Liquid-metal 3D type with CD-rainbow sheen"
+      }
+    }
+  ],
+  "applicable_components": [
+    "navbar",
+    "card",
+    "button",
+    "badge"
+  ],
+  "applicable_pages": [
+    "landing-page"
+  ],
+  "related": [
+    {
+      "id": "y2k",
+      "relation": "similar_to"
+    },
+    {
+      "id": "cyberpunk",
+      "relation": "similar_to"
+    },
+    {
+      "id": "retro-futurism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "memphis",
+      "relation": "similar_to"
+    },
+    {
+      "id": "card",
+      "relation": "affects"
+    },
+    {
+      "id": "button",
+      "relation": "affects"
+    }
+  ],
+  "demo": {
+    "component": "vaporwave",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Wikipedia — Vaporwave",
+      "url": "https://en.wikipedia.org/wiki/Vaporwave"
+    },
+    {
+      "name": "Wikipedia — Synthwave",
+      "url": "https://en.wikipedia.org/wiki/Synthwave"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "linear-gradient 粉紫青",
+      "perspective + rotateX 网格地平线",
+      "background-clip: text 镀铬字",
+      "text-shadow 多层霓虹",
+      "repeating-linear-gradient 扫描线"
+    ],
+    "notes": {
+      "zh": "地平线网格是招牌：一个 perspective 容器里放 rotateX(70deg) 的 repeating-linear-gradient 网格 平面，底部渐隐。镀铬字用多段灰阶或粉青渐变 + background-clip: text + 深色描边。 霓虹用 text-shadow 多层同色扩散，色相锁粉 #FF71CE 青 #01CDFE 紫 #B967FF。棕榈树与希腊柱当剪影贴 1～2 处。故障动画短促低频，尊重 prefers-reduced-motion。",
+      "en": "The grid horizon is the signature: a perspective container holding a rotateX(70deg) repeating-linear-gradient plane, faded at the bottom. Chrome type is a multi-stop grey or pink-cyan gradient via background-clip: text with a dark outline. Neon is multi-layer same-hue text-shadow; lock the hue set to pink #FF71CE, cyan #01CDFE, violet #B967FF. Palm and column silhouettes as one or two stickers. Glitch stays brief and rare, respecting prefers-reduced-motion."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "用蒸汽波风格（Vaporwave）设计界面：霓虹粉紫青、透视网格地平线、镀铬 3D 字、棕榈树剪影与轻故障。",
+      "en": "Design an interface in Vaporwave style: neon pink-cyan-purple, a perspective grid horizon, retro 3D chrome type, palm silhouettes and light glitch."
+    },
+    "design": {
+      "zh": "蒸汽波设计规范：底色深紫粉渐变（#2B0F54 → #FF71CE 边缘）；网格地平线青 #01CDFE； 标题镀铬字（银灰多段或粉青渐变 background-clip: text）；按钮粉青描边胶囊 + 霓虹外发光； 棕榈树/罗马柱剪影点缀 1～2 处；扫描线 opacity ≤ 0.06； 深色模式本来就是主模式，浅色版只用于「商场软调」变体。",
+      "en": "\"Vaporwave spec: deep purple-pink gradient ground (#2B0F54 → #FF71CE at the edges); cyan #01CDFE grid horizon; chrome headings (multi-stop silver or pink-cyan via background-clip: text); pill buttons with pink-cyan strokes and neon glow; one or two palm/column silhouettes; scanline overlay at opacity ≤ 0.06; dark is the native mode — a light ground only appears in the mall-soft variant.\""
+    },
+    "implementation": {
+      "zh": "用 CSS 实现网格地平线：.vapor-grid { perspective: 220px; overflow: hidden; } .vapor-grid i { display:block; height: 240px; transform: rotateX(72deg); background: repeating-linear-gradient(90deg, #01CDFE 0 2px, transparent 2px 48px), repeating-linear-gradient(0deg, #01CDFE 0 2px, transparent 2px 48px); } 镀铬字 background-clip: text；故障用两层 RGB 错位伪元素短促动画。",
+      "en": "\"Implement the grid horizon in CSS: .vapor-grid { perspective: 220px; overflow: hidden; } .vapor-grid i { display:block; height: 240px; transform: rotateX(72deg); background: repeating-linear-gradient(90deg, #01CDFE 0 2px, transparent 2px 48px), repeating-linear-gradient(0deg, #01CDFE 0 2px, transparent 2px 48px); } Chrome type via background-clip: text; glitch as two-layer RGB-offset pseudos in brief bursts.\""
+    },
+    "agent": {
+      "zh": "在当前项目中实现 Vaporwave 蒸汽波视觉风格。\n\n先检查现有主题与动效体系，蒸汽波色板与效果做独立作用域。\n要求：\n- 粉紫青霓虹色板 + 透视网格地平线 + 镀铬标题字\n- 棕榈树/罗马柱剪影点缀控制在 1～2 处\n- 扫描线 opacity ≤ 0.06，故障动画短促低频并尊重 prefers-reduced-motion\n- 关键正文对比度达标，霓虹只做点缀\n- 深色为主，浅色「商场软调」作为变体\n- 不新增任何依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement Vaporwave visual style in the current project.\n\nInspect the existing theme and motion systems first; scope the Vaporwave palette and effects independently.\nRequirements:\n- Pink-purple-cyan neon palette + perspective grid horizon + chrome display type\n- Palm/column silhouettes limited to one or two accents\n- Scanlines at opacity ≤ 0.06; glitch brief and rare, respecting prefers-reduced-motion\n- Body text contrast compliant; neon is accent-only\n- Dark-first, with light mall-soft as a variant\n- No new dependencies\nRun existing project checks when done and list the modified files."
+    }
+  },
+  "style_spec": {
+    "typography": {
+      "zh": "镀铬渐变展示字 + 宽字距无衬线",
+      "en": "Chrome-gradient display type plus wide-tracked sans"
+    },
+    "color": {
+      "zh": "粉 #FF71CE × 青 #01CDFE × 紫 #B967FF",
+      "en": "Pink #FF71CE, cyan #01CDFE, violet #B967FF"
+    },
+    "border": {
+      "zh": "1px 霓虹描边，胶囊与直角混用",
+      "en": "1px neon rims, pills and hard corners mixed"
+    },
+    "shadow": {
+      "zh": "多层同色霓虹光晕",
+      "en": "Multi-layer same-hue neon glows"
+    },
+    "spacing": {
+      "zh": "地平线居中对称，元素悬浮网格上",
+      "en": "Centered symmetric horizon, elements floating over the grid"
+    }
+  },
+  "preview": {
+    "order": 24,
+    "keywords": {
+      "zh": "霓虹 · 网格 · 镀铬",
+      "en": "NEON NOSTALGIA"
+    },
+    "url": "mall.forever",
+    "scene": "generic",
+    "brand": "MALL★95",
+    "nav": [
+      "音像",
+      "美食广场",
+      "关于"
+    ],
+    "heroTitle": "WELCOME TO",
+    "heroTitle2": "THE MALL",
+    "heroSub": "消费主义的夏日永不落幕。",
+    "cta": "步入中庭",
+    "heroCaption": "GRID FOREVER. SUNSET NEVER ENDS.",
+    "features": [
+      {
+        "t": "网格地平线",
+        "s": "透视无限远"
+      },
+      {
+        "t": "镀铬大字",
+        "s": "液态金属"
+      },
+      {
+        "t": "霓虹粉青",
+        "s": "招牌色"
+      }
+    ],
+    "panel": "mountain",
+    "tokens": {
+      "bg": "linear-gradient(180deg,#2B0F54 0%,#5B1E8C 45%,#FF71CE 100%)",
+      "fg": "#FFE9FF",
+      "sub": "#C9A0E8",
+      "accent": "#01CDFE",
+      "accentFg": "#0A0030",
+      "card": "rgba(255,113,206,.12)",
+      "cardBorder": "rgba(1,205,254,.55)",
+      "radius": "999px",
+      "shadow": "0 0 16px rgba(1,205,254,.45)",
+      "font": "Arial Black, Futura, Helvetica Neue, PingFang SC, sans-serif",
+      "upper": true,
+      "heroSize": "26px"
+    }
+  }
+}

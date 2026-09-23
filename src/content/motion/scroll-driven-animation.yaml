@@ -1,0 +1,150 @@
+status: published
+name:
+  zh: 滚动驱动动画
+  en: Scroll-driven Animation
+aliases:
+  - 滚动驱动动画
+  - 滚动动画
+  - 随滚动动
+  - 滑到哪动到哪
+  - scroll animation
+  - scroll-driven
+  - scroll-linked animation
+category:
+  - Motion
+  - Scroll
+description:
+  zh: >-
+    动画进度绑定滚动位置而非时间：滚到哪、动到哪，可来回擦洗。能做滚动进度条、随滚动展开的叙事与视差层。与滚动显现不同，它不是触发后播完，而是由滚动位置精确擦洗进度。
+  en: >-
+    Animation progress is tied to scroll position rather than time: scrub to where you want, even
+    backwards. It powers scroll-linked progress bars, scroll-unfurled storytelling and parallax layers.
+    Unlike scroll reveal it does not play once after a trigger — scroll position scrubs the timeline.
+use_when:
+  - zh: 叙事随滚动展开，进度要与阅读位置同步
+    en: Narrative unfurls with reading and must stay in sync with scroll
+  - zh: 需要滚动进度指示或阅读深度反馈
+    en: Scroll progress or reading-depth feedback is needed
+  - zh: 视差层、粘性章节等空间层次表达
+    en: Spatial layering — parallax planes, sticky chapters
+avoid_when:
+  - zh: 用户一滚到底找信息，动画反而拖慢到达
+    en: Users scroll straight to content — animation slows arrival
+  - zh: 滚动容器嵌套复杂，进度归属不清
+    en: Nested scrollers where progress ownership is ambiguous
+  - zh: 只需一次性入场，用滚动显现更简单
+    en: A single entrance is enough — plain scroll reveal is simpler
+tags:
+  - animation
+  - scroll
+  - timeline
+  - narrative
+api:
+  - 'animation-timeline: scroll()'
+  - scroll()
+  - Intersection Observer
+variants:
+  - id: scroll-linked
+    name:
+      zh: 滚动联动
+      en: Scroll-linked
+    note:
+      zh: 进度直接映射滚动位置，可逆向擦洗
+      en: Progress maps straight to scroll — scrubbable both ways
+  - id: scroll-triggered
+    name:
+      zh: 滚动触发
+      en: Scroll-triggered
+    note:
+      zh: 越过阈值后按时间播完，不再随滚动
+      en: Fires past a threshold then plays on a clock, not on scroll
+  - id: parallax-layers
+    name:
+      zh: 视差层
+      en: Parallax layers
+    note:
+      zh: 多层不同速率移动，制造纵深
+      en: Layers move at different rates to fake depth
+anatomy:
+  - 滚动容器（Scroll container）
+  - 进度指示（Progress）
+  - 受驱动元素（Driven element）
+related:
+  - id: scroll-reveal
+    relation: alternative_to
+  - id: parallax
+    relation: alternative_to
+  - id: text-reveal
+    relation: used_with
+demo:
+  component: scroll-driven-animation
+  modes:
+    - default
+    - dark
+    - variants
+sources:
+  - name: MDN — CSS scroll-driven animations
+    url: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll-driven_animations
+  - name: MDN — animation-timeline
+    url: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline
+  - name: MDN — Intersection Observer API
+    url: https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver
+implementation:
+  css:
+    - 'animation-timeline: scroll()'
+    - 'animation-range'
+    - 'transform: translateY'
+    - progress
+  notes:
+    zh: >-
+      首选 CSS：animation-timeline: scroll() + animation-range 把关键帧绑到滚动进度；不支持时用
+      JS 滚动监听写 CSS 变量（如 --scroll），再由 calc 驱动 transform/opacity。触发式部分的定时
+      动画仍需 calc(<时长> * var(--demo-speed, 1))。滚动监听要 passive + rAF 节流。
+      尊重 prefers-reduced-motion，直接落到终态。
+    en: >-
+      Prefer CSS: animation-timeline: scroll() with animation-range binds keyframes to scroll progress;
+      where unsupported, a JS scroll listener writes a CSS variable (e.g. --scroll) that calc drives
+      transform/opacity. Any timed portion of a triggered animation must still use
+      calc(<duration> * var(--demo-speed, 1)). Make scroll listeners passive and rAF-throttled.
+      Respect prefers-reduced-motion by landing on the final state.
+prompts:
+  basic:
+    zh: 给长页面添加滚动驱动动画：进度条随滚动增长，章节随滚动展开。
+    en: 'Add scroll-driven animation to a long page: a progress bar grows with scroll and sections unfurl.'
+  design:
+    zh: 顶部细进度条随滚动位置从 0% 到 100%；章节卡片在滚动擦洗下上移并淡入，可反向回退；视差背景层以约 0.5 倍速移动。
+    en: >-
+      A thin top progress bar runs 0% to 100% with scroll position; section cards rise and fade under
+      scrub and reverse on the way back; a parallax backdrop moves at about half speed.
+  implementation:
+    zh: >-
+      优先 animation-timeline: scroll()；回退用 passive scroll 监听 + rAF 把进度写入 CSS 变量。
+      受驱动元素用 calc(var(--scroll) * …) 做 transform/opacity。触发式定时动画时长乘
+      var(--demo-speed, 1)。尊重 prefers-reduced-motion。
+    en: >-
+      Prefer animation-timeline: scroll(); fall back to a passive scroll listener plus rAF writing a
+      CSS variable. Drive transforms/opacity via calc(var(--scroll) * …). Multiply timed animation
+      durations by var(--demo-speed, 1). Respect prefers-reduced-motion.
+  agent:
+    zh: |-
+      在当前项目中实现滚动驱动动画。
+
+      先检查现有组件体系和 Design Token，优先复用当前组件。
+      保持现有项目视觉风格。不要新增不必要依赖。
+      要求：
+      - 动画进度绑定滚动位置，可反向擦洗
+      - 优先使用 animation-timeline: scroll()，并提供 JS 兜底
+      - 定时动画时长写 calc(<时长> * var(--demo-speed, 1))
+      - 尊重 prefers-reduced-motion
+      完成后运行项目现有检查，并列出修改的文件。
+    en: |-
+      Implement scroll-driven animation in the current project.
+
+      Inspect the existing component system and design tokens first; reuse existing components.
+      Keep the project's visual style. Add no unnecessary dependencies.
+      Requirements:
+      - Progress bound to scroll position and reversible
+      - Prefer animation-timeline: scroll() with a JS fallback
+      - Timed animation durations written calc(<duration> * var(--demo-speed, 1))
+      - Respect prefers-reduced-motion
+      Run existing project checks when done and list the modified files.

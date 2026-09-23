@@ -61,6 +61,55 @@
     "[popover]",
     "role=\"dialog\""
   ],
+  "framework_names": [
+    {
+      "framework": "HTML",
+      "name": "popover attribute",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/popover"
+    },
+    {
+      "framework": "shadcn/ui",
+      "name": "Popover",
+      "url": "https://ui.shadcn.com/docs/components/popover"
+    },
+    {
+      "framework": "MUI",
+      "name": "Popover",
+      "url": "https://mui.com/material-ui/react-popover/"
+    },
+    {
+      "framework": "AntD",
+      "name": "Popover",
+      "url": "https://ant.design/components/popover"
+    }
+  ],
+  "disambiguation": {
+    "zh": "Popover 是锚定触发元素的非打断浮层，内容任意；Tooltip 只读、悬停即出；Dropdown 列表只放命令。",
+    "en": "A popover is a non-blocking anchored overlay with free-form content. A tooltip is read-only on hover. A dropdown list holds commands only."
+  },
+  "confusable": [
+    {
+      "id": "tooltip",
+      "note": {
+        "zh": "Tooltip 只读、短暂、悬停触发；Popover 可交互、点击触发。",
+        "en": "A tooltip is brief read-only on hover; a popover is interactive on click."
+      }
+    },
+    {
+      "id": "dropdown",
+      "note": {
+        "zh": "Dropdown 列表是命令项，Popover 内容任意。",
+        "en": "A dropdown list is commands; popover content is free-form."
+      }
+    },
+    {
+      "id": "modal",
+      "note": {
+        "zh": "Modal 遮罩整页，Popover 不遮罩、可点外部关闭。",
+        "en": "A modal dims the page; a popover does not, and dismisses on outside click."
+      }
+    }
+  ],
   "variants": [
     {
       "id": "plain",

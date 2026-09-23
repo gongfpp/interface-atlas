@@ -1,0 +1,172 @@
+{
+  "id": "paywall",
+  "type": "patterns",
+  "status": "published",
+  "name": {
+    "zh": "付费墙",
+    "en": "Paywall"
+  },
+  "aliases": [
+    "付费墙",
+    "收费墙",
+    "会员墙",
+    "订阅墙",
+    "看一半要钱",
+    "paywall",
+    "upgrade wall",
+    "subscription gate"
+  ],
+  "category": [
+    "Commerce",
+    "Content"
+  ],
+  "description": {
+    "zh": "在内容或功能达到门槛后阻止继续访问，要求付费或订阅才能解锁。可硬性截断、按次数计量，或用预览加升级提示软性引导。它把价值展示与付费决策接在一起，关键是先让用户看清能获得什么，再谈付费。",
+    "en": "Blocks content or features once a threshold is reached, requiring payment or subscription to continue. It can hard-cut, meter by count, or tease with previews and an upgrade nudge. It joins value demonstration to the pay decision — show what is gained first, then ask for payment."
+  },
+  "use_when": [
+    {
+      "zh": "内容或功能有明确付费价值，且免费部分足以体验",
+      "en": "Content or features carry clear paid value and the free slice demos well"
+    },
+    {
+      "zh": "订阅制产品需要在关键节点推动升级",
+      "en": "Subscription products nudging an upgrade at a natural peak"
+    },
+    {
+      "zh": "用量可计量（篇数、次数、席位）适合按量设门槛",
+      "en": "Meterable usage — articles, calls, seats — suits a counted limit"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "免费区太少，用户无法判断价值就先被拦住",
+      "en": "Too little free content to judge value before being blocked"
+    },
+    {
+      "zh": "一次性买断工具用订阅墙，预期错位",
+      "en": "One-time-purchase tools gated behind a subscription — wrong expectation"
+    },
+    {
+      "zh": "支持文档、法律条款等本该公开的内容",
+      "en": "Docs, legal terms and other content that must stay open"
+    }
+  ],
+  "tags": [
+    "commerce",
+    "monetization",
+    "content",
+    "subscription"
+  ],
+  "variants": [
+    {
+      "id": "hard-wall",
+      "name": {
+        "zh": "硬性截断",
+        "en": "Hard wall"
+      },
+      "note": {
+        "zh": "到点即停，不付费完全看不到后续",
+        "en": "Cut off at the line — nothing beyond without paying"
+      }
+    },
+    {
+      "id": "metered",
+      "name": {
+        "zh": "计量限制",
+        "en": "Metered limit"
+      },
+      "note": {
+        "zh": "免费若干篇/次，用完才拦，配用量提示",
+        "en": "A free quota of articles/uses, with a usage hint before the cut"
+      }
+    },
+    {
+      "id": "upgrade-teaser",
+      "name": {
+        "zh": "升级提示",
+        "en": "Upgrade teaser"
+      },
+      "note": {
+        "zh": "内容虚化预览 + 升级按钮，软性引导",
+        "en": "Blurred preview plus an upgrade button — a soft nudge"
+      }
+    }
+  ],
+  "anatomy": [
+    "价值预览（Teaser）",
+    "门槛遮罩（Gate）",
+    "升级行动（Upgrade CTA）",
+    "用量提示（Meter hint）"
+  ],
+  "related": [
+    {
+      "id": "progressive-disclosure",
+      "relation": "used_with"
+    },
+    {
+      "id": "pricing",
+      "relation": "used_with"
+    },
+    {
+      "id": "signup",
+      "relation": "used_with"
+    },
+    {
+      "id": "empty-state",
+      "relation": "similar_to"
+    }
+  ],
+  "demo": {
+    "component": "paywall",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Apple HIG — In-App Purchase",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/in-app-purchase"
+    },
+    {
+      "name": "Nielsen Norman Group — Paywalls",
+      "url": "https://www.nngroup.com/articles/paywalls/"
+    },
+    {
+      "name": "Material Design — Buttons",
+      "url": "https://m3.material.io/components/buttons/overview"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "mask-image",
+      "backdrop-filter",
+      "gradient",
+      "position"
+    ],
+    "notes": {
+      "zh": "预览区正常渲染前 N 段，门槛处用渐变遮罩或 mask-image 淡出，CTA 覆盖其上。计量状态存 localStorage 或服务端，靠近上限时提前提示。服务端仍需拦截未付费请求，前端遮罩只是体验层。 入场过渡时长乘 var(--demo-speed, 1)，尊重 prefers-reduced-motion。",
+      "en": "Render the first paragraphs normally, then fade the cut with a gradient mask or mask-image and overlay the CTA. Track the meter in localStorage or on the server and warn near the limit. The server must still block unpaid requests — the front-end mask is only the experience layer. Scale enter transitions by var(--demo-speed, 1) and respect prefers-reduced-motion."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建一个付费墙（Paywall）演示：文章读到一半提示订阅才能继续。",
+      "en": "Create a paywall demo: reading stops mid-article and prompts a subscription to continue."
+    },
+    "design": {
+      "zh": "创建付费墙演示。要求：文章前两段可读，第三段起渐变虚化遮罩；遮罩上放升级标题、价格与订阅按钮；顶部显示本月免费额度用量；支持深浅色主题。",
+      "en": "Create a paywall demo. Requirements: the first two paragraphs readable, a gradient blur from the third; an upgrade headline, price and subscribe button on the gate; a monthly free-quota meter at the top; light and dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + CSS mask/gradient 实现 Paywall：正文数组截取 previewCount 段；门槛区绝对定位 渐变遮罩 + CTA；计量用 useState 模拟额度递减。遮罩不挡键盘阅读顺序，提供\"了解更多\"链接。 动画时长乘 var(--demo-speed, 1)，尊重 prefers-reduced-motion。",
+      "en": "Build the paywall in React with a CSS mask/gradient: slice the body to previewCount paragraphs; overlay an absolutely positioned gradient gate with the CTA; simulate the meter with useState. Do not break keyboard reading order and offer a \"Learn more\" link. Scale animation durations by var(--demo-speed, 1) and respect prefers-reduced-motion."
+    },
+    "agent": {
+      "zh": "在当前项目中实现付费墙。\n\n先检查现有组件体系和 Design Token，优先复用当前组件。\n保持现有项目视觉风格。不要新增不必要依赖。\n要求：\n- 免费预览足以体验价值，门槛处清晰说明能获得什么\n- 升级 CTA 主操作唯一，价格与条款可发现\n- 服务端仍需拦截未付费请求，前端遮罩只是体验层\n- 尊重 prefers-reduced-motion\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a paywall in the current project.\n\nInspect the existing component system and design tokens first; reuse existing components.\nKeep the project's visual style. Add no unnecessary dependencies.\nRequirements:\n- Free preview enough to taste the value; the gate states what is gained\n- A single primary upgrade CTA with discoverable price and terms\n- The server still blocks unpaid requests; the front-end mask is experience only\n- Respect prefers-reduced-motion\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

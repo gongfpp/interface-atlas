@@ -26,6 +26,21 @@ tags: [...]                          # 小写英文
 variants: [{ id, name{zh,en}, note{zh,en} }, ...]   # ≥2
 anatomy: [...]                       # 组件/页面类建议给；纯动效类可省
 api: [...]                           # 可选：对应 Web 平台 API 符号（元素 / role / 属性），组件类建议给
+framework_names:                     # 可选但组件类建议给：多框架命名对照（ARIA / shadcn / MUI / AntD…）
+  - framework: shadcn/ui
+    name: Dialog
+    url: https://ui.shadcn.com/docs/components/dialog
+    note:
+      zh: ...
+      en: ...
+disambiguation:                      # 可选：一名两义 / 词义边界辨析
+  zh: ...
+  en: ...
+confusable:                          # 可选：易混淆概念（id + 一句辨析）
+  - id: dropdown
+    note:
+      zh: ...
+      en: ...
 structure: [{ part{zh,en}, note{zh,en} }, ...]   # 可选：page 结构拆解（部件 + 说明），页面类建议给
 related: [{ id, relation }, ...]     # 3～5 条边，id 只能引用全库清单（见 §3），relation 见 §1.5
 demo: { component: <id>, modes: [default, dark, variants] }  # component 一律等于条目 id
@@ -108,19 +123,23 @@ export default XDemo;
 - 不引入任何新依赖；不写测试文件。
 - 尺寸克制：常规示例优先控制在 240～480px；完整表单和多变体允许自然增高，不裁切内容，内容居中。
 
-## 3. 全库 id 清单（99；新增时同步更新此处，并以内容校验结果为准）
+## 3. 全库 id 清单（138；新增时同步更新此处，并以内容校验结果为准）
 
-**components (36)**：button, input, select, textarea, checkbox, radio, switch, slider, date-picker, navbar, sidebar, breadcrumb, tabs, pagination, modal, drawer, popover, tooltip, toast, alert, card, table, progress-bar, avatar, badge, accordion, dropdown, menu, command-palette, filter-panel, segmented-control, stepper, combobox, file-upload, rating, timeline
+**components (46)**：button, input, select, textarea, checkbox, radio, switch, slider, date-picker, navbar, sidebar, breadcrumb, tabs, pagination, modal, drawer, popover, tooltip, toast, alert, card, table, progress-bar, avatar, badge, accordion, dropdown, menu, command-palette, filter-panel, segmented-control, stepper, combobox, file-upload, rating, timeline, carousel, bottom-sheet, fab, tag-input, toolbar, multi-select, lightbox, split-button, tree-view, color-picker
 
-**patterns (15)**：infinite-scroll, progressive-disclosure, master-detail, inline-editing, optimistic-ui, empty-state, pull-to-refresh, lazy-loading, form-validation, drag-and-drop-sorting, undo-action, search-filtering, onboarding-tour, kanban-board, skeleton-loading
+**patterns (21)**：infinite-scroll, progressive-disclosure, master-detail, inline-editing, optimistic-ui, empty-state, pull-to-refresh, lazy-loading, form-validation, drag-and-drop-sorting, undo-action, search-filtering, onboarding-tour, kanban-board, skeleton-loading, wizard, drag-and-drop, bulk-actions, cookie-consent, paywall, keyboard-shortcuts
 
-**styles (18)**：minimalism, neobrutalism, glassmorphism, skeuomorphism, flat-design, swiss-style, bauhaus, y2k, cyberpunk, memphis, bento-grid, editorial, retro-futurism, claymorphism, aurora, organic, art-deco, neumorphism
+**styles (24)**：minimalism, neobrutalism, glassmorphism, skeuomorphism, flat-design, swiss-style, bauhaus, y2k, cyberpunk, memphis, bento-grid, editorial, retro-futurism, claymorphism, aurora, organic, art-deco, neumorphism, brutalism, corporate-memphis, hand-drawn, liquid-glass, pixel-art, vaporwave
 
 **pages (10)**：dashboard, landing-page, login, pricing, settings, profile, search, checkout, documentation, signup
 
-**motion (20)**：hover-lift, press-feedback, hover-glow, magnetic-button, loading-spinner, page-transition, scroll-reveal, parallax, shared-element-transition, text-reveal, number-counter, marquee, stagger-reveal, ripple, morphing-icon, drawer-slide, toast-slide-in, accordion-expand, confetti, elastic-bounce
+**motion (23)**：hover-lift, press-feedback, hover-glow, magnetic-button, loading-spinner, page-transition, scroll-reveal, parallax, shared-element-transition, text-reveal, number-counter, marquee, stagger-reveal, ripple, morphing-icon, drawer-slide, toast-slide-in, accordion-expand, confetti, elastic-bounce, view-transition, scroll-driven-animation, spring-animation
 
-**compare 组**（组内 ≥2 才成立）：loading-indicator（skeleton/loading-spinner/progress-bar）、click-feedback（press-feedback/ripple）、hover-feedback（hover-lift/hover-glow）、navigation-overlay（command-palette/modal/drawer/popover）、primary-navigation（sidebar/navbar/menu）、primary-display（table/card/list 无 list 用 card+table）、overlay-container（modal/drawer/popover）、scroll-loading（infinite-scroll/pagination/pull-to-refresh）、auth-pages（login/signup）、form-feedback（toast/alert/inline form-validation）。同组成员的 `compare.dimensions` 键必须完全一致。
+**foundation (8)**：type-scale, font-stack, line-height, measure, color-palette, semantic-color, contrast-ratio, elevation
+
+**a11y (6)**：focus-ring, skip-link, reduced-motion, keyboard-navigation, aria-live, alt-text
+
+**compare 组**（组内 ≥2 才成立）：loading-indicator（skeleton/loading-spinner/progress-bar）、click-feedback（press-feedback/ripple）、hover-feedback（hover-lift/hover-glow）、navigation-overlay（command-palette/modal/drawer/popover/bottom-sheet）、primary-navigation（sidebar/navbar/menu）、primary-display（table/card/list 无 list 用 card+table）、overlay-container（modal/drawer/popover/bottom-sheet）、scroll-loading（infinite-scroll/pagination/pull-to-refresh）、auth-pages（login/signup）、form-feedback（toast/alert/inline form-validation）、typography-trio（type-scale/line-height/measure，维度：适用文本/调节粒度/响应式）。同组成员的 `compare.dimensions` 键必须完全一致。
 
 ## 4. 质检清单（提交前自查）
 

@@ -95,9 +95,9 @@ test('explore: type filter narrows the grid', async ({ page }) => {
   await expect(page.getByRole('heading', { level: 1 })).toContainText('随机探索');
   await expect(page.locator('[data-explore-item]').first()).toBeVisible();
   await page.locator('.explore-chip[data-filter="motion"]').click();
-  await expect(page.locator('[data-explore-item]:not(.hidden)')).toHaveCount(20);
+  await expect(page.locator('[data-explore-item]:not(.hidden)')).toHaveCount(23);
   await page.locator('.explore-chip[data-filter="all"]').click();
-  await expect(page.locator('[data-explore-item]:not(.hidden)')).toHaveCount(99);
+  await expect(page.locator('[data-explore-item]:not(.hidden)')).toHaveCount(138);
 });
 
 test('saved: save a concept then see it on /saved', async ({ page }) => {
@@ -114,9 +114,9 @@ test('list filter: category chip narrows the grid', async ({ page }) => {
   await page.goto('/components');
   await expect(page.locator('[data-list-item]').first()).toBeVisible();
   await page.locator('.list-chip[data-list-cat="Navigation"]').click();
-  await expect(page.locator('[data-list-item]:not(.hidden)')).toHaveCount(10);
+  await expect(page.locator('[data-list-item]:not(.hidden)')).toHaveCount(12);
   await page.locator('.list-chip[data-list-cat="all"]').click();
-  await expect(page.locator('[data-list-item]:not(.hidden)')).toHaveCount(36);
+  await expect(page.locator('[data-list-item]:not(.hidden)')).toHaveCount(46);
 });
 
 test('prompt builder: style selection composes the prompt', async ({ page }) => {

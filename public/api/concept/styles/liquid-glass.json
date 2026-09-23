@@ -1,0 +1,257 @@
+{
+  "id": "liquid-glass",
+  "type": "styles",
+  "status": "published",
+  "name": {
+    "zh": "液态玻璃",
+    "en": "Liquid Glass"
+  },
+  "aliases": [
+    "液态玻璃",
+    "苹果新玻璃",
+    "厚玻璃折射",
+    "玻璃透镜效果",
+    "Liquid Glass",
+    "refractive glass UI"
+  ],
+  "category": [
+    "Style",
+    "Visual Language"
+  ],
+  "description": {
+    "zh": "用厚折射玻璃层、镜面高光与液体形变表示「功能浮层」的视觉语言。玻璃像一块厚透镜， 折射底下的内容并反射环境光，边缘带 lensing 变形；强调材质的体积与流动性。",
+    "en": "Thick refractive glass layers, specular highlights and liquid morphing as a functional overlay look. The glass is a thick lens — it bends content beneath and reflects the room, with edge lensing distortion. Volume and fluidity of the material are the point."
+  },
+  "use_when": [
+    {
+      "zh": "需要与系统级导航 控制条 浮层保持同一材质语言",
+      "en": "Navigation, toolbars and overlays that must share the system material language"
+    },
+    {
+      "zh": "底下是彩色照片或丰富内容，折射透出层次才有意义",
+      "en": "Over colorful photos or rich content worth refracting"
+    },
+    {
+      "zh": "想要「厚玻璃片」的体积感，而不是一层薄雾",
+      "en": "When you want the volume of a thick glass slab, not a thin veil"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "长文本密集区，折射与高光会持续干扰阅读",
+      "en": "Long-form reading where refraction and highlights keep interrupting"
+    },
+    {
+      "zh": "低端设备与性能敏感场景，实时折射开销大",
+      "en": "Performance-sensitive or older devices — live refraction is expensive"
+    },
+    {
+      "zh": "只需要轻量磨砂分层，那用玻璃拟态更省",
+      "en": "Light frosted layering only — glassmorphism is cheaper and clearer"
+    }
+  ],
+  "tags": [
+    "glass",
+    "refraction",
+    "material",
+    "depth",
+    "apple"
+  ],
+  "variants": [
+    {
+      "id": "sheet",
+      "name": {
+        "zh": "片状透镜",
+        "en": "Sheet lens"
+      },
+      "note": {
+        "zh": "大面积厚玻璃板，边缘 lensing 明显",
+        "en": "Large thick slabs with obvious edge lensing"
+      }
+    },
+    {
+      "id": "capsule",
+      "name": {
+        "zh": "胶囊按钮",
+        "en": "Button capsule"
+      },
+      "note": {
+        "zh": "小尺寸胶囊控制件，镜面高光集中",
+        "en": "Small capsule controls with concentrated speculars"
+      }
+    },
+    {
+      "id": "full-panel",
+      "name": {
+        "zh": "全幅面板",
+        "en": "Full panel"
+      },
+      "note": {
+        "zh": "侧栏 系统条级别大块玻璃，吸收环境色",
+        "en": "Sidebar- or toolbar-scale glass that absorbs ambient color"
+      }
+    }
+  ],
+  "applicable_components": [
+    "navbar",
+    "modal",
+    "drawer",
+    "popover",
+    "button"
+  ],
+  "related": [
+    {
+      "id": "glassmorphism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "skeuomorphism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "aurora",
+      "relation": "used_with"
+    },
+    {
+      "id": "navbar",
+      "relation": "affects"
+    },
+    {
+      "id": "modal",
+      "relation": "affects"
+    },
+    {
+      "id": "button",
+      "relation": "affects"
+    }
+  ],
+  "confusable": [
+    {
+      "id": "glassmorphism",
+      "note": {
+        "zh": "玻璃拟态是薄磨砂模糊（backdrop blur 一片雾）；液态玻璃是厚折射透镜，边缘变形并带镜面高光。",
+        "en": "Glassmorphism is thin frosted blur (a veil of blur); liquid-glass is a thick refractive lens with edge distortion and speculars."
+      }
+    }
+  ],
+  "demo": {
+    "component": "liquid-glass",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Apple — Liquid Glass technology overview",
+      "url": "https://developer.apple.com/documentation/technologyoverviews/liquid-glass"
+    },
+    {
+      "name": "WWDC25 — Meet Liquid Glass",
+      "url": "https://developer.apple.com/videos/play/wwdc2025/219"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "backdrop-filter: blur() saturate()",
+      "box-shadow: inset 高光 + 外投影",
+      "border: 1px solid rgba(255,255,255,0.5)",
+      "background: rgba(255,255,255,0.12)",
+      "border-radius: 999px"
+    ],
+    "notes": {
+      "zh": "厚度感来自三层：低透明填充 + backdrop-filter blur(20px) saturate(180%) + 顶部 1px 镜面高光内阴影 与底部暗边内阴影。边缘 lensing 近似用较厚的半透明白描边 + 外圈极浅放大后的底色。 真折射需要 SVG filter 或 canvas，Web 里通常用高光与饱和度补偿暗示。玻璃必须浮在彩色内容上。 深色模式用深色填充，高光保持。",
+      "en": "Thickness comes from three layers: low-opacity fill + backdrop-filter blur(20px) saturate(180%) + an inset top specular and a darker inset bottom edge. Edge lensing is approximated with a thicker translucent white rim plus a faint tint of the magnified backdrop. True refraction needs SVG filters or canvas; on the web, speculars and saturation sell it. Glass must float over colorful content. Dark mode darkens the fill and keeps the speculars."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "用液态玻璃风格（Liquid Glass）设计界面：厚折射玻璃浮层、镜面高光、边缘 lensing 变形，浮在彩色内容之上。",
+      "en": "Design an interface in Liquid Glass style: thick refractive glass overlays with specular highlights and edge lensing, floating above colorful content."
+    },
+    "design": {
+      "zh": "液态玻璃设计规范：底层放彩色照片或渐变；玻璃填充 rgba(255,255,255,0.12) 深色模式 rgba(20,20,30,0.35)； backdrop-filter blur(20px) saturate(180%)；顶部 inset 0 1px 0 rgba(255,255,255,0.7) 镜面高光， 底部 inset 0 -1px 0 rgba(0,0,0,0.15)；1px 半透明白描边；圆角 20px 或胶囊 999px； 控制件浮在独立功能层，内容区保持通透。",
+      "en": "\"Liquid Glass spec: colorful photo or gradient beneath; glass filled rgba(255,255,255,0.12) or rgba(20,20,30,0.35) in dark; backdrop-filter blur(20px) saturate(180%); inset 0 1px 0 rgba(255,255,255,0.7) top specular and inset 0 -1px 0 rgba(0,0,0,0.15) bottom edge; 1px translucent white rim; radii 20px or 999px pills; controls float on their own functional layer while content stays clear.\""
+    },
+    "implementation": {
+      "zh": "用 CSS 实现液态玻璃：.lg { background: rgba(255,255,255,0.12); backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255,255,255,0.45); box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(0,0,0,0.15), 0 8px 24px rgba(0,0,0,0.18); border-radius: 22px; } 用 @supports 降级为更实的填充；hover 可把高光内阴影上移 1px 表示受光。",
+      "en": "\"Implement Liquid Glass in CSS: .lg { background: rgba(255,255,255,0.12); backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255,255,255,0.45); box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(0,0,0,0.15), 0 8px 24px rgba(0,0,0,0.18); border-radius: 22px; } Gate with @supports and fall back to a more opaque fill; on hover, nudge the specular inset up 1px to catch light.\""
+    },
+    "agent": {
+      "zh": "在当前项目中实现 Liquid Glass 液态玻璃视觉风格。\n\n先检查现有弹层与导航组件，确认底层有可折射的彩色内容。\n要求：\n- 厚玻璃：低透明填充 + backdrop blur/saturate + 顶部镜面高光 + 底部暗边\n- 边缘用半透明白描边暗示 lensing，不用薄磨砂一片雾\n- 控制件浮在独立功能层，玻璃不遮死底层内容\n- @supports 降级为更实填充；深色模式保留高光\n- 文字对比度按折射后的实际背景校验\n- 不新增任何依赖\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement Liquid Glass visual style in the current project.\n\nInspect existing overlay and navigation components first; confirm colorful content beneath to refract.\nRequirements:\n- Thick glass: low-opacity fill + backdrop blur/saturate + top specular + bottom edge\n- Translucent white rims to suggest lensing — not a thin blur veil\n- Controls float on their own functional layer; glass never fully hides the content\n- @supports fallback to a more opaque fill; speculars kept in dark mode\n- Text contrast verified against the refracted result\n- No new dependencies\nRun existing project checks when done and list the modified files."
+    }
+  },
+  "style_spec": {
+    "typography": {
+      "zh": "系统无衬线，玻璃上的字重略轻",
+      "en": "System sans, slightly lighter weight on glass"
+    },
+    "color": {
+      "zh": "由底层内容决定玻璃色相，高光近白",
+      "en": "Hue inherited from the content beneath, speculars near-white"
+    },
+    "border": {
+      "zh": "1px 半透明白描边，暗示折射边缘",
+      "en": "1px translucent white rims suggesting refraction edges"
+    },
+    "shadow": {
+      "zh": "顶部镜面内高光 + 大范围柔和外投影",
+      "en": "Top inset specular plus a wide soft outer shadow"
+    },
+    "spacing": {
+      "zh": "20px+ 圆角或胶囊，控制件独立浮层",
+      "en": "20px+ radii or pills, controls on a separate floating layer"
+    }
+  },
+  "preview": {
+    "order": 22,
+    "keywords": {
+      "zh": "厚玻璃 · 折射 · 高光",
+      "en": "THICK REFRACTIVE GLASS"
+    },
+    "url": "lumen.glass",
+    "scene": "aurora",
+    "brand": "Lumen",
+    "nav": [
+      "光学",
+      "材质",
+      "价格"
+    ],
+    "heroTitle": "让界面",
+    "heroTitle2": "变成一块厚玻璃",
+    "heroSub": "折射内容，反射环境，边缘会流动。",
+    "cta": "体验折射 →",
+    "heroCaption": "REFRACT. REFLECT. MORPH.",
+    "features": [
+      {
+        "t": "厚折射",
+        "s": "像透镜"
+      },
+      {
+        "t": "镜面高光",
+        "s": "顶边一线光"
+      },
+      {
+        "t": "边缘流动",
+        "s": "lensing 变形"
+      }
+    ],
+    "panel": "mountain",
+    "tokens": {
+      "bg": "linear-gradient(145deg,#FF9A8B 0%,#A18CD1 45%,#6DD5FA 100%)",
+      "fg": "#FFFFFF",
+      "sub": "rgba(255,255,255,.78)",
+      "accent": "rgba(255,255,255,.92)",
+      "accentFg": "#1A1030",
+      "card": "rgba(255,255,255,.14)",
+      "cardBorder": "rgba(255,255,255,.5)",
+      "radius": "22px",
+      "blur": "blur(20px) saturate(180%)",
+      "shadow": "inset 0 1px 0 rgba(255,255,255,.7), inset 0 -1px 0 rgba(0,0,0,.15), 0 8px 24px rgba(0,0,0,.18)",
+      "font": "SF Pro Display, Helvetica Neue, PingFang SC, sans-serif",
+      "heroSize": "24px"
+    }
+  }
+}

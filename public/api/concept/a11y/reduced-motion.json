@@ -1,0 +1,190 @@
+{
+  "id": "reduced-motion",
+  "type": "a11y",
+  "status": "published",
+  "name": {
+    "zh": "减弱动效",
+    "en": "Reduced Motion"
+  },
+  "aliases": [
+    "减弱动效",
+    "减弱动态效果",
+    "减少动画",
+    "动效降级",
+    "关掉动画",
+    "reduced motion"
+  ],
+  "category": [
+    "Accessibility",
+    "Motion"
+  ],
+  "description": {
+    "zh": "尊重系统「减弱动态效果」偏好，把大幅位移、缩放、视差动画降级为淡入甚至直接呈现。前庭敏感的用户会被大幅动效诱发眩晕恶心，这不是审美偏好而是健康风险；WCAG 2.3.3 要求非必要动画可被关闭。",
+    "en": "Honour the OS \"reduce motion\" preference by demoting large translations, zooms and parallax to a plain fade or no motion at all. Large motion can trigger nausea and vertigo in vestibular-sensitive users — a health risk, not a taste question. WCAG 2.3.3 requires non-essential animation to be disable-able."
+  },
+  "use_when": [
+    {
+      "zh": "落地页、转场、视差等大幅位移或缩放动画",
+      "en": "Landing pages, transitions and parallax with large movement"
+    },
+    {
+      "zh": "自动播放的装饰动效（跑马灯、弹性弹跳、数字滚动）",
+      "en": "Auto-playing decorative motion — marquee, bounce, number rolls"
+    },
+    {
+      "zh": "用 JS 驱动的动画库补上 CSS 之外的降级分支",
+      "en": "JS-driven animation libraries that need a non-CSS fallback path"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "把按下态、加载态这些功能反馈也一刀切砍光",
+      "en": "Slashing functional feedback too — press and loading states still need motion cues"
+    },
+    {
+      "zh": "用减弱动效代替真正的无障碍修复（比如补焦点环）",
+      "en": "Substituting it for real fixes such as a missing focus ring"
+    },
+    {
+      "zh": "只降级 CSS 动画，JS 弹跳/视差仍强制播放",
+      "en": "Demoting CSS only while JS bounce and parallax keep running"
+    }
+  ],
+  "tags": [
+    "a11y",
+    "motion",
+    "preference",
+    "vestibular"
+  ],
+  "api": [
+    "prefers-reduced-motion",
+    "matchMedia",
+    "animation: none"
+  ],
+  "framework_names": [
+    {
+      "framework": "WCAG",
+      "name": "2.3.3 Animation from Interactions",
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions"
+    },
+    {
+      "framework": "CSS",
+      "name": "@media (prefers-reduced-motion)",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion"
+    }
+  ],
+  "disambiguation": {
+    "zh": "prefers-reduced-motion 是操作系统里的健康偏好，不是应用内的「关闭动画」开关——前者由用户在系统设置里声明，后者只是产品自己的设置项。",
+    "en": "prefers-reduced-motion is an OS-level health preference, not an in-app \"kill animations\" switch — the former is declared in system settings, the latter is just a product toggle."
+  },
+  "confusable": [
+    {
+      "id": "page-transition",
+      "note": {
+        "zh": "page-transition 是转场动效本身，reduced-motion 是决定它要不要减弱的系统策略——一个造动效，一个裁动效。",
+        "en": "page-transition is the transition motion itself; reduced-motion is the system policy deciding whether to soften it — one builds motion, the other trims it."
+      }
+    }
+  ],
+  "variants": [
+    {
+      "id": "fade-only",
+      "name": {
+        "zh": "仅淡入",
+        "en": "Fade only"
+      },
+      "note": {
+        "zh": "去掉位移与缩放，只留 opacity 过渡，最常用降级",
+        "en": "Drop translation and scale, keep opacity — the default demotion"
+      }
+    },
+    {
+      "id": "no-animation",
+      "name": {
+        "zh": "完全取消",
+        "en": "No animation"
+      },
+      "note": {
+        "zh": "animation: none / transition: none，状态瞬间到位",
+        "en": "animation: none / transition: none — state lands instantly"
+      }
+    },
+    {
+      "id": "static-replace",
+      "name": {
+        "zh": "静态替代",
+        "en": "Static replace"
+      },
+      "note": {
+        "zh": "用静态图或即时结果替换整段动效叙事",
+        "en": "Swap the whole motion story for a static image or instant result"
+      }
+    }
+  ],
+  "anatomy": [
+    "动效元素（Animated element）",
+    "偏好开关（Preference toggle）"
+  ],
+  "related": [
+    {
+      "id": "scroll-reveal",
+      "relation": "used_with"
+    },
+    {
+      "id": "hover-lift",
+      "relation": "used_with"
+    },
+    {
+      "id": "focus-ring",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "reduced-motion",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "WCAG 2.1 Animation from Interactions",
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions"
+    },
+    {
+      "name": "MDN — prefers-reduced-motion",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "@media (prefers-reduced-motion: reduce)",
+      "animation: none",
+      "matchMedia",
+      "transition-duration"
+    ],
+    "notes": {
+      "zh": "CSS 侧统一门控：@media (prefers-reduced-motion: reduce) { *, ::before, ::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }，再按需为状态反馈保留 opacity 通道。JS 动画用 matchMedia(\"(prefers-reduced-motion: reduce)\").matches 读取并在 change 事件时重配；滚动驱动与视差必须同步禁用。",
+      "en": "CSS-wide gate: `@media (prefers-reduced-motion: reduce) { *, ::before, ::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }`, then re-enable opacity for functional feedback as needed. JS animation reads matchMedia(\"(prefers-reduced-motion: reduce)\").matches and reconfigures on change; scroll-driven motion and parallax must switch off together."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "让网站尊重系统的「减弱动态效果」设置，开启时动画自动降级。",
+      "en": "Make the site honour the OS \"reduce motion\" setting, demoting animation when it is on."
+    },
+    "design": {
+      "zh": "系统开启减弱动效时，入场动画去掉位移与缩放只留 200ms 淡入，转场改为即时或交叉淡化，跑马灯与视差完全停用；按下与加载反馈保留。",
+      "en": "When reduce motion is on, entrances lose translation and scale and become a 200ms fade, transitions go instant or crossfade, marquee and parallax stop entirely; press and loading feedback stay."
+    },
+    "implementation": {
+      "zh": "@media (prefers-reduced-motion: reduce) 全局压缩 animation/transition 时长；JS 用 matchMedia 读取并监听 change；滚动监听、视差、数字滚动在 reduce 分支直接呈现终值。产品内设置项也映射到同一降级函数。",
+      "en": "Compress animation/transition durations under @media (prefers-reduced-motion: reduce); JS reads matchMedia and listens for change; scroll-scrub, parallax and counters render their end state in the reduce branch. Map any in-product toggle onto the same demotion function."
+    },
+    "agent": {
+      "zh": "在当前项目中实现减弱动效支持。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- 全局尊重 prefers-reduced-motion，位移/缩放类动画降级为淡入或取消\n- JS 驱动动画用 matchMedia 读取并响应 change\n- 功能性反馈（按下、加载）保留\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement reduced-motion support in the current project.\nInspect the existing component system and design tokens first; reuse current components.\nRequirements:\n- Honour prefers-reduced-motion globally; demote translation/scale motion to fade or nothing\n- JS-driven animation reads matchMedia and reacts to change\n- Keep functional feedback (press, loading) intact\nKeep the existing visual style. Add no unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun the project's existing checks when done and list the modified files."
+    }
+  }
+}

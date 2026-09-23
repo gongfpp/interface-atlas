@@ -37,6 +37,19 @@ api:
   - <button>
   - type
   - role="button"
+framework_names:
+  - framework: HTML
+    name: <button>
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
+  - framework: shadcn/ui
+    name: Button
+    url: https://ui.shadcn.com/docs/components/button
+  - framework: MUI
+    name: Button
+    url: https://mui.com/material-ui/react-button/
+  - framework: AntD
+    name: Button
+    url: https://ant.design/components/button
 variants:
   - id: primary
     name:

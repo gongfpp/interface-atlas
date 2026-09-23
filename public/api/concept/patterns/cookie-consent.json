@@ -1,0 +1,172 @@
+{
+  "id": "cookie-consent",
+  "type": "patterns",
+  "status": "published",
+  "name": {
+    "zh": "Cookie 同意条",
+    "en": "Cookie Consent Banner"
+  },
+  "aliases": [
+    "Cookie 同意条",
+    "Cookie 提示条",
+    "cookie 小横幅",
+    "隐私同意条",
+    "追踪同意弹条",
+    "cookie banner",
+    "cookie consent",
+    "consent banner"
+  ],
+  "category": [
+    "Feedback",
+    "Compliance"
+  ],
+  "description": {
+    "zh": "在写入非必要 Cookie 前向用户征求同意的横幅或浮层，属于合规门槛而非系统告警。提供接受、拒绝或颗粒度选项，并记住选择；未作出选择前不得落下追踪类 Cookie。常驻底部或首入居中，不应遮挡核心操作。",
+    "en": "A banner or overlay that asks consent before setting non-essential cookies — a compliance gate, not a system alert. Offer accept, reject or granular choices and remember the decision; tracking cookies must not fire before an answer. Docked at the bottom or centered on first visit, never covering the primary task."
+  },
+  "disambiguation": {
+    "zh": "易与 Alert 混淆：Alert 是系统消息提示，用于状态与错误；Cookie 同意条是写入追踪前的法律门槛， 必须等用户做出选择后才可落下非必要 Cookie，不能用\"知道了\"糊弄过去。",
+    "en": "Easily confused with Alert. An Alert is a system message for status and errors; a cookie consent banner is a legal gate that must be answered before non-essential cookies are set — a dismiss-only \"Got it\" does not count as consent."
+  },
+  "use_when": [
+    {
+      "zh": "站点要写入分析、广告等非必要 Cookie",
+      "en": "The site sets non-essential cookies — analytics, ads, personalization"
+    },
+    {
+      "zh": "面向 GDPR / ePrivacy 等有同意要求的地区",
+      "en": "Audiences under GDPR / ePrivacy-style consent rules"
+    },
+    {
+      "zh": "需要记录并可撤回用户的同意选择",
+      "en": "Consent must be recorded and revocable"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "只用严格必要 Cookie，无需打扰用户",
+      "en": "Strictly necessary cookies only — do not interrupt"
+    },
+    {
+      "zh": "把它当通用公告条复用（语义与法律效力都错位）",
+      "en": "Reusing it as a generic announcement bar — wrong semantics and legal weight"
+    },
+    {
+      "zh": "拒绝按钮比接受更难找到（暗黑模式，合规与信任双输）",
+      "en": "Making reject harder to find than accept — dark patterns backfire"
+    }
+  ],
+  "tags": [
+    "compliance",
+    "privacy",
+    "banner",
+    "feedback"
+  ],
+  "variants": [
+    {
+      "id": "minimal-notice",
+      "name": {
+        "zh": "最简告知",
+        "en": "Minimal notice"
+      },
+      "note": {
+        "zh": "一句话说明 + 接受/拒绝两钮，最克制",
+        "en": "One line plus Accept / Reject — most restrained"
+      }
+    },
+    {
+      "id": "granular",
+      "name": {
+        "zh": "颗粒度选择",
+        "en": "Granular choices"
+      },
+      "note": {
+        "zh": "按类别开关（必要/分析/营销），必要项锁定",
+        "en": "Per-category toggles (necessary / analytics / marketing); necessary stays locked"
+      }
+    },
+    {
+      "id": "wall-style",
+      "name": {
+        "zh": "墙式",
+        "en": "Wall-style"
+      },
+      "note": {
+        "zh": "不同意就不能继续，争议大，慎用",
+        "en": "No continue without consent — controversial, use sparingly"
+      }
+    }
+  ],
+  "anatomy": [
+    "说明文案（Notice）",
+    "同意操作（Actions）",
+    "颗粒度选项（Granular options）",
+    "记住的选择（Stored consent）"
+  ],
+  "related": [
+    {
+      "id": "alert",
+      "relation": "alternative_to"
+    },
+    {
+      "id": "toast",
+      "relation": "similar_to"
+    },
+    {
+      "id": "form-validation",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "cookie-consent",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "W3C — Privacy Principles",
+      "url": "https://www.w3.org/TR/privacy-principles/"
+    },
+    {
+      "name": "MDN — HTTP cookies",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies"
+    },
+    {
+      "name": "Nielsen Norman Group — Cookie Consent",
+      "url": "https://www.nngroup.com/articles/cookie-consent/"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "position",
+      "transition",
+      "aria-live",
+      "form"
+    ],
+    "notes": {
+      "zh": "同意前不加载非必要脚本；选择写入长期存储（cookie 或 localStorage）并可从设置页撤回。 横幅用 position: fixed 贴底，移动端改为全宽卡片；按钮层级上\"拒绝\"与\"接受\"同等可发现。 入场过渡时长乘 var(--demo-speed, 1)，尊重 prefers-reduced-motion。",
+      "en": "Do not load non-essential scripts before consent; persist the choice (cookie or localStorage) and allow withdrawal from settings. Dock the banner with position: fixed and switch to a full-width card on mobile; keep Reject as discoverable as Accept. Scale enter transitions by var(--demo-speed, 1) and respect prefers-reduced-motion."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建一个 Cookie 同意条（Cookie Consent Banner），在写入追踪 Cookie 前征求用户同意。",
+      "en": "Create a cookie consent banner that asks consent before any tracking cookies are set."
+    },
+    "design": {
+      "zh": "创建 Cookie 同意条。要求：底部横幅说明用途，提供接受全部 / 拒绝 / 管理偏好；偏好面板按必要、分析、营销分类开关（必要项锁定）；拒绝与接受同等可发现；支持深浅色主题。",
+      "en": "Create a cookie consent banner. Requirements: a bottom banner explaining purpose with Accept all / Reject / Manage preferences; a preferences panel with locked Necessary plus Analytics and Marketing toggles; Reject as discoverable as Accept; light and dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + 受控开关实现 Cookie 同意条：useState 管理可见性与分类开关；确认后写入 localStorage 并隐藏横幅；设置入口可再次打开。role=\"dialog\" 或 region + aria-label 表达 语义，焦点进入面板。动画时长乘 var(--demo-speed, 1)，尊重 prefers-reduced-motion。",
+      "en": "Build the cookie consent banner in React with controlled toggles: manage visibility and per-category switches in state; on confirm write localStorage and hide the banner; a settings entry reopens it. Express semantics with role=\"dialog\" or a labeled region and move focus into the panel. Scale animation durations by var(--demo-speed, 1) and respect prefers-reduced-motion."
+    },
+    "agent": {
+      "zh": "在当前项目中实现 Cookie 同意条。\n\n先检查现有组件体系和 Design Token，优先复用当前组件。\n保持现有项目视觉风格。不要新增不必要依赖。\n要求：\n- 同意前不加载非必要脚本\n- 接受、拒绝、颗粒度偏好三类入口，拒绝同等可发现\n- 选择可持久化并可从设置撤回\n- 尊重 prefers-reduced-motion\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a cookie consent banner in the current project.\n\nInspect the existing component system and design tokens first; reuse existing components.\nKeep the project's visual style. Add no unnecessary dependencies.\nRequirements:\n- No non-essential scripts before consent\n- Accept, Reject and granular preferences; Reject as discoverable as Accept\n- Persist the choice and allow withdrawal from settings\n- Respect prefers-reduced-motion\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

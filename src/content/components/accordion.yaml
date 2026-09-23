@@ -38,6 +38,19 @@ tags:
 api:
   - <details>
   - <summary>
+framework_names:
+  - framework: ARIA APG
+    name: Accordion
+    url: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
+  - framework: shadcn/ui
+    name: Accordion
+    url: https://ui.shadcn.com/docs/components/accordion
+  - framework: MUI
+    name: Accordion
+    url: https://mui.com/material-ui/react-accordion/
+  - framework: AntD
+    name: Collapse
+    url: https://ant.design/components/collapse
 variants:
   - id: single
     name:

@@ -36,6 +36,19 @@ tags:
 api:
   - <input type="checkbox">
   - role="checkbox"
+framework_names:
+  - framework: HTML
+    name: <input type="checkbox">
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox
+  - framework: shadcn/ui
+    name: Checkbox
+    url: https://ui.shadcn.com/docs/components/checkbox
+  - framework: MUI
+    name: Checkbox
+    url: https://mui.com/material-ui/react-checkbox/
+  - framework: AntD
+    name: Checkbox
+    url: https://ant.design/components/checkbox
 variants:
   - id: single
     name:

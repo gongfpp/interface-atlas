@@ -1,0 +1,192 @@
+{
+  "id": "color-palette",
+  "type": "foundation",
+  "status": "published",
+  "name": {
+    "zh": "调色板",
+    "en": "Color Palette"
+  },
+  "aliases": [
+    "调色板",
+    "配色",
+    "色板",
+    "色阶",
+    "颜色系统",
+    "color palette",
+    "palette"
+  ],
+  "category": [
+    "Color",
+    "Foundation"
+  ],
+  "description": {
+    "zh": "从一个基色出发生成有规律的色阶（50～900），再分配主色、辅助色、点缀色与中性色角色。色阶靠明度递进而非随手取色，保证 hover、disabled、边框都有对应深度可选；角色先于色值被命名，主题才换得动。",
+    "en": "Start from one base hue and generate an ordered ramp (50–900), then assign primary, secondary, accent and neutral roles. Steps advance by lightness rather than ad-hoc picks, so hover, disabled and border always have the right depth on hand. Name roles before hex values and themes stay swappable."
+  },
+  "use_when": [
+    {
+      "zh": "产品需要一套可扩展的品牌色与中性灰体系",
+      "en": "The product needs an extensible brand ramp plus neutral greys"
+    },
+    {
+      "zh": "同一色相需要 hover、active、disabled 等多个深度",
+      "en": "One hue needs several depths for hover, active and disabled"
+    },
+    {
+      "zh": "深浅主题共用同一套角色，只换色阶取值",
+      "en": "Light and dark themes share roles and swap only ramp values"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "插画或营销页一次性用色，不需要系统化",
+      "en": "One-off illustration or campaign colours with no system need"
+    },
+    {
+      "zh": "把十种高饱和色直接堆进界面，无主次",
+      "en": "Ten saturated hues stacked with no hierarchy"
+    },
+    {
+      "zh": "只有黑白灰两色且永不扩展——写死即可",
+      "en": "A permanent two-colour black-and-white UI — hard-code it"
+    }
+  ],
+  "tags": [
+    "color",
+    "foundation",
+    "palette",
+    "tokens"
+  ],
+  "api": [
+    "color-mix()",
+    "oklch()",
+    "hsl()"
+  ],
+  "framework_names": [
+    {
+      "framework": "CSS",
+      "name": "oklch()",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch",
+      "note": {
+        "zh": "感知均匀的色阶插值",
+        "en": "Perceptually even ramp interpolation"
+      }
+    },
+    {
+      "framework": "CSS",
+      "name": "color-mix()",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix"
+    },
+    {
+      "framework": "Tailwind CSS",
+      "name": "color palette (50–950)",
+      "url": "https://tailwindcss.com/docs/colors"
+    }
+  ],
+  "variants": [
+    {
+      "id": "single-hue",
+      "name": {
+        "zh": "单色相色阶",
+        "en": "Single hue ramp"
+      },
+      "note": {
+        "zh": "一个基色拉出 50～900，配中性灰",
+        "en": "One base hue stretched 50–900 plus neutrals"
+      }
+    },
+    {
+      "id": "complementary",
+      "name": {
+        "zh": "互补双色",
+        "en": "Complementary"
+      },
+      "note": {
+        "zh": "色轮对面取辅助色，对比强",
+        "en": "Secondary from the opposite side of the wheel — high contrast"
+      }
+    },
+    {
+      "id": "monochrome",
+      "name": {
+        "zh": "单色系",
+        "en": "Monochrome"
+      },
+      "note": {
+        "zh": "只用明度差，彩色仅作点缀",
+        "en": "Lightness-only with a single accent spark"
+      }
+    }
+  ],
+  "anatomy": [
+    "基色（Base hue）",
+    "明度阶（Lightness ramp）",
+    "角色分配（Role assignment）"
+  ],
+  "related": [
+    {
+      "id": "semantic-color",
+      "relation": "used_with"
+    },
+    {
+      "id": "contrast-ratio",
+      "relation": "used_with"
+    },
+    {
+      "id": "minimalism",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "color-palette",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Material Design — Color system",
+      "url": "https://m3.material.io/styles/color/system/overview"
+    },
+    {
+      "name": "MDN — oklch()",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch"
+    },
+    {
+      "name": "oklch.com — Color picker",
+      "url": "https://oklch.com/"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "oklch()",
+      "color-mix()",
+      "hsl()",
+      "--color-primary-500"
+    ],
+    "notes": {
+      "zh": "用 oklch() 或 hsl() 按明度生成 50～900 十档：浅端 L≈97%，深端 L≈12%，中间保持感知均匀；饱和度浅端略降、深端略升。色阶命名 --color-primary-500，不要写 --color-brand-blue。中性灰单独一条低饱和色阶，不要用纯黑纯白。生成后用对比度工具抽查 500/600 与白字的组合。",
+      "en": "Generate ten steps (50–900) in oklch() or hsl() by lightness: near L≈97% at the light end, L≈12% at the dark end, perceptually even between; ease saturation down at the light end and up at the dark. Name steps --color-primary-500, never --color-brand-blue. Keep a separate low-saturation neutral ramp — no pure black or white. Spot-check 500/600 against white text with a contrast tool."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "生成一套调色板：从品牌基色拉出 50～900 色阶，并定义主色、辅助色、点缀色与中性色。",
+      "en": "Generate a colour palette — a 50–900 ramp from the brand hue plus primary, secondary, accent and neutral roles."
+    },
+    "design": {
+      "zh": "调色板规范：一个基色生成 50～900 十档色阶（oklch 明度递进），主色取 500～600，点缀色一个即可，中性灰单独成阶；浅端降饱和、深端升饱和；所有文字与底色组合须过 WCAG AA；命名按角色不按色相。",
+      "en": "Palette spec: one base hue generates ten steps 50–900 via oklch lightness; primary sits at 500–600; a single accent; a separate neutral ramp. Ease saturation down at the light end and up at the dark. Every text-on-background pair must pass WCAG AA. Name by role, not by hue."
+    },
+    "implementation": {
+      "zh": "用 CSS 自定义属性输出色阶：--color-primary-50: oklch(97% 0.02 250); … --color-primary-900: oklch(18% 0.05 250);。角色层再引用色阶：--color-accent: var(--color-primary-600)。Tailwind 侧映射到 @theme 色板。生成脚本一次写入，后续只调角色指向。",
+      "en": "Emit the ramp as CSS custom properties: --color-primary-50: oklch(97% 0.02 250); … --color-primary-900: oklch(18% 0.05 250);. A role layer then references steps: --color-accent: var(--color-primary-600). Map into Tailwind @theme. Generate once from a script; afterwards only re-point roles."
+    },
+    "agent": {
+      "zh": "在当前项目中实现调色板。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- 基色生成 50～900 色阶，明度递进\n- 主色 / 辅助 / 点缀 / 中性四类角色\n- 命名按角色与档位，不写死色相名\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a colour palette in the current project.\nInspect the existing component system and design tokens first; reuse what is already there.\nRequirements:\n- A 50–900 ramp from the base hue, advancing by lightness\n- Primary / secondary / accent / neutral roles\n- Names follow role and step, never the hue name\nKeep the project's existing visual style. Do not add unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

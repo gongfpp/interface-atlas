@@ -37,6 +37,36 @@ api:
   - role="tablist"
   - role="tab"
   - role="tabpanel"
+framework_names:
+  - framework: ARIA APG
+    name: Tabs
+    url: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
+  - framework: shadcn/ui
+    name: Tabs
+    url: https://ui.shadcn.com/docs/components/tabs
+  - framework: MUI
+    name: Tabs
+    url: https://mui.com/material-ui/react-tabs/
+  - framework: AntD
+    name: Tabs
+    url: https://ant.design/components/tabs
+disambiguation:
+  zh: "Tabs 在同级内容面板间切换（内容同级并列）；Segmented Control 是紧凑的模式/筛选切换；Breadcrumb 显示层级位置。"
+  en: "Tabs switch peer content panels. A segmented control is a compact mode/filter switch. A breadcrumb shows hierarchical location."
+confusable:
+  - id: segmented-control
+    note:
+      zh: "Segmented Control 更紧凑、用于模式/筛选，Tabs 用于内容分区。"
+      en: "A segmented control is compact for modes/filters; tabs section content."
+  - id: breadcrumb
+    note:
+      zh: "Breadcrumb 表达层级路径，Tabs 表达同级切换。"
+      en: "A breadcrumb shows hierarchy; tabs show peers."
+  - id: sidebar
+    note:
+      zh: "Sidebar 是常驻导航面，Tabs 是内容区内的切换条。"
+      en: "A sidebar is persistent navigation; tabs are a strip inside content."
+
 variants:
   - id: underline
     name:

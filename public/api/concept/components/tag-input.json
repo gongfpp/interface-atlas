@@ -1,0 +1,208 @@
+{
+  "id": "tag-input",
+  "type": "components",
+  "status": "published",
+  "name": {
+    "zh": "标签输入",
+    "en": "Tag Input"
+  },
+  "aliases": [
+    "标签输入",
+    "标签框",
+    "打标签的输入框",
+    "chips 输入",
+    "token input",
+    "tag box"
+  ],
+  "category": [
+    "Form",
+    "Input"
+  ],
+  "description": {
+    "zh": "在文本框里回车或输入分隔符，就把当前内容固化成一枚可删除的标签（chip），标签在框内横向排列， 输入光标始终停在末尾。兼顾「自由输入」与「逐项管理」，常用于收件人、话题标签、文件名与 过滤条件。Backspace 删最后一枚，点 × 删指定项。",
+    "en": "Pressing Enter or typing a separator turns the current text into a removable chip; chips line up inside the field while the caret stays at the end. It mixes free typing with per-item management — common for recipients, hashtags, file names and filter terms. Backspace removes the last chip, the × removes a specific one."
+  },
+  "use_when": [
+    {
+      "zh": "多值输入且每项可单独删除（收件人、标签、过滤词）",
+      "en": "Multi-value input where each item is removable (recipients, tags, filters)"
+    },
+    {
+      "zh": "选项集合开放，允许用户创造新值",
+      "en": "The option set is open and users may invent new values"
+    },
+    {
+      "zh": "需要在输入过程中一眼看清「已经选了什么」",
+      "en": "Users must see what is already entered while still typing"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "选项固定且数量少（用 select 或 radio）",
+      "en": "A small fixed option set — use a select or radio group"
+    },
+    {
+      "zh": "只需要一个短文本（用普通 input）",
+      "en": "A single short string — a plain input is enough"
+    },
+    {
+      "zh": "需要对选项排序或分组（用 multi-select 或 transfer）",
+      "en": "Ordering or grouping of options — use a multi-select or transfer list"
+    }
+  ],
+  "tags": [
+    "form",
+    "input",
+    "chips",
+    "multi-value"
+  ],
+  "variants": [
+    {
+      "id": "free-form",
+      "name": {
+        "zh": "自由输入",
+        "en": "Free-form tags"
+      },
+      "note": {
+        "zh": "回车即成标签，不校验词表",
+        "en": "Enter creates a chip; no vocabulary check"
+      }
+    },
+    {
+      "id": "autocomplete",
+      "name": {
+        "zh": "自动补全",
+        "en": "Autocomplete tokens"
+      },
+      "note": {
+        "zh": "边输入边从候选中补全，仍可自创新值",
+        "en": "Suggests candidates while typing, still allows new values"
+      }
+    },
+    {
+      "id": "file-chips",
+      "name": {
+        "zh": "文件名标签",
+        "en": "File-name chips"
+      },
+      "note": {
+        "zh": "展示已选文件名，仅可移除不可编辑",
+        "en": "Shows chosen file names; removable but not editable"
+      }
+    }
+  ],
+  "anatomy": [
+    "标签列表（Tag list）",
+    "输入框（Input）",
+    "移除按钮（Remove）"
+  ],
+  "api": [
+    "<input>",
+    "role=\"listbox\"",
+    "aria-live",
+    "keydown"
+  ],
+  "framework_names": [
+    {
+      "framework": "MUI",
+      "name": "Autocomplete (multiple)",
+      "url": "https://mui.com/material-ui/react-autocomplete/"
+    },
+    {
+      "framework": "React Select",
+      "name": "Multi value",
+      "url": "https://react-select.com/advanced#multi-value"
+    },
+    {
+      "framework": "AntD",
+      "name": "Select mode=\"tags\"",
+      "url": "https://ant.design/components/select"
+    }
+  ],
+  "playground": {
+    "task": {
+      "zh": "输入几个词按回车成标签，用 Backspace 删最后一枚，再点 × 删指定项。",
+      "en": "Type a few words and press Enter to mint chips; Backspace removes the last, × removes one."
+    },
+    "checks": [
+      {
+        "zh": "每枚标签都有可达的移除入口",
+        "en": "Every chip exposes a reachable remove control"
+      },
+      {
+        "zh": "输入与标签在同一容器内，光标始终可继续输入",
+        "en": "Input and chips share one container and the caret can keep typing"
+      }
+    ]
+  },
+  "related": [
+    {
+      "id": "input",
+      "relation": "similar_to"
+    },
+    {
+      "id": "combobox",
+      "relation": "similar_to"
+    },
+    {
+      "id": "badge",
+      "relation": "used_with"
+    },
+    {
+      "id": "multi-select",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "tag-input",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Material Design — Chips",
+      "url": "https://m3.material.io/components/chips/overview"
+    },
+    {
+      "name": "ARIA APG — Combobox",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/"
+    },
+    {
+      "name": "MDN — The Input element",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "flex",
+      "flex-wrap",
+      "gap",
+      "border-radius: 9999px"
+    ],
+    "notes": {
+      "zh": "容器是一块「看起来像输入框」的 flex-wrap 区，标签用圆角胶囊排在前面，真实 input 撑开 剩余宽度。回车 / 逗号 / 失焦时提交去重后的值；Backspace 在输入为空时删除最后一枚。 删除按钮用 button 而非纯图标 span，移除后 aria-live 播报「已移除 xx」。自动补全变体 在容器下方绝对定位候选列表，键控上下键移动高亮。",
+      "en": "The container is a flex-wrap region that looks like one input: pill chips fill the front and a real input flexes into the remaining width. Commit a trimmed, de-duplicated value on Enter, comma or blur; Backspace deletes the last chip only when the input is empty. Use a real button (not a styled span) for remove and announce \"removed xx\" via aria-live. The autocomplete variant drops an absolutely positioned suggestion list under the container with arrow-key highlight."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建一个标签输入（Tag Input）组件：文本框内回车生成可删除的标签，Backspace 删除最后一枚。",
+      "en": "Create a Tag Input: Enter in the text field mints a removable chip; Backspace deletes the last one."
+    },
+    "design": {
+      "zh": "创建标签输入：容器呈输入框外观（圆角、边框），内部标签为浅底胶囊带 × 移除钮， 光标处保持可输入；聚焦时边框主色；已输入过多时容器内换行增高；深浅色主题一致。",
+      "en": "Create a tag input: the container looks like a field (rounded, bordered) holding soft pills with × remove buttons while the caret stays typable; the border turns accent on focus; the container grows by wrapping when tags overflow; consistent light/dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现 Tag Input：tags: string[] 受控；input keydown 处理 Enter、 逗号、Backspace；去重并 trim 后提交；每枚标签为 button 移除；aria-live=\"polite\" 播报增删；自动补全变体用过滤后的候选 + 上下键高亮；空值与重复值不产生标签。 无新增依赖。",
+      "en": "React + Tailwind tag input: controlled tags: string[]; handle Enter, comma and Backspace on the input keydown; commit trimmed de-duplicated values; each chip is a removable button; announce adds and removes with aria-live=\"polite\"; the autocomplete variant filters candidates with arrow-key highlight; empty or duplicate values mint nothing. No new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现一个 Tag Input 标签输入组件。\n先检查现有组件体系和 Design Token，优先复用输入框与徽标样式。\n支持自由输入、自动补全与文件名三种形态。\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion，支持键盘操作。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a Tag Input component in the current project.\nInspect the existing component system and design tokens first; reuse field and badge styles.\nSupport free-form, autocomplete and file-name-chip shapes.\nKeep the project's visual style. Add no unnecessary dependencies.\nRespect prefers-reduced-motion and support keyboard operation.\nRun the project's existing checks when done and list the modified files."
+    }
+  }
+}

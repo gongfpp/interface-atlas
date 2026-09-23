@@ -1,0 +1,177 @@
+{
+  "id": "keyboard-shortcuts",
+  "type": "patterns",
+  "status": "published",
+  "name": {
+    "zh": "快捷键",
+    "en": "Keyboard Shortcuts"
+  },
+  "aliases": [
+    "快捷键",
+    "键盘快捷键",
+    "快捷键提示",
+    "键盘加速键",
+    "按键操作",
+    "keyboard shortcuts",
+    "hotkeys",
+    "key bindings"
+  ],
+  "category": [
+    "Interaction",
+    "Keyboard"
+  ],
+  "description": {
+    "zh": "为高频操作提供可发现的键盘加速键，并配帮助入口。提示可用工具条标注、快捷键对话框（⌘K 风格）或 vim 式序列。它服务专家用户提速，同时必须保证焦点可见、不抢夺输入框按键，新手也能查到怎么按。",
+    "en": "Discoverable keyboard accelerators for frequent commands, paired with a help entry. Hints can live in tooltips, a shortcuts dialog (⌘K-style) or vim-like sequences. It speeds up experts while keeping focus visible, never stealing keys from text inputs, and staying discoverable for newcomers."
+  },
+  "use_when": [
+    {
+      "zh": "高频重复操作密集（编辑器、后台、设计工具）",
+      "en": "Dense, repetitive commands — editors, admin tools, design apps"
+    },
+    {
+      "zh": "用户以键盘流为主，追求肌肉记忆",
+      "en": "Keyboard-first users chasing muscle memory"
+    },
+    {
+      "zh": "已有命令面板，需要补齐按键绑定与帮助",
+      "en": "A command palette exists and needs key bindings plus help"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "表单输入为主的页面，全局劫持按键会毁掉打字",
+      "en": "Form-heavy pages where global key capture breaks typing"
+    },
+    {
+      "zh": "触屏为主的产品，快捷键无处施展",
+      "en": "Touch-first products with no keyboard to accelerate"
+    },
+    {
+      "zh": "只给快捷键不给可发现入口，新手完全摸不到",
+      "en": "Shortcuts with no discoverability path — newcomers are stuck"
+    }
+  ],
+  "tags": [
+    "keyboard",
+    "shortcut",
+    "accessibility",
+    "power-user"
+  ],
+  "api": [
+    "keydown",
+    "KeyboardEvent",
+    ":focus-visible"
+  ],
+  "variants": [
+    {
+      "id": "tooltip-hints",
+      "name": {
+        "zh": "工具条标注",
+        "en": "Tooltip hints"
+      },
+      "note": {
+        "zh": "按钮旁或悬浮提示里标注按键，最轻量",
+        "en": "Key chips beside buttons or in tooltips — lightest touch"
+      }
+    },
+    {
+      "id": "shortcuts-dialog",
+      "name": {
+        "zh": "快捷键对话框",
+        "en": "Shortcuts dialog"
+      },
+      "note": {
+        "zh": "⌘K 或 ? 唤出全量速查表",
+        "en": "⌘K or ? opens a full cheat sheet"
+      }
+    },
+    {
+      "id": "vim-sequences",
+      "name": {
+        "zh": "vim 式序列",
+        "en": "Vim-style sequences"
+      },
+      "note": {
+        "zh": "多键序列（gg、dd），专家效率极高但学习成本大",
+        "en": "Multi-key sequences (gg, dd) — steep, but blazing for experts"
+      }
+    }
+  ],
+  "anatomy": [
+    "按键提示（Key hint）",
+    "帮助入口（Help trigger）",
+    "快捷键对话框（Shortcuts dialog）",
+    "焦点环（Focus ring）"
+  ],
+  "related": [
+    {
+      "id": "command-palette",
+      "relation": "used_with"
+    },
+    {
+      "id": "tooltip",
+      "relation": "used_with"
+    },
+    {
+      "id": "focus-ring",
+      "relation": "used_with"
+    },
+    {
+      "id": "keyboard-navigation",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "keyboard-shortcuts",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "W3C ARIA APG — Keyboard Interaction",
+      "url": "https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/"
+    },
+    {
+      "name": "MDN — KeyboardEvent",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent"
+    },
+    {
+      "name": "Nielsen Norman Group — Keyboard Accessibility",
+      "url": "https://www.nngroup.com/articles/keyboard-accessibility/"
+    }
+  ],
+  "implementation": {
+    "css": [
+      ":focus-visible",
+      "outline",
+      "kbd",
+      "grid"
+    ],
+    "notes": {
+      "zh": "监听 keydown 时检查 event.target：处于 input / textarea / contenteditable 内则跳过单键 绑定。用 event.key + metaKey/ctrlKey/shiftKey 组合判定，调用 preventDefault 前确认不会 破坏系统或浏览器保留键。快捷键对话框可 role=\"dialog\"，kbd 元素展示按键。焦点环用 :focus-visible，尊重 prefers-reduced-motion。",
+      "en": "On keydown inspect event.target — skip single-key bindings when focus sits in input, textarea or contenteditable. Match on event.key plus metaKey/ctrlKey/shiftKey and only preventDefault when the combination is not reserved by the OS or browser. The shortcuts dialog can be role=\"dialog\" with kbd elements showing keys. Style focus with :focus-visible and respect prefers-reduced-motion."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建一个快捷键（Keyboard Shortcuts）演示：按钮可点，也能用按键触发，并提供速查帮助。",
+      "en": "Create a keyboard-shortcuts demo: buttons respond to clicks and keys, with a cheat-sheet help entry."
+    },
+    "design": {
+      "zh": "创建快捷键演示。要求：工具条按钮旁标注 ⌘K / ⌘S 等按键；按 ? 唤出快捷键速查对话框，列出分组绑定；实际按键可触发对应操作并给反馈；焦点环清晰；支持深浅色主题。",
+      "en": "Create a shortcuts demo. Requirements: key chips such as ⌘K / ⌘S beside toolbar buttons; ? opens a grouped cheat-sheet dialog; real key presses trigger the actions with feedback; clear focus rings; light and dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + window keydown 实现：useEffect 绑定/解绑监听，检查 event.target 是否在输入控件内； 绑定表数据驱动（{keys, label, run}）。对话框 Esc 关闭并归还焦点。按键展示用 kbd 元素。 动画时长乘 var(--demo-speed, 1)，尊重 prefers-reduced-motion。",
+      "en": "Implement with React + window keydown: bind/unbind in useEffect and skip when event.target is an input control; drive bindings from data ({keys, label, run}). Close the dialog on Esc and return focus. Render keys with kbd. Scale animation durations by var(--demo-speed, 1) and respect prefers-reduced-motion."
+    },
+    "agent": {
+      "zh": "在当前项目中实现快捷键体系。\n\n先检查现有组件体系和 Design Token，优先复用当前组件。\n保持现有项目视觉风格。不要新增不必要依赖。\n要求：\n- 高频操作有按键绑定，并在 UI 上可发现\n- 提供快捷键帮助对话框或速查入口\n- 不抢夺输入框按键，焦点环使用 :focus-visible\n- 尊重 prefers-reduced-motion\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a keyboard shortcut system in the current project.\n\nInspect the existing component system and design tokens first; reuse existing components.\nKeep the project's visual style. Add no unnecessary dependencies.\nRequirements:\n- Key bindings for frequent commands, discoverable in the UI\n- A shortcuts help dialog or cheat-sheet entry\n- Never steal keys from text inputs; focus rings via :focus-visible\n- Respect prefers-reduced-motion\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

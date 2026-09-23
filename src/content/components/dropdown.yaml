@@ -37,6 +37,36 @@ api:
   - role="menu"
   - role="menuitem"
   - aria-haspopup
+framework_names:
+  - framework: ARIA APG
+    name: Menu Button
+    url: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
+  - framework: shadcn/ui
+    name: DropdownMenu
+    url: https://ui.shadcn.com/docs/components/dropdown-menu
+  - framework: MUI
+    name: Menu
+    url: https://mui.com/material-ui/react-menu/
+  - framework: AntD
+    name: Dropdown
+    url: https://ant.design/components/dropdown
+disambiguation:
+  zh: "Dropdown 是「触发按钮 + 弹出菜单」的组合；Select 是表单取值控件；Popover 可承载任意内容而非仅命令。"
+  en: "A dropdown pairs a trigger button with a popup menu. A Select is a form-value control. A Popover can hold arbitrary content, not only commands."
+confusable:
+  - id: menu
+    note:
+      zh: "Menu 只是弹出列表，Dropdown 含触发按钮与关闭逻辑。"
+      en: "Menu is just the popup list; Dropdown includes trigger and dismiss logic."
+  - id: select
+    note:
+      zh: "Select 用于表单取值，Dropdown 用于执行命令。"
+      en: "Select collects form values; Dropdown runs commands."
+  - id: popover
+    note:
+      zh: "Popover 内容任意、可交互，Dropdown 列表为命令项。"
+      en: "Popover content is free-form; a dropdown list is command items."
+
 variants:
   - id: more
     name:

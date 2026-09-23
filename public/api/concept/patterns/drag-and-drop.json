@@ -1,0 +1,174 @@
+{
+  "id": "drag-and-drop",
+  "type": "patterns",
+  "status": "published",
+  "name": {
+    "zh": "拖放",
+    "en": "Drag and Drop"
+  },
+  "aliases": [
+    "拖放",
+    "拖拽移动",
+    "拖过去",
+    "拖到那边",
+    "拖来拖去",
+    "drag and drop",
+    "dnd",
+    "drag to move"
+  ],
+  "category": [
+    "Interaction",
+    "Direct manipulation"
+  ],
+  "description": {
+    "zh": "用按住—拖动—松手的直接操作，把对象移动到新位置或新容器。所见即所得，比菜单命令更贴近空间直觉；拖动中要有清晰落点指示，目标容器需给出接受反馈。范围比拖拽排序更广：移动、归位、跨列表投递都算。",
+    "en": "Move an object to a new slot or container by press-drag-release direct manipulation. It is spatial and immediate, closer to intuition than menu commands; a clear drop indicator and an accepting target are required while dragging. Broader than mere reordering — moving, filing and cross-list delivery all count."
+  },
+  "use_when": [
+    {
+      "zh": "对象需要在不同容器或位置之间移动（文件归档、素材入库）",
+      "en": "Objects move between containers or slots — filing, sorting assets"
+    },
+    {
+      "zh": "空间位置本身就有语义（看板列、画布、网格布局）",
+      "en": "Spatial position carries meaning — kanban columns, canvas, grid layouts"
+    },
+    {
+      "zh": "用户群体以鼠标/触控板为主，拖拽是自然手势",
+      "en": "Pointer-first audiences for whom dragging is a natural gesture"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "仅需调整顺序，用拖拽排序或上移下移按钮更精准",
+      "en": "Reordering only — drag-to-sort or move buttons are more precise"
+    },
+    {
+      "zh": "目标位置不可见或需跨屏，落点极易投错",
+      "en": "Drop targets off-screen — mis-drops become likely"
+    },
+    {
+      "zh": "键盘与读屏是主要通道，却没有等价按钮兜底",
+      "en": "Keyboard/screen-reader-first flows with no button fallback"
+    }
+  ],
+  "tags": [
+    "drag",
+    "drop",
+    "direct-manipulation",
+    "interaction"
+  ],
+  "api": [
+    "draggable",
+    "drop",
+    "Pointer Events"
+  ],
+  "variants": [
+    {
+      "id": "drag-to-move",
+      "name": {
+        "zh": "拖动移动",
+        "en": "Drag to move"
+      },
+      "note": {
+        "zh": "把对象拖到新位置或新容器，最通用",
+        "en": "Drag an object to a new slot or container — the general case"
+      }
+    },
+    {
+      "id": "drag-to-reorder",
+      "name": {
+        "zh": "拖动排序",
+        "en": "Drag to reorder"
+      },
+      "note": {
+        "zh": "同一列表内换位，邻项实时让位",
+        "en": "Swap places inside one list; neighbours give way live"
+      }
+    },
+    {
+      "id": "drag-between-lists",
+      "name": {
+        "zh": "跨列表拖放",
+        "en": "Drag between lists"
+      },
+      "note": {
+        "zh": "从源列表拖入目标列表，源端可留占位",
+        "en": "Drag from a source list into a target list, leaving a ghost behind"
+      }
+    }
+  ],
+  "anatomy": [
+    "可拖对象（Draggable item）",
+    "拖动占位（Drag ghost）",
+    "落点指示（Drop indicator）",
+    "目标容器（Drop target）"
+  ],
+  "related": [
+    {
+      "id": "drag-and-drop-sorting",
+      "relation": "similar_to"
+    },
+    {
+      "id": "inline-editing",
+      "relation": "used_with"
+    },
+    {
+      "id": "kanban-board",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "drag-and-drop",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "MDN — HTML Drag and Drop API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API"
+    },
+    {
+      "name": "MDN — Pointer events",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events"
+    },
+    {
+      "name": "Apple HIG — Drag and drop",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/drag-and-drop"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "cursor-grab",
+      "transform: translate",
+      "opacity",
+      "transition",
+      "pointer-events"
+    ],
+    "notes": {
+      "zh": "HTML5 拖拽用 draggable + dragstart / dragover / drop；触屏不支持，需 Pointer Events 或按钮兜底。拖动中给原位置留半透明占位，目标容器高亮并显示落点线。drop 后更新数据源， 必要时乐观回滚。尊重 prefers-reduced-motion，位移过渡退化为直接落位。",
+      "en": "HTML5 drag uses draggable plus dragstart / dragover / drop; touch devices do not support it, so fall back to Pointer Events or buttons. Keep a translucent ghost at the origin and highlight the target with a drop line. Update the data source on drop, with optimistic rollback if needed. Respect prefers-reduced-motion — snap into place without transition."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建一个拖放（Drag and Drop）演示，对象可以按住拖到目标容器完成移动。",
+      "en": "Create a drag-and-drop demo where an object can be pressed and dragged into a target container."
+    },
+    "design": {
+      "zh": "创建拖放演示。要求：左侧待办卡片可拖入右侧两个分类箱；拖动中原位留半透明占位、目标箱高亮并出现落点线；松手后卡片落入目标箱并计数；支持深浅色主题。",
+      "en": "Create a drag-and-drop demo. Requirements: cards on the left can be dragged into two bins on the right; a translucent ghost stays at the origin while the target bin highlights with a drop line; on release the card lands in the bin and the count updates; light and dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + HTML5 DnD 或 Pointer Events 实现：dragstart 记录来源，dragover preventDefault 并高亮目标，drop 时迁移数据。拖动样式用 cursor-grab 与 opacity，落点线用边框或伪元素。 提供键盘可达的\"移动到\"按钮兜底。动画时长乘 var(--demo-speed, 1)，尊重 prefers-reduced-motion。",
+      "en": "Implement with React + HTML5 DnD or Pointer Events: record the source on dragstart, preventDefault and highlight on dragover, migrate data on drop. Style the drag with cursor-grab and opacity and draw the drop line with a border or pseudo-element. Provide a keyboard-reachable \"Move to\" button fallback. Scale animation durations by var(--demo-speed, 1) and respect prefers-reduced-motion."
+    },
+    "agent": {
+      "zh": "在当前项目中实现拖放（Drag and Drop）交互。\n\n先检查现有组件体系和 Design Token，优先复用当前组件。\n保持现有项目视觉风格。不要新增不必要依赖。\n要求：\n- 按住—拖动—松手完成移动，拖动中有占位与落点指示\n- 目标容器给出接受高亮\n- 提供按钮或菜单等键盘可达兜底\n- 尊重 prefers-reduced-motion\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement drag-and-drop interaction in the current project.\n\nInspect the existing component system and design tokens first; reuse existing components.\nKeep the project's visual style. Add no unnecessary dependencies.\nRequirements:\n- Press-drag-release to move, with a ghost and drop indicator while dragging\n- Target containers highlight when they can accept the item\n- Keyboard-reachable button or menu fallback\n- Respect prefers-reduced-motion\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

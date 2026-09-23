@@ -1,0 +1,170 @@
+{
+  "id": "wizard",
+  "type": "patterns",
+  "status": "published",
+  "name": {
+    "zh": "多步表单",
+    "en": "Wizard"
+  },
+  "aliases": [
+    "多步表单",
+    "分步填写",
+    "向导",
+    "步骤表单",
+    "一步步填的表单",
+    "wizard",
+    "stepper form"
+  ],
+  "category": [
+    "Form",
+    "Flow"
+  ],
+  "description": {
+    "zh": "把长表单拆成有序步骤，每步聚焦少量字段，逐步推进到完成。用步骤指示器标出进度与当前位置，用户可回看已完成步骤、修正后再前进，末步通常汇总确认。它把\"填不完的大表单\"变成可完成的小任务，降低单屏认知负荷。",
+    "en": "A long form split into ordered steps, each focusing on a few fields, advancing toward completion. A step indicator marks progress and the current slot; users can revisit finished steps, correct them, and press on, usually with a final review. It turns an endless form into finishable small tasks and lightens per-screen cognitive load."
+  },
+  "use_when": [
+    {
+      "zh": "字段超过约 8 个，且可按主题自然分组",
+      "en": "More than ~8 fields that group naturally by topic"
+    },
+    {
+      "zh": "填写有先后依赖，后一步答案取决于前一步",
+      "en": "Later answers depend on earlier ones — order matters"
+    },
+    {
+      "zh": "注册、预订、开户、理赔等长流程申请",
+      "en": "Long applications — signup, booking, onboarding, claims"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "字段很少，一屏填完比翻步骤更快",
+      "en": "Few fields — one screen beats stepping through"
+    },
+    {
+      "zh": "步骤之间毫无依赖，强制线性只会碍事",
+      "en": "Steps are independent — forced linearity only gets in the way"
+    },
+    {
+      "zh": "用户需要反复对照全部字段（如并排比较填写）",
+      "en": "Users must cross-check every field side by side"
+    }
+  ],
+  "tags": [
+    "form",
+    "flow",
+    "steps",
+    "onboarding"
+  ],
+  "variants": [
+    {
+      "id": "linear",
+      "name": {
+        "zh": "线性",
+        "en": "Linear"
+      },
+      "note": {
+        "zh": "严格一步一步推进，不可跳步，最常见",
+        "en": "Strictly one step at a time, no skipping — the default"
+      }
+    },
+    {
+      "id": "free-order",
+      "name": {
+        "zh": "自由顺序",
+        "en": "Free-order"
+      },
+      "note": {
+        "zh": "步骤可点击跳转，已完成步打勾",
+        "en": "Steps are clickable; finished ones get a check"
+      }
+    },
+    {
+      "id": "with-review",
+      "name": {
+        "zh": "带确认步",
+        "en": "With review"
+      },
+      "note": {
+        "zh": "末步汇总全部答案，提交前可回改",
+        "en": "Final step summarizes answers for a last check before submit"
+      }
+    }
+  ],
+  "anatomy": [
+    "步骤指示（Step indicator）",
+    "当前步内容（Step body）",
+    "导航按钮（Nav）"
+  ],
+  "related": [
+    {
+      "id": "form-validation",
+      "relation": "used_with"
+    },
+    {
+      "id": "stepper",
+      "relation": "used_with"
+    },
+    {
+      "id": "progressive-disclosure",
+      "relation": "similar_to"
+    },
+    {
+      "id": "onboarding-tour",
+      "relation": "similar_to"
+    }
+  ],
+  "demo": {
+    "component": "wizard",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Material Design — Steppers",
+      "url": "https://m3.material.io/components/steppers/overview"
+    },
+    {
+      "name": "W3C — HTML form element",
+      "url": "https://html.spec.whatwg.org/multipage/forms.html"
+    },
+    {
+      "name": "Nielsen Norman Group — Wizard",
+      "url": "https://www.nngroup.com/articles/wizards/"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "grid",
+      "flexbox",
+      "aria-current=\"step\"",
+      "fieldset"
+    ],
+    "notes": {
+      "zh": "步骤指示用有序列表，当前步标 aria-current=\"step\"，完成步可点击回跳；每步内容放在 fieldset + legend 内表达分组。切换步时先跑本步校验，通过再前进；数据在内存中累积， 提交才落库。移动端把指示器压缩为\"第 N/共 M 步\"。尊重 prefers-reduced-motion， 步间切换可只做淡入或无动画。",
+      "en": "Mark the step indicator as an ordered list with aria-current=\"step\" on the active item and make finished steps clickable; wrap each step's fields in fieldset + legend. Validate the current step before advancing, keep values in memory, and persist on submit. On mobile collapse the indicator to \"Step N of M\". Respect prefers-reduced-motion — step changes may fade or jump."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "创建一个多步表单向导（Wizard），把长表单拆成有序步骤逐步填写。",
+      "en": "Create a wizard that splits a long form into ordered steps filled in sequence."
+    },
+    "design": {
+      "zh": "创建多步表单向导。要求：顶部步骤指示（账号 / 资料 / 确认三步，当前步高亮）；每步只放 2～3 个字段；底部上一步 / 下一步导航；末步汇总已填内容；支持深浅色主题。",
+      "en": "Create a wizard. Requirements: a top step indicator (Account / Profile / Review, active step highlighted); 2–3 fields per step; Prev / Next nav at the bottom; a final review summarizing answers; light and dark themes."
+    },
+    "implementation": {
+      "zh": "用 React + 受控 state 实现 Wizard：step 索引 + values 对象；下一步先跑本步校验；步骤指示用 ol + aria-current=\"step\"；内容区 fieldset 分组；移动端指示器折叠为进度文案。步骤切换动画 时长乘 var(--demo-speed, 1)，尊重 prefers-reduced-motion。",
+      "en": "Implement Wizard in React with controlled state: a step index plus a values object; validate the current step before Next; mark the indicator with ol + aria-current=\"step\"; group fields in fieldset; collapse the indicator to a progress caption on mobile. Scale step-change durations by var(--demo-speed, 1) and respect prefers-reduced-motion."
+    },
+    "agent": {
+      "zh": "在当前项目中实现多步表单向导。\n\n先检查现有组件体系和 Design Token，优先复用当前组件。\n保持现有项目视觉风格。不要新增不必要依赖。\n要求：\n- 步骤指示 + 每步少量字段 + 上一步/下一步导航\n- 下一步前校验当前步，数据内存累积、末步提交\n- 当前步标 aria-current=\"step\"，支持键盘 Tab 遍历\n- 尊重 prefers-reduced-motion\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a multi-step wizard in the current project.\n\nInspect the existing component system and design tokens first; reuse existing components.\nKeep the project's visual style. Add no unnecessary dependencies.\nRequirements:\n- Step indicator, a few fields per step, Prev / Next navigation\n- Validate the current step before advancing; accumulate values in memory and submit at the end\n- Mark the active step with aria-current=\"step\"; keyboard Tab traversable\n- Respect prefers-reduced-motion\nRun existing project checks when done and list the modified files."
+    }
+  }
+}
