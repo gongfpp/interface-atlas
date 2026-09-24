@@ -1,0 +1,19 @@
+name: 私有审计工作区快照
+on:
+  push:
+    branches: [feature/atlas-quality-audit]
+    paths: [.github/workflows/audit-snapshot.yml]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: 打包已跟踪源码供隔离环境复现
+        run: git archive --format=tar HEAD > /tmp/interface-atlas-source.tar
+      - uses: actions/upload-artifact@v4
+        with:
+          name: private-audit-source
+          path: /tmp/interface-atlas-source.tar
+          retention-days: 1
