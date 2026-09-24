@@ -1,0 +1,242 @@
+{
+  "id": "features-comparison",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "功能对比页",
+    "en": "Feature Comparison Page"
+  },
+  "aliases": [
+    "功能对比页",
+    "选型对比表",
+    "功能对照表",
+    "插件对比页",
+    "套餐对比",
+    "买哪个版本对比",
+    "参数对比表",
+    "对比矩阵"
+  ],
+  "category": [
+    "Page",
+    "Marketing"
+  ],
+  "description": {
+    "zh": "用并列矩阵把多个方案的功能、价格与限制逐项对齐的页面：首列固定为对比维度，各方案各占一列， 支持只看差异、按维度排序与推荐标记。它服务于「选哪个」的决策，把宣传语替换成可逐格核对的证据。",
+    "en": "A page that aligns several options feature by feature in one side-by-side matrix: the first column holds the comparison dimensions, each option takes a column, and users can show differences only, sort by dimension and spot a recommended pick. It serves the which-one decision by turning marketing copy into checkable evidence."
+  },
+  "use_when": [
+    {
+      "zh": "用户需要在两个以上方案之间做选择",
+      "en": "Users must choose among two or more options"
+    },
+    {
+      "zh": "功能、价格、限额等能按行逐项对齐",
+      "en": "Features, prices and limits align row by row"
+    },
+    {
+      "zh": "目标是突出差异而不是重复宣传",
+      "en": "The goal is to surface differences, not repeat marketing"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "只有单一方案（用落地页或定价页更合适）",
+      "en": "A single option — a landing or pricing page fits better"
+    },
+    {
+      "zh": "各方案维度差异过大、无法逐项对齐",
+      "en": "Options differ so much they cannot be aligned row by row"
+    },
+    {
+      "zh": "需要长篇解释而非逐格打勾",
+      "en": "Long explanations are needed instead of per-cell marks"
+    }
+  ],
+  "tags": [
+    "comparison",
+    "matrix",
+    "pricing",
+    "decision",
+    "marketing"
+  ],
+  "variants": [
+    {
+      "id": "table",
+      "name": {
+        "zh": "并列表格",
+        "en": "Side-by-side Table"
+      },
+      "note": {
+        "zh": "经典行列矩阵，首列固定为对比维度",
+        "en": "Classic grid with a pinned first column of dimensions"
+      }
+    },
+    {
+      "id": "diff",
+      "name": {
+        "zh": "只看差异",
+        "en": "Differences Only"
+      },
+      "note": {
+        "zh": "隐藏相同项，只留下真正有区别的行",
+        "en": "Hides identical rows to leave only real differences"
+      }
+    },
+    {
+      "id": "cards",
+      "name": {
+        "zh": "卡片对比",
+        "en": "Card Comparison"
+      },
+      "note": {
+        "zh": "方案纵向堆叠成卡片，移动端友好",
+        "en": "Options stacked as cards, friendlier on mobile"
+      }
+    }
+  ],
+  "anatomy": [
+    "Header 标题与说明",
+    "Plan Headers 方案表头",
+    "Dimension Column 维度列",
+    "Comparison Cells 数据单元格",
+    "Difference Highlight 差异高亮",
+    "Decision CTA 行动按钮"
+  ],
+  "related": [
+    {
+      "id": "table",
+      "relation": "contains"
+    },
+    {
+      "id": "segmented-control",
+      "relation": "contains"
+    },
+    {
+      "id": "badge",
+      "relation": "contains"
+    },
+    {
+      "id": "progressive-disclosure",
+      "relation": "uses"
+    },
+    {
+      "id": "pricing",
+      "relation": "similar_to"
+    }
+  ],
+  "structure": [
+    {
+      "part": {
+        "zh": "标题与说明",
+        "en": "Header"
+      },
+      "note": {
+        "zh": "一句话说明对比对象与适用场景，避免用户选错表。",
+        "en": "One line states what is compared and for whom."
+      }
+    },
+    {
+      "part": {
+        "zh": "方案表头",
+        "en": "Plan headers"
+      },
+      "note": {
+        "zh": "每个方案一列，含名称、价格与推荐徽标，可点选聚焦。",
+        "en": "One column per option with name, price and a recommended badge; click to focus."
+      }
+    },
+    {
+      "part": {
+        "zh": "维度列",
+        "en": "Dimension column"
+      },
+      "note": {
+        "zh": "固定在左侧的功能、价格与限制行名，支持分组。",
+        "en": "Pinned leftmost labels for features, price and limits, optionally grouped."
+      }
+    },
+    {
+      "part": {
+        "zh": "数据单元格",
+        "en": "Comparison cells"
+      },
+      "note": {
+        "zh": "用勾、破折或数值表达是否支持，保持统一口径。",
+        "en": "Marks, dashes or numbers express support with one consistent convention."
+      }
+    },
+    {
+      "part": {
+        "zh": "差异高亮",
+        "en": "Difference highlight"
+      },
+      "note": {
+        "zh": "标出各方案不同之处，并提供只看差异开关。",
+        "en": "Flags where options differ, with a differences-only toggle."
+      }
+    },
+    {
+      "part": {
+        "zh": "行动按钮",
+        "en": "Decision CTA"
+      },
+      "note": {
+        "zh": "每个方案底部给出试用、购买或咨询入口。",
+        "en": "Each option ends with try, buy or contact entry points."
+      }
+    }
+  ],
+  "demo": {
+    "component": "features-comparison",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "grid",
+      "flex",
+      "position: sticky",
+      "overflow-x: auto",
+      "border-collapse: collapse"
+    ],
+    "notes": {
+      "zh": "真正的表格用 table 语义标签获得原生可访问性；首列与表头用 position: sticky 吸附，横向溢出交给 overflow-x: auto 容器。差异高亮用背景加图标或文字标记，不能只靠颜色。移动端可降级为卡片对比； 排序与只看差异由组件状态驱动，不改动文档结构。",
+      "en": "Use real table semantics for accessibility; pin the first column and header row with position: sticky and let a wrapper handle overflow-x: auto. Mark differences with background plus an icon or label, never color alone. Degrade to card comparison on mobile; sorting and differences-only are driven by component state without restructuring the document."
+    }
+  },
+  "sources": [
+    {
+      "name": "Nielsen Norman Group — Comparison Tables",
+      "url": "https://www.nngroup.com/articles/comparison-tables/"
+    },
+    {
+      "name": "W3C WAI — Tables Tutorial",
+      "url": "https://www.w3.org/WAI/tutorials/tables/"
+    },
+    {
+      "name": "MDN — The Table element",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个功能对比页，用表格并列展示两个以上方案的功能与价格。",
+      "en": "Create a feature comparison page that shows two or more options with features and pricing side by side."
+    },
+    "design": {
+      "zh": "创建 SaaS 功能对比页：顶部标题与说明；表格首列固定为功能维度，三列方案表头含价格与推荐徽标； 提供只看差异开关与按维度排序；差异单元格用背景加图标高亮；每个方案列底部一个 CTA。 移动端降级为卡片对比，深浅色一致。",
+      "en": "Build a SaaS feature comparison: a header with a short intro; a table with a pinned dimension column and three option headers holding price and a recommended badge; a differences-only toggle and per-dimension sort; differing cells highlighted with background plus an icon; one CTA per option. Degrades to card comparison on mobile, consistent light/dark."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现功能对比页：使用 table 语义标签与 scope 属性；首列与表头 sticky； 横向溢出交给滚动容器；差异判定抽成纯函数，驱动高亮与只看差异开关；排序受控；不新增依赖。",
+      "en": "Implement with React + Tailwind: real table semantics with scope attributes; sticky first column and header; an overflow container for horizontal scroll; a pure function decides differences and drives highlighting and the differences-only toggle; controlled sorting; no new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现功能对比页。\n\n先检查现有表格组件、定价数据与设计令牌，优先复用。\n要求：\n- 语义化 table + sticky 首列与表头，横向溢出可滚动\n- 方案表头含价格与推荐徽标，可点选聚焦\n- 只看差异开关与按维度排序，由状态驱动\n- 差异高亮不止靠颜色，兼顾色觉障碍\n- 移动端降级为卡片对比，深浅色一致\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the feature comparison page in the current project.\n\nInspect existing table components, pricing data and design tokens first; reuse them.\nRequirements:\n- Semantic table with sticky first column and header; scrollable overflow\n- Option headers with price and recommended badge, click to focus\n- Differences-only toggle and sorting driven by state\n- Differences highlighted without relying on color alone\n- Degrade to card comparison on mobile; consistent light/dark\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

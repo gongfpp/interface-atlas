@@ -1,0 +1,222 @@
+{
+  "id": "error-404",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "404 页面",
+    "en": "404 Page"
+  },
+  "aliases": [
+    "404 页面",
+    "找不到页面",
+    "页面不存在",
+    "页面打不开",
+    "链接点进去空的",
+    "迷路页",
+    "死链页"
+  ],
+  "category": [
+    "Page",
+    "Error"
+  ],
+  "description": {
+    "zh": "在用户请求的地址不存在时展示的兜底页面：用一句人话说明发生了什么，提供返回首页、搜索或推荐入口，把一次失败访问转成继续浏览的机会。它不解决问题本身，但决定用户是离开还是留下。",
+    "en": "A fallback screen for missing addresses. It explains the situation plainly and offers home, search or recommended links for a next step."
+  },
+  "use_when": [
+    {
+      "zh": "请求路径不存在或页面已下线",
+      "en": "A requested path is missing or retired"
+    },
+    {
+      "zh": "用户输入或点击了错误链接",
+      "en": "A user types or follows a broken link"
+    },
+    {
+      "zh": "内容被删除后仍需承接旧流量",
+      "en": "Deleted content must still catch old traffic"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "服务端或后端故障（应使用 500 服务错误页）",
+      "en": "Backend failures — use a server error page instead"
+    },
+    {
+      "zh": "未登录或权限不足（应引导登录或返回）",
+      "en": "Authentication or permission gaps — route to login instead"
+    },
+    {
+      "zh": "旧链接可精确重定向到新地址（直接跳转即可）",
+      "en": "Old links that can redirect precisely — just forward them"
+    }
+  ],
+  "tags": [
+    "error",
+    "404",
+    "not-found",
+    "fallback"
+  ],
+  "variants": [
+    {
+      "id": "minimal",
+      "name": {
+        "zh": "极简提示",
+        "en": "Minimal"
+      },
+      "note": {
+        "zh": "只有状态码、一句说明和一个返回入口",
+        "en": "Just the code, one line of copy and a way back"
+      }
+    },
+    {
+      "id": "search",
+      "name": {
+        "zh": "带搜索",
+        "en": "With Search"
+      },
+      "note": {
+        "zh": "提供搜索框与热门链接，帮用户自己找回目标",
+        "en": "A search box and popular links so users can find their own target"
+      }
+    },
+    {
+      "id": "illustrated",
+      "name": {
+        "zh": "插图引导",
+        "en": "Illustrated"
+      },
+      "note": {
+        "zh": "用插画与推荐内容弱化失败感",
+        "en": "An illustration and recommendations soften the dead end"
+      }
+    }
+  ],
+  "anatomy": [
+    "Status Code 状态码",
+    "Message 说明文案",
+    "Illustration 插图",
+    "Search 搜索入口",
+    "Suggestions 推荐链接",
+    "Primary Action 返回首页"
+  ],
+  "related": [
+    {
+      "id": "error-500",
+      "relation": "similar_to"
+    },
+    {
+      "id": "button",
+      "relation": "contains"
+    },
+    {
+      "id": "navbar",
+      "relation": "contains"
+    },
+    {
+      "id": "empty-state",
+      "relation": "uses"
+    }
+  ],
+  "structure": [
+    {
+      "part": {
+        "zh": "状态码与标题",
+        "en": "Code and heading"
+      },
+      "note": {
+        "zh": "用 404 加一句人话标题，先让用户明白没有崩。",
+        "en": "A 404 with a plain-language heading so users know nothing crashed."
+      }
+    },
+    {
+      "part": {
+        "zh": "说明文案",
+        "en": "Message"
+      },
+      "note": {
+        "zh": "一句话解释地址不存在，避免技术术语与自责语气。",
+        "en": "One sentence explaining the missing address, free of jargon or blame."
+      }
+    },
+    {
+      "part": {
+        "zh": "插图",
+        "en": "Illustration"
+      },
+      "note": {
+        "zh": "轻量插画或图标，弱化失败感但不喧宾夺主。",
+        "en": "A light illustration or icon that softens the failure without dominating."
+      }
+    },
+    {
+      "part": {
+        "zh": "操作入口",
+        "en": "Actions"
+      },
+      "note": {
+        "zh": "主按钮返回首页，次入口返回上一页或联系支持。",
+        "en": "A primary home button and secondary back or support links."
+      }
+    },
+    {
+      "part": {
+        "zh": "推荐内容",
+        "en": "Recommendations"
+      },
+      "note": {
+        "zh": "搜索框或热门链接，把用户带向下一步而不是终点。",
+        "en": "A search box or popular links that point to a next step, not a dead end."
+      }
+    }
+  ],
+  "demo": {
+    "component": "error-404",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "flex",
+      "grid",
+      "min-height: 100vh",
+      "text-align: center",
+      "max-width: 48ch"
+    ],
+    "notes": {
+      "zh": "整页用 min-height 100vh 加 flex 居中，内容宽度限制在 48ch 内保证文案可读。状态码可用大号 font-serif 做视觉锚点， 搜索框与推荐链接放在同一 max-width 容器内。服务器返回真实 404 状态码，不要用 200 包裹错误页，否则搜索引擎会收录空页。",
+      "en": "Center the page with min-height 100vh plus flex, and cap the copy at 48ch for readability. Use a large font-serif status code as the visual anchor, with search and links inside the same max-width container. Return a real 404 status code rather than a 200 wrapper so search engines do not index empty pages."
+    }
+  },
+  "sources": [
+    {
+      "name": "MDN — HTTP 404 Not Found",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+    },
+    {
+      "name": "Nielsen Norman Group — Error-Message Guidelines",
+      "url": "https://www.nngroup.com/articles/error-message-guidelines/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个 404 页面，包含状态码、说明文案和返回首页按钮。",
+      "en": "Create a 404 page with a status code, a short message and a home button."
+    },
+    "design": {
+      "zh": "设计一个 404 页面：居中布局，大号 404 状态码，一句说明，插图或图标，主按钮返回首页，次入口返回上一页； 带搜索框与三个热门链接，深浅色一致，移动端优先。",
+      "en": "Design a 404 page: centered layout with a large 404 code, one line of copy, an illustration or icon, a primary home button and a secondary back link. Add a search box and three popular links, keep light and dark consistent, and design mobile first."
+    },
+    "implementation": {
+      "zh": "用 React 加 Tailwind 实现 404 页面：搜索框受控并可在输入时过滤推荐链接；主按钮走路由返回首页； 确保服务端返回真实 404；尊重 prefers-reduced-motion；不新增依赖。",
+      "en": "React plus Tailwind 404 page: a controlled search box that filters recommendations as you type, a primary button that routes home, a real 404 response from the server, respect for prefers-reduced-motion, and no new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现 404 页面。\n\n先检查现有路由、错误边界与设计 Token，优先复用。\n要求：\n- 居中布局：状态码、说明、插图、主次操作\n - 搜索框可过滤推荐链接\n - 服务端返回真实 404 状态码\n - 深浅色一致，动画尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the 404 page in the current project.\n\nInspect existing routes, error boundaries and design tokens first; reuse them.\nRequirements:\n- Centered layout: code, message, illustration, primary and secondary actions\n- Search box filters recommended links\n- Server returns a real 404 status code\n- Consistent light/dark; animations respect prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "id": "blog-post",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "博客文章页",
+    "en": "Blog Post"
+  },
+  "aliases": [
+    "博客文章页",
+    "文章详情页",
+    "单篇文章页",
+    "正文页",
+    "博客正文",
+    "文章内容页",
+    "读文章的页面"
+  ],
+  "category": [
+    "Page",
+    "Content"
+  ],
+  "description": {
+    "zh": "围绕单篇文章组织的阅读页：文章头给出标题、作者、发布时间与预计阅读时长，正文保持一行 45～75 字符的舒适行宽，侧栏或文首提供可跳转的目录，文末用作者卡与相关文章把读者留在站内。",
+    "en": "A page for one article: header with title, author and date, a body at a comfortable measure, a table of contents, and an author card with related posts below."
+  },
+  "use_when": [
+    {
+      "zh": "展示一篇有明确标题与作者的独立长文",
+      "en": "Presenting one standalone article with a title and author"
+    },
+    {
+      "zh": "正文较长，需要目录或进度提示",
+      "en": "The body is long and needs a table of contents or progress cue"
+    },
+    {
+      "zh": "阅读后需要引导到相关文章或订阅",
+      "en": "You want to guide readers on to related posts or subscribe"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "内容只是简短公告或卡片摘要",
+      "en": "The content is a short note or card summary"
+    },
+    {
+      "zh": "多篇内容需要并列比较（用列表页更合适）",
+      "en": "Multiple items must be compared — a list page fits better"
+    },
+    {
+      "zh": "文章以互动工具为主体而非文字",
+      "en": "The post is mainly an interactive tool, not prose"
+    }
+  ],
+  "tags": [
+    "blog",
+    "content",
+    "reading",
+    "typography"
+  ],
+  "variants": [
+    {
+      "id": "standard",
+      "name": {
+        "zh": "标准文章",
+        "en": "Standard"
+      },
+      "note": {
+        "zh": "单栏正文 + 页头元信息，最通用的阅读布局",
+        "en": "Single-column body with header metadata, the general default"
+      }
+    },
+    {
+      "id": "long-form",
+      "name": {
+        "zh": "长文带目录",
+        "en": "Long-form with TOC"
+      },
+      "note": {
+        "zh": "侧栏常驻目录，随滚动高亮当前章节",
+        "en": "A persistent sidebar TOC that highlights the current section"
+      }
+    },
+    {
+      "id": "tutorial",
+      "name": {
+        "zh": "教程步骤",
+        "en": "Tutorial"
+      },
+      "note": {
+        "zh": "正文按步骤编号，配代码块与提示框",
+        "en": "Numbered steps with code blocks and callouts"
+      }
+    }
+  ],
+  "anatomy": [
+    "Header 顶栏",
+    "Article Head 文章头",
+    "Table of Contents 目录",
+    "Body 正文",
+    "Author 作者卡",
+    "Related 相关文章"
+  ],
+  "related": [
+    {
+      "id": "avatar",
+      "relation": "contains"
+    },
+    {
+      "id": "breadcrumb",
+      "relation": "contains"
+    },
+    {
+      "id": "progressive-disclosure",
+      "relation": "uses"
+    },
+    {
+      "id": "scroll-reveal",
+      "relation": "used_with"
+    },
+    {
+      "id": "blog-index",
+      "relation": "similar_to"
+    }
+  ],
+  "structure": [
+    {
+      "part": {
+        "zh": "顶栏",
+        "en": "Header"
+      },
+      "note": {
+        "zh": "站点导航与搜索，阅读中保持可达以便随时离开或查找。",
+        "en": "Site nav and search, kept reachable so readers can leave or look things up."
+      }
+    },
+    {
+      "part": {
+        "zh": "文章头",
+        "en": "Article head"
+      },
+      "note": {
+        "zh": "标题、作者、日期、预计阅读时长与主题标签，决定是否继续读。",
+        "en": "Title, author, date, reading time and topic tags decide whether reading continues."
+      }
+    },
+    {
+      "part": {
+        "zh": "目录",
+        "en": "Table of contents"
+      },
+      "note": {
+        "zh": "长文必备，列出章节并可锚点跳转；窄屏折叠收起。",
+        "en": "Essential for long posts; lists sections with anchor jumps and collapses on narrow screens."
+      }
+    },
+    {
+      "part": {
+        "zh": "正文",
+        "en": "Body"
+      },
+      "note": {
+        "zh": "保持 45～75 字符行宽与合适行高，代码、引用、图片各有样式。",
+        "en": "Keeps a 45–75 character measure and comfortable leading; code, quotes and images get their own styles."
+      }
+    },
+    {
+      "part": {
+        "zh": "作者卡",
+        "en": "Author card"
+      },
+      "note": {
+        "zh": "头像、简介与社交链接，为观点提供来源与信任。",
+        "en": "Avatar, bio and social links give the piece a source and trust."
+      }
+    },
+    {
+      "part": {
+        "zh": "相关文章",
+        "en": "Related posts"
+      },
+      "note": {
+        "zh": "文末推荐三到五篇，延长会话而不是让读者立刻离开。",
+        "en": "Three to five recommendations at the end extend the session instead of ending it."
+      }
+    }
+  ],
+  "demo": {
+    "component": "blog-post",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "max-width: 65ch",
+      "line-height: 1.7",
+      "position: sticky",
+      "scroll-margin-top: 5rem",
+      "text-wrap: pretty"
+    ],
+    "notes": {
+      "zh": "正文容器限制 max-width 为 45～75ch 并放大 line-height；目录用 position: sticky 常驻侧栏，锚点跳转前用 scroll-margin-top 预留吸顶顶栏高度。标题、代码与引用通过变量控制节奏；滚动进度可用 scroll-driven animation，并尊重 prefers-reduced-motion。",
+      "en": "Cap the body at a 45–75ch measure with generous line-height; keep the TOC sticky in a side column and reserve the sticky header height with scroll-margin-top on anchors. Pace headings, code and quotes with spacing variables; a reading-progress bar can use scroll-driven animation and must respect prefers-reduced-motion."
+    }
+  },
+  "sources": [
+    {
+      "name": "Nielsen Norman Group — How Users Read on the Web",
+      "url": "https://www.nngroup.com/articles/how-users-read-on-the-web/"
+    },
+    {
+      "name": "Nielsen Norman Group — Typography Terms",
+      "url": "https://www.nngroup.com/articles/typography-terms-ux/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个博客文章页，包含标题元信息、正文、目录和相关文章。",
+      "en": "Create a blog post page with title metadata, body, a table of contents and related posts."
+    },
+    "design": {
+      "zh": "设计博客文章页：顶部细顶栏含返回与分享；文章头居中标题、作者头像与日期、阅读时长；正文单栏 65ch 行宽，标题层级清晰，代码块有底色；右侧 sticky 目录高亮当前章节；文末作者卡加三张相关文章卡。深浅色一致。",
+      "en": "Design a blog post: a slim top bar with back and share; a centered article head with title, author avatar, date and reading time; a single 65ch body column with clear heading levels and tinted code blocks; a sticky right TOC highlighting the current section; an author card plus three related cards at the end. Theme-consistent."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现文章页：正文用 max-width 65ch、line-height 1.7；目录从标题生成锚点并用 IntersectionObserver 高亮；代码块保留横向滚动；分享按钮可复制链接；滚动进度条用 scroll-driven animation；尊重 prefers-reduced-motion；不新增依赖。",
+      "en": "React + Tailwind article page: 65ch max-width and 1.7 line-height; build TOC anchors from headings and highlight via IntersectionObserver; allow horizontal scroll in code blocks; a share button copies the link; a scroll-driven progress bar; respect prefers-reduced-motion; no new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现博客文章页。\n\n先检查现有排版样式、Markdown 渲染与目录组件，优先复用。\n要求：\n- 文章头元信息 + 正文 + 目录 + 作者卡 + 相关文章\n- 正文 45～75ch 行宽，标题层级清晰\n- 目录锚点可跳转并高亮当前章节\n- 代码块可横向滚动，图片有 alt\n- 尊重 prefers-reduced-motion，不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the blog post page in the current project.\n\nInspect existing typography styles, Markdown rendering and TOC components first; reuse them.\nRequirements:\n- Article head metadata + body + TOC + author card + related posts\n- Body at a 45–75ch measure with clear heading levels\n- TOC anchors jump and highlight the current section\n- Code blocks scroll horizontally; images carry alt text\n- Respect prefers-reduced-motion; no new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

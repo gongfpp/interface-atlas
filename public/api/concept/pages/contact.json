@@ -1,0 +1,236 @@
+{
+  "id": "contact",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "联系页",
+    "en": "Contact Page"
+  },
+  "aliases": [
+    "联系页",
+    "联系我们",
+    "联系表单页",
+    "客服联系页",
+    "留言页",
+    "找我们页面",
+    "商务合作页"
+  ],
+  "category": [
+    "Page",
+    "Support"
+  ],
+  "description": {
+    "zh": "收集访客留言并提供多种联系渠道的页面：主表单只问必要字段（姓名、邮箱、主题、留言），提交后给出明确成功反馈；旁边或下方并列邮箱、电话、地址与社交入口，再用简短 FAQ 拦下高频问题。",
+    "en": "A page that collects messages: a short form asks only what is needed and confirms success, with email, phone and address alongside plus a brief FAQ."
+  },
+  "use_when": [
+    {
+      "zh": "访客需要咨询、反馈或商务合作",
+      "en": "Visitors need to ask, give feedback or partner"
+    },
+    {
+      "zh": "需要有可追踪的消息收件入口",
+      "en": "You need a trackable inbox for incoming messages"
+    },
+    {
+      "zh": "高频问题可先用 FAQ 自助解决",
+      "en": "Common questions can be self-served with an FAQ first"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "已经登录的用户有站内消息系统",
+      "en": "Logged-in users already have in-app messaging"
+    },
+    {
+      "zh": "需要实时对话支持（用在线客服更合适）",
+      "en": "You need live chat — a support widget fits better"
+    },
+    {
+      "zh": "表单字段多到像资格审核",
+      "en": "The form balloons into a qualification questionnaire"
+    }
+  ],
+  "tags": [
+    "contact",
+    "form",
+    "support",
+    "conversion"
+  ],
+  "variants": [
+    {
+      "id": "form",
+      "name": {
+        "zh": "表单为主",
+        "en": "Form-first"
+      },
+      "note": {
+        "zh": "表单居中，联系方式作为补充信息",
+        "en": "A centered form with contact details as supporting info"
+      }
+    },
+    {
+      "id": "split",
+      "name": {
+        "zh": "左右分栏",
+        "en": "Split Layout"
+      },
+      "note": {
+        "zh": "左信息右表单，或反之，信息密度更高",
+        "en": "Info and form side by side, packing in more detail"
+      }
+    },
+    {
+      "id": "support",
+      "name": {
+        "zh": "支持中心式",
+        "en": "Support Hub"
+      },
+      "note": {
+        "zh": "先给渠道选择与 FAQ，再露出表单",
+        "en": "Channel choices and FAQ first, the form revealed after"
+      }
+    }
+  ],
+  "anatomy": [
+    "Header 顶栏",
+    "Intro 引导语",
+    "Contact Form 联系表单",
+    "Contact Methods 联系方式",
+    "Map 地图地址",
+    "FAQ 常见问题"
+  ],
+  "related": [
+    {
+      "id": "input",
+      "relation": "contains"
+    },
+    {
+      "id": "textarea",
+      "relation": "contains"
+    },
+    {
+      "id": "button",
+      "relation": "contains"
+    },
+    {
+      "id": "form-validation",
+      "relation": "uses"
+    },
+    {
+      "id": "about",
+      "relation": "similar_to"
+    }
+  ],
+  "structure": [
+    {
+      "part": {
+        "zh": "顶栏",
+        "en": "Header"
+      },
+      "note": {
+        "zh": "站点导航与搜索，保证随时可离开当前任务。",
+        "en": "Site nav and search so visitors can leave the task at any time."
+      }
+    },
+    {
+      "part": {
+        "zh": "引导语",
+        "en": "Intro"
+      },
+      "note": {
+        "zh": "一句话说明能帮什么、多久回复，管理预期。",
+        "en": "One line on what you can help with and typical reply time, setting expectations."
+      }
+    },
+    {
+      "part": {
+        "zh": "联系表单",
+        "en": "Contact form"
+      },
+      "note": {
+        "zh": "姓名、邮箱、主题与留言，必填项最少，错误就地提示。",
+        "en": "Name, email, subject and message — minimum required fields with inline errors."
+      }
+    },
+    {
+      "part": {
+        "zh": "联系方式",
+        "en": "Contact methods"
+      },
+      "note": {
+        "zh": "邮箱、电话、地址与社交入口，按优先级排列。",
+        "en": "Email, phone, address and social links, ordered by priority."
+      }
+    },
+    {
+      "part": {
+        "zh": "地图地址",
+        "en": "Map"
+      },
+      "note": {
+        "zh": "有实体场所时给出地图与周边交通，否则省略。",
+        "en": "A map and directions when there is a physical location, otherwise omit."
+      }
+    },
+    {
+      "part": {
+        "zh": "常见问题",
+        "en": "FAQ"
+      },
+      "note": {
+        "zh": "三到五条折叠问答，先拦下能自助解决的问题。",
+        "en": "Three to five collapsible Q&As that deflect self-serve questions."
+      }
+    }
+  ],
+  "demo": {
+    "component": "contact",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "flex",
+      "grid",
+      "grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))",
+      "min-height: 44px",
+      "gap: 1rem"
+    ],
+    "notes": {
+      "zh": "表单字段竖排并给每个控件绑定 label；触控目标至少 44px；错误信息紧贴字段并用 aria-describedby 关联。分栏变体用 grid 自适应折叠为单列；提交成功后显示可聚焦的成功提示，并保留输入以免刷新丢失。",
+      "en": "Stack fields vertically and bind every control to a label; keep touch targets at least 44px and tie inline errors to fields with aria-describedby. The split variant collapses to one column via grid; after submit, show a focusable success message and preserve the input to avoid losing it."
+    }
+  },
+  "sources": [
+    {
+      "name": "W3C WAI — Forms Tutorial",
+      "url": "https://www.w3.org/WAI/tutorials/forms/"
+    },
+    {
+      "name": "web.dev — Learn Forms: Validation",
+      "url": "https://web.dev/learn/forms/validation"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个联系页，包含联系表单、联系方式和一个常见问题区。",
+      "en": "Create a contact page with a contact form, contact details and a small FAQ."
+    },
+    "design": {
+      "zh": "设计联系页：顶部引导语说明回复时长；左侧表单（姓名、邮箱、主题下拉、留言、提交按钮），字段有聚焦态与就地错误；右侧三行联系方式配图标；下方折叠 FAQ；移动端顺序为引导语→表单→联系方式→FAQ。深浅色一致。",
+      "en": "Design a contact page: an intro stating reply time; a left-hand form (name, email, subject select, message, submit) with focus states and inline errors; three contact rows with icons on the right; a collapsible FAQ below. On mobile the order is intro, form, methods, FAQ. Theme-consistent."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现联系页：受控表单 + 基础校验（必填、邮箱格式），错误用 aria-describedby 关联；触控目标 ≥44px；提交成功切到成功态并保留数据；FAQ 用 details 或受控手风琴；尊重 prefers-reduced-motion；不新增依赖。",
+      "en": "React + Tailwind contact page: controlled form with basic validation (required, email format) and errors linked via aria-describedby; touch targets ≥44px; on success switch to a success state keeping the data; FAQ as details or a controlled accordion; respect prefers-reduced-motion; no new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现联系页。\n\n先检查现有表单控件与校验逻辑，优先复用。\n要求：\n- 引导语 + 联系表单 + 联系方式 + FAQ\n- 每个字段有 label，错误用 aria-describedby 关联\n- 触控目标 ≥44px，键盘可完成提交\n- 提交成功有明确反馈并保留输入\n- 尊重 prefers-reduced-motion，不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the contact page in the current project.\n\nInspect existing form controls and validation first; reuse them.\nRequirements:\n- Intro + contact form + contact methods + FAQ\n- Every field has a label; errors linked with aria-describedby\n- Touch targets ≥44px; the form is keyboard-completable\n- Clear success feedback that preserves input\n- Respect prefers-reduced-motion; no new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

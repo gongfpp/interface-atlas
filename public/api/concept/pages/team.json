@@ -1,0 +1,232 @@
+{
+  "id": "team",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "团队页",
+    "en": "Team Page"
+  },
+  "aliases": [
+    "团队页",
+    "团队成员页",
+    "团队介绍页",
+    "关于我们团队",
+    "我们是谁页面",
+    "公司团队页",
+    "成员介绍页",
+    "团队墙"
+  ],
+  "category": [
+    "Page",
+    "Marketing"
+  ],
+  "description": {
+    "zh": "用人物卡片组介绍组织构成的页面：头像、姓名、职位与一句职责说明构成最小单元，按部门或职能分组， 常附加入职链接与价值观叙述。它把抽象的「我们」换成具体可辨认的人，用真实面孔建立信任。",
+    "en": "A page that introduces an organization through a grid of person cards: avatar, name, role and a one-line responsibility form the smallest unit, grouped by team or function, often with an open-roles link and a values narrative. It replaces the abstract we with specific, recognizable people to build trust."
+  },
+  "use_when": [
+    {
+      "zh": "公司或产品需要展示核心成员",
+      "en": "A company or product needs to show its core members"
+    },
+    {
+      "zh": "招聘与信任建设需要真实面孔",
+      "en": "Hiring and trust-building need real faces"
+    },
+    {
+      "zh": "组织可按部门或职能分组呈现",
+      "en": "The organization groups naturally by team or function"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "只展示一位创始人（用关于页）",
+      "en": "Only one founder to show — use an about page"
+    },
+    {
+      "zh": "成员信息涉密或频繁变动",
+      "en": "Member details are sensitive or change often"
+    },
+    {
+      "zh": "需要详细履历与作品（用个人主页）",
+      "en": "Detailed resumes and portfolios — use profile pages"
+    }
+  ],
+  "tags": [
+    "team",
+    "people",
+    "company",
+    "trust",
+    "marketing"
+  ],
+  "variants": [
+    {
+      "id": "grid",
+      "name": {
+        "zh": "照片网格",
+        "en": "Photo Grid"
+      },
+      "note": {
+        "zh": "等尺寸头像网格，悬停显示简介",
+        "en": "Even avatar grid with bios on hover"
+      }
+    },
+    {
+      "id": "roster",
+      "name": {
+        "zh": "名册式",
+        "en": "Roster"
+      },
+      "note": {
+        "zh": "按部门分组的紧凑列表",
+        "en": "Compact list grouped by department"
+      }
+    },
+    {
+      "id": "feature",
+      "name": {
+        "zh": "焦点式",
+        "en": "Featured"
+      },
+      "note": {
+        "zh": "大图加关键成员长简介",
+        "en": "Large portrait plus a longer bio for key members"
+      }
+    }
+  ],
+  "anatomy": [
+    "Page Header 标题与使命",
+    "Team Group 部门分组",
+    "Member Card 成员卡片",
+    "Avatar 头像",
+    "Role & Bio 职位与简介",
+    "Careers CTA 招聘行动区"
+  ],
+  "related": [
+    {
+      "id": "card",
+      "relation": "contains"
+    },
+    {
+      "id": "avatar",
+      "relation": "contains"
+    },
+    {
+      "id": "badge",
+      "relation": "contains"
+    },
+    {
+      "id": "profile",
+      "relation": "similar_to"
+    },
+    {
+      "id": "hover-lift",
+      "relation": "used_with"
+    }
+  ],
+  "structure": [
+    {
+      "part": {
+        "zh": "标题与使命",
+        "en": "Header"
+      },
+      "note": {
+        "zh": "一句团队使命或规模说明，给页面定调。",
+        "en": "One line of mission or scale sets the tone."
+      }
+    },
+    {
+      "part": {
+        "zh": "成员网格",
+        "en": "Member grid"
+      },
+      "note": {
+        "zh": "卡片等宽排列，头像统一裁切比例。",
+        "en": "Even-width cards with a consistent avatar crop."
+      }
+    },
+    {
+      "part": {
+        "zh": "部门分组",
+        "en": "Team groups"
+      },
+      "note": {
+        "zh": "按职能或部门分区，各配短标题。",
+        "en": "Sections by function or department, each with a short heading."
+      }
+    },
+    {
+      "part": {
+        "zh": "成员卡片",
+        "en": "Member card"
+      },
+      "note": {
+        "zh": "头像、姓名、职位与一句职责，可跳转个人页。",
+        "en": "Avatar, name, role and one line, linking to a profile."
+      }
+    },
+    {
+      "part": {
+        "zh": "招聘行动区",
+        "en": "Careers CTA"
+      },
+      "note": {
+        "zh": "页尾指向开放职位，承接浏览者的兴趣。",
+        "en": "A closing link to open roles captures interest."
+      }
+    }
+  ],
+  "demo": {
+    "component": "team",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "grid",
+      "flex",
+      "aspect-ratio: 1",
+      "grid-template-columns: repeat(auto-fit, minmax(140px, 1fr))",
+      "object-fit: cover"
+    ],
+    "notes": {
+      "zh": "成员网格用 repeat(auto-fit, minmax(140px, 1fr)) 自适应；头像统一 aspect-ratio: 1 与 object-fit: cover， 并带真实 alt 文本。卡片悬停可微抬，但必须在 reduced-motion 下关闭。按部门筛选时保持键盘可达， 卡片本身是可聚焦链接而非纯装饰 div。",
+      "en": "Lay out the member grid with repeat(auto-fit, minmax(140px, 1fr)); crop avatars to aspect-ratio: 1 with object-fit: cover and real alt text. Cards may lift on hover but must disable under reduced-motion. Department filters stay keyboard reachable, and each card is a focusable link rather than a decorative div."
+    }
+  },
+  "sources": [
+    {
+      "name": "Material Design 3 — Cards",
+      "url": "https://m3.material.io/components/cards/overview"
+    },
+    {
+      "name": "Apple Human Interface Guidelines — Layout",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/layout"
+    },
+    {
+      "name": "Nielsen Norman Group — Trustworthy Design",
+      "url": "https://www.nngroup.com/articles/trustworthy-design/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个团队页，用头像卡片展示成员姓名与职位。",
+      "en": "Create a team page showing members with avatar cards, names and roles."
+    },
+    "design": {
+      "zh": "创建公司团队页：顶部团队使命与人数说明；按部门分组的成员卡片网格，每张卡含方形头像、姓名、职位与 一句职责；悬停轻微上浮；页尾「加入我们」招聘按钮。响应式 2 到 4 列，深浅色一致。",
+      "en": "Build a company team page: a mission and headcount line on top; member card grids grouped by department, each card with a square avatar, name, role and one-line responsibility; a subtle hover lift; a Join us careers button at the end. Two to four responsive columns, consistent light/dark."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现团队页：数据来自 CMS 或 JSON；网格用 auto-fit 加 minmax；头像 aspect-ratio 方形并带真实 alt；卡片为可聚焦链接；部门筛选键盘可达；悬停动画尊重 prefers-reduced-motion；不新增依赖。",
+      "en": "Implement with React + Tailwind: data from a CMS or JSON; grid via auto-fit and minmax; square avatars with real alt text; cards as focusable links; keyboard-reachable department filters; hover motion respects prefers-reduced-motion; no new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现团队页。\n\n先检查现有成员数据、头像资源与卡片组件，优先复用。\n要求：\n- 按部门分组的响应式成员网格\n- 头像方形裁切并带真实 alt 文本\n- 卡片可聚焦跳转个人页\n- 部门筛选键盘可达，尊重 prefers-reduced-motion\n- 页尾招聘 CTA，深浅色一致，不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the team page in the current project.\n\nInspect existing member data, avatar assets and card components first; reuse them.\nRequirements:\n- Responsive member grid grouped by department\n- Square avatar crops with real alt text\n- Focusable cards linking to profiles\n- Keyboard-reachable department filters; respect prefers-reduced-motion\n- Careers CTA at the end; consistent light/dark; no new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

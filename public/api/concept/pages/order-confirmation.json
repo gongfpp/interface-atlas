@@ -1,0 +1,232 @@
+{
+  "id": "order-confirmation",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "订单确认页",
+    "en": "Order Confirmation"
+  },
+  "aliases": [
+    "订单确认页",
+    "下单成功页",
+    "付款成功页",
+    "订单提交成功",
+    "支付成功页面",
+    "谢谢购买页",
+    "订单完成页",
+    "购买成功页"
+  ],
+  "category": [
+    "Page",
+    "Commerce"
+  ],
+  "description": {
+    "zh": "下单成功后接住用户情绪的收尾页：用明确的成功状态、订单号与交付时间先给出确定感，再列商品明细、 金额与下一步动作（发票、物流、继续购物）。它不收集新信息，只把「钱已付、货在路上」讲清楚。",
+    "en": "The closing screen after a successful purchase: a clear success state, order number and delivery estimate give certainty first, then item details, totals and next actions such as invoice, tracking or continue shopping. It collects nothing new — it exists to make paid-and-on-its-way unmistakable."
+  },
+  "use_when": [
+    {
+      "zh": "支付或下单成功后立即展示",
+      "en": "Shown immediately after a successful payment or order"
+    },
+    {
+      "zh": "需要给出订单号与交付预期",
+      "en": "The order number and delivery estimate must be stated"
+    },
+    {
+      "zh": "需要引导配送跟踪、发票或继续购物",
+      "en": "Users should be guided to tracking, invoice or more shopping"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "支付失败或订单待审核（用状态或错误页）",
+      "en": "Payment failed or pending review — use a status or error page"
+    },
+    {
+      "zh": "只是暂存草稿，尚未真正成单",
+      "en": "Only a saved draft, not a real placed order"
+    },
+    {
+      "zh": "仍需用户继续填写信息",
+      "en": "More user input is still required"
+    }
+  ],
+  "tags": [
+    "commerce",
+    "confirmation",
+    "success",
+    "receipt",
+    "order"
+  ],
+  "variants": [
+    {
+      "id": "receipt",
+      "name": {
+        "zh": "收据式",
+        "en": "Receipt"
+      },
+      "note": {
+        "zh": "明细与金额完整铺开，像一张电子小票",
+        "en": "Full line items and totals, like a digital receipt"
+      }
+    },
+    {
+      "id": "celebratory",
+      "name": {
+        "zh": "庆祝式",
+        "en": "Celebratory"
+      },
+      "note": {
+        "zh": "成功动效加简短摘要，适合消费品牌",
+        "en": "Success motion with a short summary, for consumer brands"
+      }
+    },
+    {
+      "id": "tracking-first",
+      "name": {
+        "zh": "物流优先",
+        "en": "Tracking-first"
+      },
+      "note": {
+        "zh": "交付时间线与跟踪入口置于最前",
+        "en": "Delivery timeline and tracking entry come first"
+      }
+    }
+  ],
+  "anatomy": [
+    "Success Banner 成功横幅",
+    "Order Meta 订单号与时间",
+    "Item List 商品明细",
+    "Totals 金额摘要",
+    "Delivery Timeline 物流时间线",
+    "Next Actions 后续动作"
+  ],
+  "related": [
+    {
+      "id": "timeline",
+      "relation": "contains"
+    },
+    {
+      "id": "card",
+      "relation": "contains"
+    },
+    {
+      "id": "button",
+      "relation": "contains"
+    },
+    {
+      "id": "confetti",
+      "relation": "used_with"
+    },
+    {
+      "id": "checkout",
+      "relation": "similar_to"
+    }
+  ],
+  "structure": [
+    {
+      "part": {
+        "zh": "成功横幅",
+        "en": "Success banner"
+      },
+      "note": {
+        "zh": "图标加一句确认语，第一眼就知道成单了。",
+        "en": "Icon plus one confirmation line so success reads instantly."
+      }
+    },
+    {
+      "part": {
+        "zh": "订单摘要",
+        "en": "Order summary"
+      },
+      "note": {
+        "zh": "订单号、下单时间与预计送达，可一键复制。",
+        "en": "Order number, timestamp and ETA, copyable in one click."
+      }
+    },
+    {
+      "part": {
+        "zh": "商品明细",
+        "en": "Item list"
+      },
+      "note": {
+        "zh": "缩略图、规格、数量与单价逐项列出。",
+        "en": "Each item with thumbnail, variant, quantity and unit price."
+      }
+    },
+    {
+      "part": {
+        "zh": "物流时间线",
+        "en": "Delivery timeline"
+      },
+      "note": {
+        "zh": "已下单、已付款、已发货、已送达的进度。",
+        "en": "Progress through placed, paid, shipped and delivered."
+      }
+    },
+    {
+      "part": {
+        "zh": "后续动作",
+        "en": "Next actions"
+      },
+      "note": {
+        "zh": "查看订单、下载发票、继续购物，主次分明。",
+        "en": "View order, download invoice, continue shopping — ranked clearly."
+      }
+    }
+  ],
+  "demo": {
+    "component": "order-confirmation",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "flex",
+      "grid",
+      "counter-reset: step",
+      "position: relative",
+      "@media print"
+    ],
+    "notes": {
+      "zh": "成功横幅用 role=\"status\" 让读屏播报结果；订单号提供复制按钮并给出已复制反馈。商品明细用列表或表格， 金额用等宽数字（font-variant-numeric: tabular-nums）右对齐。物流时间线用有序列表加伪元素连线； 庆祝动效须尊重 prefers-reduced-motion，并乘 --demo-speed。",
+      "en": "Announce the result with role=\"status\" on the banner; give the order number a copy button with copied feedback. List or table line items with right-aligned tabular numerals for totals. Build the delivery timeline from an ordered list with pseudo-element connectors; celebratory motion must respect prefers-reduced-motion and scale with --demo-speed."
+    }
+  },
+  "sources": [
+    {
+      "name": "Nielsen Norman Group — Progress Indicators",
+      "url": "https://www.nngroup.com/articles/progress-indicators/"
+    },
+    {
+      "name": "W3C WAI — Forms Tutorial",
+      "url": "https://www.w3.org/WAI/tutorials/forms/"
+    },
+    {
+      "name": "Nielsen Norman Group — 10 Usability Heuristics",
+      "url": "https://www.nngroup.com/articles/ten-usability-heuristics/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个订单确认页，显示成功状态、订单号、商品明细和金额。",
+      "en": "Create an order confirmation page showing success, the order number, item details and totals."
+    },
+    "design": {
+      "zh": "创建电商订单确认页：顶部成功横幅（图标加「支付成功」加可复制订单号）；中部订单摘要卡（下单时间、 预计送达）与商品明细列表；右栏或下方金额摘要（小计、运费、优惠、合计）；底部物流时间线与 「查看订单 / 下载发票 / 继续购物」按钮。移动端单列，深浅色一致。",
+      "en": "Build a commerce order confirmation: a success banner on top (icon, payment-complete label, copyable order number); a summary card with time and ETA plus an item list; totals (subtotal, shipping, discount, total) in a right column or below; a delivery timeline and View order, Download invoice and Continue shopping buttons. Single column on mobile, consistent light/dark."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现订单确认页：从路由参数或订单接口取数据；订单号复制用剪贴板 API 并给出反馈； 金额计算抽成纯函数并用 tabular-nums 对齐；物流时间线为有序列表；庆祝动效可关闭且尊重 reduced-motion； 提供打印样式；不新增依赖。",
+      "en": "Implement with React + Tailwind: read data from route params or the order API; copy the order number via the Clipboard API with feedback; pure-function totals with tabular-nums; an ordered-list delivery timeline; celebratory motion that can be disabled and respects reduced-motion; print styles; no new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现订单确认页。\n\n先检查订单数据结构、支付回调与现有卡片和时间线组件，保持一致。\n要求：\n- 成功状态用 role=\"status\" 播报\n- 订单号可复制并给出已复制反馈\n- 商品明细与金额摘要完整，金额用等宽数字右对齐\n- 物流时间线用有序列表表达进度\n- 庆祝动效尊重 prefers-reduced-motion\n- 深浅色与打印样式一致，不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the order confirmation page in the current project.\n\nInspect the order data model, payment callback and existing card/timeline components; stay consistent.\nRequirements:\n- Announce success with role=\"status\"\n- Copyable order number with copied feedback\n- Full item details and totals with tabular right-aligned numbers\n- Delivery timeline as an ordered list\n- Celebratory motion respects prefers-reduced-motion\n- Consistent light/dark and print styles; no new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

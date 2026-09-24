@@ -1,0 +1,221 @@
+{
+  "id": "error-500",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "服务错误页",
+    "en": "Server Error Page"
+  },
+  "aliases": [
+    "500 页面",
+    "服务器错误",
+    "服务出错页",
+    "系统错误页",
+    "服务崩了",
+    "服务器开小差",
+    "页面出错了"
+  ],
+  "category": [
+    "Page",
+    "Error"
+  ],
+  "description": {
+    "zh": "在后端异常、请求无法完成时展示的页面：不暴露内部细节，用中性语气说明是服务端问题，给出稍后重试或联系支持的路径，并尽量保留用户已输入的内容。它承担故障期间的信任维护。",
+    "en": "A screen for backend failures. It states that the problem is server-side, offers retry or support, and preserves input to keep trust."
+  },
+  "use_when": [
+    {
+      "zh": "服务端异常、数据库或依赖不可用",
+      "en": "Server errors, database or dependency outages"
+    },
+    {
+      "zh": "请求超时或网关错误",
+      "en": "Request timeouts or gateway errors"
+    },
+    {
+      "zh": "需要在不暴露细节的前提下说明故障",
+      "en": "The failure must be explained without exposing internals"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "页面地址不存在（应使用 404 页面）",
+      "en": "Missing addresses — use a 404 page instead"
+    },
+    {
+      "zh": "用户无权限访问（应提示权限或登录）",
+      "en": "Permission gaps — prompt for access or login"
+    },
+    {
+      "zh": "可自动重试立即恢复的瞬时抖动",
+      "en": "Transient blips that auto-retry can absorb"
+    }
+  ],
+  "tags": [
+    "error",
+    "500",
+    "server",
+    "fallback"
+  ],
+  "variants": [
+    {
+      "id": "minimal",
+      "name": {
+        "zh": "极简错误",
+        "en": "Minimal"
+      },
+      "note": {
+        "zh": "只说发生了服务错误，给一个重试按钮",
+        "en": "A brief server-error note with a single retry button"
+      }
+    },
+    {
+      "id": "retry",
+      "name": {
+        "zh": "带重试与倒计时",
+        "en": "With Retry"
+      },
+      "note": {
+        "zh": "自动重试并显示倒计时与尝试次数",
+        "en": "Auto-retry with a countdown and attempt count"
+      }
+    },
+    {
+      "id": "status",
+      "name": {
+        "zh": "状态与支持",
+        "en": "Status and Support"
+      },
+      "note": {
+        "zh": "展示故障状态摘要与支持入口，适合关键业务",
+        "en": "A status summary and support entry for critical flows"
+      }
+    }
+  ],
+  "anatomy": [
+    "Status Code 状态码",
+    "Error Message 错误说明",
+    "Retry Action 重试操作",
+    "Status Detail 故障详情",
+    "Support Link 支持入口"
+  ],
+  "related": [
+    {
+      "id": "error-404",
+      "relation": "similar_to"
+    },
+    {
+      "id": "button",
+      "relation": "contains"
+    },
+    {
+      "id": "alert",
+      "relation": "contains"
+    },
+    {
+      "id": "empty-state",
+      "relation": "uses"
+    }
+  ],
+  "structure": [
+    {
+      "part": {
+        "zh": "状态码与标题",
+        "en": "Code and heading"
+      },
+      "note": {
+        "zh": "用 500 与中性标题说明是服务端问题，而非用户操作错误。",
+        "en": "A 500 with a neutral heading stating the fault is server-side, not user error."
+      }
+    },
+    {
+      "part": {
+        "zh": "错误说明",
+        "en": "Error message"
+      },
+      "note": {
+        "zh": "说清正在恢复、是否需要用户操作，不暴露堆栈或内部 ID。",
+        "en": "Say what is recovering and whether action is needed, without stacks or internal IDs."
+      }
+    },
+    {
+      "part": {
+        "zh": "重试操作",
+        "en": "Retry"
+      },
+      "note": {
+        "zh": "主按钮重试请求，可带倒计时与尝试次数。",
+        "en": "A primary retry button, optionally with a countdown and attempt count."
+      }
+    },
+    {
+      "part": {
+        "zh": "故障状态",
+        "en": "Status detail"
+      },
+      "note": {
+        "zh": "展开可看影响范围与更新时间，默认收起。",
+        "en": "Expandable scope and last-updated info, collapsed by default."
+      }
+    },
+    {
+      "part": {
+        "zh": "支持入口",
+        "en": "Support"
+      },
+      "note": {
+        "zh": "提供状态页或联系支持，供重试无果时求助。",
+        "en": "A status page or support link for when retries do not help."
+      }
+    }
+  ],
+  "demo": {
+    "component": "error-500",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "flex",
+      "grid",
+      "min-height: 100vh",
+      "text-align: center",
+      "max-width: 48ch"
+    ],
+    "notes": {
+      "zh": "与 404 共用一套居中骨架：min-height 100vh 加 flex 居中，内容限制在 48ch。重试按钮点击后禁用并显示进行中状态， 用 aria-live 播报结果变化。服务端返回 5xx 状态码；日志记录请求 ID 供支持排查，但不要把堆栈渲染到页面上。",
+      "en": "Reuse the 404 centered skeleton: min-height 100vh plus flex, copy capped at 48ch. Disable the retry button and show a pending state after click, announcing result changes via aria-live. Return a 5xx status code, log a request ID for support, and never render stack traces on the page."
+    }
+  },
+  "sources": [
+    {
+      "name": "MDN — HTTP 500 Internal Server Error",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+    },
+    {
+      "name": "Nielsen Norman Group — Error-Message Guidelines",
+      "url": "https://www.nngroup.com/articles/error-message-guidelines/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个服务错误页，包含状态码、错误说明和重试按钮。",
+      "en": "Create a server error page with a status code, an error message and a retry button."
+    },
+    "design": {
+      "zh": "设计一个 500 服务错误页：居中布局，大号 500，中性说明，重试主按钮，可展开的故障详情， 底部状态页与支持链接；深浅色一致，重试态有明确进行中反馈。",
+      "en": "Design a 500 server error page: centered layout with a large 500, neutral copy, a primary retry button, expandable status detail, and status and support links below. Keep light and dark consistent, with clear pending feedback during retry."
+    },
+    "implementation": {
+      "zh": "用 React 加 Tailwind 实现服务错误页：重试按钮受控并禁用重复点击，结果变化用 aria-live 播报； 保留用户表单输入；返回真实 5xx；动画尊重 prefers-reduced-motion；不新增依赖。",
+      "en": "React plus Tailwind server error page: a controlled retry button that blocks double clicks, result changes announced via aria-live, preserved form input, a real 5xx response, respect for prefers-reduced-motion, and no new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现服务错误页。\n\n先检查现有错误边界、请求层与设计 Token，优先复用。\n要求：\n- 居中布局：状态码、说明、重试、详情、支持\n- 保留用户已输入内容\n- 重试态用 aria-live 播报，避免重复点击\n- 服务端返回真实 5xx，日志记录请求 ID\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the server error page in the current project.\n\nInspect existing error boundaries, request layer and design tokens first; reuse them.\nRequirements:\n- Centered layout: code, message, retry, detail, support\n- Preserve what the user has typed\n- Announce retry state via aria-live and block double clicks\n- Return a real 5xx and log a request ID\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

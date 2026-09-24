@@ -1,6 +1,6 @@
 # Interface Atlas — Full Catalog
 
-> 138 concepts. Per-concept JSON at /api/concept/<type>/<id>.json · Markdown at /<type>/<id>.md
+> 154 concepts. Per-concept JSON at /api/concept/<type>/<id>.json · Markdown at /<type>/<id>.md
 
 ## a11y/alt-text — Alt Text / 替代文本
 
@@ -2282,6 +2282,176 @@
 完成后运行项目现有检查，并列出修改的文件。
 ```
 
+## pages/about — About Page / 关于页
+
+- Type: pages · Aliases: 关于页 · 关于我们 · 公司介绍页 · 团队介绍页 · 我们是谁 · 品牌故事页 · 关于我们页面
+- Page: /pages/about · JSON: /api/concept/pages/about.json · MD: /pages/about.md
+
+**What / 这是什么:** 向访客解释「我们是谁、为什么做这件事」的品牌页面：开头用一句使命宣言定调，中段以创始故事、发展历程或团队照片建立信任，再用价值观与关键数据支撑，结尾导向联系、招聘或产品。
+
+**What (en):** A brand page explaining who you are: a mission statement sets the tone, then story and milestones build trust, and the end points to contact or careers.
+
+**When to use:** 访客在决策前想了解团队与背景；品牌需要传达使命与价值观；招聘、融资或合作需要可信的自我介绍
+
+**When not to use:** 用户只关心功能与价格（用落地页或定价页更合适）；团队或公司信息尚未确定；需要承载复杂操作流程
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现关于页。
+
+先检查现有布局壳、卡片与头像组件，优先复用。
+要求：
+- 使命宣言 + 故事/时间线 + 团队 + 价值观 + CTA
+- 团队与价值观用自适应网格，头像不变形
+- 时间线语义化为有序列表
+- 图片有 alt，文字对比度达 AA
+- 尊重 prefers-reduced-motion，不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/blog-index — Blog Index / 博客列表页
+
+- Type: pages · Aliases: 博客列表页 · 文章列表 · 博客首页 · 资讯列表页 · 文章列表页 · 博客目录 · blog 首页
+- Page: /pages/blog-index · JSON: /api/concept/pages/blog-index.json · MD: /pages/blog-index.md
+
+**What / 这是什么:** 按时间或主题聚合文章的内容索引页：顶部先给一条编辑推荐的头条，再用卡片流或列表铺开全部文章，每项含题图、标题、摘要、分类与日期；分类导航与搜索负责收窄范围，分页或无限滚动负责继续加载。
+
+**What (en):** An index of posts by date or topic: a featured story leads, then cards show thumbnail, title, excerpt and date, with category nav and pagination.
+
+**When to use:** 站点有持续更新的文章或资讯；用户需要按主题、标签或时间浏览；希望突出少数重点文章
+
+**When not to use:** 只有零星几条静态内容；内容需要强检索而非浏览（用搜索结果页更合适）；单篇文章本身就是完整产品页
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现博客列表页。
+
+先检查现有路由、卡片与分页组件，优先复用。
+要求：
+- 头条推荐 + 分类导航 + 文章列表 + 分页
+- 分类切换即时过滤，状态可深链
+- 题图固定比例并懒加载
+- 键盘可达，尊重 prefers-reduced-motion
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/blog-post — Blog Post / 博客文章页
+
+- Type: pages · Aliases: 博客文章页 · 文章详情页 · 单篇文章页 · 正文页 · 博客正文 · 文章内容页 · 读文章的页面
+- Page: /pages/blog-post · JSON: /api/concept/pages/blog-post.json · MD: /pages/blog-post.md
+
+**What / 这是什么:** 围绕单篇文章组织的阅读页：文章头给出标题、作者、发布时间与预计阅读时长，正文保持一行 45～75 字符的舒适行宽，侧栏或文首提供可跳转的目录，文末用作者卡与相关文章把读者留在站内。
+
+**What (en):** A page for one article: header with title, author and date, a body at a comfortable measure, a table of contents, and an author card with related posts below.
+
+**When to use:** 展示一篇有明确标题与作者的独立长文；正文较长，需要目录或进度提示；阅读后需要引导到相关文章或订阅
+
+**When not to use:** 内容只是简短公告或卡片摘要；多篇内容需要并列比较（用列表页更合适）；文章以互动工具为主体而非文字
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现博客文章页。
+
+先检查现有排版样式、Markdown 渲染与目录组件，优先复用。
+要求：
+- 文章头元信息 + 正文 + 目录 + 作者卡 + 相关文章
+- 正文 45～75ch 行宽，标题层级清晰
+- 目录锚点可跳转并高亮当前章节
+- 代码块可横向滚动，图片有 alt
+- 尊重 prefers-reduced-motion，不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/calendar — Calendar Page / 日历页
+
+- Type: pages · Aliases: 日历页 · 日程页 · 日历界面 · 排期页面 · 日程表 · 月历 · 看日期的页面 · 安排时间的页面
+- Page: /pages/calendar · JSON: /api/concept/pages/calendar.json · MD: /pages/calendar.md
+
+**What / 这是什么:** 用时间网格承载事件与日程的页面：以月、周、日三种尺度切换视图，事件块按起止时间定位并支持拖拽改期， 顶部有今天、前后翻页与视图切换，侧栏列出待办与冲突。 它是排期、预约与团队协调的主界面。
+
+**What (en):** A page laying events onto a time grid with month, week and day views, click-to-edit blocks and drag-to-reschedule, anchored by today and prev/next controls.
+
+**When to use:** 事件有明确的起止时间与日期；用户需要跨天、跨周比较安排；多人共享同一时间资源（会议室、班表）
+
+**When not to use:** 只有截止日期、没有具体时段（用列表或看板）；纯按时间正序的日志流（用时间线）；单次预约、无需浏览时间网格（用日期选择器）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现日历页。
+
+先检查现有日期工具函数、事件数据与弹层组件，优先复用。
+要求：
+- 工具栏 + 月/周/议程三种视图 + 侧栏议程
+- 今天高亮，事件块按起止定位并分类配色
+- 点击事件可查看详情，拖拽可改期
+- 键盘方向键在日期网格中导航
+- 响应式，窄屏降级为议程列表
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/changelog — Changelog / 更新日志页
+
+- Type: pages · Aliases: 更新日志 · 更新日志页 · 版本更新记录 · 更新记录页 · 发版说明 · 版本历史页 · 新版本改了啥 · 更新公告页
+- Page: /pages/changelog · JSON: /api/concept/pages/changelog.json · MD: /pages/changelog.md
+
+**What / 这是什么:** 按时间倒序罗列产品每次变化的页面：每条版本以日期与版本号开头，用新增、改进、修复分组呈现， 重要变更附迁移说明与链接。它让用户与团队在同一份事实源上理解「这次更新影响我什么」。
+
+**What (en):** A reverse-chronological record of every product change: each entry opens with a date and version, groups items into added, changed and fixed, and flags breaking changes with migration notes and links. It gives users and teams one shared source of truth for what an update changes for them.
+
+**When to use:** 产品持续迭代、有多个对外版本；用户需要知道自己用的版本改了什么；行为或 API 变更需要给出迁移说明
+
+**When not to use:** 只有一次发布或基本不再更新；面向内部的任务流水（用项目协作工具）；需要逐条 commit 的开发者视图（用 release 页）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现更新日志页。
+
+先检查现有文档布局、版本数据来源与设计令牌，保持一致。
+要求：
+- 倒序版本列表，日期用 time[datetime]
+- 新增、改进、修复分组，破坏性变更单独提示
+- 按类型筛选与按版本折叠由状态驱动
+- 提供 RSS 或邮件订阅入口
+- 深浅色一致，不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/chat — Chat / Messaging / 聊天消息页
+
+- Type: pages · Aliases: 聊天页 · 聊天消息页 · 私信页 · 对话页 · 消息窗口 · 聊天界面 · 发消息的页面 · 会话列表
+- Page: /pages/chat · JSON: /api/concept/pages/chat.json · MD: /pages/chat.md
+
+**What / 这是什么:** 以对话为单位组织消息的页面：左侧会话列表按最新消息排序，右侧线程区按时间正序铺气泡， 底部输入框承担发送与附件，顶部显示对方状态与操作。 它把异步沟通的上下文留在同一条线程里，适合客服、社区与团队协作场景。
+
+**What (en):** A page organized around conversations: a session list sorted by latest message, a chronological bubble thread and a composer for text and attachments.
+
+**When to use:** 需要一对一会话或小组实时沟通；消息要保留上下文并能回看历史；客服、社区或团队协作的持续对话
+
+**When not to use:** 只是单向广播或公告（用通知中心或横幅）；内容需要结构化比对（用表格或看板）；少于三条消息的临时确认（用内联提示即可）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现聊天消息页。
+
+先检查现有的消息接口、头像与输入组件，保持一致。
+要求：
+- 会话列表 + 线程区 + 输入区结构
+- 发送消息乐观更新并滚动到底部
+- 己方/对方气泡样式区分，按天插入日期分隔
+- 未读徽标在打开会话后清零
+- 响应式折叠为单列，键盘可操作
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
 ## pages/checkout — Checkout Page / 结账页
 
 - Type: pages · Aliases: 结账页 · 下单页 · 付款页面 · 收银台 · 提交订单页 · 支付页面 · 买的东西确认页
@@ -2307,6 +2477,34 @@
 - 提交态防重复下单，成功跳转确认页
 - 移动端摘要折叠
 - 深浅色一致，不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/contact — Contact Page / 联系页
+
+- Type: pages · Aliases: 联系页 · 联系我们 · 联系表单页 · 客服联系页 · 留言页 · 找我们页面 · 商务合作页
+- Page: /pages/contact · JSON: /api/concept/pages/contact.json · MD: /pages/contact.md
+
+**What / 这是什么:** 收集访客留言并提供多种联系渠道的页面：主表单只问必要字段（姓名、邮箱、主题、留言），提交后给出明确成功反馈；旁边或下方并列邮箱、电话、地址与社交入口，再用简短 FAQ 拦下高频问题。
+
+**What (en):** A page that collects messages: a short form asks only what is needed and confirms success, with email, phone and address alongside plus a brief FAQ.
+
+**When to use:** 访客需要咨询、反馈或商务合作；需要有可追踪的消息收件入口；高频问题可先用 FAQ 自助解决
+
+**When not to use:** 已经登录的用户有站内消息系统；需要实时对话支持（用在线客服更合适）；表单字段多到像资格审核
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现联系页。
+
+先检查现有表单控件与校验逻辑，优先复用。
+要求：
+- 引导语 + 联系表单 + 联系方式 + FAQ
+- 每个字段有 label，错误用 aria-describedby 关联
+- 触控目标 ≥44px，键盘可完成提交
+- 提交成功有明确反馈并保留输入
+- 尊重 prefers-reduced-motion，不新增依赖
 完成后运行现有检查，说明修改文件。
 ```
 
@@ -2366,6 +2564,148 @@
 完成后运行现有检查，说明修改文件。
 ```
 
+## pages/error-404 — 404 Page / 404 页面
+
+- Type: pages · Aliases: 404 页面 · 找不到页面 · 页面不存在 · 页面打不开 · 链接点进去空的 · 迷路页 · 死链页
+- Page: /pages/error-404 · JSON: /api/concept/pages/error-404.json · MD: /pages/error-404.md
+
+**What / 这是什么:** 在用户请求的地址不存在时展示的兜底页面：用一句人话说明发生了什么，提供返回首页、搜索或推荐入口，把一次失败访问转成继续浏览的机会。它不解决问题本身，但决定用户是离开还是留下。
+
+**What (en):** A fallback screen for missing addresses. It explains the situation plainly and offers home, search or recommended links for a next step.
+
+**When to use:** 请求路径不存在或页面已下线；用户输入或点击了错误链接；内容被删除后仍需承接旧流量
+
+**When not to use:** 服务端或后端故障（应使用 500 服务错误页）；未登录或权限不足（应引导登录或返回）；旧链接可精确重定向到新地址（直接跳转即可）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现 404 页面。
+
+先检查现有路由、错误边界与设计 Token，优先复用。
+要求：
+- 居中布局：状态码、说明、插图、主次操作
+ - 搜索框可过滤推荐链接
+ - 服务端返回真实 404 状态码
+ - 深浅色一致，动画尊重 prefers-reduced-motion
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/error-500 — Server Error Page / 服务错误页
+
+- Type: pages · Aliases: 500 页面 · 服务器错误 · 服务出错页 · 系统错误页 · 服务崩了 · 服务器开小差 · 页面出错了
+- Page: /pages/error-500 · JSON: /api/concept/pages/error-500.json · MD: /pages/error-500.md
+
+**What / 这是什么:** 在后端异常、请求无法完成时展示的页面：不暴露内部细节，用中性语气说明是服务端问题，给出稍后重试或联系支持的路径，并尽量保留用户已输入的内容。它承担故障期间的信任维护。
+
+**What (en):** A screen for backend failures. It states that the problem is server-side, offers retry or support, and preserves input to keep trust.
+
+**When to use:** 服务端异常、数据库或依赖不可用；请求超时或网关错误；需要在不暴露细节的前提下说明故障
+
+**When not to use:** 页面地址不存在（应使用 404 页面）；用户无权限访问（应提示权限或登录）；可自动重试立即恢复的瞬时抖动
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现服务错误页。
+
+先检查现有错误边界、请求层与设计 Token，优先复用。
+要求：
+- 居中布局：状态码、说明、重试、详情、支持
+- 保留用户已输入内容
+- 重试态用 aria-live 播报，避免重复点击
+- 服务端返回真实 5xx，日志记录请求 ID
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/faq — FAQ Page / 常见问题页
+
+- Type: pages · Aliases: 常见问题 · 常见问题页 · 问答页 · 帮助问答 · 疑难解答 · 帮助中心问答 · 你问我答
+- Page: /pages/faq · JSON: /api/concept/pages/faq.json · MD: /pages/faq.md
+
+**What / 这是什么:** 把用户反复提出的问题按主题归组、可逐条展开的页面：用问题式标题降低查找成本，配合锚点、搜索或分类让答案自解释，并把仍未解决的人引向人工支持。它用内容替代重复的客服沟通。
+
+**What (en):** A page that groups recurring questions by topic and expands each answer. Question-style headings cut search cost and keep answers self-serve.
+
+**When to use:** 用户咨询集中在少数常见问题；需要减少重复的客服工单；售前选型、计费与账号政策需要自助解答
+
+**When not to use:** 每个问题都需要个性化排查；内容随版本频繁变更（用文档站更合适）；已有完整知识库或社区问答
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现常见问题页。
+
+先检查现有内容组件、手风琴与设计 Token，优先复用。
+要求：
+- 搜索即时过滤问题标题，分类可切换
+- 手风琴使用 aria-expanded 与 aria-controls
+- 空结果给出人工支持入口
+- 长列表滚动性能与锚点可用
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/features-comparison — Feature Comparison Page / 功能对比页
+
+- Type: pages · Aliases: 功能对比页 · 选型对比表 · 功能对照表 · 插件对比页 · 套餐对比 · 买哪个版本对比 · 参数对比表 · 对比矩阵
+- Page: /pages/features-comparison · JSON: /api/concept/pages/features-comparison.json · MD: /pages/features-comparison.md
+
+**What / 这是什么:** 用并列矩阵把多个方案的功能、价格与限制逐项对齐的页面：首列固定为对比维度，各方案各占一列， 支持只看差异、按维度排序与推荐标记。它服务于「选哪个」的决策，把宣传语替换成可逐格核对的证据。
+
+**What (en):** A page that aligns several options feature by feature in one side-by-side matrix: the first column holds the comparison dimensions, each option takes a column, and users can show differences only, sort by dimension and spot a recommended pick. It serves the which-one decision by turning marketing copy into checkable evidence.
+
+**When to use:** 用户需要在两个以上方案之间做选择；功能、价格、限额等能按行逐项对齐；目标是突出差异而不是重复宣传
+
+**When not to use:** 只有单一方案（用落地页或定价页更合适）；各方案维度差异过大、无法逐项对齐；需要长篇解释而非逐格打勾
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现功能对比页。
+
+先检查现有表格组件、定价数据与设计令牌，优先复用。
+要求：
+- 语义化 table + sticky 首列与表头，横向溢出可滚动
+- 方案表头含价格与推荐徽标，可点选聚焦
+- 只看差异开关与按维度排序，由状态驱动
+- 差异高亮不止靠颜色，兼顾色觉障碍
+- 移动端降级为卡片对比，深浅色一致
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/help-center — Help Center / 帮助中心
+
+- Type: pages · Aliases: 帮助中心 · 帮助页 · 帮助文档 · 客服帮助页 · 常见问题页 · FAQ 页 · 说明书页面 · 怎么用的页面
+- Page: /pages/help-center · JSON: /api/concept/pages/help-center.json · MD: /pages/help-center.md
+
+**What / 这是什么:** 把产品文档、常见问题与联系入口收拢到一处的自助支持页面：顶部搜索先猜意图， 主体按主题分组文章并按热度排序，底部保留联系客服与提交工单的兜底路径。 目标是让用户在打扰人工之前先自己解决问题。
+
+**What (en):** A self-service support page gathering docs, FAQs and contact routes: search guesses intent, articles group by topic, and contact sits at the bottom.
+
+**When to use:** 用户遇到问题先自行查找答案；支持量需要靠文档分流；内容需按产品模块长期维护
+
+**When not to use:** 需要实时人工介入的紧急事故（用在线客服或热线）；只有几条零散说明（用页面内提示或工具提示）；面向公众的营销介绍（用落地页）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现帮助中心页面。
+
+先检查现有文档数据源、搜索组件与折叠组件，优先复用。
+要求：
+- 顶部搜索区 + 主题分类网格 + 文章列表 + 联系支持
+- 搜索实时过滤文章并高亮命中词
+- 常见问题用可折叠列表
+- 无结果时给热门词与联系入口
+- 响应式，键盘可访问，深浅色一致
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
 ## pages/landing-page — Landing Page / 落地页
 
 - Type: pages · Aliases: 落地页 · 卖东西的落地页 · 产品主页 · 官网首页 · 营销首页 · 产品介绍页 · 转化页
@@ -2419,6 +2759,92 @@
 - 提交态防重复提交
 - 深浅色一致，键盘可访问
 - 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/notification-center — Notification Center / 通知中心
+
+- Type: pages · Aliases: 通知中心 · 消息中心 · 站内信 · 消息盒子 · 通知列表页 · 消息提醒页 · 铃铛点开的页面 · 未读消息在哪看
+- Page: /pages/notification-center · JSON: /api/concept/pages/notification-center.json · MD: /pages/notification-center.md
+
+**What / 这是什么:** 把系统产生的提醒按来源与时间聚合成可浏览列表的页面，顶部用标签区分全部、未读、提及等视图， 每条通知展示图标、标题、正文摘要与时间，支持一键已读、批量处理与跳转原文。 它替代零散的弹窗提醒，让用户主动回看而不是被动打断。
+
+**What (en):** A page aggregating alerts into a scannable list, with tabs for all, unread and mentions and rows showing icon, title, snippet and time plus bulk mark-as-read.
+
+**When to use:** 系统会持续产生类型多样的提醒；用户需要回看、分类处理而不是被打断；通知要跨设备、跨渠道集中管理
+
+**When not to use:** 只有一次性、必须立刻处理的紧急警报（用模态或顶部横幅）；提醒极少且可并入时间线或活动流；面向访客的营销推送（用落地页或邮件）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现通知中心页面。
+
+先检查现有的通知数据接口、徽标与列表组件，优先复用。
+要求：
+- 顶栏 + 视图标签（未读计数）+ 通知列表三段结构
+- 单条通知可标记已读，支持多选批量操作
+- 未读与已读样式区分，时间用相对格式
+- 无通知时给出正向空状态
+- 滚动加载更多，尊重 prefers-reduced-motion
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/onboarding — Onboarding / 新手引导
+
+- Type: pages · Aliases: 新手引导 · 引导流程 · 新手教程 · 第一次用怎么玩 · 上手引导 · 首次使用引导 · onboarding
+- Page: /pages/onboarding · JSON: /api/concept/pages/onboarding.json · MD: /pages/onboarding.md
+
+**What / 这是什么:** 用分步流程把新用户从首次进入带到完成第一个关键动作的页面：通过简短说明、样例与进度提示降低陌生感，并在合适时机引导用户开始操作，而不是一次塞入全部功能。它决定用户对产品的第一印象与留存意愿。
+
+**What (en):** A first-run page that guides new users to one key action with short explanations, samples and progress cues, rather than every feature.
+
+**When to use:** 产品首次上手，需要教会核心操作；新功能上线，需要引导老用户迁移；多步骤设置流程需要降低放弃率
+
+**When not to use:** 高频复访的老用户日常操作；有清晰导航、功能自解释的简单工具；每次启动都强制弹出的打断式引导
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现新手引导。
+
+先检查现有路由、弹层组件与设计 Token，优先复用。
+要求：
+- 分步导览与任务清单两种形态可选
+- 进度与当前步骤由单一状态驱动
+- 跳过、返回、完成路径完整
+- 动画尊重 prefers-reduced-motion
+- 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/order-confirmation — Order Confirmation / 订单确认页
+
+- Type: pages · Aliases: 订单确认页 · 下单成功页 · 付款成功页 · 订单提交成功 · 支付成功页面 · 谢谢购买页 · 订单完成页 · 购买成功页
+- Page: /pages/order-confirmation · JSON: /api/concept/pages/order-confirmation.json · MD: /pages/order-confirmation.md
+
+**What / 这是什么:** 下单成功后接住用户情绪的收尾页：用明确的成功状态、订单号与交付时间先给出确定感，再列商品明细、 金额与下一步动作（发票、物流、继续购物）。它不收集新信息，只把「钱已付、货在路上」讲清楚。
+
+**What (en):** The closing screen after a successful purchase: a clear success state, order number and delivery estimate give certainty first, then item details, totals and next actions such as invoice, tracking or continue shopping. It collects nothing new — it exists to make paid-and-on-its-way unmistakable.
+
+**When to use:** 支付或下单成功后立即展示；需要给出订单号与交付预期；需要引导配送跟踪、发票或继续购物
+
+**When not to use:** 支付失败或订单待审核（用状态或错误页）；只是暂存草稿，尚未真正成单；仍需用户继续填写信息
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现订单确认页。
+
+先检查订单数据结构、支付回调与现有卡片和时间线组件，保持一致。
+要求：
+- 成功状态用 role="status" 播报
+- 订单号可复制并给出已复制反馈
+- 商品明细与金额摘要完整，金额用等宽数字右对齐
+- 物流时间线用有序列表表达进度
+- 庆祝动效尊重 prefers-reduced-motion
+- 深浅色与打印样式一致，不新增依赖
 完成后运行现有检查，说明修改文件。
 ```
 
@@ -2561,6 +2987,34 @@
 - 服务条款勾选联动提交按钮
 - 深浅色一致，键盘可访问
 - 不新增依赖
+完成后运行现有检查，说明修改文件。
+```
+
+## pages/team — Team Page / 团队页
+
+- Type: pages · Aliases: 团队页 · 团队成员页 · 团队介绍页 · 关于我们团队 · 我们是谁页面 · 公司团队页 · 成员介绍页 · 团队墙
+- Page: /pages/team · JSON: /api/concept/pages/team.json · MD: /pages/team.md
+
+**What / 这是什么:** 用人物卡片组介绍组织构成的页面：头像、姓名、职位与一句职责说明构成最小单元，按部门或职能分组， 常附加入职链接与价值观叙述。它把抽象的「我们」换成具体可辨认的人，用真实面孔建立信任。
+
+**What (en):** A page that introduces an organization through a grid of person cards: avatar, name, role and a one-line responsibility form the smallest unit, grouped by team or function, often with an open-roles link and a values narrative. It replaces the abstract we with specific, recognizable people to build trust.
+
+**When to use:** 公司或产品需要展示核心成员；招聘与信任建设需要真实面孔；组织可按部门或职能分组呈现
+
+**When not to use:** 只展示一位创始人（用关于页）；成员信息涉密或频繁变动；需要详细履历与作品（用个人主页）
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现团队页。
+
+先检查现有成员数据、头像资源与卡片组件，优先复用。
+要求：
+- 按部门分组的响应式成员网格
+- 头像方形裁切并带真实 alt 文本
+- 卡片可聚焦跳转个人页
+- 部门筛选键盘可达，尊重 prefers-reduced-motion
+- 页尾招聘 CTA，深浅色一致，不新增依赖
 完成后运行现有检查，说明修改文件。
 ```
 

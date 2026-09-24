@@ -1,0 +1,228 @@
+{
+  "id": "changelog",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "更新日志页",
+    "en": "Changelog"
+  },
+  "aliases": [
+    "更新日志",
+    "更新日志页",
+    "版本更新记录",
+    "更新记录页",
+    "发版说明",
+    "版本历史页",
+    "新版本改了啥",
+    "更新公告页"
+  ],
+  "category": [
+    "Page",
+    "Documentation"
+  ],
+  "description": {
+    "zh": "按时间倒序罗列产品每次变化的页面：每条版本以日期与版本号开头，用新增、改进、修复分组呈现， 重要变更附迁移说明与链接。它让用户与团队在同一份事实源上理解「这次更新影响我什么」。",
+    "en": "A reverse-chronological record of every product change: each entry opens with a date and version, groups items into added, changed and fixed, and flags breaking changes with migration notes and links. It gives users and teams one shared source of truth for what an update changes for them."
+  },
+  "use_when": [
+    {
+      "zh": "产品持续迭代、有多个对外版本",
+      "en": "The product ships many public versions over time"
+    },
+    {
+      "zh": "用户需要知道自己用的版本改了什么",
+      "en": "Users need to know what changed in their version"
+    },
+    {
+      "zh": "行为或 API 变更需要给出迁移说明",
+      "en": "Behavior or API changes need migration notes"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "只有一次发布或基本不再更新",
+      "en": "A single release, or the product is effectively frozen"
+    },
+    {
+      "zh": "面向内部的任务流水（用项目协作工具）",
+      "en": "Internal task streams — use the project tracker"
+    },
+    {
+      "zh": "需要逐条 commit 的开发者视图（用 release 页）",
+      "en": "A commit-by-commit developer view — use release pages"
+    }
+  ],
+  "tags": [
+    "changelog",
+    "release",
+    "versioning",
+    "documentation",
+    "history"
+  ],
+  "variants": [
+    {
+      "id": "timeline",
+      "name": {
+        "zh": "时间线式",
+        "en": "Timeline"
+      },
+      "note": {
+        "zh": "垂直时间轴，日期与版本号作为锚点",
+        "en": "Vertical timeline anchored by date and version"
+      }
+    },
+    {
+      "id": "grouped",
+      "name": {
+        "zh": "分组折叠",
+        "en": "Grouped"
+      },
+      "note": {
+        "zh": "按版本折叠展开，默认展开最新",
+        "en": "Collapsible per version, newest expanded by default"
+      }
+    },
+    {
+      "id": "feed",
+      "name": {
+        "zh": "订阅流",
+        "en": "Feed"
+      },
+      "note": {
+        "zh": "简洁列表配 RSS 或邮件订阅入口",
+        "en": "Compact list with RSS or email subscribe"
+      }
+    }
+  ],
+  "anatomy": [
+    "Header & Subscribe 标题与订阅",
+    "Latest Release 最新版本",
+    "Version Entry 版本条目",
+    "Date & Version 日期与版本号",
+    "Change Groups 变更分组",
+    "Migration Note 迁移提示"
+  ],
+  "related": [
+    {
+      "id": "timeline",
+      "relation": "contains"
+    },
+    {
+      "id": "accordion",
+      "relation": "contains"
+    },
+    {
+      "id": "badge",
+      "relation": "contains"
+    },
+    {
+      "id": "search-filtering",
+      "relation": "uses"
+    },
+    {
+      "id": "documentation",
+      "relation": "similar_to"
+    }
+  ],
+  "structure": [
+    {
+      "part": {
+        "zh": "标题与订阅",
+        "en": "Header & subscribe"
+      },
+      "note": {
+        "zh": "说明更新频率，并提供 RSS 或邮件订阅。",
+        "en": "States the release cadence and offers RSS or email subscribe."
+      }
+    },
+    {
+      "part": {
+        "zh": "最新版本",
+        "en": "Latest release"
+      },
+      "note": {
+        "zh": "置顶当前版本，强调最重要的变更。",
+        "en": "Pins the current version and highlights the most important change."
+      }
+    },
+    {
+      "part": {
+        "zh": "版本条目",
+        "en": "Version entries"
+      },
+      "note": {
+        "zh": "一条版本一个区块，倒序排列，可锚点直达。",
+        "en": "One block per version, newest first, with anchor links."
+      }
+    },
+    {
+      "part": {
+        "zh": "变更分组",
+        "en": "Change groups"
+      },
+      "note": {
+        "zh": "新增、改进、修复分开列，每条一句话。",
+        "en": "Added, changed and fixed kept separate, one line each."
+      }
+    },
+    {
+      "part": {
+        "zh": "迁移提示",
+        "en": "Migration note"
+      },
+      "note": {
+        "zh": "破坏性变更单独提示，给出替代做法。",
+        "en": "Breaking changes called out with the replacement path."
+      }
+    }
+  ],
+  "demo": {
+    "component": "changelog",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "grid",
+      "flex",
+      "counter-reset: version",
+      "border-left: 2px solid var(--color-line)",
+      "position: sticky"
+    ],
+    "notes": {
+      "zh": "版本列表用有序列表或 article 语义，日期用 time 元素并带 datetime 属性。分类标签用文字而非纯色区分。 时间轴用左侧边框加圆点伪元素；折叠区用原生 details 或受控手风琴。订阅入口可见但克制； 筛选由状态驱动，不改变文档顺序。",
+      "en": "Use an ordered list or article semantics; mark dates with time elements carrying datetime. Distinguish categories by label, not color alone. Draw the timeline with a left border and dot pseudo-elements; use native details or a controlled accordion. Keep subscribe visible but restrained; filtering is state-driven and preserves document order."
+    }
+  },
+  "sources": [
+    {
+      "name": "Keep a Changelog",
+      "url": "https://keepachangelog.com/en/1.1.0/"
+    },
+    {
+      "name": "Semantic Versioning",
+      "url": "https://semver.org/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个更新日志页，按时间倒序列出版本与主要变更。",
+      "en": "Create a changelog page listing versions and their key changes newest first."
+    },
+    "design": {
+      "zh": "创建产品更新日志页：顶部标题、更新频率说明与订阅按钮；下方倒序版本列表，每条含日期、版本号徽标与 新增、改进、修复分组；破坏性变更用醒目提示与迁移说明；顶部可按类型筛选。桌面单列窄栏，深浅色一致。",
+      "en": "Build a product changelog: a header with a cadence note and subscribe button; a reverse- chronological list where each entry has a date, version badge and added, changed and fixed groups; breaking changes called out with migration notes; a category filter on top. A narrow single column on desktop, consistent light/dark."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现更新日志页：数据来自 Markdown 或 JSON；日期用 time[datetime]； 分类筛选与折叠由状态驱动；破坏性变更用强调色加文字标签；支持锚点直达某版本；不新增依赖。",
+      "en": "Implement with React + Tailwind: content from Markdown or JSON; dates as time[datetime]; category filtering and collapsing state-driven; breaking changes marked with an accent plus a text label; deep links to a version; no new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现更新日志页。\n\n先检查现有文档布局、版本数据来源与设计令牌，保持一致。\n要求：\n- 倒序版本列表，日期用 time[datetime]\n- 新增、改进、修复分组，破坏性变更单独提示\n- 按类型筛选与按版本折叠由状态驱动\n- 提供 RSS 或邮件订阅入口\n- 深浅色一致，不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the changelog page in the current project.\n\nInspect the existing docs layout, version data source and design tokens; stay consistent.\nRequirements:\n- Reverse-chronological versions with time[datetime] dates\n- Added/changed/fixed groups with breaking changes called out\n- Type filtering and per-version collapse driven by state\n- RSS or email subscribe entry\n- Consistent light/dark; no new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

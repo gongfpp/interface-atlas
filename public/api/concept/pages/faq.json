@@ -1,0 +1,236 @@
+{
+  "id": "faq",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "常见问题页",
+    "en": "FAQ Page"
+  },
+  "aliases": [
+    "常见问题",
+    "常见问题页",
+    "问答页",
+    "帮助问答",
+    "疑难解答",
+    "帮助中心问答",
+    "你问我答"
+  ],
+  "category": [
+    "Page",
+    "Support"
+  ],
+  "description": {
+    "zh": "把用户反复提出的问题按主题归组、可逐条展开的页面：用问题式标题降低查找成本，配合锚点、搜索或分类让答案自解释，并把仍未解决的人引向人工支持。它用内容替代重复的客服沟通。",
+    "en": "A page that groups recurring questions by topic and expands each answer. Question-style headings cut search cost and keep answers self-serve."
+  },
+  "use_when": [
+    {
+      "zh": "用户咨询集中在少数常见问题",
+      "en": "Support questions cluster around a few common topics"
+    },
+    {
+      "zh": "需要减少重复的客服工单",
+      "en": "Repetitive support tickets must be reduced"
+    },
+    {
+      "zh": "售前选型、计费与账号政策需要自助解答",
+      "en": "Pre-sales, billing and account policies need self-service answers"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "每个问题都需要个性化排查",
+      "en": "Every case needs individual troubleshooting"
+    },
+    {
+      "zh": "内容随版本频繁变更（用文档站更合适）",
+      "en": "Content changes every release — a docs site fits better"
+    },
+    {
+      "zh": "已有完整知识库或社区问答",
+      "en": "A full knowledge base or community forum already exists"
+    }
+  ],
+  "tags": [
+    "support",
+    "answers",
+    "help",
+    "content"
+  ],
+  "variants": [
+    {
+      "id": "accordion",
+      "name": {
+        "zh": "折叠问答",
+        "en": "Accordion"
+      },
+      "note": {
+        "zh": "问题作标题，答案点击展开，一屏容纳更多",
+        "en": "Questions as headings with click-to-expand answers"
+      }
+    },
+    {
+      "id": "categorized",
+      "name": {
+        "zh": "分类问答",
+        "en": "Categorized"
+      },
+      "note": {
+        "zh": "先按主题分组或分段切换，再逐条展开",
+        "en": "Group or switch by topic first, then expand each item"
+      }
+    },
+    {
+      "id": "searchable",
+      "name": {
+        "zh": "可搜索问答",
+        "en": "Searchable"
+      },
+      "note": {
+        "zh": "顶部搜索即时过滤问题，适合条目很多时",
+        "en": "A search field filters questions instantly when the list is long"
+      }
+    }
+  ],
+  "anatomy": [
+    "Heading 页面标题",
+    "Search 搜索入口",
+    "Categories 分类导航",
+    "Questions 问题列表",
+    "Answer 答案内容",
+    "Support CTA 人工入口"
+  ],
+  "related": [
+    {
+      "id": "accordion",
+      "relation": "contains"
+    },
+    {
+      "id": "input",
+      "relation": "contains"
+    },
+    {
+      "id": "filter-panel",
+      "relation": "contains"
+    },
+    {
+      "id": "progressive-disclosure",
+      "relation": "uses"
+    },
+    {
+      "id": "documentation",
+      "relation": "similar_to"
+    }
+  ],
+  "structure": [
+    {
+      "part": {
+        "zh": "标题与引导",
+        "en": "Heading and intro"
+      },
+      "note": {
+        "zh": "一句说明这里能解决什么，并提示找不到时去哪。",
+        "en": "One line on what this page solves, plus where to go if nothing fits."
+      }
+    },
+    {
+      "part": {
+        "zh": "搜索",
+        "en": "Search"
+      },
+      "note": {
+        "zh": "即时过滤问题标题，空结果给出人工入口。",
+        "en": "Filter question titles live; an empty result points to support."
+      }
+    },
+    {
+      "part": {
+        "zh": "分类导航",
+        "en": "Categories"
+      },
+      "note": {
+        "zh": "按账号、计费、功能等主题分段或切换。",
+        "en": "Segment or switch by account, billing, features and similar topics."
+      }
+    },
+    {
+      "part": {
+        "zh": "问题列表",
+        "en": "Questions"
+      },
+      "note": {
+        "zh": "问题式标题，可逐条展开，展开状态可分享锚点。",
+        "en": "Question-style headings that expand, with shareable anchors per item."
+      }
+    },
+    {
+      "part": {
+        "zh": "答案内容",
+        "en": "Answers"
+      },
+      "note": {
+        "zh": "先给结论，再给步骤，控制段落长度并链接相关条目。",
+        "en": "Lead with the answer, then steps, keeping paragraphs short and cross-linking."
+      }
+    },
+    {
+      "part": {
+        "zh": "人工入口",
+        "en": "Support CTA"
+      },
+      "note": {
+        "zh": "页尾提供联系支持或提交工单，承接未解决的问题。",
+        "en": "A closing contact or ticket link catches what the page did not resolve."
+      }
+    }
+  ],
+  "demo": {
+    "component": "faq",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "flex",
+      "grid",
+      "scroll-margin-top",
+      "content-visibility: auto",
+      "max-width: 72ch"
+    ],
+    "notes": {
+      "zh": "问题列表用 max-width 72ch 控制阅读行宽，分类用 grid 自适应排列。展开项给 scroll-margin-top，锚点跳转不被吸顶导航遮挡； 长列表可加 content-visibility auto 省渲染。手风琴用 button 加 aria-expanded 与 aria-controls，不要用纯 div 点击。",
+      "en": "Cap the question list at max-width 72ch, and lay out categories with an adaptive grid. Give expanded items scroll-margin-top so anchor jumps clear sticky headers, and add content-visibility auto for long lists. Build the accordion from a button with aria-expanded and aria-controls rather than clickable divs."
+    }
+  },
+  "sources": [
+    {
+      "name": "Nielsen Norman Group — Accordions on Complex Content",
+      "url": "https://www.nngroup.com/articles/accordions-complex-content/"
+    },
+    {
+      "name": "Nielsen Norman Group — Progressive Disclosure",
+      "url": "https://www.nngroup.com/articles/progressive-disclosure/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个常见问题页，包含标题、问题列表和可展开的答案。",
+      "en": "Create an FAQ page with a heading, a list of questions and expandable answers."
+    },
+    "design": {
+      "zh": "设计一个常见问题页：顶部标题与搜索框，下方分类切换，问题列表可逐条展开，展开只保留一个或多个的规则要明确； 页尾提供联系支持入口，深浅色一致，移动端优先。",
+      "en": "Design an FAQ page: a heading and search box on top, category tabs below, and a question list that expands per item with a clear single-or-multi-open rule. Close with a support entry, keep light and dark consistent, and design mobile first."
+    },
+    "implementation": {
+      "zh": "用 React 加 Tailwind 实现 FAQ：搜索框受控并即时过滤，分类切换驱动列表，手风琴用 aria-expanded 与 aria-controls； 空结果展示支持入口；尊重 prefers-reduced-motion；不新增依赖。",
+      "en": "React plus Tailwind FAQ: a controlled search field that filters live, category switching drives the list, and the accordion uses aria-expanded and aria-controls. Show a support entry on empty results, respect prefers-reduced-motion, and add no dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现常见问题页。\n\n先检查现有内容组件、手风琴与设计 Token，优先复用。\n要求：\n- 搜索即时过滤问题标题，分类可切换\n- 手风琴使用 aria-expanded 与 aria-controls\n- 空结果给出人工支持入口\n- 长列表滚动性能与锚点可用\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the FAQ page in the current project.\n\nInspect existing content components, accordions and design tokens first; reuse them.\nRequirements:\n- Search filters question titles live and categories switch\n- Accordion uses aria-expanded and aria-controls\n- Empty results offer a support entry\n- Good scroll performance for long lists and working anchors\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

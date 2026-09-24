@@ -1,0 +1,216 @@
+{
+  "id": "onboarding",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "新手引导",
+    "en": "Onboarding"
+  },
+  "aliases": [
+    "新手引导",
+    "引导流程",
+    "新手教程",
+    "第一次用怎么玩",
+    "上手引导",
+    "首次使用引导",
+    "onboarding"
+  ],
+  "category": [
+    "Page",
+    "Onboarding"
+  ],
+  "description": {
+    "zh": "用分步流程把新用户从首次进入带到完成第一个关键动作的页面：通过简短说明、样例与进度提示降低陌生感，并在合适时机引导用户开始操作，而不是一次塞入全部功能。它决定用户对产品的第一印象与留存意愿。",
+    "en": "A first-run page that guides new users to one key action with short explanations, samples and progress cues, rather than every feature."
+  },
+  "use_when": [
+    {
+      "zh": "产品首次上手，需要教会核心操作",
+      "en": "First-run product that must teach a core action"
+    },
+    {
+      "zh": "新功能上线，需要引导老用户迁移",
+      "en": "A new feature ships and existing users must migrate"
+    },
+    {
+      "zh": "多步骤设置流程需要降低放弃率",
+      "en": "Multi-step setup needs lower drop-off"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "高频复访的老用户日常操作",
+      "en": "Everyday use by returning power users"
+    },
+    {
+      "zh": "有清晰导航、功能自解释的简单工具",
+      "en": "Simple tools whose navigation already explains itself"
+    },
+    {
+      "zh": "每次启动都强制弹出的打断式引导",
+      "en": "Forced intro popups on every launch"
+    }
+  ],
+  "tags": [
+    "onboarding",
+    "first-run",
+    "activation",
+    "guidance"
+  ],
+  "variants": [
+    {
+      "id": "tour",
+      "name": {
+        "zh": "分步导览",
+        "en": "Step Tour"
+      },
+      "note": {
+        "zh": "遮罩高亮加逐步气泡，聚焦当下要操作的位置",
+        "en": "Spotlight overlay with step bubbles that focus the current target"
+      }
+    },
+    {
+      "id": "checklist",
+      "name": {
+        "zh": "任务清单",
+        "en": "Checklist"
+      },
+      "note": {
+        "zh": "列出上手任务，完成一项勾一项，可随时回来",
+        "en": "A list of setup tasks that can be checked off and resumed later"
+      }
+    },
+    {
+      "id": "interactive",
+      "name": {
+        "zh": "实操引导",
+        "en": "Interactive Walkthrough"
+      },
+      "note": {
+        "zh": "让用户直接完成一次真实操作来学习",
+        "en": "Learners complete one real action to learn by doing"
+      }
+    }
+  ],
+  "anatomy": [
+    "Progress 进度",
+    "Illustration 插画",
+    "Copy 说明文案",
+    "Steps 步骤列表",
+    "Primary Action 主操作",
+    "Skip 跳过入口"
+  ],
+  "related": [
+    {
+      "id": "onboarding-tour",
+      "relation": "uses"
+    },
+    {
+      "id": "wizard",
+      "relation": "uses"
+    },
+    {
+      "id": "stepper",
+      "relation": "contains"
+    },
+    {
+      "id": "progress-bar",
+      "relation": "contains"
+    },
+    {
+      "id": "button",
+      "relation": "contains"
+    }
+  ],
+  "structure": [
+    {
+      "part": {
+        "zh": "欢迎页",
+        "en": "Welcome"
+      },
+      "note": {
+        "zh": "一句话价值主张加开始按钮，说明马上能获得什么。",
+        "en": "One-line value proposition plus a start button stating the immediate payoff."
+      }
+    },
+    {
+      "part": {
+        "zh": "步骤导览",
+        "en": "Guided steps"
+      },
+      "note": {
+        "zh": "每次只讲一个动作，遮罩聚焦目标并给出可跳过的说明。",
+        "en": "One action per step; the overlay focuses a target and the copy stays skippable."
+      }
+    },
+    {
+      "part": {
+        "zh": "任务清单",
+        "en": "Task checklist"
+      },
+      "note": {
+        "zh": "三到五个上手任务，勾选进度可见，离开后能继续。",
+        "en": "Three to five tasks with visible progress that resume after leaving."
+      }
+    },
+    {
+      "part": {
+        "zh": "完成反馈",
+        "en": "Completion"
+      },
+      "note": {
+        "zh": "完成后跳到第一个真实任务或给示例，避免停在空白页。",
+        "en": "On finish, jump into a real task or a sample instead of an empty screen."
+      }
+    }
+  ],
+  "demo": {
+    "component": "onboarding",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "flex",
+      "grid",
+      "position: fixed",
+      "backdrop-filter: blur(6px)",
+      "transition: opacity 200ms ease"
+    ],
+    "notes": {
+      "zh": "引导层用 position fixed 覆盖全屏，遮罩靠 box-shadow 或 SVG 挖洞高亮目标；进度条与步骤点用 flex 居中， 动画时长写成 calc 乘 var(--demo-speed, 1)。步骤状态集中在单一 state（当前步加是否完成），跳过与返回走同一状态机， 不要为每一步各存一个布尔值。",
+      "en": "The tour overlay is position fixed over the viewport; highlight the target with a box-shadow cutout or an SVG mask. Center progress bars and step dots with flex, and write durations as calc multiplied by var(--demo-speed, 1). Keep step state in one place (current step plus done flag); skip and back drive the same state machine rather than one boolean per step."
+    }
+  },
+  "sources": [
+    {
+      "name": "Apple Human Interface Guidelines — Onboarding",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/onboarding"
+    },
+    {
+      "name": "Nielsen Norman Group — Mobile App Onboarding",
+      "url": "https://www.nngroup.com/articles/mobile-app-onboarding/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个新手引导页面，包含欢迎语、分步说明和开始按钮。",
+      "en": "Create an onboarding page with a welcome message, step-by-step copy and a start button."
+    },
+    "design": {
+      "zh": "设计一个三步新手引导：居中卡片，顶部进度点，中部插画与一句说明，底部主按钮与跳过链接。深色模式一致， 步进动画尊重 prefers-reduced-motion，完成后给出示例任务而不是空白页。",
+      "en": "Design a three-step onboarding flow: a centered card with progress dots on top, an illustration and one line of copy in the middle, a primary button and a skip link below. Keep dark mode consistent, respect prefers-reduced-motion in step transitions, and finish by handing over a sample task instead of an empty screen."
+    },
+    "implementation": {
+      "zh": "用 React 加 Tailwind 实现 Onboarding：单一 step 状态驱动卡片内容与进度；遮罩层固定定位并用 CSS 变量控制动画速度； 跳过直接落到主界面；不新增依赖。",
+      "en": "React plus Tailwind onboarding: a single step state drives card content and progress. The overlay is fixed-positioned with CSS variables controlling animation speed; skip jumps straight to the main UI; no new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现新手引导。\n\n先检查现有路由、弹层组件与设计 Token，优先复用。\n要求：\n- 分步导览与任务清单两种形态可选\n- 进度与当前步骤由单一状态驱动\n- 跳过、返回、完成路径完整\n- 动画尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement onboarding in the current project.\n\nInspect existing routes, overlay components and design tokens first; reuse them.\nRequirements:\n- Support both a step tour and a task checklist\n- A single state drives progress and the current step\n- Complete skip, back and finish paths\n- Animations respect prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

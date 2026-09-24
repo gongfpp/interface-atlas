@@ -1,0 +1,226 @@
+{
+  "id": "chat",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "聊天消息页",
+    "en": "Chat / Messaging"
+  },
+  "aliases": [
+    "聊天页",
+    "聊天消息页",
+    "私信页",
+    "对话页",
+    "消息窗口",
+    "聊天界面",
+    "发消息的页面",
+    "会话列表"
+  ],
+  "category": [
+    "Page",
+    "Messaging"
+  ],
+  "description": {
+    "zh": "以对话为单位组织消息的页面：左侧会话列表按最新消息排序，右侧线程区按时间正序铺气泡， 底部输入框承担发送与附件，顶部显示对方状态与操作。 它把异步沟通的上下文留在同一条线程里，适合客服、社区与团队协作场景。",
+    "en": "A page organized around conversations: a session list sorted by latest message, a chronological bubble thread and a composer for text and attachments."
+  },
+  "use_when": [
+    {
+      "zh": "需要一对一会话或小组实时沟通",
+      "en": "One-to-one or small-group real-time communication"
+    },
+    {
+      "zh": "消息要保留上下文并能回看历史",
+      "en": "Messages must keep context and support history lookup"
+    },
+    {
+      "zh": "客服、社区或团队协作的持续对话",
+      "en": "Ongoing support, community or team conversations"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "只是单向广播或公告（用通知中心或横幅）",
+      "en": "One-way broadcasts — use a notification center or banner"
+    },
+    {
+      "zh": "内容需要结构化比对（用表格或看板）",
+      "en": "Content needs structured comparison — use a table or board"
+    },
+    {
+      "zh": "少于三条消息的临时确认（用内联提示即可）",
+      "en": "One-off confirmations under a few messages — inline hints suffice"
+    }
+  ],
+  "tags": [
+    "chat",
+    "messaging",
+    "conversation",
+    "thread",
+    "realtime"
+  ],
+  "variants": [
+    {
+      "id": "split",
+      "name": {
+        "zh": "分栏会话",
+        "en": "Split View"
+      },
+      "note": {
+        "zh": "会话列表 + 线程，桌面主形态",
+        "en": "Conversation list plus thread, the desktop default"
+      }
+    },
+    {
+      "id": "focused",
+      "name": {
+        "zh": "单线程",
+        "en": "Focused Thread"
+      },
+      "note": {
+        "zh": "只显示当前对话，移动端常用",
+        "en": "Only the current conversation, common on mobile"
+      }
+    },
+    {
+      "id": "bubble",
+      "name": {
+        "zh": "气泡流",
+        "en": "Bubble Stream"
+      },
+      "note": {
+        "zh": "群聊式连续气泡，强调发言者",
+        "en": "Group-style consecutive bubbles emphasizing speakers"
+      }
+    }
+  ],
+  "anatomy": [
+    "Conversation List 会话列表",
+    "Thread Header 会话头",
+    "Message Bubbles 消息气泡",
+    "Date Divider 日期分隔",
+    "Composer 输入区"
+  ],
+  "related": [
+    {
+      "id": "input",
+      "relation": "contains"
+    },
+    {
+      "id": "avatar",
+      "relation": "contains"
+    },
+    {
+      "id": "badge",
+      "relation": "contains"
+    },
+    {
+      "id": "infinite-scroll",
+      "relation": "uses"
+    },
+    {
+      "id": "optimistic-ui",
+      "relation": "uses"
+    }
+  ],
+  "structure": [
+    {
+      "part": {
+        "zh": "会话列表",
+        "en": "Conversation list"
+      },
+      "note": {
+        "zh": "头像、名称、最后一条摘要与未读徽标，按最新消息排序。",
+        "en": "Avatar, name, last-message snippet and unread badge, ordered by latest message."
+      }
+    },
+    {
+      "part": {
+        "zh": "会话头",
+        "en": "Thread header"
+      },
+      "note": {
+        "zh": "对方名称、在线状态与更多操作，移动端可返回列表。",
+        "en": "Peer name, presence and more actions; returns to the list on mobile."
+      }
+    },
+    {
+      "part": {
+        "zh": "消息气泡",
+        "en": "Message bubbles"
+      },
+      "note": {
+        "zh": "左右区分己方对方，尾部带时间与已读状态。",
+        "en": "Left/right distinguishes sender, with time and read state at the tail."
+      }
+    },
+    {
+      "part": {
+        "zh": "日期分隔",
+        "en": "Date divider"
+      },
+      "note": {
+        "zh": "按天插入分隔，避免长线程失去时间感。",
+        "en": "Day dividers keep long threads from losing their sense of time."
+      }
+    },
+    {
+      "part": {
+        "zh": "输入区",
+        "en": "Composer"
+      },
+      "note": {
+        "zh": "多行输入 + 附件 + 发送按钮，回车发送可配置。",
+        "en": "Multi-line input plus attachments and send, with configurable Enter-to-send."
+      }
+    }
+  ],
+  "demo": {
+    "component": "chat",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "flex",
+      "grid",
+      "overflow-y: auto",
+      "overflow-anchor: auto"
+    ],
+    "notes": {
+      "zh": "左右两列用 grid-cols-[280px_1fr]，移动端折叠为单列并让线程占满。线程区正向排列、 发送后滚动到底（scrollIntoView），历史加载保持滚动位置锚定。气泡最大宽度约 72%， 输入框用 textarea 自动增高；乐观发送先插入本地气泡，失败再标记重发。",
+      "en": "Two columns via grid-cols-[280px_1fr], collapsing to a single stacked column on mobile. Keep the thread in chronological order and scroll to the end on send (scrollIntoView), anchoring scroll position when loading history. Cap bubbles near 72% width, auto-grow the textarea, and use optimistic sends that mark a retry state on failure."
+    }
+  },
+  "sources": [
+    {
+      "name": "Nielsen Norman Group — Chatbots and conversational UI",
+      "url": "https://www.nngroup.com/articles/chatbots/"
+    },
+    {
+      "name": "W3C WAI-ARIA Authoring Practices — Feed pattern",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/feed/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个聊天消息页，包含会话列表、消息线程和输入框。",
+      "en": "Create a chat page with a conversation list, a message thread and a composer."
+    },
+    "design": {
+      "zh": "创建团队聊天页：左侧会话列表（头像、名称、最后一条摘要、未读徽标）；右侧会话头显示 对方在线状态；线程按时间正序排列，己方气泡靠右用强调色，对方靠左用中性色，按天插入日期分隔； 底部输入框带附件按钮与发送，回车发送；新消息滚动到底部。响应式，深浅色一致。",
+      "en": "Build a team chat page: conversation list on the left (avatar, name, last snippet, unread badge); a thread header with presence; chronological messages with own bubbles right in accent and peer bubbles left in neutral, plus day dividers; a composer with attach and send, Enter to send; auto-scroll to the newest message. Responsive and theme-consistent."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现聊天页：会话与消息用受控状态，发送时乐观插入本地消息并滚动到底； 输入框用 textarea 随内容增高；会话列表未读徽标随切换清零； 历史加载保持滚动锚点；尊重 prefers-reduced-motion；不新增依赖。",
+      "en": "React + Tailwind chat page: conversations and messages in controlled state; on send, optimistically append the local message and scroll to the end; auto-grow the textarea; clear the unread badge when a conversation is opened; keep the scroll anchor when loading history; respect prefers-reduced-motion; no new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现聊天消息页。\n\n先检查现有的消息接口、头像与输入组件，保持一致。\n要求：\n- 会话列表 + 线程区 + 输入区结构\n- 发送消息乐观更新并滚动到底部\n- 己方/对方气泡样式区分，按天插入日期分隔\n- 未读徽标在打开会话后清零\n- 响应式折叠为单列，键盘可操作\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the chat page in the current project.\n\nInspect the existing message API, avatar and input components first; stay consistent.\nRequirements:\n- Conversation list, thread area and composer layout\n- Optimistic send with auto-scroll to the bottom\n- Distinct own/peer bubble styles and day dividers\n- Clear unread badges when a conversation opens\n- Collapse to a single column responsively; keyboard operable\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

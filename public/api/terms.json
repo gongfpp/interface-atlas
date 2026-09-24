@@ -1,7 +1,7 @@
 {
   "generated": "2026-09-24",
   "site": "https://gongfpp.github.io/interface-atlas-web",
-  "count": 138,
+  "count": 154,
   "types": [
     "components",
     "patterns",
@@ -16436,6 +16436,1416 @@
       }
     },
     {
+      "id": "about",
+      "type": "pages",
+      "url": "/pages/about",
+      "apiUrl": "/api/concept/pages/about.json",
+      "md": "/pages/about.md",
+      "status": "published",
+      "name": {
+        "zh": "关于页",
+        "en": "About Page"
+      },
+      "aliases": [
+        "关于页",
+        "关于我们",
+        "公司介绍页",
+        "团队介绍页",
+        "我们是谁",
+        "品牌故事页",
+        "关于我们页面"
+      ],
+      "category": [
+        "Page",
+        "Brand"
+      ],
+      "description": {
+        "zh": "向访客解释「我们是谁、为什么做这件事」的品牌页面：开头用一句使命宣言定调，中段以创始故事、发展历程或团队照片建立信任，再用价值观与关键数据支撑，结尾导向联系、招聘或产品。",
+        "en": "A brand page explaining who you are: a mission statement sets the tone, then story and milestones build trust, and the end points to contact or careers."
+      },
+      "use_when": [
+        {
+          "zh": "访客在决策前想了解团队与背景",
+          "en": "Visitors want to know the team and background before deciding"
+        },
+        {
+          "zh": "品牌需要传达使命与价值观",
+          "en": "The brand needs to communicate mission and values"
+        },
+        {
+          "zh": "招聘、融资或合作需要可信的自我介绍",
+          "en": "Hiring, funding or partnerships need a credible introduction"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "用户只关心功能与价格（用落地页或定价页更合适）",
+          "en": "Users only care about features and price — use a landing or pricing page"
+        },
+        {
+          "zh": "团队或公司信息尚未确定",
+          "en": "Team or company details are not settled yet"
+        },
+        {
+          "zh": "需要承载复杂操作流程",
+          "en": "The page must carry complex task flows"
+        }
+      ],
+      "tags": [
+        "brand",
+        "company",
+        "trust",
+        "storytelling"
+      ],
+      "variants": [
+        {
+          "id": "story",
+          "name": {
+            "zh": "品牌故事",
+            "en": "Brand Story"
+          },
+          "note": {
+            "zh": "以创始人叙事为主线，情绪与图片占主导",
+            "en": "A founder-led narrative where emotion and imagery lead"
+          }
+        },
+        {
+          "id": "team",
+          "name": {
+            "zh": "团队展示",
+            "en": "Team Grid"
+          },
+          "note": {
+            "zh": "头像网格 + 职位与简介，强调人",
+            "en": "Avatar grid with roles and short bios, putting people first"
+          }
+        },
+        {
+          "id": "timeline",
+          "name": {
+            "zh": "历程时间线",
+            "en": "Timeline"
+          },
+          "note": {
+            "zh": "以时间线串起里程碑与关键数据",
+            "en": "A timeline strings milestones and key numbers together"
+          }
+        }
+      ],
+      "anatomy": [
+        "Header 顶栏",
+        "Hero 使命宣言",
+        "Story 故事历程",
+        "Team 团队成员",
+        "Values 价值观",
+        "CTA 行动区"
+      ],
+      "related": [
+        {
+          "id": "avatar",
+          "relation": "contains"
+        },
+        {
+          "id": "timeline",
+          "relation": "contains"
+        },
+        {
+          "id": "card",
+          "relation": "contains"
+        },
+        {
+          "id": "scroll-reveal",
+          "relation": "used_with"
+        },
+        {
+          "id": "contact",
+          "relation": "similar_to"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "顶栏",
+            "en": "Header"
+          },
+          "note": {
+            "zh": "站点导航与主 CTA，与全站保持一致。",
+            "en": "Site nav and primary CTA, consistent with the rest of the site."
+          }
+        },
+        {
+          "part": {
+            "zh": "使命宣言",
+            "en": "Mission"
+          },
+          "note": {
+            "zh": "一句加大的主张配一张品牌照片，先回答「我们为何存在」。",
+            "en": "One oversized statement beside a brand image answers why you exist."
+          }
+        },
+        {
+          "part": {
+            "zh": "故事历程",
+            "en": "Story"
+          },
+          "note": {
+            "zh": "创始故事或时间线，用具体事件与年份建立可信度。",
+            "en": "The origin story or timeline builds credibility with concrete events and years."
+          }
+        },
+        {
+          "part": {
+            "zh": "团队成员",
+            "en": "Team"
+          },
+          "note": {
+            "zh": "头像、姓名与职位网格，规模小则给每人一句简介。",
+            "en": "A grid of avatars, names and roles, with one line each for small teams."
+          }
+        },
+        {
+          "part": {
+            "zh": "价值观",
+            "en": "Values"
+          },
+          "note": {
+            "zh": "三到四条原则，每条一句解释，避免空泛口号。",
+            "en": "Three or four principles, each with one line of explanation, not slogans."
+          }
+        },
+        {
+          "part": {
+            "zh": "行动区",
+            "en": "CTA"
+          },
+          "note": {
+            "zh": "导向联系、招聘或产品体验，给读者下一步。",
+            "en": "Points to contact, careers or the product, giving readers a next step."
+          }
+        }
+      ],
+      "demo": {
+        "component": "about",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "flex",
+          "grid",
+          "grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))",
+          "gap",
+          "object-fit: cover"
+        ],
+        "notes": {
+          "zh": "分区纵向堆叠，团队与价值观用 auto-fit 网格；头像统一正方形并 object-fit: cover，避免拉伸。长页在分区进入时做轻微淡入，需尊重 prefers-reduced-motion；文字与图片的对比度要达 WCAG AA。",
+          "en": "Stack sections vertically; lay the team and values out with an auto-fit grid; keep avatars square and object-fit: cover so they never stretch. Fade sections in as they enter, respecting prefers-reduced-motion, and keep text-on-image contrast at WCAG AA."
+        }
+      },
+      "sources": [
+        {
+          "name": "Nielsen Norman Group — Articles",
+          "url": "https://www.nngroup.com/articles/"
+        },
+        {
+          "name": "Apple Human Interface Guidelines",
+          "url": "https://developer.apple.com/design/human-interface-guidelines/"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个关于页，包含使命宣言、团队介绍和价值观。",
+          "en": "Create an about page with a mission statement, team section and values."
+        },
+        "design": {
+          "zh": "设计品牌关于页：顶部大标题使命宣言 + 品牌图；中段时间线串起里程碑；团队区四列头像卡，每张含姓名与职位；价值观三列图标 + 短句；结尾 CTA 横幅指向联系我们与加入我们。深浅色一致，进场轻微淡入。",
+          "en": "Design a brand about page: a large mission headline with a brand image; a timeline of milestones; a four-column team grid with name and role cards; a three-column values row with short lines; a closing CTA banner to contact and careers. Theme-consistent with subtle fade-ins."
+        },
+        "implementation": {
+          "zh": "用 React + Tailwind 实现关于页：语义化 section，团队与价值观用 grid auto-fit；头像固定比例并 object-fit: cover；时间线用有序列表表达先后；进场动画用 IntersectionObserver 并尊重 prefers-reduced-motion；不新增依赖。",
+          "en": "React + Tailwind about page: semantic sections; team and values on an auto-fit grid; avatars with a fixed ratio and object-fit: cover; the timeline as an ordered list; entry animation via IntersectionObserver respecting prefers-reduced-motion; no new dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现关于页。\n\n先检查现有布局壳、卡片与头像组件，优先复用。\n要求：\n- 使命宣言 + 故事/时间线 + 团队 + 价值观 + CTA\n- 团队与价值观用自适应网格，头像不变形\n- 时间线语义化为有序列表\n- 图片有 alt，文字对比度达 AA\n- 尊重 prefers-reduced-motion，不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement the about page in the current project.\n\nInspect the existing layout shell, card and avatar components first; reuse them.\nRequirements:\n- Mission + story/timeline + team + values + CTA\n- Team and values on an adaptive grid; avatars never distort\n- Timeline marked up as an ordered list\n- Images carry alt text; text meets AA contrast\n- Respect prefers-reduced-motion; no new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
+      "id": "blog-index",
+      "type": "pages",
+      "url": "/pages/blog-index",
+      "apiUrl": "/api/concept/pages/blog-index.json",
+      "md": "/pages/blog-index.md",
+      "status": "published",
+      "name": {
+        "zh": "博客列表页",
+        "en": "Blog Index"
+      },
+      "aliases": [
+        "博客列表页",
+        "文章列表",
+        "博客首页",
+        "资讯列表页",
+        "文章列表页",
+        "博客目录",
+        "blog 首页"
+      ],
+      "category": [
+        "Page",
+        "Content"
+      ],
+      "description": {
+        "zh": "按时间或主题聚合文章的内容索引页：顶部先给一条编辑推荐的头条，再用卡片流或列表铺开全部文章，每项含题图、标题、摘要、分类与日期；分类导航与搜索负责收窄范围，分页或无限滚动负责继续加载。",
+        "en": "An index of posts by date or topic: a featured story leads, then cards show thumbnail, title, excerpt and date, with category nav and pagination."
+      },
+      "use_when": [
+        {
+          "zh": "站点有持续更新的文章或资讯",
+          "en": "The site publishes a steady stream of articles"
+        },
+        {
+          "zh": "用户需要按主题、标签或时间浏览",
+          "en": "Users browse by topic, tag or time"
+        },
+        {
+          "zh": "希望突出少数重点文章",
+          "en": "You want to spotlight a few key posts"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "只有零星几条静态内容",
+          "en": "There are only a handful of static items"
+        },
+        {
+          "zh": "内容需要强检索而非浏览（用搜索结果页更合适）",
+          "en": "Content needs heavy retrieval, not browsing — a search page fits better"
+        },
+        {
+          "zh": "单篇文章本身就是完整产品页",
+          "en": "A single article already is the whole product page"
+        }
+      ],
+      "tags": [
+        "blog",
+        "content",
+        "listing",
+        "navigation"
+      ],
+      "variants": [
+        {
+          "id": "card-grid",
+          "name": {
+            "zh": "卡片网格",
+            "en": "Card Grid"
+          },
+          "note": {
+            "zh": "图文卡片等高排列，题图统一比例，适合视觉型内容",
+            "en": "Equal-height visual cards with a unified thumbnail ratio"
+          }
+        },
+        {
+          "id": "list",
+          "name": {
+            "zh": "紧凑列表",
+            "en": "Compact List"
+          },
+          "note": {
+            "zh": "只留标题、摘要与日期，一屏信息量最大",
+            "en": "Title, excerpt and date only — maximum information per screen"
+          }
+        },
+        {
+          "id": "featured-hero",
+          "name": {
+            "zh": "头条英雄区",
+            "en": "Featured Hero"
+          },
+          "note": {
+            "zh": "顶部大图推荐一篇，下方退回常规列表",
+            "en": "A large visual promotes one post, with a normal list below"
+          }
+        }
+      ],
+      "anatomy": [
+        "Header 顶栏",
+        "Featured 头条推荐",
+        "Category Nav 分类导航",
+        "Post List 文章列表",
+        "Pagination 分页",
+        "Newsletter 订阅区"
+      ],
+      "related": [
+        {
+          "id": "card",
+          "relation": "contains"
+        },
+        {
+          "id": "pagination",
+          "relation": "contains"
+        },
+        {
+          "id": "infinite-scroll",
+          "relation": "uses"
+        },
+        {
+          "id": "search-filtering",
+          "relation": "uses"
+        },
+        {
+          "id": "blog-post",
+          "relation": "similar_to"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "顶栏",
+            "en": "Header"
+          },
+          "note": {
+            "zh": "站点导航、搜索入口与订阅按钮，保持全站一致。",
+            "en": "Site nav, search entry and subscribe button, consistent sitewide."
+          }
+        },
+        {
+          "part": {
+            "zh": "头条推荐",
+            "en": "Featured post"
+          },
+          "note": {
+            "zh": "一条大图或加大标题的置顶文章，占首屏最强视觉权重。",
+            "en": "One pinned post with a large image or headline, the strongest first-screen weight."
+          }
+        },
+        {
+          "part": {
+            "zh": "分类导航",
+            "en": "Category nav"
+          },
+          "note": {
+            "zh": "横向标签或分类链接，切换后列表即时过滤。",
+            "en": "Horizontal tags or category links that filter the list on switch."
+          }
+        },
+        {
+          "part": {
+            "zh": "文章列表",
+            "en": "Post list"
+          },
+          "note": {
+            "zh": "卡片或列表项重复排列，每项包含题图、标题、摘要与元信息。",
+            "en": "Repeated cards or rows, each with thumbnail, title, excerpt and metadata."
+          }
+        },
+        {
+          "part": {
+            "zh": "分页",
+            "en": "Pagination"
+          },
+          "note": {
+            "zh": "页码或「加载更多」，也可换用无限滚动。",
+            "en": "Page numbers or a load-more button, replaceable by infinite scroll."
+          }
+        },
+        {
+          "part": {
+            "zh": "订阅区",
+            "en": "Newsletter"
+          },
+          "note": {
+            "zh": "页尾邮箱收集，把一次性访客转成回访读者。",
+            "en": "An email capture before the footer, turning one-off visits into returns."
+          }
+        }
+      ],
+      "demo": {
+        "component": "blog-index",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "flex",
+          "grid",
+          "grid-template-columns: repeat(auto-fill, minmax(240px, 1fr))",
+          "gap",
+          "aspect-ratio: 16 / 9"
+        ],
+        "notes": {
+          "zh": "列表容器用 grid 自适应列数，卡片内部用 flex 纵向排布题图与文本；题图统一 aspect-ratio 防止高度跳动。头条在 DOM 中排在列表之前，保证键盘与读屏顺序正确；分页保留真实链接，加载更多用按钮并给 aria-live 反馈。",
+          "en": "Lay the list out with an auto-fill grid and stack thumbnail and text inside each card with flex; lock thumbnails to one aspect-ratio so heights do not jump. Keep the featured post before the list in the DOM for correct keyboard and screen-reader order; keep pagination as real links and announce load-more via aria-live."
+        }
+      },
+      "sources": [
+        {
+          "name": "MDN — CSS Grid Layout",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
+        },
+        {
+          "name": "web.dev — Learn CSS: Grid",
+          "url": "https://web.dev/learn/css/grid"
+        },
+        {
+          "name": "Nielsen Norman Group — F-Shaped Pattern",
+          "url": "https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个博客列表页，包含头条推荐、分类导航和文章卡片列表。",
+          "en": "Create a blog index page with a featured post, category nav and a post card list."
+        },
+        "design": {
+          "zh": "设计内容博客列表页：吸顶顶栏含搜索与订阅按钮；顶部一条大图头条；分类标签横向排列，选中态用强调色；下方三列卡片网格，每张含 16:9 题图、标题、两行摘要、分类与日期；底部分页。深浅色一致，悬停轻微抬升。",
+          "en": "Design a content blog index: sticky header with search and subscribe; a large featured post on top; horizontal category tags with an accent selected state; a three-column card grid with 16:9 thumbnails, title, two-line excerpt, category and date; pagination below. Theme-consistent with a subtle hover lift."
+        },
+        "implementation": {
+          "zh": "用 React + Tailwind 实现博客列表：卡片用 grid auto-fill 响应式排列；分类切换用受控状态过滤列表；题图统一 aspect-ratio 并懒加载；分页链接可深链；加载更多保留焦点并给 aria-live 反馈；尊重 prefers-reduced-motion；不新增依赖。",
+          "en": "React + Tailwind blog index: responsive auto-fill card grid; category state filters the list; thumbnails share one aspect-ratio and lazy-load; pagination links are deep-linkable; load-more preserves focus and announces via aria-live; respect prefers-reduced-motion; no new dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现博客列表页。\n\n先检查现有路由、卡片与分页组件，优先复用。\n要求：\n- 头条推荐 + 分类导航 + 文章列表 + 分页\n- 分类切换即时过滤，状态可深链\n- 题图固定比例并懒加载\n- 键盘可达，尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement the blog index page in the current project.\n\nInspect existing routes, card and pagination components first; reuse them.\nRequirements:\n- Featured post + category nav + post list + pagination\n- Category switch filters instantly and is deep-linkable\n- Fixed-ratio, lazy-loaded thumbnails\n- Keyboard accessible; respect prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
+      "id": "blog-post",
+      "type": "pages",
+      "url": "/pages/blog-post",
+      "apiUrl": "/api/concept/pages/blog-post.json",
+      "md": "/pages/blog-post.md",
+      "status": "published",
+      "name": {
+        "zh": "博客文章页",
+        "en": "Blog Post"
+      },
+      "aliases": [
+        "博客文章页",
+        "文章详情页",
+        "单篇文章页",
+        "正文页",
+        "博客正文",
+        "文章内容页",
+        "读文章的页面"
+      ],
+      "category": [
+        "Page",
+        "Content"
+      ],
+      "description": {
+        "zh": "围绕单篇文章组织的阅读页：文章头给出标题、作者、发布时间与预计阅读时长，正文保持一行 45～75 字符的舒适行宽，侧栏或文首提供可跳转的目录，文末用作者卡与相关文章把读者留在站内。",
+        "en": "A page for one article: header with title, author and date, a body at a comfortable measure, a table of contents, and an author card with related posts below."
+      },
+      "use_when": [
+        {
+          "zh": "展示一篇有明确标题与作者的独立长文",
+          "en": "Presenting one standalone article with a title and author"
+        },
+        {
+          "zh": "正文较长，需要目录或进度提示",
+          "en": "The body is long and needs a table of contents or progress cue"
+        },
+        {
+          "zh": "阅读后需要引导到相关文章或订阅",
+          "en": "You want to guide readers on to related posts or subscribe"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "内容只是简短公告或卡片摘要",
+          "en": "The content is a short note or card summary"
+        },
+        {
+          "zh": "多篇内容需要并列比较（用列表页更合适）",
+          "en": "Multiple items must be compared — a list page fits better"
+        },
+        {
+          "zh": "文章以互动工具为主体而非文字",
+          "en": "The post is mainly an interactive tool, not prose"
+        }
+      ],
+      "tags": [
+        "blog",
+        "content",
+        "reading",
+        "typography"
+      ],
+      "variants": [
+        {
+          "id": "standard",
+          "name": {
+            "zh": "标准文章",
+            "en": "Standard"
+          },
+          "note": {
+            "zh": "单栏正文 + 页头元信息，最通用的阅读布局",
+            "en": "Single-column body with header metadata, the general default"
+          }
+        },
+        {
+          "id": "long-form",
+          "name": {
+            "zh": "长文带目录",
+            "en": "Long-form with TOC"
+          },
+          "note": {
+            "zh": "侧栏常驻目录，随滚动高亮当前章节",
+            "en": "A persistent sidebar TOC that highlights the current section"
+          }
+        },
+        {
+          "id": "tutorial",
+          "name": {
+            "zh": "教程步骤",
+            "en": "Tutorial"
+          },
+          "note": {
+            "zh": "正文按步骤编号，配代码块与提示框",
+            "en": "Numbered steps with code blocks and callouts"
+          }
+        }
+      ],
+      "anatomy": [
+        "Header 顶栏",
+        "Article Head 文章头",
+        "Table of Contents 目录",
+        "Body 正文",
+        "Author 作者卡",
+        "Related 相关文章"
+      ],
+      "related": [
+        {
+          "id": "avatar",
+          "relation": "contains"
+        },
+        {
+          "id": "breadcrumb",
+          "relation": "contains"
+        },
+        {
+          "id": "progressive-disclosure",
+          "relation": "uses"
+        },
+        {
+          "id": "scroll-reveal",
+          "relation": "used_with"
+        },
+        {
+          "id": "blog-index",
+          "relation": "similar_to"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "顶栏",
+            "en": "Header"
+          },
+          "note": {
+            "zh": "站点导航与搜索，阅读中保持可达以便随时离开或查找。",
+            "en": "Site nav and search, kept reachable so readers can leave or look things up."
+          }
+        },
+        {
+          "part": {
+            "zh": "文章头",
+            "en": "Article head"
+          },
+          "note": {
+            "zh": "标题、作者、日期、预计阅读时长与主题标签，决定是否继续读。",
+            "en": "Title, author, date, reading time and topic tags decide whether reading continues."
+          }
+        },
+        {
+          "part": {
+            "zh": "目录",
+            "en": "Table of contents"
+          },
+          "note": {
+            "zh": "长文必备，列出章节并可锚点跳转；窄屏折叠收起。",
+            "en": "Essential for long posts; lists sections with anchor jumps and collapses on narrow screens."
+          }
+        },
+        {
+          "part": {
+            "zh": "正文",
+            "en": "Body"
+          },
+          "note": {
+            "zh": "保持 45～75 字符行宽与合适行高，代码、引用、图片各有样式。",
+            "en": "Keeps a 45–75 character measure and comfortable leading; code, quotes and images get their own styles."
+          }
+        },
+        {
+          "part": {
+            "zh": "作者卡",
+            "en": "Author card"
+          },
+          "note": {
+            "zh": "头像、简介与社交链接，为观点提供来源与信任。",
+            "en": "Avatar, bio and social links give the piece a source and trust."
+          }
+        },
+        {
+          "part": {
+            "zh": "相关文章",
+            "en": "Related posts"
+          },
+          "note": {
+            "zh": "文末推荐三到五篇，延长会话而不是让读者立刻离开。",
+            "en": "Three to five recommendations at the end extend the session instead of ending it."
+          }
+        }
+      ],
+      "demo": {
+        "component": "blog-post",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "max-width: 65ch",
+          "line-height: 1.7",
+          "position: sticky",
+          "scroll-margin-top: 5rem",
+          "text-wrap: pretty"
+        ],
+        "notes": {
+          "zh": "正文容器限制 max-width 为 45～75ch 并放大 line-height；目录用 position: sticky 常驻侧栏，锚点跳转前用 scroll-margin-top 预留吸顶顶栏高度。标题、代码与引用通过变量控制节奏；滚动进度可用 scroll-driven animation，并尊重 prefers-reduced-motion。",
+          "en": "Cap the body at a 45–75ch measure with generous line-height; keep the TOC sticky in a side column and reserve the sticky header height with scroll-margin-top on anchors. Pace headings, code and quotes with spacing variables; a reading-progress bar can use scroll-driven animation and must respect prefers-reduced-motion."
+        }
+      },
+      "sources": [
+        {
+          "name": "Nielsen Norman Group — How Users Read on the Web",
+          "url": "https://www.nngroup.com/articles/how-users-read-on-the-web/"
+        },
+        {
+          "name": "Nielsen Norman Group — Typography Terms",
+          "url": "https://www.nngroup.com/articles/typography-terms-ux/"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个博客文章页，包含标题元信息、正文、目录和相关文章。",
+          "en": "Create a blog post page with title metadata, body, a table of contents and related posts."
+        },
+        "design": {
+          "zh": "设计博客文章页：顶部细顶栏含返回与分享；文章头居中标题、作者头像与日期、阅读时长；正文单栏 65ch 行宽，标题层级清晰，代码块有底色；右侧 sticky 目录高亮当前章节；文末作者卡加三张相关文章卡。深浅色一致。",
+          "en": "Design a blog post: a slim top bar with back and share; a centered article head with title, author avatar, date and reading time; a single 65ch body column with clear heading levels and tinted code blocks; a sticky right TOC highlighting the current section; an author card plus three related cards at the end. Theme-consistent."
+        },
+        "implementation": {
+          "zh": "用 React + Tailwind 实现文章页：正文用 max-width 65ch、line-height 1.7；目录从标题生成锚点并用 IntersectionObserver 高亮；代码块保留横向滚动；分享按钮可复制链接；滚动进度条用 scroll-driven animation；尊重 prefers-reduced-motion；不新增依赖。",
+          "en": "React + Tailwind article page: 65ch max-width and 1.7 line-height; build TOC anchors from headings and highlight via IntersectionObserver; allow horizontal scroll in code blocks; a share button copies the link; a scroll-driven progress bar; respect prefers-reduced-motion; no new dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现博客文章页。\n\n先检查现有排版样式、Markdown 渲染与目录组件，优先复用。\n要求：\n- 文章头元信息 + 正文 + 目录 + 作者卡 + 相关文章\n- 正文 45～75ch 行宽，标题层级清晰\n- 目录锚点可跳转并高亮当前章节\n- 代码块可横向滚动，图片有 alt\n- 尊重 prefers-reduced-motion，不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement the blog post page in the current project.\n\nInspect existing typography styles, Markdown rendering and TOC components first; reuse them.\nRequirements:\n- Article head metadata + body + TOC + author card + related posts\n- Body at a 45–75ch measure with clear heading levels\n- TOC anchors jump and highlight the current section\n- Code blocks scroll horizontally; images carry alt text\n- Respect prefers-reduced-motion; no new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
+      "id": "calendar",
+      "type": "pages",
+      "url": "/pages/calendar",
+      "apiUrl": "/api/concept/pages/calendar.json",
+      "md": "/pages/calendar.md",
+      "status": "published",
+      "name": {
+        "zh": "日历页",
+        "en": "Calendar Page"
+      },
+      "aliases": [
+        "日历页",
+        "日程页",
+        "日历界面",
+        "排期页面",
+        "日程表",
+        "月历",
+        "看日期的页面",
+        "安排时间的页面"
+      ],
+      "category": [
+        "Page",
+        "Productivity"
+      ],
+      "description": {
+        "zh": "用时间网格承载事件与日程的页面：以月、周、日三种尺度切换视图，事件块按起止时间定位并支持拖拽改期， 顶部有今天、前后翻页与视图切换，侧栏列出待办与冲突。 它是排期、预约与团队协调的主界面。",
+        "en": "A page laying events onto a time grid with month, week and day views, click-to-edit blocks and drag-to-reschedule, anchored by today and prev/next controls."
+      },
+      "use_when": [
+        {
+          "zh": "事件有明确的起止时间与日期",
+          "en": "Events have clear start and end times"
+        },
+        {
+          "zh": "用户需要跨天、跨周比较安排",
+          "en": "Users compare plans across days or weeks"
+        },
+        {
+          "zh": "多人共享同一时间资源（会议室、班表）",
+          "en": "Shared time resources across people — rooms, shifts"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "只有截止日期、没有具体时段（用列表或看板）",
+          "en": "Only due dates, no time slots — a list or board fits"
+        },
+        {
+          "zh": "纯按时间正序的日志流（用时间线）",
+          "en": "A purely chronological log — use a timeline"
+        },
+        {
+          "zh": "单次预约、无需浏览时间网格（用日期选择器）",
+          "en": "A single booking with no grid browsing — a date picker is enough"
+        }
+      ],
+      "tags": [
+        "calendar",
+        "scheduling",
+        "events",
+        "time",
+        "planning"
+      ],
+      "variants": [
+        {
+          "id": "month",
+          "name": {
+            "zh": "月视图",
+            "en": "Month View"
+          },
+          "note": {
+            "zh": "六周网格，先看整体疏密",
+            "en": "Six-week grid showing overall density first"
+          }
+        },
+        {
+          "id": "week",
+          "name": {
+            "zh": "周视图",
+            "en": "Week View"
+          },
+          "note": {
+            "zh": "逐时排布，会议与班表常用",
+            "en": "Hour-by-hour columns, common for meetings and shifts"
+          }
+        },
+        {
+          "id": "agenda",
+          "name": {
+            "zh": "议程列表",
+            "en": "Agenda List"
+          },
+          "note": {
+            "zh": "按天罗列事件，移动端友好",
+            "en": "Events listed by day, mobile friendly"
+          }
+        }
+      ],
+      "anatomy": [
+        "Toolbar 工具栏",
+        "Date Grid 日期网格",
+        "Event Block 事件块",
+        "Today Marker 今日标记",
+        "Side Agenda 侧栏议程"
+      ],
+      "related": [
+        {
+          "id": "date-picker",
+          "relation": "contains"
+        },
+        {
+          "id": "segmented-control",
+          "relation": "contains"
+        },
+        {
+          "id": "timeline",
+          "relation": "contains"
+        },
+        {
+          "id": "drag-and-drop",
+          "relation": "uses"
+        },
+        {
+          "id": "empty-state",
+          "relation": "uses"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "工具栏",
+            "en": "Toolbar"
+          },
+          "note": {
+            "zh": "今天、前后翻页、视图切换与新建事件入口。",
+            "en": "Today, prev/next navigation, view switcher and a create-event entry."
+          }
+        },
+        {
+          "part": {
+            "zh": "日期网格",
+            "en": "Date grid"
+          },
+          "note": {
+            "zh": "月/周/日不同粒度的行列表头与时间轴。",
+            "en": "Row and column headers plus a time axis at each granularity."
+          }
+        },
+        {
+          "part": {
+            "zh": "事件块",
+            "en": "Event block"
+          },
+          "note": {
+            "zh": "按起止定位、颜色分类，可点击编辑、拖拽改期。",
+            "en": "Positioned by start and end, color-coded, click to edit and drag to reschedule."
+          }
+        },
+        {
+          "part": {
+            "zh": "今日标记",
+            "en": "Today marker"
+          },
+          "note": {
+            "zh": "当前日期高亮，有事件时显示圆点。",
+            "en": "The current date is highlighted, dotted when events exist."
+          }
+        },
+        {
+          "part": {
+            "zh": "侧栏议程",
+            "en": "Side agenda"
+          },
+          "note": {
+            "zh": "选中日期的待办与时间冲突提醒。",
+            "en": "Tasks for the selected day plus time-conflict warnings."
+          }
+        }
+      ],
+      "demo": {
+        "component": "calendar",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "grid",
+          "grid-template-columns: repeat(7, 1fr)",
+          "overflow: auto",
+          "position: sticky"
+        ],
+        "notes": {
+          "zh": "月视图用 7 列 grid，日期单元格纵横比为 1 / 1 并让事件块超出时省略号截断； 周视图用时间轴 grid-rows 配合绝对定位事件块（top/height 由起止换算）。工具栏吸顶， 网格横向可滚动；拖拽改期用 HTML5 DnD 或指针事件，落点高亮 200ms 反馈。",
+          "en": "Month view uses a seven-column grid with square-ish cells that clamp overflowing events; week view pairs a time-axis grid with absolutely positioned blocks (top/height from time). Keep the toolbar sticky and the grid scrollable, and highlight a 200ms drop target when rescheduling via HTML5 drag-and-drop or pointer events."
+        }
+      },
+      "sources": [
+        {
+          "name": "Material Design 3 — Date pickers",
+          "url": "https://m3.material.io/components/date-pickers/overview"
+        },
+        {
+          "name": "W3C WAI-ARIA Authoring Practices — Grid pattern",
+          "url": "https://www.w3.org/WAI/ARIA/apg/patterns/grid/"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个日历页，包含月视图网格、事件块和今日标记。",
+          "en": "Create a calendar page with a month grid, event blocks and a today marker."
+        },
+        "design": {
+          "zh": "创建团队日历页：顶部工具栏含今天、上一页/下一页、月/周/议程切换与新建事件按钮； 主体月视图七列网格，今天高亮，事件块按分类配色且时间冲突时并排；右侧栏列出选中日期的 议程与冲突提示。响应式，窄屏默认切到议程列表；深浅色一致，键盘可导航单元格。",
+          "en": "Build a team calendar page: a toolbar with today, prev/next, month/week/agenda switch and a create button; a seven-column month grid with today highlighted, color-coded events and side-by-side placement on conflicts; a right rail agenda for the selected day with conflict warnings. Responsive to an agenda list on narrow screens, theme-consistent and keyboard navigable."
+        },
+        "implementation": {
+          "zh": "用 React + Tailwind 实现日历页：日期矩阵由当前年月计算生成，选中日与视图为受控状态； 事件按日期分组渲染，冲突事件横向分列；单元格方向键导航用 roving tabindex； 拖拽改期用指针事件并更新本地事件状态；尊重 prefers-reduced-motion；不新增依赖。",
+          "en": "React + Tailwind calendar: compute the date matrix from the active month; keep selected day and view in controlled state; group events by date and split conflicting ones into columns; use roving tabindex for arrow-key navigation; reschedule with pointer events updating local state; respect prefers-reduced-motion; no new dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现日历页。\n\n先检查现有日期工具函数、事件数据与弹层组件，优先复用。\n要求：\n- 工具栏 + 月/周/议程三种视图 + 侧栏议程\n- 今天高亮，事件块按起止定位并分类配色\n- 点击事件可查看详情，拖拽可改期\n- 键盘方向键在日期网格中导航\n- 响应式，窄屏降级为议程列表\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement the calendar page in the current project.\n\nInspect the existing date utilities, event data and popover components first; reuse them.\nRequirements:\n- Toolbar, month/week/agenda views and a side agenda\n- Today highlighted; event blocks positioned by time and color-coded\n- Click an event for details; drag to reschedule\n- Arrow-key navigation across the date grid\n- Responsive, degrading to an agenda list on narrow screens\n- No new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
+      "id": "changelog",
+      "type": "pages",
+      "url": "/pages/changelog",
+      "apiUrl": "/api/concept/pages/changelog.json",
+      "md": "/pages/changelog.md",
+      "status": "published",
+      "name": {
+        "zh": "更新日志页",
+        "en": "Changelog"
+      },
+      "aliases": [
+        "更新日志",
+        "更新日志页",
+        "版本更新记录",
+        "更新记录页",
+        "发版说明",
+        "版本历史页",
+        "新版本改了啥",
+        "更新公告页"
+      ],
+      "category": [
+        "Page",
+        "Documentation"
+      ],
+      "description": {
+        "zh": "按时间倒序罗列产品每次变化的页面：每条版本以日期与版本号开头，用新增、改进、修复分组呈现， 重要变更附迁移说明与链接。它让用户与团队在同一份事实源上理解「这次更新影响我什么」。",
+        "en": "A reverse-chronological record of every product change: each entry opens with a date and version, groups items into added, changed and fixed, and flags breaking changes with migration notes and links. It gives users and teams one shared source of truth for what an update changes for them."
+      },
+      "use_when": [
+        {
+          "zh": "产品持续迭代、有多个对外版本",
+          "en": "The product ships many public versions over time"
+        },
+        {
+          "zh": "用户需要知道自己用的版本改了什么",
+          "en": "Users need to know what changed in their version"
+        },
+        {
+          "zh": "行为或 API 变更需要给出迁移说明",
+          "en": "Behavior or API changes need migration notes"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "只有一次发布或基本不再更新",
+          "en": "A single release, or the product is effectively frozen"
+        },
+        {
+          "zh": "面向内部的任务流水（用项目协作工具）",
+          "en": "Internal task streams — use the project tracker"
+        },
+        {
+          "zh": "需要逐条 commit 的开发者视图（用 release 页）",
+          "en": "A commit-by-commit developer view — use release pages"
+        }
+      ],
+      "tags": [
+        "changelog",
+        "release",
+        "versioning",
+        "documentation",
+        "history"
+      ],
+      "variants": [
+        {
+          "id": "timeline",
+          "name": {
+            "zh": "时间线式",
+            "en": "Timeline"
+          },
+          "note": {
+            "zh": "垂直时间轴，日期与版本号作为锚点",
+            "en": "Vertical timeline anchored by date and version"
+          }
+        },
+        {
+          "id": "grouped",
+          "name": {
+            "zh": "分组折叠",
+            "en": "Grouped"
+          },
+          "note": {
+            "zh": "按版本折叠展开，默认展开最新",
+            "en": "Collapsible per version, newest expanded by default"
+          }
+        },
+        {
+          "id": "feed",
+          "name": {
+            "zh": "订阅流",
+            "en": "Feed"
+          },
+          "note": {
+            "zh": "简洁列表配 RSS 或邮件订阅入口",
+            "en": "Compact list with RSS or email subscribe"
+          }
+        }
+      ],
+      "anatomy": [
+        "Header & Subscribe 标题与订阅",
+        "Latest Release 最新版本",
+        "Version Entry 版本条目",
+        "Date & Version 日期与版本号",
+        "Change Groups 变更分组",
+        "Migration Note 迁移提示"
+      ],
+      "related": [
+        {
+          "id": "timeline",
+          "relation": "contains"
+        },
+        {
+          "id": "accordion",
+          "relation": "contains"
+        },
+        {
+          "id": "badge",
+          "relation": "contains"
+        },
+        {
+          "id": "search-filtering",
+          "relation": "uses"
+        },
+        {
+          "id": "documentation",
+          "relation": "similar_to"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "标题与订阅",
+            "en": "Header & subscribe"
+          },
+          "note": {
+            "zh": "说明更新频率，并提供 RSS 或邮件订阅。",
+            "en": "States the release cadence and offers RSS or email subscribe."
+          }
+        },
+        {
+          "part": {
+            "zh": "最新版本",
+            "en": "Latest release"
+          },
+          "note": {
+            "zh": "置顶当前版本，强调最重要的变更。",
+            "en": "Pins the current version and highlights the most important change."
+          }
+        },
+        {
+          "part": {
+            "zh": "版本条目",
+            "en": "Version entries"
+          },
+          "note": {
+            "zh": "一条版本一个区块，倒序排列，可锚点直达。",
+            "en": "One block per version, newest first, with anchor links."
+          }
+        },
+        {
+          "part": {
+            "zh": "变更分组",
+            "en": "Change groups"
+          },
+          "note": {
+            "zh": "新增、改进、修复分开列，每条一句话。",
+            "en": "Added, changed and fixed kept separate, one line each."
+          }
+        },
+        {
+          "part": {
+            "zh": "迁移提示",
+            "en": "Migration note"
+          },
+          "note": {
+            "zh": "破坏性变更单独提示，给出替代做法。",
+            "en": "Breaking changes called out with the replacement path."
+          }
+        }
+      ],
+      "demo": {
+        "component": "changelog",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "grid",
+          "flex",
+          "counter-reset: version",
+          "border-left: 2px solid var(--color-line)",
+          "position: sticky"
+        ],
+        "notes": {
+          "zh": "版本列表用有序列表或 article 语义，日期用 time 元素并带 datetime 属性。分类标签用文字而非纯色区分。 时间轴用左侧边框加圆点伪元素；折叠区用原生 details 或受控手风琴。订阅入口可见但克制； 筛选由状态驱动，不改变文档顺序。",
+          "en": "Use an ordered list or article semantics; mark dates with time elements carrying datetime. Distinguish categories by label, not color alone. Draw the timeline with a left border and dot pseudo-elements; use native details or a controlled accordion. Keep subscribe visible but restrained; filtering is state-driven and preserves document order."
+        }
+      },
+      "sources": [
+        {
+          "name": "Keep a Changelog",
+          "url": "https://keepachangelog.com/en/1.1.0/"
+        },
+        {
+          "name": "Semantic Versioning",
+          "url": "https://semver.org/"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个更新日志页，按时间倒序列出版本与主要变更。",
+          "en": "Create a changelog page listing versions and their key changes newest first."
+        },
+        "design": {
+          "zh": "创建产品更新日志页：顶部标题、更新频率说明与订阅按钮；下方倒序版本列表，每条含日期、版本号徽标与 新增、改进、修复分组；破坏性变更用醒目提示与迁移说明；顶部可按类型筛选。桌面单列窄栏，深浅色一致。",
+          "en": "Build a product changelog: a header with a cadence note and subscribe button; a reverse- chronological list where each entry has a date, version badge and added, changed and fixed groups; breaking changes called out with migration notes; a category filter on top. A narrow single column on desktop, consistent light/dark."
+        },
+        "implementation": {
+          "zh": "用 React + Tailwind 实现更新日志页：数据来自 Markdown 或 JSON；日期用 time[datetime]； 分类筛选与折叠由状态驱动；破坏性变更用强调色加文字标签；支持锚点直达某版本；不新增依赖。",
+          "en": "Implement with React + Tailwind: content from Markdown or JSON; dates as time[datetime]; category filtering and collapsing state-driven; breaking changes marked with an accent plus a text label; deep links to a version; no new dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现更新日志页。\n\n先检查现有文档布局、版本数据来源与设计令牌，保持一致。\n要求：\n- 倒序版本列表，日期用 time[datetime]\n- 新增、改进、修复分组，破坏性变更单独提示\n- 按类型筛选与按版本折叠由状态驱动\n- 提供 RSS 或邮件订阅入口\n- 深浅色一致，不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement the changelog page in the current project.\n\nInspect the existing docs layout, version data source and design tokens; stay consistent.\nRequirements:\n- Reverse-chronological versions with time[datetime] dates\n- Added/changed/fixed groups with breaking changes called out\n- Type filtering and per-version collapse driven by state\n- RSS or email subscribe entry\n- Consistent light/dark; no new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
+      "id": "chat",
+      "type": "pages",
+      "url": "/pages/chat",
+      "apiUrl": "/api/concept/pages/chat.json",
+      "md": "/pages/chat.md",
+      "status": "published",
+      "name": {
+        "zh": "聊天消息页",
+        "en": "Chat / Messaging"
+      },
+      "aliases": [
+        "聊天页",
+        "聊天消息页",
+        "私信页",
+        "对话页",
+        "消息窗口",
+        "聊天界面",
+        "发消息的页面",
+        "会话列表"
+      ],
+      "category": [
+        "Page",
+        "Messaging"
+      ],
+      "description": {
+        "zh": "以对话为单位组织消息的页面：左侧会话列表按最新消息排序，右侧线程区按时间正序铺气泡， 底部输入框承担发送与附件，顶部显示对方状态与操作。 它把异步沟通的上下文留在同一条线程里，适合客服、社区与团队协作场景。",
+        "en": "A page organized around conversations: a session list sorted by latest message, a chronological bubble thread and a composer for text and attachments."
+      },
+      "use_when": [
+        {
+          "zh": "需要一对一会话或小组实时沟通",
+          "en": "One-to-one or small-group real-time communication"
+        },
+        {
+          "zh": "消息要保留上下文并能回看历史",
+          "en": "Messages must keep context and support history lookup"
+        },
+        {
+          "zh": "客服、社区或团队协作的持续对话",
+          "en": "Ongoing support, community or team conversations"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "只是单向广播或公告（用通知中心或横幅）",
+          "en": "One-way broadcasts — use a notification center or banner"
+        },
+        {
+          "zh": "内容需要结构化比对（用表格或看板）",
+          "en": "Content needs structured comparison — use a table or board"
+        },
+        {
+          "zh": "少于三条消息的临时确认（用内联提示即可）",
+          "en": "One-off confirmations under a few messages — inline hints suffice"
+        }
+      ],
+      "tags": [
+        "chat",
+        "messaging",
+        "conversation",
+        "thread",
+        "realtime"
+      ],
+      "variants": [
+        {
+          "id": "split",
+          "name": {
+            "zh": "分栏会话",
+            "en": "Split View"
+          },
+          "note": {
+            "zh": "会话列表 + 线程，桌面主形态",
+            "en": "Conversation list plus thread, the desktop default"
+          }
+        },
+        {
+          "id": "focused",
+          "name": {
+            "zh": "单线程",
+            "en": "Focused Thread"
+          },
+          "note": {
+            "zh": "只显示当前对话，移动端常用",
+            "en": "Only the current conversation, common on mobile"
+          }
+        },
+        {
+          "id": "bubble",
+          "name": {
+            "zh": "气泡流",
+            "en": "Bubble Stream"
+          },
+          "note": {
+            "zh": "群聊式连续气泡，强调发言者",
+            "en": "Group-style consecutive bubbles emphasizing speakers"
+          }
+        }
+      ],
+      "anatomy": [
+        "Conversation List 会话列表",
+        "Thread Header 会话头",
+        "Message Bubbles 消息气泡",
+        "Date Divider 日期分隔",
+        "Composer 输入区"
+      ],
+      "related": [
+        {
+          "id": "input",
+          "relation": "contains"
+        },
+        {
+          "id": "avatar",
+          "relation": "contains"
+        },
+        {
+          "id": "badge",
+          "relation": "contains"
+        },
+        {
+          "id": "infinite-scroll",
+          "relation": "uses"
+        },
+        {
+          "id": "optimistic-ui",
+          "relation": "uses"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "会话列表",
+            "en": "Conversation list"
+          },
+          "note": {
+            "zh": "头像、名称、最后一条摘要与未读徽标，按最新消息排序。",
+            "en": "Avatar, name, last-message snippet and unread badge, ordered by latest message."
+          }
+        },
+        {
+          "part": {
+            "zh": "会话头",
+            "en": "Thread header"
+          },
+          "note": {
+            "zh": "对方名称、在线状态与更多操作，移动端可返回列表。",
+            "en": "Peer name, presence and more actions; returns to the list on mobile."
+          }
+        },
+        {
+          "part": {
+            "zh": "消息气泡",
+            "en": "Message bubbles"
+          },
+          "note": {
+            "zh": "左右区分己方对方，尾部带时间与已读状态。",
+            "en": "Left/right distinguishes sender, with time and read state at the tail."
+          }
+        },
+        {
+          "part": {
+            "zh": "日期分隔",
+            "en": "Date divider"
+          },
+          "note": {
+            "zh": "按天插入分隔，避免长线程失去时间感。",
+            "en": "Day dividers keep long threads from losing their sense of time."
+          }
+        },
+        {
+          "part": {
+            "zh": "输入区",
+            "en": "Composer"
+          },
+          "note": {
+            "zh": "多行输入 + 附件 + 发送按钮，回车发送可配置。",
+            "en": "Multi-line input plus attachments and send, with configurable Enter-to-send."
+          }
+        }
+      ],
+      "demo": {
+        "component": "chat",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "flex",
+          "grid",
+          "overflow-y: auto",
+          "overflow-anchor: auto"
+        ],
+        "notes": {
+          "zh": "左右两列用 grid-cols-[280px_1fr]，移动端折叠为单列并让线程占满。线程区正向排列、 发送后滚动到底（scrollIntoView），历史加载保持滚动位置锚定。气泡最大宽度约 72%， 输入框用 textarea 自动增高；乐观发送先插入本地气泡，失败再标记重发。",
+          "en": "Two columns via grid-cols-[280px_1fr], collapsing to a single stacked column on mobile. Keep the thread in chronological order and scroll to the end on send (scrollIntoView), anchoring scroll position when loading history. Cap bubbles near 72% width, auto-grow the textarea, and use optimistic sends that mark a retry state on failure."
+        }
+      },
+      "sources": [
+        {
+          "name": "Nielsen Norman Group — Chatbots and conversational UI",
+          "url": "https://www.nngroup.com/articles/chatbots/"
+        },
+        {
+          "name": "W3C WAI-ARIA Authoring Practices — Feed pattern",
+          "url": "https://www.w3.org/WAI/ARIA/apg/patterns/feed/"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个聊天消息页，包含会话列表、消息线程和输入框。",
+          "en": "Create a chat page with a conversation list, a message thread and a composer."
+        },
+        "design": {
+          "zh": "创建团队聊天页：左侧会话列表（头像、名称、最后一条摘要、未读徽标）；右侧会话头显示 对方在线状态；线程按时间正序排列，己方气泡靠右用强调色，对方靠左用中性色，按天插入日期分隔； 底部输入框带附件按钮与发送，回车发送；新消息滚动到底部。响应式，深浅色一致。",
+          "en": "Build a team chat page: conversation list on the left (avatar, name, last snippet, unread badge); a thread header with presence; chronological messages with own bubbles right in accent and peer bubbles left in neutral, plus day dividers; a composer with attach and send, Enter to send; auto-scroll to the newest message. Responsive and theme-consistent."
+        },
+        "implementation": {
+          "zh": "用 React + Tailwind 实现聊天页：会话与消息用受控状态，发送时乐观插入本地消息并滚动到底； 输入框用 textarea 随内容增高；会话列表未读徽标随切换清零； 历史加载保持滚动锚点；尊重 prefers-reduced-motion；不新增依赖。",
+          "en": "React + Tailwind chat page: conversations and messages in controlled state; on send, optimistically append the local message and scroll to the end; auto-grow the textarea; clear the unread badge when a conversation is opened; keep the scroll anchor when loading history; respect prefers-reduced-motion; no new dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现聊天消息页。\n\n先检查现有的消息接口、头像与输入组件，保持一致。\n要求：\n- 会话列表 + 线程区 + 输入区结构\n- 发送消息乐观更新并滚动到底部\n- 己方/对方气泡样式区分，按天插入日期分隔\n- 未读徽标在打开会话后清零\n- 响应式折叠为单列，键盘可操作\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement the chat page in the current project.\n\nInspect the existing message API, avatar and input components first; stay consistent.\nRequirements:\n- Conversation list, thread area and composer layout\n- Optimistic send with auto-scroll to the bottom\n- Distinct own/peer bubble styles and day dividers\n- Clear unread badges when a conversation opens\n- Collapse to a single column responsively; keyboard operable\n- No new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
       "id": "checkout",
       "type": "pages",
       "url": "/pages/checkout",
@@ -16670,6 +18080,245 @@
         "agent": {
           "zh": "在当前项目中实现结账页。\n\n先检查购物车数据结构、支付接口与表单组件，保持一致。\n要求：\n- 步骤条 + 分步表单（可回退），每步校验\n- 订单摘要 sticky，金额明细完整\n- 提交态防重复下单，成功跳转确认页\n- 移动端摘要折叠\n- 深浅色一致，不新增依赖\n完成后运行现有检查，说明修改文件。",
           "en": "Implement the checkout page in the current project.\n\nInspect the cart data model, payment API and form components first; stay consistent.\nRequirements:\n- Stepper + step forms (back-navigable) with per-step validation\n- Sticky order summary with full totals breakdown\n- Duplicate-submit guard; redirect to confirmation on success\n- Collapsed summary on mobile\n- Consistent light/dark; no new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
+      "id": "contact",
+      "type": "pages",
+      "url": "/pages/contact",
+      "apiUrl": "/api/concept/pages/contact.json",
+      "md": "/pages/contact.md",
+      "status": "published",
+      "name": {
+        "zh": "联系页",
+        "en": "Contact Page"
+      },
+      "aliases": [
+        "联系页",
+        "联系我们",
+        "联系表单页",
+        "客服联系页",
+        "留言页",
+        "找我们页面",
+        "商务合作页"
+      ],
+      "category": [
+        "Page",
+        "Support"
+      ],
+      "description": {
+        "zh": "收集访客留言并提供多种联系渠道的页面：主表单只问必要字段（姓名、邮箱、主题、留言），提交后给出明确成功反馈；旁边或下方并列邮箱、电话、地址与社交入口，再用简短 FAQ 拦下高频问题。",
+        "en": "A page that collects messages: a short form asks only what is needed and confirms success, with email, phone and address alongside plus a brief FAQ."
+      },
+      "use_when": [
+        {
+          "zh": "访客需要咨询、反馈或商务合作",
+          "en": "Visitors need to ask, give feedback or partner"
+        },
+        {
+          "zh": "需要有可追踪的消息收件入口",
+          "en": "You need a trackable inbox for incoming messages"
+        },
+        {
+          "zh": "高频问题可先用 FAQ 自助解决",
+          "en": "Common questions can be self-served with an FAQ first"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "已经登录的用户有站内消息系统",
+          "en": "Logged-in users already have in-app messaging"
+        },
+        {
+          "zh": "需要实时对话支持（用在线客服更合适）",
+          "en": "You need live chat — a support widget fits better"
+        },
+        {
+          "zh": "表单字段多到像资格审核",
+          "en": "The form balloons into a qualification questionnaire"
+        }
+      ],
+      "tags": [
+        "contact",
+        "form",
+        "support",
+        "conversion"
+      ],
+      "variants": [
+        {
+          "id": "form",
+          "name": {
+            "zh": "表单为主",
+            "en": "Form-first"
+          },
+          "note": {
+            "zh": "表单居中，联系方式作为补充信息",
+            "en": "A centered form with contact details as supporting info"
+          }
+        },
+        {
+          "id": "split",
+          "name": {
+            "zh": "左右分栏",
+            "en": "Split Layout"
+          },
+          "note": {
+            "zh": "左信息右表单，或反之，信息密度更高",
+            "en": "Info and form side by side, packing in more detail"
+          }
+        },
+        {
+          "id": "support",
+          "name": {
+            "zh": "支持中心式",
+            "en": "Support Hub"
+          },
+          "note": {
+            "zh": "先给渠道选择与 FAQ，再露出表单",
+            "en": "Channel choices and FAQ first, the form revealed after"
+          }
+        }
+      ],
+      "anatomy": [
+        "Header 顶栏",
+        "Intro 引导语",
+        "Contact Form 联系表单",
+        "Contact Methods 联系方式",
+        "Map 地图地址",
+        "FAQ 常见问题"
+      ],
+      "related": [
+        {
+          "id": "input",
+          "relation": "contains"
+        },
+        {
+          "id": "textarea",
+          "relation": "contains"
+        },
+        {
+          "id": "button",
+          "relation": "contains"
+        },
+        {
+          "id": "form-validation",
+          "relation": "uses"
+        },
+        {
+          "id": "about",
+          "relation": "similar_to"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "顶栏",
+            "en": "Header"
+          },
+          "note": {
+            "zh": "站点导航与搜索，保证随时可离开当前任务。",
+            "en": "Site nav and search so visitors can leave the task at any time."
+          }
+        },
+        {
+          "part": {
+            "zh": "引导语",
+            "en": "Intro"
+          },
+          "note": {
+            "zh": "一句话说明能帮什么、多久回复，管理预期。",
+            "en": "One line on what you can help with and typical reply time, setting expectations."
+          }
+        },
+        {
+          "part": {
+            "zh": "联系表单",
+            "en": "Contact form"
+          },
+          "note": {
+            "zh": "姓名、邮箱、主题与留言，必填项最少，错误就地提示。",
+            "en": "Name, email, subject and message — minimum required fields with inline errors."
+          }
+        },
+        {
+          "part": {
+            "zh": "联系方式",
+            "en": "Contact methods"
+          },
+          "note": {
+            "zh": "邮箱、电话、地址与社交入口，按优先级排列。",
+            "en": "Email, phone, address and social links, ordered by priority."
+          }
+        },
+        {
+          "part": {
+            "zh": "地图地址",
+            "en": "Map"
+          },
+          "note": {
+            "zh": "有实体场所时给出地图与周边交通，否则省略。",
+            "en": "A map and directions when there is a physical location, otherwise omit."
+          }
+        },
+        {
+          "part": {
+            "zh": "常见问题",
+            "en": "FAQ"
+          },
+          "note": {
+            "zh": "三到五条折叠问答，先拦下能自助解决的问题。",
+            "en": "Three to five collapsible Q&As that deflect self-serve questions."
+          }
+        }
+      ],
+      "demo": {
+        "component": "contact",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "flex",
+          "grid",
+          "grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))",
+          "min-height: 44px",
+          "gap: 1rem"
+        ],
+        "notes": {
+          "zh": "表单字段竖排并给每个控件绑定 label；触控目标至少 44px；错误信息紧贴字段并用 aria-describedby 关联。分栏变体用 grid 自适应折叠为单列；提交成功后显示可聚焦的成功提示，并保留输入以免刷新丢失。",
+          "en": "Stack fields vertically and bind every control to a label; keep touch targets at least 44px and tie inline errors to fields with aria-describedby. The split variant collapses to one column via grid; after submit, show a focusable success message and preserve the input to avoid losing it."
+        }
+      },
+      "sources": [
+        {
+          "name": "W3C WAI — Forms Tutorial",
+          "url": "https://www.w3.org/WAI/tutorials/forms/"
+        },
+        {
+          "name": "web.dev — Learn Forms: Validation",
+          "url": "https://web.dev/learn/forms/validation"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个联系页，包含联系表单、联系方式和一个常见问题区。",
+          "en": "Create a contact page with a contact form, contact details and a small FAQ."
+        },
+        "design": {
+          "zh": "设计联系页：顶部引导语说明回复时长；左侧表单（姓名、邮箱、主题下拉、留言、提交按钮），字段有聚焦态与就地错误；右侧三行联系方式配图标；下方折叠 FAQ；移动端顺序为引导语→表单→联系方式→FAQ。深浅色一致。",
+          "en": "Design a contact page: an intro stating reply time; a left-hand form (name, email, subject select, message, submit) with focus states and inline errors; three contact rows with icons on the right; a collapsible FAQ below. On mobile the order is intro, form, methods, FAQ. Theme-consistent."
+        },
+        "implementation": {
+          "zh": "用 React + Tailwind 实现联系页：受控表单 + 基础校验（必填、邮箱格式），错误用 aria-describedby 关联；触控目标 ≥44px；提交成功切到成功态并保留数据；FAQ 用 details 或受控手风琴；尊重 prefers-reduced-motion；不新增依赖。",
+          "en": "React + Tailwind contact page: controlled form with basic validation (required, email format) and errors linked via aria-describedby; touch targets ≥44px; on success switch to a success state keeping the data; FAQ as details or a controlled accordion; respect prefers-reduced-motion; no new dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现联系页。\n\n先检查现有表单控件与校验逻辑，优先复用。\n要求：\n- 引导语 + 联系表单 + 联系方式 + FAQ\n- 每个字段有 label，错误用 aria-describedby 关联\n- 触控目标 ≥44px，键盘可完成提交\n- 提交成功有明确反馈并保留输入\n- 尊重 prefers-reduced-motion，不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement the contact page in the current project.\n\nInspect existing form controls and validation first; reuse them.\nRequirements:\n- Intro + contact form + contact methods + FAQ\n- Every field has a label; errors linked with aria-describedby\n- Touch targets ≥44px; the form is keyboard-completable\n- Clear success feedback that preserves input\n- Respect prefers-reduced-motion; no new dependencies\nRun existing checks when done and list modified files."
         }
       }
     },
@@ -17172,6 +18821,1179 @@
       }
     },
     {
+      "id": "error-404",
+      "type": "pages",
+      "url": "/pages/error-404",
+      "apiUrl": "/api/concept/pages/error-404.json",
+      "md": "/pages/error-404.md",
+      "status": "published",
+      "name": {
+        "zh": "404 页面",
+        "en": "404 Page"
+      },
+      "aliases": [
+        "404 页面",
+        "找不到页面",
+        "页面不存在",
+        "页面打不开",
+        "链接点进去空的",
+        "迷路页",
+        "死链页"
+      ],
+      "category": [
+        "Page",
+        "Error"
+      ],
+      "description": {
+        "zh": "在用户请求的地址不存在时展示的兜底页面：用一句人话说明发生了什么，提供返回首页、搜索或推荐入口，把一次失败访问转成继续浏览的机会。它不解决问题本身，但决定用户是离开还是留下。",
+        "en": "A fallback screen for missing addresses. It explains the situation plainly and offers home, search or recommended links for a next step."
+      },
+      "use_when": [
+        {
+          "zh": "请求路径不存在或页面已下线",
+          "en": "A requested path is missing or retired"
+        },
+        {
+          "zh": "用户输入或点击了错误链接",
+          "en": "A user types or follows a broken link"
+        },
+        {
+          "zh": "内容被删除后仍需承接旧流量",
+          "en": "Deleted content must still catch old traffic"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "服务端或后端故障（应使用 500 服务错误页）",
+          "en": "Backend failures — use a server error page instead"
+        },
+        {
+          "zh": "未登录或权限不足（应引导登录或返回）",
+          "en": "Authentication or permission gaps — route to login instead"
+        },
+        {
+          "zh": "旧链接可精确重定向到新地址（直接跳转即可）",
+          "en": "Old links that can redirect precisely — just forward them"
+        }
+      ],
+      "tags": [
+        "error",
+        "404",
+        "not-found",
+        "fallback"
+      ],
+      "variants": [
+        {
+          "id": "minimal",
+          "name": {
+            "zh": "极简提示",
+            "en": "Minimal"
+          },
+          "note": {
+            "zh": "只有状态码、一句说明和一个返回入口",
+            "en": "Just the code, one line of copy and a way back"
+          }
+        },
+        {
+          "id": "search",
+          "name": {
+            "zh": "带搜索",
+            "en": "With Search"
+          },
+          "note": {
+            "zh": "提供搜索框与热门链接，帮用户自己找回目标",
+            "en": "A search box and popular links so users can find their own target"
+          }
+        },
+        {
+          "id": "illustrated",
+          "name": {
+            "zh": "插图引导",
+            "en": "Illustrated"
+          },
+          "note": {
+            "zh": "用插画与推荐内容弱化失败感",
+            "en": "An illustration and recommendations soften the dead end"
+          }
+        }
+      ],
+      "anatomy": [
+        "Status Code 状态码",
+        "Message 说明文案",
+        "Illustration 插图",
+        "Search 搜索入口",
+        "Suggestions 推荐链接",
+        "Primary Action 返回首页"
+      ],
+      "related": [
+        {
+          "id": "error-500",
+          "relation": "similar_to"
+        },
+        {
+          "id": "button",
+          "relation": "contains"
+        },
+        {
+          "id": "navbar",
+          "relation": "contains"
+        },
+        {
+          "id": "empty-state",
+          "relation": "uses"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "状态码与标题",
+            "en": "Code and heading"
+          },
+          "note": {
+            "zh": "用 404 加一句人话标题，先让用户明白没有崩。",
+            "en": "A 404 with a plain-language heading so users know nothing crashed."
+          }
+        },
+        {
+          "part": {
+            "zh": "说明文案",
+            "en": "Message"
+          },
+          "note": {
+            "zh": "一句话解释地址不存在，避免技术术语与自责语气。",
+            "en": "One sentence explaining the missing address, free of jargon or blame."
+          }
+        },
+        {
+          "part": {
+            "zh": "插图",
+            "en": "Illustration"
+          },
+          "note": {
+            "zh": "轻量插画或图标，弱化失败感但不喧宾夺主。",
+            "en": "A light illustration or icon that softens the failure without dominating."
+          }
+        },
+        {
+          "part": {
+            "zh": "操作入口",
+            "en": "Actions"
+          },
+          "note": {
+            "zh": "主按钮返回首页，次入口返回上一页或联系支持。",
+            "en": "A primary home button and secondary back or support links."
+          }
+        },
+        {
+          "part": {
+            "zh": "推荐内容",
+            "en": "Recommendations"
+          },
+          "note": {
+            "zh": "搜索框或热门链接，把用户带向下一步而不是终点。",
+            "en": "A search box or popular links that point to a next step, not a dead end."
+          }
+        }
+      ],
+      "demo": {
+        "component": "error-404",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "flex",
+          "grid",
+          "min-height: 100vh",
+          "text-align: center",
+          "max-width: 48ch"
+        ],
+        "notes": {
+          "zh": "整页用 min-height 100vh 加 flex 居中，内容宽度限制在 48ch 内保证文案可读。状态码可用大号 font-serif 做视觉锚点， 搜索框与推荐链接放在同一 max-width 容器内。服务器返回真实 404 状态码，不要用 200 包裹错误页，否则搜索引擎会收录空页。",
+          "en": "Center the page with min-height 100vh plus flex, and cap the copy at 48ch for readability. Use a large font-serif status code as the visual anchor, with search and links inside the same max-width container. Return a real 404 status code rather than a 200 wrapper so search engines do not index empty pages."
+        }
+      },
+      "sources": [
+        {
+          "name": "MDN — HTTP 404 Not Found",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+        },
+        {
+          "name": "Nielsen Norman Group — Error-Message Guidelines",
+          "url": "https://www.nngroup.com/articles/error-message-guidelines/"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个 404 页面，包含状态码、说明文案和返回首页按钮。",
+          "en": "Create a 404 page with a status code, a short message and a home button."
+        },
+        "design": {
+          "zh": "设计一个 404 页面：居中布局，大号 404 状态码，一句说明，插图或图标，主按钮返回首页，次入口返回上一页； 带搜索框与三个热门链接，深浅色一致，移动端优先。",
+          "en": "Design a 404 page: centered layout with a large 404 code, one line of copy, an illustration or icon, a primary home button and a secondary back link. Add a search box and three popular links, keep light and dark consistent, and design mobile first."
+        },
+        "implementation": {
+          "zh": "用 React 加 Tailwind 实现 404 页面：搜索框受控并可在输入时过滤推荐链接；主按钮走路由返回首页； 确保服务端返回真实 404；尊重 prefers-reduced-motion；不新增依赖。",
+          "en": "React plus Tailwind 404 page: a controlled search box that filters recommendations as you type, a primary button that routes home, a real 404 response from the server, respect for prefers-reduced-motion, and no new dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现 404 页面。\n\n先检查现有路由、错误边界与设计 Token，优先复用。\n要求：\n- 居中布局：状态码、说明、插图、主次操作\n - 搜索框可过滤推荐链接\n - 服务端返回真实 404 状态码\n - 深浅色一致，动画尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement the 404 page in the current project.\n\nInspect existing routes, error boundaries and design tokens first; reuse them.\nRequirements:\n- Centered layout: code, message, illustration, primary and secondary actions\n- Search box filters recommended links\n- Server returns a real 404 status code\n- Consistent light/dark; animations respect prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
+      "id": "error-500",
+      "type": "pages",
+      "url": "/pages/error-500",
+      "apiUrl": "/api/concept/pages/error-500.json",
+      "md": "/pages/error-500.md",
+      "status": "published",
+      "name": {
+        "zh": "服务错误页",
+        "en": "Server Error Page"
+      },
+      "aliases": [
+        "500 页面",
+        "服务器错误",
+        "服务出错页",
+        "系统错误页",
+        "服务崩了",
+        "服务器开小差",
+        "页面出错了"
+      ],
+      "category": [
+        "Page",
+        "Error"
+      ],
+      "description": {
+        "zh": "在后端异常、请求无法完成时展示的页面：不暴露内部细节，用中性语气说明是服务端问题，给出稍后重试或联系支持的路径，并尽量保留用户已输入的内容。它承担故障期间的信任维护。",
+        "en": "A screen for backend failures. It states that the problem is server-side, offers retry or support, and preserves input to keep trust."
+      },
+      "use_when": [
+        {
+          "zh": "服务端异常、数据库或依赖不可用",
+          "en": "Server errors, database or dependency outages"
+        },
+        {
+          "zh": "请求超时或网关错误",
+          "en": "Request timeouts or gateway errors"
+        },
+        {
+          "zh": "需要在不暴露细节的前提下说明故障",
+          "en": "The failure must be explained without exposing internals"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "页面地址不存在（应使用 404 页面）",
+          "en": "Missing addresses — use a 404 page instead"
+        },
+        {
+          "zh": "用户无权限访问（应提示权限或登录）",
+          "en": "Permission gaps — prompt for access or login"
+        },
+        {
+          "zh": "可自动重试立即恢复的瞬时抖动",
+          "en": "Transient blips that auto-retry can absorb"
+        }
+      ],
+      "tags": [
+        "error",
+        "500",
+        "server",
+        "fallback"
+      ],
+      "variants": [
+        {
+          "id": "minimal",
+          "name": {
+            "zh": "极简错误",
+            "en": "Minimal"
+          },
+          "note": {
+            "zh": "只说发生了服务错误，给一个重试按钮",
+            "en": "A brief server-error note with a single retry button"
+          }
+        },
+        {
+          "id": "retry",
+          "name": {
+            "zh": "带重试与倒计时",
+            "en": "With Retry"
+          },
+          "note": {
+            "zh": "自动重试并显示倒计时与尝试次数",
+            "en": "Auto-retry with a countdown and attempt count"
+          }
+        },
+        {
+          "id": "status",
+          "name": {
+            "zh": "状态与支持",
+            "en": "Status and Support"
+          },
+          "note": {
+            "zh": "展示故障状态摘要与支持入口，适合关键业务",
+            "en": "A status summary and support entry for critical flows"
+          }
+        }
+      ],
+      "anatomy": [
+        "Status Code 状态码",
+        "Error Message 错误说明",
+        "Retry Action 重试操作",
+        "Status Detail 故障详情",
+        "Support Link 支持入口"
+      ],
+      "related": [
+        {
+          "id": "error-404",
+          "relation": "similar_to"
+        },
+        {
+          "id": "button",
+          "relation": "contains"
+        },
+        {
+          "id": "alert",
+          "relation": "contains"
+        },
+        {
+          "id": "empty-state",
+          "relation": "uses"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "状态码与标题",
+            "en": "Code and heading"
+          },
+          "note": {
+            "zh": "用 500 与中性标题说明是服务端问题，而非用户操作错误。",
+            "en": "A 500 with a neutral heading stating the fault is server-side, not user error."
+          }
+        },
+        {
+          "part": {
+            "zh": "错误说明",
+            "en": "Error message"
+          },
+          "note": {
+            "zh": "说清正在恢复、是否需要用户操作，不暴露堆栈或内部 ID。",
+            "en": "Say what is recovering and whether action is needed, without stacks or internal IDs."
+          }
+        },
+        {
+          "part": {
+            "zh": "重试操作",
+            "en": "Retry"
+          },
+          "note": {
+            "zh": "主按钮重试请求，可带倒计时与尝试次数。",
+            "en": "A primary retry button, optionally with a countdown and attempt count."
+          }
+        },
+        {
+          "part": {
+            "zh": "故障状态",
+            "en": "Status detail"
+          },
+          "note": {
+            "zh": "展开可看影响范围与更新时间，默认收起。",
+            "en": "Expandable scope and last-updated info, collapsed by default."
+          }
+        },
+        {
+          "part": {
+            "zh": "支持入口",
+            "en": "Support"
+          },
+          "note": {
+            "zh": "提供状态页或联系支持，供重试无果时求助。",
+            "en": "A status page or support link for when retries do not help."
+          }
+        }
+      ],
+      "demo": {
+        "component": "error-500",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "flex",
+          "grid",
+          "min-height: 100vh",
+          "text-align: center",
+          "max-width: 48ch"
+        ],
+        "notes": {
+          "zh": "与 404 共用一套居中骨架：min-height 100vh 加 flex 居中，内容限制在 48ch。重试按钮点击后禁用并显示进行中状态， 用 aria-live 播报结果变化。服务端返回 5xx 状态码；日志记录请求 ID 供支持排查，但不要把堆栈渲染到页面上。",
+          "en": "Reuse the 404 centered skeleton: min-height 100vh plus flex, copy capped at 48ch. Disable the retry button and show a pending state after click, announcing result changes via aria-live. Return a 5xx status code, log a request ID for support, and never render stack traces on the page."
+        }
+      },
+      "sources": [
+        {
+          "name": "MDN — HTTP 500 Internal Server Error",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+        },
+        {
+          "name": "Nielsen Norman Group — Error-Message Guidelines",
+          "url": "https://www.nngroup.com/articles/error-message-guidelines/"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个服务错误页，包含状态码、错误说明和重试按钮。",
+          "en": "Create a server error page with a status code, an error message and a retry button."
+        },
+        "design": {
+          "zh": "设计一个 500 服务错误页：居中布局，大号 500，中性说明，重试主按钮，可展开的故障详情， 底部状态页与支持链接；深浅色一致，重试态有明确进行中反馈。",
+          "en": "Design a 500 server error page: centered layout with a large 500, neutral copy, a primary retry button, expandable status detail, and status and support links below. Keep light and dark consistent, with clear pending feedback during retry."
+        },
+        "implementation": {
+          "zh": "用 React 加 Tailwind 实现服务错误页：重试按钮受控并禁用重复点击，结果变化用 aria-live 播报； 保留用户表单输入；返回真实 5xx；动画尊重 prefers-reduced-motion；不新增依赖。",
+          "en": "React plus Tailwind server error page: a controlled retry button that blocks double clicks, result changes announced via aria-live, preserved form input, a real 5xx response, respect for prefers-reduced-motion, and no new dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现服务错误页。\n\n先检查现有错误边界、请求层与设计 Token，优先复用。\n要求：\n- 居中布局：状态码、说明、重试、详情、支持\n- 保留用户已输入内容\n- 重试态用 aria-live 播报，避免重复点击\n- 服务端返回真实 5xx，日志记录请求 ID\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement the server error page in the current project.\n\nInspect existing error boundaries, request layer and design tokens first; reuse them.\nRequirements:\n- Centered layout: code, message, retry, detail, support\n- Preserve what the user has typed\n- Announce retry state via aria-live and block double clicks\n- Return a real 5xx and log a request ID\n- No new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
+      "id": "faq",
+      "type": "pages",
+      "url": "/pages/faq",
+      "apiUrl": "/api/concept/pages/faq.json",
+      "md": "/pages/faq.md",
+      "status": "published",
+      "name": {
+        "zh": "常见问题页",
+        "en": "FAQ Page"
+      },
+      "aliases": [
+        "常见问题",
+        "常见问题页",
+        "问答页",
+        "帮助问答",
+        "疑难解答",
+        "帮助中心问答",
+        "你问我答"
+      ],
+      "category": [
+        "Page",
+        "Support"
+      ],
+      "description": {
+        "zh": "把用户反复提出的问题按主题归组、可逐条展开的页面：用问题式标题降低查找成本，配合锚点、搜索或分类让答案自解释，并把仍未解决的人引向人工支持。它用内容替代重复的客服沟通。",
+        "en": "A page that groups recurring questions by topic and expands each answer. Question-style headings cut search cost and keep answers self-serve."
+      },
+      "use_when": [
+        {
+          "zh": "用户咨询集中在少数常见问题",
+          "en": "Support questions cluster around a few common topics"
+        },
+        {
+          "zh": "需要减少重复的客服工单",
+          "en": "Repetitive support tickets must be reduced"
+        },
+        {
+          "zh": "售前选型、计费与账号政策需要自助解答",
+          "en": "Pre-sales, billing and account policies need self-service answers"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "每个问题都需要个性化排查",
+          "en": "Every case needs individual troubleshooting"
+        },
+        {
+          "zh": "内容随版本频繁变更（用文档站更合适）",
+          "en": "Content changes every release — a docs site fits better"
+        },
+        {
+          "zh": "已有完整知识库或社区问答",
+          "en": "A full knowledge base or community forum already exists"
+        }
+      ],
+      "tags": [
+        "support",
+        "answers",
+        "help",
+        "content"
+      ],
+      "variants": [
+        {
+          "id": "accordion",
+          "name": {
+            "zh": "折叠问答",
+            "en": "Accordion"
+          },
+          "note": {
+            "zh": "问题作标题，答案点击展开，一屏容纳更多",
+            "en": "Questions as headings with click-to-expand answers"
+          }
+        },
+        {
+          "id": "categorized",
+          "name": {
+            "zh": "分类问答",
+            "en": "Categorized"
+          },
+          "note": {
+            "zh": "先按主题分组或分段切换，再逐条展开",
+            "en": "Group or switch by topic first, then expand each item"
+          }
+        },
+        {
+          "id": "searchable",
+          "name": {
+            "zh": "可搜索问答",
+            "en": "Searchable"
+          },
+          "note": {
+            "zh": "顶部搜索即时过滤问题，适合条目很多时",
+            "en": "A search field filters questions instantly when the list is long"
+          }
+        }
+      ],
+      "anatomy": [
+        "Heading 页面标题",
+        "Search 搜索入口",
+        "Categories 分类导航",
+        "Questions 问题列表",
+        "Answer 答案内容",
+        "Support CTA 人工入口"
+      ],
+      "related": [
+        {
+          "id": "accordion",
+          "relation": "contains"
+        },
+        {
+          "id": "input",
+          "relation": "contains"
+        },
+        {
+          "id": "filter-panel",
+          "relation": "contains"
+        },
+        {
+          "id": "progressive-disclosure",
+          "relation": "uses"
+        },
+        {
+          "id": "documentation",
+          "relation": "similar_to"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "标题与引导",
+            "en": "Heading and intro"
+          },
+          "note": {
+            "zh": "一句说明这里能解决什么，并提示找不到时去哪。",
+            "en": "One line on what this page solves, plus where to go if nothing fits."
+          }
+        },
+        {
+          "part": {
+            "zh": "搜索",
+            "en": "Search"
+          },
+          "note": {
+            "zh": "即时过滤问题标题，空结果给出人工入口。",
+            "en": "Filter question titles live; an empty result points to support."
+          }
+        },
+        {
+          "part": {
+            "zh": "分类导航",
+            "en": "Categories"
+          },
+          "note": {
+            "zh": "按账号、计费、功能等主题分段或切换。",
+            "en": "Segment or switch by account, billing, features and similar topics."
+          }
+        },
+        {
+          "part": {
+            "zh": "问题列表",
+            "en": "Questions"
+          },
+          "note": {
+            "zh": "问题式标题，可逐条展开，展开状态可分享锚点。",
+            "en": "Question-style headings that expand, with shareable anchors per item."
+          }
+        },
+        {
+          "part": {
+            "zh": "答案内容",
+            "en": "Answers"
+          },
+          "note": {
+            "zh": "先给结论，再给步骤，控制段落长度并链接相关条目。",
+            "en": "Lead with the answer, then steps, keeping paragraphs short and cross-linking."
+          }
+        },
+        {
+          "part": {
+            "zh": "人工入口",
+            "en": "Support CTA"
+          },
+          "note": {
+            "zh": "页尾提供联系支持或提交工单，承接未解决的问题。",
+            "en": "A closing contact or ticket link catches what the page did not resolve."
+          }
+        }
+      ],
+      "demo": {
+        "component": "faq",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "flex",
+          "grid",
+          "scroll-margin-top",
+          "content-visibility: auto",
+          "max-width: 72ch"
+        ],
+        "notes": {
+          "zh": "问题列表用 max-width 72ch 控制阅读行宽，分类用 grid 自适应排列。展开项给 scroll-margin-top，锚点跳转不被吸顶导航遮挡； 长列表可加 content-visibility auto 省渲染。手风琴用 button 加 aria-expanded 与 aria-controls，不要用纯 div 点击。",
+          "en": "Cap the question list at max-width 72ch, and lay out categories with an adaptive grid. Give expanded items scroll-margin-top so anchor jumps clear sticky headers, and add content-visibility auto for long lists. Build the accordion from a button with aria-expanded and aria-controls rather than clickable divs."
+        }
+      },
+      "sources": [
+        {
+          "name": "Nielsen Norman Group — Accordions on Complex Content",
+          "url": "https://www.nngroup.com/articles/accordions-complex-content/"
+        },
+        {
+          "name": "Nielsen Norman Group — Progressive Disclosure",
+          "url": "https://www.nngroup.com/articles/progressive-disclosure/"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个常见问题页，包含标题、问题列表和可展开的答案。",
+          "en": "Create an FAQ page with a heading, a list of questions and expandable answers."
+        },
+        "design": {
+          "zh": "设计一个常见问题页：顶部标题与搜索框，下方分类切换，问题列表可逐条展开，展开只保留一个或多个的规则要明确； 页尾提供联系支持入口，深浅色一致，移动端优先。",
+          "en": "Design an FAQ page: a heading and search box on top, category tabs below, and a question list that expands per item with a clear single-or-multi-open rule. Close with a support entry, keep light and dark consistent, and design mobile first."
+        },
+        "implementation": {
+          "zh": "用 React 加 Tailwind 实现 FAQ：搜索框受控并即时过滤，分类切换驱动列表，手风琴用 aria-expanded 与 aria-controls； 空结果展示支持入口；尊重 prefers-reduced-motion；不新增依赖。",
+          "en": "React plus Tailwind FAQ: a controlled search field that filters live, category switching drives the list, and the accordion uses aria-expanded and aria-controls. Show a support entry on empty results, respect prefers-reduced-motion, and add no dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现常见问题页。\n\n先检查现有内容组件、手风琴与设计 Token，优先复用。\n要求：\n- 搜索即时过滤问题标题，分类可切换\n- 手风琴使用 aria-expanded 与 aria-controls\n- 空结果给出人工支持入口\n- 长列表滚动性能与锚点可用\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement the FAQ page in the current project.\n\nInspect existing content components, accordions and design tokens first; reuse them.\nRequirements:\n- Search filters question titles live and categories switch\n- Accordion uses aria-expanded and aria-controls\n- Empty results offer a support entry\n- Good scroll performance for long lists and working anchors\n- No new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
+      "id": "features-comparison",
+      "type": "pages",
+      "url": "/pages/features-comparison",
+      "apiUrl": "/api/concept/pages/features-comparison.json",
+      "md": "/pages/features-comparison.md",
+      "status": "published",
+      "name": {
+        "zh": "功能对比页",
+        "en": "Feature Comparison Page"
+      },
+      "aliases": [
+        "功能对比页",
+        "选型对比表",
+        "功能对照表",
+        "插件对比页",
+        "套餐对比",
+        "买哪个版本对比",
+        "参数对比表",
+        "对比矩阵"
+      ],
+      "category": [
+        "Page",
+        "Marketing"
+      ],
+      "description": {
+        "zh": "用并列矩阵把多个方案的功能、价格与限制逐项对齐的页面：首列固定为对比维度，各方案各占一列， 支持只看差异、按维度排序与推荐标记。它服务于「选哪个」的决策，把宣传语替换成可逐格核对的证据。",
+        "en": "A page that aligns several options feature by feature in one side-by-side matrix: the first column holds the comparison dimensions, each option takes a column, and users can show differences only, sort by dimension and spot a recommended pick. It serves the which-one decision by turning marketing copy into checkable evidence."
+      },
+      "use_when": [
+        {
+          "zh": "用户需要在两个以上方案之间做选择",
+          "en": "Users must choose among two or more options"
+        },
+        {
+          "zh": "功能、价格、限额等能按行逐项对齐",
+          "en": "Features, prices and limits align row by row"
+        },
+        {
+          "zh": "目标是突出差异而不是重复宣传",
+          "en": "The goal is to surface differences, not repeat marketing"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "只有单一方案（用落地页或定价页更合适）",
+          "en": "A single option — a landing or pricing page fits better"
+        },
+        {
+          "zh": "各方案维度差异过大、无法逐项对齐",
+          "en": "Options differ so much they cannot be aligned row by row"
+        },
+        {
+          "zh": "需要长篇解释而非逐格打勾",
+          "en": "Long explanations are needed instead of per-cell marks"
+        }
+      ],
+      "tags": [
+        "comparison",
+        "matrix",
+        "pricing",
+        "decision",
+        "marketing"
+      ],
+      "variants": [
+        {
+          "id": "table",
+          "name": {
+            "zh": "并列表格",
+            "en": "Side-by-side Table"
+          },
+          "note": {
+            "zh": "经典行列矩阵，首列固定为对比维度",
+            "en": "Classic grid with a pinned first column of dimensions"
+          }
+        },
+        {
+          "id": "diff",
+          "name": {
+            "zh": "只看差异",
+            "en": "Differences Only"
+          },
+          "note": {
+            "zh": "隐藏相同项，只留下真正有区别的行",
+            "en": "Hides identical rows to leave only real differences"
+          }
+        },
+        {
+          "id": "cards",
+          "name": {
+            "zh": "卡片对比",
+            "en": "Card Comparison"
+          },
+          "note": {
+            "zh": "方案纵向堆叠成卡片，移动端友好",
+            "en": "Options stacked as cards, friendlier on mobile"
+          }
+        }
+      ],
+      "anatomy": [
+        "Header 标题与说明",
+        "Plan Headers 方案表头",
+        "Dimension Column 维度列",
+        "Comparison Cells 数据单元格",
+        "Difference Highlight 差异高亮",
+        "Decision CTA 行动按钮"
+      ],
+      "related": [
+        {
+          "id": "table",
+          "relation": "contains"
+        },
+        {
+          "id": "segmented-control",
+          "relation": "contains"
+        },
+        {
+          "id": "badge",
+          "relation": "contains"
+        },
+        {
+          "id": "progressive-disclosure",
+          "relation": "uses"
+        },
+        {
+          "id": "pricing",
+          "relation": "similar_to"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "标题与说明",
+            "en": "Header"
+          },
+          "note": {
+            "zh": "一句话说明对比对象与适用场景，避免用户选错表。",
+            "en": "One line states what is compared and for whom."
+          }
+        },
+        {
+          "part": {
+            "zh": "方案表头",
+            "en": "Plan headers"
+          },
+          "note": {
+            "zh": "每个方案一列，含名称、价格与推荐徽标，可点选聚焦。",
+            "en": "One column per option with name, price and a recommended badge; click to focus."
+          }
+        },
+        {
+          "part": {
+            "zh": "维度列",
+            "en": "Dimension column"
+          },
+          "note": {
+            "zh": "固定在左侧的功能、价格与限制行名，支持分组。",
+            "en": "Pinned leftmost labels for features, price and limits, optionally grouped."
+          }
+        },
+        {
+          "part": {
+            "zh": "数据单元格",
+            "en": "Comparison cells"
+          },
+          "note": {
+            "zh": "用勾、破折或数值表达是否支持，保持统一口径。",
+            "en": "Marks, dashes or numbers express support with one consistent convention."
+          }
+        },
+        {
+          "part": {
+            "zh": "差异高亮",
+            "en": "Difference highlight"
+          },
+          "note": {
+            "zh": "标出各方案不同之处，并提供只看差异开关。",
+            "en": "Flags where options differ, with a differences-only toggle."
+          }
+        },
+        {
+          "part": {
+            "zh": "行动按钮",
+            "en": "Decision CTA"
+          },
+          "note": {
+            "zh": "每个方案底部给出试用、购买或咨询入口。",
+            "en": "Each option ends with try, buy or contact entry points."
+          }
+        }
+      ],
+      "demo": {
+        "component": "features-comparison",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "grid",
+          "flex",
+          "position: sticky",
+          "overflow-x: auto",
+          "border-collapse: collapse"
+        ],
+        "notes": {
+          "zh": "真正的表格用 table 语义标签获得原生可访问性；首列与表头用 position: sticky 吸附，横向溢出交给 overflow-x: auto 容器。差异高亮用背景加图标或文字标记，不能只靠颜色。移动端可降级为卡片对比； 排序与只看差异由组件状态驱动，不改动文档结构。",
+          "en": "Use real table semantics for accessibility; pin the first column and header row with position: sticky and let a wrapper handle overflow-x: auto. Mark differences with background plus an icon or label, never color alone. Degrade to card comparison on mobile; sorting and differences-only are driven by component state without restructuring the document."
+        }
+      },
+      "sources": [
+        {
+          "name": "Nielsen Norman Group — Comparison Tables",
+          "url": "https://www.nngroup.com/articles/comparison-tables/"
+        },
+        {
+          "name": "W3C WAI — Tables Tutorial",
+          "url": "https://www.w3.org/WAI/tutorials/tables/"
+        },
+        {
+          "name": "MDN — The Table element",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个功能对比页，用表格并列展示两个以上方案的功能与价格。",
+          "en": "Create a feature comparison page that shows two or more options with features and pricing side by side."
+        },
+        "design": {
+          "zh": "创建 SaaS 功能对比页：顶部标题与说明；表格首列固定为功能维度，三列方案表头含价格与推荐徽标； 提供只看差异开关与按维度排序；差异单元格用背景加图标高亮；每个方案列底部一个 CTA。 移动端降级为卡片对比，深浅色一致。",
+          "en": "Build a SaaS feature comparison: a header with a short intro; a table with a pinned dimension column and three option headers holding price and a recommended badge; a differences-only toggle and per-dimension sort; differing cells highlighted with background plus an icon; one CTA per option. Degrades to card comparison on mobile, consistent light/dark."
+        },
+        "implementation": {
+          "zh": "用 React + Tailwind 实现功能对比页：使用 table 语义标签与 scope 属性；首列与表头 sticky； 横向溢出交给滚动容器；差异判定抽成纯函数，驱动高亮与只看差异开关；排序受控；不新增依赖。",
+          "en": "Implement with React + Tailwind: real table semantics with scope attributes; sticky first column and header; an overflow container for horizontal scroll; a pure function decides differences and drives highlighting and the differences-only toggle; controlled sorting; no new dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现功能对比页。\n\n先检查现有表格组件、定价数据与设计令牌，优先复用。\n要求：\n- 语义化 table + sticky 首列与表头，横向溢出可滚动\n- 方案表头含价格与推荐徽标，可点选聚焦\n- 只看差异开关与按维度排序，由状态驱动\n- 差异高亮不止靠颜色，兼顾色觉障碍\n- 移动端降级为卡片对比，深浅色一致\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement the feature comparison page in the current project.\n\nInspect existing table components, pricing data and design tokens first; reuse them.\nRequirements:\n- Semantic table with sticky first column and header; scrollable overflow\n- Option headers with price and recommended badge, click to focus\n- Differences-only toggle and sorting driven by state\n- Differences highlighted without relying on color alone\n- Degrade to card comparison on mobile; consistent light/dark\n- No new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
+      "id": "help-center",
+      "type": "pages",
+      "url": "/pages/help-center",
+      "apiUrl": "/api/concept/pages/help-center.json",
+      "md": "/pages/help-center.md",
+      "status": "published",
+      "name": {
+        "zh": "帮助中心",
+        "en": "Help Center"
+      },
+      "aliases": [
+        "帮助中心",
+        "帮助页",
+        "帮助文档",
+        "客服帮助页",
+        "常见问题页",
+        "FAQ 页",
+        "说明书页面",
+        "怎么用的页面"
+      ],
+      "category": [
+        "Page",
+        "Support"
+      ],
+      "description": {
+        "zh": "把产品文档、常见问题与联系入口收拢到一处的自助支持页面：顶部搜索先猜意图， 主体按主题分组文章并按热度排序，底部保留联系客服与提交工单的兜底路径。 目标是让用户在打扰人工之前先自己解决问题。",
+        "en": "A self-service support page gathering docs, FAQs and contact routes: search guesses intent, articles group by topic, and contact sits at the bottom."
+      },
+      "use_when": [
+        {
+          "zh": "用户遇到问题先自行查找答案",
+          "en": "Users look for answers on their own first"
+        },
+        {
+          "zh": "支持量需要靠文档分流",
+          "en": "Support volume needs to be deflected into docs"
+        },
+        {
+          "zh": "内容需按产品模块长期维护",
+          "en": "Content is maintained by product area over time"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "需要实时人工介入的紧急事故（用在线客服或热线）",
+          "en": "Urgent incidents needing live humans — use live chat or a hotline"
+        },
+        {
+          "zh": "只有几条零散说明（用页面内提示或工具提示）",
+          "en": "Only a few scattered tips — inline hints or tooltips suffice"
+        },
+        {
+          "zh": "面向公众的营销介绍（用落地页）",
+          "en": "Public marketing overview — a landing page fits"
+        }
+      ],
+      "tags": [
+        "support",
+        "documentation",
+        "faq",
+        "self-service",
+        "search"
+      ],
+      "variants": [
+        {
+          "id": "portal",
+          "name": {
+            "zh": "门户型",
+            "en": "Help Portal"
+          },
+          "note": {
+            "zh": "搜索 + 分类卡片，覆盖最完整",
+            "en": "Search plus category cards, the fullest coverage"
+          }
+        },
+        {
+          "id": "faq",
+          "name": {
+            "zh": "常见问题",
+            "en": "FAQ"
+          },
+          "note": {
+            "zh": "折叠问答列表，轻量直接",
+            "en": "A collapsible Q&A list, lightweight and direct"
+          }
+        },
+        {
+          "id": "docs",
+          "name": {
+            "zh": "文档型",
+            "en": "Docs Hub"
+          },
+          "note": {
+            "zh": "侧栏目录 + 正文，适合长文档",
+            "en": "Sidebar outline plus article, for long documentation"
+          }
+        }
+      ],
+      "anatomy": [
+        "Search Hero 搜索区",
+        "Topic Grid 主题分类",
+        "Article List 文章列表",
+        "Popular 热门内容",
+        "Contact Support 联系支持",
+        "Footer 页脚"
+      ],
+      "related": [
+        {
+          "id": "accordion",
+          "relation": "contains"
+        },
+        {
+          "id": "card",
+          "relation": "contains"
+        },
+        {
+          "id": "search-filtering",
+          "relation": "uses"
+        },
+        {
+          "id": "progressive-disclosure",
+          "relation": "uses"
+        },
+        {
+          "id": "empty-state",
+          "relation": "uses"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "搜索区",
+            "en": "Search hero"
+          },
+          "note": {
+            "zh": "一句话说明 + 大搜索框，输入即联想文章标题。",
+            "en": "One line of orientation plus a large search box with title suggestions while typing."
+          }
+        },
+        {
+          "part": {
+            "zh": "主题分类",
+            "en": "Topic grid"
+          },
+          "note": {
+            "zh": "按产品模块分组的入口卡片，配图标与文章数。",
+            "en": "Entry cards grouped by product area, with icons and article counts."
+          }
+        },
+        {
+          "part": {
+            "zh": "文章列表",
+            "en": "Article list"
+          },
+          "note": {
+            "zh": "分类下按热度与更新时间排列的条目。",
+            "en": "Articles ranked by popularity and recency within a topic."
+          }
+        },
+        {
+          "part": {
+            "zh": "热门内容",
+            "en": "Popular"
+          },
+          "note": {
+            "zh": "高频问题的快捷链接，缩短查找路径。",
+            "en": "Quick links to frequent questions that shortcut the search."
+          }
+        },
+        {
+          "part": {
+            "zh": "联系支持",
+            "en": "Contact support"
+          },
+          "note": {
+            "zh": "兜底入口，转在线客服或提交工单。",
+            "en": "The fallback route to live chat or a ticket."
+          }
+        },
+        {
+          "part": {
+            "zh": "页脚",
+            "en": "Footer"
+          },
+          "note": {
+            "zh": "服务状态、社区与法律链接，收束整页。",
+            "en": "Service status, community and legal links closing the page."
+          }
+        }
+      ],
+      "demo": {
+        "component": "help-center",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "grid",
+          "flex",
+          "grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))",
+          "position: sticky"
+        ],
+        "notes": {
+          "zh": "搜索区置顶并保持吸顶，输入即过滤文章标题（debounce 250ms）；主题分类用 auto-fit 卡片网格， 窄屏降为单列。文章列表与热门区用两列布局；联系支持做成整行强调块收口。 搜索无结果时给热门词建议与联系入口，而不是空白。",
+          "en": "Pin the search hero and filter article titles as the user types (250ms debounce); lay topics out as an auto-fit card grid that collapses to one column on narrow screens. Pair the article list with a popular rail, and close with a full-width contact block. A no-results search shows popular terms and the contact route instead of a blank."
+        }
+      },
+      "sources": [
+        {
+          "name": "Nielsen Norman Group — Help and documentation",
+          "url": "https://www.nngroup.com/articles/help-and-documentation/"
+        },
+        {
+          "name": "Apple Human Interface Guidelines — Searching",
+          "url": "https://developer.apple.com/design/human-interface-guidelines/searching"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个帮助中心页面，包含搜索框、主题分类和常见问题列表。",
+          "en": "Create a help center page with a search box, topic categories and an FAQ list."
+        },
+        "design": {
+          "zh": "创建产品帮助中心：顶部居中大搜索框与一句说明；下方按模块的主题卡片网格（图标 + 标题 + 文章数）； 再往下是文章列表与「热门文章」侧栏；常见问题用可折叠问答；底部整行「联系客服 / 提交工单」块。 搜索实时过滤并高亮命中词；无结果时给热门词与联系入口。响应式，深浅色一致。",
+          "en": "Build a product help center: a centered search box with one line of copy on top; a grid of topic cards below (icon, title, article count); an article list beside a popular-articles rail; collapsible FAQ items; and a full-width contact / open-a-ticket block at the bottom. Search filters live and highlights hits; no-results shows popular terms and the contact route. Responsive and theme-consistent."
+        },
+        "implementation": {
+          "zh": "用 React + Tailwind 实现帮助中心：搜索词受控并 debounce 过滤文章；命中词分段高亮； 分类卡片用 grid auto-fit；FAQ 折叠维护展开集合；主题与搜索状态同步到 URL query； 空结果展示热门词；尊重 prefers-reduced-motion；不新增依赖。",
+          "en": "React + Tailwind help center: a controlled query with debounced article filtering; segmented hit highlighting; auto-fit category cards; FAQ items tracking an open set; topic and query synced to URL search params; popular terms on empty results; respect prefers-reduced-motion; no new dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现帮助中心页面。\n\n先检查现有文档数据源、搜索组件与折叠组件，优先复用。\n要求：\n- 顶部搜索区 + 主题分类网格 + 文章列表 + 联系支持\n- 搜索实时过滤文章并高亮命中词\n- 常见问题用可折叠列表\n- 无结果时给热门词与联系入口\n- 响应式，键盘可访问，深浅色一致\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement the help center page in the current project.\n\nInspect the existing docs data source, search and accordion components first; reuse them.\nRequirements:\n- Search hero, topic grid, article list and contact support\n- Live article filtering with highlighted hits\n- Collapsible FAQ list\n- Popular terms and contact route on empty results\n- Responsive, keyboard accessible, theme-consistent\n- No new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
       "id": "landing-page",
       "type": "pages",
       "url": "/pages/landing-page",
@@ -17668,6 +20490,700 @@
         "agent": {
           "zh": "在当前项目中实现登录页。\n\n先检查现有认证接口、路由守卫与表单组件，保持一致。\n要求：\n- 邮箱 + 密码表单，autocomplete 与内联错误提示\n- 第三方登录按钮与注册入口\n- 提交态防重复提交\n- 深浅色一致，键盘可访问\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
           "en": "Implement the login page in the current project.\n\nInspect the auth API, route guards and form components first; stay consistent.\nRequirements:\n- Email + password form with autocomplete and inline errors\n- Third-party login buttons and a signup link\n- Prevent duplicate submission while pending\n- Consistent light/dark; keyboard accessible\n- No new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
+      "id": "notification-center",
+      "type": "pages",
+      "url": "/pages/notification-center",
+      "apiUrl": "/api/concept/pages/notification-center.json",
+      "md": "/pages/notification-center.md",
+      "status": "published",
+      "name": {
+        "zh": "通知中心",
+        "en": "Notification Center"
+      },
+      "aliases": [
+        "通知中心",
+        "消息中心",
+        "站内信",
+        "消息盒子",
+        "通知列表页",
+        "消息提醒页",
+        "铃铛点开的页面",
+        "未读消息在哪看"
+      ],
+      "category": [
+        "Page",
+        "Notifications"
+      ],
+      "description": {
+        "zh": "把系统产生的提醒按来源与时间聚合成可浏览列表的页面，顶部用标签区分全部、未读、提及等视图， 每条通知展示图标、标题、正文摘要与时间，支持一键已读、批量处理与跳转原文。 它替代零散的弹窗提醒，让用户主动回看而不是被动打断。",
+        "en": "A page aggregating alerts into a scannable list, with tabs for all, unread and mentions and rows showing icon, title, snippet and time plus bulk mark-as-read."
+      },
+      "use_when": [
+        {
+          "zh": "系统会持续产生类型多样的提醒",
+          "en": "The system produces many kinds of alerts continuously"
+        },
+        {
+          "zh": "用户需要回看、分类处理而不是被打断",
+          "en": "Users need to review and triage later, not be interrupted now"
+        },
+        {
+          "zh": "通知要跨设备、跨渠道集中管理",
+          "en": "Alerts must be managed across devices and channels"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "只有一次性、必须立刻处理的紧急警报（用模态或顶部横幅）",
+          "en": "One-off critical alerts needing immediate action — use a modal or banner"
+        },
+        {
+          "zh": "提醒极少且可并入时间线或活动流",
+          "en": "Very few updates that can fold into a timeline or activity feed"
+        },
+        {
+          "zh": "面向访客的营销推送（用落地页或邮件）",
+          "en": "Marketing pushes to visitors — use a landing page or email"
+        }
+      ],
+      "tags": [
+        "notifications",
+        "inbox",
+        "messaging",
+        "unread",
+        "alerts"
+      ],
+      "variants": [
+        {
+          "id": "list",
+          "name": {
+            "zh": "通知列表",
+            "en": "Notification List"
+          },
+          "note": {
+            "zh": "按时间倒序的单列流，最通用",
+            "en": "Reverse-chronological single column, the general default"
+          }
+        },
+        {
+          "id": "inbox-split",
+          "name": {
+            "zh": "收件箱分栏",
+            "en": "Split Inbox"
+          },
+          "note": {
+            "zh": "左侧列表 + 右侧详情，桌面处理高效",
+            "en": "List left, detail right — efficient on desktop"
+          }
+        },
+        {
+          "id": "grouped",
+          "name": {
+            "zh": "分组通知",
+            "en": "Grouped Notifications"
+          },
+          "note": {
+            "zh": "按来源或对象聚合，减少重复噪音",
+            "en": "Grouped by source or subject to cut repeated noise"
+          }
+        }
+      ],
+      "anatomy": [
+        "Header 顶栏",
+        "Tabs 视图标签",
+        "Notification List 通知列表",
+        "Notification Item 单条通知",
+        "Bulk Actions 批量操作",
+        "Detail Pane 详情面板"
+      ],
+      "related": [
+        {
+          "id": "tabs",
+          "relation": "contains"
+        },
+        {
+          "id": "badge",
+          "relation": "contains"
+        },
+        {
+          "id": "avatar",
+          "relation": "contains"
+        },
+        {
+          "id": "infinite-scroll",
+          "relation": "uses"
+        },
+        {
+          "id": "empty-state",
+          "relation": "uses"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "顶栏",
+            "en": "Header"
+          },
+          "note": {
+            "zh": "标题、全部已读与通知设置入口，固定在滚动区之上。",
+            "en": "Title, mark-all-read and notification settings, pinned above the scroll area."
+          }
+        },
+        {
+          "part": {
+            "zh": "视图标签",
+            "en": "View tabs"
+          },
+          "note": {
+            "zh": "全部、未读、提及、系统等分组，未读数量用徽标提示。",
+            "en": "All, unread, mentions and system groups, with unread counts shown as badges."
+          }
+        },
+        {
+          "part": {
+            "zh": "通知列表",
+            "en": "Notification list"
+          },
+          "note": {
+            "zh": "按时间倒序排列，未读项加背景强调，滚动到底自动加载。",
+            "en": "Newest first, unread rows visually emphasized, loading more as you scroll."
+          }
+        },
+        {
+          "part": {
+            "zh": "单条通知",
+            "en": "Notification item"
+          },
+          "note": {
+            "zh": "来源图标 + 标题 + 一句摘要 + 相对时间 + 行内已读与归档。",
+            "en": "Source icon, title, a one-line snippet, relative time and inline read/archive actions."
+          }
+        },
+        {
+          "part": {
+            "zh": "批量操作",
+            "en": "Bulk actions"
+          },
+          "note": {
+            "zh": "进入多选后浮现，支持已读、归档与删除。",
+            "en": "Appears after entering multi-select — mark read, archive or delete."
+          }
+        },
+        {
+          "part": {
+            "zh": "详情面板",
+            "en": "Detail pane"
+          },
+          "note": {
+            "zh": "分栏变体下展示完整正文与跳转原文按钮。",
+            "en": "In the split variant, shows the full body and a link to the source."
+          }
+        }
+      ],
+      "demo": {
+        "component": "notification-center",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "flex",
+          "grid",
+          "overflow-y: auto",
+          "position: sticky"
+        ],
+        "notes": {
+          "zh": "外层 flex 分「顶栏 + 标签 + 列表」三段，分栏变体再包一层 grid 分成列表与详情两列。 未读计数用徽标组件，列表项用 :has(未读) 或条件类切换背景。滚动加载用 IntersectionObserver 触发， 批量操作条吸附在列表顶部；空状态给「已全部读完」的正向反馈而非空白。",
+          "en": "Flex column for header, tabs and list; the split variant adds a grid with list and detail columns. Unread counts use badges, and rows flip their background via a conditional class. Trigger loading with IntersectionObserver, keep the bulk bar sticky above the list, and show a positive all-caught-up empty state instead of a blank."
+        }
+      },
+      "sources": [
+        {
+          "name": "Apple Human Interface Guidelines — Notifications",
+          "url": "https://developer.apple.com/design/human-interface-guidelines/notifications"
+        },
+        {
+          "name": "Material Design 3 — Badges",
+          "url": "https://m3.material.io/components/badges/overview"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个通知中心页面，包含视图标签、通知列表与全部已读操作。",
+          "en": "Create a notification center page with view tabs, a notification list and mark-all-read."
+        },
+        "design": {
+          "zh": "创建 SaaS 通知中心：顶部标题与「全部已读」按钮；标签栏区分全部/未读/提及并带未读计数； 列表每条含来源图标、标题、两行摘要与相对时间，未读加左侧强调条；支持多选批量已读； 无通知时显示「已全部读完」。响应式，深浅色一致，键盘可逐条操作。",
+          "en": "Build a SaaS notification center: title and mark-all-read on top; tabs for all/unread/mentions with unread counts; each row shows source icon, title, two-line snippet and relative time, with an emphasis bar on unread; multi-select bulk read; an all-caught-up empty state. Responsive, theme-consistent and fully keyboard operable."
+        },
+        "implementation": {
+          "zh": "用 React + Tailwind 实现通知中心：通知数据驱动，受控维护已读集合与当前过滤标签； 列表滚动用 IntersectionObserver 分页加载；分栏变体在宽屏用 grid-cols-[320px_1fr]； 未读样式用条件类；尊重 prefers-reduced-motion；不新增依赖。",
+          "en": "React + Tailwind notification center: data-driven notifications with a controlled read set and active filter tab; paginate the list with IntersectionObserver; the split variant uses grid-cols-[320px_1fr] on wide screens; toggle unread styles with a conditional class; respect prefers-reduced-motion; no new dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现通知中心页面。\n\n先检查现有的通知数据接口、徽标与列表组件，优先复用。\n要求：\n- 顶栏 + 视图标签（未读计数）+ 通知列表三段结构\n- 单条通知可标记已读，支持多选批量操作\n- 未读与已读样式区分，时间用相对格式\n- 无通知时给出正向空状态\n- 滚动加载更多，尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement the notification center page in the current project.\n\nInspect the existing notification data source, badge and list components first; reuse them.\nRequirements:\n- Three-part layout: header, view tabs (unread counts), notification list\n- Mark individual items read, with multi-select bulk actions\n- Distinct unread vs read styling and relative timestamps\n- A positive empty state when nothing is unread\n- Scroll to load more; respect prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
+      "id": "onboarding",
+      "type": "pages",
+      "url": "/pages/onboarding",
+      "apiUrl": "/api/concept/pages/onboarding.json",
+      "md": "/pages/onboarding.md",
+      "status": "published",
+      "name": {
+        "zh": "新手引导",
+        "en": "Onboarding"
+      },
+      "aliases": [
+        "新手引导",
+        "引导流程",
+        "新手教程",
+        "第一次用怎么玩",
+        "上手引导",
+        "首次使用引导",
+        "onboarding"
+      ],
+      "category": [
+        "Page",
+        "Onboarding"
+      ],
+      "description": {
+        "zh": "用分步流程把新用户从首次进入带到完成第一个关键动作的页面：通过简短说明、样例与进度提示降低陌生感，并在合适时机引导用户开始操作，而不是一次塞入全部功能。它决定用户对产品的第一印象与留存意愿。",
+        "en": "A first-run page that guides new users to one key action with short explanations, samples and progress cues, rather than every feature."
+      },
+      "use_when": [
+        {
+          "zh": "产品首次上手，需要教会核心操作",
+          "en": "First-run product that must teach a core action"
+        },
+        {
+          "zh": "新功能上线，需要引导老用户迁移",
+          "en": "A new feature ships and existing users must migrate"
+        },
+        {
+          "zh": "多步骤设置流程需要降低放弃率",
+          "en": "Multi-step setup needs lower drop-off"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "高频复访的老用户日常操作",
+          "en": "Everyday use by returning power users"
+        },
+        {
+          "zh": "有清晰导航、功能自解释的简单工具",
+          "en": "Simple tools whose navigation already explains itself"
+        },
+        {
+          "zh": "每次启动都强制弹出的打断式引导",
+          "en": "Forced intro popups on every launch"
+        }
+      ],
+      "tags": [
+        "onboarding",
+        "first-run",
+        "activation",
+        "guidance"
+      ],
+      "variants": [
+        {
+          "id": "tour",
+          "name": {
+            "zh": "分步导览",
+            "en": "Step Tour"
+          },
+          "note": {
+            "zh": "遮罩高亮加逐步气泡，聚焦当下要操作的位置",
+            "en": "Spotlight overlay with step bubbles that focus the current target"
+          }
+        },
+        {
+          "id": "checklist",
+          "name": {
+            "zh": "任务清单",
+            "en": "Checklist"
+          },
+          "note": {
+            "zh": "列出上手任务，完成一项勾一项，可随时回来",
+            "en": "A list of setup tasks that can be checked off and resumed later"
+          }
+        },
+        {
+          "id": "interactive",
+          "name": {
+            "zh": "实操引导",
+            "en": "Interactive Walkthrough"
+          },
+          "note": {
+            "zh": "让用户直接完成一次真实操作来学习",
+            "en": "Learners complete one real action to learn by doing"
+          }
+        }
+      ],
+      "anatomy": [
+        "Progress 进度",
+        "Illustration 插画",
+        "Copy 说明文案",
+        "Steps 步骤列表",
+        "Primary Action 主操作",
+        "Skip 跳过入口"
+      ],
+      "related": [
+        {
+          "id": "onboarding-tour",
+          "relation": "uses"
+        },
+        {
+          "id": "wizard",
+          "relation": "uses"
+        },
+        {
+          "id": "stepper",
+          "relation": "contains"
+        },
+        {
+          "id": "progress-bar",
+          "relation": "contains"
+        },
+        {
+          "id": "button",
+          "relation": "contains"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "欢迎页",
+            "en": "Welcome"
+          },
+          "note": {
+            "zh": "一句话价值主张加开始按钮，说明马上能获得什么。",
+            "en": "One-line value proposition plus a start button stating the immediate payoff."
+          }
+        },
+        {
+          "part": {
+            "zh": "步骤导览",
+            "en": "Guided steps"
+          },
+          "note": {
+            "zh": "每次只讲一个动作，遮罩聚焦目标并给出可跳过的说明。",
+            "en": "One action per step; the overlay focuses a target and the copy stays skippable."
+          }
+        },
+        {
+          "part": {
+            "zh": "任务清单",
+            "en": "Task checklist"
+          },
+          "note": {
+            "zh": "三到五个上手任务，勾选进度可见，离开后能继续。",
+            "en": "Three to five tasks with visible progress that resume after leaving."
+          }
+        },
+        {
+          "part": {
+            "zh": "完成反馈",
+            "en": "Completion"
+          },
+          "note": {
+            "zh": "完成后跳到第一个真实任务或给示例，避免停在空白页。",
+            "en": "On finish, jump into a real task or a sample instead of an empty screen."
+          }
+        }
+      ],
+      "demo": {
+        "component": "onboarding",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "flex",
+          "grid",
+          "position: fixed",
+          "backdrop-filter: blur(6px)",
+          "transition: opacity 200ms ease"
+        ],
+        "notes": {
+          "zh": "引导层用 position fixed 覆盖全屏，遮罩靠 box-shadow 或 SVG 挖洞高亮目标；进度条与步骤点用 flex 居中， 动画时长写成 calc 乘 var(--demo-speed, 1)。步骤状态集中在单一 state（当前步加是否完成），跳过与返回走同一状态机， 不要为每一步各存一个布尔值。",
+          "en": "The tour overlay is position fixed over the viewport; highlight the target with a box-shadow cutout or an SVG mask. Center progress bars and step dots with flex, and write durations as calc multiplied by var(--demo-speed, 1). Keep step state in one place (current step plus done flag); skip and back drive the same state machine rather than one boolean per step."
+        }
+      },
+      "sources": [
+        {
+          "name": "Apple Human Interface Guidelines — Onboarding",
+          "url": "https://developer.apple.com/design/human-interface-guidelines/onboarding"
+        },
+        {
+          "name": "Nielsen Norman Group — Mobile App Onboarding",
+          "url": "https://www.nngroup.com/articles/mobile-app-onboarding/"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个新手引导页面，包含欢迎语、分步说明和开始按钮。",
+          "en": "Create an onboarding page with a welcome message, step-by-step copy and a start button."
+        },
+        "design": {
+          "zh": "设计一个三步新手引导：居中卡片，顶部进度点，中部插画与一句说明，底部主按钮与跳过链接。深色模式一致， 步进动画尊重 prefers-reduced-motion，完成后给出示例任务而不是空白页。",
+          "en": "Design a three-step onboarding flow: a centered card with progress dots on top, an illustration and one line of copy in the middle, a primary button and a skip link below. Keep dark mode consistent, respect prefers-reduced-motion in step transitions, and finish by handing over a sample task instead of an empty screen."
+        },
+        "implementation": {
+          "zh": "用 React 加 Tailwind 实现 Onboarding：单一 step 状态驱动卡片内容与进度；遮罩层固定定位并用 CSS 变量控制动画速度； 跳过直接落到主界面；不新增依赖。",
+          "en": "React plus Tailwind onboarding: a single step state drives card content and progress. The overlay is fixed-positioned with CSS variables controlling animation speed; skip jumps straight to the main UI; no new dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现新手引导。\n\n先检查现有路由、弹层组件与设计 Token，优先复用。\n要求：\n- 分步导览与任务清单两种形态可选\n- 进度与当前步骤由单一状态驱动\n- 跳过、返回、完成路径完整\n- 动画尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement onboarding in the current project.\n\nInspect existing routes, overlay components and design tokens first; reuse them.\nRequirements:\n- Support both a step tour and a task checklist\n- A single state drives progress and the current step\n- Complete skip, back and finish paths\n- Animations respect prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
+      "id": "order-confirmation",
+      "type": "pages",
+      "url": "/pages/order-confirmation",
+      "apiUrl": "/api/concept/pages/order-confirmation.json",
+      "md": "/pages/order-confirmation.md",
+      "status": "published",
+      "name": {
+        "zh": "订单确认页",
+        "en": "Order Confirmation"
+      },
+      "aliases": [
+        "订单确认页",
+        "下单成功页",
+        "付款成功页",
+        "订单提交成功",
+        "支付成功页面",
+        "谢谢购买页",
+        "订单完成页",
+        "购买成功页"
+      ],
+      "category": [
+        "Page",
+        "Commerce"
+      ],
+      "description": {
+        "zh": "下单成功后接住用户情绪的收尾页：用明确的成功状态、订单号与交付时间先给出确定感，再列商品明细、 金额与下一步动作（发票、物流、继续购物）。它不收集新信息，只把「钱已付、货在路上」讲清楚。",
+        "en": "The closing screen after a successful purchase: a clear success state, order number and delivery estimate give certainty first, then item details, totals and next actions such as invoice, tracking or continue shopping. It collects nothing new — it exists to make paid-and-on-its-way unmistakable."
+      },
+      "use_when": [
+        {
+          "zh": "支付或下单成功后立即展示",
+          "en": "Shown immediately after a successful payment or order"
+        },
+        {
+          "zh": "需要给出订单号与交付预期",
+          "en": "The order number and delivery estimate must be stated"
+        },
+        {
+          "zh": "需要引导配送跟踪、发票或继续购物",
+          "en": "Users should be guided to tracking, invoice or more shopping"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "支付失败或订单待审核（用状态或错误页）",
+          "en": "Payment failed or pending review — use a status or error page"
+        },
+        {
+          "zh": "只是暂存草稿，尚未真正成单",
+          "en": "Only a saved draft, not a real placed order"
+        },
+        {
+          "zh": "仍需用户继续填写信息",
+          "en": "More user input is still required"
+        }
+      ],
+      "tags": [
+        "commerce",
+        "confirmation",
+        "success",
+        "receipt",
+        "order"
+      ],
+      "variants": [
+        {
+          "id": "receipt",
+          "name": {
+            "zh": "收据式",
+            "en": "Receipt"
+          },
+          "note": {
+            "zh": "明细与金额完整铺开，像一张电子小票",
+            "en": "Full line items and totals, like a digital receipt"
+          }
+        },
+        {
+          "id": "celebratory",
+          "name": {
+            "zh": "庆祝式",
+            "en": "Celebratory"
+          },
+          "note": {
+            "zh": "成功动效加简短摘要，适合消费品牌",
+            "en": "Success motion with a short summary, for consumer brands"
+          }
+        },
+        {
+          "id": "tracking-first",
+          "name": {
+            "zh": "物流优先",
+            "en": "Tracking-first"
+          },
+          "note": {
+            "zh": "交付时间线与跟踪入口置于最前",
+            "en": "Delivery timeline and tracking entry come first"
+          }
+        }
+      ],
+      "anatomy": [
+        "Success Banner 成功横幅",
+        "Order Meta 订单号与时间",
+        "Item List 商品明细",
+        "Totals 金额摘要",
+        "Delivery Timeline 物流时间线",
+        "Next Actions 后续动作"
+      ],
+      "related": [
+        {
+          "id": "timeline",
+          "relation": "contains"
+        },
+        {
+          "id": "card",
+          "relation": "contains"
+        },
+        {
+          "id": "button",
+          "relation": "contains"
+        },
+        {
+          "id": "confetti",
+          "relation": "used_with"
+        },
+        {
+          "id": "checkout",
+          "relation": "similar_to"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "成功横幅",
+            "en": "Success banner"
+          },
+          "note": {
+            "zh": "图标加一句确认语，第一眼就知道成单了。",
+            "en": "Icon plus one confirmation line so success reads instantly."
+          }
+        },
+        {
+          "part": {
+            "zh": "订单摘要",
+            "en": "Order summary"
+          },
+          "note": {
+            "zh": "订单号、下单时间与预计送达，可一键复制。",
+            "en": "Order number, timestamp and ETA, copyable in one click."
+          }
+        },
+        {
+          "part": {
+            "zh": "商品明细",
+            "en": "Item list"
+          },
+          "note": {
+            "zh": "缩略图、规格、数量与单价逐项列出。",
+            "en": "Each item with thumbnail, variant, quantity and unit price."
+          }
+        },
+        {
+          "part": {
+            "zh": "物流时间线",
+            "en": "Delivery timeline"
+          },
+          "note": {
+            "zh": "已下单、已付款、已发货、已送达的进度。",
+            "en": "Progress through placed, paid, shipped and delivered."
+          }
+        },
+        {
+          "part": {
+            "zh": "后续动作",
+            "en": "Next actions"
+          },
+          "note": {
+            "zh": "查看订单、下载发票、继续购物，主次分明。",
+            "en": "View order, download invoice, continue shopping — ranked clearly."
+          }
+        }
+      ],
+      "demo": {
+        "component": "order-confirmation",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "flex",
+          "grid",
+          "counter-reset: step",
+          "position: relative",
+          "@media print"
+        ],
+        "notes": {
+          "zh": "成功横幅用 role=\"status\" 让读屏播报结果；订单号提供复制按钮并给出已复制反馈。商品明细用列表或表格， 金额用等宽数字（font-variant-numeric: tabular-nums）右对齐。物流时间线用有序列表加伪元素连线； 庆祝动效须尊重 prefers-reduced-motion，并乘 --demo-speed。",
+          "en": "Announce the result with role=\"status\" on the banner; give the order number a copy button with copied feedback. List or table line items with right-aligned tabular numerals for totals. Build the delivery timeline from an ordered list with pseudo-element connectors; celebratory motion must respect prefers-reduced-motion and scale with --demo-speed."
+        }
+      },
+      "sources": [
+        {
+          "name": "Nielsen Norman Group — Progress Indicators",
+          "url": "https://www.nngroup.com/articles/progress-indicators/"
+        },
+        {
+          "name": "W3C WAI — Forms Tutorial",
+          "url": "https://www.w3.org/WAI/tutorials/forms/"
+        },
+        {
+          "name": "Nielsen Norman Group — 10 Usability Heuristics",
+          "url": "https://www.nngroup.com/articles/ten-usability-heuristics/"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个订单确认页，显示成功状态、订单号、商品明细和金额。",
+          "en": "Create an order confirmation page showing success, the order number, item details and totals."
+        },
+        "design": {
+          "zh": "创建电商订单确认页：顶部成功横幅（图标加「支付成功」加可复制订单号）；中部订单摘要卡（下单时间、 预计送达）与商品明细列表；右栏或下方金额摘要（小计、运费、优惠、合计）；底部物流时间线与 「查看订单 / 下载发票 / 继续购物」按钮。移动端单列，深浅色一致。",
+          "en": "Build a commerce order confirmation: a success banner on top (icon, payment-complete label, copyable order number); a summary card with time and ETA plus an item list; totals (subtotal, shipping, discount, total) in a right column or below; a delivery timeline and View order, Download invoice and Continue shopping buttons. Single column on mobile, consistent light/dark."
+        },
+        "implementation": {
+          "zh": "用 React + Tailwind 实现订单确认页：从路由参数或订单接口取数据；订单号复制用剪贴板 API 并给出反馈； 金额计算抽成纯函数并用 tabular-nums 对齐；物流时间线为有序列表；庆祝动效可关闭且尊重 reduced-motion； 提供打印样式；不新增依赖。",
+          "en": "Implement with React + Tailwind: read data from route params or the order API; copy the order number via the Clipboard API with feedback; pure-function totals with tabular-nums; an ordered-list delivery timeline; celebratory motion that can be disabled and respects reduced-motion; print styles; no new dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现订单确认页。\n\n先检查订单数据结构、支付回调与现有卡片和时间线组件，保持一致。\n要求：\n- 成功状态用 role=\"status\" 播报\n- 订单号可复制并给出已复制反馈\n- 商品明细与金额摘要完整，金额用等宽数字右对齐\n- 物流时间线用有序列表表达进度\n- 庆祝动效尊重 prefers-reduced-motion\n- 深浅色与打印样式一致，不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement the order confirmation page in the current project.\n\nInspect the order data model, payment callback and existing card/timeline components; stay consistent.\nRequirements:\n- Announce success with role=\"status\"\n- Copyable order number with copied feedback\n- Full item details and totals with tabular right-aligned numbers\n- Delivery timeline as an ordered list\n- Celebratory motion respects prefers-reduced-motion\n- Consistent light/dark and print styles; no new dependencies\nRun existing checks when done and list modified files."
         }
       }
     },
@@ -18871,6 +22387,241 @@
         "agent": {
           "zh": "在当前项目中实现注册页。\n\n先检查现有认证接口、注册流程与表单组件，保持一致。\n要求：\n- 最少字段（邮箱 + 密码），即时校验与强度提示\n- 第三方注册与登录入口\n- 服务条款勾选联动提交按钮\n- 深浅色一致，键盘可访问\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
           "en": "Implement the signup page in the current project.\n\nInspect the auth API, signup flow and form components first; stay consistent.\nRequirements:\n- Minimal fields (email + password) with inline validation and strength hint\n- Third-party signup and a login link\n- Terms checkbox gates the submit button\n- Consistent light/dark; keyboard accessible\n- No new dependencies\nRun existing checks when done and list modified files."
+        }
+      }
+    },
+    {
+      "id": "team",
+      "type": "pages",
+      "url": "/pages/team",
+      "apiUrl": "/api/concept/pages/team.json",
+      "md": "/pages/team.md",
+      "status": "published",
+      "name": {
+        "zh": "团队页",
+        "en": "Team Page"
+      },
+      "aliases": [
+        "团队页",
+        "团队成员页",
+        "团队介绍页",
+        "关于我们团队",
+        "我们是谁页面",
+        "公司团队页",
+        "成员介绍页",
+        "团队墙"
+      ],
+      "category": [
+        "Page",
+        "Marketing"
+      ],
+      "description": {
+        "zh": "用人物卡片组介绍组织构成的页面：头像、姓名、职位与一句职责说明构成最小单元，按部门或职能分组， 常附加入职链接与价值观叙述。它把抽象的「我们」换成具体可辨认的人，用真实面孔建立信任。",
+        "en": "A page that introduces an organization through a grid of person cards: avatar, name, role and a one-line responsibility form the smallest unit, grouped by team or function, often with an open-roles link and a values narrative. It replaces the abstract we with specific, recognizable people to build trust."
+      },
+      "use_when": [
+        {
+          "zh": "公司或产品需要展示核心成员",
+          "en": "A company or product needs to show its core members"
+        },
+        {
+          "zh": "招聘与信任建设需要真实面孔",
+          "en": "Hiring and trust-building need real faces"
+        },
+        {
+          "zh": "组织可按部门或职能分组呈现",
+          "en": "The organization groups naturally by team or function"
+        }
+      ],
+      "avoid_when": [
+        {
+          "zh": "只展示一位创始人（用关于页）",
+          "en": "Only one founder to show — use an about page"
+        },
+        {
+          "zh": "成员信息涉密或频繁变动",
+          "en": "Member details are sensitive or change often"
+        },
+        {
+          "zh": "需要详细履历与作品（用个人主页）",
+          "en": "Detailed resumes and portfolios — use profile pages"
+        }
+      ],
+      "tags": [
+        "team",
+        "people",
+        "company",
+        "trust",
+        "marketing"
+      ],
+      "variants": [
+        {
+          "id": "grid",
+          "name": {
+            "zh": "照片网格",
+            "en": "Photo Grid"
+          },
+          "note": {
+            "zh": "等尺寸头像网格，悬停显示简介",
+            "en": "Even avatar grid with bios on hover"
+          }
+        },
+        {
+          "id": "roster",
+          "name": {
+            "zh": "名册式",
+            "en": "Roster"
+          },
+          "note": {
+            "zh": "按部门分组的紧凑列表",
+            "en": "Compact list grouped by department"
+          }
+        },
+        {
+          "id": "feature",
+          "name": {
+            "zh": "焦点式",
+            "en": "Featured"
+          },
+          "note": {
+            "zh": "大图加关键成员长简介",
+            "en": "Large portrait plus a longer bio for key members"
+          }
+        }
+      ],
+      "anatomy": [
+        "Page Header 标题与使命",
+        "Team Group 部门分组",
+        "Member Card 成员卡片",
+        "Avatar 头像",
+        "Role & Bio 职位与简介",
+        "Careers CTA 招聘行动区"
+      ],
+      "related": [
+        {
+          "id": "card",
+          "relation": "contains"
+        },
+        {
+          "id": "avatar",
+          "relation": "contains"
+        },
+        {
+          "id": "badge",
+          "relation": "contains"
+        },
+        {
+          "id": "profile",
+          "relation": "similar_to"
+        },
+        {
+          "id": "hover-lift",
+          "relation": "used_with"
+        }
+      ],
+      "structure": [
+        {
+          "part": {
+            "zh": "标题与使命",
+            "en": "Header"
+          },
+          "note": {
+            "zh": "一句团队使命或规模说明，给页面定调。",
+            "en": "One line of mission or scale sets the tone."
+          }
+        },
+        {
+          "part": {
+            "zh": "成员网格",
+            "en": "Member grid"
+          },
+          "note": {
+            "zh": "卡片等宽排列，头像统一裁切比例。",
+            "en": "Even-width cards with a consistent avatar crop."
+          }
+        },
+        {
+          "part": {
+            "zh": "部门分组",
+            "en": "Team groups"
+          },
+          "note": {
+            "zh": "按职能或部门分区，各配短标题。",
+            "en": "Sections by function or department, each with a short heading."
+          }
+        },
+        {
+          "part": {
+            "zh": "成员卡片",
+            "en": "Member card"
+          },
+          "note": {
+            "zh": "头像、姓名、职位与一句职责，可跳转个人页。",
+            "en": "Avatar, name, role and one line, linking to a profile."
+          }
+        },
+        {
+          "part": {
+            "zh": "招聘行动区",
+            "en": "Careers CTA"
+          },
+          "note": {
+            "zh": "页尾指向开放职位，承接浏览者的兴趣。",
+            "en": "A closing link to open roles captures interest."
+          }
+        }
+      ],
+      "demo": {
+        "component": "team",
+        "modes": [
+          "default",
+          "dark",
+          "variants"
+        ]
+      },
+      "implementation": {
+        "css": [
+          "grid",
+          "flex",
+          "aspect-ratio: 1",
+          "grid-template-columns: repeat(auto-fit, minmax(140px, 1fr))",
+          "object-fit: cover"
+        ],
+        "notes": {
+          "zh": "成员网格用 repeat(auto-fit, minmax(140px, 1fr)) 自适应；头像统一 aspect-ratio: 1 与 object-fit: cover， 并带真实 alt 文本。卡片悬停可微抬，但必须在 reduced-motion 下关闭。按部门筛选时保持键盘可达， 卡片本身是可聚焦链接而非纯装饰 div。",
+          "en": "Lay out the member grid with repeat(auto-fit, minmax(140px, 1fr)); crop avatars to aspect-ratio: 1 with object-fit: cover and real alt text. Cards may lift on hover but must disable under reduced-motion. Department filters stay keyboard reachable, and each card is a focusable link rather than a decorative div."
+        }
+      },
+      "sources": [
+        {
+          "name": "Material Design 3 — Cards",
+          "url": "https://m3.material.io/components/cards/overview"
+        },
+        {
+          "name": "Apple Human Interface Guidelines — Layout",
+          "url": "https://developer.apple.com/design/human-interface-guidelines/layout"
+        },
+        {
+          "name": "Nielsen Norman Group — Trustworthy Design",
+          "url": "https://www.nngroup.com/articles/trustworthy-design/"
+        }
+      ],
+      "prompts": {
+        "basic": {
+          "zh": "创建一个团队页，用头像卡片展示成员姓名与职位。",
+          "en": "Create a team page showing members with avatar cards, names and roles."
+        },
+        "design": {
+          "zh": "创建公司团队页：顶部团队使命与人数说明；按部门分组的成员卡片网格，每张卡含方形头像、姓名、职位与 一句职责；悬停轻微上浮；页尾「加入我们」招聘按钮。响应式 2 到 4 列，深浅色一致。",
+          "en": "Build a company team page: a mission and headcount line on top; member card grids grouped by department, each card with a square avatar, name, role and one-line responsibility; a subtle hover lift; a Join us careers button at the end. Two to four responsive columns, consistent light/dark."
+        },
+        "implementation": {
+          "zh": "用 React + Tailwind 实现团队页：数据来自 CMS 或 JSON；网格用 auto-fit 加 minmax；头像 aspect-ratio 方形并带真实 alt；卡片为可聚焦链接；部门筛选键盘可达；悬停动画尊重 prefers-reduced-motion；不新增依赖。",
+          "en": "Implement with React + Tailwind: data from a CMS or JSON; grid via auto-fit and minmax; square avatars with real alt text; cards as focusable links; keyboard-reachable department filters; hover motion respects prefers-reduced-motion; no new dependencies."
+        },
+        "agent": {
+          "zh": "在当前项目中实现团队页。\n\n先检查现有成员数据、头像资源与卡片组件，优先复用。\n要求：\n- 按部门分组的响应式成员网格\n- 头像方形裁切并带真实 alt 文本\n- 卡片可聚焦跳转个人页\n- 部门筛选键盘可达，尊重 prefers-reduced-motion\n- 页尾招聘 CTA，深浅色一致，不新增依赖\n完成后运行现有检查，说明修改文件。",
+          "en": "Implement the team page in the current project.\n\nInspect existing member data, avatar assets and card components first; reuse them.\nRequirements:\n- Responsive member grid grouped by department\n- Square avatar crops with real alt text\n- Focusable cards linking to profiles\n- Keyboard-reachable department filters; respect prefers-reduced-motion\n- Careers CTA at the end; consistent light/dark; no new dependencies\nRun existing checks when done and list modified files."
         }
       }
     },

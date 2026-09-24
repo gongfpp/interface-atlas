@@ -1,0 +1,240 @@
+{
+  "id": "blog-index",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "博客列表页",
+    "en": "Blog Index"
+  },
+  "aliases": [
+    "博客列表页",
+    "文章列表",
+    "博客首页",
+    "资讯列表页",
+    "文章列表页",
+    "博客目录",
+    "blog 首页"
+  ],
+  "category": [
+    "Page",
+    "Content"
+  ],
+  "description": {
+    "zh": "按时间或主题聚合文章的内容索引页：顶部先给一条编辑推荐的头条，再用卡片流或列表铺开全部文章，每项含题图、标题、摘要、分类与日期；分类导航与搜索负责收窄范围，分页或无限滚动负责继续加载。",
+    "en": "An index of posts by date or topic: a featured story leads, then cards show thumbnail, title, excerpt and date, with category nav and pagination."
+  },
+  "use_when": [
+    {
+      "zh": "站点有持续更新的文章或资讯",
+      "en": "The site publishes a steady stream of articles"
+    },
+    {
+      "zh": "用户需要按主题、标签或时间浏览",
+      "en": "Users browse by topic, tag or time"
+    },
+    {
+      "zh": "希望突出少数重点文章",
+      "en": "You want to spotlight a few key posts"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "只有零星几条静态内容",
+      "en": "There are only a handful of static items"
+    },
+    {
+      "zh": "内容需要强检索而非浏览（用搜索结果页更合适）",
+      "en": "Content needs heavy retrieval, not browsing — a search page fits better"
+    },
+    {
+      "zh": "单篇文章本身就是完整产品页",
+      "en": "A single article already is the whole product page"
+    }
+  ],
+  "tags": [
+    "blog",
+    "content",
+    "listing",
+    "navigation"
+  ],
+  "variants": [
+    {
+      "id": "card-grid",
+      "name": {
+        "zh": "卡片网格",
+        "en": "Card Grid"
+      },
+      "note": {
+        "zh": "图文卡片等高排列，题图统一比例，适合视觉型内容",
+        "en": "Equal-height visual cards with a unified thumbnail ratio"
+      }
+    },
+    {
+      "id": "list",
+      "name": {
+        "zh": "紧凑列表",
+        "en": "Compact List"
+      },
+      "note": {
+        "zh": "只留标题、摘要与日期，一屏信息量最大",
+        "en": "Title, excerpt and date only — maximum information per screen"
+      }
+    },
+    {
+      "id": "featured-hero",
+      "name": {
+        "zh": "头条英雄区",
+        "en": "Featured Hero"
+      },
+      "note": {
+        "zh": "顶部大图推荐一篇，下方退回常规列表",
+        "en": "A large visual promotes one post, with a normal list below"
+      }
+    }
+  ],
+  "anatomy": [
+    "Header 顶栏",
+    "Featured 头条推荐",
+    "Category Nav 分类导航",
+    "Post List 文章列表",
+    "Pagination 分页",
+    "Newsletter 订阅区"
+  ],
+  "related": [
+    {
+      "id": "card",
+      "relation": "contains"
+    },
+    {
+      "id": "pagination",
+      "relation": "contains"
+    },
+    {
+      "id": "infinite-scroll",
+      "relation": "uses"
+    },
+    {
+      "id": "search-filtering",
+      "relation": "uses"
+    },
+    {
+      "id": "blog-post",
+      "relation": "similar_to"
+    }
+  ],
+  "structure": [
+    {
+      "part": {
+        "zh": "顶栏",
+        "en": "Header"
+      },
+      "note": {
+        "zh": "站点导航、搜索入口与订阅按钮，保持全站一致。",
+        "en": "Site nav, search entry and subscribe button, consistent sitewide."
+      }
+    },
+    {
+      "part": {
+        "zh": "头条推荐",
+        "en": "Featured post"
+      },
+      "note": {
+        "zh": "一条大图或加大标题的置顶文章，占首屏最强视觉权重。",
+        "en": "One pinned post with a large image or headline, the strongest first-screen weight."
+      }
+    },
+    {
+      "part": {
+        "zh": "分类导航",
+        "en": "Category nav"
+      },
+      "note": {
+        "zh": "横向标签或分类链接，切换后列表即时过滤。",
+        "en": "Horizontal tags or category links that filter the list on switch."
+      }
+    },
+    {
+      "part": {
+        "zh": "文章列表",
+        "en": "Post list"
+      },
+      "note": {
+        "zh": "卡片或列表项重复排列，每项包含题图、标题、摘要与元信息。",
+        "en": "Repeated cards or rows, each with thumbnail, title, excerpt and metadata."
+      }
+    },
+    {
+      "part": {
+        "zh": "分页",
+        "en": "Pagination"
+      },
+      "note": {
+        "zh": "页码或「加载更多」，也可换用无限滚动。",
+        "en": "Page numbers or a load-more button, replaceable by infinite scroll."
+      }
+    },
+    {
+      "part": {
+        "zh": "订阅区",
+        "en": "Newsletter"
+      },
+      "note": {
+        "zh": "页尾邮箱收集，把一次性访客转成回访读者。",
+        "en": "An email capture before the footer, turning one-off visits into returns."
+      }
+    }
+  ],
+  "demo": {
+    "component": "blog-index",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "flex",
+      "grid",
+      "grid-template-columns: repeat(auto-fill, minmax(240px, 1fr))",
+      "gap",
+      "aspect-ratio: 16 / 9"
+    ],
+    "notes": {
+      "zh": "列表容器用 grid 自适应列数，卡片内部用 flex 纵向排布题图与文本；题图统一 aspect-ratio 防止高度跳动。头条在 DOM 中排在列表之前，保证键盘与读屏顺序正确；分页保留真实链接，加载更多用按钮并给 aria-live 反馈。",
+      "en": "Lay the list out with an auto-fill grid and stack thumbnail and text inside each card with flex; lock thumbnails to one aspect-ratio so heights do not jump. Keep the featured post before the list in the DOM for correct keyboard and screen-reader order; keep pagination as real links and announce load-more via aria-live."
+    }
+  },
+  "sources": [
+    {
+      "name": "MDN — CSS Grid Layout",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
+    },
+    {
+      "name": "web.dev — Learn CSS: Grid",
+      "url": "https://web.dev/learn/css/grid"
+    },
+    {
+      "name": "Nielsen Norman Group — F-Shaped Pattern",
+      "url": "https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个博客列表页，包含头条推荐、分类导航和文章卡片列表。",
+      "en": "Create a blog index page with a featured post, category nav and a post card list."
+    },
+    "design": {
+      "zh": "设计内容博客列表页：吸顶顶栏含搜索与订阅按钮；顶部一条大图头条；分类标签横向排列，选中态用强调色；下方三列卡片网格，每张含 16:9 题图、标题、两行摘要、分类与日期；底部分页。深浅色一致，悬停轻微抬升。",
+      "en": "Design a content blog index: sticky header with search and subscribe; a large featured post on top; horizontal category tags with an accent selected state; a three-column card grid with 16:9 thumbnails, title, two-line excerpt, category and date; pagination below. Theme-consistent with a subtle hover lift."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现博客列表：卡片用 grid auto-fill 响应式排列；分类切换用受控状态过滤列表；题图统一 aspect-ratio 并懒加载；分页链接可深链；加载更多保留焦点并给 aria-live 反馈；尊重 prefers-reduced-motion；不新增依赖。",
+      "en": "React + Tailwind blog index: responsive auto-fill card grid; category state filters the list; thumbnails share one aspect-ratio and lazy-load; pagination links are deep-linkable; load-more preserves focus and announces via aria-live; respect prefers-reduced-motion; no new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现博客列表页。\n\n先检查现有路由、卡片与分页组件，优先复用。\n要求：\n- 头条推荐 + 分类导航 + 文章列表 + 分页\n- 分类切换即时过滤，状态可深链\n- 题图固定比例并懒加载\n- 键盘可达，尊重 prefers-reduced-motion\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the blog index page in the current project.\n\nInspect existing routes, card and pagination components first; reuse them.\nRequirements:\n- Featured post + category nav + post list + pagination\n- Category switch filters instantly and is deep-linkable\n- Fixed-ratio, lazy-loaded thumbnails\n- Keyboard accessible; respect prefers-reduced-motion\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

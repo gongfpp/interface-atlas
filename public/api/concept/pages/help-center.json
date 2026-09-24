@@ -1,0 +1,237 @@
+{
+  "id": "help-center",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "帮助中心",
+    "en": "Help Center"
+  },
+  "aliases": [
+    "帮助中心",
+    "帮助页",
+    "帮助文档",
+    "客服帮助页",
+    "常见问题页",
+    "FAQ 页",
+    "说明书页面",
+    "怎么用的页面"
+  ],
+  "category": [
+    "Page",
+    "Support"
+  ],
+  "description": {
+    "zh": "把产品文档、常见问题与联系入口收拢到一处的自助支持页面：顶部搜索先猜意图， 主体按主题分组文章并按热度排序，底部保留联系客服与提交工单的兜底路径。 目标是让用户在打扰人工之前先自己解决问题。",
+    "en": "A self-service support page gathering docs, FAQs and contact routes: search guesses intent, articles group by topic, and contact sits at the bottom."
+  },
+  "use_when": [
+    {
+      "zh": "用户遇到问题先自行查找答案",
+      "en": "Users look for answers on their own first"
+    },
+    {
+      "zh": "支持量需要靠文档分流",
+      "en": "Support volume needs to be deflected into docs"
+    },
+    {
+      "zh": "内容需按产品模块长期维护",
+      "en": "Content is maintained by product area over time"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "需要实时人工介入的紧急事故（用在线客服或热线）",
+      "en": "Urgent incidents needing live humans — use live chat or a hotline"
+    },
+    {
+      "zh": "只有几条零散说明（用页面内提示或工具提示）",
+      "en": "Only a few scattered tips — inline hints or tooltips suffice"
+    },
+    {
+      "zh": "面向公众的营销介绍（用落地页）",
+      "en": "Public marketing overview — a landing page fits"
+    }
+  ],
+  "tags": [
+    "support",
+    "documentation",
+    "faq",
+    "self-service",
+    "search"
+  ],
+  "variants": [
+    {
+      "id": "portal",
+      "name": {
+        "zh": "门户型",
+        "en": "Help Portal"
+      },
+      "note": {
+        "zh": "搜索 + 分类卡片，覆盖最完整",
+        "en": "Search plus category cards, the fullest coverage"
+      }
+    },
+    {
+      "id": "faq",
+      "name": {
+        "zh": "常见问题",
+        "en": "FAQ"
+      },
+      "note": {
+        "zh": "折叠问答列表，轻量直接",
+        "en": "A collapsible Q&A list, lightweight and direct"
+      }
+    },
+    {
+      "id": "docs",
+      "name": {
+        "zh": "文档型",
+        "en": "Docs Hub"
+      },
+      "note": {
+        "zh": "侧栏目录 + 正文，适合长文档",
+        "en": "Sidebar outline plus article, for long documentation"
+      }
+    }
+  ],
+  "anatomy": [
+    "Search Hero 搜索区",
+    "Topic Grid 主题分类",
+    "Article List 文章列表",
+    "Popular 热门内容",
+    "Contact Support 联系支持",
+    "Footer 页脚"
+  ],
+  "related": [
+    {
+      "id": "accordion",
+      "relation": "contains"
+    },
+    {
+      "id": "card",
+      "relation": "contains"
+    },
+    {
+      "id": "search-filtering",
+      "relation": "uses"
+    },
+    {
+      "id": "progressive-disclosure",
+      "relation": "uses"
+    },
+    {
+      "id": "empty-state",
+      "relation": "uses"
+    }
+  ],
+  "structure": [
+    {
+      "part": {
+        "zh": "搜索区",
+        "en": "Search hero"
+      },
+      "note": {
+        "zh": "一句话说明 + 大搜索框，输入即联想文章标题。",
+        "en": "One line of orientation plus a large search box with title suggestions while typing."
+      }
+    },
+    {
+      "part": {
+        "zh": "主题分类",
+        "en": "Topic grid"
+      },
+      "note": {
+        "zh": "按产品模块分组的入口卡片，配图标与文章数。",
+        "en": "Entry cards grouped by product area, with icons and article counts."
+      }
+    },
+    {
+      "part": {
+        "zh": "文章列表",
+        "en": "Article list"
+      },
+      "note": {
+        "zh": "分类下按热度与更新时间排列的条目。",
+        "en": "Articles ranked by popularity and recency within a topic."
+      }
+    },
+    {
+      "part": {
+        "zh": "热门内容",
+        "en": "Popular"
+      },
+      "note": {
+        "zh": "高频问题的快捷链接，缩短查找路径。",
+        "en": "Quick links to frequent questions that shortcut the search."
+      }
+    },
+    {
+      "part": {
+        "zh": "联系支持",
+        "en": "Contact support"
+      },
+      "note": {
+        "zh": "兜底入口，转在线客服或提交工单。",
+        "en": "The fallback route to live chat or a ticket."
+      }
+    },
+    {
+      "part": {
+        "zh": "页脚",
+        "en": "Footer"
+      },
+      "note": {
+        "zh": "服务状态、社区与法律链接，收束整页。",
+        "en": "Service status, community and legal links closing the page."
+      }
+    }
+  ],
+  "demo": {
+    "component": "help-center",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "grid",
+      "flex",
+      "grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))",
+      "position: sticky"
+    ],
+    "notes": {
+      "zh": "搜索区置顶并保持吸顶，输入即过滤文章标题（debounce 250ms）；主题分类用 auto-fit 卡片网格， 窄屏降为单列。文章列表与热门区用两列布局；联系支持做成整行强调块收口。 搜索无结果时给热门词建议与联系入口，而不是空白。",
+      "en": "Pin the search hero and filter article titles as the user types (250ms debounce); lay topics out as an auto-fit card grid that collapses to one column on narrow screens. Pair the article list with a popular rail, and close with a full-width contact block. A no-results search shows popular terms and the contact route instead of a blank."
+    }
+  },
+  "sources": [
+    {
+      "name": "Nielsen Norman Group — Help and documentation",
+      "url": "https://www.nngroup.com/articles/help-and-documentation/"
+    },
+    {
+      "name": "Apple Human Interface Guidelines — Searching",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/searching"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个帮助中心页面，包含搜索框、主题分类和常见问题列表。",
+      "en": "Create a help center page with a search box, topic categories and an FAQ list."
+    },
+    "design": {
+      "zh": "创建产品帮助中心：顶部居中大搜索框与一句说明；下方按模块的主题卡片网格（图标 + 标题 + 文章数）； 再往下是文章列表与「热门文章」侧栏；常见问题用可折叠问答；底部整行「联系客服 / 提交工单」块。 搜索实时过滤并高亮命中词；无结果时给热门词与联系入口。响应式，深浅色一致。",
+      "en": "Build a product help center: a centered search box with one line of copy on top; a grid of topic cards below (icon, title, article count); an article list beside a popular-articles rail; collapsible FAQ items; and a full-width contact / open-a-ticket block at the bottom. Search filters live and highlights hits; no-results shows popular terms and the contact route. Responsive and theme-consistent."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现帮助中心：搜索词受控并 debounce 过滤文章；命中词分段高亮； 分类卡片用 grid auto-fit；FAQ 折叠维护展开集合；主题与搜索状态同步到 URL query； 空结果展示热门词；尊重 prefers-reduced-motion；不新增依赖。",
+      "en": "React + Tailwind help center: a controlled query with debounced article filtering; segmented hit highlighting; auto-fit category cards; FAQ items tracking an open set; topic and query synced to URL search params; popular terms on empty results; respect prefers-reduced-motion; no new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现帮助中心页面。\n\n先检查现有文档数据源、搜索组件与折叠组件，优先复用。\n要求：\n- 顶部搜索区 + 主题分类网格 + 文章列表 + 联系支持\n- 搜索实时过滤文章并高亮命中词\n- 常见问题用可折叠列表\n- 无结果时给热门词与联系入口\n- 响应式，键盘可访问，深浅色一致\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the help center page in the current project.\n\nInspect the existing docs data source, search and accordion components first; reuse them.\nRequirements:\n- Search hero, topic grid, article list and contact support\n- Live article filtering with highlighted hits\n- Collapsible FAQ list\n- Popular terms and contact route on empty results\n- Responsive, keyboard accessible, theme-consistent\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

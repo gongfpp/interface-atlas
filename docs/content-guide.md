@@ -128,7 +128,7 @@ export default XDemo;
 - 不引入任何新依赖；不写测试文件。
 - 尺寸克制：常规示例优先控制在 240～480px；完整表单和多变体允许自然增高，不裁切内容，内容居中。
 
-## 3. 全库 id 清单（138；新增时同步更新此处，并以内容校验结果为准）
+## 3. 全库 id 清单（154；新增时同步更新此处，并以内容校验结果为准）
 
 **components (46)**：button, input, select, textarea, checkbox, radio, switch, slider, date-picker, navbar, sidebar, breadcrumb, tabs, pagination, modal, drawer, popover, tooltip, toast, alert, card, table, progress-bar, avatar, badge, accordion, dropdown, menu, command-palette, filter-panel, segmented-control, stepper, combobox, file-upload, rating, timeline, carousel, bottom-sheet, fab, tag-input, toolbar, multi-select, lightbox, split-button, tree-view, color-picker
 
@@ -136,7 +136,7 @@ export default XDemo;
 
 **styles (24)**：minimalism, neobrutalism, glassmorphism, skeuomorphism, flat-design, swiss-style, bauhaus, y2k, cyberpunk, memphis, bento-grid, editorial, retro-futurism, claymorphism, aurora, organic, art-deco, neumorphism, brutalism, corporate-memphis, hand-drawn, liquid-glass, pixel-art, vaporwave
 
-**pages (10)**：dashboard, landing-page, login, pricing, settings, profile, search, checkout, documentation, signup
+**pages (26)**：dashboard, landing-page, login, pricing, settings, profile, search, checkout, documentation, signup, onboarding, error-404, error-500, faq, blog-index, blog-post, about, contact, notification-center, chat, calendar, help-center, features-comparison, order-confirmation, changelog, team
 
 **motion (23)**：hover-lift, press-feedback, hover-glow, magnetic-button, loading-spinner, page-transition, scroll-reveal, parallax, shared-element-transition, text-reveal, number-counter, marquee, stagger-reveal, ripple, morphing-icon, drawer-slide, toast-slide-in, accordion-expand, confetti, elastic-bounce, view-transition, scroll-driven-animation, spring-animation
 

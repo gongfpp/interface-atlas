@@ -1,0 +1,226 @@
+{
+  "id": "calendar",
+  "type": "pages",
+  "status": "published",
+  "name": {
+    "zh": "日历页",
+    "en": "Calendar Page"
+  },
+  "aliases": [
+    "日历页",
+    "日程页",
+    "日历界面",
+    "排期页面",
+    "日程表",
+    "月历",
+    "看日期的页面",
+    "安排时间的页面"
+  ],
+  "category": [
+    "Page",
+    "Productivity"
+  ],
+  "description": {
+    "zh": "用时间网格承载事件与日程的页面：以月、周、日三种尺度切换视图，事件块按起止时间定位并支持拖拽改期， 顶部有今天、前后翻页与视图切换，侧栏列出待办与冲突。 它是排期、预约与团队协调的主界面。",
+    "en": "A page laying events onto a time grid with month, week and day views, click-to-edit blocks and drag-to-reschedule, anchored by today and prev/next controls."
+  },
+  "use_when": [
+    {
+      "zh": "事件有明确的起止时间与日期",
+      "en": "Events have clear start and end times"
+    },
+    {
+      "zh": "用户需要跨天、跨周比较安排",
+      "en": "Users compare plans across days or weeks"
+    },
+    {
+      "zh": "多人共享同一时间资源（会议室、班表）",
+      "en": "Shared time resources across people — rooms, shifts"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "只有截止日期、没有具体时段（用列表或看板）",
+      "en": "Only due dates, no time slots — a list or board fits"
+    },
+    {
+      "zh": "纯按时间正序的日志流（用时间线）",
+      "en": "A purely chronological log — use a timeline"
+    },
+    {
+      "zh": "单次预约、无需浏览时间网格（用日期选择器）",
+      "en": "A single booking with no grid browsing — a date picker is enough"
+    }
+  ],
+  "tags": [
+    "calendar",
+    "scheduling",
+    "events",
+    "time",
+    "planning"
+  ],
+  "variants": [
+    {
+      "id": "month",
+      "name": {
+        "zh": "月视图",
+        "en": "Month View"
+      },
+      "note": {
+        "zh": "六周网格，先看整体疏密",
+        "en": "Six-week grid showing overall density first"
+      }
+    },
+    {
+      "id": "week",
+      "name": {
+        "zh": "周视图",
+        "en": "Week View"
+      },
+      "note": {
+        "zh": "逐时排布，会议与班表常用",
+        "en": "Hour-by-hour columns, common for meetings and shifts"
+      }
+    },
+    {
+      "id": "agenda",
+      "name": {
+        "zh": "议程列表",
+        "en": "Agenda List"
+      },
+      "note": {
+        "zh": "按天罗列事件，移动端友好",
+        "en": "Events listed by day, mobile friendly"
+      }
+    }
+  ],
+  "anatomy": [
+    "Toolbar 工具栏",
+    "Date Grid 日期网格",
+    "Event Block 事件块",
+    "Today Marker 今日标记",
+    "Side Agenda 侧栏议程"
+  ],
+  "related": [
+    {
+      "id": "date-picker",
+      "relation": "contains"
+    },
+    {
+      "id": "segmented-control",
+      "relation": "contains"
+    },
+    {
+      "id": "timeline",
+      "relation": "contains"
+    },
+    {
+      "id": "drag-and-drop",
+      "relation": "uses"
+    },
+    {
+      "id": "empty-state",
+      "relation": "uses"
+    }
+  ],
+  "structure": [
+    {
+      "part": {
+        "zh": "工具栏",
+        "en": "Toolbar"
+      },
+      "note": {
+        "zh": "今天、前后翻页、视图切换与新建事件入口。",
+        "en": "Today, prev/next navigation, view switcher and a create-event entry."
+      }
+    },
+    {
+      "part": {
+        "zh": "日期网格",
+        "en": "Date grid"
+      },
+      "note": {
+        "zh": "月/周/日不同粒度的行列表头与时间轴。",
+        "en": "Row and column headers plus a time axis at each granularity."
+      }
+    },
+    {
+      "part": {
+        "zh": "事件块",
+        "en": "Event block"
+      },
+      "note": {
+        "zh": "按起止定位、颜色分类，可点击编辑、拖拽改期。",
+        "en": "Positioned by start and end, color-coded, click to edit and drag to reschedule."
+      }
+    },
+    {
+      "part": {
+        "zh": "今日标记",
+        "en": "Today marker"
+      },
+      "note": {
+        "zh": "当前日期高亮，有事件时显示圆点。",
+        "en": "The current date is highlighted, dotted when events exist."
+      }
+    },
+    {
+      "part": {
+        "zh": "侧栏议程",
+        "en": "Side agenda"
+      },
+      "note": {
+        "zh": "选中日期的待办与时间冲突提醒。",
+        "en": "Tasks for the selected day plus time-conflict warnings."
+      }
+    }
+  ],
+  "demo": {
+    "component": "calendar",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "implementation": {
+    "css": [
+      "grid",
+      "grid-template-columns: repeat(7, 1fr)",
+      "overflow: auto",
+      "position: sticky"
+    ],
+    "notes": {
+      "zh": "月视图用 7 列 grid，日期单元格纵横比为 1 / 1 并让事件块超出时省略号截断； 周视图用时间轴 grid-rows 配合绝对定位事件块（top/height 由起止换算）。工具栏吸顶， 网格横向可滚动；拖拽改期用 HTML5 DnD 或指针事件，落点高亮 200ms 反馈。",
+      "en": "Month view uses a seven-column grid with square-ish cells that clamp overflowing events; week view pairs a time-axis grid with absolutely positioned blocks (top/height from time). Keep the toolbar sticky and the grid scrollable, and highlight a 200ms drop target when rescheduling via HTML5 drag-and-drop or pointer events."
+    }
+  },
+  "sources": [
+    {
+      "name": "Material Design 3 — Date pickers",
+      "url": "https://m3.material.io/components/date-pickers/overview"
+    },
+    {
+      "name": "W3C WAI-ARIA Authoring Practices — Grid pattern",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/grid/"
+    }
+  ],
+  "prompts": {
+    "basic": {
+      "zh": "创建一个日历页，包含月视图网格、事件块和今日标记。",
+      "en": "Create a calendar page with a month grid, event blocks and a today marker."
+    },
+    "design": {
+      "zh": "创建团队日历页：顶部工具栏含今天、上一页/下一页、月/周/议程切换与新建事件按钮； 主体月视图七列网格，今天高亮，事件块按分类配色且时间冲突时并排；右侧栏列出选中日期的 议程与冲突提示。响应式，窄屏默认切到议程列表；深浅色一致，键盘可导航单元格。",
+      "en": "Build a team calendar page: a toolbar with today, prev/next, month/week/agenda switch and a create button; a seven-column month grid with today highlighted, color-coded events and side-by-side placement on conflicts; a right rail agenda for the selected day with conflict warnings. Responsive to an agenda list on narrow screens, theme-consistent and keyboard navigable."
+    },
+    "implementation": {
+      "zh": "用 React + Tailwind 实现日历页：日期矩阵由当前年月计算生成，选中日与视图为受控状态； 事件按日期分组渲染，冲突事件横向分列；单元格方向键导航用 roving tabindex； 拖拽改期用指针事件并更新本地事件状态；尊重 prefers-reduced-motion；不新增依赖。",
+      "en": "React + Tailwind calendar: compute the date matrix from the active month; keep selected day and view in controlled state; group events by date and split conflicting ones into columns; use roving tabindex for arrow-key navigation; reschedule with pointer events updating local state; respect prefers-reduced-motion; no new dependencies."
+    },
+    "agent": {
+      "zh": "在当前项目中实现日历页。\n\n先检查现有日期工具函数、事件数据与弹层组件，优先复用。\n要求：\n- 工具栏 + 月/周/议程三种视图 + 侧栏议程\n- 今天高亮，事件块按起止定位并分类配色\n- 点击事件可查看详情，拖拽可改期\n- 键盘方向键在日期网格中导航\n- 响应式，窄屏降级为议程列表\n- 不新增依赖\n完成后运行现有检查，说明修改文件。",
+      "en": "Implement the calendar page in the current project.\n\nInspect the existing date utilities, event data and popover components first; reuse them.\nRequirements:\n- Toolbar, month/week/agenda views and a side agenda\n- Today highlighted; event blocks positioned by time and color-coded\n- Click an event for details; drag to reschedule\n- Arrow-key navigation across the date grid\n- Responsive, degrading to an agenda list on narrow screens\n- No new dependencies\nRun existing checks when done and list modified files."
+    }
+  }
+}

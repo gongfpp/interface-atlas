@@ -102,16 +102,32 @@
 - [Swiss Style / 瑞士风格](/api/concept/styles/swiss-style.json): 以客观网格与排版传达信息的视觉语言：严密的数学网格、无衬线字体、左对齐、 黑白加一个强调色（经典为红），用留白与字号对比建立秩序。装饰被视为噪音， 设计的目标是
 - [Vaporwave / 蒸汽波](/api/concept/styles/vaporwave.json): 用霓虹粉紫青、透视网格地平线、镀铬 3D 字与棕榈树剪影表示「消费主义怀旧」的视觉语言。 拼贴 80-90 年代商场、早期 CGI 与故障信号，甜腻、迷幻、又带
 - [Y2K Aesthetic / Y2K 千禧美学](/api/concept/styles/y2k.json): 复刻千禧年前后数码乐观主义的视觉语言：镀铬液态金属、iMac 糖果半透明塑料、 气泡字与闪光星形、粉紫蓝渐变配银白高光。它混合了对未来的天真想象与低分辨率 3D
+- [About Page / 关于页](/api/concept/pages/about.json): 向访客解释「我们是谁、为什么做这件事」的品牌页面：开头用一句使命宣言定调，中段以创始故事、发展历程或团队照片建立信任，再用价值观与关键数据支撑，结尾导向联系、招
+- [Blog Index / 博客列表页](/api/concept/pages/blog-index.json): 按时间或主题聚合文章的内容索引页：顶部先给一条编辑推荐的头条，再用卡片流或列表铺开全部文章，每项含题图、标题、摘要、分类与日期；分类导航与搜索负责收窄范围，分页
+- [Blog Post / 博客文章页](/api/concept/pages/blog-post.json): 围绕单篇文章组织的阅读页：文章头给出标题、作者、发布时间与预计阅读时长，正文保持一行 45～75 字符的舒适行宽，侧栏或文首提供可跳转的目录，文末用作者卡与相关
+- [Calendar Page / 日历页](/api/concept/pages/calendar.json): 用时间网格承载事件与日程的页面：以月、周、日三种尺度切换视图，事件块按起止时间定位并支持拖拽改期， 顶部有今天、前后翻页与视图切换，侧栏列出待办与冲突。 它是排
+- [Changelog / 更新日志页](/api/concept/pages/changelog.json): 按时间倒序罗列产品每次变化的页面：每条版本以日期与版本号开头，用新增、改进、修复分组呈现， 重要变更附迁移说明与链接。它让用户与团队在同一份事实源上理解「这次更
+- [Chat / Messaging / 聊天消息页](/api/concept/pages/chat.json): 以对话为单位组织消息的页面：左侧会话列表按最新消息排序，右侧线程区按时间正序铺气泡， 底部输入框承担发送与附件，顶部显示对方状态与操作。 它把异步沟通的上下文留
 - [Checkout Page / 结账页](/api/concept/pages/checkout.json): 电商转化的最后一公里：页面把收货信息、配送方式、支付方式和订单摘要组织成一条 不可回头的短流程，步骤条标示进度，表单尽量预填与自动更正，摘要常驻展示金额明细。 
+- [Contact Page / 联系页](/api/concept/pages/contact.json): 收集访客留言并提供多种联系渠道的页面：主表单只问必要字段（姓名、邮箱、主题、留言），提交后给出明确成功反馈；旁边或下方并列邮箱、电话、地址与社交入口，再用简短 
 - [Dashboard / 仪表盘](/api/concept/pages/dashboard.json): 把关键数据与操作入口聚在一屏内的后台首页，用区域化网格组织：顶栏与侧栏负责导航， 中部依次铺指标卡、图表区和主表格，让用户打开就能看到系统当前状态并直接下钻。 
 - [Documentation Page / 文档页](/api/concept/pages/documentation.json): 以阅读为中心的长驻内容页面：一侧是可折叠的文档树导航，正文栏承载标题层级、段落、 代码块与提示框，宽屏下再加页内目录（TOC）标示当前阅读位置。页面靠永久链接与
+- [404 Page / 404 页面](/api/concept/pages/error-404.json): 在用户请求的地址不存在时展示的兜底页面：用一句人话说明发生了什么，提供返回首页、搜索或推荐入口，把一次失败访问转成继续浏览的机会。它不解决问题本身，但决定用户是
+- [Server Error Page / 服务错误页](/api/concept/pages/error-500.json): 在后端异常、请求无法完成时展示的页面：不暴露内部细节，用中性语气说明是服务端问题，给出稍后重试或联系支持的路径，并尽量保留用户已输入的内容。它承担故障期间的信任
+- [FAQ Page / 常见问题页](/api/concept/pages/faq.json): 把用户反复提出的问题按主题归组、可逐条展开的页面：用问题式标题降低查找成本，配合锚点、搜索或分类让答案自解释，并把仍未解决的人引向人工支持。它用内容替代重复的客
+- [Feature Comparison Page / 功能对比页](/api/concept/pages/features-comparison.json): 用并列矩阵把多个方案的功能、价格与限制逐项对齐的页面：首列固定为对比维度，各方案各占一列， 支持只看差异、按维度排序与推荐标记。它服务于「选哪个」的决策，把宣传
+- [Help Center / 帮助中心](/api/concept/pages/help-center.json): 把产品文档、常见问题与联系入口收拢到一处的自助支持页面：顶部搜索先猜意图， 主体按主题分组文章并按热度排序，底部保留联系客服与提交工单的兜底路径。 目标是让用户
 - [Landing Page / 落地页](/api/concept/pages/landing-page.json): 围绕单一转化目标纵向组织信息的营销页面：顶部导航与 Hero 主视觉先讲清楚"这是什么、好在哪"， 中段用功能区、信任区（客户 logo、评价、数据）逐层打消顾
 - [Login Page / 登录页](/api/concept/pages/login.json): 用最小干扰让已有账号用户进入系统的门面页：核心只有身份识别表单（邮箱/密码）与一个主按钮， 辅以第三方登录、忘记密码和注册入口。页面刻意保持极简——少一个字段，
+- [Notification Center / 通知中心](/api/concept/pages/notification-center.json): 把系统产生的提醒按来源与时间聚合成可浏览列表的页面，顶部用标签区分全部、未读、提及等视图， 每条通知展示图标、标题、正文摘要与时间，支持一键已读、批量处理与跳转
+- [Onboarding / 新手引导](/api/concept/pages/onboarding.json): 用分步流程把新用户从首次进入带到完成第一个关键动作的页面：通过简短说明、样例与进度提示降低陌生感，并在合适时机引导用户开始操作，而不是一次塞入全部功能。它决定用
+- [Order Confirmation / 订单确认页](/api/concept/pages/order-confirmation.json): 下单成功后接住用户情绪的收尾页：用明确的成功状态、订单号与交付时间先给出确定感，再列商品明细、 金额与下一步动作（发票、物流、继续购物）。它不收集新信息，只把「
 - [Pricing Page / 定价页](/api/concept/pages/pricing.json): 把付费方式讲清楚的商业页面：页面通常以标题与计费周期切换开头，主体是并排的套餐卡 （价格、功能清单、行动按钮），推荐档位用视觉强调；下方补功能对比表和 FAQ 
 - [Profile Page / 个人主页](/api/concept/pages/profile.json): 以身份为中心展示"这是谁、有什么、在做什么"的页面：封面与头像建立视觉身份， 下方是姓名、简介与统计数字，再用页签切换动态、作品或文章等内容流。 他人视角配关注
 - [Search Page / 搜索页](/api/concept/pages/search.json): 承接查询意图并返回结果的内容发现页面：顶部常驻搜索框（保留查询词、可修改重搜）， 一侧是类型与筛选器，主体按相关度排列结果条目（标题 + 摘要 + 高亮命中词）
 - [Settings Page / 设置页](/api/concept/pages/settings.json): 集中管理账号偏好与系统配置的功能页面：一侧是稳定的设置导航（通用、通知、安全等分区）， 另一侧是行式表单列表——每行一个"标签 + 控件 + 说明"，低频修改、
 - [Signup Page / 注册页](/api/concept/pages/signup.json): 把陌生访客变成账号的转化页：表单只保留起步必需的字段（邮箱 + 密码），其余信息 延后到产品内补齐；辅以第三方注册、密码强度提示和服务条款勾选。与登录页共用 布
+- [Team Page / 团队页](/api/concept/pages/team.json): 用人物卡片组介绍组织构成的页面：头像、姓名、职位与一句职责说明构成最小单元，按部门或职能分组， 常附加入职链接与价值观叙述。它把抽象的「我们」换成具体可辨认的人
 - [Accordion Expand / 手风琴展开](/api/concept/motion/accordion-expand.json): 点击标题后内容区在高度方向展开或收起，像手风琴风箱。 关键是用 grid-template-rows 从 0fr 到 1fr 的高度动画， 让内容"推开来"而不
 - [Confetti / 撒花彩带](/api/concept/motion/confetti.json): 完成关键动作后从一点爆出彩色纸屑飘落，用一次性高能量庆祝"做成了"。 只在里程碑出现：提交成功、任务完成、订阅达成—— 正因为稀有，才有庆祝的分量。
 - [Drawer Slide / 抽屉滑入](/api/concept/motion/drawer-slide.json): 面板从屏幕边缘（常为右侧或底部）滑入并带遮罩，像从抽屉里拉出来。 转场方向即空间隐喻：从边缘滑入表示"叠加的临时层"， 关闭时原路滑回，保持心智模型不换。

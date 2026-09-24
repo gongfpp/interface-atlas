@@ -4,6 +4,7 @@ import type { DemoComponent } from '@/islands/DemoStage';
  * Demo 注册表：concept YAML 的 demo.component 键 → React 组件。
  * 由 scripts/gen-registry.mjs 生成（npm run gen:registry），不要手工编辑。
  */
+import AboutDemo from './about';
 import AccordionDemo from './accordion';
 import AccordionExpandDemo from './accordion-expand';
 import AlertDemo from './alert';
@@ -15,13 +16,18 @@ import AvatarDemo from './avatar';
 import BadgeDemo from './badge';
 import BauhausDemo from './bauhaus';
 import BentoGridDemo from './bento-grid';
+import BlogIndexDemo from './blog-index';
+import BlogPostDemo from './blog-post';
 import BottomSheetDemo from './bottom-sheet';
 import BreadcrumbDemo from './breadcrumb';
 import BrutalismDemo from './brutalism';
 import BulkActionsDemo from './bulk-actions';
 import ButtonDemo from './button';
+import CalendarDemo from './calendar';
 import CardDemo from './card';
 import CarouselDemo from './carousel';
+import ChangelogDemo from './changelog';
+import ChatDemo from './chat';
 import CheckboxDemo from './checkbox';
 import CheckoutDemo from './checkout';
 import ClaymorphismDemo from './claymorphism';
@@ -30,6 +36,7 @@ import ColorPickerDemo from './color-picker';
 import ComboboxDemo from './combobox';
 import CommandPaletteDemo from './command-palette';
 import ConfettiDemo from './confetti';
+import ContactDemo from './contact';
 import ContrastRatioDemo from './contrast-ratio';
 import CookieConsentDemo from './cookie-consent';
 import CorporateMemphisDemo from './corporate-memphis';
@@ -46,7 +53,11 @@ import EditorialDemo from './editorial';
 import ElasticBounceDemo from './elastic-bounce';
 import ElevationDemo from './elevation';
 import EmptyStateDemo from './empty-state';
+import Error404Demo from './error-404';
+import Error500Demo from './error-500';
 import FabDemo from './fab';
+import FaqDemo from './faq';
+import FeaturesComparisonDemo from './features-comparison';
 import FileUploadDemo from './file-upload';
 import FilterPanelDemo from './filter-panel';
 import FlatDesignDemo from './flat-design';
@@ -55,6 +66,7 @@ import FontStackDemo from './font-stack';
 import FormValidationDemo from './form-validation';
 import GlassmorphismDemo from './glassmorphism';
 import HandDrawnDemo from './hand-drawn';
+import HelpCenterDemo from './help-center';
 import HoverGlowDemo from './hover-glow';
 import HoverLiftDemo from './hover-lift';
 import InfiniteScrollDemo from './infinite-scroll';
@@ -83,9 +95,12 @@ import MultiSelectDemo from './multi-select';
 import NavbarDemo from './navbar';
 import NeobrutalismDemo from './neobrutalism';
 import NeumorphismDemo from './neumorphism';
+import NotificationCenterDemo from './notification-center';
 import NumberCounterDemo from './number-counter';
+import OnboardingDemo from './onboarding';
 import OnboardingTourDemo from './onboarding-tour';
 import OptimisticUiDemo from './optimistic-ui';
+import OrderConfirmationDemo from './order-confirmation';
 import OrganicDemo from './organic';
 import PageTransitionDemo from './page-transition';
 import PaginationDemo from './pagination';
@@ -128,6 +143,7 @@ import SwitchDemo from './switch';
 import TableDemo from './table';
 import TabsDemo from './tabs';
 import TagInputDemo from './tag-input';
+import TeamDemo from './team';
 import TextRevealDemo from './text-reveal';
 import TextareaDemo from './textarea';
 import TimelineDemo from './timeline';
@@ -144,6 +160,7 @@ import WizardDemo from './wizard';
 import Y2kDemo from './y2k';
 
 export const demos: Record<string, DemoComponent> = {
+  'about': AboutDemo,
   'accordion': AccordionDemo,
   'accordion-expand': AccordionExpandDemo,
   'alert': AlertDemo,
@@ -155,13 +172,18 @@ export const demos: Record<string, DemoComponent> = {
   'badge': BadgeDemo,
   'bauhaus': BauhausDemo,
   'bento-grid': BentoGridDemo,
+  'blog-index': BlogIndexDemo,
+  'blog-post': BlogPostDemo,
   'bottom-sheet': BottomSheetDemo,
   'breadcrumb': BreadcrumbDemo,
   'brutalism': BrutalismDemo,
   'bulk-actions': BulkActionsDemo,
   'button': ButtonDemo,
+  'calendar': CalendarDemo,
   'card': CardDemo,
   'carousel': CarouselDemo,
+  'changelog': ChangelogDemo,
+  'chat': ChatDemo,
   'checkbox': CheckboxDemo,
   'checkout': CheckoutDemo,
   'claymorphism': ClaymorphismDemo,
@@ -170,6 +192,7 @@ export const demos: Record<string, DemoComponent> = {
   'combobox': ComboboxDemo,
   'command-palette': CommandPaletteDemo,
   'confetti': ConfettiDemo,
+  'contact': ContactDemo,
   'contrast-ratio': ContrastRatioDemo,
   'cookie-consent': CookieConsentDemo,
   'corporate-memphis': CorporateMemphisDemo,
@@ -186,7 +209,11 @@ export const demos: Record<string, DemoComponent> = {
   'elastic-bounce': ElasticBounceDemo,
   'elevation': ElevationDemo,
   'empty-state': EmptyStateDemo,
+  'error-404': Error404Demo,
+  'error-500': Error500Demo,
   'fab': FabDemo,
+  'faq': FaqDemo,
+  'features-comparison': FeaturesComparisonDemo,
   'file-upload': FileUploadDemo,
   'filter-panel': FilterPanelDemo,
   'flat-design': FlatDesignDemo,
@@ -195,6 +222,7 @@ export const demos: Record<string, DemoComponent> = {
   'form-validation': FormValidationDemo,
   'glassmorphism': GlassmorphismDemo,
   'hand-drawn': HandDrawnDemo,
+  'help-center': HelpCenterDemo,
   'hover-glow': HoverGlowDemo,
   'hover-lift': HoverLiftDemo,
   'infinite-scroll': InfiniteScrollDemo,
@@ -223,9 +251,12 @@ export const demos: Record<string, DemoComponent> = {
   'navbar': NavbarDemo,
   'neobrutalism': NeobrutalismDemo,
   'neumorphism': NeumorphismDemo,
+  'notification-center': NotificationCenterDemo,
   'number-counter': NumberCounterDemo,
+  'onboarding': OnboardingDemo,
   'onboarding-tour': OnboardingTourDemo,
   'optimistic-ui': OptimisticUiDemo,
+  'order-confirmation': OrderConfirmationDemo,
   'organic': OrganicDemo,
   'page-transition': PageTransitionDemo,
   'pagination': PaginationDemo,
@@ -268,6 +299,7 @@ export const demos: Record<string, DemoComponent> = {
   'table': TableDemo,
   'tabs': TabsDemo,
   'tag-input': TagInputDemo,
+  'team': TeamDemo,
   'text-reveal': TextRevealDemo,
   'textarea': TextareaDemo,
   'timeline': TimelineDemo,

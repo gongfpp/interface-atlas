@@ -1,4 +1,11 @@
 import { expect, test } from '@playwright/test';
+import { readdirSync } from 'node:fs';
+
+const CONCEPT_TYPES = ['components', 'patterns', 'styles', 'pages', 'motion', 'foundation', 'a11y'];
+const TOTAL_CONCEPTS = CONCEPT_TYPES.reduce(
+  (n, t) => n + readdirSync(`src/content/${t}`).filter((f) => f.endsWith('.yaml')).length,
+  0,
+);
 
 /**
  * 最小 smoke（审计 P0-C）：核心闭环"打开搜索 → 输入口语 → 命中概念 → 跳转详情"。
@@ -97,7 +104,7 @@ test('explore: type filter narrows the grid', async ({ page }) => {
   await page.locator('.explore-chip[data-filter="motion"]').click();
   await expect(page.locator('[data-explore-item]:not(.hidden)')).toHaveCount(23);
   await page.locator('.explore-chip[data-filter="all"]').click();
-  await expect(page.locator('[data-explore-item]:not(.hidden)')).toHaveCount(138);
+  await expect(page.locator('[data-explore-item]:not(.hidden)')).toHaveCount(TOTAL_CONCEPTS);
 });
 
 test('saved: save a concept then see it on /saved', async ({ page }) => {
