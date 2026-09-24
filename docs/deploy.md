@@ -27,7 +27,7 @@ analytics 变量要配在**源仓库** **Settings → Secrets and variables → 
 - `PUBLIC_UMAMI_ID`：Umami 网站 ID
 - 可选 `PUBLIC_CF_BEACON_TOKEN`：Cloudflare Web Analytics token（支持非 Cloudflare 站点，无 cookie）
 
-配好后重新运行 “Deploy site to interface-atlas-web” 工作流即可生效；未配置则自动跳过。站内已内置无 PII 事件：`search-miss`、`prompt-copy`、`prompt-builder-copy`。
+配好后重新运行 “Deploy site to interface-atlas-web” 工作流即可生效；未配置则自动跳过。站内已内置无 PII 事件：`search-miss`、`prompt-copy`。
 命令行设置：`gh variable set PUBLIC_UMAMI_SRC --body '…'`、`gh variable set PUBLIC_UMAMI_ID --body '…'`。
 
 ## Cloudflare Pages（可选）

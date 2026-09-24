@@ -119,9 +119,9 @@ test('list filter: category chip narrows the grid', async ({ page }) => {
   await expect(page.locator('[data-list-item]:not(.hidden)')).toHaveCount(46);
 });
 
-test('prompt builder: style selection composes the prompt', async ({ page }) => {
+test('prompt block: style selection composes the agent prompt', async ({ page }) => {
   await page.goto('/components/button');
-  const section = page.locator('section', { hasText: '定制 Prompt' });
+  const section = page.locator('#prompts');
   await section.scrollIntoViewIfNeeded();
   await page.waitForTimeout(600);
   await section.locator('select').selectOption('neobrutalism');

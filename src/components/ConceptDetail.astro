@@ -6,7 +6,6 @@ import CompareTable from '@/components/CompareTable.astro';
 import StyleThumb from '@/components/StyleThumb.astro';
 import DemoMount from '@/islands/demos/DemoMount';
 import PromptBlock from '@/islands/PromptBlock';
-import PromptBuilder from '@/islands/PromptBuilder';
 import ConceptActions from '@/islands/ConceptActions';
 import { conceptPath, resolveRelated, getAllConcepts, type Concept } from '@/lib/content';
 import { comparePath } from '@/lib/compare';
@@ -284,23 +283,12 @@ const card = 'rounded-xl border border-line bg-raised p-5';
 
     <section id="prompts" class="pb-10">
       <h2 class={sectionTitle}>{locale === 'zh' ? '交给 AI' : 'Agent prompts'}</h2>
-      <PromptBlock client:visible prompts={d.prompts} locale={locale} conceptName={concept.id} />
-    </section>
-
-    <section class="pb-10">
-      <h2 class={sectionTitle}>{locale === 'zh' ? '定制 Prompt' : 'Prompt builder'}</h2>
-      <p class="mb-3 text-sm text-ink-3">
+      <p class="mb-3 max-w-3xl text-sm leading-relaxed text-ink-3">
         {locale === 'zh'
-          ? '在概念 Prompt 基础上叠加风格与附加要求，组合成一条可直接交给 Coding Agent 的任务。'
-          : 'Combine this concept with a style and extra requirements into one agent-ready task.'}
+          ? '四层 Prompt 从「它是什么」一路写到「可直接执行的任务」；切到 Agent 任务层，还能叠加视觉风格与附加要求，再一键复制给你的 Coding Agent。'
+          : 'Four prompt layers run from “what it is” all the way to a ready-to-run task. On the Agent task layer you can stack a visual style and extra requirements, then copy it to your coding agent in one click.'}
       </p>
-      <PromptBuilder
-        client:visible
-        conceptName={concept.id}
-        agentPrompt={d.prompts.agent[locale]}
-        styles={styleOptions}
-        locale={locale}
-      />
+      <PromptBlock client:visible prompts={d.prompts} locale={locale} conceptName={concept.id} styles={styleOptions} />
     </section>
 
     {related.length > 0 && (
