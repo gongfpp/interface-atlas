@@ -113,7 +113,10 @@
     "component": "scroll-reveal",
     "modes": [
       "default",
-      "dark"
+      "variants"
+    ],
+    "motionControls": [
+      "slow"
     ]
   },
   "implementation": {

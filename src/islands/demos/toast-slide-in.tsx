@@ -50,12 +50,6 @@ const ToastSlideInDemo: DemoComponent = ({ mode }) => {
           <button className="text-xs font-semibold text-accent">撤销</button>
         </div>
       </div>
-      <button
-        onClick={fire}
-        className="text-[11px] text-ink-3 underline decoration-line underline-offset-2 hover:text-ink"
-      >
-        重播 / Replay
-      </button>
       <p className="text-xs text-ink-3">滑入 → 停留 3.2s → 反向滑出；从哪边来回哪边去</p>
     </div>
   );

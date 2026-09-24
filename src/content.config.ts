@@ -168,6 +168,11 @@ const baseSchema = z
         /** Demo 岛在注册表中的键（src/islands/demos） */
         component: z.string(),
         modes: z.array(z.enum(['default', 'dark', 'loading', 'variants'])).default(['default']),
+        /**
+         * 仅 motion 条目：播放器只展示对这些 demo 真实有效的控件，
+         * 避免出现点了没反应的按钮。缺省 = 全部（play/replay/slow/compare）。
+         */
+        motionControls: z.array(z.enum(['play', 'replay', 'slow', 'compare'])).optional(),
       })
       .optional(),
 

@@ -1,21 +1,28 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
 const PageTransitionDemo: DemoComponent = ({ mode }) => {
   const [page, setPage] = useState<'list' | 'detail'>('list');
   const [anim, setAnim] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   const go = (to: 'list' | 'detail') => {
+    const speed =
+      parseFloat(getComputedStyle(rootRef.current!).getPropertyValue('--demo-speed')) || 1;
     setAnim(true);
-    setTimeout(() => { setPage(to); setAnim(false); }, 260);
+    setTimeout(() => {
+      setPage(to);
+      setAnim(false);
+    }, 260 * speed);
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div ref={rootRef} className="flex flex-col items-center gap-4">
       <div className="relative h-44 w-full max-w-sm overflow-hidden rounded-xl border border-line">
         <div
-          className="absolute inset-0 bg-raised p-4 transition-all duration-300"
+          className="absolute inset-0 bg-raised p-4 transition-all"
           style={{
+            transitionDuration: 'calc(300ms * var(--demo-speed, 1))',
             opacity: page === 'list' && !anim ? 1 : page === 'list' ? 0 : 0,
             transform: page === 'list' && !anim ? 'translateX(0)' : `translateX(${anim ? '-8%' : '-100%'})`,
           }}
@@ -26,8 +33,9 @@ const PageTransitionDemo: DemoComponent = ({ mode }) => {
           ))}
         </div>
         <div
-          className="absolute inset-0 bg-raised p-4 transition-all duration-300"
+          className="absolute inset-0 bg-raised p-4 transition-all"
           style={{
+            transitionDuration: 'calc(300ms * var(--demo-speed, 1))',
             opacity: page === 'detail' && !anim ? 1 : 0,
             transform: page === 'detail' && !anim ? 'translateX(0)' : `translateX(${anim ? '108%' : '108%'})`,
           }}

@@ -17,19 +17,26 @@ const ITEMS = [
 ];
 
 const AccordionExpandDemo: DemoComponent = ({ mode }) => {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number[]>([0]);
   const exclusive = mode !== 'variants';
 
   const toggle = (i: number) => {
-    if (exclusive) setOpen((cur) => (cur === i ? null : i));
-    else setOpen((cur) => (cur === i ? null : i));
+    setOpen((cur) =>
+      exclusive
+        ? cur.includes(i)
+          ? []
+          : [i]
+        : cur.includes(i)
+          ? cur.filter((x) => x !== i)
+          : [...cur, i]
+    );
   };
 
   return (
     <div className="flex w-full flex-col items-center gap-3">
       <div className="w-full max-w-md divide-y divide-line rounded-xl border border-line bg-raised">
         {ITEMS.map((item, i) => {
-          const isOpen = open === i;
+          const isOpen = open.includes(i);
           return (
             <div key={item.q} className="px-4 py-1">
               <button

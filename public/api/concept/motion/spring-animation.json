@@ -121,8 +121,11 @@
     "component": "spring-animation",
     "modes": [
       "default",
-      "dark",
       "variants"
+    ],
+    "motionControls": [
+      "slow",
+      "compare"
     ]
   },
   "sources": [

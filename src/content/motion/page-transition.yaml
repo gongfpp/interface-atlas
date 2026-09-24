@@ -69,7 +69,11 @@ demo:
   component: page-transition
   modes:
     - default
-    - dark
+    - variants
+  motionControls:
+    - replay
+    - slow
+    - compare
 implementation:
   css:
     - 'transform: translateX'

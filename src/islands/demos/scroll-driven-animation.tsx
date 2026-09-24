@@ -6,7 +6,6 @@ type Kind = 'scroll-linked' | 'scroll-triggered' | 'parallax-layers';
 function ScrollDrivenPlayground({ en, kind }: { en: boolean; kind: Kind }) {
   const boxRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
-  const [run, setRun] = useState(0);
   const [triggered, setTriggered] = useState(false);
 
   useEffect(() => {
@@ -28,14 +27,7 @@ function ScrollDrivenPlayground({ en, kind }: { en: boolean; kind: Kind }) {
       el.removeEventListener('scroll', onScroll);
       cancelAnimationFrame(raf);
     };
-  }, [kind, run]);
-
-  const reset = () => {
-    setRun((r) => r + 1);
-    setProgress(0);
-    setTriggered(false);
-    if (boxRef.current) boxRef.current.scrollTop = 0;
-  };
+  }, [kind]);
 
   const pct = Math.round(progress * 100);
 
@@ -57,7 +49,6 @@ function ScrollDrivenPlayground({ en, kind }: { en: boolean; kind: Kind }) {
       <div
         ref={boxRef}
         data-anatomy="1"
-        key={run}
         className="relative h-44 w-full overflow-y-auto rounded-xl border border-line bg-paper"
       >
         {kind === 'parallax-layers' && (
@@ -110,12 +101,6 @@ function ScrollDrivenPlayground({ en, kind }: { en: boolean; kind: Kind }) {
         </div>
       </div>
 
-      <button
-        onClick={reset}
-        className="rounded-full bg-accent px-5 py-2 text-xs font-semibold text-white transition-transform active:scale-95"
-      >
-        {en ? 'Reset & replay' : '重置并重播'}
-      </button>
       <p className="text-xs text-ink-3">
         {kind === 'scroll-linked'
           ? en

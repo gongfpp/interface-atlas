@@ -73,8 +73,8 @@ demo:
   component: press-feedback
   modes:
     - default
-    - dark
     - variants
+  motionControls: []
 compare:
   group: click-feedback
   dimensions:

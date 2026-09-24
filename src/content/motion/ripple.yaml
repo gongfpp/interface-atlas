@@ -68,8 +68,8 @@ demo:
   component: ripple
   modes:
     - default
-    - dark
     - variants
+  motionControls: []
 implementation:
   css:
     - 'position: relative + overflow hidden'

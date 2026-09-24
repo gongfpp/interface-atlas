@@ -70,8 +70,8 @@ demo:
   component: magnetic-button
   modes:
     - default
-    - dark
     - variants
+  motionControls: []
 implementation:
   css:
     - 'transform: translate'

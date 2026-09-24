@@ -5,7 +5,6 @@ const FILTERS = ['按价格', '按评分', '按销量', '只看现货', '包邮'
 
 const DrawerSlideDemo: DemoComponent = ({ mode }) => {
   const [open, setOpen] = useState(false);
-  const [run, setRun] = useState(0);
   const bottom = mode === 'variants';
 
   useEffect(() => {
@@ -17,10 +16,7 @@ const DrawerSlideDemo: DemoComponent = ({ mode }) => {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div
-        key={run}
-        className="relative h-56 w-full max-w-sm overflow-hidden rounded-xl border border-line bg-paper"
-      >
+      <div className="relative h-56 w-full max-w-sm overflow-hidden rounded-xl border border-line bg-paper">
         <div className="flex h-full flex-col items-center justify-center gap-2">
           <p className="text-xs text-ink-3">主页面内容保持可见</p>
           <button
@@ -72,15 +68,6 @@ const DrawerSlideDemo: DemoComponent = ({ mode }) => {
           </div>
         </div>
       </div>
-      <button
-        onClick={() => {
-          setRun((r) => r + 1);
-          setOpen(false);
-        }}
-        className="text-[11px] text-ink-3 underline decoration-line underline-offset-2 hover:text-ink"
-      >
-        重置 / Reset
-      </button>
       <p className="text-xs text-ink-3">280ms 材料抽屉曲线；Esc 或遮罩点击关闭；原路滑回</p>
     </div>
   );

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-23",
+  "generated": "2026-09-24",
   "site": "https://gongfpp.github.io/interface-atlas-web",
   "count": 138,
   "types": [
@@ -12729,8 +12729,11 @@
         "component": "accordion-expand",
         "modes": [
           "default",
-          "dark",
           "variants"
+        ],
+        "motionControls": [
+          "slow",
+          "compare"
         ]
       },
       "implementation": {
@@ -12887,8 +12890,10 @@
         "component": "confetti",
         "modes": [
           "default",
-          "dark",
           "variants"
+        ],
+        "motionControls": [
+          "slow"
         ]
       },
       "implementation": {
@@ -13045,8 +13050,11 @@
         "component": "drawer-slide",
         "modes": [
           "default",
-          "dark",
           "variants"
+        ],
+        "motionControls": [
+          "slow",
+          "compare"
         ]
       },
       "implementation": {
@@ -13203,8 +13211,13 @@
         "component": "elastic-bounce",
         "modes": [
           "default",
-          "dark",
           "variants"
+        ],
+        "motionControls": [
+          "play",
+          "replay",
+          "slow",
+          "compare"
         ]
       },
       "implementation": {
@@ -13362,9 +13375,9 @@
         "component": "hover-glow",
         "modes": [
           "default",
-          "dark",
           "variants"
-        ]
+        ],
+        "motionControls": []
       },
       "compare": {
         "group": "hover-feedback",
@@ -13543,9 +13556,9 @@
         "component": "hover-lift",
         "modes": [
           "default",
-          "dark",
           "variants"
-        ]
+        ],
+        "motionControls": []
       },
       "compare": {
         "group": "hover-feedback",
@@ -13715,8 +13728,12 @@
         "component": "loading-spinner",
         "modes": [
           "default",
-          "dark",
           "variants"
+        ],
+        "motionControls": [
+          "play",
+          "slow",
+          "compare"
         ]
       },
       "compare": {
@@ -13895,9 +13912,9 @@
         "component": "magnetic-button",
         "modes": [
           "default",
-          "dark",
           "variants"
-        ]
+        ],
+        "motionControls": []
       },
       "implementation": {
         "css": [
@@ -14053,8 +14070,12 @@
         "component": "marquee",
         "modes": [
           "default",
-          "dark",
           "variants"
+        ],
+        "motionControls": [
+          "play",
+          "slow",
+          "compare"
         ]
       },
       "implementation": {
@@ -14211,8 +14232,11 @@
         "component": "morphing-icon",
         "modes": [
           "default",
-          "dark",
           "variants"
+        ],
+        "motionControls": [
+          "slow",
+          "compare"
         ]
       },
       "implementation": {
@@ -14368,8 +14392,11 @@
         "component": "number-counter",
         "modes": [
           "default",
-          "dark",
           "variants"
+        ],
+        "motionControls": [
+          "replay",
+          "slow"
         ]
       },
       "implementation": {
@@ -14527,7 +14554,12 @@
         "component": "page-transition",
         "modes": [
           "default",
-          "dark"
+          "variants"
+        ],
+        "motionControls": [
+          "replay",
+          "slow",
+          "compare"
         ]
       },
       "implementation": {
@@ -14682,9 +14714,9 @@
         "component": "parallax",
         "modes": [
           "default",
-          "dark",
           "variants"
-        ]
+        ],
+        "motionControls": []
       },
       "implementation": {
         "css": [
@@ -14846,9 +14878,9 @@
         "component": "press-feedback",
         "modes": [
           "default",
-          "dark",
           "variants"
-        ]
+        ],
+        "motionControls": []
       },
       "compare": {
         "group": "click-feedback",
@@ -15020,9 +15052,9 @@
         "component": "ripple",
         "modes": [
           "default",
-          "dark",
           "variants"
-        ]
+        ],
+        "motionControls": []
       },
       "implementation": {
         "css": [
@@ -15186,8 +15218,11 @@
         "component": "scroll-driven-animation",
         "modes": [
           "default",
-          "dark",
           "variants"
+        ],
+        "motionControls": [
+          "replay",
+          "slow"
         ]
       },
       "sources": [
@@ -15353,7 +15388,10 @@
         "component": "scroll-reveal",
         "modes": [
           "default",
-          "dark"
+          "variants"
+        ],
+        "motionControls": [
+          "slow"
         ]
       },
       "implementation": {
@@ -15510,8 +15548,11 @@
         "component": "shared-element-transition",
         "modes": [
           "default",
-          "dark",
           "variants"
+        ],
+        "motionControls": [
+          "replay",
+          "slow"
         ]
       },
       "implementation": {
@@ -15677,8 +15718,11 @@
         "component": "spring-animation",
         "modes": [
           "default",
-          "dark",
           "variants"
+        ],
+        "motionControls": [
+          "slow",
+          "compare"
         ]
       },
       "sources": [
@@ -15843,8 +15887,13 @@
         "component": "stagger-reveal",
         "modes": [
           "default",
-          "dark",
           "variants"
+        ],
+        "motionControls": [
+          "play",
+          "replay",
+          "slow",
+          "compare"
         ]
       },
       "implementation": {
@@ -16005,8 +16054,13 @@
         "component": "text-reveal",
         "modes": [
           "default",
-          "dark",
           "variants"
+        ],
+        "motionControls": [
+          "play",
+          "replay",
+          "slow",
+          "compare"
         ]
       },
       "implementation": {
@@ -16163,8 +16217,10 @@
         "component": "toast-slide-in",
         "modes": [
           "default",
-          "dark",
           "variants"
+        ],
+        "motionControls": [
+          "slow"
         ]
       },
       "implementation": {
@@ -16327,8 +16383,11 @@
         "component": "view-transition",
         "modes": [
           "default",
-          "dark",
           "variants"
+        ],
+        "motionControls": [
+          "slow",
+          "compare"
         ]
       },
       "sources": [

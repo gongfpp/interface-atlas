@@ -118,9 +118,9 @@
     "component": "hover-lift",
     "modes": [
       "default",
-      "dark",
       "variants"
-    ]
+    ],
+    "motionControls": []
   },
   "compare": {
     "group": "hover-feedback",

@@ -112,8 +112,11 @@
     "component": "shared-element-transition",
     "modes": [
       "default",
-      "dark",
       "variants"
+    ],
+    "motionControls": [
+      "replay",
+      "slow"
     ]
   },
   "implementation": {

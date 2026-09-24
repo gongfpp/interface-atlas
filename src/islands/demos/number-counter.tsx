@@ -3,16 +3,23 @@ import type { DemoComponent } from '@/islands/DemoStage';
 
 const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
-function useCountUp(target: number, run: number, duration = 1600, formatted = true) {
+/** 从 demo 根节点读取播放器写入的 --demo-speed（1 = 常速，3 = 慢速）。 */
+function readSpeed(el: HTMLElement | null) {
+  if (!el) return 1;
+  return parseFloat(getComputedStyle(el).getPropertyValue('--demo-speed')) || 1;
+}
+
+function useCountUp(
+  target: number,
+  root: React.RefObject<HTMLDivElement | null>,
+  duration = 1600,
+  formatted = true
+) {
   const [value, setValue] = useState(0);
   useEffect(() => {
     let raf = 0;
     const start = performance.now();
-    const speed = (() => {
-      const el = document.querySelector('[data-demo-root]');
-      if (!el) return 1;
-      return parseFloat(getComputedStyle(el).getPropertyValue('--demo-speed')) || 1;
-    })();
+    const speed = readSpeed(root.current);
     const tick = (now: number) => {
       const p = Math.min((now - start) / (duration * speed), 1);
       setValue(target * easeOutCubic(p));
@@ -20,16 +27,15 @@ function useCountUp(target: number, run: number, duration = 1600, formatted = tr
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [target, run, duration, formatted]);
+  }, [target, duration, formatted, root]);
   return formatted ? Math.round(value).toLocaleString() : Math.round(value).toString();
 }
 
 const NumberCounterDemo: DemoComponent = ({ mode }) => {
-  const [run, setRun] = useState(0);
-  const kpi = useCountUp(128560, run, 1600);
-  const rate = useCountUp(98, run, 1300);
-  const raw = useCountUp(42310, run, 1600, false);
   const ref = useRef<HTMLDivElement>(null);
+  const kpi = useCountUp(128560, ref, 1600);
+  const rate = useCountUp(98, ref, 1300);
+  const raw = useCountUp(42310, ref, 1600, false);
 
   return (
     <div ref={ref} className="flex flex-col items-center gap-6">
@@ -49,12 +55,6 @@ const NumberCounterDemo: DemoComponent = ({ mode }) => {
           </div>
         )}
       </div>
-      <button
-        onClick={() => setRun((r) => r + 1)}
-        className="rounded-full bg-accent px-5 py-2 text-xs font-semibold text-white transition-transform active:scale-95"
-      >
-        重播 / Replay
-      </button>
       <p className="text-xs text-ink-3">ease-out 减速落定；等宽数字防宽度抖动</p>
     </div>
   );

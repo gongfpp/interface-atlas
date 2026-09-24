@@ -80,8 +80,10 @@ demo:
   component: scroll-driven-animation
   modes:
     - default
-    - dark
     - variants
+  motionControls:
+    - replay
+    - slow
 sources:
   - name: MDN — CSS scroll-driven animations
     url: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll-driven_animations

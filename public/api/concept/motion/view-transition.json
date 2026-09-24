@@ -118,8 +118,11 @@
     "component": "view-transition",
     "modes": [
       "default",
-      "dark",
       "variants"
+    ],
+    "motionControls": [
+      "slow",
+      "compare"
     ]
   },
   "sources": [

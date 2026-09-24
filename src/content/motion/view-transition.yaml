@@ -78,8 +78,10 @@ demo:
   component: view-transition
   modes:
     - default
-    - dark
     - variants
+  motionControls:
+    - slow
+    - compare
 sources:
   - name: MDN — View Transitions API
     url: https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API

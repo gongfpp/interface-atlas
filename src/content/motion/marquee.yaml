@@ -68,8 +68,11 @@ demo:
   component: marquee
   modes:
     - default
-    - dark
     - variants
+  motionControls:
+    - play
+    - slow
+    - compare
 implementation:
   css:
     - 'overflow: hidden'

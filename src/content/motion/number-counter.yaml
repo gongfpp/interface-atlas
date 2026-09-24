@@ -68,8 +68,10 @@ demo:
   component: number-counter
   modes:
     - default
-    - dark
     - variants
+  motionControls:
+    - replay
+    - slow
 implementation:
   css:
     - requestAnimationFrame

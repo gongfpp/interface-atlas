@@ -68,8 +68,9 @@ demo:
   component: confetti
   modes:
     - default
-    - dark
     - variants
+  motionControls:
+    - slow
 implementation:
   css:
     - absolute particles

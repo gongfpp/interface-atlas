@@ -68,8 +68,10 @@ demo:
   component: accordion-expand
   modes:
     - default
-    - dark
     - variants
+  motionControls:
+    - slow
+    - compare
 implementation:
   css:
     - 'display: grid'

@@ -68,8 +68,9 @@ demo:
   component: toast-slide-in
   modes:
     - default
-    - dark
     - variants
+  motionControls:
+    - slow
 implementation:
   css:
     - 'transform: translateY/X'

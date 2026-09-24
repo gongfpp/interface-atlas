@@ -68,8 +68,12 @@ demo:
   component: stagger-reveal
   modes:
     - default
-    - dark
     - variants
+  motionControls:
+    - play
+    - replay
+    - slow
+    - compare
 implementation:
   css:
     - 'animation-delay: calc(index * 60ms)'

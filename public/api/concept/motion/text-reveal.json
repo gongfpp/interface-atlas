@@ -116,8 +116,13 @@
     "component": "text-reveal",
     "modes": [
       "default",
-      "dark",
       "variants"
+    ],
+    "motionControls": [
+      "play",
+      "replay",
+      "slow",
+      "compare"
     ]
   },
   "implementation": {

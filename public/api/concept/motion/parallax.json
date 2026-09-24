@@ -111,9 +111,9 @@
     "component": "parallax",
     "modes": [
       "default",
-      "dark",
       "variants"
-    ]
+    ],
+    "motionControls": []
   },
   "implementation": {
     "css": [

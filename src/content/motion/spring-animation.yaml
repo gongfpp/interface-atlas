@@ -81,8 +81,10 @@ demo:
   component: spring-animation
   modes:
     - default
-    - dark
     - variants
+  motionControls:
+    - slow
+    - compare
 sources:
   - name: MDN — cubic-bezier()
     url: https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function/cubic-bezier

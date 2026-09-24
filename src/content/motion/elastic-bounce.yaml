@@ -68,8 +68,12 @@ demo:
   component: elastic-bounce
   modes:
     - default
-    - dark
     - variants
+  motionControls:
+    - play
+    - replay
+    - slow
+    - compare
 implementation:
   css:
     - 'cubic-bezier(0.34, 1.56, 0.64, 1)'

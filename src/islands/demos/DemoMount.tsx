@@ -1,5 +1,5 @@
 import DemoStage, { type DemoMode } from '@/islands/DemoStage';
-import MotionPlayer from '@/islands/MotionPlayer';
+import MotionPlayer, { type MotionControl } from '@/islands/MotionPlayer';
 import { demos } from './registry';
 
 interface Props {
@@ -9,9 +9,18 @@ interface Props {
   anatomy?: string[];
   /** motion 条目用播放器包裹（PRD §22） */
   motion?: boolean;
+  /** motion 条目生效的播放器控件（缺省全部） */
+  motionControls?: MotionControl[];
 }
 
-export default function DemoMount({ component, modes, locale, anatomy = [], motion = false }: Props) {
+export default function DemoMount({
+  component,
+  modes,
+  locale,
+  anatomy = [],
+  motion = false,
+  motionControls,
+}: Props) {
   const Demo = demos[component];
   if (!Demo) {
     return (
@@ -21,7 +30,15 @@ export default function DemoMount({ component, modes, locale, anatomy = [], moti
     );
   }
   if (motion) {
-    return <MotionPlayer locale={locale} render={() => <Demo mode="default" locale={locale} />} />;
+    return (
+      <MotionPlayer
+        locale={locale}
+        modes={modes}
+        anatomy={anatomy}
+        controls={motionControls}
+        render={(mode) => <Demo mode={mode} locale={locale} />}
+      />
+    );
   }
   return (
     <DemoStage

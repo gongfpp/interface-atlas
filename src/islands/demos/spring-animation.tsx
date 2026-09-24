@@ -103,7 +103,7 @@ function VariantSheet({ en }: { en: boolean }) {
 const SpringAnimationDemo: DemoComponent = ({ mode, locale }) => {
   const en = locale === 'en';
   if (mode === 'variants') return <VariantSheet en={en} />;
-  return <SpringPlayground en={en} kind={mode === 'dark' ? 'bouncy' : 'overshoot'} />;
+  return <SpringPlayground en={en} kind="overshoot" />;
 };
 
 export default SpringAnimationDemo;

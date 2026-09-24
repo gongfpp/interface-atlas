@@ -67,8 +67,11 @@ demo:
   component: loading-spinner
   modes:
     - default
-    - dark
     - variants
+  motionControls:
+    - play
+    - slow
+    - compare
 compare:
   group: loading-indicator
   dimensions:

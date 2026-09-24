@@ -112,8 +112,11 @@
     "component": "drawer-slide",
     "modes": [
       "default",
-      "dark",
       "variants"
+    ],
+    "motionControls": [
+      "slow",
+      "compare"
     ]
   },
   "implementation": {

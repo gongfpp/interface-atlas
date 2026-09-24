@@ -68,8 +68,10 @@ demo:
   component: morphing-icon
   modes:
     - default
-    - dark
     - variants
+  motionControls:
+    - slow
+    - compare
 implementation:
   css:
     - 'transform: rotate + translate'

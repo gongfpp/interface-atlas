@@ -67,8 +67,8 @@ demo:
   component: parallax
   modes:
     - default
-    - dark
     - variants
+  motionControls: []
 implementation:
   css:
     - 'transform: translateY(scrollY * factor)'

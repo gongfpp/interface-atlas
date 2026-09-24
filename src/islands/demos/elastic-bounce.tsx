@@ -1,13 +1,11 @@
-import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
 const ElasticBounceDemo: DemoComponent = ({ mode }) => {
-  const [run, setRun] = useState(0);
   const jelly = mode === 'variants';
 
   return (
     <div className="flex flex-col items-center gap-6">
-      <div key={run} className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-4">
         <div
           className="bounce-target flex h-20 w-20 flex-col items-center justify-center rounded-full bg-accent-soft"
           style={{ animationName: jelly ? 'jelly' : 'overshoot-pop' }}
@@ -17,12 +15,6 @@ const ElasticBounceDemo: DemoComponent = ({ mode }) => {
         </div>
         <p className="text-sm font-medium text-ink">任务提交成功</p>
       </div>
-      <button
-        onClick={() => setRun((r) => r + 1)}
-        className="rounded-full bg-accent px-5 py-2 text-xs font-semibold text-white transition-transform active:scale-95"
-      >
-        重播 / Replay
-      </button>
       <p className="text-xs text-ink-3">
         {jelly ? '果冻抖动：scale 1→1.12→0.94→1 连续振荡' : '一次过冲：cubic-bezier y>1 越过终点再回落'}
       </p>

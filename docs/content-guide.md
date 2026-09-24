@@ -116,10 +116,15 @@ export default XDemo;
 - 可用主题令牌（Tailwind class）：`bg-raised text-ink border-line bg-code-bg text-ink-2 text-ink-3 bg-accent text-accent bg-accent-soft`；字体 `font-serif font-mono`。
 - `mode`：`default` 展示主形态；`dark` 深色形态；`variants` 展示多变体并列；`loading`（如适用）。
 - **必须可交互**：按钮能点、开关能拨、tab 能切（用 useState）。Motion 类 demo 需要可反复触发（按钮触发动画）。
+- Motion 条目：`modes` 只用 `default` / `variants`（`dark` 对 motion 无意义，不要声明）。
+  播放器自带的播放/重播/慢速/前后对比由 `demo.motionControls` 显式声明**真实生效**的项；
+  demo 内部**不要**再放与播放器重复的「重播 / 暂停 / 重置」按钮，交互型 demo（hover / press / pointer）
+  没有对应控件时写 `motionControls: []`，避免出现点了没反应的按钮。
 - Anatomy 高亮：给关键区域加 `data-anatomy="1"` `"2"` …（与 YAML `anatomy` 列表顺序对应）。
 - 动画写法：keyframes 用 `<style>` 内联定义，时长一律写 `calc(<时长> * var(--demo-speed, 1))`。
   播放器契约（MotionPlayer）：慢速 = 把 --demo-speed 调大到 3（时长变长），暂停 = `.motion-paused` 类
-  （对全部后代 animation-play-state: paused），重播 = key 重挂载。Demo 要么循环播放，要么自带触发按钮。
+  （对全部后代 animation-play-state: paused）；重播/重置 = key 重挂载。Demo 要么循环播放，要么自带触发按钮。
+  JS 驱动的动画（rAF / Web Animations）也要读取 `--demo-speed` 才能响应慢速。
 - 不引入任何新依赖；不写测试文件。
 - 尺寸克制：常规示例优先控制在 240～480px；完整表单和多变体允许自然增高，不裁切内容，内容居中。
 

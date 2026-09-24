@@ -138,6 +138,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
           locale={locale}
           anatomy={d.anatomy}
           motion={concept.conceptType === 'motion'}
+          motionControls={d.demo.motionControls}
         />
         {d.playground && <div class="mt-4 rounded-xl border border-line bg-raised p-5">
           <h3 class="mb-3 text-sm font-semibold">{locale === 'zh' ? '使用时关注什么' : 'What to look for'}</h3>
