@@ -8,14 +8,14 @@ test('search: open, type colloquial query, navigate to concept', async ({ page }
   await expect(page.locator('#search-open')).toBeVisible();
   await page.locator('#search-open').click();
 
-  const input = page.getByRole('dialog').getByRole('textbox');
+  const input = page.getByRole('dialog').getByRole('combobox');
   await expect(input).toBeVisible();
 
   // 口语化查询：黄金测试集同款
   await input.fill('加载的时候灰色一闪一闪');
   const firstResult = page
     .getByRole('dialog')
-    .getByRole('button')
+    .getByRole('option')
     .filter({ hasText: /骨架屏|Skeleton/ })
     .first();
   await expect(firstResult).toBeVisible({ timeout: 15_000 });
@@ -56,7 +56,7 @@ test('hero search: matches render, nonsense shows empty state', async ({ page })
 
 test('/search landing opens the search dialog', async ({ page }) => {
   await page.goto('/search');
-  await expect(page.getByRole('dialog').getByRole('textbox')).toBeVisible();
+  await expect(page.getByRole('dialog').getByRole('combobox')).toBeVisible();
 });
 
 test('⌘K opens search after hydration', async ({ page }) => {
@@ -65,7 +65,7 @@ test('⌘K opens search after hydration', async ({ page }) => {
   // 等待 island 水合完成后再按快捷键
   await page.waitForTimeout(1200);
   await page.keyboard.press('ControlOrMeta+k');
-  await expect(page.getByRole('dialog').getByRole('textbox')).toBeVisible();
+  await expect(page.getByRole('dialog').getByRole('combobox')).toBeVisible();
 });
 
 test('styles page renders style scenes', async ({ page }) => {

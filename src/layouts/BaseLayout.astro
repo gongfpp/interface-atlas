@@ -59,9 +59,9 @@ const themeScript = `
     <meta property="og:type" content="website" />
   </head>
   <body class="min-h-screen bg-paper text-ink">
-    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-raised focus:px-3 focus:py-2">跳到主要内容</a>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-raised focus:px-3 focus:py-2">{locale === 'zh' ? '跳到主要内容' : 'Skip to content'}</a>
     <Header locale={locale} />
-    <main id="main" class="mx-auto w-full max-w-6xl px-5 md:px-8">
+    <main id="main" tabindex="-1" class="mx-auto w-full max-w-6xl px-5 md:px-8">
       <slot />
     </main>
     <Footer locale={locale} />

@@ -56,6 +56,7 @@ export default function HeroSearch({ locale }: { locale: 'zh' | 'en' }) {
             if (e.key === 'Escape') { setOpen(false); inputRef.current?.blur(); }
           }}
           placeholder={t('searchPlaceholder', locale)}
+          aria-label={t('searchPlaceholder', locale)}
           role="combobox"
           aria-expanded={showPanel}
           aria-controls={showPanel ? 'hero-search-results' : undefined}

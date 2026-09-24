@@ -9,6 +9,8 @@ const { locale } = Astro.props;
 const types = Object.keys(TYPE_LABELS);
 const otherLocale: Locale = locale === 'zh' ? 'en' : 'zh';
 const switchTo = localePath(stripBase(Astro.url.pathname).replace(/^\/en(?=\/|$)/, '') || '/', otherLocale);
+const current = stripBase(Astro.url.pathname).replace(/^\/en(?=\/|$)/, '') || '/';
+const isActive = (path: string) => current === path || current.startsWith(`${path}/`);
 ---
 
 <header class="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur">
@@ -16,13 +18,13 @@ const switchTo = localePath(stripBase(Astro.url.pathname).replace(/^\/en(?=\/|$)
     <a href={localePath('/', locale)} class="font-serif text-lg font-semibold tracking-tight">
       界面图谱<span class="mx-2 text-ink-3 font-sans text-xs font-normal">Interface Atlas</span>
     </a>
-    <nav class="hidden items-center gap-4 text-sm text-ink-2 md:flex" aria-label="主导航">
+    <nav class="hidden items-center gap-4 text-sm text-ink-2 md:flex" aria-label={locale === 'zh' ? '主导航' : 'Primary navigation'}>
       {types.map((t) => (
-        <a class="transition-colors hover:text-accent" href={localePath(`/${t}`, locale)}>
+        <a class="transition-colors hover:text-accent" href={localePath(`/${t}`, locale)} aria-current={isActive(`/${t}`) ? 'page' : undefined}>
           {TYPE_LABELS[t][locale]}
         </a>
       ))}
-      <a class="transition-colors hover:text-accent" href={localePath('/gallery', locale)}>
+      <a class="transition-colors hover:text-accent" href={localePath('/gallery', locale)} aria-current={isActive('/gallery') ? 'page' : undefined}>
         {locale === 'zh' ? '图库' : 'Gallery'}
       </a>
     </nav>
@@ -30,8 +32,8 @@ const switchTo = localePath(stripBase(Astro.url.pathname).replace(/^\/en(?=\/|$)
       <details class="relative md:hidden">
         <summary aria-label={locale === 'zh' ? '浏览分类' : 'Browse categories'} class="list-none rounded-full border border-line px-2.5 py-1.5 text-sm">☰</summary>
         <nav class="absolute right-0 top-11 z-50 grid w-48 gap-1 rounded-xl border border-line bg-raised p-2 shadow-lg" aria-label={locale === 'zh' ? '移动端导航' : 'Mobile navigation'}>
-          {types.map(type => <a class="rounded-lg px-3 py-2.5 text-sm hover:bg-accent-soft hover:text-accent" href={localePath(`/${type}`, locale)}>{TYPE_LABELS[type][locale]}</a>)}
-          <a class="rounded-lg px-3 py-2.5 text-sm hover:bg-accent-soft hover:text-accent" href={localePath('/gallery', locale)}>{locale === 'zh' ? '灵感图库' : 'Gallery'}</a>
+          {types.map(type => <a class="rounded-lg px-3 py-2.5 text-sm hover:bg-accent-soft hover:text-accent" href={localePath(`/${type}`, locale)} aria-current={isActive(`/${type}`) ? 'page' : undefined}>{TYPE_LABELS[type][locale]}</a>)}
+          <a class="rounded-lg px-3 py-2.5 text-sm hover:bg-accent-soft hover:text-accent" href={localePath('/gallery', locale)} aria-current={isActive('/gallery') ? 'page' : undefined}>{locale === 'zh' ? '灵感图库' : 'Gallery'}</a>
         </nav>
       </details>
       <SearchButton locale={locale} />
@@ -41,7 +43,8 @@ const switchTo = localePath(stripBase(Astro.url.pathname).replace(/^\/en(?=\/|$)
       <button
         id="theme-toggle"
         type="button"
-        aria-label="切换深色模式"
+        aria-label={locale === 'zh' ? '切换深色模式' : 'Toggle dark mode'}
+        aria-pressed="false"
         class="rounded-full border border-line p-2 leading-none hover:border-line-strong"
       >
         <span class="dark:hidden">🌙</span><span class="hidden dark:inline">☀️</span>
@@ -51,9 +54,18 @@ const switchTo = localePath(stripBase(Astro.url.pathname).replace(/^\/en(?=\/|$)
 </header>
 
 <script is:inline>
-  document.getElementById('theme-toggle')?.addEventListener('click', () => {
-    const el = document.documentElement;
-    const dark = el.classList.toggle('dark');
-    try { localStorage.setItem('ia-theme', dark ? 'dark' : 'light'); } catch {}
-  });
+  (function () {
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    var sync = function () {
+      btn.setAttribute('aria-pressed', String(document.documentElement.classList.contains('dark')));
+    };
+    sync();
+    btn.addEventListener('click', function () {
+      var el = document.documentElement;
+      var dark = el.classList.toggle('dark');
+      try { localStorage.setItem('ia-theme', dark ? 'dark' : 'light'); } catch {}
+      sync();
+    });
+  })();
 </script>

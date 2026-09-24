@@ -11,7 +11,7 @@
   --color-paper-raised: #ffffff;
   --color-ink: #17150f;
   --color-ink-secondary: #57534a;
-  --color-ink-tertiary: #8a857a;
+  --color-ink-tertiary: #6e695f;
   --color-line: #e5e2da;
   --color-line-strong: #cfccc2;
   --color-accent: #b4441f;
@@ -27,7 +27,7 @@
   --color-paper-raised: #1c1b18;
   --color-ink: #ecebe6;
   --color-ink-secondary: #b3afa5;
-  --color-ink-tertiary: #7d786d;
+  --color-ink-tertiary: #918c80;
   --color-line: #2c2b26;
   --color-line-strong: #454439;
   --color-accent: #e8845d;
@@ -104,6 +104,7 @@ html {
 /* Shared specimen workbench: generous surfaces, restrained technical labels. */
 html { scroll-behavior: smooth; scroll-padding-top: 130px; }
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+#main:focus { outline: none; }
 button:not(:disabled), summary { cursor: pointer; }
 button:disabled { cursor: not-allowed; opacity: .5; }
 .demo-stage-checker { background-image: radial-gradient(var(--color-line) .8px, transparent .8px); background-size: 18px 18px; background-position: 0 0; }
