@@ -46,7 +46,7 @@ const locale: Locale = 'en';
 
     <section class="pb-10">
       <h2 class="mb-4 font-serif text-xl font-semibold">Sheets ({d.images.length})</h2>
-      <div class="grid gap-5 sm:grid-cols-2">
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
         {d.images.map((img, i) => (
           <figure class="group">
             <a href={withBase(img.file)} target="_blank" rel="noopener noreferrer" class="block overflow-hidden rounded-xl border border-line">

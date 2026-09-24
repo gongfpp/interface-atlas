@@ -51,12 +51,12 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
 </section>
 
 <section class="mb-12 border-y border-line py-5">
-  <div class="grid gap-4 md:grid-cols-3">{(locale === 'zh' ? [['01','发现','按风格、组件或口语描述找到灵感。'],['02','体验','切换形式与尺寸，在真实交互中理解细节。'],['03','实现','复制说明与 Prompt，接入自己的项目。']] : [['01','Discover','Find an idea by style, component or plain language.'],['02','Explore','Try forms and sizes through real interactions.'],['03','Build','Bring the guidance and prompts into your own project.']]).map(([num,title,desc]) => <div class="flex gap-4"><span class="pt-1 font-mono text-xs text-accent">{num}</span><div><p class="text-sm font-medium">{title}</p><p class="mt-1 text-xs leading-6 text-ink-3">{desc}</p></div></div>)}</div>
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-3">{(locale === 'zh' ? [['01','发现','按风格、组件或口语描述找到灵感。'],['02','体验','切换形式与尺寸，在真实交互中理解细节。'],['03','实现','复制说明与 Prompt，接入自己的项目。']] : [['01','Discover','Find an idea by style, component or plain language.'],['02','Explore','Try forms and sizes through real interactions.'],['03','Build','Bring the guidance and prompts into your own project.']]).map(([num,title,desc]) => <div class="flex gap-4"><span class="pt-1 font-mono text-xs text-accent">{num}</span><div><p class="text-sm font-medium">{title}</p><p class="mt-1 text-xs leading-6 text-ink-3">{desc}</p></div></div>)}</div>
 </section>
 
 <section class="pb-16">
   <div class="mb-5 flex flex-wrap items-end justify-between gap-3"><div><p class="mb-2 font-mono text-[10px] tracking-[.18em] text-accent">FRESH IN THE ATLAS</p><h2 class="font-serif text-2xl font-semibold">{locale === 'zh' ? '让界面更完整的六个组件' : 'Six more pieces of a complete interface'}</h2></div><a href={localePath('/components',locale)} class="text-sm text-accent">{t('viewAll',locale)} →</a></div>
-  <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">{all.flatMap(g=>g.concepts).filter(c=>['combobox','stepper','file-upload','rating','segmented-control','timeline'].includes(c.id)).map(c=><ConceptCard concept={c} locale={locale} />)}</div>
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">{all.flatMap(g=>g.concepts).filter(c=>['combobox','stepper','file-upload','rating','segmented-control','timeline'].includes(c.id)).map(c=><ConceptCard concept={c} locale={locale} />)}</div>
 </section>
 
 <!-- 风格 = 首页主视觉 -->
@@ -68,7 +68,7 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
     </div>
     <a href={localePath('/styles', locale)} class="text-sm text-accent hover:underline">{t('viewAll', locale)} →</a>
   </div>
-  <div class="grid gap-5 md:grid-cols-2">
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
     {styleSpecs.slice(0, 6).map((spec) => (
       <a
         href={localePath(`/styles/${spec.slug}`, locale)}
@@ -132,7 +132,7 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
 {popular.length > 0 && (
   <section class="pb-16">
     <h2 class="mb-5 font-serif text-2xl font-semibold md:text-3xl">{t('popularConcepts', locale)}</h2>
-    <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
       {popular.map((c) => <ConceptCard concept={c} locale={locale} />)}
     </div>
   </section>

@@ -17,7 +17,7 @@ const num = String(index + 1).padStart(2, '0');
 
 <a
   href={localePath(`/styles/${spec.slug}`, locale)}
-  class="group grid gap-6 rounded-2xl border border-line bg-raised p-5 transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md md:grid-cols-[240px_1fr] md:p-7"
+  class="group grid gap-6 rounded-2xl border border-line bg-raised p-5 transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md md:grid-cols-[240px_minmax(0,1fr)] md:p-7"
 >
   <!-- 左：文字 -->
   <div class="flex flex-row items-start gap-5 md:flex-col md:gap-0">

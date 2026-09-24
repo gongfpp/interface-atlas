@@ -20,7 +20,7 @@ const groups = await getCompareGroups();
     </p>
   </section>
 
-  <div class="grid gap-4 pb-20 sm:grid-cols-2 md:grid-cols-3">
+  <div class="grid grid-cols-1 gap-4 pb-20 sm:grid-cols-2 md:grid-cols-3">
     {groups.map((g) => (
       <a
         href={localePath(`/compare/${g.group}`, 'en')}

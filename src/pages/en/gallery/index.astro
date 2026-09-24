@@ -12,7 +12,7 @@ import { localePath, withBase } from '@/lib/i18n';
       image-generation prompt so you can produce the same style of sheets for your own themes.
     </p>
   </section>
-  <div class="grid gap-5 pb-20 sm:grid-cols-2 md:grid-cols-3">
+  <div class="grid grid-cols-1 gap-5 pb-20 sm:grid-cols-2 md:grid-cols-3">
     {(await getCollection('gallery'))
       .filter((e) => e.data.status === 'published')
       .sort((a, b) => a.id.localeCompare(b.id))

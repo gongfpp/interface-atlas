@@ -11,7 +11,7 @@ import { localePath, withBase } from '@/lib/i18n';
       AI 生成的组件设计参考图集——每套图配一条可直接复制的生图 Prompt，换成你的主题就能产出同一风格的系列参考。
     </p>
   </section>
-  <div class="grid gap-5 pb-20 sm:grid-cols-2 md:grid-cols-3">
+  <div class="grid grid-cols-1 gap-5 pb-20 sm:grid-cols-2 md:grid-cols-3">
     {(await getCollection('gallery'))
       .filter((e) => e.data.status === 'published')
       .sort((a, b) => a.id.localeCompare(b.id))

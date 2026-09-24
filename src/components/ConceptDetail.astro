@@ -107,7 +107,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
     {d.style_spec && (
       <section class="pb-10">
         <h2 class={sectionTitle}>{locale === 'zh' ? '开发规格' : 'Design spec'}</h2>
-        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {[
             { k: 'Typography', label: locale === 'zh' ? '字体' : 'Typography', v: d.style_spec.typography },
             { k: 'Color', label: locale === 'zh' ? '色彩' : 'Color', v: d.style_spec.color },
@@ -142,7 +142,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
         />
         {d.playground && <div class="mt-4 rounded-xl border border-line bg-raised p-5">
           <h3 class="mb-3 text-sm font-semibold">{locale === 'zh' ? '使用时关注什么' : 'What to look for'}</h3>
-          <ul class="grid gap-3 text-sm leading-relaxed text-ink-2 md:grid-cols-2">{d.playground.checks.map((check, i) => <li class="flex gap-3"><span class="font-mono text-xs text-accent">0{i + 1}</span><span>{check[locale]}</span></li>)}</ul>
+          <ul class="grid grid-cols-1 gap-3 text-sm leading-relaxed text-ink-2 md:grid-cols-2">{d.playground.checks.map((check, i) => <li class="flex gap-3"><span class="font-mono text-xs text-accent">0{i + 1}</span><span>{check[locale]}</span></li>)}</ul>
         </div>}
       </section>
     )}
@@ -152,13 +152,13 @@ const card = 'rounded-xl border border-line bg-raised p-5';
         <h2 class={sectionTitle}>{locale === 'zh' ? '从参考到实践' : 'From reference to practice'}</h2>
         <p class="text-xs text-ink-3">{locale === 'zh' ? 'AI 生成的视觉参考 · 点击查看完整图集' : 'AI-generated visual references · Open the full collection'}</p>
       </div>
-      <div class="grid gap-4 sm:grid-cols-3">{references[0].data.images.slice(0, 3).map((img, i) => <a class="reference-card group" href={localePath(`/gallery/${references[0].id}`, locale)}>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">{references[0].data.images.slice(0, 3).map((img, i) => <a class="reference-card group" href={localePath(`/gallery/${references[0].id}`, locale)}>
         <div class="h-56 overflow-hidden bg-code-bg"><img class="w-full transition-transform duration-300 group-hover:scale-105" src={withBase(img.file)} alt={img.title[locale]} loading="lazy" width="800" height="1067" /></div>
         <p class="flex gap-3 border-t border-line p-4 text-sm"><span class="font-mono text-xs text-accent">0{i + 1}</span>{img.title[locale]} <span class="ml-auto">↗</span></p>
       </a>)}</div>
     </section>}
 
-    <section class="grid gap-5 pb-10 md:grid-cols-2">
+    <section class="grid grid-cols-1 gap-5 pb-10 md:grid-cols-2">
       <div class={card}>
         <h2 class={`mb-3 font-serif text-lg font-semibold text-green-700 dark:text-green-400`}>
           ✓ {locale === 'zh' ? '适用场景' : 'When to use'}
@@ -180,7 +180,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
     {d.variants.length > 0 && (
       <section id="variants" class="pb-10">
         <h2 class={sectionTitle}>{locale === 'zh' ? '常见形式' : 'Variants'}</h2>
-        <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
           {d.variants.map((v) => (
             <div class="rounded-lg border border-line bg-raised p-4">
               <p class="font-medium">{v.name[locale]}</p>
@@ -195,7 +195,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
     {d.structure && d.structure.length > 0 && (
       <section class="pb-10">
         <h2 class={sectionTitle}>{locale === 'zh' ? '页面结构' : 'Page structure'}</h2>
-        <ol class="grid gap-3 sm:grid-cols-2">
+        <ol class="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {d.structure.map((s, i) => (
             <li class={`${card} flex gap-3`}>
               <span class="font-mono text-xs leading-6 text-ink-3">{String(i + 1).padStart(2, '0')}</span>
@@ -306,7 +306,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
     {related.length > 0 && (
       <section class="pb-10">
         <h2 class={sectionTitle}>{locale === 'zh' ? '相关概念' : 'Related concepts'}</h2>
-        <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
           {related.map((r) => <ConceptCard concept={r.concept} locale={locale} relation={r.relation} />)}
         </div>
       </section>
@@ -315,7 +315,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
     {d.confusable.length > 0 && (
       <section class="pb-10">
         <h2 class={sectionTitle}>{locale === 'zh' ? '容易混淆' : 'Not to be confused with'}</h2>
-        <div class="grid gap-3 sm:grid-cols-2">
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {d.confusable.map((c) => {
             const target = all.find((x) => x.id === c.id);
             return (

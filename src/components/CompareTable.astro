@@ -12,7 +12,7 @@ const dimensions = Object.keys(concepts[0]?.data.compare?.dimensions ?? {});
 ---
 
 <div class="overflow-x-auto rounded-xl border border-line">
-  <table class="w-full text-sm">
+  <table class="w-full text-sm" style={`min-width: ${Math.max(360, concepts.length * 150 + 130)}px`}>
     <thead class="bg-code-bg text-left text-xs uppercase tracking-wider text-ink-3">
       <tr>
         <th class="p-3"></th>
