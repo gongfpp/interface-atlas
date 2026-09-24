@@ -33,6 +33,38 @@ export const TYPE_LABELS: Record<string, Record<Locale, string>> = {
   a11y: { zh: '无障碍', en: 'Accessibility' },
 };
 
+/** 各分区页标题下方的简介：这个页面是用来看什么的（zh/en 均为自然表达，非逐字翻译）。 */
+export const TYPE_INTROS: Record<string, Record<Locale, string>> = {
+  styles: {
+    zh: '同一套按钮和页面，换一种视觉语言就完全不同。这里收集了 24 种可运行的设计风格——从极简、粗野到玻璃拟态、像素风，每种都做了一个完整迷你站点，先看见效果，再决定要不要用。',
+    en: 'The same buttons and pages feel completely different in another visual language. These 24 styles — from minimalism and brutalism to glassmorphism and pixel art — each ship as a full mini site, so you can see the effect before you commit to it.',
+  },
+  components: {
+    zh: '组件是界面里被反复复用的零件。每个组件都配了可交互的 Live Demo、形态变体、结构拆解和多框架命名对照，帮你说得清它叫什么、看得见它怎么动，也知道它什么时候不该用。',
+    en: "Components are the parts an interface reuses over and over. Each one comes with a live interactive demo, variants, a labelled anatomy and names across frameworks — so you can say what it's called, see how it behaves and know when not to use it.",
+  },
+  patterns: {
+    zh: '有些问题不是单个组件能解决的，而是一套交互做法。交互模式收集了加载、表单、拖拽、引导、撤销这类高频场景的成熟方案，以及它们各自的取舍。',
+    en: "Some problems aren't solved by a single component but by a way of handling an interaction. Patterns collect proven approaches to loading, forms, drag, onboarding, undo and more — along with the trade-offs of each.",
+  },
+  motion: {
+    zh: '动效决定界面是活的还是硬的。这里的每一段动效都能真实运行，并带播放器：暂停、重播、慢速和前后对比，让你看清它是怎么动起来的、该不该动。',
+    en: 'Motion decides whether an interface feels alive or stiff. Every animation here really runs, with a player — pause, replay, slow motion and before/after — so you can see exactly how it moves, and whether it should.',
+  },
+  pages: {
+    zh: '页面是组件组合出来的结果。这里按页面类型拆解结构骨架和布局变体——从落地页、登录页到仪表盘，告诉你每种页面该有哪些区块，以及顺序为什么这么排。',
+    en: 'Pages are what components add up to. Each page type is broken into a structural skeleton and layout variants — from landing and sign-in pages to dashboards — showing which sections belong and why they sit in that order.',
+  },
+  foundation: {
+    zh: '基础决定一套界面耐不耐看。从像素与分辨率、字号与行高，到间距、色彩、层级和栅格，这些底层规则先讲清楚，上面的组件和页面才不会散。',
+    en: 'Fundamentals decide whether an interface holds up. From pixels and resolution to type, spacing, colour, elevation and grids, these ground rules come first — get them right and everything above stays coherent.',
+  },
+  a11y: {
+    zh: '为了让键盘和读屏用户也能顺利浏览你的网站，我们挑选了一些最常见的无障碍做法。比如很多人用 Tab 键逐个切换按钮，当导航栏项目很多时，进入主内容就会很麻烦——这时就需要设置「跳过链接」；焦点环、减弱动效、实时区域等也是同理。先把这些做对，网站才对所有人可用。',
+    en: "So that keyboard and screen-reader users can browse your site too, here are the accessibility practices you'll reach for most. When people Tab through every link and your navigation is long, reaching the content is painful — that's what a skip link is for; focus rings, reduced motion and live regions work the same way. Get these right and the site works for everyone.",
+  },
+};
+
 /** related 边标签（PRD §24 内容关系模型） */
 export const RELATION_LABELS: Record<string, Record<Locale, string>> = {
   alternative_to: { zh: '替代方案', en: 'Alternative' },
