@@ -76,7 +76,7 @@ export default function MotionPlayer({
   );
 
   return (
-    <div>
+    <div className="demo-workbench">
       <div className="demo-toolbar mb-0">
         {visibleModes.length > 1 && (
           <div className="flex flex-wrap gap-1" role="group" aria-label={en ? 'Variants' : '变体'}>
@@ -125,7 +125,7 @@ export default function MotionPlayer({
         </div>
       </div>
 
-      <div className="mt-3">
+      <div className="p-3">
         {compare && has('compare') ? (
           <div className="grid gap-3 md:grid-cols-2">
             <div>
@@ -143,7 +143,7 @@ export default function MotionPlayer({
       </div>
 
       {anatomy.length > 0 && (
-        <div className="demo-anatomy mt-3 rounded-xl border border-line">
+        <div className="demo-anatomy">
           <p className="mb-3 text-xs text-ink-3">
             {en ? 'Explore the anatomy · focus or select a part' : '结构拆解 · 悬停、聚焦或点选部位'}
           </p>

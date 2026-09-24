@@ -1,0 +1,204 @@
+{
+  "id": "border-radius",
+  "type": "foundation",
+  "status": "published",
+  "name": {
+    "zh": "圆角",
+    "en": "Border Radius"
+  },
+  "aliases": [
+    "圆角",
+    "圆角半径",
+    "为什么卡片看起来不精致",
+    "按钮圆角",
+    "胶囊形状",
+    "border radius",
+    "rounded corners",
+    "corner radius"
+  ],
+  "category": [
+    "Foundation",
+    "Shape",
+    "Visual"
+  ],
+  "description": {
+    "zh": "把盒子四角做成圆弧，半径越大越柔和、越像卡片与气泡。圆角要和组件尺寸成套：按钮小、卡片中、大容器大，才像同一个家族；相邻圆角盒之间会留下难看的凹口，需要用同心圆角（外半径 = 内半径 + 间距）修正，或让它们干脆对齐。",
+    "en": "Rounding a box's corners softens it; the bigger the radius, the more it reads as a card or bubble. Radius must scale with the component — small on buttons, medium on cards, large on containers — so everything looks like one family. Adjacent rounded boxes leave an awkward notch, fixed with concentric radii (outer = inner + gap) or by aligning them flush."
+  },
+  "use_when": [
+    {
+      "zh": "需要柔化品牌气质，并区分卡片、按钮与容器的层级",
+      "en": "Softening the brand feel while separating cards, buttons and containers"
+    },
+    {
+      "zh": "按钮、输入框、头像等基础控件要统一圆角语言",
+      "en": "Buttons, inputs and avatars need one shared rounding language"
+    },
+    {
+      "zh": "嵌套容器需要同心圆角，保持内角与外角视觉顺滑",
+      "en": "Nested containers need concentric radii so inner and outer corners stay smooth"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "严肃的数据表格与像素级对齐的网格",
+      "en": "Serious data tables and pixel-aligned grids"
+    },
+    {
+      "zh": "12px 的小图标上加大圆角，反而糊成一团",
+      "en": "Heavy rounding on a 12px icon just smears it"
+    },
+    {
+      "zh": "用超大圆角把方形卡片压成胶囊，丢掉信息密度",
+      "en": "Blowing a rectangular card into a pill and losing information density"
+    }
+  ],
+  "tags": [
+    "foundation",
+    "shape",
+    "radius",
+    "tokens"
+  ],
+  "api": [
+    "border-radius",
+    "border-start-start-radius",
+    "50%",
+    "--radius-lg"
+  ],
+  "framework_names": [
+    {
+      "framework": "CSS",
+      "name": "border-radius",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius",
+      "note": {
+        "zh": "支持斜杠语法分别控制横纵半径",
+        "en": "Slash syntax controls horizontal and vertical radii separately"
+      }
+    },
+    {
+      "framework": "Tailwind CSS",
+      "name": "rounded-lg / rounded-full",
+      "url": "https://tailwindcss.com/docs/border-radius",
+      "note": {
+        "zh": "成档的圆角工具类",
+        "en": "Stepped rounding utilities"
+      }
+    },
+    {
+      "framework": "Design tokens",
+      "name": "--radius-sm / --radius-md / --radius-full"
+    }
+  ],
+  "variants": [
+    {
+      "id": "soft",
+      "name": {
+        "zh": "柔和小圆角",
+        "en": "Soft"
+      },
+      "note": {
+        "zh": "4～8px，克制、专业，适合表格与密集控件",
+        "en": "4–8px — restrained and professional for tables and dense controls"
+      }
+    },
+    {
+      "id": "rounded",
+      "name": {
+        "zh": "圆润中圆角",
+        "en": "Rounded"
+      },
+      "note": {
+        "zh": "12～16px，卡片与面板的常用档，友好但不轻浮",
+        "en": "12–16px — the usual card and panel step, friendly but not gimmicky"
+      }
+    },
+    {
+      "id": "pill",
+      "name": {
+        "zh": "胶囊与圆形",
+        "en": "Pill & circle"
+      },
+      "note": {
+        "zh": "9999px 或 50%，用于按钮、标签和头像",
+        "en": "9999px or 50% — for buttons, tags and avatars"
+      }
+    }
+  ],
+  "anatomy": [
+    "圆角半径（Radius）",
+    "四角控制（Corner control）",
+    "同心圆角（Concentric radius）",
+    "胶囊与圆形（Pill & circle）"
+  ],
+  "related": [
+    {
+      "id": "spacing-scale",
+      "relation": "similar_to"
+    },
+    {
+      "id": "elevation",
+      "relation": "used_with"
+    },
+    {
+      "id": "button",
+      "relation": "used_with"
+    },
+    {
+      "id": "card",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "border-radius",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "MDN — border-radius",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius"
+    },
+    {
+      "name": "Material Design — Shape",
+      "url": "https://m3.material.io/styles/shape/overview"
+    },
+    {
+      "name": "Tailwind CSS — Border Radius",
+      "url": "https://tailwindcss.com/docs/border-radius"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "border-radius: 8px",
+      "border-radius: 0.5rem",
+      "border-radius: 9999px",
+      "border-radius: 50%",
+      "border-radius: calc(var(--radius-md) - var(--space-2))"
+    ],
+    "notes": {
+      "zh": "用 rem 定义 4～5 档：--radius-sm 4px、--radius-md 8px、--radius-lg 12px、--radius-xl 16px、--radius-full 9999px。组件的圆角跟随自身尺寸取档，父容器圆角明显时内层用 calc(var(--radius-lg) - var(--space-2)) 做同心。头像与开关用 50% 或 --radius-full。密切注意 1px 边框下的圆角抗锯齿，必要时内层留 1px。",
+      "en": "Define four or five rem steps — --radius-sm 4px, --radius-md 8px, --radius-lg 12px, --radius-xl 16px, --radius-full 9999px. Components pick a step by their own size, and inside a visibly rounded parent the child uses calc(var(--radius-lg) - var(--space-2)) to stay concentric. Avatars and switches take 50% or --radius-full. Watch anti-aliasing under 1px borders and inset by 1px where needed."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "建立圆角体系：用成档的半径令牌统一按钮、卡片与容器，并处理嵌套时的同心圆角。",
+      "en": "Build a radius system — stepped tokens unifying buttons, cards and containers, with concentric radii for nesting."
+    },
+    "design": {
+      "zh": "圆角规范：4～5 档（sm 4 / md 8 / lg 12 / xl 16 / full 9999px）；按钮用 md，卡片用 lg，大面板用 xl，头像用 50%；嵌套容器内圆角 = 外圆角 − 内边距；同一界面圆角档位不超过四种；1px 边框下注意内外对齐。",
+      "en": "Radius spec: four to five steps (sm 4 / md 8 / lg 12 / xl 16 / full 9999px); buttons use md, cards lg, large panels xl, avatars 50%. For nested containers, inner radius = outer − padding. Keep to four radius steps per screen, and align inner and outer edges under 1px borders."
+    },
+    "implementation": {
+      "zh": "令牌写成 :root { --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px; --radius-xl: 16px; --radius-full: 9999px; }，组件引用 var(--radius-md)。同心圆角写 border-radius: calc(var(--radius-lg) - var(--space-2))。Tailwind 侧映射到 theme 的 --radius-*，避免在组件里散落裸 px 值。",
+      "en": "Write the tokens as :root { --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px; --radius-xl: 16px; --radius-full: 9999px; } and reference var(--radius-md) from components. For concentric corners use border-radius: calc(var(--radius-lg) - var(--space-2)). Map them into Tailwind theme --radius-* tokens and avoid scattering raw px values in components."
+    },
+    "agent": {
+      "zh": "在当前项目中实现圆角体系。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- 4～5 档圆角令牌，组件按尺寸取档\n- 嵌套容器使用同心圆角 calc(外 − 内边距)\n- 头像与开关用 50% / full，不散落裸 px\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a border-radius system in the current project.\nInspect the existing component system and design tokens first; reuse what is already there.\nRequirements:\n- Four to five radius tokens; components pick a step by size\n- Nested containers use concentric calc(outer − padding)\n- Avatars and switches use 50% / full; no scattered raw px\nKeep the project's existing visual style. Do not add unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

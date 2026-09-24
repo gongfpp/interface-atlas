@@ -1,0 +1,208 @@
+{
+  "id": "relative-units",
+  "type": "foundation",
+  "status": "published",
+  "name": {
+    "zh": "相对单位",
+    "en": "Relative Units"
+  },
+  "aliases": [
+    "相对单位",
+    "相对长度",
+    "rem 和 em 的区别",
+    "为什么改浏览器字号界面不变大",
+    "响应式单位",
+    "relative units",
+    "rem vs em",
+    "px vs rem"
+  ],
+  "category": [
+    "Foundation",
+    "Layout",
+    "Typography"
+  ],
+  "description": {
+    "zh": "长度可以写死成 px，也可以相对别的量：rem 相对根元素字号，em 相对元素自身或父级的字号，% 相对容器，vw/vh 相对视口。用户把浏览器默认字号调大时，用 px 排的版面纹丝不动，用 rem 的会整体放大。字号、间距、圆角尽量用 rem，只有边框与发丝线才写死 px。",
+    "en": "A length can be absolute (px) or relative: rem scales from the root font size, em from the element's own font size, % from the container, and vw/vh from the viewport. When a user raises the browser's default font size, px layouts refuse to move while rem-based ones grow with it. Prefer rem for type, spacing and radius; keep px for borders and hairlines."
+  },
+  "use_when": [
+    {
+      "zh": "用户能改浏览器默认字号，界面需要跟着一起放大",
+      "en": "Users can change the browser default font size and the UI must scale with it"
+    },
+    {
+      "zh": "同一组件要在不同容器与字号下复用，尺寸需自适应",
+      "en": "One component is reused across containers and font sizes and must adapt"
+    },
+    {
+      "zh": "做随视口变化的流式排版、间距或整屏区块",
+      "en": "Fluid type, spacing or full-screen sections that follow the viewport"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "1px 发丝线与需要绝对精确的边框",
+      "en": "1px hairlines and borders that must be exactly one pixel"
+    },
+    {
+      "zh": "位图按原始像素对齐，不允许任何取整偏差",
+      "en": "Bitmaps aligned to exact source pixels, where any rounding hurts"
+    },
+    {
+      "zh": "em 在多层嵌套里层层放大，尺寸彻底失控",
+      "en": "Nested em compounding until the size runs away entirely"
+    }
+  ],
+  "tags": [
+    "foundation",
+    "css",
+    "units",
+    "typography",
+    "responsive"
+  ],
+  "api": [
+    "rem",
+    "em",
+    "vw",
+    "vh",
+    "calc()"
+  ],
+  "framework_names": [
+    {
+      "framework": "CSS",
+      "name": "rem / em",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/length",
+      "note": {
+        "zh": "相对根字号与相对父级字号",
+        "en": "Relative to the root and to the parent size"
+      }
+    },
+    {
+      "framework": "CSS",
+      "name": "vw / vh / dvh",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/length",
+      "note": {
+        "zh": "相对视口宽高，dvh 处理移动端地址栏",
+        "en": "Relative to viewport — dvh handles mobile browser chrome"
+      }
+    },
+    {
+      "framework": "Tailwind CSS",
+      "name": "rem-based spacing scale",
+      "url": "https://tailwindcss.com/docs/theme"
+    }
+  ],
+  "variants": [
+    {
+      "id": "rem-root",
+      "name": {
+        "zh": "相对根字号 rem",
+        "en": "Root-relative rem"
+      },
+      "note": {
+        "zh": "1rem 等于根字号，改根字号整页同步缩放",
+        "en": "1rem equals the root size — change it and the page scales together"
+      }
+    },
+    {
+      "id": "em-local",
+      "name": {
+        "zh": "相对父级 em",
+        "en": "Local em"
+      },
+      "note": {
+        "zh": "1em 取决于当前字号，嵌套会层层相乘",
+        "en": "1em follows the current font size and compounds when nested"
+      }
+    },
+    {
+      "id": "viewport",
+      "name": {
+        "zh": "视口单位 vw/vh",
+        "en": "Viewport units"
+      },
+      "note": {
+        "zh": "随窗口尺寸变化，适合整屏区块与流式间距",
+        "en": "Follows the window — good for full-bleed sections and fluid spacing"
+      }
+    }
+  ],
+  "anatomy": [
+    "根字号（Root font size）",
+    "绝对单位（px）",
+    "相对单位（rem / em）",
+    "视口单位（vw / vh）",
+    "百分比（%）"
+  ],
+  "related": [
+    {
+      "id": "type-scale",
+      "relation": "used_with"
+    },
+    {
+      "id": "pixel-density",
+      "relation": "similar_to"
+    },
+    {
+      "id": "spacing-scale",
+      "relation": "similar_to"
+    },
+    {
+      "id": "measure",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "relative-units",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "MDN — CSS values and units",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/length"
+    },
+    {
+      "name": "web.dev — Learn Design: Typography",
+      "url": "https://web.dev/learn/design/typography"
+    },
+    {
+      "name": "W3C — CSS Values and Units Module Level 4",
+      "url": "https://www.w3.org/TR/css-values-4/"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "font-size: 1rem",
+      "padding: 1.5rem",
+      "width: 50vw",
+      "height: 100dvh",
+      "border: 1px solid var(--color-line)"
+    ],
+    "notes": {
+      "zh": ":root 不写死 font-size，让浏览器默认字号保持可调；正文用 1rem，组件内字号与间距用 rem，最大宽度用 ch/rem。vw/vh 用于整屏区块，vh 在移动端改用 dvh 以避开地址栏跳动。发丝线与边框保留 1px。em 只用在确实需要随局部字号缩放的场合，并留意嵌套相乘。",
+      "en": "Never hard-set font-size on :root — keep the browser default adjustable. Set body copy in 1rem, and use rem for type and spacing inside components, with ch/rem for max widths. Reserve vw/vh for full-screen sections, and prefer dvh on mobile to dodge the address bar. Keep hairlines and borders at 1px. Use em only where a size must follow the local font size, and watch for nesting compounding."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "用相对单位改造布局：字号、间距、圆角用 rem，整屏区块用 vw/vh，只保留边框为 px。",
+      "en": "Convert a layout to relative units — rem for type, spacing and radius, vw/vh for full-screen sections, px only for borders."
+    },
+    "design": {
+      "zh": "相对单位规范：根字号保持浏览器默认（不写死 html font-size）；正文与组件字号用 rem；间距与圆角用 rem；整屏高度用 dvh；发丝线用 1px；禁止用 vw 直接设正文字号以免小屏过小；em 仅在随局部字号缩放时使用，嵌套不超过两层。",
+      "en": "Relative unit spec: leave the root font size at the browser default (do not hard-set html); use rem for body and component type, spacing and radius; use dvh for full-height; keep hairlines at 1px. Never size body text in vw or it collapses on small screens. Use em only for local scaling and no more than two nesting levels."
+    },
+    "implementation": {
+      "zh": "用 CSS 自定义属性把基准集中：:root { --space-4: 1rem; --radius-md: 0.5rem; }，组件引用变量而不写 px。流式尺寸写 clamp(1rem, 2.5vw, 2rem)。移动端整屏用 min-height: 100dvh。验证方法是把浏览器默认字号从 16px 改到 20px，检查版面和控件是否等比例放大。",
+      "en": "Centralise the basis in custom properties — :root { --space-4: 1rem; --radius-md: 0.5rem; } — and have components reference variables instead of px. Write fluid sizes as clamp(1rem, 2.5vw, 2rem) and full-height sections as min-height: 100dvh. To verify, change the browser default from 16px to 20px and check that layout and controls scale proportionally."
+    },
+    "agent": {
+      "zh": "在当前项目中实现相对单位体系。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- 不写死 html 根字号，正文用 1rem\n- 字号、间距、圆角用 rem，视口区块用 dvh\n- 边框与发丝线保持 px，em 仅局部使用\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a relative-unit system in the current project.\nInspect the existing component system and design tokens first; reuse what is already there.\nRequirements:\n- Never hard-set the html root size; keep body text at 1rem\n- Use rem for type, spacing and radius, and dvh for viewport sections\n- Keep borders and hairlines in px; use em only locally\nKeep the project's existing visual style. Do not add unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

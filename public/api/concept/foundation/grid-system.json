@@ -1,0 +1,203 @@
+{
+  "id": "grid-system",
+  "type": "foundation",
+  "status": "published",
+  "name": {
+    "zh": "栅格系统",
+    "en": "Grid System"
+  },
+  "aliases": [
+    "栅格",
+    "栅格系统",
+    "网格",
+    "12 列",
+    "分几栏",
+    "布局网格",
+    "grid system",
+    "12-column grid"
+  ],
+  "category": [
+    "Layout",
+    "Foundation"
+  ],
+  "description": {
+    "zh": "用列、槽间距与外边距把页面切成可复用的骨架。12 列最通用，因为它能被 2、3、4、6 整除，任意区块都能对齐到列线。 固定栅格稳但脆，repeat(auto-fit, minmax(240px, 1fr)) 让列数随可用宽度自动增减；容器查询进一步让组件按自身容器而非视口回流。",
+    "en": "A reusable skeleton of columns, gutters and margins. Twelve columns is the default because 2, 3, 4 and 6 all divide into it, so any block can snap to the lines. A fixed grid is stable but brittle; repeat(auto-fit, minmax(240px, 1fr)) adds and drops tracks as space allows, and container queries reflow a component by its own width, not the viewport."
+  },
+  "use_when": [
+    {
+      "zh": "页面多个区块需要对齐到同一套列线",
+      "en": "Several page blocks must align to one shared set of column lines"
+    },
+    {
+      "zh": "卡片墙要随可用宽度自动增减列数",
+      "en": "A card wall should add or drop columns as width allows"
+    },
+    {
+      "zh": "同一组件在侧栏与主区都要自适应，不能只看视口",
+      "en": "One component must adapt in a sidebar and a main column, not just by viewport"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "只有单块内容的极简页面，栅格只添嵌套",
+      "en": "A single-block page where a grid only adds nesting"
+    },
+    {
+      "zh": "用栅格硬凑本就不需要对齐的自由排版",
+      "en": "Forcing a grid onto free-form art that never needed alignment"
+    },
+    {
+      "zh": "嵌套栅格超过三层，间距层层叠加失控",
+      "en": "Nesting grids more than three deep until gutters compound out of control"
+    }
+  ],
+  "tags": [
+    "grid",
+    "layout",
+    "foundation",
+    "responsive",
+    "columns"
+  ],
+  "api": [
+    "grid-template-columns",
+    "repeat()",
+    "minmax()",
+    "gap",
+    "@container"
+  ],
+  "framework_names": [
+    {
+      "framework": "CSS",
+      "name": "grid-template-columns",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns"
+    },
+    {
+      "framework": "CSS",
+      "name": "@container",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@container"
+    },
+    {
+      "framework": "Tailwind CSS",
+      "name": "grid-cols-12 / @container",
+      "url": "https://tailwindcss.com/docs/grid-template-columns"
+    }
+  ],
+  "variants": [
+    {
+      "id": "fixed-12",
+      "name": {
+        "zh": "固定 12 栏",
+        "en": "Fixed 12-column"
+      },
+      "note": {
+        "zh": "repeat(12, minmax(0, 1fr))，区块按列数跨格，稳但断点写死",
+        "en": "repeat(12, minmax(0, 1fr)) with blocks spanning tracks — stable but breakpoints are fixed"
+      }
+    },
+    {
+      "id": "auto-fit",
+      "name": {
+        "zh": "自动适应",
+        "en": "Auto-fit"
+      },
+      "note": {
+        "zh": "repeat(auto-fit, minmax(240px, 1fr))，列数交给浏览器，内容决定宽度",
+        "en": "repeat(auto-fit, minmax(240px, 1fr)) — the browser picks the count from content width"
+      }
+    },
+    {
+      "id": "container",
+      "name": {
+        "zh": "容器查询",
+        "en": "Container query"
+      },
+      "note": {
+        "zh": "组件包 container-type: inline-size，按自身宽度而非视口回流",
+        "en": "container-type: inline-size reflows by the component's own width, not the viewport"
+      }
+    }
+  ],
+  "anatomy": [
+    "列（Columns）",
+    "槽间距（Gutters）",
+    "外边距（Margins）",
+    "断点（Breakpoints）",
+    "容器宽度（Container width）"
+  ],
+  "related": [
+    {
+      "id": "dashboard",
+      "relation": "used_with"
+    },
+    {
+      "id": "landing-page",
+      "relation": "used_with"
+    },
+    {
+      "id": "card",
+      "relation": "used_with"
+    },
+    {
+      "id": "bento-grid",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "grid-system",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "MDN — CSS grid layout",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
+    },
+    {
+      "name": "web.dev — Learn CSS Grid",
+      "url": "https://web.dev/learn/css/grid"
+    },
+    {
+      "name": "MDN — Container queries",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries"
+    },
+    {
+      "name": "W3C — CSS Grid Layout Module Level 1",
+      "url": "https://www.w3.org/TR/css-grid-1/"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "grid-template-columns: repeat(12, minmax(0, 1fr))",
+      "gap: var(--grid-gutter)",
+      "repeat(auto-fit, minmax(240px, 1fr))",
+      "container-type: inline-size",
+      "@container (min-width: 40rem)"
+    ],
+    "notes": {
+      "zh": "外层定容器最大宽与左右外边距（--grid-margin），列与列之间用 gap 而非 margin，避免末列多余间距。固定栅格写 repeat(12, minmax(0, 1fr))，minmax 的 0 防止内容撑破列。自适应列表写 repeat(auto-fit, minmax(240px, 1fr))， 列数交给浏览器。组件级响应式用 container-type: inline-size 配 @container，别一律迁就视口断点。",
+      "en": "Cap an outer container with a max width and side margins (--grid-margin); space columns with gap, never margins, so the last column has no extra offset. A fixed grid is repeat(12, minmax(0, 1fr)) — the 0 stops content from blowing out a track. Self-managing lists use repeat(auto-fit, minmax(240px, 1fr)) and let the browser pick the count. For component-level responsiveness use container-type: inline-size with @container instead of always bending to viewport breakpoints."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "建立栅格系统：定义列数、槽间距与外边距，让区块对齐到同一套列线。",
+      "en": "Build a grid system — columns, gutters and margins that align blocks to one set of lines."
+    },
+    "design": {
+      "zh": "栅格规范：桌面 12 列、平板 8 列、手机 4 列；槽间距 16 与 24 两档；左右外边距随容器封顶；列表用 auto-fit + minmax 自适应，组件级布局用容器查询；禁止用 margin 模拟列间距，嵌套栅格不超过三层。",
+      "en": "Grid spec: 12 columns desktop, 8 tablet, 4 mobile; gutters at 16 and 24; side margins capped with the container; lists adapt with auto-fit + minmax and components use container queries; never fake gutters with margins; do not nest more than three grids deep."
+    },
+    "implementation": {
+      "zh": "用 CSS 变量落地：--grid-gutter 与 --grid-margin；外层容器 max-width 居中。栅格写 display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--grid-gutter)。自适应列表写 repeat(auto-fit, minmax(240px, 1fr))。组件包 container-type: inline-size 并配 @container 规则。",
+      "en": "Ship it with CSS variables: --grid-gutter and --grid-margin, with a centred max-width outer container. Grids are display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--grid-gutter). Adaptive lists use repeat(auto-fit, minmax(240px, 1fr)). Wrap components in container-type: inline-size and pair with @container rules."
+    },
+    "agent": {
+      "zh": "在当前项目中实现栅格系统。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- 桌面 12 列 / 平板 8 列 / 手机 4 列，槽间距用 gap 令牌\n- 卡片墙用 auto-fit + minmax 自适应列数\n- 组件级响应式用 container-type 与 @container\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行现有项目检查，并列出修改的文件。",
+      "en": "Implement a grid system in the current project.\nInspect the existing component system and design tokens first; reuse what is already there.\nRequirements:\n- 12 columns desktop / 8 tablet / 4 mobile with gap tokens for gutters\n- Card walls adapt their column count with auto-fit + minmax\n- Component-level responsiveness via container-type and @container\nKeep the project's existing visual style. Do not add unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

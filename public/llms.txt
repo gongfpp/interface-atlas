@@ -151,14 +151,24 @@
 - [Text Reveal / 文字显现](/api/concept/motion/text-reveal.json): 把标题或段落按行、按词逐个显现，而不是整块淡入。文字"被说出来"的节奏感让信息有先后与分量， 常用于落地页首屏大标题、章节开场与滚动叙事， 通常进入视口时触发一
 - [Toast Slide-in / 提示滑入](/api/concept/motion/toast-slide-in.json): 操作结果以一条短提示从屏幕边缘滑入（常为底部或右上角）， 停留数秒后自动滑出。 动效分三段：滑入—停留—滑出， 方向与来源一致——从边缘来，回边缘去。
 - [View Transition / 视图过渡](/api/concept/motion/view-transition.json): 用浏览器原生 View Transitions API 在页面状态切换时做平滑过渡：旧视图淡出、新视图淡入，关键元素可共享形变。它把状态跳变藏进连续的空间叙事，
+- [Border Radius / 圆角](/api/concept/foundation/border-radius.json): 把盒子四角做成圆弧，半径越大越柔和、越像卡片与气泡。圆角要和组件尺寸成套：按钮小、卡片中、大容器大，才像同一个家族；相邻圆角盒之间会留下难看的凹口，需要用同心圆
+- [Borders & Strokes / 边框与描边](/api/concept/foundation/border-stroke.json): 用线条勾出元素的边界与状态：border 占据盒模型空间、outline 画在盒外不挤动布局、box-shadow 的 ring 用透明阴影描一圈。 普通态用低
+- [Breakpoints / 响应式断点](/api/concept/foundation/breakpoints.json): 断点是布局发生切换的视口宽度临界值：窄于此用一套排版，宽于此换另一套。断点应由内容决定——把窗口慢慢拉宽，哪里开始拥挤、哪里变难看，那里就是断点，而不是照搬 i
 - [Color Palette / 调色板](/api/concept/foundation/color-palette.json): 从一个基色出发生成有规律的色阶（50～900），再分配主色、辅助色、点缀色与中性色角色。色阶靠明度递进而非随手取色，保证 hover、disabled、边框都有
 - [Contrast Ratio / 对比度](/api/concept/foundation/contrast-ratio.json): 前景与背景的亮度比值，衡量文字是否看得清。WCAG 2.1 给出硬性门槛：正文 AA 4.5:1、AAA 7:1，大号文字降到 3:1 与 4.5:1。APCA
 - [Elevation / 层级](/api/concept/foundation/elevation.json): 用阴影的深浅表达元素离纸面的远近：0 贴平、1～2 浮起、3 以上成浮层。一套阴影由本影、半影、环境三层叠加而成，档位越高投影越大越淡。层级只用来表达叠放关系，
 - [Font Stack / 字体栈](/api/concept/foundation/font-stack.json): 按优先级排列的字体回退链：首选字体缺席时依次落到下一个，最后由通用族兜底。系统栈零下载、即时渲染，网络字体保品牌气质但要配 font-display 控制闪烁，
+- [Grid System / 栅格系统](/api/concept/foundation/grid-system.json): 用列、槽间距与外边距把页面切成可复用的骨架。12 列最通用，因为它能被 2、3、4、6 整除，任意区块都能对齐到列线。 固定栅格稳但脆，repeat(auto-
 - [Line Height / 行高](/api/concept/foundation/line-height.json): 一行文字占的垂直空间，决定段落的松紧与呼吸。标题收紧（1.1～1.3）显得挺拔，正文放宽（1.5～1.8）利于逐行阅读，引文可以更松。优先用无单位倍数，让行高随
 - [Measure / 行宽](/api/concept/foundation/measure.json): 一段文字每行容纳的字符数，决定眼睛回行是否省力。舒适区大约 45～75 个拉丁字符（中文 28～40 字），最常用 65ch 左右。行太窄回行太频繁，太宽则跟丢
+- [Motion Duration & Easing / 动效时长与缓动](/api/concept/foundation/motion-duration.json): 动效时长是动画从开始到结束的时间，按交互类型分档：微反馈 100–150ms、标准过渡 200–300ms、强调入场 300–500ms。缓动决定加速减速的节奏
+- [Pixel Density & Resolution / 像素密度与分辨率](/api/concept/foundation/pixel-density.json): 屏幕同时用两套像素计数：真实的设备像素与布局用的 CSS 像素，一个 CSS 像素里塞进几个设备像素就是设备像素比 DPR。手机像素密、CSS 像素少，位图被撑
+- [Relative Units / 相对单位](/api/concept/foundation/relative-units.json): 长度可以写死成 px，也可以相对别的量：rem 相对根元素字号，em 相对元素自身或父级的字号，% 相对容器，vw/vh 相对视口。用户把浏览器默认字号调大时，
 - [Semantic Color Token / 语义色](/api/concept/foundation/semantic-color.json): 按用途而非色相命名的颜色变量：bg、surface、text、muted、accent、danger。组件只认角色，主题切换时在映射层换指向即可，不必改组件。浅
+- [Spacing Scale / 间距系统](/api/concept/foundation/spacing-scale.json): 用一组固定的间距档位（如 4、8、12、16、24、32、48px，通常按 4 或 8 的倍数生长）统一控制 padding、margin 与 gap。所有留白
+- [Touch Target / 触控目标](/api/concept/foundation/touch-target.json): 触控目标是手指能点中的可交互范围，不等于图标看起来多大。苹果 HIG 建议至少 44×44 CSS 像素，Material 建议 48dp；相邻目标之间还要留约
 - [Type Scale / 字号阶梯](/api/concept/foundation/type-scale.json): 用一组按比例递增的字号定义标题与正文层级，让排版有稳定节奏。以正文基准字号乘以固定比例（如 1.25 大三度、1.333 纯四度）逐级放大，标题之间形成可预期的
+- [Z-index & Stacking / 层级与堆叠](/api/concept/foundation/z-index.json): 用 z-index 决定已定位元素在纸面上的前后顺序，但真正说话的是层叠上下文：一旦祖先把 transform、opacity 或 isolation 变成上下
 - [Alt Text / 替代文本](/api/concept/a11y/alt-text.json): 给图片写一句文本替代：信息图传达同样的信息，装饰图写空 alt 让读屏跳过，功能图描述动作而非画面。读屏用户、图片加载失败的用户和搜索引擎都靠这句话理解图在说什
 - [ARIA Live Region / 实时区域](/api/concept/a11y/aria-live.json): 在页面上预留一块播报区，内容动态更新时把消息念给屏幕阅读器，而不移动焦点。保存成功、筛选结果数、异步校验这类「看得见变了但焦点没动」的信息，读屏用户不靠它就会漏
 - [Focus Ring / 焦点环](/api/concept/a11y/focus-ring.json): 用可见轮廓标记当前键盘焦点位置，让用户知道下一个按键会落在哪里。鼠标点击往往不需要它，但键盘与辅助技术用户必须始终看见焦点在哪，否则只能盲操作。通常用 :foc

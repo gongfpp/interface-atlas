@@ -18,8 +18,11 @@ import BauhausDemo from './bauhaus';
 import BentoGridDemo from './bento-grid';
 import BlogIndexDemo from './blog-index';
 import BlogPostDemo from './blog-post';
+import BorderRadiusDemo from './border-radius';
+import BorderStrokeDemo from './border-stroke';
 import BottomSheetDemo from './bottom-sheet';
 import BreadcrumbDemo from './breadcrumb';
+import BreakpointsDemo from './breakpoints';
 import BrutalismDemo from './brutalism';
 import BulkActionsDemo from './bulk-actions';
 import ButtonDemo from './button';
@@ -65,6 +68,7 @@ import FocusRingDemo from './focus-ring';
 import FontStackDemo from './font-stack';
 import FormValidationDemo from './form-validation';
 import GlassmorphismDemo from './glassmorphism';
+import GridSystemDemo from './grid-system';
 import HandDrawnDemo from './hand-drawn';
 import HelpCenterDemo from './help-center';
 import HoverGlowDemo from './hover-glow';
@@ -91,6 +95,7 @@ import MenuDemo from './menu';
 import MinimalismDemo from './minimalism';
 import ModalDemo from './modal';
 import MorphingIconDemo from './morphing-icon';
+import MotionDurationDemo from './motion-duration';
 import MultiSelectDemo from './multi-select';
 import NavbarDemo from './navbar';
 import NeobrutalismDemo from './neobrutalism';
@@ -107,6 +112,7 @@ import PaginationDemo from './pagination';
 import ParallaxDemo from './parallax';
 import PaywallDemo from './paywall';
 import PixelArtDemo from './pixel-art';
+import PixelDensityDemo from './pixel-density';
 import PopoverDemo from './popover';
 import PressFeedbackDemo from './press-feedback';
 import PricingDemo from './pricing';
@@ -117,6 +123,7 @@ import PullToRefreshDemo from './pull-to-refresh';
 import RadioDemo from './radio';
 import RatingDemo from './rating';
 import ReducedMotionDemo from './reduced-motion';
+import RelativeUnitsDemo from './relative-units';
 import RetroFuturismDemo from './retro-futurism';
 import RippleDemo from './ripple';
 import ScrollDrivenAnimationDemo from './scroll-driven-animation';
@@ -134,6 +141,7 @@ import SkeletonLoadingDemo from './skeleton-loading';
 import SkeuomorphismDemo from './skeuomorphism';
 import SkipLinkDemo from './skip-link';
 import SliderDemo from './slider';
+import SpacingScaleDemo from './spacing-scale';
 import SplitButtonDemo from './split-button';
 import SpringAnimationDemo from './spring-animation';
 import StaggerRevealDemo from './stagger-reveal';
@@ -151,6 +159,7 @@ import ToastDemo from './toast';
 import ToastSlideInDemo from './toast-slide-in';
 import ToolbarDemo from './toolbar';
 import TooltipDemo from './tooltip';
+import TouchTargetDemo from './touch-target';
 import TreeViewDemo from './tree-view';
 import TypeScaleDemo from './type-scale';
 import UndoActionDemo from './undo-action';
@@ -158,6 +167,7 @@ import VaporwaveDemo from './vaporwave';
 import ViewTransitionDemo from './view-transition';
 import WizardDemo from './wizard';
 import Y2kDemo from './y2k';
+import ZIndexDemo from './z-index';
 
 export const demos: Record<string, DemoComponent> = {
   'about': AboutDemo,
@@ -174,8 +184,11 @@ export const demos: Record<string, DemoComponent> = {
   'bento-grid': BentoGridDemo,
   'blog-index': BlogIndexDemo,
   'blog-post': BlogPostDemo,
+  'border-radius': BorderRadiusDemo,
+  'border-stroke': BorderStrokeDemo,
   'bottom-sheet': BottomSheetDemo,
   'breadcrumb': BreadcrumbDemo,
+  'breakpoints': BreakpointsDemo,
   'brutalism': BrutalismDemo,
   'bulk-actions': BulkActionsDemo,
   'button': ButtonDemo,
@@ -221,6 +234,7 @@ export const demos: Record<string, DemoComponent> = {
   'font-stack': FontStackDemo,
   'form-validation': FormValidationDemo,
   'glassmorphism': GlassmorphismDemo,
+  'grid-system': GridSystemDemo,
   'hand-drawn': HandDrawnDemo,
   'help-center': HelpCenterDemo,
   'hover-glow': HoverGlowDemo,
@@ -247,6 +261,7 @@ export const demos: Record<string, DemoComponent> = {
   'minimalism': MinimalismDemo,
   'modal': ModalDemo,
   'morphing-icon': MorphingIconDemo,
+  'motion-duration': MotionDurationDemo,
   'multi-select': MultiSelectDemo,
   'navbar': NavbarDemo,
   'neobrutalism': NeobrutalismDemo,
@@ -263,6 +278,7 @@ export const demos: Record<string, DemoComponent> = {
   'parallax': ParallaxDemo,
   'paywall': PaywallDemo,
   'pixel-art': PixelArtDemo,
+  'pixel-density': PixelDensityDemo,
   'popover': PopoverDemo,
   'press-feedback': PressFeedbackDemo,
   'pricing': PricingDemo,
@@ -273,6 +289,7 @@ export const demos: Record<string, DemoComponent> = {
   'radio': RadioDemo,
   'rating': RatingDemo,
   'reduced-motion': ReducedMotionDemo,
+  'relative-units': RelativeUnitsDemo,
   'retro-futurism': RetroFuturismDemo,
   'ripple': RippleDemo,
   'scroll-driven-animation': ScrollDrivenAnimationDemo,
@@ -290,6 +307,7 @@ export const demos: Record<string, DemoComponent> = {
   'skeuomorphism': SkeuomorphismDemo,
   'skip-link': SkipLinkDemo,
   'slider': SliderDemo,
+  'spacing-scale': SpacingScaleDemo,
   'split-button': SplitButtonDemo,
   'spring-animation': SpringAnimationDemo,
   'stagger-reveal': StaggerRevealDemo,
@@ -307,6 +325,7 @@ export const demos: Record<string, DemoComponent> = {
   'toast-slide-in': ToastSlideInDemo,
   'toolbar': ToolbarDemo,
   'tooltip': TooltipDemo,
+  'touch-target': TouchTargetDemo,
   'tree-view': TreeViewDemo,
   'type-scale': TypeScaleDemo,
   'undo-action': UndoActionDemo,
@@ -314,4 +333,5 @@ export const demos: Record<string, DemoComponent> = {
   'view-transition': ViewTransitionDemo,
   'wizard': WizardDemo,
   'y2k': Y2kDemo,
+  'z-index': ZIndexDemo,
 };

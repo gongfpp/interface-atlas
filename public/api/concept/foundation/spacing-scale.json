@@ -1,0 +1,205 @@
+{
+  "id": "spacing-scale",
+  "type": "foundation",
+  "status": "published",
+  "name": {
+    "zh": "间距系统",
+    "en": "Spacing Scale"
+  },
+  "aliases": [
+    "间距系统",
+    "间距阶梯",
+    "间距规范",
+    "为什么留白忽大忽小",
+    "间距尺寸",
+    "spacing scale",
+    "spacing tokens",
+    "4pt grid"
+  ],
+  "category": [
+    "Foundation",
+    "Layout",
+    "Spacing"
+  ],
+  "description": {
+    "zh": "用一组固定的间距档位（如 4、8、12、16、24、32、48px，通常按 4 或 8 的倍数生长）统一控制 padding、margin 与 gap。所有留白都从同一把尺子里取，而不是随手写数值，疏密节奏才稳定；间距同时承担分组，间距越大，元素之间的关系越疏远。",
+    "en": "A fixed ladder of spacing steps (4, 8, 12, 16, 24, 32, 48px, usually multiples of 4 or 8) that all padding, margin and gap values come from. Drawing every gap off one ruler instead of inventing numbers keeps density consistent, and spacing also signals grouping: the larger the gap, the looser the relationship between elements."
+  },
+  "use_when": [
+    {
+      "zh": "多组件、多页面需要统一的疏密节奏，避免每处随手写数",
+      "en": "Many components and pages need one density rhythm instead of ad-hoc numbers"
+    },
+    {
+      "zh": "设计系统要交付 padding / margin / gap 的间距令牌",
+      "en": "The design system must ship spacing tokens for padding, margin and gap"
+    },
+    {
+      "zh": "想用间距表达分组与层级，而不是到处加分割线",
+      "en": "Grouping and hierarchy should come from spacing, not divider lines everywhere"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "一次性插画或版式实验，间距本就该自由",
+      "en": "A one-off illustration or layout experiment where spacing should stay free"
+    },
+    {
+      "zh": "需要光学对齐时，仍要靠目测微调而非死守档位",
+      "en": "Optical alignment still needs hand tuning rather than a fixed step"
+    },
+    {
+      "zh": "档位过密（每 2px 一档），选型反而变慢",
+      "en": "Too many steps (one every 2px) makes picking slower, not easier"
+    }
+  ],
+  "tags": [
+    "foundation",
+    "layout",
+    "spacing",
+    "tokens"
+  ],
+  "api": [
+    "gap",
+    "padding",
+    "margin",
+    "calc()",
+    "--space-4"
+  ],
+  "framework_names": [
+    {
+      "framework": "CSS",
+      "name": "gap / padding / margin",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/gap",
+      "note": {
+        "zh": "间距落地的三个属性",
+        "en": "The three properties spacing lands on"
+      }
+    },
+    {
+      "framework": "Tailwind CSS",
+      "name": "p-4 / gap-4 (spacing scale)",
+      "url": "https://tailwindcss.com/docs/padding",
+      "note": {
+        "zh": "4px 基准的成倍工具类",
+        "en": "A 4px-based set of multiplier utilities"
+      }
+    },
+    {
+      "framework": "Design tokens",
+      "name": "--space-1 … --space-8"
+    }
+  ],
+  "variants": [
+    {
+      "id": "linear-4",
+      "name": {
+        "zh": "4px 线性",
+        "en": "Linear 4px"
+      },
+      "note": {
+        "zh": "4 的倍数逐档递增，最通用也最密",
+        "en": "Every step a multiple of 4 — the most common and granular"
+      }
+    },
+    {
+      "id": "eight-base",
+      "name": {
+        "zh": "8px 基准",
+        "en": "8px base"
+      },
+      "note": {
+        "zh": "以 8 为基准、必要时补 4 与 12，节奏更疏",
+        "en": "Based on 8 with 4 and 12 as fillers — a looser rhythm"
+      }
+    },
+    {
+      "id": "semantic",
+      "name": {
+        "zh": "语义间距",
+        "en": "Semantic spacing"
+      },
+      "note": {
+        "zh": "inline / stack / section 按关系命名，跨组件稳定",
+        "en": "Named inline / stack / section by relationship — stable across components"
+      }
+    }
+  ],
+  "anatomy": [
+    "基准单位（Base unit）",
+    "间距档位（Step ladder）",
+    "间距令牌（Spacing token）",
+    "分组语义（Grouping meaning）"
+  ],
+  "related": [
+    {
+      "id": "relative-units",
+      "relation": "similar_to"
+    },
+    {
+      "id": "border-radius",
+      "relation": "similar_to"
+    },
+    {
+      "id": "type-scale",
+      "relation": "used_with"
+    },
+    {
+      "id": "button",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "spacing-scale",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Material Design — Spacing",
+      "url": "https://m3.material.io/foundations/layout/understanding-layout/spacing"
+    },
+    {
+      "name": "Apple HIG — Layout",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/layout"
+    },
+    {
+      "name": "Tailwind CSS — Padding",
+      "url": "https://tailwindcss.com/docs/padding"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "--space-1: 0.25rem",
+      "gap: var(--space-4)",
+      "padding: var(--space-3) var(--space-4)",
+      "margin-block: var(--space-6)",
+      "gap: calc(var(--space-4) * var(--density, 1))"
+    ],
+    "notes": {
+      "zh": "用 rem 定义 6～8 档：--space-1 到 --space-8（4/8/12/16/24/32/48/64px）。组件只引用令牌，不写裸数值；同组元素用同一档，分组越大用越大的档。全局密度用一个乘数（--density）整体缩放，暗色或移动端可单独收紧。相邻档差距过小就合并，档位控制在 8 个以内。",
+      "en": "Define six to eight rem steps — --space-1 through --space-8 (4/8/12/16/24/32/48/64px). Components reference tokens only, never raw numbers; siblings share one step, and larger groups take larger steps. Scale the whole density with one multiplier (--density) and tighten it per breakpoint or dark theme. Merge steps that are too close; keep the ladder under eight entries."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "建立间距系统：用 4 或 8 的倍数定义 6～8 档间距令牌，并用它统一组件的 padding、margin 与 gap。",
+      "en": "Build a spacing scale — six to eight 4/8-based tokens that unify padding, margin and gap across components."
+    },
+    "design": {
+      "zh": "间距规范：基准 4px（或 8px），档位 4/8/12/16/24/32/48/64；同组元素用同一档，分组越大档位越大；组件内只用令牌不写裸数；提供 --density 乘数用于紧凑与宽松；相邻档至少相差 4px，总档位不超过 8。",
+      "en": "Spacing spec: a 4px (or 8px) base with steps 4/8/12/16/24/32/48/64; siblings share a step and larger groups take larger steps; components reference tokens only, never raw numbers. Expose a --density multiplier for compact and loose modes. Keep adjacent steps at least 4px apart and the ladder to eight entries or fewer."
+    },
+    "implementation": {
+      "zh": "落地为 CSS 变量：:root { --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-6: 1.5rem; --space-8: 2rem; }，组件用 gap: var(--space-4) 与 padding: var(--space-3) var(--space-4)。Tailwind 映射到 theme 的 spacing。整体密度靠 --density 乘数一次性调整。",
+      "en": "Ship as custom properties — :root { --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-6: 1.5rem; --space-8: 2rem; } — and use gap: var(--space-4) with padding: var(--space-3) var(--space-4). Map into Tailwind theme spacing. Adjust overall density through a single --density multiplier."
+    },
+    "agent": {
+      "zh": "在当前项目中实现间距系统。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- 用 rem 定义 6～8 档间距令牌，按 4 或 8 的倍数\n- 组件只引用令牌，不写裸 margin/padding 数值\n- 用间距表达分组，并提供密度乘数\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement a spacing scale in the current project.\nInspect the existing component system and design tokens first; reuse what is already there.\nRequirements:\n- Six to eight rem spacing tokens based on multiples of 4 or 8\n- Components reference tokens only; no raw margin/padding numbers\n- Express grouping through spacing and expose a density multiplier\nKeep the project's existing visual style. Do not add unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "id": "z-index",
+  "type": "foundation",
+  "status": "published",
+  "name": {
+    "zh": "层级与堆叠",
+    "en": "Z-index & Stacking"
+  },
+  "aliases": [
+    "层级",
+    "堆叠",
+    "图层顺序",
+    "谁盖住谁",
+    "弹窗被盖住",
+    "层叠上下文",
+    "z-index",
+    "stacking context"
+  ],
+  "category": [
+    "Stacking",
+    "Foundation"
+  ],
+  "description": {
+    "zh": "用 z-index 决定已定位元素在纸面上的前后顺序，但真正说话的是层叠上下文：一旦祖先把 transform、opacity 或 isolation 变成上下文， 子元素的 9999 就只在这个盒子里有效，永远压不过外面的 z-index: 1。与其到处写魔法数字，不如定一套从小到大的命名档位。",
+    "en": "z-index orders positioned elements on the page, but stacking contexts decide who really wins: once an ancestor gains transform, opacity or isolation, a child's 9999 only competes inside that box and can never beat an outside z-index: 1. Replace scattered magic numbers with one small named ladder."
+  },
+  "use_when": [
+    {
+      "zh": "下拉、气泡、抽屉、模态需要固定的前后叠放次序",
+      "en": "Dropdowns, tooltips, drawers and modals need a fixed stacking order"
+    },
+    {
+      "zh": "吸顶导航与浮动按钮要始终压在滚动内容之上",
+      "en": "Sticky bars and floating buttons must stay above scrolling content"
+    },
+    {
+      "zh": "调试“弹窗被遮住”时先定位层叠上下文，再谈数值",
+      "en": "When an overlay is hidden, find the stacking context before raising numbers"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "把 z-index 9999 当万能药，出问题就再加一位",
+      "en": "Treating 9999 as a cure-all and bumping digits when it fails"
+    },
+    {
+      "zh": "没有档位体系，1、5、100、9999 随手混用",
+      "en": "Random values — 1, 5, 100, 9999 — with no shared ladder"
+    },
+    {
+      "zh": "元素只想视觉浮起，却忘了它既没定位也没上下文",
+      "en": "Expecting lift from z-index on an element that is not positioned"
+    }
+  ],
+  "tags": [
+    "z-index",
+    "stacking",
+    "foundation",
+    "layering",
+    "css"
+  ],
+  "api": [
+    "z-index",
+    "position",
+    "isolation",
+    "transform",
+    "opacity"
+  ],
+  "framework_names": [
+    {
+      "framework": "CSS",
+      "name": "z-index",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/z-index"
+    },
+    {
+      "framework": "CSS",
+      "name": "isolation",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/isolation"
+    },
+    {
+      "framework": "Tailwind CSS",
+      "name": "z-10 / z-50",
+      "url": "https://tailwindcss.com/docs/z-index"
+    }
+  ],
+  "variants": [
+    {
+      "id": "numeric",
+      "name": {
+        "zh": "数字档位",
+        "en": "Numeric ladder"
+      },
+      "note": {
+        "zh": "10 / 20 / 40 留出插队空隙，够用且仍可读",
+        "en": "10 / 20 / 40 leave gaps to insert layers later"
+      }
+    },
+    {
+      "id": "named",
+      "name": {
+        "zh": "命名档位",
+        "en": "Named tokens"
+      },
+      "note": {
+        "zh": "--z-dropdown、--z-modal、--z-toast，按用途引用",
+        "en": "--z-dropdown, --z-modal, --z-toast referenced by purpose"
+      }
+    },
+    {
+      "id": "isolated",
+      "name": {
+        "zh": "隔离上下文",
+        "en": "Isolated context"
+      },
+      "note": {
+        "zh": "父级 isolation: isolate，把子元素锁在局部，数值不外泄",
+        "en": "Parent isolation: isolate traps children locally so values cannot leak"
+      }
+    }
+  ],
+  "anatomy": [
+    "定位（Position）",
+    "z-index 值（Z value）",
+    "层叠上下文（Stacking context）",
+    "绘制顺序（Paint order）",
+    "基准层（Base layer）"
+  ],
+  "related": [
+    {
+      "id": "modal",
+      "relation": "used_with"
+    },
+    {
+      "id": "dropdown",
+      "relation": "used_with"
+    },
+    {
+      "id": "tooltip",
+      "relation": "used_with"
+    },
+    {
+      "id": "elevation",
+      "relation": "similar_to"
+    }
+  ],
+  "demo": {
+    "component": "z-index",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "MDN — z-index",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/z-index"
+    },
+    {
+      "name": "MDN — isolation",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/isolation"
+    },
+    {
+      "name": "W3C — CSS 2.2 Visual formatting model",
+      "url": "https://www.w3.org/TR/CSS22/visuren.html"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "z-index: 40",
+      "position: relative",
+      "isolation: isolate",
+      "--z-modal: 40",
+      "transform: translateZ(0)"
+    ],
+    "notes": {
+      "zh": "先保证定位（position 非 static），z-index 才生效。把档位做成令牌：--z-base: 0; --z-dropdown: 10; --z-sticky: 20; --z-modal: 40; --z-toast: 60。需要把子元素锁在局部时给父级 isolation: isolate（或明确的 position 与 z-index）， 避免子元素的大数值越级。不要用 9999 兜底，档位之间留出插队空间。",
+      "en": "z-index only applies to positioned elements, so non-static position comes first. Tokenise the ladder: --z-base: 0; --z-dropdown: 10; --z-sticky: 20; --z-modal: 40; --z-toast: 60. To trap children locally give a parent isolation: isolate (or an explicit position plus z-index) so a big child number cannot escape. Never fall back to 9999 — leave room to insert layers."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "建立层级体系：定义从小到大的 z-index 档位，让弹层与内容有稳定的前后顺序。",
+      "en": "Build a stacking system — a small z-index ladder giving overlays and content a stable order."
+    },
+    "design": {
+      "zh": "层级规范：档位固定为 base 0 / dropdown 10 / sticky 20 / modal 40 / toast 60，中间留空隙；同屏浮层差不超过两档； 需要局部隔离时用 isolation: isolate；禁止出现 9999 之类的魔法数字；层级只表达前后关系，不承担视觉深度。",
+      "en": "Stacking spec: fixed levels base 0 / dropdown 10 / sticky 20 / modal 40 / toast 60 with gaps between; overlays on one screen stay within two levels; use isolation: isolate for local containment; no magic numbers like 9999; z-index describes order only, never visual depth."
+    },
+    "implementation": {
+      "zh": "用 CSS 变量落地：--z-base: 0; --z-dropdown: 10; --z-sticky: 20; --z-modal: 40; --z-toast: 60；组件写 z-index: var(--z-modal) 并配 position。浮层容器加 isolation: isolate 防止内部数值越级。排查遮挡时先看祖先是否因 transform、 opacity、filter 生成了新的层叠上下文，再决定调值还是改结构。",
+      "en": "Ship the ladder as CSS variables: --z-base: 0; --z-dropdown: 10; --z-sticky: 20; --z-modal: 40; --z-toast: 60; consume them as z-index: var(--z-modal) with a position. Add isolation: isolate on overlay containers so inner values cannot escape. When something is covered, first check whether an ancestor created a new stacking context via transform, opacity or filter, then choose between raising a value and fixing the structure."
+    },
+    "agent": {
+      "zh": "在当前项目中实现层级与堆叠。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- 一套命名 z-index 档位（base / dropdown / sticky / modal / toast）\n- 浮层容器用 isolation: isolate，避免子元素数值越级\n- 消除 9999 等魔法数字\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement stacking and z-index in the current project.\nInspect the existing component system and design tokens first; reuse what is already there.\nRequirements:\n- A named z-index ladder (base / dropdown / sticky / modal / toast)\n- Overlay containers use isolation: isolate so inner values cannot escape\n- Remove magic numbers such as 9999\nKeep the project's existing visual style. Do not add unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "id": "border-stroke",
+  "type": "foundation",
+  "status": "published",
+  "name": {
+    "zh": "边框与描边",
+    "en": "Borders & Strokes"
+  },
+  "aliases": [
+    "边框",
+    "描边",
+    "线框",
+    "边界线",
+    "给元素加个框",
+    "点击时那圈高亮",
+    "border",
+    "outline",
+    "ring"
+  ],
+  "category": [
+    "Borders",
+    "Foundation"
+  ],
+  "description": {
+    "zh": "用线条勾出元素的边界与状态：border 占据盒模型空间、outline 画在盒外不挤动布局、box-shadow 的 ring 用透明阴影描一圈。 普通态用低对比 border 静默分界，悬停加深、聚焦用 outline、报错换色；三者各司其职，边界才既清楚又不抖动。",
+    "en": "Lines that mark an element's edge and its state. border takes up box-model space, outline paints just outside it without nudging layout, and a box-shadow ring draws a halo that costs no space. Pair a low-contrast border for quiet division with a darker hover, an outline for focus, and a recolour for errors so edges read clearly and nothing jumps."
+  },
+  "use_when": [
+    {
+      "zh": "输入框、卡片、按钮需要用细线勾出可点区域",
+      "en": "Inputs, cards and buttons need a thin line to mark the hit area"
+    },
+    {
+      "zh": "悬停、聚焦、报错需要可感知但不重排布局的状态差",
+      "en": "Hover, focus and error states need a visible cue that does not reflow"
+    },
+    {
+      "zh": "扁平风格里没有投影，靠描边区分相邻表面",
+      "en": "Flat styles with no shadows rely on strokes to separate surfaces"
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "用粗彩色边框装饰每个区块，页面像被框满的表格",
+      "en": "Thick coloured borders on every block make the page a grid of boxes"
+    },
+    {
+      "zh": "在 border 与 outline 之间反复切换同一元素，宽度突跳",
+      "en": "Toggling one element between border and outline makes widths jump"
+    },
+    {
+      "zh": "拿描边替代留白和分隔线来组织信息层级",
+      "en": "Strokes used instead of whitespace or rules to organise hierarchy"
+    }
+  ],
+  "tags": [
+    "borders",
+    "foundation",
+    "css",
+    "states",
+    "box-model"
+  ],
+  "api": [
+    "border",
+    "outline",
+    "box-shadow",
+    "box-sizing",
+    "border-radius"
+  ],
+  "framework_names": [
+    {
+      "framework": "CSS",
+      "name": "border",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border"
+    },
+    {
+      "framework": "CSS",
+      "name": "outline",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/outline"
+    },
+    {
+      "framework": "Tailwind CSS",
+      "name": "border / ring",
+      "url": "https://tailwindcss.com/docs/border-width"
+    }
+  ],
+  "variants": [
+    {
+      "id": "border",
+      "name": {
+        "zh": "实体边框",
+        "en": "Solid border"
+      },
+      "note": {
+        "zh": "计入盒模型尺寸，稳定但会占位；配 box-sizing: border-box 不撑破容器",
+        "en": "Counts in the box model and always takes space; pair with box-sizing: border-box"
+      }
+    },
+    {
+      "id": "outline",
+      "name": {
+        "zh": "轮廓描边",
+        "en": "Outline"
+      },
+      "note": {
+        "zh": "画在盒外，可 outline-offset 拉开距离，不参与布局；聚焦态首选",
+        "en": "Painted outside the box, offsettable, layout-neutral; first choice for focus"
+      }
+    },
+    {
+      "id": "ring",
+      "name": {
+        "zh": "阴影环",
+        "en": "Shadow ring"
+      },
+      "note": {
+        "zh": "用 0 0 0 Npx 的 box-shadow 模拟描边，不占空间、可叠多层",
+        "en": "A 0 0 0 Npx box-shadow fakes a stroke with zero space and stackable layers"
+      }
+    }
+  ],
+  "anatomy": [
+    "描边宽度（Stroke width）",
+    "描边颜色（Stroke color）",
+    "圆角（Corner radius）",
+    "内边距（Inner padding）",
+    "状态差异（State delta）"
+  ],
+  "related": [
+    {
+      "id": "focus-ring",
+      "relation": "used_with"
+    },
+    {
+      "id": "input",
+      "relation": "used_with"
+    },
+    {
+      "id": "card",
+      "relation": "used_with"
+    },
+    {
+      "id": "elevation",
+      "relation": "similar_to"
+    },
+    {
+      "id": "neobrutalism",
+      "relation": "used_with"
+    }
+  ],
+  "demo": {
+    "component": "border-stroke",
+    "modes": [
+      "default",
+      "dark",
+      "variants"
+    ]
+  },
+  "sources": [
+    {
+      "name": "MDN — border",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border"
+    },
+    {
+      "name": "MDN — outline",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/outline"
+    },
+    {
+      "name": "web.dev — The box model",
+      "url": "https://web.dev/learn/css/box-model"
+    },
+    {
+      "name": "W3C — CSS Backgrounds and Borders Level 3",
+      "url": "https://www.w3.org/TR/css-backgrounds-3/"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "border: 1px solid var(--color-line)",
+      "box-sizing: border-box",
+      "outline: 2px solid var(--color-accent)",
+      "outline-offset: 2px",
+      "box-shadow: 0 0 0 3px var(--color-accent-soft)"
+    ],
+    "notes": {
+      "zh": "全局设 box-sizing: border-box，让边框算进声明宽度，加粗描边不会把相邻元素挤走。默认态用 1px 的 --color-line 静默分界； 悬停换成 --color-line-strong；聚焦用 outline（不占位、可 offset），不要用 border 代替，否则元素会跳 2px； 报错换语义色并加一条 error 文案，别只靠颜色。需要无位描边时用 box-shadow: 0 0 0 3px var(--color-accent-soft)。",
+      "en": "Set box-sizing: border-box globally so borders count inside the declared width and a heavier stroke cannot shove neighbours. Default to a 1px --color-line; swap to --color-line-strong on hover; use outline for focus (no space, offsettable) rather than border, which would jump the element by its own width. Errors recolour semantically and add text, never colour alone. For a zero-space stroke use box-shadow: 0 0 0 3px var(--color-accent-soft)."
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "建立描边规范：定义 border、outline、ring 三种描边的用法与默认 1px 边框令牌。",
+      "en": "Define a stroke system — when to use border, outline and a shadow ring, plus a default 1px border token."
+    },
+    "design": {
+      "zh": "描边规范：默认 1px 低对比边框，悬停加深一档；聚焦一律用 2px outline + 2px offset，禁止用 border 做聚焦； 报错换语义色并附文案；所有元素 box-sizing: border-box；圆角成阶梯（4/8/12/16）；同屏描边颜色不超过三档。",
+      "en": "Stroke spec: a 1px low-contrast border by default, one step darker on hover; focus is always a 2px outline with 2px offset, never a border; errors recolour semantically and add text; everything uses box-sizing: border-box; corner radii step 4/8/12/16; no more than three stroke colours on one screen."
+    },
+    "implementation": {
+      "zh": "用 CSS 变量落地：--border-width: 1px; --color-line 与 --color-line-strong 控制默认与悬停；聚焦写成 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }；全局 * { box-sizing: border-box; }。 需要无位描边时改用 box-shadow: 0 0 0 3px var(--color-accent-soft)。不要在内容盒上写死 px 边框。",
+      "en": "Ship it with CSS variables: --border-width: 1px; --color-line and --color-line-strong for default and hover; focus as :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }; and * { box-sizing: border-box; } globally. For space-free strokes use box-shadow: 0 0 0 3px var(--color-accent-soft). Never hard-code pixel borders in content boxes."
+    },
+    "agent": {
+      "zh": "在当前项目中实现边框与描边。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- 全局 box-sizing: border-box\n- border / outline / ring 三种描边各有明确用途，聚焦只用 outline\n- 悬停、聚焦、报错三种状态有可感知但不重排的差异\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
+      "en": "Implement borders and strokes in the current project.\nInspect the existing component system and design tokens first; reuse what is already there.\nRequirements:\n- box-sizing: border-box globally\n- Clear roles for border / outline / ring, with focus using outline only\n- Hover, focus and error states differ without reflowing layout\nKeep the project's existing visual style. Do not add unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun existing project checks when done and list the modified files."
+    }
+  }
+}

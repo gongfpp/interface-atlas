@@ -1,6 +1,6 @@
 # Interface Atlas — Full Catalog
 
-> 154 concepts. Per-concept JSON at /api/concept/<type>/<id>.json · Markdown at /<type>/<id>.md
+> 164 concepts. Per-concept JSON at /api/concept/<type>/<id>.json · Markdown at /<type>/<id>.md
 
 ## a11y/alt-text — Alt Text / 替代文本
 
@@ -1427,6 +1427,87 @@
 完成后运行项目现有检查，并列出修改的文件。
 ```
 
+## foundation/border-radius — Border Radius / 圆角
+
+- Type: foundation · Aliases: 圆角 · 圆角半径 · 为什么卡片看起来不精致 · 按钮圆角 · 胶囊形状 · border radius · rounded corners · corner radius
+- Page: /foundation/border-radius · JSON: /api/concept/foundation/border-radius.json · MD: /foundation/border-radius.md
+
+**What / 这是什么:** 把盒子四角做成圆弧，半径越大越柔和、越像卡片与气泡。圆角要和组件尺寸成套：按钮小、卡片中、大容器大，才像同一个家族；相邻圆角盒之间会留下难看的凹口，需要用同心圆角（外半径 = 内半径 + 间距）修正，或让它们干脆对齐。
+
+**What (en):** Rounding a box's corners softens it; the bigger the radius, the more it reads as a card or bubble. Radius must scale with the component — small on buttons, medium on cards, large on containers — so everything looks like one family. Adjacent rounded boxes leave an awkward notch, fixed with concentric radii (outer = inner + gap) or by aligning them flush.
+
+**When to use:** 需要柔化品牌气质，并区分卡片、按钮与容器的层级；按钮、输入框、头像等基础控件要统一圆角语言；嵌套容器需要同心圆角，保持内角与外角视觉顺滑
+
+**When not to use:** 严肃的数据表格与像素级对齐的网格；12px 的小图标上加大圆角，反而糊成一团；用超大圆角把方形卡片压成胶囊，丢掉信息密度
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现圆角体系。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 4～5 档圆角令牌，组件按尺寸取档
+- 嵌套容器使用同心圆角 calc(外 − 内边距)
+- 头像与开关用 50% / full，不散落裸 px
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## foundation/border-stroke — Borders & Strokes / 边框与描边
+
+- Type: foundation · Aliases: 边框 · 描边 · 线框 · 边界线 · 给元素加个框 · 点击时那圈高亮 · border · outline · ring
+- Page: /foundation/border-stroke · JSON: /api/concept/foundation/border-stroke.json · MD: /foundation/border-stroke.md
+
+**What / 这是什么:** 用线条勾出元素的边界与状态：border 占据盒模型空间、outline 画在盒外不挤动布局、box-shadow 的 ring 用透明阴影描一圈。 普通态用低对比 border 静默分界，悬停加深、聚焦用 outline、报错换色；三者各司其职，边界才既清楚又不抖动。
+
+**What (en):** Lines that mark an element's edge and its state. border takes up box-model space, outline paints just outside it without nudging layout, and a box-shadow ring draws a halo that costs no space. Pair a low-contrast border for quiet division with a darker hover, an outline for focus, and a recolour for errors so edges read clearly and nothing jumps.
+
+**When to use:** 输入框、卡片、按钮需要用细线勾出可点区域；悬停、聚焦、报错需要可感知但不重排布局的状态差；扁平风格里没有投影，靠描边区分相邻表面
+
+**When not to use:** 用粗彩色边框装饰每个区块，页面像被框满的表格；在 border 与 outline 之间反复切换同一元素，宽度突跳；拿描边替代留白和分隔线来组织信息层级
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现边框与描边。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 全局 box-sizing: border-box
+- border / outline / ring 三种描边各有明确用途，聚焦只用 outline
+- 悬停、聚焦、报错三种状态有可感知但不重排的差异
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## foundation/breakpoints — Breakpoints / 响应式断点
+
+- Type: foundation · Aliases: 响应式断点 · 媒体查询断点 · 断点 · 手机和电脑的分界 · 什么时候换布局 · 大屏小屏切换点 · breakpoint · media query breakpoint
+- Page: /foundation/breakpoints · JSON: /api/concept/foundation/breakpoints.json · MD: /foundation/breakpoints.md
+
+**What / 这是什么:** 断点是布局发生切换的视口宽度临界值：窄于此用一套排版，宽于此换另一套。断点应由内容决定——把窗口慢慢拉宽，哪里开始拥挤、哪里变难看，那里就是断点，而不是照搬 iPhone、iPad 的型号宽度。移动优先用 min-width 从小到大叠加，断点越少越容易维护。
+
+**What (en):** Breakpoints are viewport widths where a layout changes. Pick them where content crowds, not device names, then stack mobile-first min-width rules.
+
+**When to use:** 同一页面在手机和桌面需要不同列数或导航形态；需要在某个宽度切换侧栏、字号或间距密度；从移动端基线出发、逐级增强的响应式布局
+
+**When not to use:** 只有一种固定宽度、无需适配的嵌入式控件；用设备型号（iPhone 15、iPad Pro）当断点名；断点堆到十来个，样式互相打架、难以维护
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现响应式断点。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 移动优先，只用 min-width 媒体查询
+- 断点值集中定义（CSS 变量或 Tailwind screens），组件内不写魔法数
+- 断点数量控制在 3～5 个，优先用自适应布局替代断点
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
 ## foundation/color-palette — Color Palette / 调色板
 
 - Type: foundation · Aliases: 调色板 · 配色 · 色板 · 色阶 · 颜色系统 · color palette · palette
@@ -1535,6 +1616,33 @@
 完成后运行项目现有检查，并列出修改的文件。
 ```
 
+## foundation/grid-system — Grid System / 栅格系统
+
+- Type: foundation · Aliases: 栅格 · 栅格系统 · 网格 · 12 列 · 分几栏 · 布局网格 · grid system · 12-column grid
+- Page: /foundation/grid-system · JSON: /api/concept/foundation/grid-system.json · MD: /foundation/grid-system.md
+
+**What / 这是什么:** 用列、槽间距与外边距把页面切成可复用的骨架。12 列最通用，因为它能被 2、3、4、6 整除，任意区块都能对齐到列线。 固定栅格稳但脆，repeat(auto-fit, minmax(240px, 1fr)) 让列数随可用宽度自动增减；容器查询进一步让组件按自身容器而非视口回流。
+
+**What (en):** A reusable skeleton of columns, gutters and margins. Twelve columns is the default because 2, 3, 4 and 6 all divide into it, so any block can snap to the lines. A fixed grid is stable but brittle; repeat(auto-fit, minmax(240px, 1fr)) adds and drops tracks as space allows, and container queries reflow a component by its own width, not the viewport.
+
+**When to use:** 页面多个区块需要对齐到同一套列线；卡片墙要随可用宽度自动增减列数；同一组件在侧栏与主区都要自适应，不能只看视口
+
+**When not to use:** 只有单块内容的极简页面，栅格只添嵌套；用栅格硬凑本就不需要对齐的自由排版；嵌套栅格超过三层，间距层层叠加失控
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现栅格系统。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 桌面 12 列 / 平板 8 列 / 手机 4 列，槽间距用 gap 令牌
+- 卡片墙用 auto-fit + minmax 自适应列数
+- 组件级响应式用 container-type 与 @container
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行现有项目检查，并列出修改的文件。
+```
+
 ## foundation/line-height — Line Height / 行高
 
 - Type: foundation · Aliases: 行高 · 行距 · leading · 行间距 · 排得挤不挤 · 松紧 · line height
@@ -1589,6 +1697,87 @@
 完成后运行项目现有检查，并列出修改的文件。
 ```
 
+## foundation/motion-duration — Motion Duration & Easing / 动效时长与缓动
+
+- Type: foundation · Aliases: 动效时长 · 动画时长 · 缓动曲线 · 动画快慢 · 动效快慢 · 弹跳顺不顺 · easing · duration and easing
+- Page: /foundation/motion-duration · JSON: /api/concept/foundation/motion-duration.json · MD: /foundation/motion-duration.md
+
+**What / 这是什么:** 动效时长是动画从开始到结束的时间，按交互类型分档：微反馈 100–150ms、标准过渡 200–300ms、强调入场 300–500ms。缓动决定加速减速的节奏，入场用 ease-out、退场用 ease-in。始终尊重 prefers-reduced-motion，把位移降级为淡入。
+
+**What (en):** Motion duration is how long an animation runs: micro 100–150ms, standard 200–300ms, entrances 300–500ms. Ease out on entry; honour prefers-reduced-motion.
+
+**When to use:** 按钮、开关、卡片等元素的悬停、按下、状态切换；弹层、抽屉、面板的入场与退场；需要统一全站动效节奏、避免每个组件各写一个时长
+
+**When not to use:** 用户开启 prefers-reduced-motion（应降级为短淡入或无动画）；关键操作等待反馈，动画拖慢到让人觉得卡顿；超过 500ms 的装饰性动画反复播放、抢占注意力
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中统一动效时长与缓动。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 定义快 / 标准 / 慢三档时长令牌与标准缓动曲线
+- 只动 transform 与 opacity，退场比入场略快
+- 在 prefers-reduced-motion 下把位移降级为短淡入或取消动画
+保持现有项目视觉风格。不要新增不必要依赖。
+沿用项目现有时长体系，避免逐组件各写一套。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## foundation/pixel-density — Pixel Density & Resolution / 像素密度与分辨率
+
+- Type: foundation · Aliases: 像素密度 · 设备像素比 · 为什么图在手机上发虚 · 手机上看图模糊 · 高清屏 · Retina · DPR · pixel density · device pixel ratio
+- Page: /foundation/pixel-density · JSON: /api/concept/foundation/pixel-density.json · MD: /foundation/pixel-density.md
+
+**What / 这是什么:** 屏幕同时用两套像素计数：真实的设备像素与布局用的 CSS 像素，一个 CSS 像素里塞进几个设备像素就是设备像素比 DPR。手机像素密、CSS 像素少，位图被撑到 CSS 尺寸就发虚。图片按 2x/3x 提供并配 srcset 与矢量，文字用 rem，在高密度屏上才锐利。
+
+**What (en):** A screen counts pixels two ways: physical device pixels and the CSS pixels used for layout. The device pixel ratio, or DPR, is how many device pixels fill one CSS pixel. Phones pack many device pixels into few CSS pixels, so a bitmap shown at its CSS size looks blurry. Serve 2x/3x assets with srcset and vectors, and size text in rem.
+
+**When to use:** 位图、图标与截图需要在手机等高密度屏上保持锐利；设计稿以 px 标注，开发需要换算到不同 DPR；排查“为什么图在 Retina 上发虚”或配置响应式图片
+
+**When not to use:** 纯文字页面没有位图与图标，密度差异基本无感；只面向固定 1x 的投屏或信息屏，不涉及高密度设备；把所有尺寸都乘 DPR 写死，丢掉 CSS 像素这层抽象
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现像素密度适配。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 布局与尺寸全部按 CSS 像素书写，不乘 DPR
+- 位图提供 1x/2x/3x 并用 image-set() 或 srcset/sizes 选择
+- 图标与文字优先 SVG 与 rem，发丝线保持 1px
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## foundation/relative-units — Relative Units / 相对单位
+
+- Type: foundation · Aliases: 相对单位 · 相对长度 · rem 和 em 的区别 · 为什么改浏览器字号界面不变大 · 响应式单位 · relative units · rem vs em · px vs rem
+- Page: /foundation/relative-units · JSON: /api/concept/foundation/relative-units.json · MD: /foundation/relative-units.md
+
+**What / 这是什么:** 长度可以写死成 px，也可以相对别的量：rem 相对根元素字号，em 相对元素自身或父级的字号，% 相对容器，vw/vh 相对视口。用户把浏览器默认字号调大时，用 px 排的版面纹丝不动，用 rem 的会整体放大。字号、间距、圆角尽量用 rem，只有边框与发丝线才写死 px。
+
+**What (en):** A length can be absolute (px) or relative: rem scales from the root font size, em from the element's own font size, % from the container, and vw/vh from the viewport. When a user raises the browser's default font size, px layouts refuse to move while rem-based ones grow with it. Prefer rem for type, spacing and radius; keep px for borders and hairlines.
+
+**When to use:** 用户能改浏览器默认字号，界面需要跟着一起放大；同一组件要在不同容器与字号下复用，尺寸需自适应；做随视口变化的流式排版、间距或整屏区块
+
+**When not to use:** 1px 发丝线与需要绝对精确的边框；位图按原始像素对齐，不允许任何取整偏差；em 在多层嵌套里层层放大，尺寸彻底失控
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现相对单位体系。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 不写死 html 根字号，正文用 1rem
+- 字号、间距、圆角用 rem，视口区块用 dvh
+- 边框与发丝线保持 px，em 仅局部使用
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
 ## foundation/semantic-color — Semantic Color Token / 语义色
 
 - Type: foundation · Aliases: 语义色 · 语义色 token · 角色色 · 主题色变量 · 换肤 · semantic color · color token
@@ -1616,6 +1805,60 @@
 完成后运行项目现有检查，并列出修改的文件。
 ```
 
+## foundation/spacing-scale — Spacing Scale / 间距系统
+
+- Type: foundation · Aliases: 间距系统 · 间距阶梯 · 间距规范 · 为什么留白忽大忽小 · 间距尺寸 · spacing scale · spacing tokens · 4pt grid
+- Page: /foundation/spacing-scale · JSON: /api/concept/foundation/spacing-scale.json · MD: /foundation/spacing-scale.md
+
+**What / 这是什么:** 用一组固定的间距档位（如 4、8、12、16、24、32、48px，通常按 4 或 8 的倍数生长）统一控制 padding、margin 与 gap。所有留白都从同一把尺子里取，而不是随手写数值，疏密节奏才稳定；间距同时承担分组，间距越大，元素之间的关系越疏远。
+
+**What (en):** A fixed ladder of spacing steps (4, 8, 12, 16, 24, 32, 48px, usually multiples of 4 or 8) that all padding, margin and gap values come from. Drawing every gap off one ruler instead of inventing numbers keeps density consistent, and spacing also signals grouping: the larger the gap, the looser the relationship between elements.
+
+**When to use:** 多组件、多页面需要统一的疏密节奏，避免每处随手写数；设计系统要交付 padding / margin / gap 的间距令牌；想用间距表达分组与层级，而不是到处加分割线
+
+**When not to use:** 一次性插画或版式实验，间距本就该自由；需要光学对齐时，仍要靠目测微调而非死守档位；档位过密（每 2px 一档），选型反而变慢
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现间距系统。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 用 rem 定义 6～8 档间距令牌，按 4 或 8 的倍数
+- 组件只引用令牌，不写裸 margin/padding 数值
+- 用间距表达分组，并提供密度乘数
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## foundation/touch-target — Touch Target / 触控目标
+
+- Type: foundation · Aliases: 触控目标 · 点击热区 · 可点区域 · 按钮太小点不到 · 手指点得中的范围 · 点按热区 · touch target · tap target
+- Page: /foundation/touch-target · JSON: /api/concept/foundation/touch-target.json · MD: /foundation/touch-target.md
+
+**What / 这是什么:** 触控目标是手指能点中的可交互范围，不等于图标看起来多大。苹果 HIG 建议至少 44×44 CSS 像素，Material 建议 48dp；相邻目标之间还要留约 8px 间距，避免误触。视觉小图标可以用透明内边距或伪元素把热区撑大，而不用改变外观。
+
+**What (en):** A touch target is the tappable area a finger must hit, not the icon size. Aim for 44×44 CSS px (48dp), about 8px between targets, and pad small icons to size.
+
+**When to use:** 任何需要手指或鼠标点击、拖动的可交互控件；图标按钮、关闭按钮、列表行等视觉尺寸偏小的元素；边缘或角落里的操作，容易和相邻目标一起点到
+
+**When not to use:** 纯展示、不可点击的图标与装饰元素；桌面端密集数据表格内的单元格选择；把热区无节制扩大导致相邻目标重叠
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中落实触控目标尺寸。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 所有可交互元素热区至少 44×44 CSS 像素，间距不少于 8px
+- 小图标用内边距或伪元素扩展热区，不改变视觉尺寸
+- 提供可见的按下与聚焦反馈，不依赖 hover
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
 ## foundation/type-scale — Type Scale / 字号阶梯
 
 - Type: foundation · Aliases: 字号阶梯 · 标题比例 · 字级 · 字体大小层级 · 字号系统 · type scale · modular scale
@@ -1638,6 +1881,33 @@
 - 用 CSS 变量定义 6～8 档字号，按 1.25 或 1.333 比例生成
 - 标题与正文共用同一阶梯，组件内禁止写死 px
 - 需要响应式时用 clamp() 流式档位，两端封顶
+保持现有项目视觉风格。不要新增不必要依赖。
+尊重 prefers-reduced-motion。
+完成后运行项目现有检查，并列出修改的文件。
+```
+
+## foundation/z-index — Z-index & Stacking / 层级与堆叠
+
+- Type: foundation · Aliases: 层级 · 堆叠 · 图层顺序 · 谁盖住谁 · 弹窗被盖住 · 层叠上下文 · z-index · stacking context
+- Page: /foundation/z-index · JSON: /api/concept/foundation/z-index.json · MD: /foundation/z-index.md
+
+**What / 这是什么:** 用 z-index 决定已定位元素在纸面上的前后顺序，但真正说话的是层叠上下文：一旦祖先把 transform、opacity 或 isolation 变成上下文， 子元素的 9999 就只在这个盒子里有效，永远压不过外面的 z-index: 1。与其到处写魔法数字，不如定一套从小到大的命名档位。
+
+**What (en):** z-index orders positioned elements on the page, but stacking contexts decide who really wins: once an ancestor gains transform, opacity or isolation, a child's 9999 only competes inside that box and can never beat an outside z-index: 1. Replace scattered magic numbers with one small named ladder.
+
+**When to use:** 下拉、气泡、抽屉、模态需要固定的前后叠放次序；吸顶导航与浮动按钮要始终压在滚动内容之上；调试“弹窗被遮住”时先定位层叠上下文，再谈数值
+
+**When not to use:** 把 z-index 9999 当万能药，出问题就再加一位；没有档位体系，1、5、100、9999 随手混用；元素只想视觉浮起，却忘了它既没定位也没上下文
+
+**Agent prompt (zh):**
+
+```text
+在当前项目中实现层级与堆叠。
+先检查现有组件体系和 Design Token，优先复用当前组件。
+要求：
+- 一套命名 z-index 档位（base / dropdown / sticky / modal / toast）
+- 浮层容器用 isolation: isolate，避免子元素数值越级
+- 消除 9999 等魔法数字
 保持现有项目视觉风格。不要新增不必要依赖。
 尊重 prefers-reduced-motion。
 完成后运行项目现有检查，并列出修改的文件。
