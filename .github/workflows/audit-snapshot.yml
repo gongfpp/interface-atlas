@@ -15,12 +15,13 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: 打包隔离环境所需依赖（不含凭据）
+      - name: 安装并锁定无障碍测试依赖
         run: |
-          cp "$(command -v node)" /tmp/audit-node
-          tar -czf /tmp/interface-atlas-runtime.tar.gz node_modules -C /tmp audit-node
+          npm install --save-dev --save-exact --ignore-scripts @axe-core/playwright
+          node -p "require('@axe-core/playwright/package.json').version"
+          tar -czf /tmp/atlas-accessibility-runtime.tar.gz node_modules/@axe-core node_modules/axe-core package.json package-lock.json
       - uses: actions/upload-artifact@v4
         with:
-          name: private-audit-runtime
-          path: /tmp/interface-atlas-runtime.tar.gz
+          name: private-audit-accessibility-runtime
+          path: /tmp/atlas-accessibility-runtime.tar.gz
           retention-days: 1
