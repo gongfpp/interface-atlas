@@ -128,6 +128,26 @@ export default XDemo;
 - 不引入任何新依赖；不写测试文件。
 - 尺寸克制：常规示例优先控制在 240～480px；完整表单和多变体允许自然增高，不裁切内容，内容居中。
 
+## 2b. 组件跨风格变体（style-variants）
+
+组件详情页的「不同风格下的它」由 `src/islands/style-variants/<组件id>.tsx` 提供，按需加载（`import.meta.glob`，无需注册表）。
+
+```tsx
+import { useState } from 'react';
+import type { StyleVariantSet } from './types';
+
+const styleVariants: StyleVariantSet = [
+  { style: 'neobrutalism', name: { zh: '新粗野主义', en: 'Neobrutalism' }, note: { zh: '…', en: '…' }, Demo: Variant },
+  // …共 3 个
+];
+export default styleVariants;
+```
+
+- 每个组件 3 个变体，各选一种站点风格；必须按该风格**重新设计**（形态 / 边框 / 投影 / 字体 / 间距 / 交互），不是换色。
+- `Demo` 为无 props 组件，可含 `useState` 做本地交互；根节点居中、约 240–480px。
+- 只引用 `react` 与 `./types`，不新增依赖；暗色风格自行铺底色（画廊画布是 `bg-paper`）。
+- 未提供文件的组件不显示该区块，可按组件增量补齐。
+
 ## 3. 全库 id 清单（164；新增时同步更新此处，并以内容校验结果为准）
 
 **components (46)**：button, input, select, textarea, checkbox, radio, switch, slider, date-picker, navbar, sidebar, breadcrumb, tabs, pagination, modal, drawer, popover, tooltip, toast, alert, card, table, progress-bar, avatar, badge, accordion, dropdown, menu, command-palette, filter-panel, segmented-control, stepper, combobox, file-upload, rating, timeline, carousel, bottom-sheet, fab, tag-input, toolbar, multi-select, lightbox, split-button, tree-view, color-picker

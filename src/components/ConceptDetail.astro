@@ -6,6 +6,7 @@ import CompareTable from '@/components/CompareTable.astro';
 import StyleThumb from '@/components/StyleThumb.astro';
 import DemoMount from '@/islands/demos/DemoMount';
 import PromptBlock from '@/islands/PromptBlock';
+import StyleVariantGallery from '@/islands/StyleVariantGallery';
 import ConceptActions from '@/islands/ConceptActions';
 import { conceptPath, resolveRelated, getAllConcepts, type Concept } from '@/lib/content';
 import { comparePath } from '@/lib/compare';
@@ -39,6 +40,10 @@ const styleSpec = concept.conceptType === 'styles'
   : undefined;
 
 const references = (await getCollection('gallery')).filter(g => g.data.status === 'published' && (g.data.related_component === concept.id || (concept.id === 'menu' && g.data.related_component === 'dropdown')));
+// 组件若手工提供了风格变体模块，就展示“不同风格下的它”（按需 chunk，无需注册表）
+const styleVariantFiles = import.meta.glob('/src/islands/style-variants/*.tsx');
+const hasStyleVariants =
+  concept.conceptType === 'components' && Boolean(styleVariantFiles[`/src/islands/style-variants/${concept.id}.tsx`]);
 const sectionTitle = 'mb-4 font-serif text-xl font-semibold';
 const card = 'rounded-xl border border-line bg-raised p-5';
 ---
@@ -78,6 +83,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
     <nav class="detail-nav" aria-label={locale === 'zh' ? '本页目录' : 'On this page'}>
       <a href="#overview">{locale === 'zh' ? '概览' : 'Overview'}</a>
       {d.demo && <a href="#playground">{locale === 'zh' ? '交互实验室' : 'Playground'}</a>}
+      {hasStyleVariants && <a href="#style-variants">{locale === 'zh' ? '不同风格' : 'Other styles'}</a>}
       <a href="#variants">{locale === 'zh' ? '形式与用法' : 'Variants'}</a>
       {references.length > 0 && <a href="#references">{locale === 'zh' ? '设计参考' : 'Visual references'}</a>}
       <a href="#implementation">{locale === 'zh' ? '实现要点' : 'Implementation'}</a>
@@ -143,6 +149,16 @@ const card = 'rounded-xl border border-line bg-raised p-5';
           <h3 class="mb-3 text-sm font-semibold">{locale === 'zh' ? '使用时关注什么' : 'What to look for'}</h3>
           <ul class="grid grid-cols-1 gap-3 text-sm leading-relaxed text-ink-2 md:grid-cols-2">{d.playground.checks.map((check, i) => <li class="flex gap-3"><span class="font-mono text-xs text-accent">0{i + 1}</span><span>{check[locale]}</span></li>)}</ul>
         </div>}
+      </section>
+    )}
+
+    {hasStyleVariants && (
+      <section id="style-variants" class="pb-10">
+        <div class="mb-5 flex flex-wrap items-baseline justify-between gap-2">
+          <h2 class="detail-section-title font-serif text-2xl font-semibold" data-number="02">{locale === 'zh' ? '不同风格下的它' : 'The same part, other styles'}</h2>
+          <span class="text-xs text-ink-3">{locale === 'zh' ? '不是换皮：每种风格都按自己的语言重做这个组件' : 'Not a reskin — each style redesigns it in its own language'}</span>
+        </div>
+        <StyleVariantGallery client:visible component={concept.id} locale={locale} />
       </section>
     )}
 
