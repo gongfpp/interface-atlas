@@ -10,10 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - name: 打包已跟踪源码供隔离环境复现
-        run: git archive --format=tar HEAD > /tmp/interface-atlas-source.tar
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: 打包隔离环境所需依赖（不含凭据）
+        run: |
+          cp "$(command -v node)" /tmp/audit-node
+          tar -czf /tmp/interface-atlas-runtime.tar.gz node_modules -C /tmp audit-node
       - uses: actions/upload-artifact@v4
         with:
-          name: private-audit-source
-          path: /tmp/interface-atlas-source.tar
+          name: private-audit-runtime
+          path: /tmp/interface-atlas-runtime.tar.gz
           retention-days: 1
