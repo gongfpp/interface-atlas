@@ -6,7 +6,9 @@
 
 源代码仓库 `gongfpp/interface-atlas` 为 **private**，只保存源码与 CI；对外发布走公开的构建仓库 `gongfpp/interface-atlas-web`（与 `Iscream` → `Iscream-web` 同一模式）：
 
-- 源仓库 `.github/workflows/deploy-web.yml` 在 push 到 `main` 时构建，再把 `dist/` 强制 push 到公开仓库的 `main` 分支。
+- 源仓库 `.github/workflows/deploy-web.yml` 在 push 到 `main` 时构建，再把 `dist/` **增量提交**到公开仓库的 `main` 分支（clone 现有仓库 → rsync 覆盖 → commit → push，不再 force-push）。
+  - 为什么：GitHub Pages 对 HTML 有约 10 分钟缓存。若每次都 force-push 覆盖整棵树，旧的文件名带 hash 的 `/_astro/*.css|js` 会被删除，而缓存里的旧 HTML 仍引用它们，导致这段时间内页面拿不到 CSS（无样式）。增量提交会保留这些旧资源，等缓存过期自然淘汰。
+  - 移除旧页面 HTML 仍会被 rsync `--delete` 清掉，只有 `_astro` 下的 hash 资源会被保留。
 - 跨仓库推送用 SSH Deploy Key：公开仓库 Settings → Deploy keys 加一把可写 key（title `interface-atlas-deploy`）；私钥存源仓库 Secret `WEB_DEPLOY_KEY`。
 - 构建命令 `npm run build:fast`（复用已提交的关键词搜索索引，无需在 CI 生成），并注入：
   - `PUBLIC_SITE_URL=https://gongfpp.github.io`
