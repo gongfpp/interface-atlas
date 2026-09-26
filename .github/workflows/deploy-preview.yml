@@ -1,0 +1,82 @@
+name: Deploy preview to interface-atlas-web
+
+# feature/预览分支 → 部署到公开仓库的子目录 /interface-atlas-web/preview/<branch>/
+# 生产（main）只更新根目录，且生产 rsync 已排除 preview/，两者互不删除。
+on:
+  push:
+    branches-ignore: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-preview-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      WEB_REPOSITORY: git@github.com:gongfpp/interface-atlas-web.git
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # 预览分支不强制跑完整门禁，但至少做内容校验与类型检查，避免明显错误的预览
+      - name: Type check
+        run: npm run check
+
+      - name: Build (preview base, noindex)
+        run: npm run build:fast
+        env:
+          PUBLIC_SITE_URL: https://gongfpp.github.io
+          PUBLIC_BASE_PATH: /interface-atlas-web/preview/${{ github.ref_name }}
+          PUBLIC_PREVIEW: 'true'
+          PUBLIC_LOG_API: 'off'
+          PUBLIC_UMAMI_SRC: ''
+          PUBLIC_UMAMI_ID: ''
+          PUBLIC_CF_BEACON_TOKEN: ''
+
+      - name: Publish to preview/<branch>
+        env:
+          DEPLOY_KEY: ${{ secrets.WEB_DEPLOY_KEY }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          export GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=no"
+
+          SLUG="$(printf '%s' "$BRANCH" | tr -c 'A-Za-z0-9._-' '-')"
+          touch dist/.nojekyll
+
+          if git clone --depth 1 "$WEB_REPOSITORY" web 2>/dev/null; then
+            if [ -d "web/preview/$SLUG/_astro" ]; then cp -a "web/preview/$SLUG/_astro" /tmp/prev-astro; fi
+          else
+            mkdir web && git -C web init -q
+            git -C web remote add origin "$WEB_REPOSITORY"
+          fi
+
+          mkdir -p "web/preview/$SLUG"
+          rsync -a --delete dist/ "web/preview/$SLUG/"
+          if [ -d /tmp/prev-astro ]; then cp -an /tmp/prev-astro/. "web/preview/$SLUG/_astro/" 2>/dev/null || true; fi
+
+          cd web
+          git config user.name "interface-atlas-deploy"
+          git config user.email "gongfpp@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to publish."
+            exit 0
+          fi
+          git commit -qm "preview ${BRANCH} @ ${GITHUB_SHA}"
+          git push origin HEAD:main

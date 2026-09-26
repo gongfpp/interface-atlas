@@ -89,7 +89,7 @@ jobs:
             git -C web remote add origin "$WEB_REPOSITORY"
           fi
 
-          rsync -a --delete --exclude=.git dist/ web/
+          rsync -a --delete --exclude=.git --exclude=preview dist/ web/
           # 把本轮构建不再产出、但仍可能被缓存 HTML 引用的旧 _astro 资源放回去
           if [ -d /tmp/prev-astro ]; then cp -an /tmp/prev-astro/. web/_astro/ 2>/dev/null || true; fi
 

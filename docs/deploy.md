@@ -9,6 +9,18 @@
 - 源仓库 `.github/workflows/deploy-web.yml` 在 push 到 `main` 时构建，再把 `dist/` **增量提交**到公开仓库的 `main` 分支（clone 现有仓库 → rsync 覆盖 → commit → push，不再 force-push）。
   - 为什么：GitHub Pages 对 HTML 有约 10 分钟缓存。若每次都 force-push 覆盖整棵树，旧的文件名带 hash 的 `/_astro/*.css|js` 会被删除，而缓存里的旧 HTML 仍引用它们，导致这段时间内页面拿不到 CSS（无样式）。增量提交会保留这些旧资源，等缓存过期自然淘汰。
   - 移除旧页面 HTML 仍会被 rsync `--delete` 清掉，只有 `_astro` 下的 hash 资源会被保留。
+
+### 发布门槛
+
+`deploy-web.yml` 增加了一个 `verify` job（`npm run check` / `lint` / `build` / `test:smoke` / `search:test`），`build-and-deploy` 通过 `needs: verify` 依赖它：**同一提交的检查不通过就不会发布**。手动触发等同于正式发布。
+
+### 预览部署（feature 分支）
+
+`deploy-preview.yml` 在推送到非 `main` 分支时，把该分支构建到公开仓库的子目录 `/interface-atlas-web/preview/<branch>/`：
+
+- 构建时注入 `PUBLIC_BASE_PATH=/interface-atlas-web/preview/<branch>`、`PUBLIC_PREVIEW=true`，因此所有站内链接/资源都带预览前缀，并输出 `<meta name="robots" content="noindex, nofollow">`（预览不进 sitemap、不被索引）。
+- 生产发布的 rsync 带 `--exclude=preview`，预览目录不会被正式部署删除；预览只 `--delete` 自己那层目录。
+- 关闭分支后，预览目录会停留在仓库里，需要时可手动清理。
 - 跨仓库推送用 SSH Deploy Key：公开仓库 Settings → Deploy keys 加一把可写 key（title `interface-atlas-deploy`）；私钥存源仓库 Secret `WEB_DEPLOY_KEY`。
 - 构建命令 `npm run build:fast`（复用已提交的关键词搜索索引，无需在 CI 生成），并注入：
   - `PUBLIC_SITE_URL=https://gongfpp.github.io`

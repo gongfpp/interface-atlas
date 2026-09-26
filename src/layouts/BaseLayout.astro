@@ -36,6 +36,7 @@ const themeScript = `
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {import.meta.env.PUBLIC_PREVIEW === 'true' && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     {enPath && <link rel="alternate" hreflang="zh" href={new URL(localePath(enPath, 'zh'), Astro.site)} />}
     {enPath && <link rel="alternate" hreflang="en" href={new URL(localePath(enPath, 'en'), Astro.site)} />}
