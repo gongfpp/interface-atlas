@@ -83,25 +83,28 @@ const InfiniteScrollDemo: DemoComponent = ({ mode }) => {
       <div className="grid gap-4 text-left md:grid-cols-2">
         <div className="rounded-lg border border-line bg-raised p-3">
           <div className="mb-1 text-xs font-medium">到底提示 · End notice</div>
-          <div className="rounded border border-line/60 px-2">
-            {makePage(1).slice(0, 3).map((it) => (
+          <div className="max-h-56 overflow-y-auto rounded border border-line/60 px-2">
+            {items.map((it) => (
               <Row key={it.id} item={it} />
             ))}
-            <div className="py-2.5 text-center text-[10px] text-ink-3">— 没有更多了 —</div>
+            <div className="py-2.5 text-center text-[10px] text-ink-3">
+              {done ? '— 没有更多了 —' : loading ? '加载中… · Loading' : '继续下滑加载更多'}
+            </div>
           </div>
         </div>
         <div className="rounded-lg border border-line bg-raised p-3">
           <div className="mb-1 text-xs font-medium">兜底按钮 · Fallback button</div>
-          <div className="rounded border border-line/60 px-2">
-            {makePage(1).slice(0, 3).map((it) => (
+          <div className="max-h-56 overflow-y-auto rounded border border-line/60 px-2">
+            {items.map((it) => (
               <Row key={it.id} item={it} />
             ))}
           </div>
           <button
             onClick={loadMore}
-            className="mt-2 w-full rounded-md border border-line py-1 text-[10px] text-ink-2 transition-colors hover:border-accent hover:text-accent"
+            disabled={done || loading}
+            className="mt-2 w-full rounded-md border border-line py-1 text-[10px] text-ink-2 transition-colors hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-50"
           >
-            加载更多 · Load more
+            {done ? '已全部加载 · All loaded' : loading ? '加载中… · Loading' : '加载更多 · Load more'}
           </button>
         </div>
       </div>

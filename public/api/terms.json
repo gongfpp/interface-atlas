@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-25",
+  "generated": "2026-09-26",
   "site": "https://gongfpp.github.io/interface-atlas-web",
   "count": 164,
   "types": [
@@ -15311,7 +15311,6 @@
           "variants"
         ],
         "motionControls": [
-          "play",
           "replay",
           "slow",
           "compare"

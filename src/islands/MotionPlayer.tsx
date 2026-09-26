@@ -113,7 +113,17 @@ export default function MotionPlayer({
             </button>
           )}
           {has('slow') && (
-            <button className={speed !== 1 ? btnOn : btn} aria-pressed={speed !== 1} onClick={() => setSpeed((s) => (s === 1 ? 3 : 1))}>
+            <button
+              className={speed !== 1 ? btnOn : btn}
+              aria-pressed={speed !== 1}
+              title={en ? 'Restart at the new speed' : '按新速度重新播放'}
+              onClick={() => {
+                // 切换速度后重挂载，让 JS/CSS 动画都立即采用新速度（与 UI 语义一致）
+                setSpeed((s) => (s === 1 ? 3 : 1));
+                setReplayKey((k) => k + 1);
+                setRunning(true);
+              }}
+            >
               🐢 {speed !== 1 ? label.normal[locale] : label.slow[locale]}
             </button>
           )}

@@ -7,6 +7,10 @@ function Skeuo() {
     <div className="mx-auto w-full max-w-sm rounded-2xl border border-[#b8bcc4] bg-gradient-to-b from-[#f2f3f5] to-[#d9dce1] p-6 text-[#333] shadow-[inset_0_1px_0_#fff,0_8px_20px_#0000001a]">
       <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#5b6069]">Airplane mode</p>
       <button
+        type="button"
+        role="switch"
+        aria-checked={on}
+        aria-label="Airplane mode"
         onClick={() => setOn(!on)}
         className={`relative h-10 w-20 rounded-full border border-[#9aa0aa] shadow-[inset_0_2px_5px_#00000055] ${
           on ? 'bg-gradient-to-b from-[#5ec26a] to-[#2f8f3d]' : 'bg-gradient-to-b from-[#c6c9cf] to-[#a7abb3]'
@@ -32,8 +36,11 @@ function Flat() {
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium">Notifications</span>
         <button
+          type="button"
+          role="switch"
+          aria-checked={on}
+          aria-label="Notifications"
           onClick={() => setOn(!on)}
-          aria-pressed={on}
           className={`relative h-7 w-14 rounded-full ${on ? 'bg-[#22c55e]' : 'bg-[#d1d5db]'}`}
         >
           <span
@@ -64,8 +71,11 @@ function Aurora() {
       <div className="relative flex items-center justify-between">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/70">Aurora mode</span>
         <button
+          type="button"
+          role="switch"
+          aria-checked={on}
+          aria-label="Aurora mode"
           onClick={() => setOn(!on)}
-          aria-pressed={on}
           className={`relative h-8 w-16 rounded-full border transition-colors duration-500 ${
             on ? 'border-white/30 bg-white/10 shadow-[0_0_24px_#22d3ee55]' : 'border-white/15 bg-white/5'
           }`}

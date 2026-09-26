@@ -56,6 +56,7 @@ export default function StyleVariantGallery({
             <button
               key={v.style}
               type="button"
+              data-style={v.style}
               aria-pressed={i === active}
               onClick={() => setActive(i)}
               className="demo-tool"

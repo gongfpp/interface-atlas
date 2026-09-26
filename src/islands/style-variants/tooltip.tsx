@@ -1,8 +1,24 @@
-import { useState } from 'react';
+import { useState, type KeyboardEvent } from 'react';
 import type { StyleVariantSet } from './types';
 
-function RetroTooltip() {
+/** 悬停与键盘聚焦都能显示；Escape 关闭；提示带 role=tooltip 与 aria-describedby。 */
+function useTooltip(id: string) {
   const [show, setShow] = useState(false);
+  const triggerProps = {
+    'aria-describedby': show ? id : undefined,
+    onMouseEnter: () => setShow(true),
+    onMouseLeave: () => setShow(false),
+    onFocus: () => setShow(true),
+    onBlur: () => setShow(false),
+    onKeyDown: (e: KeyboardEvent<HTMLButtonElement>) => {
+      if (e.key === 'Escape') setShow(false);
+    },
+  };
+  return { show, triggerProps, tooltipProps: { role: 'tooltip' as const, id } };
+}
+
+function RetroTooltip() {
+  const { show, triggerProps, tooltipProps } = useTooltip('retro-tooltip');
   return (
     <div
       className="mx-auto w-full max-w-sm rounded-lg bg-[#1b1420] p-8 text-[#f4d9a0]"
@@ -11,14 +27,13 @@ function RetroTooltip() {
       <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#ffb347]">System 84</p>
       <div className="relative mt-4 inline-block">
         <button
-          onMouseEnter={() => setShow(true)}
-          onMouseLeave={() => setShow(false)}
+          {...triggerProps}
           className="rounded border border-[#ffb347] bg-gradient-to-b from-[#ffd27a] to-[#c98a2e] px-4 py-2 text-xs font-bold text-[#1b1420] shadow-[0_0_16px_#ffb34766]"
         >
-          Hover me
+          Hover or focus
         </button>
         {show && (
-          <span className="absolute -top-10 left-0 z-10 whitespace-nowrap rounded border border-[#ffb347] bg-[#1b1420] px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-[#ffb347] shadow-[0_0_18px_#ffb34755]">
+          <span {...tooltipProps} className="absolute -top-10 left-0 z-10 whitespace-nowrap rounded border border-[#ffb347] bg-[#1b1420] px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-[#ffb347] shadow-[0_0_18px_#ffb34755]">
             Power: 98%
           </span>
         )}
@@ -29,14 +44,13 @@ function RetroTooltip() {
 }
 
 function CyberTooltip() {
-  const [show, setShow] = useState(false);
+  const { show, triggerProps, tooltipProps } = useTooltip('cyber-tooltip');
   return (
     <div className="mx-auto w-full max-w-sm bg-[#05060a] p-8 font-mono text-[#7cf9ff]" style={{ border: '1px solid #ff2e88' }}>
       <p className="text-[10px] uppercase tracking-[0.3em] text-[#ff2e88]">net://node</p>
       <div className="relative mt-4 inline-block">
         <button
-          onMouseEnter={() => setShow(true)}
-          onMouseLeave={() => setShow(false)}
+          {...triggerProps}
           className="border border-[#7cf9ff] px-4 py-2 text-xs uppercase tracking-widest text-[#7cf9ff]"
           style={{ boxShadow: '0 0 12px #7cf9ff88, inset 0 0 8px #7cf9ff33' }}
         >
@@ -44,6 +58,7 @@ function CyberTooltip() {
         </button>
         {show && (
           <span
+            {...tooltipProps}
             className="absolute -top-9 left-0 z-10 whitespace-nowrap border border-[#ff2e88] bg-[#0b0d14] px-2 py-1 text-[10px] tracking-wider text-[#ff2e88]"
             style={{ boxShadow: '0 0 14px #ff2e88aa' }}
           >
@@ -57,7 +72,7 @@ function CyberTooltip() {
 }
 
 function SkeuoTooltip() {
-  const [show, setShow] = useState(false);
+  const { show, triggerProps, tooltipProps } = useTooltip('skeuo-tooltip');
   return (
     <div
       className="mx-auto w-full max-w-sm rounded-xl p-8 text-[#2b2b2b]"
@@ -66,8 +81,7 @@ function SkeuoTooltip() {
       <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#7a7264]">Toolbar</p>
       <div className="relative mt-4 inline-block">
         <button
-          onMouseEnter={() => setShow(true)}
-          onMouseLeave={() => setShow(false)}
+          {...triggerProps}
           className="rounded-md border border-[#9a927f] px-4 py-2 text-xs font-semibold text-[#3a352b]"
           style={{ background: 'linear-gradient(#ffffff,#dcd6c6)', boxShadow: 'inset 0 1px 0 #fff, 0 2px 3px #00000033' }}
         >
@@ -75,6 +89,7 @@ function SkeuoTooltip() {
         </button>
         {show && (
           <span
+            {...tooltipProps}
             className="absolute -top-9 left-0 z-10 whitespace-nowrap rounded-md border border-[#8a816d] px-2 py-1 text-[10px] font-semibold text-[#2b2b2b]"
             style={{ background: 'linear-gradient(#fffbe9,#e8dfc2)', boxShadow: '0 2px 4px #00000040' }}
           >
@@ -92,8 +107,8 @@ const styleVariants: StyleVariantSet = [
     style: 'retro-futurism',
     name: { zh: '复古未来主义', en: 'Retro-Futurism' },
     note: {
-      zh: '铬黄渐变的实体按钮上浮出发光霓虹提示，像 80 年代机器面板。',
-      en: 'A glowing neon tooltip rises off a chrome-gradient button, like an 80s machine panel.',
+      zh: '铬黄渐变的实体按钮上浮出发光霓虹提示，像 80 年代机器面板；键盘聚焦也会显示。',
+      en: 'A glowing neon tooltip rises off a chrome-gradient button, like an 80s machine panel — keyboard focus shows it too.',
     },
     Demo: RetroTooltip,
   },

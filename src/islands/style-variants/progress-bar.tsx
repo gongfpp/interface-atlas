@@ -9,14 +9,21 @@ function MinimalProgress() {
         <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">Uploading</span>
         <span className="font-mono text-xs tabular-nums text-ink">{pct}%</span>
       </div>
-      <div className="mt-4 h-[3px] w-full bg-line">
+      <div
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={pct}
+        aria-label="Uploading"
+        className="mt-4 h-[3px] w-full bg-line"
+      >
         <div className="h-[3px] bg-ink transition-all duration-500" style={{ width: `${pct}%` }} />
       </div>
       <button
-        onClick={() => setPct((p) => (p >= 100 ? 0 : p + 20))}
+        onClick={() => setPct((p) => (p >= 100 ? 0 : Math.min(100, p + 20)))}
         className="mt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3 transition-colors hover:text-ink"
       >
-        Advance
+        {pct >= 100 ? 'Reset' : 'Advance'}
       </button>
     </div>
   );
@@ -55,16 +62,16 @@ function PixelProgress() {
         <span>Loading world</span>
         <span>{pct}%</span>
       </div>
-      <div className="mt-3 flex gap-[3px]">
+      <div role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct} aria-label="Loading world" className="mt-3 flex gap-[3px]">
         {Array.from({ length: 20 }).map((_, i) => (
           <div key={i} className="h-5 flex-1" style={{ background: i * 5 < pct ? '#5ff06a' : '#26263a' }} />
         ))}
       </div>
       <button
-        onClick={() => setPct((p) => (p >= 100 ? 0 : p + 20))}
+        onClick={() => setPct((p) => (p >= 100 ? 0 : Math.min(100, p + 20)))}
         className="mt-4 border-2 border-[#5ff06a] px-2 py-1 text-[10px] uppercase tracking-widest text-[#5ff06a]"
       >
-        Step
+        {pct >= 100 ? 'Reset' : 'Step'}
       </button>
     </div>
   );

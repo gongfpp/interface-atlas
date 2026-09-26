@@ -104,7 +104,6 @@ const MemphisDemo: DemoComponent = ({ mode }) => {
             fontSize: 12,
             fontWeight: 700,
             color: BLACK,
-            outline: 'none',
             boxShadow: `3px 3px 0 ${BLACK}`,
             marginBottom: 12,
           }}

@@ -103,8 +103,10 @@ html {
 
 /* Shared specimen workbench: generous surfaces, restrained technical labels. */
 html { scroll-behavior: smooth; scroll-padding-top: 130px; }
-:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
-#main:focus { outline: none; }
+/* 焦点环是硬性无障碍要求：用 !important 压过各 Demo 里的行内 outline:none（行内非 important 会被作者 important 覆盖） */
+:focus-visible { outline: 2px solid var(--color-accent) !important; outline-offset: 4px !important; }
+/* 跳过链接落到主内容时不需要外框（程序化聚焦，非用户操作目标） */
+#main:focus, #main:focus-visible { outline: none !important; }
 button:not(:disabled), summary { cursor: pointer; }
 button:disabled { cursor: not-allowed; opacity: .5; }
 .demo-stage-checker { background-image: radial-gradient(var(--color-line) .8px, transparent .8px); background-size: 18px 18px; background-position: 0 0; }

@@ -2,24 +2,23 @@ import { useState } from 'react';
 import type { StyleVariantSet } from './types';
 
 function EditorialTable() {
-  const [asc, setAsc] = useState(true);
+  const [asc, setAsc] = useState(false);
   const rows = [
-    { city: 'Tokyo', pop: '37.4M' },
-    { city: 'Paris', pop: '11.2M' },
-    { city: 'Lima', pop: '9.8M' },
-  ].sort((a, b) => (asc ? 1 : -1) * a.pop.localeCompare(b.pop));
+    { city: 'Tokyo', pop: 37.4 },
+    { city: 'Paris', pop: 11.2 },
+    { city: 'Lima', pop: 9.8 },
+  ].sort((a, b) => (asc ? a.pop - b.pop : b.pop - a.pop));
   return (
     <div className="mx-auto w-full max-w-md border-t-2 border-ink bg-raised p-5 text-ink">
       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">Metropolis Index</p>
       <table className="mt-3 w-full border-collapse text-left">
         <thead>
           <tr className="border-b border-ink">
-            <th className="py-2 font-serif text-sm font-normal italic">City</th>
-            <th
-              onClick={() => setAsc((v) => !v)}
-              className="cursor-pointer py-2 text-right font-serif text-sm font-normal italic"
-            >
-              Population {asc ? '↑' : '↓'}
+            <th scope="col" className="py-2 font-serif text-sm font-normal italic">City</th>
+            <th scope="col" aria-sort={asc ? 'ascending' : 'descending'} className="py-2 text-right font-serif text-sm font-normal italic">
+              <button type="button" onClick={() => setAsc((v) => !v)} className="underline-offset-2 hover:underline">
+                Population {asc ? '↑' : '↓'}
+              </button>
             </th>
           </tr>
         </thead>
@@ -27,7 +26,7 @@ function EditorialTable() {
           {rows.map((r) => (
             <tr key={r.city} className="border-b border-line">
               <td className="py-2 text-sm">{r.city}</td>
-              <td className="py-2 text-right text-sm tabular-nums">{r.pop}</td>
+              <td className="py-2 text-right text-sm tabular-nums">{r.pop.toFixed(1)}M</td>
             </tr>
           ))}
         </tbody>
@@ -38,7 +37,7 @@ function EditorialTable() {
 }
 
 function SwissTable() {
-  const [asc, setAsc] = useState(true);
+  const [asc, setAsc] = useState(false);
   const rows = [
     { city: 'Tokyo', units: 37.4 },
     { city: 'Paris', units: 11.2 },
@@ -53,9 +52,11 @@ function SwissTable() {
       <table className="mt-2 w-full border-collapse">
         <thead>
           <tr className="text-left text-[10px] font-bold uppercase tracking-widest">
-            <th className="py-2">City</th>
-            <th onClick={() => setAsc((v) => !v)} className="cursor-pointer py-2 text-right">
-              Units
+            <th scope="col" className="py-2">City</th>
+            <th scope="col" aria-sort={asc ? 'ascending' : 'descending'} className="py-2 text-right">
+              <button type="button" onClick={() => setAsc((v) => !v)} className="uppercase tracking-widest">
+                Units {asc ? '↑' : '↓'}
+              </button>
             </th>
           </tr>
         </thead>
