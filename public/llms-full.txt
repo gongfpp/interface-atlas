@@ -1729,9 +1729,9 @@
 - Type: foundation · Aliases: 像素密度 · 设备像素比 · 为什么图在手机上发虚 · 手机上看图模糊 · 高清屏 · Retina · DPR · pixel density · device pixel ratio
 - Page: /foundation/pixel-density · JSON: /api/concept/foundation/pixel-density.json · MD: /foundation/pixel-density.md
 
-**What / 这是什么:** 屏幕同时用两套像素计数：真实的设备像素与布局用的 CSS 像素，一个 CSS 像素里塞进几个设备像素就是设备像素比 DPR。手机像素密、CSS 像素少，位图被撑到 CSS 尺寸就发虚。图片按 2x/3x 提供并配 srcset 与矢量，文字用 rem，在高密度屏上才锐利。
+**What / 这是什么:** 屏幕同时用两套像素计数：真实的设备像素与布局用的 CSS 像素，一个 CSS 像素里塞进几个设备像素就是设备像素比 DPR。手机像素密、CSS 像素少，位图被撑到 CSS 尺寸就发虚。位图按 2x/3x 提供并配 srcset 与矢量即可锐利；文字清晰度取决于字形渲染，与单位无关，rem 只用于相对根字号缩放。
 
-**What (en):** A screen counts pixels two ways: physical device pixels and the CSS pixels used for layout. The device pixel ratio, or DPR, is how many device pixels fill one CSS pixel. Phones pack many device pixels into few CSS pixels, so a bitmap shown at its CSS size looks blurry. Serve 2x/3x assets with srcset and vectors, and size text in rem.
+**What (en):** A screen counts pixels two ways: physical device pixels and the CSS pixels used for layout. The device pixel ratio, or DPR, is how many device pixels fill one CSS pixel. Phones pack many device pixels into few CSS pixels, so a bitmap shown at its CSS size looks blurry. Serve 2x/3x assets with srcset and vectors to stay sharp; text sharpness comes from glyph rendering, not units — rem only scales relative to the root font size.
 
 **When to use:** 位图、图标与截图需要在手机等高密度屏上保持锐利；设计稿以 px 标注，开发需要换算到不同 DPR；排查“为什么图在 Retina 上发虚”或配置响应式图片
 
@@ -1745,7 +1745,7 @@
 要求：
 - 布局与尺寸全部按 CSS 像素书写，不乘 DPR
 - 位图提供 1x/2x/3x 并用 image-set() 或 srcset/sizes 选择
-- 图标与文字优先 SVG 与 rem，发丝线保持 1px
+- 图标与 Logo 用 SVG；字号与间距可用 rem（相对缩放，与清晰度无关），发丝线保持 1px
 保持现有项目视觉风格。不要新增不必要依赖。
 尊重 prefers-reduced-motion。
 完成后运行项目现有检查，并列出修改的文件。

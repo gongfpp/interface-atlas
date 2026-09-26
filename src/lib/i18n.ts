@@ -48,8 +48,8 @@ export const TYPE_INTROS: Record<string, Record<Locale, string>> = {
     en: "Some problems aren't solved by a single component but by a way of handling an interaction. Patterns collect proven approaches to loading, forms, drag, onboarding, undo and more — along with the trade-offs of each.",
   },
   motion: {
-    zh: '动效决定界面是活的还是硬的。这里的每一段动效都能真实运行，并带播放器：暂停、重播、慢速和前后对比，让你看清它是怎么动起来的、该不该动。',
-    en: 'Motion decides whether an interface feels alive or stiff. Every animation here really runs, with a player — pause, replay, slow motion and before/after — so you can see exactly how it moves, and whether it should.',
+    zh: '动效决定界面是活的还是硬的。这里的每一段动效都能真实运行；播放器按每段动效实际支持的能力提供暂停、重播、慢速或前后对比，让你看清它是怎么动起来的、该不该动。',
+    en: 'Motion decides whether an interface feels alive or stiff. Every animation here really runs, and the player exposes only the controls each one truly supports — pause, replay, slow motion or before/after — so you can see exactly how it moves, and whether it should.',
   },
   pages: {
     zh: '页面是组件组合出来的结果。这里按页面类型拆解结构骨架和布局变体——从落地页、登录页到仪表盘，告诉你每种页面该有哪些区块，以及顺序为什么这么排。',

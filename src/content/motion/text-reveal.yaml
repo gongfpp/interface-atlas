@@ -72,7 +72,6 @@ demo:
     - default
     - variants
   motionControls:
-    - play
     - replay
     - slow
     - compare

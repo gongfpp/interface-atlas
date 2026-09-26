@@ -123,8 +123,8 @@ const PixelDensityMain = ({ en }: { en: boolean }) => {
           </span>
           <p className="text-[10px] leading-relaxed text-ink-3">
             {en
-              ? 'Text is sized in CSS px (rem), so it re-renders per device pixel instead of being stretched.'
-              : '文字用 CSS 像素（rem）排版，由浏览器按设备像素重新渲染，而不是被拉伸。'}
+              ? 'Text is drawn from glyph outlines and re-rendered per device pixel, not stretched like a bitmap — so it stays sharp at any DPR.'
+              : '文字由字形轮廓按设备像素重新渲染，而不是像位图那样被拉伸，所以在任何 DPR 下都清晰（与用 px 还是 rem 无关）。'}
           </p>
         </div>
       </div>

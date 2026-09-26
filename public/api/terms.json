@@ -13280,8 +13280,8 @@
         "Responsive"
       ],
       "description": {
-        "zh": "屏幕同时用两套像素计数：真实的设备像素与布局用的 CSS 像素，一个 CSS 像素里塞进几个设备像素就是设备像素比 DPR。手机像素密、CSS 像素少，位图被撑到 CSS 尺寸就发虚。图片按 2x/3x 提供并配 srcset 与矢量，文字用 rem，在高密度屏上才锐利。",
-        "en": "A screen counts pixels two ways: physical device pixels and the CSS pixels used for layout. The device pixel ratio, or DPR, is how many device pixels fill one CSS pixel. Phones pack many device pixels into few CSS pixels, so a bitmap shown at its CSS size looks blurry. Serve 2x/3x assets with srcset and vectors, and size text in rem."
+        "zh": "屏幕同时用两套像素计数：真实的设备像素与布局用的 CSS 像素，一个 CSS 像素里塞进几个设备像素就是设备像素比 DPR。手机像素密、CSS 像素少，位图被撑到 CSS 尺寸就发虚。位图按 2x/3x 提供并配 srcset 与矢量即可锐利；文字清晰度取决于字形渲染，与单位无关，rem 只用于相对根字号缩放。",
+        "en": "A screen counts pixels two ways: physical device pixels and the CSS pixels used for layout. The device pixel ratio, or DPR, is how many device pixels fill one CSS pixel. Phones pack many device pixels into few CSS pixels, so a bitmap shown at its CSS size looks blurry. Serve 2x/3x assets with srcset and vectors to stay sharp; text sharpness comes from glyph rendering, not units — rem only scales relative to the root font size."
       },
       "use_when": [
         {
@@ -13322,8 +13322,7 @@
         "dppx",
         "devicePixelRatio",
         "srcset",
-        "image-set()",
-        "rem"
+        "image-set()"
       ],
       "framework_names": [
         {
@@ -13380,8 +13379,8 @@
             "en": "Dense 3x + vectors"
           },
           "note": {
-            "zh": "手机到 3x，图标与文字交给 SVG 和 rem 更稳",
-            "en": "Phones reach 3x; icons and text are safest as SVG and rem"
+            "zh": "手机常见 2x～3x，位图按此出图；图标与 Logo 用矢量，文字交给系统字体渲染",
+            "en": "Phones commonly reach 2x–3x; export bitmaps accordingly, use vectors for icons/logos and let the system render text"
           }
         }
       ],
@@ -13441,8 +13440,8 @@
           "font-size: 1rem"
         ],
         "notes": {
-          "zh": "位图按目标 DPR 出 2x/3x 资源，用 image-set() 或 srcset/sizes 让浏览器自己挑，不要只把 1x 放大。CSS 尺寸一律按 CSS 像素写，映射到设备像素交给浏览器；图标与文字优先 SVG 与 rem，发丝线保持 1px。devicePixelRatio 只用于需要精确像素计算的 canvas 或图片预览，不要拿它缩放整个界面。",
-          "en": "Export bitmaps at 2x/3x for the target DPR and let image-set() or srcset/sizes choose; never upscale a 1x asset. Always write CSS sizes in CSS pixels and leave the mapping to device pixels to the browser. Prefer SVG and rem for icons and text, and keep hairlines at 1px. Use devicePixelRatio only for canvas or image previews that need exact pixel math, never to scale the whole UI."
+          "zh": "位图按目标 DPR 出 2x/3x 资源，用 image-set() 或 srcset/sizes 让浏览器自己挑，不要只把 1x 放大。CSS 尺寸一律按 CSS 像素写，映射到设备像素交给浏览器；图标与 Logo 优先 SVG，字号与间距可用 rem 做相对缩放（这是缩放策略，与清晰度无关），发丝线保持 1px。devicePixelRatio 只用于需要精确像素计算的 canvas 或图片预览，不要拿它缩放整个界面。",
+          "en": "Export bitmaps at 2x/3x for the target DPR and let image-set() or srcset/sizes choose; never upscale a 1x asset. Always write CSS sizes in CSS pixels and leave the mapping to device pixels to the browser. Prefer SVG for icons and logos; rem may scale font size and spacing relative to the root (a scaling choice, not a sharpness fix), and hairlines stay at 1px. Use devicePixelRatio only for canvas or image previews that need exact pixel math, never to scale the whole UI."
         }
       },
       "prompts": {
@@ -13451,16 +13450,16 @@
           "en": "Keep bitmaps and icons crisp on dense phone screens — serve multiple densities and explain CSS pixels versus device pixels."
         },
         "design": {
-          "zh": "像素密度规范：布局与标注统一用 CSS 像素，交付 1x/2x/3x 位图；图标与 Logo 用 SVG；正文用 rem，发丝线固定 1px；切图命名带 @2x/@3x；说明目标设备的 DPR 区间，不要用设备像素直接标注设计稿。",
-          "en": "Pixel density spec: lay out and annotate in CSS pixels, deliver 1x/2x/3x bitmaps, use SVG for icons and logos, set body text in rem and hairlines at 1px. Name exports with @2x/@3x, state the target DPR range, and never annotate the design in device pixels."
+          "zh": "像素密度规范：布局与标注统一用 CSS 像素，交付 1x/2x/3x 位图；图标与 Logo 用 SVG；字号与间距可用 rem 相对缩放，发丝线固定 1px；切图命名带 @2x/@3x；说明目标设备的 DPR 区间，不要用设备像素直接标注设计稿。",
+          "en": "Pixel density spec: lay out and annotate in CSS pixels, deliver 1x/2x/3x bitmaps, use SVG for icons and logos, scale text and spacing with rem, and keep hairlines at 1px. Name exports with @2x/@3x, state the target DPR range, and never annotate the design in device pixels."
         },
         "implementation": {
-          "zh": "用 image-set() 或 srcset/sizes 提供多倍图，例如 img { width: 24px; height: 24px; content: image-set(url(icon.png) 1x, url(icon@2x.png) 2x); }。高密度下再用 @media (min-resolution: 2dppx) 覆盖细节。字体与间距用 rem，canvas 里乘 window.devicePixelRatio 设置 backing store，并按 CSS 尺寸缩放上下文。",
-          "en": "Serve multiple densities with image-set() or srcset/sizes, e.g. img { width: 24px; height: 24px; content: image-set(url(icon.png) 1x, url(icon@2x.png) 2x); } and refine details under @media (min-resolution: 2dppx). Use rem for text and spacing; in canvas multiply window.devicePixelRatio for the backing store and scale the context back to CSS size."
+          "zh": "用 image-set() 或 srcset/sizes 提供多倍图，例如 img { width: 24px; height: 24px; content: image-set(url(icon.png) 1x, url(icon@2x.png) 2x); }。高密度下再用 @media (min-resolution: 2dppx) 覆盖细节。字号与间距可用 rem 相对缩放，canvas 里乘 window.devicePixelRatio 设置 backing store，并按 CSS 尺寸缩放上下文。",
+          "en": "Serve multiple densities with image-set() or srcset/sizes, e.g. img { width: 24px; height: 24px; content: image-set(url(icon.png) 1x, url(icon@2x.png) 2x); } and refine details under @media (min-resolution: 2dppx). Scale text and spacing with rem; in canvas multiply window.devicePixelRatio for the backing store and scale the context back to CSS size."
         },
         "agent": {
-          "zh": "在当前项目中实现像素密度适配。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- 布局与尺寸全部按 CSS 像素书写，不乘 DPR\n- 位图提供 1x/2x/3x 并用 image-set() 或 srcset/sizes 选择\n- 图标与文字优先 SVG 与 rem，发丝线保持 1px\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
-          "en": "Implement pixel density handling in the current project.\nInspect the existing component system and design tokens first; reuse what is already there.\nRequirements:\n- Write all layout and sizes in CSS pixels; never multiply by DPR\n- Provide 1x/2x/3x bitmaps and choose with image-set() or srcset/sizes\n- Prefer SVG and rem for icons and text; keep hairlines at 1px\nKeep the project's existing visual style. Do not add unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun existing project checks when done and list the modified files."
+          "zh": "在当前项目中实现像素密度适配。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n要求：\n- 布局与尺寸全部按 CSS 像素书写，不乘 DPR\n- 位图提供 1x/2x/3x 并用 image-set() 或 srcset/sizes 选择\n- 图标与 Logo 用 SVG；字号与间距可用 rem（相对缩放，与清晰度无关），发丝线保持 1px\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion。\n完成后运行项目现有检查，并列出修改的文件。",
+          "en": "Implement pixel density handling in the current project.\nInspect the existing component system and design tokens first; reuse what is already there.\nRequirements:\n- Write all layout and sizes in CSS pixels; never multiply by DPR\n- Provide 1x/2x/3x bitmaps and choose with image-set() or srcset/sizes\n- Use SVG for icons and logos; rem may scale text and spacing (a scaling choice, not sharpness); keep hairlines at 1px\nKeep the project's existing visual style. Do not add unnecessary dependencies.\nRespect prefers-reduced-motion.\nRun existing project checks when done and list the modified files."
         }
       }
     },
@@ -17986,7 +17985,6 @@
           "variants"
         ],
         "motionControls": [
-          "play",
           "replay",
           "slow",
           "compare"
@@ -18153,7 +18151,6 @@
           "variants"
         ],
         "motionControls": [
-          "play",
           "replay",
           "slow",
           "compare"
