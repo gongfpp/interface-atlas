@@ -18,6 +18,8 @@ export default function StyleVariantGallery({
 }) {
   const [variants, setVariants] = useState<StyleVariantSet | null>(null);
   const [active, setActive] = useState(0);
+  const [failed, setFailed] = useState(false);
+  const [attempt, setAttempt] = useState(0);
   const [session] = useState<LabSession>(() => createSession());
   const en = locale === 'en';
   const loader = modules[`./style-variants/${component}.tsx`];
@@ -25,19 +27,44 @@ export default function StyleVariantGallery({
   useEffect(() => {
     if (!loader) return;
     let alive = true;
-    loader().then((mod) => {
-      const set = (mod as { default: StyleVariantSet }).default ?? [];
-      // 延迟到下一个宏任务，避免 effect 内同步 setState 触发级联渲染
-      setTimeout(() => {
-        if (alive) setVariants(set);
-      }, 0);
-    });
+    loader()
+      .then((mod) => {
+        const set = (mod as { default: StyleVariantSet }).default ?? [];
+        // 延迟到下一个宏任务，避免 effect 内同步 setState 触发级联渲染
+        setTimeout(() => {
+          if (alive) setVariants(set);
+        }, 0);
+      })
+      .catch(() => {
+        setTimeout(() => {
+          if (alive) setFailed(true);
+        }, 0);
+      });
     return () => {
       alive = false;
     };
-  }, [loader]);
+  }, [loader, attempt]);
 
   if (!loader) return null;
+
+  if (failed) {
+    return (
+      <div role="alert" className="rounded-xl border border-dashed border-line p-6 text-sm text-ink-3">
+        <p>{en ? 'Could not load the style variants.' : '风格变体加载失败。'}</p>
+        <button
+          type="button"
+          onClick={() => {
+            setFailed(false);
+            setVariants(null);
+            setAttempt((a) => a + 1);
+          }}
+          className="mt-3 rounded-full border border-line px-3 py-1 text-xs text-ink-2 hover:border-accent hover:text-accent"
+        >
+          {en ? 'Retry' : '重试'}
+        </button>
+      </div>
+    );
+  }
 
   if (!variants) {
     return (
