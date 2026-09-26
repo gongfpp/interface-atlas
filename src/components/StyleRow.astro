@@ -20,15 +20,15 @@ const num = String(index + 1).padStart(2, '0');
   class="group grid gap-6 rounded-2xl border border-line bg-raised p-5 transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md md:grid-cols-[240px_minmax(0,1fr)] md:p-7"
 >
   <!-- 左：文字 -->
-  <div class="flex flex-row items-start gap-5 md:flex-col md:gap-0">
-    <p class="font-serif text-4xl font-semibold text-ink-3/70 transition-colors group-hover:text-accent md:mb-4">{num}</p>
-    <div>
+  <div class="flex min-w-0 flex-col items-start gap-2">
+    <p class="font-serif text-4xl font-semibold text-ink-3/70 transition-colors group-hover:text-accent md:mb-2">{num}</p>
+    <div class="min-w-0">
       <h2 class="font-serif text-2xl font-semibold leading-tight md:text-3xl">{nameMain}</h2>
       <p class="mt-1 text-lg text-ink-2 md:text-xl">{nameSub}</p>
     </div>
-    <div class="ml-auto self-center text-right md:ml-0 md:mt-auto md:self-end md:text-left">
-      <p class="text-[11px] uppercase tracking-wider text-ink-3">{spec.keywords.en}</p>
-      <p class="mt-0.5 text-xs text-ink-3">{spec.keywords.zh}</p>
+    <div class="min-w-0 md:mt-auto">
+      <p class="break-words text-[11px] uppercase tracking-wider text-ink-3">{spec.keywords.en}</p>
+      <p class="mt-0.5 break-words text-xs text-ink-3">{spec.keywords.zh}</p>
     </div>
   </div>
 
