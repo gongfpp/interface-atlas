@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function GlassToast() {
-  const [show, setShow] = useState(true);
+function GlassToast({ session }: VariantDemoProps) {
+  const [show, setShow] = useSessionState(session, 'visible', true);
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-gradient-to-br from-[#5b3df5] via-[#ff5fa2] to-[#33d6ff] p-6 text-white">
       <span className="pointer-events-none absolute -right-8 -top-10 h-28 w-28 rounded-full bg-white/40 blur-2xl" />
@@ -25,8 +25,8 @@ function GlassToast() {
   );
 }
 
-function PixelToast() {
-  const [show, setShow] = useState(true);
+function PixelToast({ session }: VariantDemoProps) {
+  const [show, setShow] = useSessionState(session, 'visible', true);
   return (
     <div
       className="mx-auto w-full max-w-sm bg-[#1a1c2c] p-5 font-mono text-[#f4f4f4]"
@@ -55,8 +55,8 @@ function PixelToast() {
   );
 }
 
-function ClayToast() {
-  const [show, setShow] = useState(true);
+function ClayToast({ session }: VariantDemoProps) {
+  const [show, setShow] = useSessionState(session, 'visible', true);
   return (
     <div className="mx-auto w-full max-w-sm rounded-[28px] bg-[#f4e9ff] p-6 text-[#5b4a6b]">
       <button

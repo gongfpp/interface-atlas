@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function Neumorph() {
-  const [page, setPage] = useState(3);
+function Neumorph({ session }: VariantDemoProps) {
+  const [page, setPage] = useSessionState(session, 'page', 3);
   const raised = 'shadow-[5px_5px_10px_#c3c4cb,-5px_-5px_10px_#ffffff]';
   const pressed = 'shadow-[inset_5px_5px_10px_#c3c4cb,inset_-5px_-5px_10px_#ffffff]';
   return (
@@ -17,8 +17,8 @@ function Neumorph() {
   );
 }
 
-function Vapor() {
-  const [page, setPage] = useState(2);
+function Vapor({ session }: VariantDemoProps) {
+  const [page, setPage] = useSessionState(session, 'page', 2);
   return (
     <div className="mx-auto w-full max-w-sm bg-gradient-to-b from-[#2b1055] to-[#7597de] p-5 text-center">
       <div className="flex items-center justify-center gap-3 font-mono text-sm">
@@ -31,8 +31,8 @@ function Vapor() {
   );
 }
 
-function Swiss() {
-  const [page, setPage] = useState(2);
+function Swiss({ session }: VariantDemoProps) {
+  const [page, setPage] = useSessionState(session, 'page', 2);
   return (
     <div className="mx-auto w-full max-w-sm bg-white py-3 text-black" style={{ borderTop: '3px solid #111', borderBottom: '3px solid #111' }}>
       <div className="flex items-stretch justify-center divide-x divide-black/15 font-mono text-sm">

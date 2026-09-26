@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function SwissSplitButton() {
-  const [open, setOpen] = useState(false);
-  const [result, setResult] = useState('');
+function SwissSplitButton({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', false);
+  const [result, setResult] = useSessionState(session, 'result', '');
   const choose = (action: string) => {
     setResult(`Output: ${action}`);
     setOpen(false);
@@ -41,9 +41,9 @@ function SwissSplitButton() {
   );
 }
 
-function FlatSplitButton() {
-  const [open, setOpen] = useState(false);
-  const [result, setResult] = useState('');
+function FlatSplitButton({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', false);
+  const [result, setResult] = useSessionState(session, 'result', '');
   const choose = (action: string) => {
     setResult(`Post: ${action}`);
     setOpen(false);
@@ -81,9 +81,9 @@ function FlatSplitButton() {
   );
 }
 
-function ClaySplitButton() {
-  const [open, setOpen] = useState(false);
-  const [result, setResult] = useState('');
+function ClaySplitButton({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', false);
+  const [result, setResult] = useSessionState(session, 'result', '');
   const clay = 'shadow-[8px_8px_16px_rgba(174,164,214,0.55),-8px_-8px_16px_rgba(255,255,255,0.9)]';
   const choose = (action: string) => {
     setResult(`Project: ${action}`);

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
 const DAYS = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -20,9 +20,9 @@ function cellsFor(year: number, month: number) {
 }
 
 /** 共享的月份/选中日状态；翻月时把选中日夹到当月范围内。 */
-function useCalendar(initialMonth: number, initialDay: number) {
-  const [ym, setYm] = useState({ y: 2026, m: initialMonth });
-  const [day, setDay] = useState(initialDay);
+function useCalendar(session: VariantDemoProps['session'], initialMonth: number, initialDay: number) {
+  const [ym, setYm] = useSessionState(session, 'yearMonth', { y: 2026, m: initialMonth });
+  const [day, setDay] = useSessionState(session, 'day', initialDay);
   const { days } = monthInfo(ym.y, ym.m);
   const shift = (delta: number) => {
     setYm((cur) => {
@@ -35,8 +35,8 @@ function useCalendar(initialMonth: number, initialDay: number) {
   return { ym, day, days, setDay, shift };
 }
 
-function Minimal() {
-  const { ym, day, days, setDay, shift } = useCalendar(8, 14);
+function Minimal({ session }: VariantDemoProps) {
+  const { ym, day, days, setDay, shift } = useCalendar(session, 8, 14);
   return (
     <div className="mx-auto w-full max-w-sm border border-black/10 bg-white p-5 text-black">
       <div className="mb-3 flex items-baseline justify-between">
@@ -68,8 +68,8 @@ function Minimal() {
   );
 }
 
-function Bauhaus() {
-  const { ym, day, setDay, shift } = useCalendar(8, 11);
+function Bauhaus({ session }: VariantDemoProps) {
+  const { ym, day, setDay, shift } = useCalendar(session, 8, 11);
   return (
     <div className="mx-auto w-full max-w-sm bg-[#f4f1e8] p-5 text-black" style={{ border: '3px solid #111' }}>
       <div className="mb-4 flex items-center gap-3">
@@ -101,8 +101,8 @@ function Bauhaus() {
   );
 }
 
-function Cyberpunk() {
-  const { ym, day, setDay, shift } = useCalendar(8, 9);
+function Cyberpunk({ session }: VariantDemoProps) {
+  const { ym, day, setDay, shift } = useCalendar(session, 8, 9);
   return (
     <div className="mx-auto w-full max-w-sm bg-[#05060d] p-5 font-mono text-[#7df9ff]" style={{ border: '1px solid #00ffff', boxShadow: '0 0 24px rgba(0,255,255,.25)' }}>
       <div className="mb-3 flex items-baseline justify-between text-[11px] uppercase tracking-[0.25em]">

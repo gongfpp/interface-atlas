@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function SwissAccordion() {
-  const [open, setOpen] = useState(0);
+function SwissAccordion({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', 0);
   const items: [string, string, string][] = [
     ['01', 'Grid', 'Twelve columns, one baseline, nothing floats free.'],
     ['02', 'Type', 'Neue Haas-style neutral grotesk at strict sizes.'],
@@ -28,8 +28,8 @@ function SwissAccordion() {
   );
 }
 
-function RawAccordion() {
-  const [open, setOpen] = useState(0);
+function RawAccordion({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', 0);
   const items = ['UPLOAD', 'TRANSCODE', 'PUBLISH'];
   return (
     <div className="mx-auto w-full max-w-sm bg-[#d8d8d8] font-mono text-black">
@@ -48,8 +48,8 @@ function RawAccordion() {
   );
 }
 
-function LiquidAccordion() {
-  const [open, setOpen] = useState(0);
+function LiquidAccordion({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', 0);
   const items = ['Storage', 'Privacy', 'Devices'];
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#1b2a4a] via-[#3b2d63] to-[#0e1730] p-4">

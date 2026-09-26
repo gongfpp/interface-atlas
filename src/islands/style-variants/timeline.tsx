@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function Vapor() {
-  const [open, setOpen] = useState(0);
+function Vapor({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', 0);
   const events = [
     { t: '09:12', title: 'Deploy started' },
     { t: '09:40', title: 'Tests passed' },
@@ -33,8 +33,8 @@ function Vapor() {
   );
 }
 
-function Organic() {
-  const [open, setOpen] = useState(1);
+function Organic({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', 1);
   const events = ['Seeded', 'Watered', 'Bloomed'];
   return (
     <div className="mx-auto w-full max-w-sm rounded-[2rem] bg-[#f3efe2] p-6 text-[#3f4a34]">
@@ -54,8 +54,8 @@ function Organic() {
   );
 }
 
-function Raw() {
-  const [open, setOpen] = useState(0);
+function Raw({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', 0);
   const events = ['BUILD', 'TEST', 'SHIP'];
   return (
     <div className="mx-auto w-full max-w-sm bg-white p-5 text-black" style={{ border: '4px solid #000' }}>

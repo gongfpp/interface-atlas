@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
 const STEPS = ['Details', 'Shipping', 'Payment'];
 
-function Editorial() {
-  const [step, setStep] = useState(0);
+function Editorial({ session }: VariantDemoProps) {
+  const [step, setStep] = useSessionState(session, 'step', 0);
   return (
     <div className="mx-auto w-full max-w-sm border-y-2 border-black bg-[#faf8f2] px-5 py-6 font-serif text-black">
       <p className="mb-4 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-black/50">Checkout</p>
@@ -30,8 +30,8 @@ function Editorial() {
   );
 }
 
-function Deco() {
-  const [step, setStep] = useState(0);
+function Deco({ session }: VariantDemoProps) {
+  const [step, setStep] = useSessionState(session, 'step', 0);
   return (
     <div className="mx-auto w-full max-w-sm bg-[#12141c] px-6 py-7 text-center text-[#e8ce92]" style={{ outline: '1px solid #e8ce9255', outlineOffset: -8 }}>
       <p className="font-serif text-lg uppercase tracking-[0.35em]">Checkout</p>
@@ -55,8 +55,8 @@ function Deco() {
   );
 }
 
-function Pixel() {
-  const [step, setStep] = useState(0);
+function Pixel({ session }: VariantDemoProps) {
+  const [step, setStep] = useSessionState(session, 'step', 0);
   return (
     <div className="mx-auto w-full max-w-sm border-4 border-black bg-[#1b1b2f] p-5 font-mono text-[#eaeaea]">
       <p className="mb-4 text-[10px] uppercase tracking-[0.2em] text-[#7cf6a0]">Step {step + 1}/3</p>

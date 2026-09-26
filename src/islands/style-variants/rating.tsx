@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function useRating() {
-  const [rating, setRating] = useState(0);
+function useRating(session: VariantDemoProps['session']) {
+  const [rating, setRating] = useSessionState(session, 'value', 0);
   const [hover, setHover] = useState(0);
   return { rating, hover, setRating, setHover };
 }
 
-function Retro() {
-  const { rating, hover, setRating, setHover } = useRating();
+function Retro({ session }: VariantDemoProps) {
+  const { rating, hover, setRating, setHover } = useRating(session);
   const active = hover || rating;
   return (
     <div
@@ -35,8 +36,8 @@ function Retro() {
   );
 }
 
-function Y2K() {
-  const { rating, hover, setRating, setHover } = useRating();
+function Y2K({ session }: VariantDemoProps) {
+  const { rating, hover, setRating, setHover } = useRating(session);
   const active = hover || rating;
   return (
     <div className="mx-auto w-full max-w-sm rounded-[28px] bg-gradient-to-br from-[#dff3ff] via-[#f6e6ff] to-[#ffe3f5] p-6 text-center" onMouseLeave={() => setHover(0)}>
@@ -62,8 +63,8 @@ function Y2K() {
   );
 }
 
-function Memphis() {
-  const { rating, hover, setRating, setHover } = useRating();
+function Memphis({ session }: VariantDemoProps) {
+  const { rating, hover, setRating, setHover } = useRating(session);
   const active = hover || rating;
   const colors = ['#ff3d7f', '#ffd23f', '#00b8a9', '#3d5aff', '#ff6b35'];
   return (

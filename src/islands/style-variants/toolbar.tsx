@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
 const tools = [
   { id: 'bold', glyph: 'B', cls: 'font-extrabold' },
@@ -8,8 +8,8 @@ const tools = [
   { id: 'strike', glyph: 'S', cls: 'line-through' },
 ];
 
-function Flat() {
-  const [active, setActive] = useState('bold');
+function Flat({ session }: VariantDemoProps) {
+  const [active, setActive] = useSessionState(session, 'active', 'bold');
   return (
     <div className="mx-auto flex w-full max-w-sm items-center gap-1 rounded-lg border border-line bg-raised p-2 text-ink">
       {tools.map((t) => (
@@ -28,8 +28,8 @@ function Flat() {
   );
 }
 
-function Deco() {
-  const [active, setActive] = useState('home');
+function Deco({ session }: VariantDemoProps) {
+  const [active, setActive] = useSessionState(session, 'active', 'home');
   const glyph: Record<string, string> = { home: '⌂', search: '⌕', star: '✦', user: '☖' };
   return (
     <div className="mx-auto w-full max-w-sm border-2 border-[#c9a227] bg-[#111014] p-4 text-[#e8d9a0]">
@@ -44,8 +44,8 @@ function Deco() {
   );
 }
 
-function Bauhaus() {
-  const [active, setActive] = useState('square');
+function Bauhaus({ session }: VariantDemoProps) {
+  const [active, setActive] = useSessionState(session, 'active', 'square');
   return (
     <div className="mx-auto w-full max-w-sm border-2 border-black bg-[#f4f1e8] p-5 text-black">
       <p className="font-mono text-[10px] font-bold uppercase tracking-[0.3em]">Werkzeug</p>

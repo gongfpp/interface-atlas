@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
 const TOPICS = ['Design', 'Code', 'Motion', 'Data'];
 const SHAPES = [
@@ -8,16 +8,16 @@ const SHAPES = [
   { id: 'Arch', color: '#f2c200', radius: '9999px 9999px 0 0' },
 ];
 
-function MinimalMultiSelect() {
-  const [picked, setPicked] = useState(['Design']);
+function MinimalMultiSelect({ session }: VariantDemoProps) {
+  const [selected, setSelected] = useSessionState(session, 'selected', ['Design']);
   const toggle = (t: string) =>
-    setPicked((p) => (p.includes(t) ? p.filter((x) => x !== t) : [...p, t]));
+    setSelected((p) => (p.includes(t) ? p.filter((x) => x !== t) : [...p, t]));
   return (
     <div className="mx-auto w-full max-w-sm border border-line bg-raised p-5 text-ink">
       <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink-3">Topics</p>
       <div className="mt-3 flex flex-wrap gap-px border border-line bg-line">
         {TOPICS.map((t) => {
-          const on = picked.includes(t);
+          const on = selected.includes(t);
           return (
             <button
               key={t}
@@ -34,22 +34,22 @@ function MinimalMultiSelect() {
         })}
       </div>
       <p className="mt-3 text-[11px] text-ink-3">
-        {picked.length} of {TOPICS.length} selected
+        {selected.length} of {TOPICS.length} selected
       </p>
     </div>
   );
 }
 
-function BauhausMultiSelect() {
-  const [picked, setPicked] = useState(['Arch']);
+function BauhausMultiSelect({ session }: VariantDemoProps) {
+  const [selected, setSelected] = useSessionState(session, 'selected', ['Arch']);
   const toggle = (t: string) =>
-    setPicked((p) => (p.includes(t) ? p.filter((x) => x !== t) : [...p, t]));
+    setSelected((p) => (p.includes(t) ? p.filter((x) => x !== t) : [...p, t]));
   return (
     <div className="mx-auto w-full max-w-sm border-[3px] border-black bg-[#f6efdd] p-6 text-black">
       <p className="text-center text-[11px] font-bold uppercase tracking-[0.3em]">Select shape</p>
       <div className="mt-6 flex items-end justify-center gap-6">
         {SHAPES.map((s) => {
-          const on = picked.includes(s.id);
+          const on = selected.includes(s.id);
           return (
             <button
               key={s.id}
@@ -69,15 +69,15 @@ function BauhausMultiSelect() {
           );
         })}
       </div>
-      <p className="mt-6 border-t-2 border-black pt-2 text-center text-[11px]">{picked.length} chosen</p>
+      <p className="mt-6 border-t-2 border-black pt-2 text-center text-[11px]">{selected.length} chosen</p>
     </div>
   );
 }
 
-function LiquidGlassMultiSelect() {
-  const [picked, setPicked] = useState(['Design', 'Motion']);
+function LiquidGlassMultiSelect({ session }: VariantDemoProps) {
+  const [selected, setSelected] = useSessionState(session, 'selected', ['Design', 'Motion']);
   const toggle = (t: string) =>
-    setPicked((p) => (p.includes(t) ? p.filter((x) => x !== t) : [...p, t]));
+    setSelected((p) => (p.includes(t) ? p.filter((x) => x !== t) : [...p, t]));
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-[28px] bg-gradient-to-br from-[#8ea2ff] via-[#f0a4ff] to-[#7fd8ff] p-6 text-white">
       <span className="pointer-events-none absolute -left-8 -top-10 h-32 w-32 rounded-full bg-white/50 blur-2xl" />
@@ -85,7 +85,7 @@ function LiquidGlassMultiSelect() {
       <p className="relative font-mono text-[10px] uppercase tracking-[0.25em] text-white/80">Focus</p>
       <div className="relative mt-4 flex flex-wrap gap-2">
         {TOPICS.map((t) => {
-          const on = picked.includes(t);
+          const on = selected.includes(t);
           return (
             <button
               key={t}
@@ -103,7 +103,7 @@ function LiquidGlassMultiSelect() {
           );
         })}
       </div>
-      <p className="relative mt-4 text-[11px] text-white/80">{picked.length} selected</p>
+      <p className="relative mt-4 text-[11px] text-white/80">{selected.length} selected</p>
     </div>
   );
 }

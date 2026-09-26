@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function MinimalProgress() {
-  const [pct, setPct] = useState(45);
+function MinimalProgress({ session }: VariantDemoProps) {
+  const [pct, setPct] = useSessionState(session, 'pct', 45);
   return (
     <div className="mx-auto w-full max-w-sm border border-line bg-raised p-5">
       <div className="flex items-baseline justify-between">
@@ -29,8 +29,9 @@ function MinimalProgress() {
   );
 }
 
-function BauhausProgress() {
-  const [step, setStep] = useState(3);
+function BauhausProgress({ session }: VariantDemoProps) {
+  const [pct, setPct] = useSessionState(session, 'pct', 30);
+  const step = Math.max(1, Math.min(10, Math.round(pct / 10)));
   const cols = ['#e02b20', '#1f4fd8', '#f4c400'];
   return (
     <div className="mx-auto w-full max-w-sm bg-[#f4efe4] p-5 text-black" style={{ border: '3px solid #000' }}>
@@ -42,7 +43,7 @@ function BauhausProgress() {
         {Array.from({ length: 10 }).map((_, i) => (
           <button
             key={i}
-            onClick={() => setStep(i + 1)}
+            onClick={() => setPct((i + 1) * 10)}
             aria-label={`${(i + 1) * 10}%`}
             className="h-6 flex-1"
             style={{ background: i < step ? cols[i % 3] : '#fff', border: '2px solid #000' }}
@@ -54,8 +55,8 @@ function BauhausProgress() {
   );
 }
 
-function PixelProgress() {
-  const [pct, setPct] = useState(40);
+function PixelProgress({ session }: VariantDemoProps) {
+  const [pct, setPct] = useSessionState(session, 'pct', 40);
   return (
     <div className="mx-auto w-full max-w-sm bg-[#0d0d12] p-5 font-mono text-[#e8e8ff]">
       <div className="flex items-center justify-between text-[11px] uppercase tracking-widest">

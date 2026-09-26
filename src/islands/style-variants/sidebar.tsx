@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function Deco() {
-  const [active, setActive] = useState('Overview');
+function Deco({ session }: VariantDemoProps) {
+  const [active, setActive] = useSessionState(session, 'active', 'Overview');
   const items = ['Overview', 'Collection', 'Archive'];
   return (
     <div className="mx-auto w-full max-w-sm bg-[#12100c] p-5 text-[#e8d8a8]" style={{ border: '1px solid #8a6d2f' }}>
@@ -18,8 +18,8 @@ function Deco() {
   );
 }
 
-function Bento() {
-  const [active, setActive] = useState('Inbox');
+function Bento({ session }: VariantDemoProps) {
+  const [active, setActive] = useSessionState(session, 'active', 'Inbox');
   const items = ['Inbox', 'Today', 'Projects', 'Archive', 'Settings'];
   const dots = ['bg-accent', 'bg-ink-2', 'bg-ink-3', 'bg-accent-soft', 'bg-line-strong'];
   return (
@@ -36,8 +36,8 @@ function Bento() {
   );
 }
 
-function Editorial() {
-  const [active, setActive] = useState(1);
+function Editorial({ session }: VariantDemoProps) {
+  const [active, setActive] = useSessionState(session, 'active', 1);
   const items = ['The New Order', 'On Craft', 'Field Notes', 'Archive'];
   return (
     <div className="mx-auto w-full max-w-sm border-t-4 border-ink bg-paper px-5 py-4">

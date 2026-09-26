@@ -1,9 +1,10 @@
-import { useState, type KeyboardEvent } from 'react';
-import type { StyleVariantSet } from './types';
+import { type KeyboardEvent } from 'react';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
 /** 悬停与键盘聚焦都能显示；Escape 关闭；提示带 role=tooltip 与 aria-describedby。 */
-function useTooltip(id: string) {
-  const [show, setShow] = useState(false);
+function useTooltip(session: VariantDemoProps['session'], id: string) {
+  const [show, setShow] = useSessionState(session, 'open', false);
   const triggerProps = {
     'aria-describedby': show ? id : undefined,
     onMouseEnter: () => setShow(true),
@@ -17,8 +18,8 @@ function useTooltip(id: string) {
   return { show, triggerProps, tooltipProps: { role: 'tooltip' as const, id } };
 }
 
-function RetroTooltip() {
-  const { show, triggerProps, tooltipProps } = useTooltip('retro-tooltip');
+function RetroTooltip({ session }: VariantDemoProps) {
+  const { show, triggerProps, tooltipProps } = useTooltip(session, 'retro-tooltip');
   return (
     <div
       className="mx-auto w-full max-w-sm rounded-lg bg-[#1b1420] p-8 text-[#f4d9a0]"
@@ -43,8 +44,8 @@ function RetroTooltip() {
   );
 }
 
-function CyberTooltip() {
-  const { show, triggerProps, tooltipProps } = useTooltip('cyber-tooltip');
+function CyberTooltip({ session }: VariantDemoProps) {
+  const { show, triggerProps, tooltipProps } = useTooltip(session, 'cyber-tooltip');
   return (
     <div className="mx-auto w-full max-w-sm bg-[#05060a] p-8 font-mono text-[#7cf9ff]" style={{ border: '1px solid #ff2e88' }}>
       <p className="text-[10px] uppercase tracking-[0.3em] text-[#ff2e88]">net://node</p>
@@ -71,8 +72,8 @@ function CyberTooltip() {
   );
 }
 
-function SkeuoTooltip() {
-  const { show, triggerProps, tooltipProps } = useTooltip('skeuo-tooltip');
+function SkeuoTooltip({ session }: VariantDemoProps) {
+  const { show, triggerProps, tooltipProps } = useTooltip(session, 'skeuo-tooltip');
   return (
     <div
       className="mx-auto w-full max-w-sm rounded-xl p-8 text-[#2b2b2b]"

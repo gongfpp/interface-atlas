@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function NeumorphDropdown() {
-  const [open, setOpen] = useState(false);
+function NeumorphDropdown({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', false);
   const items = ['Duplicate', 'Rename', 'Archive'];
   return (
     <div className="mx-auto flex w-full max-w-sm flex-col items-center gap-3 bg-[#e6e9ef] p-6 text-[#3b4252]">
@@ -29,8 +29,8 @@ function NeumorphDropdown() {
   );
 }
 
-function Y2kDropdown() {
-  const [open, setOpen] = useState(false);
+function Y2kDropdown({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', false);
   const items = ['My Profile', 'Buddies', 'Sign Out'];
   return (
     <div className="mx-auto w-full max-w-sm rounded-[1.5rem] bg-gradient-to-b from-[#c8f0ff] to-[#e9d5ff] p-6">
@@ -53,8 +53,8 @@ function Y2kDropdown() {
   );
 }
 
-function SketchDropdown() {
-  const [open, setOpen] = useState(false);
+function SketchDropdown({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', false);
   const items = ['Rename sketch', 'Duplicate', 'Delete'];
   return (
     <div className="mx-auto w-full max-w-sm bg-[#fbf7ec] p-6 text-[#2b2b2b]">

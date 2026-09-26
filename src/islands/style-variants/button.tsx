@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function Minimal() {
-  const [saved, setSaved] = useState(false);
+function Minimal({ session }: VariantDemoProps) {
+  const [saved, setSaved] = useSessionState(session, 'saved', false);
   return (
     <div className="mx-auto flex max-w-sm flex-col gap-3 border border-black/10 bg-white p-5 text-black">
       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-black/50">Save changes</p>

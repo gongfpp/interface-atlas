@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function Neobrutal() {
-  const [open, setOpen] = useState(false);
+function Neobrutal({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', false);
   return (
     <div className="relative mx-auto h-40 w-full max-w-sm border-[2.5px] border-black bg-[#fdf6b2]">
       <p className="p-4 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black">New note</p>
@@ -20,8 +20,8 @@ function Neobrutal() {
   );
 }
 
-function LiquidGlass() {
-  const [open, setOpen] = useState(false);
+function LiquidGlass({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', false);
   return (
     <div className="relative mx-auto h-40 w-full max-w-sm overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#8ec5ff] via-[#c9a7ff] to-[#ffb6d5] p-5">
       <span className="pointer-events-none absolute -right-6 -top-8 h-24 w-24 rounded-full bg-white/50 blur-2xl" />
@@ -38,8 +38,8 @@ function LiquidGlass() {
   );
 }
 
-function Clay() {
-  const [open, setOpen] = useState(false);
+function Clay({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', false);
   const puffy = { boxShadow: 'inset -4px -4px 8px rgba(120,90,160,0.25), inset 4px 4px 8px rgba(255,255,255,0.9), 0 10px 18px rgba(120,90,160,0.25)' };
   return (
     <div className="relative mx-auto h-40 w-full max-w-sm overflow-hidden rounded-[2rem] bg-[#efe6ff] p-5 text-[#5b4b8a]">

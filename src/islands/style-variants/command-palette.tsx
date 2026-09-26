@@ -1,10 +1,11 @@
 import { useState, type KeyboardEvent } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function useCommands(cmds: string[]) {
+function useCommands(session: VariantDemoProps['session'], cmds: string[]) {
   const [q, setQ] = useState('');
   const [active, setActive] = useState(0);
-  const [result, setResult] = useState('');
+  const [result, setResult] = useSessionState(session, 'result', '');
   const hits = cmds.filter((c) => c.toLowerCase().includes(q.toLowerCase()));
   const run = (c: string) => setResult(`Ran: ${c}`);
   const onKey = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -25,8 +26,8 @@ function useCommands(cmds: string[]) {
   return { q, hits, active, result, setActive, run, onKey, change };
 }
 
-function AuroraPalette() {
-  const { q, hits, active, result, setActive, run, onKey, change } = useCommands(['New document', 'Invite teammate', 'Open settings', 'Toggle theme']);
+function AuroraPalette({ session }: VariantDemoProps) {
+  const { q, hits, active, result, setActive, run, onKey, change } = useCommands(session, ['New document', 'Invite teammate', 'Open settings', 'Toggle theme']);
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-[#0a0a14] p-4 text-white">
       <span className="pointer-events-none absolute -left-10 -top-10 h-40 w-40 rounded-full bg-[#6d4bff]/50 blur-3xl" />
@@ -64,8 +65,8 @@ function AuroraPalette() {
   );
 }
 
-function GlassPalette() {
-  const { q, hits, active, result, setActive, run, onKey, change } = useCommands(['Search files', 'Run task', 'New window', 'Preferences']);
+function GlassPalette({ session }: VariantDemoProps) {
+  const { q, hits, active, result, setActive, run, onKey, change } = useCommands(session, ['Search files', 'Run task', 'New window', 'Preferences']);
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-gradient-to-br from-[#ff6ec7] via-[#7c5cff] to-[#5ad1ff] p-2">
       <div className="rounded-xl border border-white/40 bg-white/20 p-3 backdrop-blur-xl">
@@ -100,8 +101,8 @@ function GlassPalette() {
   );
 }
 
-function FlatPalette() {
-  const { q, hits, active, result, setActive, run, onKey, change } = useCommands(['Create board', 'Add column', 'Assign member', 'Archive']);
+function FlatPalette({ session }: VariantDemoProps) {
+  const { q, hits, active, result, setActive, run, onKey, change } = useCommands(session, ['Create board', 'Add column', 'Assign member', 'Archive']);
   return (
     <div className="mx-auto w-full max-w-sm bg-raised p-4" style={{ border: '2px solid #2d3340' }}>
       <input

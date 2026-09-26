@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
 const editions = [
   { kicker: 'Feature', title: 'The Quiet Grid', deck: 'Whitespace as structure, rules as rhythm.' },
@@ -7,8 +7,8 @@ const editions = [
   { kicker: 'Profile', title: 'Paper & Ink', deck: 'Masthead, deck, caption — nothing else.' },
 ];
 
-function Editorial() {
-  const [i, setI] = useState(0);
+function Editorial({ session }: VariantDemoProps) {
+  const [i, setI] = useSessionState(session, 'index', 0);
   const s = editions[i];
   return (
     <div className="mx-auto w-full max-w-sm border border-line bg-raised p-6 font-serif text-ink">
@@ -36,8 +36,8 @@ function Editorial() {
 
 const feeds = ['NEON DISTRICT', 'CHROME RAIN', 'DATA DRIFT'];
 
-function Cyberpunk() {
-  const [i, setI] = useState(0);
+function Cyberpunk({ session }: VariantDemoProps) {
+  const [i, setI] = useSessionState(session, 'index', 0);
   return (
     <div className="mx-auto w-full max-w-sm border border-[#00f0ff]/60 bg-[#08080f] p-5 font-mono text-[#7df9ff] shadow-[0_0_22px_rgba(0,240,255,0.3)]">
       <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.25em] text-[#ff2bd6]">
@@ -61,8 +61,8 @@ function Cyberpunk() {
 
 const frames = ['STAGE 1UP', 'STAGE QUEST', 'STAGE SAVE'];
 
-function Pixel() {
-  const [i, setI] = useState(0);
+function Pixel({ session }: VariantDemoProps) {
+  const [i, setI] = useSessionState(session, 'index', 0);
   return (
     <div className="mx-auto w-full max-w-sm border-4 border-[#41a6f6] bg-[#1a1c2c] p-5 font-mono text-[#f4f4f4]">
       <div className="flex items-center justify-between text-[10px] uppercase text-[#ef7d57]">

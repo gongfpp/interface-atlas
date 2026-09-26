@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function EditorialTable() {
-  const [asc, setAsc] = useState(false);
+function EditorialTable({ session }: VariantDemoProps) {
+  const [asc, setAsc] = useSessionState(session, 'asc', false);
   const rows = [
     { city: 'Tokyo', pop: 37.4 },
     { city: 'Paris', pop: 11.2 },
@@ -36,8 +36,8 @@ function EditorialTable() {
   );
 }
 
-function SwissTable() {
-  const [asc, setAsc] = useState(false);
+function SwissTable({ session }: VariantDemoProps) {
+  const [asc, setAsc] = useSessionState(session, 'asc', false);
   const rows = [
     { city: 'Tokyo', units: 37.4 },
     { city: 'Paris', units: 11.2 },
@@ -73,7 +73,7 @@ function SwissTable() {
   );
 }
 
-function HandDrawnTable() {
+function HandDrawnTable(_: VariantDemoProps) {
   const rows = [
     ['Milk', '2'],
     ['Bread', '1'],

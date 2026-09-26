@@ -1,6 +1,6 @@
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
 
-function BrutalBadge() {
+function BrutalBadge(_: VariantDemoProps) {
   return (
     <div className="mx-auto flex w-full max-w-sm flex-wrap items-center gap-4 bg-[#e8ff6b] p-6 text-black" style={{ border: '3px solid #000' }}>
       <span className="border-[3px] border-black bg-white px-3 py-1 text-xs font-black uppercase tracking-wide shadow-[4px_4px_0_0_#000]">New</span>
@@ -10,7 +10,7 @@ function BrutalBadge() {
   );
 }
 
-function EditorialBadge() {
+function EditorialBadge(_: VariantDemoProps) {
   return (
     <div className="mx-auto w-full max-w-sm border-y-2 border-ink bg-raised px-2 py-5">
       <div className="flex items-baseline gap-4">
@@ -27,7 +27,7 @@ function EditorialBadge() {
   );
 }
 
-function GlossBadge() {
+function GlossBadge(_: VariantDemoProps) {
   return (
     <div
       className="mx-auto w-full max-w-sm rounded-xl bg-gradient-to-b from-[#e9edf2] to-[#c7ced8] p-6"

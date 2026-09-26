@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function BentoMenu() {
-  const [active, setActive] = useState('Home');
+function BentoMenu({ session }: VariantDemoProps) {
+  const [active, setActive] = useSessionState(session, 'active', 'Home');
   const items = ['Home', 'Explore', 'Library', 'Inbox', 'Profile'];
   return (
     <div className="mx-auto grid w-full max-w-sm grid-cols-2 gap-3 bg-paper p-1">
@@ -22,8 +22,8 @@ function BentoMenu() {
   );
 }
 
-function CyberMenu() {
-  const [active, setActive] = useState(0);
+function CyberMenu({ session }: VariantDemoProps) {
+  const [active, setActive] = useSessionState(session, 'active', 0);
   const items = ['/dashboard', '/net-runner', '/black-market', '/settings'];
   return (
     <div
@@ -49,8 +49,8 @@ function CyberMenu() {
   );
 }
 
-function OrganicMenu() {
-  const [active, setActive] = useState('Garden');
+function OrganicMenu({ session }: VariantDemoProps) {
+  const [active, setActive] = useSessionState(session, 'active', 'Garden');
   const items = ['Garden', 'Harvest', 'Compost'];
   return (
     <div className="mx-auto w-full max-w-sm rounded-[2.5rem] bg-[#eef3e2] p-6 text-[#35482e]">

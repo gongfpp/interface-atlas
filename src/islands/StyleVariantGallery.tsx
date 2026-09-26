@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import type { StyleVariant, StyleVariantSet } from './style-variants/types';
+import type { LabSession, StyleVariant, StyleVariantSet } from './style-variants/types';
+import { createSession } from './style-variants/session';
 
 /**
  * 组件详情页的“不同风格下的它”画廊。
@@ -17,6 +18,7 @@ export default function StyleVariantGallery({
 }) {
   const [variants, setVariants] = useState<StyleVariantSet | null>(null);
   const [active, setActive] = useState(0);
+  const [session] = useState<LabSession>(() => createSession());
   const en = locale === 'en';
   const loader = modules[`./style-variants/${component}.tsx`];
 
@@ -70,7 +72,7 @@ export default function StyleVariantGallery({
       <div className="demo-canvas">
         <div className="demo-viewport">
           <div key={current.style} className="demo-content">
-            <current.Demo />
+            <current.Demo session={session} locale={locale} />
           </div>
         </div>
         <p className="mt-4 border-t border-line pt-3 text-xs leading-relaxed text-ink-3">

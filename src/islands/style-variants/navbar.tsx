@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function Swiss() {
-  const [active, setActive] = useState('Work');
+function Swiss({ session }: VariantDemoProps) {
+  const [active, setActive] = useSessionState(session, 'active', 'Work');
   const items = ['Work', 'Studio', 'Contact'];
   return (
     <div className="mx-auto w-full max-w-md bg-white px-5 py-3 text-black" style={{ borderBottom: '3px solid #111' }}>
@@ -21,7 +22,7 @@ function Swiss() {
   );
 }
 
-function Neobrutal() {
+function Neobrutal(_props: VariantDemoProps) {
   const [menu, setMenu] = useState(false);
   return (
     <div className="mx-auto w-full max-w-md">
@@ -43,8 +44,8 @@ function Neobrutal() {
   );
 }
 
-function Glass() {
-  const [active, setActive] = useState(0);
+function Glass({ session }: VariantDemoProps) {
+  const [active, setActive] = useSessionState(session, 'active', 0);
   const items = ['Home', 'Explore', 'Saved'];
   return (
     <div className="mx-auto w-full max-w-md overflow-hidden rounded-2xl bg-gradient-to-r from-[#7c5cff] via-[#ff6ec7] to-[#5ad1ff] p-2">

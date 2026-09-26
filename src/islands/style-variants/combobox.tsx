@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function Corporate() {
+function Corporate({ session }: VariantDemoProps) {
   const all = ['Aurora', 'Bauhaus', 'Cyberpunk', 'Organic', 'Vaporwave'];
   const [q, setQ] = useState('');
-  const [val, setVal] = useState('');
+  const [val, setVal] = useSessionState(session, 'value', '');
   const list = all.filter((x) => x.toLowerCase().includes(q.toLowerCase()));
   return (
     <div className="mx-auto w-full max-w-sm rounded-xl border border-slate-200 bg-white p-5 text-slate-800 shadow-sm">
@@ -43,9 +44,9 @@ function Corporate() {
   );
 }
 
-function Cyber() {
+function Cyber({ session }: VariantDemoProps) {
   const all = ['NEON-01', 'GRID-77', 'SYNTH-4', 'GLITCH-9'];
-  const [q, setQ] = useState('');
+  const [q, setQ] = useSessionState(session, 'value', '');
   const list = all.filter((x) => x.toLowerCase().includes(q.toLowerCase()));
   return (
     <div className="mx-auto w-full max-w-sm border border-cyan-400 bg-[#05060f] p-4 font-mono text-cyan-300 shadow-[0_0_20px_#00e5ff44]">
@@ -68,7 +69,7 @@ function Cyber() {
   );
 }
 
-function Bento() {
+function Bento({ session }: VariantDemoProps) {
   const all = [
     { n: 'Aurora', c: 'bg-violet-100 text-violet-900' },
     { n: 'Bauhaus', c: 'bg-amber-100 text-amber-900' },
@@ -76,7 +77,7 @@ function Bento() {
     { n: 'Pixel', c: 'bg-sky-100 text-sky-900' },
   ];
   const [q, setQ] = useState('');
-  const [val, setVal] = useState('');
+  const [val, setVal] = useSessionState(session, 'value', '');
   const list = all.filter((x) => x.n.toLowerCase().includes(q.toLowerCase()));
   return (
     <div className="mx-auto w-full max-w-sm rounded-2xl bg-neutral-100 p-3 text-neutral-900">

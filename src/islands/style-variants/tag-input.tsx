@@ -1,5 +1,6 @@
 import { useState, type KeyboardEvent } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
 interface Tag {
   id: number;
@@ -14,8 +15,8 @@ function isSubmit(e: KeyboardEvent<HTMLInputElement>) {
   return e.key === 'Enter' && !e.nativeEvent.isComposing;
 }
 
-function Minimal() {
-  const [tags, setTags] = useState<Tag[]>([{ id: -2, label: 'design' }, { id: -1, label: 'systems' }]);
+function Minimal({ session }: VariantDemoProps) {
+  const [tags, setTags] = useSessionState(session, 'tags', [{ id: -2, label: 'design' }, { id: -1, label: 'systems' }]);
   const [value, setValue] = useState('');
   const add = () => {
     const v = value.trim();
@@ -45,8 +46,8 @@ function Minimal() {
   );
 }
 
-function Memphis() {
-  const [tags, setTags] = useState<Tag[]>([{ id: -2, label: 'pop' }, { id: -1, label: 'wow' }]);
+function Memphis({ session }: VariantDemoProps) {
+  const [tags, setTags] = useSessionState(session, 'tags', [{ id: -2, label: 'pop' }, { id: -1, label: 'wow' }]);
   const [value, setValue] = useState('');
   const add = () => {
     const v = value.trim();
@@ -76,8 +77,8 @@ function Memphis() {
   );
 }
 
-function Brutal() {
-  const [tags, setTags] = useState<Tag[]>([{ id: -2, label: 'RAW' }, { id: -1, label: 'FORM' }]);
+function Brutal({ session }: VariantDemoProps) {
+  const [tags, setTags] = useSessionState(session, 'tags', [{ id: -2, label: 'RAW' }, { id: -1, label: 'FORM' }]);
   const [value, setValue] = useState('');
   const add = () => {
     const v = value.trim();

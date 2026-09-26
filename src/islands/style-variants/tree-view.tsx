@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
 const TREE = [
   { label: 'src', children: ['app.tsx', 'styles.css'] },
@@ -8,17 +8,17 @@ const TREE = [
 const ROMAN = ['I', 'II', 'III'];
 const toggleIn = (list: string[], k: string) => (list.includes(k) ? list.filter((x) => x !== k) : [...list, k]);
 
-function BrutalistTree() {
-  const [open, setOpen] = useState(['src']);
+function BrutalistTree({ session }: VariantDemoProps) {
+  const [expanded, setExpanded] = useSessionState(session, 'expanded', ['src']);
   return (
     <div className="mx-auto w-full max-w-sm border-4 border-black bg-white font-mono text-black">
       <p className="border-b-4 border-black bg-black px-4 py-2 text-sm font-black uppercase tracking-widest text-white">Files</p>
       <ul>
         {TREE.map((node) => {
-          const on = open.includes(node.label);
+          const on = expanded.includes(node.label);
           return (
             <li key={node.label} className="border-b-2 border-black last:border-b-0">
-              <button type="button" aria-expanded={on} onClick={() => setOpen((o) => toggleIn(o, node.label))} className="flex w-full items-center gap-2 px-4 py-3 text-left text-lg font-black uppercase hover:bg-[#ff2d2d] hover:text-white">
+              <button type="button" aria-expanded={on} onClick={() => setExpanded((o) => toggleIn(o, node.label))} className="flex w-full items-center gap-2 px-4 py-3 text-left text-lg font-black uppercase hover:bg-[#ff2d2d] hover:text-white">
                 <span className="w-4">{on ? '−' : '+'}</span>
                 {node.label}
               </button>
@@ -37,17 +37,17 @@ function BrutalistTree() {
   );
 }
 
-function EditorialTree() {
-  const [open, setOpen] = useState(['src']);
+function EditorialTree({ session }: VariantDemoProps) {
+  const [expanded, setExpanded] = useSessionState(session, 'expanded', ['src']);
   return (
     <div className="mx-auto w-full max-w-sm bg-paper px-5 py-6 font-serif text-ink">
       <p className="text-center text-[10px] uppercase tracking-[0.4em] text-ink-3">Contents</p>
       <ul className="mt-4">
         {TREE.map((node, i) => {
-          const on = open.includes(node.label);
+          const on = expanded.includes(node.label);
           return (
             <li key={node.label} className="border-t border-line last:border-b">
-              <button type="button" aria-expanded={on} onClick={() => setOpen((o) => toggleIn(o, node.label))} className="flex w-full items-baseline justify-between py-3 text-left">
+              <button type="button" aria-expanded={on} onClick={() => setExpanded((o) => toggleIn(o, node.label))} className="flex w-full items-baseline justify-between py-3 text-left">
                 <span className="text-lg italic">{ROMAN[i]}. {node.label}</span>
                 <span className="text-xs">{on ? '—' : '+'}</span>
               </button>
@@ -69,8 +69,8 @@ function EditorialTree() {
   );
 }
 
-function NeumorphicTree() {
-  const [open, setOpen] = useState(['src']);
+function NeumorphicTree({ session }: VariantDemoProps) {
+  const [expanded, setExpanded] = useSessionState(session, 'expanded', ['src']);
   const raised = 'shadow-[6px_6px_12px_rgba(163,177,198,0.6),-6px_-6px_12px_rgba(255,255,255,0.9)]';
   const inset = 'shadow-[inset_4px_4px_8px_rgba(163,177,198,0.55),inset_-4px_-4px_8px_rgba(255,255,255,0.9)]';
   return (
@@ -78,10 +78,10 @@ function NeumorphicTree() {
       <p className="text-xs font-semibold uppercase tracking-widest text-[#8a97ad]">Explorer</p>
       <ul className="mt-4 space-y-3">
         {TREE.map((node) => {
-          const on = open.includes(node.label);
+          const on = expanded.includes(node.label);
           return (
             <li key={node.label}>
-              <button type="button" aria-expanded={on} onClick={() => setOpen((o) => toggleIn(o, node.label))} className={`flex w-full items-center justify-between rounded-2xl bg-[#e6e9f0] px-4 py-3 text-left text-sm font-semibold ${on ? inset : raised}`}>
+              <button type="button" aria-expanded={on} onClick={() => setExpanded((o) => toggleIn(o, node.label))} className={`flex w-full items-center justify-between rounded-2xl bg-[#e6e9f0] px-4 py-3 text-left text-sm font-semibold ${on ? inset : raised}`}>
                 {node.label}
                 <span>{on ? '▾' : '▸'}</span>
               </button>

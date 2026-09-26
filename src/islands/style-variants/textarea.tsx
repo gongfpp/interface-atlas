@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function Flat() {
-  const [v, setV] = useState('Write a short note…');
+function Flat({ session }: VariantDemoProps) {
+  const [v, setV] = useSessionState(session, 'value', 'Write a short note…');
   return (
     <div className="mx-auto w-full max-w-sm rounded-lg bg-[#eef4ff] p-4 text-[#0f172a]">
       <div className="mb-2 flex items-center justify-between">
@@ -20,8 +20,8 @@ function Flat() {
   );
 }
 
-function HandDrawn() {
-  const [v, setV] = useState('dear notebook,');
+function HandDrawn({ session }: VariantDemoProps) {
+  const [v, setV] = useSessionState(session, 'value', 'dear notebook,');
   return (
     <div className="mx-auto w-full max-w-sm -rotate-1 bg-[#fbf7ec] p-5 text-[#2f2a25]">
       <p className="font-serif text-lg italic">Scratch pad</p>
@@ -37,8 +37,8 @@ function HandDrawn() {
   );
 }
 
-function Cyberpunk() {
-  const [v, setV] = useState('> transmit');
+function Cyberpunk({ session }: VariantDemoProps) {
+  const [v, setV] = useSessionState(session, 'value', '> transmit');
   return (
     <div
       className="mx-auto w-full max-w-sm bg-[#05060a] p-5 font-mono text-[#7df9ff]"

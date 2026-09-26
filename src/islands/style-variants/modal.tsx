@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
-import type { StyleVariantSet } from './types';
+import { useCallback, useEffect, useRef, type ReactNode } from 'react';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
 const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -7,22 +8,22 @@ const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabi
  * 内嵌对话框行为：打开时把焦点移入，Tab 循环，Escape 关闭，关闭后焦点归还触发按钮。
  * 视觉被限制在演示容器内，因此不声明 aria-modal（页面其余部分并未 inert）。
  */
-function useDialog() {
-  const [open, setOpen] = useState(false);
+function useDialog(session: VariantDemoProps['session']) {
+  const [open, setOpen] = useSessionState(session, 'open', false);
   const openerRef = useRef<HTMLElement | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const interacted = useRef(false);
+  const interacted = useRef(open);
 
   const openDialog = () => {
     openerRef.current = (document.activeElement as HTMLElement) ?? triggerRef.current;
     interacted.current = true;
     setOpen(true);
   };
-  const closeDialog = () => {
+  const closeDialog = useCallback(() => {
     setOpen(false);
     (openerRef.current ?? triggerRef.current)?.focus();
-  };
+  }, [setOpen]);
 
   useEffect(() => {
     if (!open || !interacted.current) return;
@@ -52,7 +53,7 @@ function useDialog() {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [open]);
+  }, [open, closeDialog]);
 
   return { open, openDialog, closeDialog, triggerRef, dialogRef };
 }
@@ -87,8 +88,8 @@ function Overlay({
   );
 }
 
-function Glass() {
-  const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialog();
+function Glass({ session }: VariantDemoProps) {
+  const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialog(session);
   return (
     <div className="relative mx-auto flex min-h-[220px] w-full max-w-md items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#7c5cff] via-[#ff6ec7] to-[#5ad1ff] p-6 text-white">
       <button ref={triggerRef} type="button" onClick={openDialog} className="rounded-xl border border-white/40 bg-white/20 px-4 py-2 text-xs font-semibold backdrop-blur-md">Open dialog</button>
@@ -112,8 +113,8 @@ function Glass() {
   );
 }
 
-function Clay() {
-  const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialog();
+function Clay({ session }: VariantDemoProps) {
+  const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialog(session);
   return (
     <div className="relative mx-auto flex min-h-[220px] w-full max-w-md items-center justify-center overflow-hidden rounded-[36px] bg-[#e8ecff] p-6">
       <button ref={triggerRef} type="button" onClick={openDialog} className="rounded-2xl bg-[#b8c0ff] px-4 py-2 text-xs font-bold text-[#4b3f8f] shadow-[6px_6px_14px_#c5c9e0,-6px_-6px_14px_#ffffff]">Open</button>
@@ -137,8 +138,8 @@ function Clay() {
   );
 }
 
-function Y2K() {
-  const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialog();
+function Y2K({ session }: VariantDemoProps) {
+  const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialog(session);
   return (
     <div className="relative mx-auto flex min-h-[220px] w-full max-w-md items-center justify-center overflow-hidden rounded-[28px] bg-gradient-to-br from-[#c7f0ff] to-[#ffd6f5] p-6">
       <button ref={triggerRef} type="button" onClick={openDialog} className="rounded-full border-2 border-white bg-gradient-to-b from-[#bfe9ff] to-[#6aa6ff] px-4 py-2 text-xs font-bold text-white shadow-[0_4px_0_#3d6fb8]">Open</button>

@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function Skeuo() {
-  const [on, setOn] = useState(true);
+function Skeuo({ session }: VariantDemoProps) {
+  const [on, setOn] = useSessionState(session, 'on', true);
   return (
     <div className="mx-auto w-full max-w-sm rounded-2xl border border-[#b8bcc4] bg-gradient-to-b from-[#f2f3f5] to-[#d9dce1] p-6 text-[#333] shadow-[inset_0_1px_0_#fff,0_8px_20px_#0000001a]">
       <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#5b6069]">Airplane mode</p>
@@ -29,8 +29,8 @@ function Skeuo() {
   );
 }
 
-function Flat() {
-  const [on, setOn] = useState(false);
+function Flat({ session }: VariantDemoProps) {
+  const [on, setOn] = useSessionState(session, 'on', false);
   return (
     <div className="mx-auto w-full max-w-sm rounded-xl bg-[#f4f5f7] p-6 text-[#111827]">
       <div className="flex items-center justify-between">
@@ -54,8 +54,8 @@ function Flat() {
   );
 }
 
-function Aurora() {
-  const [on, setOn] = useState(true);
+function Aurora({ session }: VariantDemoProps) {
+  const [on, setOn] = useSessionState(session, 'on', true);
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-[#070b16] p-6 text-white">
       <span

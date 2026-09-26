@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function Swiss() {
-  const [v, setV] = useState('grid');
+function Swiss({ session }: VariantDemoProps) {
+  const [v, setV] = useSessionState(session, 'value', 'grid');
   return (
     <div className="mx-auto w-full max-w-sm border border-black bg-white p-5 text-black">
       <div className="grid grid-cols-[auto_1fr] items-baseline gap-x-3 border-b-2 border-black pb-2">
@@ -26,8 +26,8 @@ function Swiss() {
   );
 }
 
-function Bauhaus() {
-  const [v, setV] = useState('b');
+function Bauhaus({ session }: VariantDemoProps) {
+  const [v, setV] = useSessionState(session, 'value', 'b');
   return (
     <div className="mx-auto w-full max-w-sm bg-[#f4efe3] p-6 text-black">
       <div className="mb-4 flex items-center gap-3">
@@ -53,8 +53,8 @@ function Bauhaus() {
   );
 }
 
-function LiquidGlass() {
-  const [v, setV] = useState('pro');
+function LiquidGlass({ session }: VariantDemoProps) {
+  const [v, setV] = useSessionState(session, 'value', 'pro');
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-[28px] bg-gradient-to-br from-[#0f172a] via-[#3b2f63] to-[#0ea5e9] p-6 text-white">
       <span className="pointer-events-none absolute -top-10 left-8 h-32 w-32 rounded-full bg-fuchsia-400/40 blur-2xl" />

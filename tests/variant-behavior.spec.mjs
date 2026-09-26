@@ -87,3 +87,19 @@ test("tag input removes only the targeted duplicate tag", async ({ page }) => {
   await section.getByRole("button", { name: "Remove dup" }).first().click();
   await expect(section.getByRole("button", { name: "Remove dup" })).toHaveCount(1);
 });
+
+test("input value survives a style switch (shared lab session)", async ({ page }) => {
+  const section = await selectStyle(page, "input", "minimalism");
+  const field = section.getByRole("textbox").first();
+  await field.fill("kept across styles");
+  await section.locator('[data-style="neobrutalism"]').click();
+  await expect(section.getByRole("textbox").first()).toHaveValue("kept across styles");
+});
+
+test("active tab survives a style switch", async ({ page }) => {
+  const section = await selectStyle(page, "tabs", "flat-design");
+  await section.getByRole("tab").nth(2).click();
+  await expect(section.getByRole("tab").nth(2)).toHaveAttribute("aria-selected", "true");
+  await section.locator('[data-style="memphis"]').click();
+  await expect(section.getByRole("tab").nth(2)).toHaveAttribute("aria-selected", "true");
+});

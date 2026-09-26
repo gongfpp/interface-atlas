@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function FlatAvatar() {
+function FlatAvatar(_: VariantDemoProps) {
   const people: [string, string][] = [
     ['AL', '#ff6b6b'],
     ['MK', '#4d96ff'],
@@ -28,8 +28,8 @@ function FlatAvatar() {
   );
 }
 
-function MemphisAvatar() {
-  const [picked, setPicked] = useState(0);
+function MemphisAvatar({ session }: VariantDemoProps) {
+  const [picked, setPicked] = useSessionState(session, 'selected', 0);
   const people = ['A', 'B', 'C'];
   const colors = ['#ff3d9a', '#00d2e0', '#ffe23d'];
   return (
@@ -59,7 +59,7 @@ function MemphisAvatar() {
   );
 }
 
-function DecoAvatar() {
+function DecoAvatar(_: VariantDemoProps) {
   return (
     <div className="mx-auto w-full max-w-sm bg-[#10131c] p-6 text-center" style={{ border: '1px solid #c8a24a' }}>
       <div className="mx-auto flex w-fit items-center gap-3 text-[#c8a24a]">

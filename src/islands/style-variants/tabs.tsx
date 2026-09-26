@@ -1,8 +1,9 @@
-import { useState, type KeyboardEvent } from 'react';
-import type { StyleVariantSet } from './types';
+import { type KeyboardEvent } from 'react';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function useTabs(count: number, initial: number) {
-  const [active, setActive] = useState(initial);
+function useTabs(session: VariantDemoProps['session'], count: number, initial: number) {
+  const [active, setActive] = useSessionState(session, 'active', initial);
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     const list = e.currentTarget;
     const buttons = Array.from(list.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
@@ -21,10 +22,10 @@ function useTabs(count: number, initial: number) {
   return { active, setActive, onKeyDown };
 }
 
-function Flat() {
+function Flat({ session }: VariantDemoProps) {
   const tabs = ['Design', 'Prototype', 'Specs'];
   const panels = ['Visual system and tokens.', 'Interactive flows and states.', 'Engineering handoff notes.'];
-  const { active, setActive, onKeyDown } = useTabs(tabs.length, 0);
+  const { active, setActive, onKeyDown } = useTabs(session, tabs.length, 0);
   const prefix = 'flat-tab';
   return (
     <div className="mx-auto w-full max-w-sm bg-paper">
@@ -62,10 +63,10 @@ function Flat() {
   );
 }
 
-function LiquidGlass() {
+function LiquidGlass({ session }: VariantDemoProps) {
   const tabs = ['Day', 'Week', 'Month'];
   const panels = ['Hourly forecast for the next 24 hours.', 'Daily outlook across seven days.', 'Monthly averages and trends.'];
-  const { active, setActive, onKeyDown } = useTabs(tabs.length, 1);
+  const { active, setActive, onKeyDown } = useTabs(session, tabs.length, 1);
   const prefix = 'glass-tab';
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl bg-gradient-to-br from-[#2a2f45] to-[#5b3a6e] p-5">
@@ -104,10 +105,10 @@ function LiquidGlass() {
   );
 }
 
-function Memphis() {
+function Memphis({ session }: VariantDemoProps) {
   const tabs = ['Pop', 'Jazz', 'Funk'];
   const panels = ['Bright, maximalist pop styling.', 'Laid-back jazz groove.', 'Heavy syncopated funk.'];
-  const { active, setActive, onKeyDown } = useTabs(tabs.length, 0);
+  const { active, setActive, onKeyDown } = useTabs(session, tabs.length, 0);
   const prefix = 'memphis-tab';
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden bg-[#fdf3e3] p-5" style={{ border: '3px solid #111' }}>

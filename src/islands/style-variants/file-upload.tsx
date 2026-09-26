@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
 interface Uploaded {
   id: number;
@@ -9,8 +10,8 @@ interface Uploaded {
 /** 模块级自增 id：初始为空列表，不会造成 SSR/CSR 不一致。 */
 let uid = 0;
 
-function useFiles() {
-  const [files, setFiles] = useState<Uploaded[]>([]);
+function useFiles(session: VariantDemoProps['session']) {
+  const [files, setFiles] = useSessionState<Uploaded[]>(session, 'files', []);
   const [error, setError] = useState('');
   const onPick = (list: FileList | null) => {
     if (!list || !list.length) return;
@@ -32,8 +33,8 @@ function FileInput({ onPick, label, className }: { onPick: (l: FileList | null) 
   );
 }
 
-function HandDrawn() {
-  const { files, error, onPick, reject, remove } = useFiles();
+function HandDrawn({ session }: VariantDemoProps) {
+  const { files, error, onPick, reject, remove } = useFiles(session);
   return (
     <div className="mx-auto w-full max-w-sm rounded-[14px_6px_16px_8px] border-2 border-dashed border-neutral-800 bg-[#fdf9ef] p-5 text-neutral-800" style={{ transform: 'rotate(-0.6deg)' }}>
       <p className="font-serif text-lg italic">Drop your files here…</p>
@@ -56,8 +57,8 @@ function HandDrawn() {
   );
 }
 
-function Flat() {
-  const { files, error, onPick, reject, remove } = useFiles();
+function Flat({ session }: VariantDemoProps) {
+  const { files, error, onPick, reject, remove } = useFiles(session);
   return (
     <div className="mx-auto w-full max-w-sm bg-[#2563eb] p-6 text-white">
       <p className="text-sm font-semibold uppercase tracking-wide">Upload files</p>
@@ -79,8 +80,8 @@ function Flat() {
   );
 }
 
-function Skeuo() {
-  const { files, error, onPick, reject, remove } = useFiles();
+function Skeuo({ session }: VariantDemoProps) {
+  const { files, error, onPick, reject, remove } = useFiles(session);
   return (
     <div className="mx-auto w-full max-w-sm rounded-lg border border-[#b9b9b9] bg-gradient-to-b from-[#f2f2f2] to-[#d8d8d8] p-5 text-[#333]">
       <p className="text-xs font-bold text-[#555] [text-shadow:0_1px_0_#fff]">Upload files</p>

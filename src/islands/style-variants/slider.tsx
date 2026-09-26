@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
 const track = '[&::-webkit-slider-runnable-track]:rounded-full [&::-moz-range-track]:rounded-full';
 const thumb =
   '[&::-webkit-slider-thumb]:appearance-none [&::-moz-range-thumb]:appearance-none [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:cursor-pointer';
 
-function Brutal() {
-  const [v, setV] = useState(72);
+function Brutal({ session }: VariantDemoProps) {
+  const [v, setV] = useSessionState(session, 'value', 72);
   return (
     <div className="mx-auto w-full max-w-sm border-4 border-black bg-white p-6 font-mono text-black">
       <div className="flex items-end justify-between border-b-4 border-black pb-2">
@@ -26,8 +26,8 @@ function Brutal() {
   );
 }
 
-function Vapor() {
-  const [v, setV] = useState(55);
+function Vapor({ session }: VariantDemoProps) {
+  const [v, setV] = useSessionState(session, 'value', 55);
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-lg bg-gradient-to-b from-[#1a103c] to-[#3a0f5c] p-6 text-[#ffd9f7]">
       <div
@@ -52,8 +52,8 @@ function Vapor() {
   );
 }
 
-function Organic() {
-  const [v, setV] = useState(40);
+function Organic({ session }: VariantDemoProps) {
+  const [v, setV] = useSessionState(session, 'value', 40);
   return (
     <div className="mx-auto w-full max-w-sm rounded-[2rem] bg-[#f1efe3] p-6 text-[#39452f]">
       <p className="font-serif text-lg">Water intake</p>

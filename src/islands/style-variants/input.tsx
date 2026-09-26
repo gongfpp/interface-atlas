@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function Minimal() {
-  const [v, setV] = useState('');
+function Minimal({ session }: VariantDemoProps) {
+  const [v, setV] = useSessionState(session, 'value', '');
   return (
     <div className="mx-auto w-full max-w-sm space-y-4 border border-black/10 bg-white p-6 text-black">
       <label className="block">
@@ -19,8 +19,8 @@ function Minimal() {
   );
 }
 
-function Neobrutal() {
-  const [v, setV] = useState('hello@studio');
+function Neobrutal({ session }: VariantDemoProps) {
+  const [v, setV] = useSessionState(session, 'value', 'hello@studio');
   return (
     <div className="mx-auto w-full max-w-sm border-[2.5px] border-black bg-[#b8e0ff] p-5 text-black">
       <label className="block">
@@ -36,8 +36,8 @@ function Neobrutal() {
   );
 }
 
-function Editorial() {
-  const [v, setV] = useState('');
+function Editorial({ session }: VariantDemoProps) {
+  const [v, setV] = useSessionState(session, 'value', '');
   return (
     <div className="mx-auto w-full max-w-sm border-y-4 border-double border-ink bg-paper px-1 py-6 text-ink">
       <p className="font-serif text-2xl leading-none">Subscribe</p>

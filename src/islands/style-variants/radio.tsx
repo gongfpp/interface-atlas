@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function Glass() {
-  const [v, setV] = useState('standard');
+function Glass({ session }: VariantDemoProps) {
+  const [v, setV] = useSessionState(session, 'value', 'standard');
   const opts = [
     ['standard', 'Standard shipping'],
     ['express', 'Express 1-day'],
@@ -33,8 +33,8 @@ function Glass() {
   );
 }
 
-function Deco() {
-  const [v, setV] = useState('grand');
+function Deco({ session }: VariantDemoProps) {
+  const [v, setV] = useSessionState(session, 'value', 'grand');
   const opts = [
     ['grand', 'The Grand Suite'],
     ['terrace', 'Terrace Room'],
@@ -67,8 +67,8 @@ function Deco() {
   );
 }
 
-function Memphis() {
-  const [v, setV] = useState('s');
+function Memphis({ session }: VariantDemoProps) {
+  const [v, setV] = useSessionState(session, 'value', 's');
   const opts = [
     ['s', 'Small'],
     ['m', 'Medium'],

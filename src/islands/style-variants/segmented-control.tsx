@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
 const OPTS = ['Day', 'Week', 'Month'];
 
-function Minimal() {
-  const [i, setI] = useState(1);
+function Minimal({ session }: VariantDemoProps) {
+  const [i, setI] = useSessionState(session, 'active', 1);
   return (
     <div className="mx-auto w-full max-w-sm border border-black/10 bg-white p-5 text-black">
       <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-black/50">Range</p>
@@ -26,8 +26,8 @@ function Minimal() {
   );
 }
 
-function Brutal() {
-  const [i, setI] = useState(0);
+function Brutal({ session }: VariantDemoProps) {
+  const [i, setI] = useSessionState(session, 'active', 0);
   return (
     <div className="mx-auto w-full max-w-sm border-[3px] border-black bg-[#c6f24e] p-5 text-black">
       <p className="mb-3 font-mono text-[10px] font-black uppercase tracking-[0.2em]">Range</p>
@@ -49,8 +49,8 @@ function Brutal() {
   );
 }
 
-function Glass() {
-  const [i, setI] = useState(1);
+function Glass({ session }: VariantDemoProps) {
+  const [i, setI] = useSessionState(session, 'active', 1);
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl bg-gradient-to-br from-[#7c5cff] via-[#ff6ec7] to-[#5ad1ff] p-6 text-white">
       <span className="pointer-events-none absolute -right-6 -top-10 h-28 w-28 rounded-full bg-white/40 blur-2xl" />

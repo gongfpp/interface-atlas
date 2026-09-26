@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function FlatPopover() {
-  const [open, setOpen] = useState(true);
+function FlatPopover({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', true);
   return (
     <div className="mx-auto w-full max-w-sm bg-[#2d6cdf] p-5 text-white">
       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/80">Account</p>
@@ -22,8 +22,8 @@ function FlatPopover() {
   );
 }
 
-function NeuPopover() {
-  const [open, setOpen] = useState(true);
+function NeuPopover({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', true);
   return (
     <div className="mx-auto w-full max-w-sm rounded-3xl bg-[#e0e5ec] p-6 text-[#4a5568]">
       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#8695a8]">Display</p>
@@ -46,8 +46,8 @@ function NeuPopover() {
   );
 }
 
-function EditorialPopover() {
-  const [open, setOpen] = useState(true);
+function EditorialPopover({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', true);
   return (
     <div className="mx-auto w-full max-w-sm border-t-2 border-ink bg-raised p-5 text-ink">
       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">The Index</p>

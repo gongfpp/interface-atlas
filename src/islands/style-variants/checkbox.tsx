@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function Neumorph() {
-  const [on, setOn] = useState(true);
+function Neumorph({ session }: VariantDemoProps) {
+  const [on, setOn] = useSessionState(session, 'checked', true);
   return (
     <div className="mx-auto w-full max-w-sm rounded-2xl bg-[#e6ebf2] p-6 text-[#5a6473]">
       <p className="mb-4 text-xs font-semibold tracking-wide">Preferences</p>
@@ -30,8 +30,8 @@ function Neumorph() {
   );
 }
 
-function Pixel() {
-  const [on, setOn] = useState(false);
+function Pixel({ session }: VariantDemoProps) {
+  const [on, setOn] = useSessionState(session, 'checked', false);
   return (
     <div className="mx-auto w-full max-w-sm bg-[#1a1c2c] p-5 font-mono text-[#f4f4f4]">
       <p className="mb-4 text-[10px] uppercase tracking-[0.25em] text-[#94b0c2]">Options</p>
@@ -50,8 +50,8 @@ function Pixel() {
   );
 }
 
-function Neobrutal() {
-  const [on, setOn] = useState(true);
+function Neobrutal({ session }: VariantDemoProps) {
+  const [on, setOn] = useSessionState(session, 'checked', true);
   return (
     <div className="mx-auto w-full max-w-sm border-[3px] border-black bg-[#ffe066] p-5 text-black">
       <button

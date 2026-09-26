@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
-function MinimalDrawer() {
-  const [open, setOpen] = useState(true);
+function MinimalDrawer({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', true);
   return (
     <div className="mx-auto w-full max-w-sm border border-black/15 bg-white p-5 text-black">
       <div className="flex items-center justify-between">
@@ -28,8 +28,8 @@ function MinimalDrawer() {
   );
 }
 
-function NeobrutalDrawer() {
-  const [open, setOpen] = useState(true);
+function NeobrutalDrawer({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', true);
   return (
     <div className="mx-auto w-full max-w-sm bg-[#c8f31d] p-4 text-black" style={{ border: '3px solid #000' }}>
       <div className="flex items-center justify-between">
@@ -55,8 +55,8 @@ function NeobrutalDrawer() {
   );
 }
 
-function DecoDrawer() {
-  const [open, setOpen] = useState(true);
+function DecoDrawer({ session }: VariantDemoProps) {
+  const [open, setOpen] = useSessionState(session, 'open', true);
   return (
     <div
       className="mx-auto w-full max-w-sm bg-[#0d1b2a] p-5 text-[#e8ce92]"

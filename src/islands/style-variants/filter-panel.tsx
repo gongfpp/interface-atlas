@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
+import { useSessionState } from './session';
 
 const CATS = ['Sans', 'Serif', 'Mono'];
 const SIZES = ['Small', 'Large'];
 
-function Swiss() {
-  const [sel, setSel] = useState<string[]>(['Sans']);
+function Swiss({ session }: VariantDemoProps) {
+  const [sel, setSel] = useSessionState(session, 'active', ['Sans']);
   const toggle = (v: string) => setSel((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
   const rows = (items: string[]) =>
     items.map((it) => (
@@ -40,8 +40,8 @@ function Swiss() {
   );
 }
 
-function Bauhaus() {
-  const [sel, setSel] = useState<string[]>(['Furniture']);
+function Bauhaus({ session }: VariantDemoProps) {
+  const [sel, setSel] = useSessionState(session, 'active', ['Furniture']);
   const toggle = (v: string) => setSel((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
   const opts = [
     { label: 'Furniture', color: '#1d4ed8' },
@@ -73,8 +73,8 @@ function Bauhaus() {
   );
 }
 
-function Neumorph() {
-  const [sel, setSel] = useState<string[]>(['Warm']);
+function Neumorph({ session }: VariantDemoProps) {
+  const [sel, setSel] = useSessionState(session, 'active', ['Warm']);
   const toggle = (v: string) => setSel((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
   return (
     <div className="mx-auto w-full max-w-sm rounded-3xl bg-[#e6e9ef] p-6 text-[#4b5563]">
