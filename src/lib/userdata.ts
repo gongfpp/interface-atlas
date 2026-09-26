@@ -4,16 +4,61 @@ const HISTORY_MAX = 30;
 const EMPTY: string[] = [];
 
 const listeners = new Set<() => void>();
+/** 存储不可用时的内存回退，保证同一会话内读写一致（刷新后不持久化）。 */
+const memory = new Map<string, string>();
+let storageBroken = false;
 
 function emit() {
   for (const listener of listeners) listener();
 }
 
+/** 跨标签页同步：另一个标签页写入时刷新缓存并通知订阅者。 */
+let crossTabBound = false;
+function bindCrossTab() {
+  if (crossTabBound || typeof window === 'undefined') return;
+  crossTabBound = true;
+  window.addEventListener('storage', (e) => {
+    if (e.key !== SAVED_KEY && e.key !== HISTORY_KEY) return;
+    memory.delete(SAVED_KEY);
+    memory.delete(HISTORY_KEY);
+    savedRaw = undefined;
+    historyRaw = undefined;
+    emit();
+  });
+}
+
 export function subscribe(cb: () => void) {
+  bindCrossTab();
   listeners.add(cb);
   return () => {
     listeners.delete(cb);
   };
+}
+
+export function storageAvailable(): boolean {
+  return !storageBroken;
+}
+
+function safeGet(key: string): string | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const value = window.localStorage.getItem(key);
+    if (value !== null) return value;
+  } catch {
+    storageBroken = true;
+  }
+  return memory.get(key) ?? null;
+}
+
+function safeSet(key: string, value: string) {
+  memory.set(key, value);
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(key, value);
+    storageBroken = false;
+  } catch {
+    storageBroken = true;
+  }
 }
 
 function parse(raw: string | null): string[] {
@@ -26,17 +71,11 @@ function parse(raw: string | null): string[] {
 }
 
 function readIds(key: string): string[] {
-  if (typeof window === 'undefined') return EMPTY;
-  return parse(window.localStorage.getItem(key));
+  return parse(safeGet(key));
 }
 
 function writeIds(key: string, ids: string[]) {
-  if (typeof window === 'undefined') return;
-  try {
-    window.localStorage.setItem(key, JSON.stringify(ids));
-  } catch {
-    /* 存储不可用时静默 */
-  }
+  safeSet(key, JSON.stringify(ids));
   emit();
 }
 
@@ -47,7 +86,7 @@ let savedCache: string[] = EMPTY;
 /** 收藏快照（useSyncExternalStore getSnapshot） */
 export function getSavedSnapshot(): string[] {
   if (typeof window === 'undefined') return EMPTY;
-  const raw = window.localStorage.getItem(SAVED_KEY);
+  const raw = safeGet(SAVED_KEY);
   if (raw !== savedRaw) {
     savedRaw = raw;
     savedCache = parse(raw);
@@ -61,7 +100,7 @@ let historyCache: string[] = EMPTY;
 /** 浏览历史快照（最近在最前，去重，上限 30） */
 export function getHistorySnapshot(): string[] {
   if (typeof window === 'undefined') return EMPTY;
-  const raw = window.localStorage.getItem(HISTORY_KEY);
+  const raw = safeGet(HISTORY_KEY);
   if (raw !== historyRaw) {
     historyRaw = raw;
     historyCache = parse(raw);

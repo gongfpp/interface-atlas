@@ -12,7 +12,7 @@ export default function SearchDialog({ locale, autoOpen = false }: { locale: 'zh
   const initialQuery =
     typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('q') : null;
   const [open, setOpen] = useState(() => autoOpen || Boolean(initialQuery));
-  const { query, setQuery, results, active, setActive, loadingIndex, ensureIndex } = useSearch(initialQuery ?? '');
+  const { query, setQuery, results, active, setActive, loadingIndex, loadError, ensureIndex } = useSearch(initialQuery ?? '');
   const inputRef = useRef<HTMLInputElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
 
@@ -91,7 +91,7 @@ export default function SearchDialog({ locale, autoOpen = false }: { locale: 'zh
 
   if (!open) return null;
 
-  const empty = !loadingIndex && results.length === 0 && Boolean(query);
+  const empty = !loadingIndex && !loadError && results.length === 0 && Boolean(query);
   const statusText = loadingIndex
     ? en
       ? 'Loading search index…'
@@ -144,6 +144,20 @@ export default function SearchDialog({ locale, autoOpen = false }: { locale: 'zh
           {statusText}
         </p>
         <div id="search-listbox" role="listbox" aria-label={en ? 'Search results' : '搜索结果'} className="max-h-[50vh] overflow-y-auto p-2">
+          {loadError && !loadingIndex && (
+            <div className="px-3 py-6 text-center" role="alert">
+              <p className="text-sm text-ink-3">
+                {en ? 'Could not load the search index. Check your connection and retry.' : '搜索索引加载失败，请检查网络后重试。'}
+              </p>
+              <button
+                type="button"
+                onClick={() => ensureIndex()}
+                className="mt-3 rounded-full border border-line px-3 py-1 text-xs text-ink-2 hover:border-accent hover:text-accent"
+              >
+                {en ? 'Retry' : '重试'}
+              </button>
+            </div>
+          )}
           {empty && (
             <div className="px-3 py-4 text-center">
               <p className="text-sm text-ink-3">

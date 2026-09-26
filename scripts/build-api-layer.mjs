@@ -5,7 +5,7 @@
  * - public/llms.txt —— 索引，告诉 LLM 站点结构与取数入口
  * - public/llms-full.txt —— 全库定义级全文（名称/别名/定义/何时用/Agent Prompt 摘要）
  */
-import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync, mkdirSync, unlinkSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { load as yamlLoad } from 'js-yaml';
@@ -15,9 +15,12 @@ const TYPES = ['components', 'patterns', 'styles', 'pages', 'motion', 'foundatio
 const apiDir = join(root, 'public', 'api', 'concept');
 const terms = [];
 const index = [];
+const written = new Map(); // type -> Set(published ids)，用于清理撤稿/删除条目的旧 JSON
 
 /** 部署子路径（GitHub Pages 项目站点为 /interface-atlas-web；根部署为空）。 */
 const BASE = (process.env.PUBLIC_BASE_PATH || '').replace(/\/+$/, '');
+/** 站点来源：部署时由 PUBLIC_SITE_URL 注入，未设置时回落默认值。 */
+const SITE = (process.env.PUBLIC_SITE_URL || 'https://gongfpp.github.io').replace(/\/+$/, '');
 
 for (const type of TYPES) {
   const dir = join(root, 'src', 'content', type);
@@ -28,10 +31,13 @@ for (const type of TYPES) {
     continue;
   }
   mkdirSync(join(apiDir, type), { recursive: true });
+  const keep = new Set();
+  written.set(type, keep);
   for (const file of files) {
     const data = yamlLoad(readFileSync(join(dir, file), 'utf8'));
     const id = file.replace(/\.yaml$/, '');
     if (data.status && data.status !== 'published') continue;
+    keep.add(id);
     const json = JSON.stringify({ id, type, ...data }, null, 2);
     writeFileSync(join(apiDir, type, `${id}.json`), json);
     const entry = {
@@ -55,6 +61,18 @@ for (const type of TYPES) {
   }
 }
 
+// 清理已撤稿 / 已删除条目的旧 JSON，避免机器可读层残留过期概念
+for (const type of TYPES) {
+  const dir = join(apiDir, type);
+  if (!existsSync(dir)) continue;
+  const keep = written.get(type) ?? new Set();
+  for (const file of readdirSync(dir)) {
+    if (file.endsWith('.json') && !keep.has(file.replace(/\.json$/, ''))) {
+      unlinkSync(join(dir, file));
+    }
+  }
+}
+
 terms.sort((a, b) => (a.type + a.id).localeCompare(b.type + b.id));
 
 writeFileSync(
@@ -62,7 +80,7 @@ writeFileSync(
   JSON.stringify(
     {
       generated: new Date().toISOString().slice(0, 10),
-      site: 'https://gongfpp.github.io/interface-atlas-web',
+      site: `${SITE}${BASE}`,
       count: terms.length,
       types: TYPES,
       note: 'Full catalog dump. Each term also at api URL and .md twin. llms.txt / llms-full.txt for humans-to-LLM navigation.',

@@ -32,14 +32,21 @@ function logSearch(q: string) {
   beacon('/api/log-search', { q: cleaned });
 }
 
-// 关键词索引（~80KB）：首次交互即加载
+// 关键词索引（~80KB）：首次交互即加载。
+// 失败时释放缓存 Promise，让重试可以真正重新请求，而不是永久返回空结果。
 let docsPromise: Promise<SearchDoc[]> | null = null;
 function loadDocs() {
   if (!docsPromise) {
     docsPromise = fetch(withBase('/data/search-docs.json'))
-      .then((r) => r.json())
-      .then((p: { docs?: SearchDoc[] }) => p.docs ?? [])
-      .catch(() => []);
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then((p: { docs?: SearchDoc[] }) => (Array.isArray(p?.docs) ? p.docs : []))
+      .catch((err) => {
+        docsPromise = null;
+        throw err;
+      });
   }
   return docsPromise;
 }
@@ -51,12 +58,20 @@ function loadDocs() {
 export function useSearch(initialQuery = '') {
   const [query, setQuery] = useState(initialQuery);
   const [docs, setDocs] = useState<SearchDoc[] | null>(null);
+  const [loadError, setLoadError] = useState(false);
   const [results, setResults] = useState<SearchHit[]>([]);
   const [active, setActive] = useState(0);
   const logTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const ensureIndex = useCallback(() => {
-    loadDocs().then((d) => setDocs((cur) => cur ?? d));
+    return loadDocs()
+      .then((d) => {
+        setLoadError(false);
+        setDocs((cur) => cur ?? d);
+      })
+      .catch(() => {
+        setLoadError(true);
+      });
   }, []);
 
   useEffect(() => {
@@ -85,5 +100,5 @@ export function useSearch(initialQuery = '') {
     };
   }, [query, results, docs]);
 
-  return { query, setQuery, results, active, setActive, loadingIndex: !docs, ensureIndex };
+  return { query, setQuery, results, active, setActive, loadingIndex: !docs && !loadError, loadError, ensureIndex };
 }

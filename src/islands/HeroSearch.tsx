@@ -8,7 +8,7 @@ import { localePath, t } from '@/lib/i18n';
  * 不弹出新窗口。⌘K 仍由 SearchDialog 的命令面板承接。
  */
 export default function HeroSearch({ locale }: { locale: 'zh' | 'en' }) {
-  const { query, setQuery, results, active, setActive, loadingIndex, ensureIndex } = useSearch();
+  const { query, setQuery, results, active, setActive, loadingIndex, loadError, ensureIndex } = useSearch();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -31,7 +31,7 @@ export default function HeroSearch({ locale }: { locale: 'zh' | 'en' }) {
   };
 
   const showPanel = open && query.trim().length > 0;
-  const empty = showPanel && !loadingIndex && results.length === 0;
+  const empty = showPanel && !loadingIndex && !loadError && results.length === 0;
   const activeId = showPanel && results[active] ? `hero-opt-${results[active].doc.id}` : undefined;
 
   return (
@@ -75,9 +75,23 @@ export default function HeroSearch({ locale }: { locale: 'zh' | 'en' }) {
           className="absolute inset-x-0 top-full z-30 mt-2 max-h-[60vh] overflow-y-auto rounded-xl border border-line bg-raised p-2 text-left shadow-2xl"
         >
           {loadingIndex && (
-            <p className="px-3 py-3 text-sm text-ink-3">
+            <p className="px-3 py-3 text-sm text-ink-3" role="status" aria-live="polite">
               {locale === 'zh' ? '正在加载搜索索引…' : 'Loading search index…'}
             </p>
+          )}
+          {loadError && !loadingIndex && (
+            <div className="px-3 py-4 text-center" role="alert">
+              <p className="text-sm text-ink-3">
+                {locale === 'zh' ? '搜索索引加载失败，请检查网络后重试' : 'Could not load the search index. Check your connection and retry.'}
+              </p>
+              <button
+                type="button"
+                onClick={() => { ensureIndex(); inputRef.current?.focus(); }}
+                className="mt-3 rounded-full border border-line px-3 py-1 text-xs text-ink-2 hover:border-accent hover:text-accent"
+              >
+                {locale === 'zh' ? '重试' : 'Retry'}
+              </button>
+            </div>
           )}
           {empty && (
             <div className="px-3 py-4 text-center">
@@ -125,7 +139,7 @@ export default function HeroSearch({ locale }: { locale: 'zh' | 'en' }) {
               })}
             </div>
           ))}
-          {!loadingIndex && !empty && (
+          {!loadingIndex && !empty && !loadError && (
             <div className="border-t border-line px-3 py-2 text-[11px] text-ink-3">
               ↑↓ {locale === 'zh' ? '选择' : 'navigate'} · ↵ {locale === 'zh' ? '打开' : 'open'} · esc {locale === 'zh' ? '关闭' : 'close'}
             </div>

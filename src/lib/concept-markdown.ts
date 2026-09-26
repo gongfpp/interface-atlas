@@ -1,10 +1,16 @@
 import type { Concept } from '@/lib/content';
-import { TYPE_LABELS, RELATION_LABELS, dimensionLabel, type Locale } from '@/lib/i18n';
+import { TYPE_LABELS, RELATION_LABELS, dimensionLabel, localePath, withBase, type Locale } from '@/lib/i18n';
 
 /** 生成条目的 Markdown 镜像（`/<type>/<id>.md`），供 Coding Agent 直接消费。 */
-export function conceptToMarkdown(concept: Concept, locale: Locale): string {
+export function conceptToMarkdown(
+  concept: Concept,
+  locale: Locale,
+  /** 解析引用目标的真实类型，避免跨类型 related 被写成当前条目的类型 */
+  typeOf?: (id: string) => string | undefined,
+): string {
   const d = concept.data;
   const other = locale === 'zh' ? 'en' : 'zh';
+  const linkFor = (id: string) => localePath(`/${typeOf?.(id) ?? concept.conceptType}/${id}`, locale);
   const lines: string[] = [];
 
   lines.push(`# ${d.name[locale]} / ${d.name[other]}`);
@@ -125,7 +131,7 @@ export function conceptToMarkdown(concept: Concept, locale: Locale): string {
     lines.push('');
     for (const r of d.related) {
       const label = RELATION_LABELS[r.relation]?.[locale] ?? r.relation;
-      lines.push(`- [${r.id}](/${concept.conceptType}/${r.id}) — ${label}`);
+      lines.push(`- [${r.id}](${linkFor(r.id)}) — ${label}`);
     }
     lines.push('');
   }
@@ -134,7 +140,7 @@ export function conceptToMarkdown(concept: Concept, locale: Locale): string {
     lines.push(`## ${locale === 'zh' ? '容易混淆' : 'Confusable'}`);
     lines.push('');
     for (const c of d.confusable) {
-      lines.push(`- [${c.id}](/${concept.conceptType}/${c.id}) — ${c.note[locale]}`);
+      lines.push(`- [${c.id}](${linkFor(c.id)}) — ${c.note[locale]}`);
     }
     lines.push('');
   }
@@ -155,10 +161,12 @@ export function conceptToMarkdown(concept: Concept, locale: Locale): string {
 
   lines.push('---');
   lines.push('');
+  const json = withBase(`/api/concept/${concept.conceptType}/${concept.id}.json`);
+  const site = localePath(`/${concept.conceptType}/${concept.id}`, locale);
   lines.push(
     locale === 'zh'
-      ? `JSON: \`/api/concept/${concept.conceptType}/${concept.id}.json\` · 站点: /${concept.conceptType}/${concept.id}`
-      : `JSON: \`/api/concept/${concept.conceptType}/${concept.id}.json\` · Site: /en/${concept.conceptType}/${concept.id}`,
+      ? `JSON: \`${json}\` · 站点: ${site}`
+      : `JSON: \`${json}\` · Site: ${site}`,
   );
   lines.push('');
 
