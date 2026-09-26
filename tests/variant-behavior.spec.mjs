@@ -16,7 +16,7 @@ test("table variant sorts numerically and exposes aria-sort", async ({ page }) =
   const section = await selectStyle(page, "table", "editorial");
   const firstCity = section.locator("tbody tr td:first-child").first();
   await expect(firstCity).toHaveText("Tokyo"); // descending by default
-  await section.getByRole("button", { name: /Population/ }).click();
+  await section.getByRole("button", { name: /Population|人口/ }).click();
   await expect(firstCity).toHaveText("Lima");
   await expect(section.locator("th[aria-sort='ascending']")).toHaveCount(1);
 });
@@ -51,7 +51,7 @@ test("tabs expose panels and arrow-key navigation", async ({ page }) => {
 
 test("tooltip shows on keyboard focus and hides on Escape", async ({ page }) => {
   const section = await selectStyle(page, "tooltip", "cyberpunk");
-  const trigger = section.getByRole("button", { name: /ping/ });
+  const trigger = section.locator(".demo-content").getByRole("button").first();
   await trigger.focus();
   await expect(section.getByRole("tooltip")).toBeVisible();
   await page.keyboard.press("Escape");

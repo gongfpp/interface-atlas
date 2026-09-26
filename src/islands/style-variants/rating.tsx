@@ -8,7 +8,8 @@ function useRating(session: VariantDemoProps['session']) {
   return { rating, hover, setRating, setHover };
 }
 
-function Retro({ session }: VariantDemoProps) {
+function Retro({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const { rating, hover, setRating, setHover } = useRating(session);
   const active = hover || rating;
   return (
@@ -17,7 +18,7 @@ function Retro({ session }: VariantDemoProps) {
       style={{ border: '1px solid #ff8a3d55', boxShadow: 'inset 0 0 24px #ff8a3d22' }}
       onMouseLeave={() => setHover(0)}
     >
-      <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#ff8a3d]">Rate the signal</p>
+      <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#ff8a3d]">{zh ? '为信号评分' : 'Rate the signal'}</p>
       <div className="my-4 flex justify-center gap-2">
         {[1, 2, 3, 4, 5].map((n) => (
           <button
@@ -31,12 +32,13 @@ function Retro({ session }: VariantDemoProps) {
           </button>
         ))}
       </div>
-      <p className="font-mono text-[11px] text-[#ffd166]">{rating ? `LEVEL ${rating}/5` : 'awaiting input'}</p>
+      <p className="font-mono text-[11px] text-[#ffd166]">{rating ? (zh ? `等级 ${rating}/5` : `LEVEL ${rating}/5`) : zh ? '等待输入' : 'awaiting input'}</p>
     </div>
   );
 }
 
-function Y2K({ session }: VariantDemoProps) {
+function Y2K({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const { rating, hover, setRating, setHover } = useRating(session);
   const active = hover || rating;
   return (
@@ -58,12 +60,13 @@ function Y2K({ session }: VariantDemoProps) {
           </button>
         ))}
       </div>
-      <p className="font-mono text-[11px] text-[#7a4fa0]">{rating ? `>> ${rating}/5` : 'click a bubble'}</p>
+      <p className="font-mono text-[11px] text-[#7a4fa0]">{rating ? `>> ${rating}/5` : zh ? '点击气泡' : 'click a bubble'}</p>
     </div>
   );
 }
 
-function Memphis({ session }: VariantDemoProps) {
+function Memphis({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const { rating, hover, setRating, setHover } = useRating(session);
   const active = hover || rating;
   const colors = ['#ff3d7f', '#ffd23f', '#00b8a9', '#3d5aff', '#ff6b35'];
@@ -71,7 +74,7 @@ function Memphis({ session }: VariantDemoProps) {
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border-[3px] border-black bg-[#fef6e4] p-6 text-center" onMouseLeave={() => setHover(0)}>
       <span className="absolute -right-3 -top-3 h-10 w-10 rounded-full bg-[#00b8a9]" />
       <span className="absolute bottom-3 left-4 h-2 w-2 rounded-full bg-[#ff3d7f]" />
-      <p className="font-black uppercase tracking-tight text-black">Rate it!</p>
+      <p className="font-black uppercase tracking-tight text-black">{zh ? '来评分！' : 'Rate it!'}</p>
       <div className="my-4 flex justify-center gap-1.5">
         {[1, 2, 3, 4, 5].map((n) => (
           <button
@@ -85,7 +88,7 @@ function Memphis({ session }: VariantDemoProps) {
           </button>
         ))}
       </div>
-      <p className="font-mono text-xs font-bold text-black">{rating ? `${rating} / 5` : 'pick a star'}</p>
+      <p className="font-mono text-xs font-bold text-black">{rating ? `${rating} / 5` : zh ? '选一颗星' : 'pick a star'}</p>
     </div>
   );
 }

@@ -18,7 +18,8 @@ function useTooltip(session: VariantDemoProps['session'], id: string) {
   return { show, triggerProps, tooltipProps: { role: 'tooltip' as const, id } };
 }
 
-function RetroTooltip({ session }: VariantDemoProps) {
+function RetroTooltip({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const { show, triggerProps, tooltipProps } = useTooltip(session, 'retro-tooltip');
   return (
     <div
@@ -31,7 +32,7 @@ function RetroTooltip({ session }: VariantDemoProps) {
           {...triggerProps}
           className="rounded border border-[#ffb347] bg-gradient-to-b from-[#ffd27a] to-[#c98a2e] px-4 py-2 text-xs font-bold text-[#1b1420] shadow-[0_0_16px_#ffb34766]"
         >
-          Hover or focus
+          {en ? 'Hover or focus' : '悬停或聚焦'}
         </button>
         {show && (
           <span {...tooltipProps} className="absolute -top-10 left-0 z-10 whitespace-nowrap rounded border border-[#ffb347] bg-[#1b1420] px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-[#ffb347] shadow-[0_0_18px_#ffb34755]">
@@ -44,7 +45,8 @@ function RetroTooltip({ session }: VariantDemoProps) {
   );
 }
 
-function CyberTooltip({ session }: VariantDemoProps) {
+function CyberTooltip({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const { show, triggerProps, tooltipProps } = useTooltip(session, 'cyber-tooltip');
   return (
     <div className="mx-auto w-full max-w-sm bg-[#05060a] p-8 font-mono text-[#7cf9ff]" style={{ border: '1px solid #ff2e88' }}>
@@ -55,7 +57,7 @@ function CyberTooltip({ session }: VariantDemoProps) {
           className="border border-[#7cf9ff] px-4 py-2 text-xs uppercase tracking-widest text-[#7cf9ff]"
           style={{ boxShadow: '0 0 12px #7cf9ff88, inset 0 0 8px #7cf9ff33' }}
         >
-          [ ping ]
+          {en ? '[ ping ]' : '[ 探测 ]'}
         </button>
         {show && (
           <span
@@ -72,7 +74,8 @@ function CyberTooltip({ session }: VariantDemoProps) {
   );
 }
 
-function SkeuoTooltip({ session }: VariantDemoProps) {
+function SkeuoTooltip({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const { show, triggerProps, tooltipProps } = useTooltip(session, 'skeuo-tooltip');
   return (
     <div
@@ -86,7 +89,7 @@ function SkeuoTooltip({ session }: VariantDemoProps) {
           className="rounded-md border border-[#9a927f] px-4 py-2 text-xs font-semibold text-[#3a352b]"
           style={{ background: 'linear-gradient(#ffffff,#dcd6c6)', boxShadow: 'inset 0 1px 0 #fff, 0 2px 3px #00000033' }}
         >
-          Bold
+          {en ? 'Bold' : '加粗'}
         </button>
         {show && (
           <span
@@ -94,7 +97,7 @@ function SkeuoTooltip({ session }: VariantDemoProps) {
             className="absolute -top-9 left-0 z-10 whitespace-nowrap rounded-md border border-[#8a816d] px-2 py-1 text-[10px] font-semibold text-[#2b2b2b]"
             style={{ background: 'linear-gradient(#fffbe9,#e8dfc2)', boxShadow: '0 2px 4px #00000040' }}
           >
-            Make text bold
+            {en ? 'Make text bold' : '将文本加粗'}
           </span>
         )}
       </div>

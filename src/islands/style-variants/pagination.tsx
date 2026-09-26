@@ -1,14 +1,15 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function Neumorph({ session }: VariantDemoProps) {
+function Neumorph({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [page, setPage] = useSessionState(session, 'page', 3);
   const raised = 'shadow-[5px_5px_10px_#c3c4cb,-5px_-5px_10px_#ffffff]';
   const pressed = 'shadow-[inset_5px_5px_10px_#c3c4cb,inset_-5px_-5px_10px_#ffffff]';
   return (
     <div className="mx-auto w-full max-w-sm bg-[#e6e7ee] p-5">
       <div className="flex items-center justify-center gap-3">
-        <button type="button" aria-label="Previous page" onClick={() => setPage(Math.max(1, page - 1))} className={`flex h-10 w-10 items-center justify-center rounded-2xl text-sm text-[#6b6f80] ${raised}`}>‹</button>
+        <button type="button" aria-label={zh ? '上一页' : 'Previous page'} onClick={() => setPage(Math.max(1, page - 1))} className={`flex h-10 w-10 items-center justify-center rounded-2xl text-sm text-[#6b6f80] ${raised}`}>‹</button>
         {[1, 2, 3, 4].map((n) => (
           <button key={n} type="button" onClick={() => setPage(n)} className={`flex h-10 w-10 items-center justify-center rounded-2xl text-sm font-semibold ${page === n ? `text-[#5b5f70] ${pressed}` : 'text-[#8a8e9e] ' + raised}`}>{n}</button>
         ))}
@@ -17,7 +18,8 @@ function Neumorph({ session }: VariantDemoProps) {
   );
 }
 
-function Vapor({ session }: VariantDemoProps) {
+function Vapor({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [page, setPage] = useSessionState(session, 'page', 2);
   return (
     <div className="mx-auto w-full max-w-sm bg-gradient-to-b from-[#2b1055] to-[#7597de] p-5 text-center">
@@ -26,21 +28,22 @@ function Vapor({ session }: VariantDemoProps) {
           <button key={n} type="button" onClick={() => setPage(n)} className={`h-9 w-9 ${page === n ? 'bg-[#ff71ce] text-[#2b1055] shadow-[0_0_18px_#ff71ce]' : 'border border-[#01cdfe]/60 text-[#01cdfe] hover:bg-[#01cdfe]/10'}`}>{n}</button>
         ))}
       </div>
-      <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.3em] text-[#b967ff]">Page {page} / 5</p>
+      <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.3em] text-[#b967ff]">{zh ? `第 ${page} / 5 页` : `Page ${page} / 5`}</p>
     </div>
   );
 }
 
-function Swiss({ session }: VariantDemoProps) {
+function Swiss({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [page, setPage] = useSessionState(session, 'page', 2);
   return (
     <div className="mx-auto w-full max-w-sm bg-white py-3 text-black" style={{ borderTop: '3px solid #111', borderBottom: '3px solid #111' }}>
       <div className="flex items-stretch justify-center divide-x divide-black/15 font-mono text-sm">
-        <button type="button" aria-label="Previous page" onClick={() => setPage(Math.max(1, page - 1))} className="px-3 py-1 text-black/50 hover:text-[#d0021b]">←</button>
+        <button type="button" aria-label={zh ? '上一页' : 'Previous page'} onClick={() => setPage(Math.max(1, page - 1))} className="px-3 py-1 text-black/50 hover:text-[#d0021b]">←</button>
         {[1, 2, 3, 4, 5].map((n) => (
           <button key={n} type="button" onClick={() => setPage(n)} className={`px-3 py-1 ${page === n ? 'bg-[#d0021b] font-bold text-white' : 'hover:bg-black/5'}`}>{n}</button>
         ))}
-        <button type="button" aria-label="Next page" onClick={() => setPage(Math.min(5, page + 1))} className="px-3 py-1 text-black/50 hover:text-[#d0021b]">→</button>
+        <button type="button" aria-label={zh ? '下一页' : 'Next page'} onClick={() => setPage(Math.min(5, page + 1))} className="px-3 py-1 text-black/50 hover:text-[#d0021b]">→</button>
       </div>
     </div>
   );

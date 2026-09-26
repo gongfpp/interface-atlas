@@ -1,7 +1,8 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function ArtDecoLightbox({ session }: VariantDemoProps) {
+function ArtDecoLightbox({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [open, setOpen] = useSessionState(session, 'open', false);
   const [index, setIndex] = useSessionState(session, 'index', 0);
   const openAt = (i: number) => {
@@ -25,7 +26,7 @@ function ArtDecoLightbox({ session }: VariantDemoProps) {
         >
           <span className="block h-full w-full bg-[#0d0d0b]" />
         </span>
-        <span className="mt-3 block text-[10px] uppercase tracking-[0.3em] text-[#c9a227]/80">Open plate I</span>
+        <span className="mt-3 block text-[10px] uppercase tracking-[0.3em] text-[#c9a227]/80">{en ? 'Open plate I' : '打开图版 I'}</span>
       </button>
       {open && (
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#080806]/95 p-6" data-index={index}>
@@ -40,7 +41,7 @@ function ArtDecoLightbox({ session }: VariantDemoProps) {
             onClick={() => setOpen(false)}
             className="mt-5 border border-[#c9a227] px-5 py-1.5 text-[10px] uppercase tracking-[0.3em] hover:bg-[#c9a227] hover:text-[#0d0d0b]"
           >
-            Close
+            {en ? 'Close' : '关闭'}
           </button>
         </div>
       )}
@@ -48,7 +49,8 @@ function ArtDecoLightbox({ session }: VariantDemoProps) {
   );
 }
 
-function AuroraLightbox({ session }: VariantDemoProps) {
+function AuroraLightbox({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [open, setOpen] = useSessionState(session, 'open', false);
   const [index, setIndex] = useSessionState(session, 'index', 0);
   const openAt = (i: number) => {
@@ -80,7 +82,7 @@ function AuroraLightbox({ session }: VariantDemoProps) {
             onClick={() => setOpen(false)}
             className="mt-4 rounded-full border border-white/25 px-5 py-1.5 text-[11px] hover:bg-white/10"
           >
-            Close
+            {en ? 'Close' : '关闭'}
           </button>
         </div>
       )}
@@ -88,7 +90,8 @@ function AuroraLightbox({ session }: VariantDemoProps) {
   );
 }
 
-function PixelLightbox({ session }: VariantDemoProps) {
+function PixelLightbox({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [open, setOpen] = useSessionState(session, 'open', false);
   const [index, setIndex] = useSessionState(session, 'index', 0);
   const openAt = (i: number) => {
@@ -104,7 +107,7 @@ function PixelLightbox({ session }: VariantDemoProps) {
           <button key={c} type="button" onClick={() => openAt(i)} className="h-14 border-4 border-black" style={{ background: c }} />
         ))}
       </div>
-      <p className="mt-3 text-[10px] text-[#b9b9e6]">Click a tile</p>
+      <p className="mt-3 text-[10px] text-[#b9b9e6]">{en ? 'Click a tile' : '点击图块'}</p>
       {open && (
         <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/85 p-4" data-index={index}>
           <div className="w-full max-w-[280px] border-4 border-[#8ff0a4] bg-[#1b1b3a] p-4 shadow-[6px_6px_0_0_#000]">

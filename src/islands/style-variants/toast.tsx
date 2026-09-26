@@ -1,7 +1,8 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function GlassToast({ session }: VariantDemoProps) {
+function GlassToast({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [show, setShow] = useSessionState(session, 'visible', true);
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-gradient-to-br from-[#5b3df5] via-[#ff5fa2] to-[#33d6ff] p-6 text-white">
@@ -10,14 +11,14 @@ function GlassToast({ session }: VariantDemoProps) {
         onClick={() => setShow((v) => !v)}
         className="relative rounded-lg border border-white/40 bg-white/20 px-3 py-1.5 text-xs font-semibold backdrop-blur-md"
       >
-        {show ? 'Dismiss' : 'Notify me'}
+        {show ? (en ? 'Dismiss' : '忽略') : (en ? 'Notify me' : '提醒我')}
       </button>
       <div className={`relative mt-4 transition-all duration-300 ${show ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}>
         <div className="flex items-start gap-3 rounded-xl border border-white/50 bg-white/20 p-3 shadow-lg shadow-black/20 backdrop-blur-md">
           <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-white" />
           <div>
-            <p className="text-xs font-semibold">Export ready</p>
-            <p className="text-[11px] text-white/80">Your file finished rendering.</p>
+            <p className="text-xs font-semibold">{en ? 'Export ready' : '导出完成'}</p>
+            <p className="text-[11px] text-white/80">{en ? 'Your file finished rendering.' : '文件已完成渲染。'}</p>
           </div>
         </div>
       </div>
@@ -25,7 +26,8 @@ function GlassToast({ session }: VariantDemoProps) {
   );
 }
 
-function PixelToast({ session }: VariantDemoProps) {
+function PixelToast({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [show, setShow] = useSessionState(session, 'visible', true);
   return (
     <div
@@ -37,7 +39,7 @@ function PixelToast({ session }: VariantDemoProps) {
         className="border-2 border-[#f4f4f4] bg-[#41a6f6] px-3 py-1 text-[11px] uppercase tracking-widest text-[#1a1c2c]"
         style={{ boxShadow: '3px 3px 0 #1a1c2c' }}
       >
-        {show ? 'Hide' : 'Show'}
+        {show ? (en ? 'Hide' : '隐藏') : (en ? 'Show' : '显示')}
       </button>
       {show && (
         <div
@@ -46,8 +48,8 @@ function PixelToast({ session }: VariantDemoProps) {
         >
           <span className="grid h-6 w-6 shrink-0 place-items-center border-2 border-[#f4f4f4] bg-[#ef7d57] text-[10px]">!</span>
           <div>
-            <p className="text-[11px] uppercase tracking-wider">Saved</p>
-            <p className="text-[10px] text-[#c0cbdc]">Checkpoint #12</p>
+            <p className="text-[11px] uppercase tracking-wider">{en ? 'Saved' : '已保存'}</p>
+            <p className="text-[10px] text-[#c0cbdc]">{en ? 'Checkpoint #12' : '检查点 #12'}</p>
           </div>
         </div>
       )}
@@ -55,7 +57,8 @@ function PixelToast({ session }: VariantDemoProps) {
   );
 }
 
-function ClayToast({ session }: VariantDemoProps) {
+function ClayToast({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [show, setShow] = useSessionState(session, 'visible', true);
   return (
     <div className="mx-auto w-full max-w-sm rounded-[28px] bg-[#f4e9ff] p-6 text-[#5b4a6b]">
@@ -64,7 +67,7 @@ function ClayToast({ session }: VariantDemoProps) {
         className="rounded-2xl bg-[#cdb4f6] px-4 py-2 text-xs font-bold text-white"
         style={{ boxShadow: '0 6px 0 #b394e8, 0 10px 18px #b394e855' }}
       >
-        {show ? 'Dismiss' : 'Show toast'}
+        {show ? (en ? 'Dismiss' : '忽略') : (en ? 'Show toast' : '显示提示')}
       </button>
       {show && (
         <div
@@ -78,8 +81,8 @@ function ClayToast({ session }: VariantDemoProps) {
             OK
           </span>
           <div>
-            <p className="text-sm font-extrabold">Payment received</p>
-            <p className="text-[11px] text-[#9480a8]">Receipt sent by email.</p>
+            <p className="text-sm font-extrabold">{en ? 'Payment received' : '已收到付款'}</p>
+            <p className="text-[11px] text-[#9480a8]">{en ? 'Receipt sent by email.' : '收据已通过邮件发送。'}</p>
           </div>
         </div>
       )}

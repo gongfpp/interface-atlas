@@ -88,11 +88,12 @@ function Overlay({
   );
 }
 
-function Glass({ session }: VariantDemoProps) {
+function Glass({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialog(session);
   return (
     <div className="relative mx-auto flex min-h-[220px] w-full max-w-md items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#7c5cff] via-[#ff6ec7] to-[#5ad1ff] p-6 text-white">
-      <button ref={triggerRef} type="button" onClick={openDialog} className="rounded-xl border border-white/40 bg-white/20 px-4 py-2 text-xs font-semibold backdrop-blur-md">Open dialog</button>
+      <button ref={triggerRef} type="button" onClick={openDialog} className="rounded-xl border border-white/40 bg-white/20 px-4 py-2 text-xs font-semibold backdrop-blur-md">{en ? 'Open dialog' : '打开对话框'}</button>
       {open && (
         <Overlay
           onClose={closeDialog}
@@ -101,11 +102,11 @@ function Glass({ session }: VariantDemoProps) {
           className="absolute inset-0 flex items-center justify-center bg-black/30 p-6 backdrop-blur-sm"
           cardClassName="w-full rounded-2xl border border-white/50 bg-white/25 p-5 backdrop-blur-xl"
         >
-          <p id="glass-modal-title" className="text-sm font-semibold">Delete project?</p>
-          <p className="mt-1 text-xs text-white/85">This action cannot be undone.</p>
+          <p id="glass-modal-title" className="text-sm font-semibold">{en ? 'Delete project?' : '删除项目？'}</p>
+          <p className="mt-1 text-xs text-white/85">{en ? 'This action cannot be undone.' : '此操作无法撤销。'}</p>
           <div className="mt-4 flex justify-end gap-2">
-            <button type="button" onClick={closeDialog} className="rounded-lg px-3 py-1.5 text-xs text-white/90 hover:bg-white/15">Cancel</button>
-            <button type="button" onClick={closeDialog} className="rounded-lg bg-white/90 px-3 py-1.5 text-xs font-semibold text-[#3a2f6b]">Delete</button>
+            <button type="button" onClick={closeDialog} className="rounded-lg px-3 py-1.5 text-xs text-white/90 hover:bg-white/15">{en ? 'Cancel' : '取消'}</button>
+            <button type="button" onClick={closeDialog} className="rounded-lg bg-white/90 px-3 py-1.5 text-xs font-semibold text-[#3a2f6b]">{en ? 'Delete' : '删除'}</button>
           </div>
         </Overlay>
       )}
@@ -113,11 +114,12 @@ function Glass({ session }: VariantDemoProps) {
   );
 }
 
-function Clay({ session }: VariantDemoProps) {
+function Clay({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialog(session);
   return (
     <div className="relative mx-auto flex min-h-[220px] w-full max-w-md items-center justify-center overflow-hidden rounded-[36px] bg-[#e8ecff] p-6">
-      <button ref={triggerRef} type="button" onClick={openDialog} className="rounded-2xl bg-[#b8c0ff] px-4 py-2 text-xs font-bold text-[#4b3f8f] shadow-[6px_6px_14px_#c5c9e0,-6px_-6px_14px_#ffffff]">Open</button>
+      <button ref={triggerRef} type="button" onClick={openDialog} className="rounded-2xl bg-[#b8c0ff] px-4 py-2 text-xs font-bold text-[#4b3f8f] shadow-[6px_6px_14px_#c5c9e0,-6px_-6px_14px_#ffffff]">{en ? 'Open' : '打开'}</button>
       {open && (
         <Overlay
           onClose={closeDialog}
@@ -127,10 +129,10 @@ function Clay({ session }: VariantDemoProps) {
           cardClassName="w-full rounded-[32px] bg-[#e8ecff] p-6 text-center shadow-[10px_10px_20px_#c5c9e0,-10px_-10px_20px_#ffffff]"
         >
           <div className="mx-auto mb-3 h-12 w-12 rounded-full bg-[#ffb8d9] shadow-[inset_-4px_-4px_8px_#e58fbb,inset_4px_4px_8px_#ffd6e9]" />
-          <p id="clay-modal-title" className="text-sm font-bold text-[#4b3f8f]">Save your changes?</p>
+          <p id="clay-modal-title" className="text-sm font-bold text-[#4b3f8f]">{en ? 'Save your changes?' : '保存更改？'}</p>
           <div className="mt-4 flex justify-center gap-3">
-            <button type="button" onClick={closeDialog} className="rounded-2xl bg-[#c9cff0] px-4 py-2 text-xs font-bold text-[#4b3f8f] shadow-[4px_4px_10px_#b0b5d6,-4px_-4px_10px_#ffffff]">Later</button>
-            <button type="button" onClick={closeDialog} className="rounded-2xl bg-[#b8c0ff] px-4 py-2 text-xs font-bold text-[#3a2f6b] shadow-[4px_4px_10px_#9aa2e0,-4px_-4px_10px_#ffffff]">Save</button>
+            <button type="button" onClick={closeDialog} className="rounded-2xl bg-[#c9cff0] px-4 py-2 text-xs font-bold text-[#4b3f8f] shadow-[4px_4px_10px_#b0b5d6,-4px_-4px_10px_#ffffff]">{en ? 'Later' : '稍后'}</button>
+            <button type="button" onClick={closeDialog} className="rounded-2xl bg-[#b8c0ff] px-4 py-2 text-xs font-bold text-[#3a2f6b] shadow-[4px_4px_10px_#9aa2e0,-4px_-4px_10px_#ffffff]">{en ? 'Save' : '保存'}</button>
           </div>
         </Overlay>
       )}
@@ -138,11 +140,12 @@ function Clay({ session }: VariantDemoProps) {
   );
 }
 
-function Y2K({ session }: VariantDemoProps) {
+function Y2K({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialog(session);
   return (
     <div className="relative mx-auto flex min-h-[220px] w-full max-w-md items-center justify-center overflow-hidden rounded-[28px] bg-gradient-to-br from-[#c7f0ff] to-[#ffd6f5] p-6">
-      <button ref={triggerRef} type="button" onClick={openDialog} className="rounded-full border-2 border-white bg-gradient-to-b from-[#bfe9ff] to-[#6aa6ff] px-4 py-2 text-xs font-bold text-white shadow-[0_4px_0_#3d6fb8]">Open</button>
+      <button ref={triggerRef} type="button" onClick={openDialog} className="rounded-full border-2 border-white bg-gradient-to-b from-[#bfe9ff] to-[#6aa6ff] px-4 py-2 text-xs font-bold text-white shadow-[0_4px_0_#3d6fb8]">{en ? 'Open' : '打开'}</button>
       {open && (
         <Overlay
           onClose={closeDialog}
@@ -155,8 +158,8 @@ function Y2K({ session }: VariantDemoProps) {
           <p id="y2k-modal-title" className="text-sm font-bold text-[#2b4b8f]">New message ✦</p>
           <p className="mt-1 text-xs text-[#5b76ad]">Chrome, gloss and sparkle.</p>
           <div className="mt-4 flex justify-end gap-2">
-            <button type="button" onClick={closeDialog} className="rounded-full border border-[#9dbcf0] bg-white/70 px-3 py-1.5 text-xs font-semibold text-[#3d6fb8]">Close</button>
-            <button type="button" onClick={closeDialog} className="rounded-full bg-gradient-to-b from-[#ff9fe0] to-[#ff5cc8] px-3 py-1.5 text-xs font-bold text-white shadow-[0_3px_0_#c93a9a]">Send</button>
+            <button type="button" onClick={closeDialog} className="rounded-full border border-[#9dbcf0] bg-white/70 px-3 py-1.5 text-xs font-semibold text-[#3d6fb8]">{en ? 'Close' : '关闭'}</button>
+            <button type="button" onClick={closeDialog} className="rounded-full bg-gradient-to-b from-[#ff9fe0] to-[#ff5cc8] px-3 py-1.5 text-xs font-bold text-white shadow-[0_3px_0_#c93a9a]">{en ? 'Send' : '发送'}</button>
           </div>
         </Overlay>
       )}

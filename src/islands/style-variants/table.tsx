@@ -1,7 +1,8 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function EditorialTable({ session }: VariantDemoProps) {
+function EditorialTable({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [asc, setAsc] = useSessionState(session, 'asc', false);
   const rows = [
     { city: 'Tokyo', pop: 37.4 },
@@ -14,10 +15,10 @@ function EditorialTable({ session }: VariantDemoProps) {
       <table className="mt-3 w-full border-collapse text-left">
         <thead>
           <tr className="border-b border-ink">
-            <th scope="col" className="py-2 font-serif text-sm font-normal italic">City</th>
+            <th scope="col" className="py-2 font-serif text-sm font-normal italic">{zh ? '城市' : 'City'}</th>
             <th scope="col" aria-sort={asc ? 'ascending' : 'descending'} className="py-2 text-right font-serif text-sm font-normal italic">
               <button type="button" onClick={() => setAsc((v) => !v)} className="underline-offset-2 hover:underline">
-                Population {asc ? '↑' : '↓'}
+                {zh ? '人口' : 'Population'} {asc ? '↑' : '↓'}
               </button>
             </th>
           </tr>
@@ -36,7 +37,8 @@ function EditorialTable({ session }: VariantDemoProps) {
   );
 }
 
-function SwissTable({ session }: VariantDemoProps) {
+function SwissTable({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [asc, setAsc] = useSessionState(session, 'asc', false);
   const rows = [
     { city: 'Tokyo', units: 37.4 },
@@ -52,10 +54,10 @@ function SwissTable({ session }: VariantDemoProps) {
       <table className="mt-2 w-full border-collapse">
         <thead>
           <tr className="text-left text-[10px] font-bold uppercase tracking-widest">
-            <th scope="col" className="py-2">City</th>
+            <th scope="col" className="py-2">{zh ? '城市' : 'City'}</th>
             <th scope="col" aria-sort={asc ? 'ascending' : 'descending'} className="py-2 text-right">
               <button type="button" onClick={() => setAsc((v) => !v)} className="uppercase tracking-widest">
-                Units {asc ? '↑' : '↓'}
+                {zh ? '数量' : 'Units'} {asc ? '↑' : '↓'}
               </button>
             </th>
           </tr>
@@ -73,7 +75,8 @@ function SwissTable({ session }: VariantDemoProps) {
   );
 }
 
-function HandDrawnTable(_: VariantDemoProps) {
+function HandDrawnTable({ locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const rows = [
     ['Milk', '2'],
     ['Bread', '1'],
@@ -85,7 +88,7 @@ function HandDrawnTable(_: VariantDemoProps) {
       style={{ border: '2px dashed #4a4234', borderRadius: '12px 6px 14px 8px' }}
     >
       <p className="font-serif text-lg" style={{ textDecoration: 'underline wavy #b4441f' }}>
-        Shopping list
+        {zh ? '购物清单' : 'Shopping list'}
       </p>
       <table className="mt-3 w-full border-collapse">
         <tbody>

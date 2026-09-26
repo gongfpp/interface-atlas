@@ -1,24 +1,25 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function SwissSplitButton({ session }: VariantDemoProps) {
+function SwissSplitButton({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [open, setOpen] = useSessionState(session, 'open', false);
   const [result, setResult] = useSessionState(session, 'result', '');
   const choose = (action: string) => {
-    setResult(`Output: ${action}`);
+    setResult(zh ? `输出：${action}` : `Output: ${action}`);
     setOpen(false);
   };
   return (
     <div className="mx-auto w-full max-w-sm border border-black bg-white p-5 text-black">
       <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/50">02 — Output</p>
       <div className="mt-4 flex items-stretch">
-        <button type="button" onClick={() => choose('Export (default)')} className="flex-1 border-2 border-black bg-black px-4 py-2.5 text-left text-xs font-bold uppercase tracking-[0.15em] text-white">
-          Export
+        <button type="button" onClick={() => choose(zh ? '导出（默认）' : 'Export (default)')} className="flex-1 border-2 border-black bg-black px-4 py-2.5 text-left text-xs font-bold uppercase tracking-[0.15em] text-white">
+          {zh ? '导出' : 'Export'}
         </button>
         <button
           type="button"
           aria-expanded={open}
-          aria-label="More export formats"
+          aria-label={zh ? '更多导出格式' : 'More export formats'}
           onClick={() => setOpen((o) => !o)}
           className="grid w-10 place-items-center border-2 border-l-0 border-black bg-[#e30613] text-white"
         >
@@ -36,29 +37,30 @@ function SwissSplitButton({ session }: VariantDemoProps) {
           ))}
         </ul>
       )}
-      <p role="status" className="mt-3 font-mono text-[10px] uppercase tracking-widest text-black/50">{result || 'Choose an action'}</p>
+      <p role="status" className="mt-3 font-mono text-[10px] uppercase tracking-widest text-black/50">{result || (zh ? '选择一个操作' : 'Choose an action')}</p>
     </div>
   );
 }
 
-function FlatSplitButton({ session }: VariantDemoProps) {
+function FlatSplitButton({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [open, setOpen] = useSessionState(session, 'open', false);
   const [result, setResult] = useSessionState(session, 'result', '');
   const choose = (action: string) => {
-    setResult(`Post: ${action}`);
+    setResult(zh ? `帖子：${action}` : `Post: ${action}`);
     setOpen(false);
   };
   return (
     <div className="mx-auto w-full max-w-sm rounded-lg bg-[#eef6f6] p-5 text-[#0f3d3e]">
-      <p className="text-[11px] font-semibold uppercase tracking-wider text-[#0f3d3e]/60">Share post</p>
+      <p className="text-[11px] font-semibold uppercase tracking-wider text-[#0f3d3e]/60">{zh ? '分享帖子' : 'Share post'}</p>
       <div className="mt-3 flex items-stretch overflow-hidden rounded-md">
-        <button type="button" onClick={() => choose('Published')} className="flex-1 bg-[#12a594] px-4 py-3 text-left text-sm font-semibold text-white">
-          Publish
+        <button type="button" onClick={() => choose(zh ? '已发布' : 'Published')} className="flex-1 bg-[#12a594] px-4 py-3 text-left text-sm font-semibold text-white">
+          {zh ? '发布' : 'Publish'}
         </button>
         <button
           type="button"
           aria-expanded={open}
-          aria-label="More post actions"
+          aria-label={zh ? '更多帖子操作' : 'More post actions'}
           onClick={() => setOpen((o) => !o)}
           className="grid w-11 place-items-center bg-[#0f8b7d] text-white"
         >
@@ -67,7 +69,7 @@ function FlatSplitButton({ session }: VariantDemoProps) {
       </div>
       {open && (
         <ul className="mt-2 overflow-hidden rounded-md bg-white">
-          {['Copy link', 'Save draft', 'Schedule'].map((f) => (
+          {(zh ? ['复制链接', '保存草稿', '定时发布'] : ['Copy link', 'Save draft', 'Schedule']).map((f) => (
             <li key={f}>
               <button type="button" onClick={() => choose(f)} className="block w-full px-4 py-2.5 text-left text-[13px] text-[#12494a] hover:bg-[#d7f0ec]">
                 {f}
@@ -76,34 +78,35 @@ function FlatSplitButton({ session }: VariantDemoProps) {
           ))}
         </ul>
       )}
-      <p role="status" className="mt-3 text-[11px] text-[#0f3d3e]/60">{result || 'Choose an action'}</p>
+      <p role="status" className="mt-3 text-[11px] text-[#0f3d3e]/60">{result || (zh ? '选择一个操作' : 'Choose an action')}</p>
     </div>
   );
 }
 
-function ClaySplitButton({ session }: VariantDemoProps) {
+function ClaySplitButton({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [open, setOpen] = useSessionState(session, 'open', false);
   const [result, setResult] = useSessionState(session, 'result', '');
   const clay = 'shadow-[8px_8px_16px_rgba(174,164,214,0.55),-8px_-8px_16px_rgba(255,255,255,0.9)]';
   const choose = (action: string) => {
-    setResult(`Project: ${action}`);
+    setResult(zh ? `项目：${action}` : `Project: ${action}`);
     setOpen(false);
   };
   return (
     <div className="mx-auto w-full max-w-sm rounded-[28px] bg-[#e9e6fb] p-6 text-[#4a3f78]">
-      <p className="text-[11px] font-bold uppercase tracking-wider text-[#7a6fb0]">New project</p>
+      <p className="text-[11px] font-bold uppercase tracking-wider text-[#7a6fb0]">{zh ? '新建项目' : 'New project'}</p>
       <div className={`mt-4 flex items-stretch rounded-[22px] ${clay}`}>
         <button
           type="button"
-          onClick={() => choose('Blank')}
+          onClick={() => choose(zh ? '空白' : 'Blank')}
           className="flex-1 rounded-l-[22px] bg-gradient-to-b from-[#9b8cf7] to-[#7c67f0] px-4 py-3 text-left text-sm font-bold text-white"
         >
-          Create
+          {zh ? '创建' : 'Create'}
         </button>
         <button
           type="button"
           aria-expanded={open}
-          aria-label="More project templates"
+          aria-label={zh ? '更多项目模板' : 'More project templates'}
           onClick={() => setOpen((o) => !o)}
           className="grid w-11 place-items-center rounded-r-[22px] bg-gradient-to-b from-[#b3a7ff] to-[#8f7ff2] text-white"
         >
@@ -112,7 +115,7 @@ function ClaySplitButton({ session }: VariantDemoProps) {
       </div>
       {open && (
         <ul className={`mt-4 space-y-2 rounded-[22px] p-2 ${clay}`}>
-          {['Blank', 'From template', 'Import'].map((f) => (
+          {(zh ? ['空白', '从模板创建', '导入'] : ['Blank', 'From template', 'Import']).map((f) => (
             <li key={f}>
               <button type="button" onClick={() => choose(f)} className="w-full rounded-2xl bg-[#f4f2ff] px-4 py-2.5 text-left text-[13px] font-semibold text-[#5b4e93]">
                 {f}
@@ -121,7 +124,7 @@ function ClaySplitButton({ session }: VariantDemoProps) {
           ))}
         </ul>
       )}
-      <p role="status" className="mt-3 text-[11px] font-semibold text-[#7a6fb0]">{result || 'Choose an action'}</p>
+      <p role="status" className="mt-3 text-[11px] font-semibold text-[#7a6fb0]">{result || (zh ? '选择一个操作' : 'Choose an action')}</p>
     </div>
   );
 }
