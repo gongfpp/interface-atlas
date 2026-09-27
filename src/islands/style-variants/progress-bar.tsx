@@ -1,12 +1,14 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function MinimalProgress({ session }: VariantDemoProps) {
+function MinimalProgress({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [pct, setPct] = useSessionState(session, 'pct', 45);
+  const label = en ? 'Uploading' : '上传中';
   return (
     <div className="mx-auto w-full max-w-sm border border-line bg-raised p-5">
       <div className="flex items-baseline justify-between">
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">Uploading</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">{label}</span>
         <span className="font-mono text-xs tabular-nums text-ink">{pct}%</span>
       </div>
       <div
@@ -14,7 +16,7 @@ function MinimalProgress({ session }: VariantDemoProps) {
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={pct}
-        aria-label="Uploading"
+        aria-label={label}
         className="mt-4 h-[3px] w-full bg-line"
       >
         <div className="h-[3px] bg-ink transition-all duration-500" style={{ width: `${pct}%` }} />
@@ -23,20 +25,21 @@ function MinimalProgress({ session }: VariantDemoProps) {
         onClick={() => setPct((p) => (p >= 100 ? 0 : Math.min(100, p + 20)))}
         className="mt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3 transition-colors hover:text-ink"
       >
-        {pct >= 100 ? 'Reset' : 'Advance'}
+        {pct >= 100 ? (en ? 'Reset' : '重置') : en ? 'Advance' : '推进'}
       </button>
     </div>
   );
 }
 
-function BauhausProgress({ session }: VariantDemoProps) {
+function BauhausProgress({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [pct, setPct] = useSessionState(session, 'pct', 30);
   const step = Math.max(1, Math.min(10, Math.round(pct / 10)));
   const cols = ['#e02b20', '#1f4fd8', '#f4c400'];
   return (
     <div className="mx-auto w-full max-w-sm bg-[#f4efe4] p-5 text-black" style={{ border: '3px solid #000' }}>
       <div className="flex items-end justify-between">
-        <span className="text-[11px] font-black uppercase tracking-[0.15em]">Install</span>
+        <span className="text-[11px] font-black uppercase tracking-[0.15em]">{en ? 'Install' : '安装'}</span>
         <span className="font-mono text-lg font-black tabular-nums">{step * 10}%</span>
       </div>
       <div className="mt-4 flex gap-1.5">
@@ -55,15 +58,17 @@ function BauhausProgress({ session }: VariantDemoProps) {
   );
 }
 
-function PixelProgress({ session }: VariantDemoProps) {
+function PixelProgress({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [pct, setPct] = useSessionState(session, 'pct', 40);
+  const label = en ? 'Loading world' : '正在载入世界';
   return (
     <div className="mx-auto w-full max-w-sm bg-[#0d0d12] p-5 font-mono text-[#e8e8ff]">
       <div className="flex items-center justify-between text-[11px] uppercase tracking-widest">
-        <span>Loading world</span>
+        <span>{label}</span>
         <span>{pct}%</span>
       </div>
-      <div role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct} aria-label="Loading world" className="mt-3 flex gap-[3px]">
+      <div role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct} aria-label={label} className="mt-3 flex gap-[3px]">
         {Array.from({ length: 20 }).map((_, i) => (
           <div key={i} className="h-5 flex-1" style={{ background: i * 5 < pct ? '#5ff06a' : '#26263a' }} />
         ))}
@@ -72,7 +77,7 @@ function PixelProgress({ session }: VariantDemoProps) {
         onClick={() => setPct((p) => (p >= 100 ? 0 : Math.min(100, p + 20)))}
         className="mt-4 border-2 border-[#5ff06a] px-2 py-1 text-[10px] uppercase tracking-widest text-[#5ff06a]"
       >
-        {pct >= 100 ? 'Reset' : 'Step'}
+        {pct >= 100 ? (en ? 'Reset' : '重置') : en ? 'Step' : '步进'}
       </button>
     </div>
   );

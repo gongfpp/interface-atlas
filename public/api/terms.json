@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-26",
+  "generated": "2026-09-27",
   "site": "https://gongfpp.github.io",
   "count": 164,
   "types": [
@@ -28717,6 +28717,14 @@
         "spacing": {
           "zh": "轴线对齐，留白对称，移动端收敛装饰。",
           "en": "Axial alignment and balanced space; reduce ornament on mobile."
+        },
+        "motion": {
+          "zh": "200–300ms ease-out 的优雅淡入与描边展开，尊重 prefers-reduced-motion",
+          "en": "200–300ms ease-out fades and border reveals; honour prefers-reduced-motion"
+        },
+        "states": {
+          "zh": "hover 金色描边增亮；focus 用双层金色可见外框；active 描边收紧；disabled 降为暗金；error 用红金强调，保持轴对称",
+          "en": "Hover brightens the gold rule; focus shows a visible double gold frame; active tightens the border; disabled fades to dim gold; error uses red-gold, staying axially symmetric"
         }
       },
       "preview": {
@@ -28965,6 +28973,14 @@
         "spacing": {
           "zh": "悬浮卡层叠，间距宽松",
           "en": "Floating stacked cards, roomy gaps"
+        },
+        "motion": {
+          "zh": "300–500ms ease-in-out 的光斑漂移与淡入，尊重 prefers-reduced-motion",
+          "en": "300–500ms ease-in-out drift of the glow, with fades; honour prefers-reduced-motion"
+        },
+        "states": {
+          "zh": "hover 增强光斑亮度；focus 用紫粉色可见亮环；active 压低光晕；disabled 降透明去光；error 用红调光斑且仅淡入颜色",
+          "en": "Hover brightens the glow; focus shows a visible violet-pink ring; active dims the bloom; disabled loses opacity and glow; error tints the glow red, fading colour only"
         }
       },
       "preview": {
@@ -29214,6 +29230,14 @@
         "spacing": {
           "zh": "几何构图留白",
           "en": "Compositional whitespace around geometry"
+        },
+        "motion": {
+          "zh": "100ms 内完成的原色切换，无缓动位移",
+          "en": "Primary-colour swaps within 100ms, no eased movement"
+        },
+        "states": {
+          "zh": "hover 切换到另一原色；focus 用 2px 黑色可见外框；active 反色块；disabled 降为灰阶；error 用红 #E23B2E",
+          "en": "Hover swaps to another primary; focus shows a visible 2px black frame; active inverts the block; disabled drops to greyscale; error uses red #E23B2E"
         }
       },
       "preview": {
@@ -29471,6 +29495,14 @@
         "spacing": {
           "zh": "16px 圆角 + 10px 网格间距",
           "en": "16px radius, ~10px grid gaps"
+        },
+        "motion": {
+          "zh": "160–200ms ease-out 的卡片抬升与阴影过渡",
+          "en": "160–200ms ease-out card lift and shadow transition"
+        },
+        "states": {
+          "zh": "hover 轻微上浮并加深投影；focus 用紫色可见外框；active 回落到平面；disabled 降不透明；error 用红色描边",
+          "en": "Hover lifts slightly and deepens the shadow; focus shows a visible violet ring; active settles back flat; disabled reduces opacity; error uses a red border"
         }
       },
       "preview": {
@@ -29736,6 +29768,14 @@
         "spacing": {
           "zh": "紧贴网格线的硬切排布，留白大开大合",
           "en": "Hard cuts on the grid, whitespace in big blunt blocks"
+        },
+        "motion": {
+          "zh": "近似瞬时，无过渡",
+          "en": "Near-instant, no transition"
+        },
+        "states": {
+          "zh": "hover 直接反色；focus 用 2px 黑色实线粗框；active 换成刺眼橙红 #FF3B00；disabled 降为 50% 灰；error 用 #FF3B00 实色块",
+          "en": "Hover inverts immediately; focus shows a 2px solid black frame; active switches to harsh orange-red #FF3B00; disabled drops to 50% grey; error uses a solid #FF3B00 block"
         }
       },
       "preview": {
@@ -29983,6 +30023,14 @@
         "spacing": {
           "zh": "蓬松间距，元素相互分离",
           "en": "Puffy spacing, elements float apart"
+        },
+        "motion": {
+          "zh": "180–240ms 的柔和弹性按压过渡，尊重 prefers-reduced-motion",
+          "en": "180–240ms soft elastic press transitions; honour prefers-reduced-motion"
+        },
+        "states": {
+          "zh": "hover 轻微上浮并加深外阴影；focus 用紫色可见柔框；active 转为 inset 内陷；disabled 变扁降饱和；error 用珊瑚红内陷",
+          "en": "Hover lifts and deepens the outer shadow; focus shows a visible violet ring; active becomes an inset press; disabled flattens and desaturates; error uses a coral inset"
         }
       },
       "preview": {
@@ -30249,6 +30297,14 @@
         "spacing": {
           "zh": "大留白，插画与文案左右分栏",
           "en": "Airy padding, illustration and copy in split columns"
+        },
+        "motion": {
+          "zh": "150–200ms 的平涂色切换，无位移",
+          "en": "150–200ms flat fill colour swaps, no movement"
+        },
+        "states": {
+          "zh": "hover 换用相邻色块；focus 用紫色 2px 可见外框；active 换深色平涂；disabled 降不透明；error 用桃粉平涂",
+          "en": "Hover switches to an adjacent fill; focus shows a visible 2px violet frame; active uses a darker flat fill; disabled reduces opacity; error uses a peach fill"
         }
       },
       "preview": {
@@ -30501,6 +30557,14 @@
         "spacing": {
           "zh": "终端式紧凑排布",
           "en": "Terminal-dense layout"
+        },
+        "motion": {
+          "zh": "120ms 的霓虹瞬时点亮过渡，尊重 prefers-reduced-motion",
+          "en": "120ms neon ignition transitions; honour prefers-reduced-motion"
+        },
+        "states": {
+          "zh": "hover 增亮青色霓虹；focus 用 2px 青色可见描边；active 反向闪烁一次；disabled 降为暗灰去光；error 用洋红霓虹",
+          "en": "Hover brightens the cyan neon; focus shows a visible 2px cyan outline; active flickers inverted once; disabled fades to dim grey without glow; error uses magenta neon"
         }
       },
       "preview": {
@@ -30752,6 +30816,14 @@
         "spacing": {
           "zh": "分栏排版，行距宽松",
           "en": "Multi-column layout, airy leading"
+        },
+        "motion": {
+          "zh": "150–200ms 的淡入与下划线过渡，克制不弹跳",
+          "en": "150–200ms fades and underline transitions, restrained, no bounce"
+        },
+        "states": {
+          "zh": "hover 显示下划线并转棕；focus 用墨色点线可见外框；active 下沉一像素；disabled 降为浅灰；error 用棕色强调并加斜体提示",
+          "en": "Hover reveals an underline and turns brown; focus shows a visible ink dotted frame; active sinks one pixel; disabled fades to light grey; error uses a brown accent with an italic note"
         }
       },
       "preview": {
@@ -31001,6 +31073,14 @@
         "spacing": {
           "zh": "小圆角 6px，均匀网格",
           "en": "Small 6px radius, even grid"
+        },
+        "motion": {
+          "zh": "100–150ms 颜色与透明度的线性过渡，无位移",
+          "en": "Linear 100–150ms colour and opacity transitions, no movement"
+        },
+        "states": {
+          "zh": "hover 用更亮的平涂色；focus 用 2px 深色可见实线外框；active 换用更深色块；disabled 降到 50% 不透明；error 用红色平涂且不加阴影",
+          "en": "Hover uses a brighter flat fill; focus shows a visible 2px dark solid frame; active uses a deeper fill; disabled drops to 50% opacity; error uses a red flat fill with no shadow"
         }
       },
       "preview": {
@@ -31254,6 +31334,14 @@
         "spacing": {
           "zh": "圆角 16px+，卡片内边距充足",
           "en": "16px+ radii with roomy card padding"
+        },
+        "motion": {
+          "zh": "200–300ms ease-out 的位移与模糊过渡，尊重 prefers-reduced-motion",
+          "en": "200–300ms ease-out transitions for movement and blur; honour prefers-reduced-motion"
+        },
+        "states": {
+          "zh": "hover 提升透明度与模糊并轻微上浮；focus 用白色可见亮环；active 压低光晕；disabled 降不透明并去模糊；error 用红调玻璃且仅淡入颜色",
+          "en": "Hover raises opacity and blur and lifts slightly; focus shows a visible white ring; active lowers the glow; disabled loses opacity and blur; error tints the glass red, fading colour only"
         }
       },
       "preview": {
@@ -31511,6 +31599,14 @@
         "spacing": {
           "zh": "随手贴的错位与轻微倾斜",
           "en": "Casual misalignment and slight tilts"
+        },
+        "motion": {
+          "zh": "150–250ms 的轻微抖动式位移，带一点回弹，尊重 prefers-reduced-motion",
+          "en": "150–250ms slight wobbly offsets with a hint of bounce; honour prefers-reduced-motion"
+        },
+        "states": {
+          "zh": "hover 歪斜并加深抖动描边；focus 用 2px 手绘感可见外框；active 压平抖动；disabled 去色保留描边；error 用红笔涂改感",
+          "en": "Hover tilts and deepens the wobbly stroke; focus shows a visible 2px hand-drawn frame; active flattens the wobble; disabled desaturates but keeps the stroke; error looks like a red pen correction"
         }
       },
       "preview": {
@@ -31771,6 +31867,14 @@
         "spacing": {
           "zh": "20px+ 圆角或胶囊，控制件独立浮层",
           "en": "20px+ radii or pills, controls on a separate floating layer"
+        },
+        "motion": {
+          "zh": "250–400ms ease-out 的折射位移与高光滑动，尊重 prefers-reduced-motion",
+          "en": "250–400ms ease-out refraction shifts and specular slide; honour prefers-reduced-motion"
+        },
+        "states": {
+          "zh": "hover 高光沿边缘滑动并轻微放大；focus 用白色可见亮环；active 压低折射；disabled 降透明去高光；error 用红调折射且仅淡入颜色",
+          "en": "Hover slides the specular along the rim and scales slightly; focus shows a visible white ring; active lowers refraction; disabled loses opacity and speculars; error tints refraction red, fading colour only"
         }
       },
       "preview": {
@@ -32019,6 +32123,14 @@
         "spacing": {
           "zh": "故意歪斜、错位排布",
           "en": "Deliberately tilted, misaligned"
+        },
+        "motion": {
+          "zh": "150ms 的轻微弹跳位移，短 ease-out，尊重 prefers-reduced-motion",
+          "en": "150ms light bouncy offsets with a short ease-out; honour prefers-reduced-motion"
+        },
+        "states": {
+          "zh": "hover 错位并加深硬投影；focus 用 2px 黑色可见外框；active 位移贴合投影；disabled 去色不位移；error 用粉红强调",
+          "en": "Hover offsets and deepens the hard shadow; focus shows a visible 2px black frame; active shifts flush to the shadow; disabled desaturates without shifting; error uses a pink accent"
         }
       },
       "preview": {
@@ -32278,6 +32390,14 @@
         "spacing": {
           "zh": "极大留白，宽松的 8pt 网格",
           "en": "Generous whitespace on a relaxed 8pt grid"
+        },
+        "motion": {
+          "zh": "150ms 内只做颜色与透明度过渡，无位移",
+          "en": "Colours and opacity only, under 150ms, no movement"
+        },
+        "states": {
+          "zh": "hover 只变颜色；focus 用黑色发丝可见外框；active 轻微加深；disabled 降到 40% 不透明；error 用单一红",
+          "en": "Hover changes colour only; focus shows a black hairline ring; active darkens slightly; disabled drops to 40% opacity; error uses a single red"
         }
       },
       "preview": {
@@ -32531,6 +32651,14 @@
         "spacing": {
           "zh": "0 圆角，紧凑堆叠",
           "en": "Zero radius, tight stacking"
+        },
+        "motion": {
+          "zh": "约 100ms 的硬位移按压，无缓动",
+          "en": "Roughly 100ms hard positional press, no easing"
+        },
+        "states": {
+          "zh": "hover 位移到硬投影位置；focus 用 3px 黑色可见外框；active 继续下压并收起投影；disabled 灰化且不位移；error 用橙红粗边",
+          "en": "Hover shifts into the hard shadow; focus shows a visible 3px black frame; active presses down and removes the shadow; disabled greys out without shifting; error uses a harsh orange-red border"
         }
       },
       "preview": {
@@ -32732,6 +32860,14 @@
         "spacing": {
           "zh": "控件间距充足，避免阴影彼此挤压。",
           "en": "Space controls so shadows do not collide."
+        },
+        "motion": {
+          "zh": "150–200ms 的凸起与内陷阴影过渡",
+          "en": "150–200ms raised-to-inset shadow transitions"
+        },
+        "states": {
+          "zh": "hover 阴影加深并抬升；focus 必须保留 2px 可见外轮廓；active 切换为 inset 内陷；disabled 降低对比；error 用红色 inset 内陷",
+          "en": "Hover deepens and raises the shadow; focus must keep a visible 2px outline; active switches to an inset press; disabled lowers contrast; error uses a red inset shadow"
         }
       },
       "preview": {
@@ -32929,6 +33065,14 @@
         "spacing": {
           "zh": "大段留白与宽松行距，窄屏堆叠。",
           "en": "Generous whitespace and leading, stacked on narrow screens."
+        },
+        "motion": {
+          "zh": "250–350ms ease-out 的柔和生长与淡入，尊重 prefers-reduced-motion",
+          "en": "250–350ms ease-out organic growth and fades; honour prefers-reduced-motion"
+        },
+        "states": {
+          "zh": "hover 轻微舒展并加深苔绿；focus 用绿色可见外框；active 收拢一像素；disabled 降为灰绿；error 用陶土红",
+          "en": "Hover expands slightly and deepens the moss green; focus shows a visible green frame; active contracts one pixel; disabled fades to grey-green; error uses clay red"
         }
       },
       "preview": {
@@ -33183,6 +33327,14 @@
         "spacing": {
           "zh": "8px 网格对齐，元素贴像素格",
           "en": "8px grid alignment, elements snapped to the pixel lattice"
+        },
+        "motion": {
+          "zh": "无补间，步进式的瞬时切换",
+          "en": "No tweening, stepped and instant"
+        },
+        "states": {
+          "zh": "hover 换用高亮像素色；focus 用 2px 像素可见描边；active 位移一个像素块；disabled 降为两档灰；error 用红像素块",
+          "en": "Hover switches to a highlight pixel colour; focus shows a visible 2px pixel outline; active shifts by one pixel block; disabled drops to two greys; error uses a red pixel block"
         }
       },
       "preview": {
@@ -33431,6 +33583,14 @@
         "spacing": {
           "zh": "网格地平线式构图",
           "en": "Horizon-grid composition"
+        },
+        "motion": {
+          "zh": "200–300ms 的霓虹渐亮与扫描线位移，尊重 prefers-reduced-motion",
+          "en": "200–300ms neon warm-up and scanline drift; honour prefers-reduced-motion"
+        },
+        "states": {
+          "zh": "hover 增强铬金与粉光晕；focus 用粉色可见亮环；active 压低亮度；disabled 去光降饱和；error 用洋红霓虹",
+          "en": "Hover brightens the chrome and pink glow; focus shows a visible pink ring; active lowers brightness; disabled loses glow and saturation; error uses magenta neon"
         }
       },
       "preview": {
@@ -33681,6 +33841,14 @@
         "spacing": {
           "zh": "控件内边距模拟实物比例",
           "en": "Padding mimics physical proportions"
+        },
+        "motion": {
+          "zh": "150–200ms 的按压实感过渡，模拟物理回弹",
+          "en": "150–200ms pressed-feel transitions mimicking a physical rebound"
+        },
+        "states": {
+          "zh": "hover 加深高光；focus 用蓝色发光可见轮廓；active 用 inset 阴影表现按下；disabled 降低对比；error 用红色高光",
+          "en": "Hover deepens the highlight; focus shows a visible blue glow outline; active presses via inset shadow; disabled lowers contrast; error uses a red highlight"
         }
       },
       "preview": {
@@ -33931,6 +34099,14 @@
         "spacing": {
           "zh": "严格网格，栏距一致",
           "en": "Strict modular grid, consistent gutters"
+        },
+        "motion": {
+          "zh": "近似瞬时，颜色切换在 100ms 内，无缓动位移",
+          "en": "Near-instant colour swaps within 100ms, no eased movement"
+        },
+        "states": {
+          "zh": "hover 改用正红或反白；focus 用 2px 黑色可见实线框；active 反色块；disabled 降为灰；error 用正红并加粗",
+          "en": "Hover switches to signal red or knock-out white; focus shows a visible 2px black solid frame; active inverts the block; disabled drops to grey; error uses signal red at a heavier weight"
         }
       },
       "preview": {
@@ -34172,6 +34348,14 @@
         "spacing": {
           "zh": "地平线居中对称，元素悬浮网格上",
           "en": "Centered symmetric horizon, elements floating over the grid"
+        },
+        "motion": {
+          "zh": "300–400ms 的霓虹渐亮与地平线滑动，尊重 prefers-reduced-motion",
+          "en": "300–400ms neon warm-up and horizon glide; honour prefers-reduced-motion"
+        },
+        "states": {
+          "zh": "hover 增强多层霓虹光晕；focus 用青色可见亮环；active 压低饱和；disabled 去光降透明；error 用粉红霓虹",
+          "en": "Hover strengthens the layered neon glow; focus shows a visible cyan ring; active lowers saturation; disabled loses glow and opacity; error uses pink neon"
         }
       },
       "preview": {
@@ -34420,6 +34604,14 @@
         "spacing": {
           "zh": "气泡式 20px 圆角，松弛排布",
           "en": "Bubble 20px radii, relaxed spacing"
+        },
+        "motion": {
+          "zh": "150–250ms 带轻微回弹的过渡与光晕变化，尊重 prefers-reduced-motion",
+          "en": "150–250ms transitions with a slight bounce and glow shifts; honour prefers-reduced-motion"
+        },
+        "states": {
+          "zh": "hover 增强金属渐变与光晕；focus 用紫色可见亮环；active 缩小并加深；disabled 降透明去光；error 用红粉渐变",
+          "en": "Hover strengthens the chrome gradient and glow; focus shows a visible violet ring; active scales down and darkens; disabled loses opacity and glow; error uses a red-pink gradient"
         }
       },
       "preview": {

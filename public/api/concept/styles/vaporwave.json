@@ -198,6 +198,14 @@
     "spacing": {
       "zh": "地平线居中对称，元素悬浮网格上",
       "en": "Centered symmetric horizon, elements floating over the grid"
+    },
+    "motion": {
+      "zh": "300–400ms 的霓虹渐亮与地平线滑动，尊重 prefers-reduced-motion",
+      "en": "300–400ms neon warm-up and horizon glide; honour prefers-reduced-motion"
+    },
+    "states": {
+      "zh": "hover 增强多层霓虹光晕；focus 用青色可见亮环；active 压低饱和；disabled 去光降透明；error 用粉红霓虹",
+      "en": "Hover strengthens the layered neon glow; focus shows a visible cyan ring; active lowers saturation; disabled loses glow and opacity; error uses pink neon"
     }
   },
   "preview": {

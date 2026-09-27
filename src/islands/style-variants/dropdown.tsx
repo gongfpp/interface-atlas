@@ -1,16 +1,17 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function NeumorphDropdown({ session }: VariantDemoProps) {
+function NeumorphDropdown({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [open, setOpen] = useSessionState(session, 'open', false);
-  const items = ['Duplicate', 'Rename', 'Archive'];
+  const items = en ? ['Duplicate', 'Rename', 'Archive'] : ['复制', '重命名', '归档'];
   return (
     <div className="mx-auto flex w-full max-w-sm flex-col items-center gap-3 bg-[#e6e9ef] p-6 text-[#3b4252]">
       <button
         onClick={() => setOpen((o) => !o)}
         className="rounded-2xl bg-[#e6e9ef] px-5 py-2.5 text-sm font-semibold shadow-[6px_6px_12px_#c3c8d2,-6px_-6px_12px_#ffffff]"
       >
-        Options ▾
+        {en ? 'Options ▾' : '选项 ▾'}
       </button>
       {open && (
         <div className="w-full rounded-2xl bg-[#e6e9ef] p-2 shadow-[8px_8px_16px_#c3c8d2,-8px_-8px_16px_#ffffff]">
@@ -29,16 +30,17 @@ function NeumorphDropdown({ session }: VariantDemoProps) {
   );
 }
 
-function Y2kDropdown({ session }: VariantDemoProps) {
+function Y2kDropdown({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [open, setOpen] = useSessionState(session, 'open', false);
-  const items = ['My Profile', 'Buddies', 'Sign Out'];
+  const items = en ? ['My Profile', 'Buddies', 'Sign Out'] : ['个人资料', '好友', '退出登录'];
   return (
     <div className="mx-auto w-full max-w-sm rounded-[1.5rem] bg-gradient-to-b from-[#c8f0ff] to-[#e9d5ff] p-6">
       <button
         onClick={() => setOpen((o) => !o)}
         className="rounded-full border border-white/80 bg-gradient-to-b from-white to-[#9fb8d6] px-5 py-2 text-sm font-bold text-[#1b2a44] shadow-[0_4px_10px_#5b6fa055,inset_0_1px_2px_#fff]"
       >
-        menu.exe
+        {en ? 'menu.exe' : '菜单.exe'}
       </button>
       {open && (
         <div className="mt-3 overflow-hidden rounded-2xl border-2 border-white bg-gradient-to-b from-[#dff1ff] to-[#b9d6f5] p-1.5 shadow-[0_8px_20px_#4b6a9940]">
@@ -53,16 +55,17 @@ function Y2kDropdown({ session }: VariantDemoProps) {
   );
 }
 
-function SketchDropdown({ session }: VariantDemoProps) {
+function SketchDropdown({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [open, setOpen] = useSessionState(session, 'open', false);
-  const items = ['Rename sketch', 'Duplicate', 'Delete'];
+  const items = en ? ['Rename sketch', 'Duplicate', 'Delete'] : ['重命名草稿', '复制', '删除'];
   return (
     <div className="mx-auto w-full max-w-sm bg-[#fbf7ec] p-6 text-[#2b2b2b]">
       <button
         onClick={() => setOpen((o) => !o)}
         className="rotate-[-1deg] rounded-[0.6rem_1.2rem_0.7rem_1rem] border-2 border-dashed border-[#2b2b2b] bg-white/70 px-4 py-2 font-serif text-sm italic"
       >
-        Tools ✎
+        {en ? 'Tools ✎' : '工具 ✎'}
       </button>
       {open && (
         <div className="mt-3 rotate-[0.6deg] rounded-[1rem_0.6rem_1.2rem_0.7rem] border-2 border-dashed border-[#2b2b2b] bg-white/80 p-2">

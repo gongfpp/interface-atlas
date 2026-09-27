@@ -195,6 +195,14 @@
     "spacing": {
       "zh": "极大留白，宽松的 8pt 网格",
       "en": "Generous whitespace on a relaxed 8pt grid"
+    },
+    "motion": {
+      "zh": "150ms 内只做颜色与透明度过渡，无位移",
+      "en": "Colours and opacity only, under 150ms, no movement"
+    },
+    "states": {
+      "zh": "hover 只变颜色；focus 用黑色发丝可见外框；active 轻微加深；disabled 降到 40% 不透明；error 用单一红",
+      "en": "Hover changes colour only; focus shows a black hairline ring; active darkens slightly; disabled drops to 40% opacity; error uses a single red"
     }
   },
   "preview": {

@@ -1,13 +1,20 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function SwissAccordion({ session }: VariantDemoProps) {
+function SwissAccordion({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [open, setOpen] = useSessionState(session, 'open', 0);
-  const items: [string, string, string][] = [
-    ['01', 'Grid', 'Twelve columns, one baseline, nothing floats free.'],
-    ['02', 'Type', 'Neue Haas-style neutral grotesk at strict sizes.'],
-    ['03', 'Colour', 'Black, white and a single signal red for state.'],
-  ];
+  const items: [string, string, string][] = en
+    ? [
+        ['01', 'Grid', 'Twelve columns, one baseline, nothing floats free.'],
+        ['02', 'Type', 'Neue Haas-style neutral grotesk at strict sizes.'],
+        ['03', 'Colour', 'Black, white and a single signal red for state.'],
+      ]
+    : [
+        ['01', '网格', '十二列、一条基线，任何元素都不自由漂浮。'],
+        ['02', '字体', '严格字号的中性怪诞体，接近 Neue Haas 风格。'],
+        ['03', '色彩', '黑白为主，仅用一条信号红区分状态。'],
+      ];
   return (
     <div className="mx-auto w-full max-w-sm bg-white text-black" style={{ borderTop: '3px solid #000' }}>
       {items.map(([no, title, body], i) => (
@@ -28,9 +35,10 @@ function SwissAccordion({ session }: VariantDemoProps) {
   );
 }
 
-function RawAccordion({ session }: VariantDemoProps) {
+function RawAccordion({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [open, setOpen] = useSessionState(session, 'open', 0);
-  const items = ['UPLOAD', 'TRANSCODE', 'PUBLISH'];
+  const items = en ? ['UPLOAD', 'TRANSCODE', 'PUBLISH'] : ['上传', '转码', '发布'];
   return (
     <div className="mx-auto w-full max-w-sm bg-[#d8d8d8] font-mono text-black">
       {items.map((it, i) => (
@@ -41,16 +49,17 @@ function RawAccordion({ session }: VariantDemoProps) {
             </span>
             <span className="text-sm">{String(i + 1).padStart(2, '0')}</span>
           </button>
-          {open === i && <p className="px-3 pb-3 text-[11px] leading-snug">[ RAW TEXT BODY — NO ROUNDING, NO SHADOW, JUST STRUCTURE ]</p>}
+          {open === i && <p className="px-3 pb-3 text-[11px] leading-snug">{en ? '[ RAW TEXT BODY — NO ROUNDING, NO SHADOW, JUST STRUCTURE ]' : '[ 原始文本主体 —— 无圆角、无阴影，只有结构 ]'}</p>}
         </div>
       ))}
     </div>
   );
 }
 
-function LiquidAccordion({ session }: VariantDemoProps) {
+function LiquidAccordion({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [open, setOpen] = useSessionState(session, 'open', 0);
-  const items = ['Storage', 'Privacy', 'Devices'];
+  const items = en ? ['Storage', 'Privacy', 'Devices'] : ['存储', '隐私', '设备'];
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#1b2a4a] via-[#3b2d63] to-[#0e1730] p-4">
       <span className="pointer-events-none absolute -top-10 left-10 h-32 w-32 rounded-full bg-[#5b8cff]/40 blur-2xl" />
@@ -61,7 +70,7 @@ function LiquidAccordion({ session }: VariantDemoProps) {
               {it}
               <span className="text-white/60">{open === i ? '−' : '+'}</span>
             </button>
-            {open === i && <p className="px-4 pb-3 text-[11px] leading-relaxed text-white/70">A frosted pill expands in place with no chrome.</p>}
+            {open === i && <p className="px-4 pb-3 text-[11px] leading-relaxed text-white/70">{en ? 'A frosted pill expands in place with no chrome.' : '磨砂胶囊在原地展开，没有任何多余装饰。'}</p>}
           </div>
         ))}
       </div>

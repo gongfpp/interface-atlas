@@ -191,6 +191,14 @@
     "spacing": {
       "zh": "蓬松间距，元素相互分离",
       "en": "Puffy spacing, elements float apart"
+    },
+    "motion": {
+      "zh": "180–240ms 的柔和弹性按压过渡，尊重 prefers-reduced-motion",
+      "en": "180–240ms soft elastic press transitions; honour prefers-reduced-motion"
+    },
+    "states": {
+      "zh": "hover 轻微上浮并加深外阴影；focus 用紫色可见柔框；active 转为 inset 内陷；disabled 变扁降饱和；error 用珊瑚红内陷",
+      "en": "Hover lifts and deepens the outer shadow; focus shows a visible violet ring; active becomes an inset press; disabled flattens and desaturates; error uses a coral inset"
     }
   },
   "preview": {

@@ -191,6 +191,14 @@
     "spacing": {
       "zh": "小圆角 6px，均匀网格",
       "en": "Small 6px radius, even grid"
+    },
+    "motion": {
+      "zh": "100–150ms 颜色与透明度的线性过渡，无位移",
+      "en": "Linear 100–150ms colour and opacity transitions, no movement"
+    },
+    "states": {
+      "zh": "hover 用更亮的平涂色；focus 用 2px 深色可见实线外框；active 换用更深色块；disabled 降到 50% 不透明；error 用红色平涂且不加阴影",
+      "en": "Hover uses a brighter flat fill; focus shows a visible 2px dark solid frame; active uses a deeper fill; disabled drops to 50% opacity; error uses a red flat fill with no shadow"
     }
   },
   "preview": {

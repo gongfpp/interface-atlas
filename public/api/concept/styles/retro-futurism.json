@@ -191,6 +191,14 @@
     "spacing": {
       "zh": "网格地平线式构图",
       "en": "Horizon-grid composition"
+    },
+    "motion": {
+      "zh": "200–300ms 的霓虹渐亮与扫描线位移，尊重 prefers-reduced-motion",
+      "en": "200–300ms neon warm-up and scanline drift; honour prefers-reduced-motion"
+    },
+    "states": {
+      "zh": "hover 增强铬金与粉光晕；focus 用粉色可见亮环；active 压低亮度；disabled 去光降饱和；error 用洋红霓虹",
+      "en": "Hover brightens the chrome and pink glow; focus shows a visible pink ring; active lowers brightness; disabled loses glow and saturation; error uses magenta neon"
     }
   },
   "preview": {

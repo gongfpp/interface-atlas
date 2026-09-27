@@ -193,6 +193,14 @@
     "spacing": {
       "zh": "16px 圆角 + 10px 网格间距",
       "en": "16px radius, ~10px grid gaps"
+    },
+    "motion": {
+      "zh": "160–200ms ease-out 的卡片抬升与阴影过渡",
+      "en": "160–200ms ease-out card lift and shadow transition"
+    },
+    "states": {
+      "zh": "hover 轻微上浮并加深投影；focus 用紫色可见外框；active 回落到平面；disabled 降不透明；error 用红色描边",
+      "en": "Hover lifts slightly and deepens the shadow; focus shows a visible violet ring; active settles back flat; disabled reduces opacity; error uses a red border"
     }
   },
   "preview": {

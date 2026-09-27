@@ -191,6 +191,14 @@
     "spacing": {
       "zh": "故意歪斜、错位排布",
       "en": "Deliberately tilted, misaligned"
+    },
+    "motion": {
+      "zh": "150ms 的轻微弹跳位移，短 ease-out，尊重 prefers-reduced-motion",
+      "en": "150ms light bouncy offsets with a short ease-out; honour prefers-reduced-motion"
+    },
+    "states": {
+      "zh": "hover 错位并加深硬投影；focus 用 2px 黑色可见外框；active 位移贴合投影；disabled 去色不位移；error 用粉红强调",
+      "en": "Hover offsets and deepens the hard shadow; focus shows a visible 2px black frame; active shifts flush to the shadow; disabled desaturates without shifting; error uses a pink accent"
     }
   },
   "preview": {

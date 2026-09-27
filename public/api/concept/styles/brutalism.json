@@ -207,6 +207,14 @@
     "spacing": {
       "zh": "紧贴网格线的硬切排布，留白大开大合",
       "en": "Hard cuts on the grid, whitespace in big blunt blocks"
+    },
+    "motion": {
+      "zh": "近似瞬时，无过渡",
+      "en": "Near-instant, no transition"
+    },
+    "states": {
+      "zh": "hover 直接反色；focus 用 2px 黑色实线粗框；active 换成刺眼橙红 #FF3B00；disabled 降为 50% 灰；error 用 #FF3B00 实色块",
+      "en": "Hover inverts immediately; focus shows a 2px solid black frame; active switches to harsh orange-red #FF3B00; disabled drops to 50% grey; error uses a solid #FF3B00 block"
     }
   },
   "preview": {

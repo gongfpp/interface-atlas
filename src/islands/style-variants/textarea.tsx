@@ -1,12 +1,13 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function Flat({ session }: VariantDemoProps) {
+function Flat({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [v, setV] = useSessionState(session, 'value', 'Write a short note…');
   return (
     <div className="mx-auto w-full max-w-sm rounded-lg bg-[#eef4ff] p-4 text-[#0f172a]">
       <div className="mb-2 flex items-center justify-between">
-        <span className="text-xs font-semibold uppercase tracking-wide text-[#2563eb]">Message</span>
+        <span className="text-xs font-semibold uppercase tracking-wide text-[#2563eb]">{zh ? '消息' : 'Message'}</span>
         <span className="rounded bg-[#2563eb] px-2 py-0.5 text-[10px] font-semibold text-white">{v.length}</span>
       </div>
       <textarea
@@ -20,11 +21,12 @@ function Flat({ session }: VariantDemoProps) {
   );
 }
 
-function HandDrawn({ session }: VariantDemoProps) {
+function HandDrawn({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [v, setV] = useSessionState(session, 'value', 'dear notebook,');
   return (
     <div className="mx-auto w-full max-w-sm -rotate-1 bg-[#fbf7ec] p-5 text-[#2f2a25]">
-      <p className="font-serif text-lg italic">Scratch pad</p>
+      <p className="font-serif text-lg italic">{zh ? '草稿本' : 'Scratch pad'}</p>
       <textarea
         value={v}
         onChange={(e) => setV(e.target.value)}
@@ -37,14 +39,15 @@ function HandDrawn({ session }: VariantDemoProps) {
   );
 }
 
-function Cyberpunk({ session }: VariantDemoProps) {
+function Cyberpunk({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [v, setV] = useSessionState(session, 'value', '> transmit');
   return (
     <div
       className="mx-auto w-full max-w-sm bg-[#05060a] p-5 font-mono text-[#7df9ff]"
       style={{ border: '1px solid #ff2bd6', boxShadow: '0 0 12px #ff2bd6, inset 0 0 24px #ff2bd610' }}
     >
-      <p className="mb-2 text-[10px] uppercase tracking-[0.35em] text-[#ff2bd6]">// uplink</p>
+      <p className="mb-2 text-[10px] uppercase tracking-[0.35em] text-[#ff2bd6]">{zh ? '// 上行链路' : '// uplink'}</p>
       <textarea
         value={v}
         onChange={(e) => setV(e.target.value)}

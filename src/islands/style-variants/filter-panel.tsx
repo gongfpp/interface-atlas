@@ -1,52 +1,60 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-const CATS = ['Sans', 'Serif', 'Mono'];
-const SIZES = ['Small', 'Large'];
-
-function Swiss({ session }: VariantDemoProps) {
+function Swiss({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const cats = [
+    { id: 'Sans', label: en ? 'Sans' : '无衬线' },
+    { id: 'Serif', label: en ? 'Serif' : '衬线' },
+    { id: 'Mono', label: en ? 'Mono' : '等宽' },
+  ];
+  const sizes = [
+    { id: 'Small', label: en ? 'Small' : '小号' },
+    { id: 'Large', label: en ? 'Large' : '大号' },
+  ];
   const [sel, setSel] = useSessionState(session, 'active', ['Sans']);
   const toggle = (v: string) => setSel((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
-  const rows = (items: string[]) =>
+  const rows = (items: { id: string; label: string }[]) =>
     items.map((it) => (
-      <label key={it} onClick={() => toggle(it)} className="flex cursor-pointer items-center justify-between border-t border-black/10 py-1.5 text-xs">
+      <label key={it.id} onClick={() => toggle(it.id)} className="flex cursor-pointer items-center justify-between border-t border-black/10 py-1.5 text-xs">
         <span className="flex items-center gap-2">
-          <span className={`h-3.5 w-3.5 border border-black ${sel.includes(it) ? 'bg-black' : 'bg-white'}`} />
-          {it}
+          <span className={`h-3.5 w-3.5 border border-black ${sel.includes(it.id) ? 'bg-black' : 'bg-white'}`} />
+          {it.label}
         </span>
-        <span className="font-mono text-[10px] text-black/40">{it.length}</span>
+        <span className="font-mono text-[10px] text-black/40">{it.label.length}</span>
       </label>
     ));
   return (
     <div className="mx-auto w-full max-w-sm border border-black bg-white font-sans text-black">
       <div className="flex items-baseline justify-between border-b-2 border-red-600 px-4 py-2.5">
-        <span className="text-sm font-bold uppercase tracking-tight">Filter</span>
-        <span className="font-mono text-[10px] tracking-wider text-black/50">12 RESULTS</span>
+        <span className="text-sm font-bold uppercase tracking-tight">{en ? 'Filter' : '筛选'}</span>
+        <span className="font-mono text-[10px] tracking-wider text-black/50">{en ? '12 RESULTS' : '12 条结果'}</span>
       </div>
       <div className="p-4">
         <p className="mb-1 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.15em]">
-          <span className="h-2 w-2 bg-red-600" />Category
+          <span className="h-2 w-2 bg-red-600" />{en ? 'Category' : '分类'}
         </p>
-        {rows(CATS)}
+        {rows(cats)}
         <p className="mb-1 mt-3 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.15em]">
-          <span className="h-2 w-2 bg-red-600" />Size
+          <span className="h-2 w-2 bg-red-600" />{en ? 'Size' : '尺寸'}
         </p>
-        {rows(SIZES)}
+        {rows(sizes)}
       </div>
       <button onClick={() => setSel([])} className="w-full border-t border-black bg-black py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white hover:bg-red-600">
-        Clear all
+        {en ? 'Clear all' : '清除全部'}
       </button>
     </div>
   );
 }
 
-function Bauhaus({ session }: VariantDemoProps) {
+function Bauhaus({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [sel, setSel] = useSessionState(session, 'active', ['Furniture']);
   const toggle = (v: string) => setSel((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
   const opts = [
-    { label: 'Furniture', color: '#1d4ed8' },
-    { label: 'Lighting', color: '#e11d48' },
-    { label: 'Storage', color: '#f5b500' },
+    { id: 'Furniture', label: en ? 'Furniture' : '家具', color: '#1d4ed8' },
+    { id: 'Lighting', label: en ? 'Lighting' : '照明', color: '#e11d48' },
+    { id: 'Storage', label: en ? 'Storage' : '收纳', color: '#f5b500' },
   ];
   return (
     <div className="mx-auto w-full max-w-sm border-2 border-black bg-[#f4efe2] p-4 font-sans text-black">
@@ -54,12 +62,12 @@ function Bauhaus({ session }: VariantDemoProps) {
         <span className="h-4 w-4 rounded-full bg-[#e11d48]" />
         <span className="h-4 w-4 bg-[#f5b500]" />
         <span className="h-0 w-0 border-x-[8px] border-b-[14px] border-x-transparent border-b-[#1d4ed8]" />
-        <span className="ml-auto text-xs font-black uppercase tracking-widest">Filter</span>
+        <span className="ml-auto text-xs font-black uppercase tracking-widest">{en ? 'Filter' : '筛选'}</span>
       </div>
       {opts.map((o) => {
-        const on = sel.includes(o.label);
+        const on = sel.includes(o.id);
         return (
-          <button key={o.label} onClick={() => toggle(o.label)} className="mb-2 flex w-full items-center gap-3 border-2 border-black bg-white px-3 py-2 text-left text-sm font-bold">
+          <button key={o.id} onClick={() => toggle(o.id)} className="mb-2 flex w-full items-center gap-3 border-2 border-black bg-white px-3 py-2 text-left text-sm font-bold">
             <span className="h-4 w-4 rounded-full border-2 border-black" style={{ background: on ? o.color : 'transparent' }} />
             {o.label}
             <span className="ml-auto font-mono text-xs">{on ? '■' : '□'}</span>
@@ -67,37 +75,43 @@ function Bauhaus({ session }: VariantDemoProps) {
         );
       })}
       <button onClick={() => setSel([])} className="mt-1 w-full bg-black py-2 text-[10px] font-black uppercase tracking-[0.2em] text-white">
-        Reset
+        {en ? 'Reset' : '重置'}
       </button>
     </div>
   );
 }
 
-function Neumorph({ session }: VariantDemoProps) {
+function Neumorph({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const tones = [
+    { id: 'Warm', label: en ? 'Warm' : '暖色' },
+    { id: 'Cool', label: en ? 'Cool' : '冷色' },
+    { id: 'Neutral', label: en ? 'Neutral' : '中性' },
+  ];
   const [sel, setSel] = useSessionState(session, 'active', ['Warm']);
   const toggle = (v: string) => setSel((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
   return (
     <div className="mx-auto w-full max-w-sm rounded-3xl bg-[#e6e9ef] p-6 text-[#4b5563]">
-      <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#6b7280]">Tone</p>
-      {['Warm', 'Cool', 'Neutral'].map((o) => {
-        const on = sel.includes(o);
+      <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#6b7280]">{en ? 'Tone' : '色调'}</p>
+      {tones.map((o) => {
+        const on = sel.includes(o.id);
         return (
           <button
-            key={o}
-            onClick={() => toggle(o)}
+            key={o.id}
+            onClick={() => toggle(o.id)}
             className={`mb-3 flex w-full items-center justify-between rounded-2xl px-5 py-3 text-sm font-semibold transition-shadow ${
               on
                 ? 'shadow-[inset_5px_5px_10px_#c3c7cf,inset_-5px_-5px_10px_#ffffff]'
                 : 'shadow-[5px_5px_10px_#c3c7cf,-5px_-5px_10px_#ffffff]'
             }`}
           >
-            {o}
+            {o.label}
             <span className={`h-3 w-3 rounded-full ${on ? 'bg-[#7c8aa5]' : 'bg-[#d1d6de]'}`} />
           </button>
         );
       })}
       <button onClick={() => setSel([])} className="mt-1 w-full rounded-2xl px-4 py-2 text-[11px] uppercase tracking-widest text-[#6b7280] shadow-[3px_3px_6px_#c3c7cf,-3px_-3px_6px_#ffffff]">
-        Clear
+        {en ? 'Clear' : '清除'}
       </button>
     </div>
   );

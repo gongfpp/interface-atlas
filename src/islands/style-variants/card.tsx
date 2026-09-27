@@ -1,13 +1,14 @@
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
 
-function MinimalCard() {
+function MinimalCard({ locale }: VariantDemoProps) {
+  const en = locale === 'en';
   return (
     <div className="mx-auto w-full max-w-sm border border-black/15 bg-white p-5 text-black">
       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-black/50">Essay</p>
       <h3 className="mt-2 text-2xl font-semibold leading-tight tracking-tight">The shape of restraint</h3>
       <p className="mt-2 text-[12px] leading-relaxed text-black/60">Hairline border, two type sizes, nothing else.</p>
       <div className="mt-5 flex gap-3 border-t border-black/10 pt-3 text-[11px] uppercase tracking-wider text-black/50">
-        <span>Read</span>
+        <span>{en ? 'Read' : '阅读'}</span>
         <span>·</span>
         <span>6 min</span>
       </div>
@@ -15,7 +16,8 @@ function MinimalCard() {
   );
 }
 
-function AuroraCard() {
+function AuroraCard({ locale }: VariantDemoProps) {
+  const en = locale === 'en';
   return (
     <div
       className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-[#0b0f1f] p-5 text-[#e7ecff]"
@@ -29,14 +31,15 @@ function AuroraCard() {
         <h3 className="mt-2 text-xl font-semibold tracking-tight">Northern lights, shipped.</h3>
         <p className="mt-2 text-[12px] leading-relaxed text-white/70">Gradient blooms drifting behind a glass border.</p>
         <button className="mt-5 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-semibold">
-          Open changelog
+          {en ? 'Open changelog' : '查看更新日志'}
         </button>
       </div>
     </div>
   );
 }
 
-function BentoCard() {
+function BentoCard({ locale }: VariantDemoProps) {
+  const en = locale === 'en';
   return (
     <div className="mx-auto grid w-full max-w-sm grid-cols-3 gap-2 rounded-2xl bg-[#eef0f3] p-2 text-[#1c1f24]">
       <div className="col-span-3 rounded-xl bg-white p-3" style={{ boxShadow: '0 1px 2px #0000000d' }}>
@@ -45,11 +48,11 @@ function BentoCard() {
       </div>
       <div className="col-span-2 rounded-xl bg-[#1c1f24] p-3 text-white">
         <p className="text-2xl font-bold tracking-tight">82%</p>
-        <p className="text-[10px] uppercase tracking-wider text-white/60">Done</p>
+        <p className="text-[10px] uppercase tracking-wider text-white/60">{en ? 'Done' : '已完成'}</p>
       </div>
       <div className="col-span-1 rounded-xl bg-[#d7f36a] p-3">
         <p className="text-2xl font-bold tracking-tight">+12</p>
-        <p className="text-[10px] uppercase tracking-wider text-[#1c1f24]/60">New</p>
+        <p className="text-[10px] uppercase tracking-wider text-[#1c1f24]/60">{en ? 'New' : '新增'}</p>
       </div>
     </div>
   );

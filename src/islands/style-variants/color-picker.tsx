@@ -15,7 +15,8 @@ const EARTH = [
   { hex: '#5f7a86', name: 'River' },
 ];
 
-function CyberpunkColorPicker({ session }: VariantDemoProps) {
+function CyberpunkColorPicker({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [value, setValue] = useSessionState(session, 'value', '#00f0ff');
   const [selected, setSelected] = useSessionState(session, 'selected', 0);
   const pick = (hex: string, i: number) => {
@@ -24,7 +25,7 @@ function CyberpunkColorPicker({ session }: VariantDemoProps) {
   };
   return (
     <div className="mx-auto w-full max-w-sm border border-[#00f0ff]/40 bg-[#05060a] p-5 font-mono text-[#9ffcff] shadow-[0_0_24px_#00f0ff22]">
-      <p className="text-[10px] uppercase tracking-[0.3em] text-[#ff2e88]">▚ Palette.exe</p>
+      <p className="text-[10px] uppercase tracking-[0.3em] text-[#ff2e88]">▚ {en ? 'Palette.exe' : '调色板.exe'}</p>
       <div className="mt-4 grid grid-cols-4 gap-2">
         {NEON.map((c, i) => {
           const on = selected === i;
@@ -52,7 +53,8 @@ function CyberpunkColorPicker({ session }: VariantDemoProps) {
   );
 }
 
-function MemphisColorPicker({ session }: VariantDemoProps) {
+function MemphisColorPicker({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [value, setValue] = useSessionState(session, 'value', '#ff5c8a');
   const [selected, setSelected] = useSessionState(session, 'selected', 0);
   const pick = (hex: string, i: number) => {
@@ -63,7 +65,7 @@ function MemphisColorPicker({ session }: VariantDemoProps) {
     <div className="relative mx-auto w-full max-w-sm overflow-hidden border-4 border-black bg-white p-6 text-black">
       <span className="pointer-events-none absolute right-4 top-3 text-2xl">〰️</span>
       <span className="pointer-events-none absolute bottom-3 left-4 text-xl">● ● ●</span>
-      <p className="text-sm font-black uppercase tracking-wider">Pick a shade</p>
+      <p className="text-sm font-black uppercase tracking-wider">{en ? 'Pick a shade' : '选个颜色'}</p>
       <div className="mt-5 flex flex-wrap gap-4 pl-2">
         {MEMPHIS.map((c, i) => {
           const on = selected === i;
@@ -89,7 +91,8 @@ function MemphisColorPicker({ session }: VariantDemoProps) {
   );
 }
 
-function OrganicColorPicker({ session }: VariantDemoProps) {
+function OrganicColorPicker({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [value, setValue] = useSessionState(session, 'value', '#7f9d6b');
   const [selected, setSelected] = useSessionState(session, 'selected', 0);
   const pick = (hex: string, i: number) => {
@@ -98,7 +101,7 @@ function OrganicColorPicker({ session }: VariantDemoProps) {
   };
   return (
     <div className="mx-auto w-full max-w-sm rounded-[42px_28px_46px_24px] bg-[#f3efe1] p-6 text-[#4d4a3a]">
-      <p className="font-serif text-sm italic text-[#6b6a56]">Natural palette</p>
+      <p className="font-serif text-sm italic text-[#6b6a56]">{en ? 'Natural palette' : '自然色板'}</p>
       <div className="mt-5 flex flex-wrap gap-5">
         {EARTH.map((c, i) => {
           const on = selected === i;
@@ -118,7 +121,7 @@ function OrganicColorPicker({ session }: VariantDemoProps) {
         })}
       </div>
       <p className="mt-5 border-t border-[#d9d4c2] pt-3 text-[11px] text-[#6b6a56]">
-        Selected · {EARTH.find((c) => c.hex === value)?.name}
+        {en ? 'Selected' : '已选'} · {EARTH.find((c) => c.hex === value)?.name}
       </p>
     </div>
   );

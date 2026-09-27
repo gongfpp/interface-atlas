@@ -192,6 +192,14 @@
     "spacing": {
       "zh": "严格网格，栏距一致",
       "en": "Strict modular grid, consistent gutters"
+    },
+    "motion": {
+      "zh": "近似瞬时，颜色切换在 100ms 内，无缓动位移",
+      "en": "Near-instant colour swaps within 100ms, no eased movement"
+    },
+    "states": {
+      "zh": "hover 改用正红或反白；focus 用 2px 黑色可见实线框；active 反色块；disabled 降为灰；error 用正红并加粗",
+      "en": "Hover switches to signal red or knock-out white; focus shows a visible 2px black solid frame; active inverts the block; disabled drops to grey; error uses signal red at a heavier weight"
     }
   },
   "preview": {

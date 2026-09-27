@@ -1,13 +1,16 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-const OPTS = ['Day', 'Week', 'Month'];
+const OPTS_EN = ['Day', 'Week', 'Month'];
+const OPTS_ZH = ['日', '周', '月'];
 
-function Minimal({ session }: VariantDemoProps) {
+function Minimal({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const OPTS = en ? OPTS_EN : OPTS_ZH;
   const [i, setI] = useSessionState(session, 'active', 1);
   return (
     <div className="mx-auto w-full max-w-sm border border-black/10 bg-white p-5 text-black">
-      <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-black/50">Range</p>
+      <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-black/50">{en ? 'Range' : '范围'}</p>
       <div className="flex border border-black/20">
         {OPTS.map((o, k) => (
           <button
@@ -21,16 +24,18 @@ function Minimal({ session }: VariantDemoProps) {
           </button>
         ))}
       </div>
-      <p className="mt-3 font-mono text-[11px] tabular-nums text-black/50">{OPTS[i]} · 1,240 sessions</p>
+      <p className="mt-3 font-mono text-[11px] tabular-nums text-black/50">{en ? `${OPTS[i]} · 1,240 sessions` : `${OPTS[i]} · 1,240 次会话`}</p>
     </div>
   );
 }
 
-function Brutal({ session }: VariantDemoProps) {
+function Brutal({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const OPTS = en ? OPTS_EN : OPTS_ZH;
   const [i, setI] = useSessionState(session, 'active', 0);
   return (
     <div className="mx-auto w-full max-w-sm border-[3px] border-black bg-[#c6f24e] p-5 text-black">
-      <p className="mb-3 font-mono text-[10px] font-black uppercase tracking-[0.2em]">Range</p>
+      <p className="mb-3 font-mono text-[10px] font-black uppercase tracking-[0.2em]">{en ? 'Range' : '范围'}</p>
       <div className="flex gap-2">
         {OPTS.map((o, k) => (
           <button
@@ -44,18 +49,20 @@ function Brutal({ session }: VariantDemoProps) {
           </button>
         ))}
       </div>
-      <p className="mt-3 text-[11px] font-bold">{OPTS[i]} selected</p>
+      <p className="mt-3 text-[11px] font-bold">{en ? `${OPTS[i]} selected` : `已选 ${OPTS[i]}`}</p>
     </div>
   );
 }
 
-function Glass({ session }: VariantDemoProps) {
+function Glass({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const OPTS = en ? OPTS_EN : OPTS_ZH;
   const [i, setI] = useSessionState(session, 'active', 1);
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl bg-gradient-to-br from-[#7c5cff] via-[#ff6ec7] to-[#5ad1ff] p-6 text-white">
       <span className="pointer-events-none absolute -right-6 -top-10 h-28 w-28 rounded-full bg-white/40 blur-2xl" />
       <span className="pointer-events-none absolute -bottom-10 -left-4 h-24 w-24 rounded-full bg-white/25 blur-2xl" />
-      <p className="relative mb-3 font-mono text-[10px] uppercase tracking-[0.25em] text-white/80">Range</p>
+      <p className="relative mb-3 font-mono text-[10px] uppercase tracking-[0.25em] text-white/80">{en ? 'Range' : '范围'}</p>
       <div className="relative flex rounded-full border border-white/40 bg-white/15 p-1 backdrop-blur-md">
         {OPTS.map((o, k) => (
           <button

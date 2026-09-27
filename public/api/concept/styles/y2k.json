@@ -191,6 +191,14 @@
     "spacing": {
       "zh": "气泡式 20px 圆角，松弛排布",
       "en": "Bubble 20px radii, relaxed spacing"
+    },
+    "motion": {
+      "zh": "150–250ms 带轻微回弹的过渡与光晕变化，尊重 prefers-reduced-motion",
+      "en": "150–250ms transitions with a slight bounce and glow shifts; honour prefers-reduced-motion"
+    },
+    "states": {
+      "zh": "hover 增强金属渐变与光晕；focus 用紫色可见亮环；active 缩小并加深；disabled 降透明去光；error 用红粉渐变",
+      "en": "Hover strengthens the chrome gradient and glow; focus shows a visible violet ring; active scales down and darkens; disabled loses opacity and glow; error uses a red-pink gradient"
     }
   },
   "preview": {

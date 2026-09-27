@@ -7,7 +7,8 @@ const editions = [
   { kicker: 'Profile', title: 'Paper & Ink', deck: 'Masthead, deck, caption — nothing else.' },
 ];
 
-function Editorial({ session }: VariantDemoProps) {
+function Editorial({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [i, setI] = useSessionState(session, 'index', 0);
   const s = editions[i];
   return (
@@ -22,13 +23,13 @@ function Editorial({ session }: VariantDemoProps) {
         <p className="mt-2 text-sm italic leading-relaxed text-ink-2">{s.deck}</p>
       </div>
       <div className="mt-5 flex items-center justify-between border-t border-line pt-3 text-[11px] uppercase tracking-widest">
-        <button onClick={() => setI((i + editions.length - 1) % editions.length)} className="hover:text-accent">← Prev</button>
+        <button onClick={() => setI((i + editions.length - 1) % editions.length)} className="hover:text-accent">{en ? '← Prev' : '← 上一张'}</button>
         <span className="flex gap-1.5">
           {editions.map((_, n) => (
-            <button key={n} aria-label={`Slide ${n + 1}`} onClick={() => setI(n)} className={`h-1.5 w-1.5 rounded-full ${n === i ? 'bg-ink' : 'bg-line-strong'}`} />
+            <button key={n} aria-label={en ? `Slide ${n + 1}` : `第 ${n + 1} 张`} onClick={() => setI(n)} className={`h-1.5 w-1.5 rounded-full ${n === i ? 'bg-ink' : 'bg-line-strong'}`} />
           ))}
         </span>
-        <button onClick={() => setI((i + 1) % editions.length)} className="hover:text-accent">Next →</button>
+        <button onClick={() => setI((i + 1) % editions.length)} className="hover:text-accent">{en ? 'Next →' : '下一张 →'}</button>
       </div>
     </div>
   );
@@ -36,7 +37,8 @@ function Editorial({ session }: VariantDemoProps) {
 
 const feeds = ['NEON DISTRICT', 'CHROME RAIN', 'DATA DRIFT'];
 
-function Cyberpunk({ session }: VariantDemoProps) {
+function Cyberpunk({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [i, setI] = useSessionState(session, 'index', 0);
   return (
     <div className="mx-auto w-full max-w-sm border border-[#00f0ff]/60 bg-[#08080f] p-5 font-mono text-[#7df9ff] shadow-[0_0_22px_rgba(0,240,255,0.3)]">
@@ -49,8 +51,8 @@ function Cyberpunk({ session }: VariantDemoProps) {
         <p className="mt-1 text-[11px] leading-relaxed text-[#7df9ff]/70">night market · chrome rain · data drift</p>
       </div>
       <div className="mt-5 flex items-center gap-2 text-xs">
-        <button onClick={() => setI((i + feeds.length - 1) % feeds.length)} className="border border-[#00f0ff] px-3 py-1 hover:bg-[#00f0ff] hover:text-[#08080f]">[ &lt; ]</button>
-        <button onClick={() => setI((i + 1) % feeds.length)} className="border border-[#00f0ff] px-3 py-1 hover:bg-[#00f0ff] hover:text-[#08080f]">[ &gt; ]</button>
+        <button aria-label={en ? 'Previous slide' : '上一张'} onClick={() => setI((i + feeds.length - 1) % feeds.length)} className="border border-[#00f0ff] px-3 py-1 hover:bg-[#00f0ff] hover:text-[#08080f]">[ &lt; ]</button>
+        <button aria-label={en ? 'Next slide' : '下一张'} onClick={() => setI((i + 1) % feeds.length)} className="border border-[#00f0ff] px-3 py-1 hover:bg-[#00f0ff] hover:text-[#08080f]">[ &gt; ]</button>
         <span className="ml-auto flex gap-1">
           {feeds.map((_, n) => <span key={n} className={`h-3 w-1 ${n === i ? 'bg-[#ff2bd6]' : 'bg-[#00f0ff]/30'}`} />)}
         </span>
@@ -61,7 +63,8 @@ function Cyberpunk({ session }: VariantDemoProps) {
 
 const frames = ['STAGE 1UP', 'STAGE QUEST', 'STAGE SAVE'];
 
-function Pixel({ session }: VariantDemoProps) {
+function Pixel({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [i, setI] = useSessionState(session, 'index', 0);
   return (
     <div className="mx-auto w-full max-w-sm border-4 border-[#41a6f6] bg-[#1a1c2c] p-5 font-mono text-[#f4f4f4]">
@@ -74,11 +77,11 @@ function Pixel({ session }: VariantDemoProps) {
         <p className="mt-2 text-[11px] uppercase leading-relaxed text-[#94b0c2]">press start to continue</p>
       </div>
       <div className="mt-4 flex items-center justify-between">
-        <button onClick={() => setI((i + frames.length - 1) % frames.length)} className="border-4 border-[#41a6f6] px-3 py-1 text-xs uppercase text-[#41a6f6] hover:bg-[#41a6f6] hover:text-[#1a1c2c]">◀◀</button>
+        <button aria-label={en ? 'Previous slide' : '上一张'} onClick={() => setI((i + frames.length - 1) % frames.length)} className="border-4 border-[#41a6f6] px-3 py-1 text-xs uppercase text-[#41a6f6] hover:bg-[#41a6f6] hover:text-[#1a1c2c]">◀◀</button>
         <span className="flex gap-1">
           {frames.map((_, n) => <span key={n} className={`h-2 w-3 ${n === i ? 'bg-[#ef7d57]' : 'bg-[#566c86]'}`} />)}
         </span>
-        <button onClick={() => setI((i + 1) % frames.length)} className="border-4 border-[#41a6f6] px-3 py-1 text-xs uppercase text-[#41a6f6] hover:bg-[#41a6f6] hover:text-[#1a1c2c]">▶▶</button>
+        <button aria-label={en ? 'Next slide' : '下一张'} onClick={() => setI((i + 1) % frames.length)} className="border-4 border-[#41a6f6] px-3 py-1 text-xs uppercase text-[#41a6f6] hover:bg-[#41a6f6] hover:text-[#1a1c2c]">▶▶</button>
       </div>
     </div>
   );

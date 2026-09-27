@@ -198,6 +198,14 @@
     "spacing": {
       "zh": "8px 网格对齐，元素贴像素格",
       "en": "8px grid alignment, elements snapped to the pixel lattice"
+    },
+    "motion": {
+      "zh": "无补间，步进式的瞬时切换",
+      "en": "No tweening, stepped and instant"
+    },
+    "states": {
+      "zh": "hover 换用高亮像素色；focus 用 2px 像素可见描边；active 位移一个像素块；disabled 降为两档灰；error 用红像素块",
+      "en": "Hover switches to a highlight pixel colour; focus shows a visible 2px pixel outline; active shifts by one pixel block; disabled drops to two greys; error uses a red pixel block"
     }
   },
   "preview": {

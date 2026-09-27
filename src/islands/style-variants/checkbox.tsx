@@ -1,11 +1,12 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function Neumorph({ session }: VariantDemoProps) {
+function Neumorph({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [on, setOn] = useSessionState(session, 'checked', true);
   return (
     <div className="mx-auto w-full max-w-sm rounded-2xl bg-[#e6ebf2] p-6 text-[#5a6473]">
-      <p className="mb-4 text-xs font-semibold tracking-wide">Preferences</p>
+      <p className="mb-4 text-xs font-semibold tracking-wide">{zh ? '偏好设置' : 'Preferences'}</p>
       <button
         onClick={() => setOn(!on)}
         className={`flex w-full items-center gap-4 rounded-xl bg-[#e6ebf2] px-4 py-3 text-left transition-all duration-200 ${
@@ -23,18 +24,19 @@ function Neumorph({ session }: VariantDemoProps) {
         >
           ✓
         </span>
-        <span className="text-sm">Email me the digest</span>
+        <span className="text-sm">{zh ? '给我发送摘要邮件' : 'Email me the digest'}</span>
       </button>
       <p className="mt-4 text-[11px] leading-relaxed text-[#8b93a3]">The row extrudes from the same clay surface; checking it inverts the dual shadows to sink inward.</p>
     </div>
   );
 }
 
-function Pixel({ session }: VariantDemoProps) {
+function Pixel({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [on, setOn] = useSessionState(session, 'checked', false);
   return (
     <div className="mx-auto w-full max-w-sm bg-[#1a1c2c] p-5 font-mono text-[#f4f4f4]">
-      <p className="mb-4 text-[10px] uppercase tracking-[0.25em] text-[#94b0c2]">Options</p>
+      <p className="mb-4 text-[10px] uppercase tracking-[0.25em] text-[#94b0c2]">{zh ? '选项' : 'Options'}</p>
       <button onClick={() => setOn(!on)} className="flex w-full items-center gap-3 border-4 border-[#94b0c2] bg-[#333c57] p-3 text-left">
         <span
           className={`flex h-6 w-6 items-center justify-center border-4 text-[10px] font-bold ${
@@ -43,14 +45,15 @@ function Pixel({ session }: VariantDemoProps) {
         >
           X
         </span>
-        <span className="text-xs">{on ? 'MUSIC ON' : 'MUSIC OFF'}</span>
+        <span className="text-xs">{on ? (zh ? '音乐 开' : 'MUSIC ON') : zh ? '音乐 关' : 'MUSIC OFF'}</span>
       </button>
       <p className="mt-4 text-[11px] leading-relaxed text-[#94b0c2]">Chunky square borders in a minimal palette; the box snaps between two pixel states with no easing.</p>
     </div>
   );
 }
 
-function Neobrutal({ session }: VariantDemoProps) {
+function Neobrutal({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [on, setOn] = useSessionState(session, 'checked', true);
   return (
     <div className="mx-auto w-full max-w-sm border-[3px] border-black bg-[#ffe066] p-5 text-black">
@@ -67,7 +70,7 @@ function Neobrutal({ session }: VariantDemoProps) {
         >
           ✓
         </span>
-        <span className="text-xs font-black uppercase tracking-wider">I accept the terms</span>
+        <span className="text-xs font-black uppercase tracking-wider">{zh ? '我接受条款' : 'I accept the terms'}</span>
       </button>
       <p className="mt-4 text-[11px] font-medium leading-relaxed">A 3px outline with an offset shadow; ticking drops the shadow so the row looks physically pressed.</p>
     </div>

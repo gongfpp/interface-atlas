@@ -191,6 +191,14 @@
     "spacing": {
       "zh": "悬浮卡层叠，间距宽松",
       "en": "Floating stacked cards, roomy gaps"
+    },
+    "motion": {
+      "zh": "300–500ms ease-in-out 的光斑漂移与淡入，尊重 prefers-reduced-motion",
+      "en": "300–500ms ease-in-out drift of the glow, with fades; honour prefers-reduced-motion"
+    },
+    "states": {
+      "zh": "hover 增强光斑亮度；focus 用紫粉色可见亮环；active 压低光晕；disabled 降透明去光；error 用红调光斑且仅淡入颜色",
+      "en": "Hover brightens the glow; focus shows a visible violet-pink ring; active dims the bloom; disabled loses opacity and glow; error tints the glow red, fading colour only"
     }
   },
   "preview": {

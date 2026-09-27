@@ -1,7 +1,8 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function Vapor({ session }: VariantDemoProps) {
+function Vapor({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [open, setOpen] = useSessionState(session, 'open', 0);
   const events = [
     { t: '09:12', title: 'Deploy started' },
@@ -16,7 +17,7 @@ function Vapor({ session }: VariantDemoProps) {
         backgroundSize: '22px 22px',
       }}
     >
-      <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-[#22d3ee]">Activity log</p>
+      <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-[#22d3ee]">{en ? 'Activity log' : '活动日志'}</p>
       <ol className="relative border-l border-[#ff4fd8]/50 pl-5">
         {events.map((e, i) => (
           <li key={e.t} className="mb-3 last:mb-0">
@@ -25,7 +26,7 @@ function Vapor({ session }: VariantDemoProps) {
               <span className="font-mono text-[10px] text-[#22d3ee]">{e.t}</span>
               <span className="ml-2 text-sm">{e.title}</span>
             </button>
-            {open === i && <p className="mt-1 text-[11px] text-[#e9d5ff]/70">processed by runner-04 · 1.2s</p>}
+            {open === i && <p className="mt-1 text-[11px] text-[#e9d5ff]/70">{en ? 'processed by runner-04 · 1.2s' : '由 runner-04 处理 · 1.2s'}</p>}
           </li>
         ))}
       </ol>
@@ -33,19 +34,20 @@ function Vapor({ session }: VariantDemoProps) {
   );
 }
 
-function Organic({ session }: VariantDemoProps) {
+function Organic({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [open, setOpen] = useSessionState(session, 'open', 1);
   const events = ['Seeded', 'Watered', 'Bloomed'];
   return (
     <div className="mx-auto w-full max-w-sm rounded-[2rem] bg-[#f3efe2] p-6 text-[#3f4a34]">
-      <p className="mb-4 font-serif text-lg">Growth journal</p>
+      <p className="mb-4 font-serif text-lg">{en ? 'Growth journal' : '生长日志'}</p>
       <ol className="space-y-4">
         {events.map((e, i) => (
           <li key={e} className="flex items-start gap-3">
             <span className={`mt-0.5 h-5 w-5 shrink-0 rounded-[60%_40%_55%_45%] border border-[#7c8b5e] ${open === i ? 'bg-[#8ea562]' : 'bg-transparent'}`} />
             <button onClick={() => setOpen(i)} className="flex-1 text-left">
               <span className="text-sm font-semibold">{e}</span>
-              {open === i && <span className="mt-1 block font-serif text-xs italic text-[#6b7355]">A gentle note about this step, growing over time.</span>}
+              {open === i && <span className="mt-1 block font-serif text-xs italic text-[#6b7355]">{en ? 'A gentle note about this step, growing over time.' : '关于这一步的一点记录，随时间慢慢生长。'}</span>}
             </button>
           </li>
         ))}
@@ -54,12 +56,13 @@ function Organic({ session }: VariantDemoProps) {
   );
 }
 
-function Raw({ session }: VariantDemoProps) {
+function Raw({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [open, setOpen] = useSessionState(session, 'open', 0);
   const events = ['BUILD', 'TEST', 'SHIP'];
   return (
     <div className="mx-auto w-full max-w-sm bg-white p-5 text-black" style={{ border: '4px solid #000' }}>
-      <p className="font-mono text-4xl font-black leading-none tracking-tighter">LOG</p>
+      <p className="font-mono text-4xl font-black leading-none tracking-tighter">{en ? 'LOG' : '日志'}</p>
       <ol className="mt-4 divide-y-2 divide-black border-y-4 border-black">
         {events.map((e, i) => (
           <li key={e} className="py-2">
@@ -67,7 +70,7 @@ function Raw({ session }: VariantDemoProps) {
               <span className="font-mono text-2xl font-bold">{e}</span>
               <span className="font-mono text-xs">{String(i).padStart(2, '0')}:45</span>
             </button>
-            {open === i && <p className="mt-1 font-mono text-[11px] uppercase">[detail] raw system output, no decoration.</p>}
+            {open === i && <p className="mt-1 font-mono text-[11px] uppercase">{en ? '[detail] raw system output, no decoration.' : '[详情] 原始系统输出，无修饰。'}</p>}
           </li>
         ))}
       </ol>

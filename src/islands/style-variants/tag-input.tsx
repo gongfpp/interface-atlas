@@ -15,7 +15,8 @@ function isSubmit(e: KeyboardEvent<HTMLInputElement>) {
   return e.key === 'Enter' && !e.nativeEvent.isComposing;
 }
 
-function Minimal({ session }: VariantDemoProps) {
+function Minimal({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [tags, setTags] = useSessionState(session, 'tags', [{ id: -2, label: 'design' }, { id: -1, label: 'systems' }]);
   const [value, setValue] = useState('');
   const add = () => {
@@ -25,12 +26,12 @@ function Minimal({ session }: VariantDemoProps) {
   };
   return (
     <div className="mx-auto w-full max-w-sm border border-black/15 bg-white p-5 text-black">
-      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-black/50">Topics</p>
+      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-black/50">{en ? 'Topics' : '主题'}</p>
       <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1">
         {tags.map((t) => (
           <span key={t.id} className="inline-flex items-center gap-1 text-sm">
             <span className="border-b border-black/30">{t.label}</span>
-            <button onClick={() => setTags((prev) => prev.filter((x) => x.id !== t.id))} aria-label={`Remove ${t.label}`} className="text-black/40 hover:text-black">×</button>
+            <button onClick={() => setTags((prev) => prev.filter((x) => x.id !== t.id))} aria-label={en ? `Remove ${t.label}` : `移除 ${t.label}`} className="text-black/40 hover:text-black">×</button>
           </span>
         ))}
       </div>
@@ -38,15 +39,16 @@ function Minimal({ session }: VariantDemoProps) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={(e) => isSubmit(e) && add()}
-        aria-label="Add tag"
-        placeholder="Add tag…"
+        aria-label={en ? 'Add tag' : '添加标签'}
+        placeholder={en ? 'Add tag…' : '添加标签…'}
         className="mt-5 w-full border-b border-black/30 bg-transparent pb-1 text-sm outline-none placeholder:text-black/30 focus:border-black"
       />
     </div>
   );
 }
 
-function Memphis({ session }: VariantDemoProps) {
+function Memphis({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [tags, setTags] = useSessionState(session, 'tags', [{ id: -2, label: 'pop' }, { id: -1, label: 'wow' }]);
   const [value, setValue] = useState('');
   const add = () => {
@@ -57,10 +59,10 @@ function Memphis({ session }: VariantDemoProps) {
   const chips = ['-rotate-3 bg-[#ff6bd6]', 'rotate-2 bg-[#61dafb]', '-rotate-2 bg-[#a2f39a]'];
   return (
     <div className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl border-2 border-black bg-[#fff1a8] p-5 text-black">
-      <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em]">Tags!!</p>
+      <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em]">{en ? 'Tags!!' : '标签！！'}</p>
       <div className="mt-3 flex flex-wrap gap-2">
         {tags.map((t, n) => (
-          <button key={t.id} onClick={() => setTags((prev) => prev.filter((x) => x.id !== t.id))} aria-label={`Remove ${t.label}`} className={`border-2 border-black px-3 py-1 text-xs font-bold ${chips[n % chips.length]}`}>
+          <button key={t.id} onClick={() => setTags((prev) => prev.filter((x) => x.id !== t.id))} aria-label={en ? `Remove ${t.label}` : `移除 ${t.label}`} className={`border-2 border-black px-3 py-1 text-xs font-bold ${chips[n % chips.length]}`}>
             {t.label} ×
           </button>
         ))}
@@ -69,15 +71,16 @@ function Memphis({ session }: VariantDemoProps) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={(e) => isSubmit(e) && add()}
-        aria-label="Add tag"
-        placeholder="+ type a tag"
+        aria-label={en ? 'Add tag' : '添加标签'}
+        placeholder={en ? '+ type a tag' : '+ 输入标签'}
         className="mt-4 w-full rounded-full border-2 border-black bg-white px-3 py-2 text-sm outline-none placeholder:text-black/40"
       />
     </div>
   );
 }
 
-function Brutal({ session }: VariantDemoProps) {
+function Brutal({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [tags, setTags] = useSessionState(session, 'tags', [{ id: -2, label: 'RAW' }, { id: -1, label: 'FORM' }]);
   const [value, setValue] = useState('');
   const add = () => {
@@ -87,10 +90,10 @@ function Brutal({ session }: VariantDemoProps) {
   };
   return (
     <div className="mx-auto w-full max-w-sm border-4 border-white bg-black p-5 font-mono text-white">
-      <p className="text-[10px] uppercase tracking-[0.3em]">Input / tags</p>
+      <p className="text-[10px] uppercase tracking-[0.3em]">{en ? 'Input / tags' : '输入 / 标签'}</p>
       <div className="mt-4 flex flex-wrap gap-2">
         {tags.map((t) => (
-          <button key={t.id} onClick={() => setTags((prev) => prev.filter((x) => x.id !== t.id))} aria-label={`Remove ${t.label}`} className="border-2 border-white px-2 py-1 text-sm uppercase hover:bg-white hover:text-black">
+          <button key={t.id} onClick={() => setTags((prev) => prev.filter((x) => x.id !== t.id))} aria-label={en ? `Remove ${t.label}` : `移除 ${t.label}`} className="border-2 border-white px-2 py-1 text-sm uppercase hover:bg-white hover:text-black">
             {t.label} ×
           </button>
         ))}
@@ -99,11 +102,11 @@ function Brutal({ session }: VariantDemoProps) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={(e) => isSubmit(e) && add()}
-        aria-label="Add tag"
-        placeholder="> ADD…"
+        aria-label={en ? 'Add tag' : '添加标签'}
+        placeholder={en ? '> ADD…' : '> 添加…'}
         className="mt-5 w-full border-b-4 border-white bg-transparent pb-2 text-2xl uppercase text-white outline-none placeholder:text-white/40"
       />
-      <p className="mt-3 text-[10px] leading-relaxed text-white/50">TYPE + ENTER. NO APOLOGIES.</p>
+      <p className="mt-3 text-[10px] leading-relaxed text-white/50">{en ? 'TYPE + ENTER. NO APOLOGIES.' : '输入 + 回车。无需抱歉。'}</p>
     </div>
   );
 }

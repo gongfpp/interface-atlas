@@ -2,12 +2,13 @@ import { useState, type KeyboardEvent } from 'react';
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function useCommands(session: VariantDemoProps['session'], cmds: string[]) {
+function useCommands(session: VariantDemoProps['session'], cmds: string[], locale: VariantDemoProps['locale']) {
+  const en = locale === 'en';
   const [q, setQ] = useState('');
   const [active, setActive] = useState(0);
   const [result, setResult] = useSessionState(session, 'result', '');
   const hits = cmds.filter((c) => c.toLowerCase().includes(q.toLowerCase()));
-  const run = (c: string) => setResult(`Ran: ${c}`);
+  const run = (c: string) => setResult(en ? `Ran: ${c}` : `已运行：${c}`);
   const onKey = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'ArrowDown') {
       e.preventDefault();
@@ -26,8 +27,10 @@ function useCommands(session: VariantDemoProps['session'], cmds: string[]) {
   return { q, hits, active, result, setActive, run, onKey, change };
 }
 
-function AuroraPalette({ session }: VariantDemoProps) {
-  const { q, hits, active, result, setActive, run, onKey, change } = useCommands(session, ['New document', 'Invite teammate', 'Open settings', 'Toggle theme']);
+function AuroraPalette({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const cmds = en ? ['New document', 'Invite teammate', 'Open settings', 'Toggle theme'] : ['新建文档', '邀请成员', '打开设置', '切换主题'];
+  const { q, hits, active, result, setActive, run, onKey, change } = useCommands(session, cmds, locale);
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-[#0a0a14] p-4 text-white">
       <span className="pointer-events-none absolute -left-10 -top-10 h-40 w-40 rounded-full bg-[#6d4bff]/50 blur-3xl" />
@@ -40,8 +43,8 @@ function AuroraPalette({ session }: VariantDemoProps) {
           role="combobox"
           aria-expanded={hits.length > 0}
           aria-controls="aurora-cmds"
-          aria-label="Command"
-          placeholder="Type a command…"
+          aria-label={en ? 'Command' : '命令'}
+          placeholder={en ? 'Type a command…' : '输入命令…'}
           className="w-full rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none"
         />
         <ul id="aurora-cmds" role="listbox" className="mt-3 space-y-1">
@@ -57,16 +60,18 @@ function AuroraPalette({ session }: VariantDemoProps) {
               </button>
             </li>
           ))}
-          {!hits.length && <li className="px-3 py-2 text-sm text-white/40">No results</li>}
+          {!hits.length && <li className="px-3 py-2 text-sm text-white/40">{en ? 'No results' : '无结果'}</li>}
         </ul>
-        <p role="status" className="mt-2 text-[11px] text-white/50">{result || '↑↓ then ↵'}</p>
+        <p role="status" className="mt-2 text-[11px] text-white/50">{result || (en ? '↑↓ then ↵' : '↑↓ 后回车')}</p>
       </div>
     </div>
   );
 }
 
-function GlassPalette({ session }: VariantDemoProps) {
-  const { q, hits, active, result, setActive, run, onKey, change } = useCommands(session, ['Search files', 'Run task', 'New window', 'Preferences']);
+function GlassPalette({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const cmds = en ? ['Search files', 'Run task', 'New window', 'Preferences'] : ['搜索文件', '运行任务', '新建窗口', '偏好设置'];
+  const { q, hits, active, result, setActive, run, onKey, change } = useCommands(session, cmds, locale);
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-gradient-to-br from-[#ff6ec7] via-[#7c5cff] to-[#5ad1ff] p-2">
       <div className="rounded-xl border border-white/40 bg-white/20 p-3 backdrop-blur-xl">
@@ -77,8 +82,8 @@ function GlassPalette({ session }: VariantDemoProps) {
           role="combobox"
           aria-expanded={hits.length > 0}
           aria-controls="glass-cmds"
-          aria-label="Command"
-          placeholder="Search commands"
+          aria-label={en ? 'Command' : '命令'}
+          placeholder={en ? 'Search commands' : '搜索命令'}
           className="w-full rounded-lg border border-white/40 bg-white/20 px-3 py-2 text-sm text-white placeholder:text-white/70 focus:outline-none"
         />
         <ul id="glass-cmds" role="listbox" className="mt-2">
@@ -95,14 +100,16 @@ function GlassPalette({ session }: VariantDemoProps) {
             </li>
           ))}
         </ul>
-        <p role="status" className="mt-2 text-[11px] text-white/80">{result || '↑↓ then ↵'}</p>
+        <p role="status" className="mt-2 text-[11px] text-white/80">{result || (en ? '↑↓ then ↵' : '↑↓ 后回车')}</p>
       </div>
     </div>
   );
 }
 
-function FlatPalette({ session }: VariantDemoProps) {
-  const { q, hits, active, result, setActive, run, onKey, change } = useCommands(session, ['Create board', 'Add column', 'Assign member', 'Archive']);
+function FlatPalette({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const cmds = en ? ['Create board', 'Add column', 'Assign member', 'Archive'] : ['新建看板', '添加列', '分配成员', '归档'];
+  const { q, hits, active, result, setActive, run, onKey, change } = useCommands(session, cmds, locale);
   return (
     <div className="mx-auto w-full max-w-sm bg-raised p-4" style={{ border: '2px solid #2d3340' }}>
       <input
@@ -112,8 +119,8 @@ function FlatPalette({ session }: VariantDemoProps) {
         role="combobox"
         aria-expanded={hits.length > 0}
         aria-controls="flat-cmds"
-        aria-label="Quick actions"
-        placeholder="Quick actions"
+        aria-label={en ? 'Quick actions' : '快捷操作'}
+        placeholder={en ? 'Quick actions' : '快捷操作'}
         className="w-full rounded-md bg-code-bg px-3 py-2 text-sm text-ink placeholder:text-ink-3 focus:outline-none"
       />
       <ul id="flat-cmds" role="listbox" className="mt-3 space-y-1">
@@ -130,7 +137,7 @@ function FlatPalette({ session }: VariantDemoProps) {
           </li>
         ))}
       </ul>
-      <p role="status" className="mt-2 text-[11px] text-ink-3">{result || '↑↓ then ↵'}</p>
+      <p role="status" className="mt-2 text-[11px] text-ink-3">{result || (en ? '↑↓ then ↵' : '↑↓ 后回车')}</p>
     </div>
   );
 }

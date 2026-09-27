@@ -203,6 +203,14 @@
     "spacing": {
       "zh": "20px+ 圆角或胶囊，控制件独立浮层",
       "en": "20px+ radii or pills, controls on a separate floating layer"
+    },
+    "motion": {
+      "zh": "250–400ms ease-out 的折射位移与高光滑动，尊重 prefers-reduced-motion",
+      "en": "250–400ms ease-out refraction shifts and specular slide; honour prefers-reduced-motion"
+    },
+    "states": {
+      "zh": "hover 高光沿边缘滑动并轻微放大；focus 用白色可见亮环；active 压低折射；disabled 降透明去高光；error 用红调折射且仅淡入颜色",
+      "en": "Hover slides the specular along the rim and scales slightly; focus shows a visible white ring; active lowers refraction; disabled loses opacity and speculars; error tints refraction red, fading colour only"
     }
   },
   "preview": {

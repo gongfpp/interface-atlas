@@ -191,6 +191,14 @@
     "spacing": {
       "zh": "控件内边距模拟实物比例",
       "en": "Padding mimics physical proportions"
+    },
+    "motion": {
+      "zh": "150–200ms 的按压实感过渡，模拟物理回弹",
+      "en": "150–200ms pressed-feel transitions mimicking a physical rebound"
+    },
+    "states": {
+      "zh": "hover 加深高光；focus 用蓝色发光可见轮廓；active 用 inset 阴影表现按下；disabled 降低对比；error 用红色高光",
+      "en": "Hover deepens the highlight; focus shows a visible blue glow outline; active presses via inset shadow; disabled lowers contrast; error uses a red highlight"
     }
   },
   "preview": {

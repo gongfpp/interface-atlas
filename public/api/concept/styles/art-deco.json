@@ -141,6 +141,14 @@
     "spacing": {
       "zh": "轴线对齐，留白对称，移动端收敛装饰。",
       "en": "Axial alignment and balanced space; reduce ornament on mobile."
+    },
+    "motion": {
+      "zh": "200–300ms ease-out 的优雅淡入与描边展开，尊重 prefers-reduced-motion",
+      "en": "200–300ms ease-out fades and border reveals; honour prefers-reduced-motion"
+    },
+    "states": {
+      "zh": "hover 金色描边增亮；focus 用双层金色可见外框；active 描边收紧；disabled 降为暗金；error 用红金强调，保持轴对称",
+      "en": "Hover brightens the gold rule; focus shows a visible double gold frame; active tightens the border; disabled fades to dim gold; error uses red-gold, staying axially symmetric"
     }
   },
   "preview": {

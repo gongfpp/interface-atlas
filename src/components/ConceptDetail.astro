@@ -112,7 +112,9 @@ const card = 'rounded-xl border border-line bg-raised p-5';
             { k: 'Border', label: locale === 'zh' ? '边框' : 'Border', v: d.style_spec.border },
             { k: 'Shadow', label: locale === 'zh' ? '阴影' : 'Shadow', v: d.style_spec.shadow },
             { k: 'Spacing', label: locale === 'zh' ? '间距' : 'Spacing', v: d.style_spec.spacing },
-          ].map(({ label, v }) => (
+            { k: 'Motion', label: locale === 'zh' ? '动效' : 'Motion', v: d.style_spec.motion },
+            { k: 'States', label: locale === 'zh' ? '状态反馈' : 'States', v: d.style_spec.states },
+          ].filter((x): x is { k: string; label: string; v: NonNullable<typeof x.v> } => Boolean(x.v)).map(({ label, v }) => (
             <div class="rounded-lg border border-line bg-raised p-3.5">
               <p class="mb-1 text-[11px] uppercase tracking-wider text-ink-3">{label}</p>
               <p class="text-sm leading-relaxed text-ink-2">{v[locale]}</p>

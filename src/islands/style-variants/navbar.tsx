@@ -2,9 +2,10 @@ import { useState } from 'react';
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function Swiss({ session }: VariantDemoProps) {
-  const [active, setActive] = useSessionState(session, 'active', 'Work');
-  const items = ['Work', 'Studio', 'Contact'];
+function Swiss({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const items = en ? ['Work', 'Studio', 'Contact'] : ['作品', '工作室', '联系'];
+  const [active, setActive] = useSessionState(session, 'active', items[0]);
   return (
     <div className="mx-auto w-full max-w-md bg-white px-5 py-3 text-black" style={{ borderBottom: '3px solid #111' }}>
       <div className="flex items-center justify-between">
@@ -22,31 +23,34 @@ function Swiss({ session }: VariantDemoProps) {
   );
 }
 
-function Neobrutal(_props: VariantDemoProps) {
+function Neobrutal({ locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const items = en ? ['Work', 'Shop', 'About'] : ['作品', '商店', '关于'];
   const [menu, setMenu] = useState(false);
   return (
     <div className="mx-auto w-full max-w-md">
       <div className="flex items-center justify-between bg-[#ffd23f] px-4 py-3 text-black shadow-[5px_5px_0_0_#000]" style={{ border: '3px solid #000' }}>
         <span className="text-sm font-black uppercase tracking-wide">Atlas★</span>
-        <button type="button" aria-label="Toggle menu" onClick={() => setMenu(!menu)} className="text-lg font-black sm:hidden">☰</button>
+        <button type="button" aria-label={en ? 'Toggle menu' : '切换菜单'} onClick={() => setMenu(!menu)} className="text-lg font-black sm:hidden">☰</button>
         <nav className="hidden gap-4 text-xs font-black uppercase sm:flex">
-          <span className="border-b-[3px] border-black">Work</span>
-          <span>Shop</span>
-          <span>About</span>
+          {items.map((it, i) => (
+            <span key={it} className={i === 0 ? 'border-b-[3px] border-black' : ''}>{it}</span>
+          ))}
         </nav>
       </div>
       {menu && (
         <div className="mt-2 bg-white px-4 py-2 text-xs font-bold uppercase shadow-[5px_5px_0_0_#000]" style={{ border: '3px solid #000' }}>
-          Work · Shop · About
+          {items.join(' · ')}
         </div>
       )}
     </div>
   );
 }
 
-function Glass({ session }: VariantDemoProps) {
+function Glass({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const items = en ? ['Home', 'Explore', 'Saved'] : ['首页', '探索', '收藏'];
   const [active, setActive] = useSessionState(session, 'active', 0);
-  const items = ['Home', 'Explore', 'Saved'];
   return (
     <div className="mx-auto w-full max-w-md overflow-hidden rounded-2xl bg-gradient-to-r from-[#7c5cff] via-[#ff6ec7] to-[#5ad1ff] p-2">
       <div className="flex items-center justify-between rounded-xl border border-white/40 bg-white/20 px-3 py-2 text-white backdrop-blur-md">

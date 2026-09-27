@@ -1,42 +1,45 @@
-import type { StyleVariantSet } from './types';
+import type { StyleVariantSet, VariantDemoProps } from './types';
 
-function Editorial() {
+function Editorial({ locale }: VariantDemoProps) {
+  const en = locale === 'en';
   return (
     <div className="mx-auto w-full max-w-sm border-y border-ink bg-paper py-3">
       <nav className="flex items-center justify-center gap-2 font-serif text-[13px]">
-        <span className="text-ink-3">Journal</span>
+        <span className="text-ink-3">{en ? 'Journal' : '期刊'}</span>
         <span className="text-accent">/</span>
-        <span className="text-ink-3">Design</span>
+        <span className="text-ink-3">{en ? 'Design' : '设计'}</span>
         <span className="text-accent">/</span>
-        <span className="font-semibold text-ink">Archive</span>
+        <span className="font-semibold text-ink">{en ? 'Archive' : '档案'}</span>
       </nav>
     </div>
   );
 }
 
-function Pixel() {
+function Pixel({ locale }: VariantDemoProps) {
+  const en = locale === 'en';
   return (
     <div className="mx-auto w-full max-w-sm bg-[#1a1c2c] p-4 font-mono text-[#f4f4f4]" style={{ border: '4px solid #566c86', boxShadow: '4px 4px 0 0 #333c57' }}>
       <nav className="flex flex-wrap items-center gap-2 text-[11px] uppercase">
-        <span className="bg-[#566c86] px-2 py-1">Home</span>
+        <span className="bg-[#566c86] px-2 py-1">{en ? 'Home' : '首页'}</span>
         <span className="text-[#41a6f6]">►</span>
-        <span className="px-1 py-1 text-[#94b0c2]">Games</span>
+        <span className="px-1 py-1 text-[#94b0c2]">{en ? 'Games' : '游戏'}</span>
         <span className="text-[#41a6f6]">►</span>
-        <span className="bg-[#ef7d57] px-2 py-1 text-[#1a1c2c]">RPG</span>
+        <span className="bg-[#ef7d57] px-2 py-1 text-[#1a1c2c]">{en ? 'RPG' : '角色扮演'}</span>
       </nav>
     </div>
   );
 }
 
-function Brutal() {
+function Brutal({ locale }: VariantDemoProps) {
+  const en = locale === 'en';
   return (
     <div className="mx-auto w-full max-w-sm bg-white p-4 text-black" style={{ border: '4px solid #000' }}>
       <nav className="flex flex-wrap items-center gap-2 font-mono text-sm font-bold uppercase">
-        <span className="underline">ROOT</span>
+        <span className="underline">{en ? 'ROOT' : '根目录'}</span>
         <span className="text-2xl leading-none">//</span>
-        <span className="text-black/60">SYS</span>
+        <span className="text-black/60">{en ? 'SYS' : '系统'}</span>
         <span className="text-2xl leading-none">//</span>
-        <span className="bg-black px-2 py-0.5 text-white">CONFIG</span>
+        <span className="bg-black px-2 py-0.5 text-white">{en ? 'CONFIG' : '配置'}</span>
       </nav>
     </div>
   );

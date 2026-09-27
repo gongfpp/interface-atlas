@@ -141,6 +141,14 @@
     "spacing": {
       "zh": "控件间距充足，避免阴影彼此挤压。",
       "en": "Space controls so shadows do not collide."
+    },
+    "motion": {
+      "zh": "150–200ms 的凸起与内陷阴影过渡",
+      "en": "150–200ms raised-to-inset shadow transitions"
+    },
+    "states": {
+      "zh": "hover 阴影加深并抬升；focus 必须保留 2px 可见外轮廓；active 切换为 inset 内陷；disabled 降低对比；error 用红色 inset 内陷",
+      "en": "Hover deepens and raises the shadow; focus must keep a visible 2px outline; active switches to an inset press; disabled lowers contrast; error uses a red inset shadow"
     }
   },
   "preview": {

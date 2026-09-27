@@ -5,12 +5,13 @@ const track = '[&::-webkit-slider-runnable-track]:rounded-full [&::-moz-range-tr
 const thumb =
   '[&::-webkit-slider-thumb]:appearance-none [&::-moz-range-thumb]:appearance-none [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:cursor-pointer';
 
-function Brutal({ session }: VariantDemoProps) {
+function Brutal({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [v, setV] = useSessionState(session, 'value', 72);
   return (
     <div className="mx-auto w-full max-w-sm border-4 border-black bg-white p-6 font-mono text-black">
       <div className="flex items-end justify-between border-b-4 border-black pb-2">
-        <span className="text-xs font-bold uppercase">Volume</span>
+        <span className="text-xs font-bold uppercase">{zh ? '音量' : 'Volume'}</span>
         <span className="text-5xl font-black leading-none tracking-tighter">{v}</span>
       </div>
       <input
@@ -26,7 +27,8 @@ function Brutal({ session }: VariantDemoProps) {
   );
 }
 
-function Vapor({ session }: VariantDemoProps) {
+function Vapor({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [v, setV] = useSessionState(session, 'value', 55);
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-lg bg-gradient-to-b from-[#1a103c] to-[#3a0f5c] p-6 text-[#ffd9f7]">
@@ -37,7 +39,7 @@ function Vapor({ session }: VariantDemoProps) {
           backgroundSize: '18px 18px',
         }}
       />
-      <p className="relative font-mono text-[10px] uppercase tracking-[0.4em] text-[#22d3ee]">Frequency</p>
+      <p className="relative font-mono text-[10px] uppercase tracking-[0.4em] text-[#22d3ee]">{zh ? '频率' : 'Frequency'}</p>
       <p className="relative mt-1 text-3xl font-black italic text-[#ff6ec7] drop-shadow-[0_0_10px_#ff6ec7]">{v}%</p>
       <input
         type="range"
@@ -52,12 +54,13 @@ function Vapor({ session }: VariantDemoProps) {
   );
 }
 
-function Organic({ session }: VariantDemoProps) {
+function Organic({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [v, setV] = useSessionState(session, 'value', 40);
   return (
     <div className="mx-auto w-full max-w-sm rounded-[2rem] bg-[#f1efe3] p-6 text-[#39452f]">
-      <p className="font-serif text-lg">Water intake</p>
-      <p className="mt-1 text-xs text-[#7c8468]">{v}% of your daily goal</p>
+      <p className="font-serif text-lg">{zh ? '饮水量' : 'Water intake'}</p>
+      <p className="mt-1 text-xs text-[#7c8468]">{zh ? `每日目标的 ${v}%` : `${v}% of your daily goal`}</p>
       <input
         type="range"
         min={0}

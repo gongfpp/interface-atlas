@@ -32,21 +32,21 @@ test("progress bar never exceeds 100%", async ({ page }) => {
 
 test("date picker navigation changes month and grid", async ({ page }) => {
   const section = await selectStyle(page, "date-picker", "minimalism");
-  await expect(section.getByText("September 2026")).toBeVisible();
-  await section.getByRole("button", { name: "Next month" }).click();
-  await expect(section.getByText("October 2026")).toBeVisible();
-  await section.getByRole("button", { name: "Previous month" }).click();
-  await expect(section.getByText("September 2026")).toBeVisible();
+  await expect(section.getByText(/九月|September/)).toBeVisible();
+  await section.getByRole("button", { name: /Next month|下个月/ }).click();
+  await expect(section.getByText(/十月|October/)).toBeVisible();
+  await section.getByRole("button", { name: /Previous month|上个月/ }).click();
+  await expect(section.getByText(/九月|September/)).toBeVisible();
 });
 
 test("tabs expose panels and arrow-key navigation", async ({ page }) => {
   const section = await selectStyle(page, "tabs", "liquid-glass");
   const tabs = section.getByRole("tab");
-  await expect(section.getByRole("tabpanel", { name: /Week/ })).toBeVisible();
+  await expect(section.getByRole("tabpanel", { name: /周|Week/ })).toBeVisible();
   await tabs.first().focus();
   await page.keyboard.press("ArrowRight");
   await expect(tabs.nth(1)).toHaveAttribute("aria-selected", "true");
-  await expect(section.getByRole("tabpanel", { name: /Week/ })).toBeVisible();
+  await expect(section.getByRole("tabpanel", { name: /周|Week/ })).toBeVisible();
 });
 
 test("tooltip shows on keyboard focus and hides on Escape", async ({ page }) => {
@@ -60,7 +60,7 @@ test("tooltip shows on keyboard focus and hides on Escape", async ({ page }) => 
 
 test("switch exposes role=switch and toggles aria-checked", async ({ page }) => {
   const section = await selectStyle(page, "switch", "flat-design");
-  const sw = section.getByRole("switch", { name: "Notifications" });
+  const sw = section.getByRole("switch", { name: /Notifications|通知/ });
   const before = await sw.getAttribute("aria-checked");
   await sw.click();
   await expect(sw).not.toHaveAttribute("aria-checked", before ?? "");
@@ -78,14 +78,14 @@ test("file upload uses a real file input and lists the chosen file", async ({ pa
 
 test("tag input removes only the targeted duplicate tag", async ({ page }) => {
   const section = await selectStyle(page, "tag-input", "memphis");
-  const input = section.getByRole("textbox", { name: "Add tag" });
+  const input = section.getByRole("textbox", { name: /Add tag|添加标签/ });
   await input.fill("dup");
   await input.press("Enter");
   await input.fill("dup");
   await input.press("Enter");
-  await expect(section.getByRole("button", { name: "Remove dup" })).toHaveCount(2);
-  await section.getByRole("button", { name: "Remove dup" }).first().click();
-  await expect(section.getByRole("button", { name: "Remove dup" })).toHaveCount(1);
+  await expect(section.getByRole("button", { name: /Remove dup|移除 dup/ })).toHaveCount(2);
+  await section.getByRole("button", { name: /Remove dup|移除 dup/ }).first().click();
+  await expect(section.getByRole("button", { name: /Remove dup|移除 dup/ })).toHaveCount(1);
 });
 
 test("input value survives a style switch (shared lab session)", async ({ page }) => {

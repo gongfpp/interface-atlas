@@ -140,6 +140,14 @@
     "spacing": {
       "zh": "大段留白与宽松行距，窄屏堆叠。",
       "en": "Generous whitespace and leading, stacked on narrow screens."
+    },
+    "motion": {
+      "zh": "250–350ms ease-out 的柔和生长与淡入，尊重 prefers-reduced-motion",
+      "en": "250–350ms ease-out organic growth and fades; honour prefers-reduced-motion"
+    },
+    "states": {
+      "zh": "hover 轻微舒展并加深苔绿；focus 用绿色可见外框；active 收拢一像素；disabled 降为灰绿；error 用陶土红",
+      "en": "Hover expands slightly and deepens the moss green; focus shows a visible green frame; active contracts one pixel; disabled fades to grey-green; error uses clay red"
     }
   },
   "preview": {

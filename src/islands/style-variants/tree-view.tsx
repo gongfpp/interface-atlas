@@ -8,11 +8,12 @@ const TREE = [
 const ROMAN = ['I', 'II', 'III'];
 const toggleIn = (list: string[], k: string) => (list.includes(k) ? list.filter((x) => x !== k) : [...list, k]);
 
-function BrutalistTree({ session }: VariantDemoProps) {
+function BrutalistTree({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [expanded, setExpanded] = useSessionState(session, 'expanded', ['src']);
   return (
     <div className="mx-auto w-full max-w-sm border-4 border-black bg-white font-mono text-black">
-      <p className="border-b-4 border-black bg-black px-4 py-2 text-sm font-black uppercase tracking-widest text-white">Files</p>
+      <p className="border-b-4 border-black bg-black px-4 py-2 text-sm font-black uppercase tracking-widest text-white">{en ? 'Files' : '文件'}</p>
       <ul>
         {TREE.map((node) => {
           const on = expanded.includes(node.label);
@@ -37,11 +38,12 @@ function BrutalistTree({ session }: VariantDemoProps) {
   );
 }
 
-function EditorialTree({ session }: VariantDemoProps) {
+function EditorialTree({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [expanded, setExpanded] = useSessionState(session, 'expanded', ['src']);
   return (
     <div className="mx-auto w-full max-w-sm bg-paper px-5 py-6 font-serif text-ink">
-      <p className="text-center text-[10px] uppercase tracking-[0.4em] text-ink-3">Contents</p>
+      <p className="text-center text-[10px] uppercase tracking-[0.4em] text-ink-3">{en ? 'Contents' : '目录'}</p>
       <ul className="mt-4">
         {TREE.map((node, i) => {
           const on = expanded.includes(node.label);
@@ -69,13 +71,14 @@ function EditorialTree({ session }: VariantDemoProps) {
   );
 }
 
-function NeumorphicTree({ session }: VariantDemoProps) {
+function NeumorphicTree({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [expanded, setExpanded] = useSessionState(session, 'expanded', ['src']);
   const raised = 'shadow-[6px_6px_12px_rgba(163,177,198,0.6),-6px_-6px_12px_rgba(255,255,255,0.9)]';
   const inset = 'shadow-[inset_4px_4px_8px_rgba(163,177,198,0.55),inset_-4px_-4px_8px_rgba(255,255,255,0.9)]';
   return (
     <div className="mx-auto w-full max-w-sm rounded-3xl bg-[#e6e9f0] p-6 text-[#4a5568]">
-      <p className="text-xs font-semibold uppercase tracking-widest text-[#8a97ad]">Explorer</p>
+      <p className="text-xs font-semibold uppercase tracking-widest text-[#8a97ad]">{en ? 'Explorer' : '资源管理器'}</p>
       <ul className="mt-4 space-y-3">
         {TREE.map((node) => {
           const on = expanded.includes(node.label);

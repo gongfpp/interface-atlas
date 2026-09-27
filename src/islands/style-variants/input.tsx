@@ -1,12 +1,13 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function Minimal({ session }: VariantDemoProps) {
+function Minimal({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [v, setV] = useSessionState(session, 'value', '');
   return (
     <div className="mx-auto w-full max-w-sm space-y-4 border border-black/10 bg-white p-6 text-black">
       <label className="block">
-        <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-black/50">Email address</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-black/50">{zh ? '邮箱地址' : 'Email address'}</span>
         <input
           value={v}
           onChange={(e) => setV(e.target.value)}
@@ -19,12 +20,13 @@ function Minimal({ session }: VariantDemoProps) {
   );
 }
 
-function Neobrutal({ session }: VariantDemoProps) {
+function Neobrutal({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [v, setV] = useSessionState(session, 'value', 'hello@studio');
   return (
     <div className="mx-auto w-full max-w-sm border-[2.5px] border-black bg-[#b8e0ff] p-5 text-black">
       <label className="block">
-        <span className="font-mono text-[10px] font-black uppercase tracking-[0.2em]">Your email</span>
+        <span className="font-mono text-[10px] font-black uppercase tracking-[0.2em]">{zh ? '你的邮箱' : 'Your email'}</span>
         <input
           value={v}
           onChange={(e) => setV(e.target.value)}
@@ -36,14 +38,15 @@ function Neobrutal({ session }: VariantDemoProps) {
   );
 }
 
-function Editorial({ session }: VariantDemoProps) {
+function Editorial({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [v, setV] = useSessionState(session, 'value', '');
   return (
     <div className="mx-auto w-full max-w-sm border-y-4 border-double border-ink bg-paper px-1 py-6 text-ink">
-      <p className="font-serif text-2xl leading-none">Subscribe</p>
+      <p className="font-serif text-2xl leading-none">{zh ? '订阅' : 'Subscribe'}</p>
       <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.3em] text-ink-3">The Weekly Dispatch</p>
       <label className="mt-6 block border-t border-line-strong pt-4">
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-2">Email</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-2">{zh ? '邮箱' : 'Email'}</span>
         <input
           value={v}
           onChange={(e) => setV(e.target.value)}

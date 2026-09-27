@@ -1,7 +1,8 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function FlatAvatar(_: VariantDemoProps) {
+function FlatAvatar({ locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const people: [string, string][] = [
     ['AL', '#ff6b6b'],
     ['MK', '#4d96ff'],
@@ -10,7 +11,7 @@ function FlatAvatar(_: VariantDemoProps) {
   ];
   return (
     <div className="mx-auto w-full max-w-sm bg-raised p-5">
-      <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-3">Team</p>
+      <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-3">{en ? 'Team' : '团队'}</p>
       <div className="mt-3 flex -space-x-2">
         {people.map(([init, color]) => (
           <span
@@ -28,7 +29,8 @@ function FlatAvatar(_: VariantDemoProps) {
   );
 }
 
-function MemphisAvatar({ session }: VariantDemoProps) {
+function MemphisAvatar({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [picked, setPicked] = useSessionState(session, 'selected', 0);
   const people = ['A', 'B', 'C'];
   const colors = ['#ff3d9a', '#00d2e0', '#ffe23d'];
@@ -36,7 +38,7 @@ function MemphisAvatar({ session }: VariantDemoProps) {
     <div className="relative mx-auto w-full max-w-sm overflow-hidden bg-[#fdf3ff] p-5 text-black" style={{ border: '3px solid #000' }}>
       <span className="absolute right-4 top-3 h-4 w-4 rounded-full" style={{ background: '#00d2e0' }} />
       <span className="absolute right-9 top-7 h-2 w-2 rounded-full bg-black" />
-      <p className="text-xs font-black uppercase tracking-[0.15em]">Pick a buddy</p>
+      <p className="text-xs font-black uppercase tracking-[0.15em]">{en ? 'Pick a buddy' : '选个伙伴'}</p>
       <div className="mt-4 flex gap-4">
         {people.map((p, i) => (
           <button
@@ -59,12 +61,13 @@ function MemphisAvatar({ session }: VariantDemoProps) {
   );
 }
 
-function DecoAvatar(_: VariantDemoProps) {
+function DecoAvatar({ locale }: VariantDemoProps) {
+  const en = locale === 'en';
   return (
     <div className="mx-auto w-full max-w-sm bg-[#10131c] p-6 text-center" style={{ border: '1px solid #c8a24a' }}>
       <div className="mx-auto flex w-fit items-center gap-3 text-[#c8a24a]">
         <span className="h-px w-10 bg-[#c8a24a]" />
-        <span className="text-[10px] tracking-[0.4em]">MEMBER</span>
+        <span className="text-[10px] tracking-[0.4em]">{en ? 'MEMBER' : '会员'}</span>
         <span className="h-px w-10 bg-[#c8a24a]" />
       </div>
       <div className="mx-auto mt-5 flex h-20 w-20 rotate-45 items-center justify-center border-2 border-[#c8a24a]">

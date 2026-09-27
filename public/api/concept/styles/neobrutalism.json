@@ -193,6 +193,14 @@
     "spacing": {
       "zh": "0 圆角，紧凑堆叠",
       "en": "Zero radius, tight stacking"
+    },
+    "motion": {
+      "zh": "约 100ms 的硬位移按压，无缓动",
+      "en": "Roughly 100ms hard positional press, no easing"
+    },
+    "states": {
+      "zh": "hover 位移到硬投影位置；focus 用 3px 黑色可见外框；active 继续下压并收起投影；disabled 灰化且不位移；error 用橙红粗边",
+      "en": "Hover shifts into the hard shadow; focus shows a visible 3px black frame; active presses down and removes the shadow; disabled greys out without shifting; error uses a harsh orange-red border"
     }
   },
   "preview": {

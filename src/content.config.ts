@@ -201,6 +201,10 @@ const baseSchema = z
         border: bilingualText,
         shadow: bilingualText,
         spacing: bilingualText,
+        /** 该风格的时长与缓动约定（消费方：风格页开发规格、API、Markdown） */
+        motion: bilingualText.optional(),
+        /** 该风格 hover/focus/active/disabled/error 的反馈约定 */
+        states: bilingualText.optional(),
       })
       .optional(),
 

@@ -1,8 +1,10 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-const DAYS = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const DAYS_EN = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+const DAYS_ZH = ['一', '二', '三', '四', '五', '六', '日'];
+const MONTHS_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const MONTHS_ZH = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
 
 /** 周一为一周起点；返回首日偏移与当月天数。 */
 function monthInfo(year: number, month: number) {
@@ -35,15 +37,18 @@ function useCalendar(session: VariantDemoProps['session'], initialMonth: number,
   return { ym, day, days, setDay, shift };
 }
 
-function Minimal({ session }: VariantDemoProps) {
+function Minimal({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const DAYS = en ? DAYS_EN : DAYS_ZH;
+  const MONTHS = en ? MONTHS_EN : MONTHS_ZH;
   const { ym, day, days, setDay, shift } = useCalendar(session, 8, 14);
   return (
     <div className="mx-auto w-full max-w-sm border border-black/10 bg-white p-5 text-black">
       <div className="mb-3 flex items-baseline justify-between">
         <p className="text-sm font-medium">{MONTHS[ym.m]} {ym.y}</p>
         <div className="flex gap-3 font-mono text-xs text-black/60">
-          <button type="button" aria-label="Previous month" onClick={() => shift(-1)}>‹</button>
-          <button type="button" aria-label="Next month" onClick={() => shift(1)}>›</button>
+          <button type="button" aria-label={en ? 'Previous month' : '上个月'} onClick={() => shift(-1)}>‹</button>
+          <button type="button" aria-label={en ? 'Next month' : '下个月'} onClick={() => shift(1)}>›</button>
         </div>
       </div>
       <div className="grid grid-cols-7 gap-y-1 text-center font-mono text-[11px]">
@@ -54,7 +59,7 @@ function Minimal({ session }: VariantDemoProps) {
               key={d}
               type="button"
               aria-pressed={d === day}
-              aria-label={`${MONTHS[ym.m]} ${d}, ${ym.y}`}
+              aria-label={en ? `${MONTHS[ym.m]} ${d}, ${ym.y}` : `${ym.y}年${MONTHS[ym.m]}${d}日`}
               onClick={() => setDay(d)}
               className={`mx-auto flex h-7 w-7 items-center justify-center ${d === day ? 'bg-black text-white' : 'hover:bg-black/5'}`}
             >
@@ -63,12 +68,15 @@ function Minimal({ session }: VariantDemoProps) {
           )
         )}
       </div>
-      <p className="mt-3 text-[11px] text-black/45">{days} days · selected {day}</p>
+      <p className="mt-3 text-[11px] text-black/45">{en ? `${days} days · selected ${day}` : `${days} 天 · 已选 ${day}`}</p>
     </div>
   );
 }
 
-function Bauhaus({ session }: VariantDemoProps) {
+function Bauhaus({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const DAYS = en ? DAYS_EN : DAYS_ZH;
+  const MONTHS = en ? MONTHS_EN : MONTHS_ZH;
   const { ym, day, setDay, shift } = useCalendar(session, 8, 11);
   return (
     <div className="mx-auto w-full max-w-sm bg-[#f4f1e8] p-5 text-black" style={{ border: '3px solid #111' }}>
@@ -76,8 +84,8 @@ function Bauhaus({ session }: VariantDemoProps) {
         <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#e03a26] text-sm font-black text-white">{MONTHS[ym.m].slice(0, 1)}</span>
         <p className="text-sm font-black uppercase tracking-widest">{MONTHS[ym.m]} {ym.y}</p>
         <div className="ml-auto flex gap-2 font-black">
-          <button type="button" aria-label="Previous month" onClick={() => shift(-1)}>‹</button>
-          <button type="button" aria-label="Next month" onClick={() => shift(1)}>›</button>
+          <button type="button" aria-label={en ? 'Previous month' : '上个月'} onClick={() => shift(-1)}>‹</button>
+          <button type="button" aria-label={en ? 'Next month' : '下个月'} onClick={() => shift(1)}>›</button>
         </div>
       </div>
       <div className="grid grid-cols-7 gap-1 text-center font-mono text-[10px] font-bold">
@@ -88,7 +96,7 @@ function Bauhaus({ session }: VariantDemoProps) {
               key={d}
               type="button"
               aria-pressed={d === day}
-              aria-label={`${MONTHS[ym.m]} ${d}, ${ym.y}`}
+              aria-label={en ? `${MONTHS[ym.m]} ${d}, ${ym.y}` : `${ym.y}年${MONTHS[ym.m]}${d}日`}
               onClick={() => setDay(d)}
               className={`mx-auto flex h-7 w-7 items-center justify-center rounded-full ${d === day ? 'bg-[#1f5fbf] text-white' : d % 7 === 0 ? 'bg-[#f2c200]' : ''}`}
             >
@@ -101,15 +109,17 @@ function Bauhaus({ session }: VariantDemoProps) {
   );
 }
 
-function Cyberpunk({ session }: VariantDemoProps) {
+function Cyberpunk({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const DAYS = en ? DAYS_EN : DAYS_ZH;
   const { ym, day, setDay, shift } = useCalendar(session, 8, 9);
   return (
     <div className="mx-auto w-full max-w-sm bg-[#05060d] p-5 font-mono text-[#7df9ff]" style={{ border: '1px solid #00ffff', boxShadow: '0 0 24px rgba(0,255,255,.25)' }}>
       <div className="mb-3 flex items-baseline justify-between text-[11px] uppercase tracking-[0.25em]">
         <span>▚ {ym.y}.{String(ym.m + 1).padStart(2, '0')}</span>
         <span className="flex gap-3 text-[#ff2bd6]">
-          <button type="button" aria-label="Previous month" onClick={() => shift(-1)}>‹</button>
-          <button type="button" aria-label="Next month" onClick={() => shift(1)}>›</button>
+          <button type="button" aria-label={en ? 'Previous month' : '上个月'} onClick={() => shift(-1)}>‹</button>
+          <button type="button" aria-label={en ? 'Next month' : '下个月'} onClick={() => shift(1)}>›</button>
         </span>
       </div>
       <div className="grid grid-cols-7 gap-1 text-center text-[10px]">
@@ -120,7 +130,7 @@ function Cyberpunk({ session }: VariantDemoProps) {
               key={d}
               type="button"
               aria-pressed={d === day}
-              aria-label={`${MONTHS[ym.m]} ${d}, ${ym.y}`}
+              aria-label={en ? `${MONTHS_EN[ym.m]} ${d}, ${ym.y}` : `${ym.y}年${MONTHS_ZH[ym.m]}${d}日`}
               onClick={() => setDay(d)}
               className={`border py-1 ${d === day ? 'border-[#ff2bd6] bg-[#ff2bd6]/20 text-[#ff2bd6] shadow-[0_0_12px_#ff2bd6]' : 'border-[#122233] text-[#7df9ff]/70 hover:border-[#00ffff]'}`}
             >

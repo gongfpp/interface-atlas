@@ -22,14 +22,17 @@ function useTabs(session: VariantDemoProps['session'], count: number, initial: n
   return { active, setActive, onKeyDown };
 }
 
-function Flat({ session }: VariantDemoProps) {
-  const tabs = ['Design', 'Prototype', 'Specs'];
-  const panels = ['Visual system and tokens.', 'Interactive flows and states.', 'Engineering handoff notes.'];
+function Flat({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const tabs = en ? ['Design', 'Prototype', 'Specs'] : ['设计', '原型', '规格'];
+  const panels = en
+    ? ['Visual system and tokens.', 'Interactive flows and states.', 'Engineering handoff notes.']
+    : ['视觉系统与设计变量。', '交互流程与状态。', '工程交接说明。'];
   const { active, setActive, onKeyDown } = useTabs(session, tabs.length, 0);
   const prefix = 'flat-tab';
   return (
     <div className="mx-auto w-full max-w-sm bg-paper">
-      <div role="tablist" aria-label="Project sections" onKeyDown={onKeyDown} className="flex gap-1">
+      <div role="tablist" aria-label={en ? 'Project sections' : '项目分区'} onKeyDown={onKeyDown} className="flex gap-1">
         {tabs.map((t, i) => (
           <button
             key={t}
@@ -63,15 +66,18 @@ function Flat({ session }: VariantDemoProps) {
   );
 }
 
-function LiquidGlass({ session }: VariantDemoProps) {
-  const tabs = ['Day', 'Week', 'Month'];
-  const panels = ['Hourly forecast for the next 24 hours.', 'Daily outlook across seven days.', 'Monthly averages and trends.'];
+function LiquidGlass({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const tabs = en ? ['Day', 'Week', 'Month'] : ['日', '周', '月'];
+  const panels = en
+    ? ['Hourly forecast for the next 24 hours.', 'Daily outlook across seven days.', 'Monthly averages and trends.']
+    : ['未来 24 小时的逐时预报。', '未来七天的每日展望。', '月度平均值与趋势。'];
   const { active, setActive, onKeyDown } = useTabs(session, tabs.length, 1);
   const prefix = 'glass-tab';
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl bg-gradient-to-br from-[#2a2f45] to-[#5b3a6e] p-5">
       <span className="pointer-events-none absolute -top-10 left-1/4 h-24 w-40 rounded-full bg-white/30 blur-2xl" />
-      <div role="tablist" aria-label="Time range" onKeyDown={onKeyDown} className="relative flex rounded-full border border-white/40 bg-white/10 p-1 backdrop-blur-xl">
+      <div role="tablist" aria-label={en ? 'Time range' : '时间范围'} onKeyDown={onKeyDown} className="relative flex rounded-full border border-white/40 bg-white/10 p-1 backdrop-blur-xl">
         {tabs.map((t, i) => (
           <button
             key={t}
@@ -105,16 +111,19 @@ function LiquidGlass({ session }: VariantDemoProps) {
   );
 }
 
-function Memphis({ session }: VariantDemoProps) {
-  const tabs = ['Pop', 'Jazz', 'Funk'];
-  const panels = ['Bright, maximalist pop styling.', 'Laid-back jazz groove.', 'Heavy syncopated funk.'];
+function Memphis({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const tabs = en ? ['Pop', 'Jazz', 'Funk'] : ['流行', '爵士', '放克'];
+  const panels = en
+    ? ['Bright, maximalist pop styling.', 'Laid-back jazz groove.', 'Heavy syncopated funk.']
+    : ['明亮、极繁的流行风格。', '慵懒的爵士律动。', '重切分的放克。'];
   const { active, setActive, onKeyDown } = useTabs(session, tabs.length, 0);
   const prefix = 'memphis-tab';
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden bg-[#fdf3e3] p-5" style={{ border: '3px solid #111' }}>
       <span className="pointer-events-none absolute right-4 top-3 text-lg text-[#00a7c4]">◌</span>
       <span className="pointer-events-none absolute bottom-3 left-4 h-4 w-4 rotate-12 bg-[#ff5da2]" style={{ borderRadius: '40% 60% 55% 45%' }} />
-      <div role="tablist" aria-label="Genres" onKeyDown={onKeyDown} className="relative flex gap-2">
+      <div role="tablist" aria-label={en ? 'Genres' : '曲风'} onKeyDown={onKeyDown} className="relative flex gap-2">
         {tabs.map((t, i) => (
           <button
             key={t}

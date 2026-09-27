@@ -208,6 +208,14 @@
     "spacing": {
       "zh": "大留白，插画与文案左右分栏",
       "en": "Airy padding, illustration and copy in split columns"
+    },
+    "motion": {
+      "zh": "150–200ms 的平涂色切换，无位移",
+      "en": "150–200ms flat fill colour swaps, no movement"
+    },
+    "states": {
+      "zh": "hover 换用相邻色块；focus 用紫色 2px 可见外框；active 换深色平涂；disabled 降不透明；error 用桃粉平涂",
+      "en": "Hover switches to an adjacent fill; focus shows a visible 2px violet frame; active uses a darker flat fill; disabled reduces opacity; error uses a peach fill"
     }
   },
   "preview": {

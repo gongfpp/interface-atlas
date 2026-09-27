@@ -1,9 +1,10 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function BentoMenu({ session }: VariantDemoProps) {
-  const [active, setActive] = useSessionState(session, 'active', 'Home');
-  const items = ['Home', 'Explore', 'Library', 'Inbox', 'Profile'];
+function BentoMenu({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const [active, setActive] = useSessionState(session, 'active', en ? 'Home' : '首页');
+  const items = en ? ['Home', 'Explore', 'Library', 'Inbox', 'Profile'] : ['首页', '探索', '资料库', '收件箱', '个人资料'];
   return (
     <div className="mx-auto grid w-full max-w-sm grid-cols-2 gap-3 bg-paper p-1">
       {items.map((it, i) => (
@@ -22,7 +23,8 @@ function BentoMenu({ session }: VariantDemoProps) {
   );
 }
 
-function CyberMenu({ session }: VariantDemoProps) {
+function CyberMenu({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
   const [active, setActive] = useSessionState(session, 'active', 0);
   const items = ['/dashboard', '/net-runner', '/black-market', '/settings'];
   return (
@@ -30,7 +32,7 @@ function CyberMenu({ session }: VariantDemoProps) {
       className="mx-auto w-full max-w-sm bg-[#05060a] p-5 font-mono"
       style={{ border: '1px solid #00f0ff55', boxShadow: '0 0 24px #00f0ff22' }}
     >
-      <p className="text-[10px] uppercase tracking-[0.3em] text-[#ff2e88]">// system menu</p>
+      <p className="text-[10px] uppercase tracking-[0.3em] text-[#ff2e88]">{en ? '// system menu' : '// 系统菜单'}</p>
       <nav className="mt-3 flex flex-col">
         {items.map((it, i) => (
           <button
@@ -49,12 +51,13 @@ function CyberMenu({ session }: VariantDemoProps) {
   );
 }
 
-function OrganicMenu({ session }: VariantDemoProps) {
-  const [active, setActive] = useSessionState(session, 'active', 'Garden');
-  const items = ['Garden', 'Harvest', 'Compost'];
+function OrganicMenu({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const [active, setActive] = useSessionState(session, 'active', en ? 'Garden' : '花园');
+  const items = en ? ['Garden', 'Harvest', 'Compost'] : ['花园', '收获', '堆肥'];
   return (
     <div className="mx-auto w-full max-w-sm rounded-[2.5rem] bg-[#eef3e2] p-6 text-[#35482e]">
-      <p className="px-2 text-xs uppercase tracking-[0.2em] text-[#7a8a63]">Menu</p>
+      <p className="px-2 text-xs uppercase tracking-[0.2em] text-[#7a8a63]">{en ? 'Menu' : '菜单'}</p>
       <nav className="mt-3 flex flex-col gap-2">
         {items.map((it) => (
           <button

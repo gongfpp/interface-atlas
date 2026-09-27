@@ -191,6 +191,14 @@
     "spacing": {
       "zh": "终端式紧凑排布",
       "en": "Terminal-dense layout"
+    },
+    "motion": {
+      "zh": "120ms 的霓虹瞬时点亮过渡，尊重 prefers-reduced-motion",
+      "en": "120ms neon ignition transitions; honour prefers-reduced-motion"
+    },
+    "states": {
+      "zh": "hover 增亮青色霓虹；focus 用 2px 青色可见描边；active 反向闪烁一次；disabled 降为暗灰去光；error 用洋红霓虹",
+      "en": "Hover brightens the cyan neon; focus shows a visible 2px cyan outline; active flickers inverted once; disabled fades to dim grey without glow; error uses magenta neon"
     }
   },
   "preview": {

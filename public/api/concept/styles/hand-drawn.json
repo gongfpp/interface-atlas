@@ -198,6 +198,14 @@
     "spacing": {
       "zh": "随手贴的错位与轻微倾斜",
       "en": "Casual misalignment and slight tilts"
+    },
+    "motion": {
+      "zh": "150–250ms 的轻微抖动式位移，带一点回弹，尊重 prefers-reduced-motion",
+      "en": "150–250ms slight wobbly offsets with a hint of bounce; honour prefers-reduced-motion"
+    },
+    "states": {
+      "zh": "hover 歪斜并加深抖动描边；focus 用 2px 手绘感可见外框；active 压平抖动；disabled 去色保留描边；error 用红笔涂改感",
+      "en": "Hover tilts and deepens the wobbly stroke; focus shows a visible 2px hand-drawn frame; active flattens the wobble; disabled desaturates but keeps the stroke; error looks like a red pen correction"
     }
   },
   "preview": {

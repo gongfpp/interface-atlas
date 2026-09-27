@@ -191,6 +191,14 @@
     "spacing": {
       "zh": "圆角 16px+，卡片内边距充足",
       "en": "16px+ radii with roomy card padding"
+    },
+    "motion": {
+      "zh": "200–300ms ease-out 的位移与模糊过渡，尊重 prefers-reduced-motion",
+      "en": "200–300ms ease-out transitions for movement and blur; honour prefers-reduced-motion"
+    },
+    "states": {
+      "zh": "hover 提升透明度与模糊并轻微上浮；focus 用白色可见亮环；active 压低光晕；disabled 降不透明并去模糊；error 用红调玻璃且仅淡入颜色",
+      "en": "Hover raises opacity and blur and lifts slightly; focus shows a visible white ring; active lowers the glow; disabled loses opacity and blur; error tints the glass red, fading colour only"
     }
   },
   "preview": {

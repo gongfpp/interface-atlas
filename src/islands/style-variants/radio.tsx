@@ -1,17 +1,18 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function Glass({ session }: VariantDemoProps) {
+function Glass({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [v, setV] = useSessionState(session, 'value', 'standard');
   const opts = [
-    ['standard', 'Standard shipping'],
-    ['express', 'Express 1-day'],
-    ['pickup', 'Store pickup'],
+    ['standard', zh ? '标准配送' : 'Standard shipping'],
+    ['express', zh ? '次日达' : 'Express 1-day'],
+    ['pickup', zh ? '门店自提' : 'Store pickup'],
   ];
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-gradient-to-br from-[#6366f1] via-[#d946ef] to-[#22d3ee] p-6 text-white">
       <span className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-white/30 blur-2xl" />
-      <p className="relative mb-4 font-mono text-[10px] uppercase tracking-[0.25em] text-white/80">Delivery</p>
+      <p className="relative mb-4 font-mono text-[10px] uppercase tracking-[0.25em] text-white/80">{zh ? '配送方式' : 'Delivery'}</p>
       <div className="relative space-y-2">
         {opts.map(([id, label]) => (
           <button
@@ -33,16 +34,17 @@ function Glass({ session }: VariantDemoProps) {
   );
 }
 
-function Deco({ session }: VariantDemoProps) {
+function Deco({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [v, setV] = useSessionState(session, 'value', 'grand');
   const opts = [
-    ['grand', 'The Grand Suite'],
-    ['terrace', 'Terrace Room'],
-    ['salon', 'Salon Privé'],
+    ['grand', zh ? '豪华套房' : 'The Grand Suite'],
+    ['terrace', zh ? '露台房' : 'Terrace Room'],
+    ['salon', zh ? '私人沙龙' : 'Salon Privé'],
   ];
   return (
     <div className="mx-auto w-full max-w-sm bg-[#0e1116] p-6 text-[#e8d9a8]" style={{ outline: '1px solid #d4af3755', outlineOffset: '-10px' }}>
-      <p className="mb-3 text-center font-serif text-lg tracking-[0.2em] text-[#d4af37]">ACCOMMODATION</p>
+      <p className="mb-3 text-center font-serif text-lg tracking-[0.2em] text-[#d4af37]">{zh ? '住宿' : 'ACCOMMODATION'}</p>
       <div className="mb-4 flex items-center justify-center gap-2 text-[#d4af37]">
         <span className="h-px w-8 bg-[#d4af37]/60" />
         <span className="text-[10px]">◆</span>
@@ -67,19 +69,20 @@ function Deco({ session }: VariantDemoProps) {
   );
 }
 
-function Memphis({ session }: VariantDemoProps) {
+function Memphis({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
   const [v, setV] = useSessionState(session, 'value', 's');
   const opts = [
-    ['s', 'Small'],
-    ['m', 'Medium'],
-    ['l', 'Large'],
+    ['s', zh ? '小' : 'Small'],
+    ['m', zh ? '中' : 'Medium'],
+    ['l', zh ? '大' : 'Large'],
   ];
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden bg-[#fdf3e7] p-6 text-black">
       <span className="absolute right-4 top-4 h-4 w-4 rounded-full border-4 border-[#00e5ff]" />
       <span className="absolute right-11 top-3 h-6 w-6 border-4 border-[#ffe600]" />
       <span className="absolute right-5 top-12 h-2 w-6 rounded-full bg-[#ff2e63]" />
-      <p className="mb-4 inline-block -rotate-2 bg-[#ff2e63] px-3 py-1 text-xs font-black uppercase text-white">Pick a size</p>
+      <p className="mb-4 inline-block -rotate-2 bg-[#ff2e63] px-3 py-1 text-xs font-black uppercase text-white">{zh ? '选择尺寸' : 'Pick a size'}</p>
       <div className="space-y-2">
         {opts.map(([id, label], i) => (
           <button

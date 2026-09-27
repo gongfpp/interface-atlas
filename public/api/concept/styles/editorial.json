@@ -191,6 +191,14 @@
     "spacing": {
       "zh": "分栏排版，行距宽松",
       "en": "Multi-column layout, airy leading"
+    },
+    "motion": {
+      "zh": "150–200ms 的淡入与下划线过渡，克制不弹跳",
+      "en": "150–200ms fades and underline transitions, restrained, no bounce"
+    },
+    "states": {
+      "zh": "hover 显示下划线并转棕；focus 用墨色点线可见外框；active 下沉一像素；disabled 降为浅灰；error 用棕色强调并加斜体提示",
+      "en": "Hover reveals an underline and turns brown; focus shows a visible ink dotted frame; active sinks one pixel; disabled fades to light grey; error uses a brown accent with an italic note"
     }
   },
   "preview": {

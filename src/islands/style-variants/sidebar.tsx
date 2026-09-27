@@ -1,9 +1,10 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
-function Deco({ session }: VariantDemoProps) {
-  const [active, setActive] = useSessionState(session, 'active', 'Overview');
-  const items = ['Overview', 'Collection', 'Archive'];
+function Deco({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const items = en ? ['Overview', 'Collection', 'Archive'] : ['概览', '收藏集', '档案'];
+  const [active, setActive] = useSessionState(session, 'active', items[0]);
   return (
     <div className="mx-auto w-full max-w-sm bg-[#12100c] p-5 text-[#e8d8a8]" style={{ border: '1px solid #8a6d2f' }}>
       <p className="mb-4 border-b border-[#8a6d2f]/60 pb-3 text-center font-serif text-sm uppercase tracking-[0.35em]">Atlas</p>
@@ -18,9 +19,10 @@ function Deco({ session }: VariantDemoProps) {
   );
 }
 
-function Bento({ session }: VariantDemoProps) {
-  const [active, setActive] = useSessionState(session, 'active', 'Inbox');
-  const items = ['Inbox', 'Today', 'Projects', 'Archive', 'Settings'];
+function Bento({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const items = en ? ['Inbox', 'Today', 'Projects', 'Archive', 'Settings'] : ['收件箱', '今天', '项目', '档案', '设置'];
+  const [active, setActive] = useSessionState(session, 'active', items[0]);
   const dots = ['bg-accent', 'bg-ink-2', 'bg-ink-3', 'bg-accent-soft', 'bg-line-strong'];
   return (
     <div className="mx-auto w-full max-w-sm bg-paper p-4">
@@ -36,12 +38,13 @@ function Bento({ session }: VariantDemoProps) {
   );
 }
 
-function Editorial({ session }: VariantDemoProps) {
+function Editorial({ session, locale }: VariantDemoProps) {
+  const en = locale === 'en';
+  const items = en ? ['The New Order', 'On Craft', 'Field Notes', 'Archive'] : ['新秩序', '论手艺', '田野笔记', '档案'];
   const [active, setActive] = useSessionState(session, 'active', 1);
-  const items = ['The New Order', 'On Craft', 'Field Notes', 'Archive'];
   return (
     <div className="mx-auto w-full max-w-sm border-t-4 border-ink bg-paper px-5 py-4">
-      <p className="mb-3 font-serif text-[11px] uppercase tracking-[0.3em] text-accent">Contents</p>
+      <p className="mb-3 font-serif text-[11px] uppercase tracking-[0.3em] text-accent">{en ? 'Contents' : '目录'}</p>
       <nav className="divide-y divide-line">
         {items.map((it, i) => (
           <button key={it} type="button" onClick={() => setActive(i)} className="flex w-full items-baseline gap-3 py-3 text-left">
