@@ -1,5 +1,5 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
-import { useSessionState } from './session';
+import { useSelectionList } from './behavior';
 
 function Swiss({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
@@ -12,13 +12,12 @@ function Swiss({ session, locale }: VariantDemoProps) {
     { id: 'Small', label: en ? 'Small' : '小号' },
     { id: 'Large', label: en ? 'Large' : '大号' },
   ];
-  const [sel, setSel] = useSessionState(session, 'active', ['Sans']);
-  const toggle = (v: string) => setSel((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
+  const { selected, toggle, clear } = useSelectionList(session, 'active', ['Sans']);
   const rows = (items: { id: string; label: string }[]) =>
     items.map((it) => (
       <label key={it.id} onClick={() => toggle(it.id)} className="flex cursor-pointer items-center justify-between border-t border-black/10 py-1.5 text-xs">
         <span className="flex items-center gap-2">
-          <span className={`h-3.5 w-3.5 border border-black ${sel.includes(it.id) ? 'bg-black' : 'bg-white'}`} />
+          <span className={`h-3.5 w-3.5 border border-black ${selected.includes(it.id) ? 'bg-black' : 'bg-white'}`} />
           {it.label}
         </span>
         <span className="font-mono text-[10px] text-black/40">{it.label.length}</span>
@@ -40,7 +39,7 @@ function Swiss({ session, locale }: VariantDemoProps) {
         </p>
         {rows(sizes)}
       </div>
-      <button onClick={() => setSel([])} className="w-full border-t border-black bg-black py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white hover:bg-red-600">
+      <button onClick={() => clear()} className="w-full border-t border-black bg-black py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white hover:bg-red-600">
         {en ? 'Clear all' : '清除全部'}
       </button>
     </div>
@@ -49,8 +48,7 @@ function Swiss({ session, locale }: VariantDemoProps) {
 
 function Bauhaus({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
-  const [sel, setSel] = useSessionState(session, 'active', ['Furniture']);
-  const toggle = (v: string) => setSel((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
+  const { selected, toggle, clear } = useSelectionList(session, 'active', ['Furniture']);
   const opts = [
     { id: 'Furniture', label: en ? 'Furniture' : '家具', color: '#1d4ed8' },
     { id: 'Lighting', label: en ? 'Lighting' : '照明', color: '#e11d48' },
@@ -65,7 +63,7 @@ function Bauhaus({ session, locale }: VariantDemoProps) {
         <span className="ml-auto text-xs font-black uppercase tracking-widest">{en ? 'Filter' : '筛选'}</span>
       </div>
       {opts.map((o) => {
-        const on = sel.includes(o.id);
+        const on = selected.includes(o.id);
         return (
           <button key={o.id} onClick={() => toggle(o.id)} className="mb-2 flex w-full items-center gap-3 border-2 border-black bg-white px-3 py-2 text-left text-sm font-bold">
             <span className="h-4 w-4 rounded-full border-2 border-black" style={{ background: on ? o.color : 'transparent' }} />
@@ -74,7 +72,7 @@ function Bauhaus({ session, locale }: VariantDemoProps) {
           </button>
         );
       })}
-      <button onClick={() => setSel([])} className="mt-1 w-full bg-black py-2 text-[10px] font-black uppercase tracking-[0.2em] text-white">
+      <button onClick={() => clear()} className="mt-1 w-full bg-black py-2 text-[10px] font-black uppercase tracking-[0.2em] text-white">
         {en ? 'Reset' : '重置'}
       </button>
     </div>
@@ -88,13 +86,12 @@ function Neumorph({ session, locale }: VariantDemoProps) {
     { id: 'Cool', label: en ? 'Cool' : '冷色' },
     { id: 'Neutral', label: en ? 'Neutral' : '中性' },
   ];
-  const [sel, setSel] = useSessionState(session, 'active', ['Warm']);
-  const toggle = (v: string) => setSel((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
+  const { selected, toggle, clear } = useSelectionList(session, 'active', ['Warm']);
   return (
     <div className="mx-auto w-full max-w-sm rounded-3xl bg-[#e6e9ef] p-6 text-[#4b5563]">
       <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#6b7280]">{en ? 'Tone' : '色调'}</p>
       {tones.map((o) => {
-        const on = sel.includes(o.id);
+        const on = selected.includes(o.id);
         return (
           <button
             key={o.id}
@@ -110,7 +107,7 @@ function Neumorph({ session, locale }: VariantDemoProps) {
           </button>
         );
       })}
-      <button onClick={() => setSel([])} className="mt-1 w-full rounded-2xl px-4 py-2 text-[11px] uppercase tracking-widest text-[#6b7280] shadow-[3px_3px_6px_#c3c7cf,-3px_-3px_6px_#ffffff]">
+      <button onClick={() => clear()} className="mt-1 w-full rounded-2xl px-4 py-2 text-[11px] uppercase tracking-widest text-[#6b7280] shadow-[3px_3px_6px_#c3c7cf,-3px_-3px_6px_#ffffff]">
         {en ? 'Clear' : '清除'}
       </button>
     </div>

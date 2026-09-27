@@ -1,14 +1,14 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
-import { useSessionState } from './session';
+import { useSortable } from './behavior';
 
 function EditorialTable({ session, locale }: VariantDemoProps) {
   const zh = locale === 'zh';
-  const [asc, setAsc] = useSessionState(session, 'asc', false);
   const rows = [
     { city: 'Tokyo', pop: 37.4 },
     { city: 'Paris', pop: 11.2 },
     { city: 'Lima', pop: 9.8 },
-  ].sort((a, b) => (asc ? a.pop - b.pop : b.pop - a.pop));
+  ];
+  const { asc, sorted, toggle, headerProps } = useSortable(session, rows, (r) => r.pop, 'asc', false);
   return (
     <div className="mx-auto w-full max-w-md border-t-2 border-ink bg-raised p-5 text-ink">
       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">Metropolis Index</p>
@@ -16,15 +16,15 @@ function EditorialTable({ session, locale }: VariantDemoProps) {
         <thead>
           <tr className="border-b border-ink">
             <th scope="col" className="py-2 font-serif text-sm font-normal italic">{zh ? '城市' : 'City'}</th>
-            <th scope="col" aria-sort={asc ? 'ascending' : 'descending'} className="py-2 text-right font-serif text-sm font-normal italic">
-              <button type="button" onClick={() => setAsc((v) => !v)} className="underline-offset-2 hover:underline">
+            <th scope="col" {...headerProps} className="py-2 text-right font-serif text-sm font-normal italic">
+              <button type="button" onClick={toggle} className="underline-offset-2 hover:underline">
                 {zh ? '人口' : 'Population'} {asc ? '↑' : '↓'}
               </button>
             </th>
           </tr>
         </thead>
         <tbody className="font-serif">
-          {rows.map((r) => (
+          {sorted.map((r) => (
             <tr key={r.city} className="border-b border-line">
               <td className="py-2 text-sm">{r.city}</td>
               <td className="py-2 text-right text-sm tabular-nums">{r.pop.toFixed(1)}M</td>
@@ -39,12 +39,12 @@ function EditorialTable({ session, locale }: VariantDemoProps) {
 
 function SwissTable({ session, locale }: VariantDemoProps) {
   const zh = locale === 'zh';
-  const [asc, setAsc] = useSessionState(session, 'asc', false);
   const rows = [
     { city: 'Tokyo', units: 37.4 },
     { city: 'Paris', units: 11.2 },
     { city: 'Lima', units: 9.8 },
-  ].sort((a, b) => (asc ? a.units - b.units : b.units - a.units));
+  ];
+  const { asc, sorted, toggle, headerProps } = useSortable(session, rows, (r) => r.units, 'asc', false);
   return (
     <div className="mx-auto w-full max-w-md bg-white p-4 text-black" style={{ border: '1px solid #000' }}>
       <div className="flex items-center justify-between border-b-2 border-[#e60012] pb-2">
@@ -55,15 +55,15 @@ function SwissTable({ session, locale }: VariantDemoProps) {
         <thead>
           <tr className="text-left text-[10px] font-bold uppercase tracking-widest">
             <th scope="col" className="py-2">{zh ? '城市' : 'City'}</th>
-            <th scope="col" aria-sort={asc ? 'ascending' : 'descending'} className="py-2 text-right">
-              <button type="button" onClick={() => setAsc((v) => !v)} className="uppercase tracking-widest">
+            <th scope="col" {...headerProps} className="py-2 text-right">
+              <button type="button" onClick={toggle} className="uppercase tracking-widest">
                 {zh ? '数量' : 'Units'} {asc ? '↑' : '↓'}
               </button>
             </th>
           </tr>
         </thead>
         <tbody>
-          {rows.map((r) => (
+          {sorted.map((r) => (
             <tr key={r.city} className="border-t border-black/20">
               <td className="py-2 text-sm font-medium">{r.city}</td>
               <td className="py-2 text-right font-mono text-sm tabular-nums">{r.units.toFixed(1)}</td>

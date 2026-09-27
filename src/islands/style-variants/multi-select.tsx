@@ -1,5 +1,5 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
-import { useSessionState } from './session';
+import { useSelectionList } from './behavior';
 
 const TOPICS = ['Design', 'Code', 'Motion', 'Data'];
 const SHAPES = [
@@ -11,9 +11,7 @@ const SHAPES = [
 function MinimalMultiSelect({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
   const label: Record<string, string> = { Design: en ? 'Design' : '设计', Code: en ? 'Code' : '代码', Motion: en ? 'Motion' : '动效', Data: en ? 'Data' : '数据' };
-  const [selected, setSelected] = useSessionState(session, 'selected', ['Design']);
-  const toggle = (t: string) =>
-    setSelected((p) => (p.includes(t) ? p.filter((x) => x !== t) : [...p, t]));
+  const { selected, toggle } = useSelectionList(session, 'selected', ['Design']);
   return (
     <div className="mx-auto w-full max-w-sm border border-line bg-raised p-5 text-ink">
       <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink-3">{en ? 'Topics' : '主题'}</p>
@@ -45,9 +43,7 @@ function MinimalMultiSelect({ session, locale }: VariantDemoProps) {
 function BauhausMultiSelect({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
   const shapeLabel: Record<string, string> = { Circle: en ? 'Circle' : '圆形', Square: en ? 'Square' : '方形', Arch: en ? 'Arch' : '拱形' };
-  const [selected, setSelected] = useSessionState(session, 'selected', ['Arch']);
-  const toggle = (t: string) =>
-    setSelected((p) => (p.includes(t) ? p.filter((x) => x !== t) : [...p, t]));
+  const { selected, toggle } = useSelectionList(session, 'selected', ['Arch']);
   return (
     <div className="mx-auto w-full max-w-sm border-[3px] border-black bg-[#f6efdd] p-6 text-black">
       <p className="text-center text-[11px] font-bold uppercase tracking-[0.3em]">{en ? 'Select shape' : '选择形状'}</p>
@@ -81,9 +77,7 @@ function BauhausMultiSelect({ session, locale }: VariantDemoProps) {
 function LiquidGlassMultiSelect({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
   const label: Record<string, string> = { Design: en ? 'Design' : '设计', Code: en ? 'Code' : '代码', Motion: en ? 'Motion' : '动效', Data: en ? 'Data' : '数据' };
-  const [selected, setSelected] = useSessionState(session, 'selected', ['Design', 'Motion']);
-  const toggle = (t: string) =>
-    setSelected((p) => (p.includes(t) ? p.filter((x) => x !== t) : [...p, t]));
+  const { selected, toggle } = useSelectionList(session, 'selected', ['Design', 'Motion']);
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-[28px] bg-gradient-to-br from-[#8ea2ff] via-[#f0a4ff] to-[#7fd8ff] p-6 text-white">
       <span className="pointer-events-none absolute -left-8 -top-10 h-32 w-32 rounded-full bg-white/50 blur-2xl" />

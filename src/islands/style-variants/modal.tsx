@@ -1,62 +1,6 @@
-import { useCallback, useEffect, useRef, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import type { StyleVariantSet, VariantDemoProps } from './types';
-import { useSessionState } from './session';
-
-const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
-
-/**
- * 内嵌对话框行为：打开时把焦点移入，Tab 循环，Escape 关闭，关闭后焦点归还触发按钮。
- * 视觉被限制在演示容器内，因此不声明 aria-modal（页面其余部分并未 inert）。
- */
-function useDialog(session: VariantDemoProps['session']) {
-  const [open, setOpen] = useSessionState(session, 'open', false);
-  const openerRef = useRef<HTMLElement | null>(null);
-  const dialogRef = useRef<HTMLDivElement>(null);
-  const triggerRef = useRef<HTMLButtonElement>(null);
-  const interacted = useRef(open);
-
-  const openDialog = () => {
-    openerRef.current = (document.activeElement as HTMLElement) ?? triggerRef.current;
-    interacted.current = true;
-    setOpen(true);
-  };
-  const closeDialog = useCallback(() => {
-    setOpen(false);
-    (openerRef.current ?? triggerRef.current)?.focus();
-  }, [setOpen]);
-
-  useEffect(() => {
-    if (!open || !interacted.current) return;
-    requestAnimationFrame(() => dialogRef.current?.querySelector<HTMLElement>(FOCUSABLE)?.focus());
-  }, [open]);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: globalThis.KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        e.stopPropagation();
-        closeDialog();
-        return;
-      }
-      if (e.key !== 'Tab' || !dialogRef.current) return;
-      const nodes = Array.from(dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE)).filter((el) => el.offsetParent !== null);
-      if (!nodes.length) return;
-      const first = nodes[0];
-      const last = nodes[nodes.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [open, closeDialog]);
-
-  return { open, openDialog, closeDialog, triggerRef, dialogRef };
-}
+import { useDialogBehavior } from './behavior';
 
 function Overlay({
   children,
@@ -90,7 +34,7 @@ function Overlay({
 
 function Glass({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
-  const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialog(session);
+  const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialogBehavior(session);
   return (
     <div className="relative mx-auto flex min-h-[220px] w-full max-w-md items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#7c5cff] via-[#ff6ec7] to-[#5ad1ff] p-6 text-white">
       <button ref={triggerRef} type="button" onClick={openDialog} className="rounded-xl border border-white/40 bg-white/20 px-4 py-2 text-xs font-semibold backdrop-blur-md">{en ? 'Open dialog' : '打开对话框'}</button>
@@ -116,7 +60,7 @@ function Glass({ session, locale }: VariantDemoProps) {
 
 function Clay({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
-  const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialog(session);
+  const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialogBehavior(session);
   return (
     <div className="relative mx-auto flex min-h-[220px] w-full max-w-md items-center justify-center overflow-hidden rounded-[36px] bg-[#e8ecff] p-6">
       <button ref={triggerRef} type="button" onClick={openDialog} className="rounded-2xl bg-[#b8c0ff] px-4 py-2 text-xs font-bold text-[#4b3f8f] shadow-[6px_6px_14px_#c5c9e0,-6px_-6px_14px_#ffffff]">{en ? 'Open' : '打开'}</button>
@@ -142,7 +86,7 @@ function Clay({ session, locale }: VariantDemoProps) {
 
 function Y2K({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
-  const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialog(session);
+  const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialogBehavior(session);
   return (
     <div className="relative mx-auto flex min-h-[220px] w-full max-w-md items-center justify-center overflow-hidden rounded-[28px] bg-gradient-to-br from-[#c7f0ff] to-[#ffd6f5] p-6">
       <button ref={triggerRef} type="button" onClick={openDialog} className="rounded-full border-2 border-white bg-gradient-to-b from-[#bfe9ff] to-[#6aa6ff] px-4 py-2 text-xs font-bold text-white shadow-[0_4px_0_#3d6fb8]">{en ? 'Open' : '打开'}</button>

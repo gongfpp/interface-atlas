@@ -1,14 +1,14 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
-import { useSessionState } from './session';
+import { useDisclosure } from './behavior';
 
 function FlatPopover({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
-  const [open, setOpen] = useSessionState(session, 'open', true);
+  const { open, toggle } = useDisclosure(session, 'open', true);
   return (
     <div className="mx-auto w-full max-w-sm bg-[#2d6cdf] p-5 text-white">
       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/80">{en ? 'Account' : '账户'}</p>
       <div className="relative mt-3 inline-block">
-        <button onClick={() => setOpen((v) => !v)} className="bg-white px-4 py-2 text-xs font-semibold text-[#2d6cdf]">
+        <button onClick={toggle} className="bg-white px-4 py-2 text-xs font-semibold text-[#2d6cdf]">
           {en ? 'Options' : '选项'}
         </button>
         {open && (
@@ -25,13 +25,13 @@ function FlatPopover({ session, locale }: VariantDemoProps) {
 
 function NeuPopover({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
-  const [open, setOpen] = useSessionState(session, 'open', true);
+  const { open, toggle } = useDisclosure(session, 'open', true);
   return (
     <div className="mx-auto w-full max-w-sm rounded-3xl bg-[#e0e5ec] p-6 text-[#4a5568]">
       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#8695a8]">{en ? 'Display' : '显示'}</p>
       <div className="relative mt-3 inline-block">
         <button
-          onClick={() => setOpen((v) => !v)}
+          onClick={toggle}
           className="rounded-xl bg-[#e0e5ec] px-4 py-2 text-xs font-semibold shadow-[6px_6px_12px_#b8c0cc,-6px_-6px_12px_#ffffff]"
         >
           {en ? 'Density' : '密度'}
@@ -50,13 +50,13 @@ function NeuPopover({ session, locale }: VariantDemoProps) {
 
 function EditorialPopover({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
-  const [open, setOpen] = useSessionState(session, 'open', true);
+  const { open, toggle } = useDisclosure(session, 'open', true);
   return (
     <div className="mx-auto w-full max-w-sm border-t-2 border-ink bg-raised p-5 text-ink">
       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">The Index</p>
       <div className="relative mt-3 inline-block">
         <button
-          onClick={() => setOpen((v) => !v)}
+          onClick={toggle}
           className="font-serif text-lg underline decoration-ink-3 underline-offset-4"
         >
           {en ? 'Related essays' : '相关文章'}

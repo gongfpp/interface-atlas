@@ -1,10 +1,10 @@
 import { type KeyboardEvent } from 'react';
 import type { StyleVariantSet, VariantDemoProps } from './types';
-import { useSessionState } from './session';
+import { useDisclosure } from './behavior';
 
 /** 悬停与键盘聚焦都能显示；Escape 关闭；提示带 role=tooltip 与 aria-describedby。 */
 function useTooltip(session: VariantDemoProps['session'], id: string) {
-  const [show, setShow] = useSessionState(session, 'open', false);
+  const { open: show, setOpen: setShow } = useDisclosure(session, 'open');
   const triggerProps = {
     'aria-describedby': show ? id : undefined,
     onMouseEnter: () => setShow(true),

@@ -1,26 +1,5 @@
-import { type KeyboardEvent } from 'react';
 import type { StyleVariantSet, VariantDemoProps } from './types';
-import { useSessionState } from './session';
-
-function useTabs(session: VariantDemoProps['session'], count: number, initial: number) {
-  const [active, setActive] = useSessionState(session, 'active', initial);
-  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    const list = e.currentTarget;
-    const buttons = Array.from(list.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
-    const focused = buttons.indexOf(document.activeElement as HTMLButtonElement);
-    const from = focused >= 0 ? focused : active;
-    let next: number;
-    if (e.key === 'ArrowRight') next = (from + 1) % count;
-    else if (e.key === 'ArrowLeft') next = (from - 1 + count) % count;
-    else if (e.key === 'Home') next = 0;
-    else if (e.key === 'End') next = count - 1;
-    else return;
-    e.preventDefault();
-    setActive(next);
-    buttons[next]?.focus();
-  };
-  return { active, setActive, onKeyDown };
-}
+import { useRovingTabs } from './behavior';
 
 function Flat({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
@@ -28,7 +7,7 @@ function Flat({ session, locale }: VariantDemoProps) {
   const panels = en
     ? ['Visual system and tokens.', 'Interactive flows and states.', 'Engineering handoff notes.']
     : ['视觉系统与设计变量。', '交互流程与状态。', '工程交接说明。'];
-  const { active, setActive, onKeyDown } = useTabs(session, tabs.length, 0);
+  const { active, onKeyDown, tabProps, panelProps } = useRovingTabs(session, tabs.length, 0);
   const prefix = 'flat-tab';
   return (
     <div className="mx-auto w-full max-w-sm bg-paper">
@@ -37,12 +16,9 @@ function Flat({ session, locale }: VariantDemoProps) {
           <button
             key={t}
             type="button"
-            role="tab"
             id={`${prefix}-${i}`}
-            aria-selected={active === i}
             aria-controls={`${prefix}-panel-${i}`}
-            tabIndex={active === i ? 0 : -1}
-            onClick={() => setActive(i)}
+            {...tabProps(i)}
             className={`flex-1 px-3 py-2 text-xs font-medium ${active === i ? 'bg-accent text-white' : 'bg-code-bg text-ink-2 hover:bg-line'}`}
           >
             {t}
@@ -52,11 +28,9 @@ function Flat({ session, locale }: VariantDemoProps) {
       {tabs.map((t, i) => (
         <div
           key={t}
-          role="tabpanel"
           id={`${prefix}-panel-${i}`}
           aria-labelledby={`${prefix}-${i}`}
-          hidden={active !== i}
-          tabIndex={0}
+          {...panelProps(i)}
           className="bg-raised p-4 text-xs leading-relaxed text-ink-2"
         >
           {panels[i]}
@@ -72,7 +46,7 @@ function LiquidGlass({ session, locale }: VariantDemoProps) {
   const panels = en
     ? ['Hourly forecast for the next 24 hours.', 'Daily outlook across seven days.', 'Monthly averages and trends.']
     : ['未来 24 小时的逐时预报。', '未来七天的每日展望。', '月度平均值与趋势。'];
-  const { active, setActive, onKeyDown } = useTabs(session, tabs.length, 1);
+  const { active, onKeyDown, tabProps, panelProps } = useRovingTabs(session, tabs.length, 1);
   const prefix = 'glass-tab';
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl bg-gradient-to-br from-[#2a2f45] to-[#5b3a6e] p-5">
@@ -82,12 +56,9 @@ function LiquidGlass({ session, locale }: VariantDemoProps) {
           <button
             key={t}
             type="button"
-            role="tab"
             id={`${prefix}-${i}`}
-            aria-selected={active === i}
             aria-controls={`${prefix}-panel-${i}`}
-            tabIndex={active === i ? 0 : -1}
-            onClick={() => setActive(i)}
+            {...tabProps(i)}
             className={`flex-1 rounded-full px-3 py-1.5 text-xs font-medium transition-all ${active === i ? 'bg-white/80 text-[#2a2f45] shadow-[inset_0_1px_1px_rgba(255,255,255,.9)]' : 'text-white/80 hover:bg-white/10'}`}
           >
             {t}
@@ -97,11 +68,9 @@ function LiquidGlass({ session, locale }: VariantDemoProps) {
       {tabs.map((t, i) => (
         <div
           key={t}
-          role="tabpanel"
           id={`${prefix}-panel-${i}`}
           aria-labelledby={`${prefix}-${i}`}
-          hidden={active !== i}
-          tabIndex={0}
+          {...panelProps(i)}
           className="relative mt-4 text-center text-[11px] text-white/85"
         >
           {panels[i]}
@@ -117,7 +86,7 @@ function Memphis({ session, locale }: VariantDemoProps) {
   const panels = en
     ? ['Bright, maximalist pop styling.', 'Laid-back jazz groove.', 'Heavy syncopated funk.']
     : ['明亮、极繁的流行风格。', '慵懒的爵士律动。', '重切分的放克。'];
-  const { active, setActive, onKeyDown } = useTabs(session, tabs.length, 0);
+  const { active, onKeyDown, tabProps, panelProps } = useRovingTabs(session, tabs.length, 0);
   const prefix = 'memphis-tab';
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden bg-[#fdf3e3] p-5" style={{ border: '3px solid #111' }}>
@@ -128,12 +97,9 @@ function Memphis({ session, locale }: VariantDemoProps) {
           <button
             key={t}
             type="button"
-            role="tab"
             id={`${prefix}-${i}`}
-            aria-selected={active === i}
             aria-controls={`${prefix}-panel-${i}`}
-            tabIndex={active === i ? 0 : -1}
-            onClick={() => setActive(i)}
+            {...tabProps(i)}
             className={`px-3 py-2 text-xs font-black uppercase ${i % 2 ? 'rotate-1' : '-rotate-1'} ${active === i ? 'bg-[#ffd23f] shadow-[3px_3px_0_0_#111]' : 'bg-white'}`}
             style={{ border: '3px solid #111' }}
           >
@@ -144,11 +110,9 @@ function Memphis({ session, locale }: VariantDemoProps) {
       {tabs.map((t, i) => (
         <div
           key={t}
-          role="tabpanel"
           id={`${prefix}-panel-${i}`}
           aria-labelledby={`${prefix}-${i}`}
-          hidden={active !== i}
-          tabIndex={0}
+          {...panelProps(i)}
           className="relative mt-4 text-xs font-medium text-black/70"
         >
           {panels[i]}

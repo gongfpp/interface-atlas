@@ -1,9 +1,10 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
+import { useDisclosure } from './behavior';
 
 function ArtDecoLightbox({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
-  const [open, setOpen] = useSessionState(session, 'open', false);
+  const { open, setOpen } = useDisclosure(session, 'open');
   const [index, setIndex] = useSessionState(session, 'index', 0);
   const openAt = (i: number) => {
     setIndex(i);
@@ -51,7 +52,7 @@ function ArtDecoLightbox({ session, locale }: VariantDemoProps) {
 
 function AuroraLightbox({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
-  const [open, setOpen] = useSessionState(session, 'open', false);
+  const { open, setOpen } = useDisclosure(session, 'open');
   const [index, setIndex] = useSessionState(session, 'index', 0);
   const openAt = (i: number) => {
     setIndex(i);
@@ -92,7 +93,7 @@ function AuroraLightbox({ session, locale }: VariantDemoProps) {
 
 function PixelLightbox({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
-  const [open, setOpen] = useSessionState(session, 'open', false);
+  const { open, setOpen } = useDisclosure(session, 'open');
   const [index, setIndex] = useSessionState(session, 'index', 0);
   const openAt = (i: number) => {
     setIndex(i);

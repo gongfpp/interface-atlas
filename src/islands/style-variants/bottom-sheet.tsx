@@ -1,9 +1,9 @@
 import type { StyleVariantSet, VariantDemoProps } from './types';
-import { useSessionState } from './session';
+import { useDisclosure } from './behavior';
 
 function Glass({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
-  const [open, setOpen] = useSessionState(session, 'open', false);
+  const { open, setOpen } = useDisclosure(session, 'open');
   return (
     <div className="relative mx-auto h-64 w-full max-w-sm overflow-hidden rounded-2xl bg-gradient-to-br from-[#7c5cff] via-[#ff6ec7] to-[#5ad1ff] p-5 text-white">
       <span className="pointer-events-none absolute -left-8 top-0 h-24 w-24 rounded-full bg-white/40 blur-xl" />
@@ -25,7 +25,7 @@ function Glass({ session, locale }: VariantDemoProps) {
 
 function Neumorph({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
-  const [open, setOpen] = useSessionState(session, 'open', false);
+  const { open, setOpen } = useDisclosure(session, 'open');
   const raised = { boxShadow: '8px 8px 16px #b8bcc4, -8px -8px 16px #ffffff' };
   return (
     <div className="relative mx-auto h-64 w-full max-w-sm overflow-hidden rounded-3xl bg-[#e0e5ec] p-5 text-[#4a5568]">
@@ -45,7 +45,7 @@ function Neumorph({ session, locale }: VariantDemoProps) {
 
 function Swiss({ session, locale }: VariantDemoProps) {
   const en = locale === 'en';
-  const [open, setOpen] = useSessionState(session, 'open', false);
+  const { open, setOpen } = useDisclosure(session, 'open');
   return (
     <div className="relative mx-auto h-64 w-full max-w-sm overflow-hidden border border-line bg-raised p-5 text-ink">
       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-2">Grid / 12</p>
