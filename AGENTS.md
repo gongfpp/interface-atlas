@@ -33,4 +33,5 @@ Project profile: `project`
 - 发布与检查是同一提交上的依赖关系：检查不通过就不会发布。手动触发 `Deploy site to interface-atlas-web` 等同于正式发布，不要用它做未经验证的预览。
 - 任务边界区分：只读审阅/解释不写文件；修改类任务在本地提交；是否 push 到 `main` 由本约定决定——**任务完成并验证通过后，提交并 push 到 `origin/main`**（用户已授权持续 push，无需逐次询问）。未完成或未验证的改动不要 push。
 - 提交遵循 Conventional Commits；一个逻辑完整的阶段一个 commit。
+- **每次迭代完成并发布后，在给用户的回复末尾附上线上地址**：<https://gongfpp.github.io/interface-atlas-web/>（方便直接点开查看）。
 - 本机网络对 github.com 时好时坏：push 失败时重试（API 与 git 端点可用性不同步）。
