@@ -49,14 +49,3 @@ export const TASK_GUIDES: TaskGuide[] = [
     ],
   },
 ];
-
-export function taskPrompt(guide: TaskGuide, locale: Locale): string {
-  const intro = locale === 'zh' ? '请实现以下界面任务' : 'Implement this interface task';
-  const needs = locale === 'zh'
-    ? '实现要求：提供响应式布局、可见焦点和键盘操作；为加载、空结果、错误与成功提供明确反馈；不只靠颜色表达状态。先说明技术栈与必要假设。'
-    : 'Requirements: responsive layout, visible focus and keyboard operation; clear loading, empty, error and success feedback; never rely on color alone. State the stack and necessary assumptions first.';
-  const flows = guide.id === 'forms' ? (locale === 'zh'
-    ? '\n\n完整流程：\n- 文件上传：选择文件 → 显示文件名 → 上传进度 → 可取消 → 失败并保留选择 → 重试 → 成功 → 删除；明确文件类型和大小限制，并区分本地选择与服务器持久化。\n- 编辑资料：字段标签 → 必填与邮箱校验 → 聚焦第一个错误 → 保存中禁用重复提交 → 失败保留输入 → 重试 → 成功反馈；离开未保存内容时提供继续编辑和放弃修改。\n- 演示可使用可控的一次性失败；实际项目必须接入真实接口，不把模拟成功当作已保存。'
-    : '\n\nComplete workflows:\n- File upload: choose → show file name → upload progress → cancellation → failure retaining selection → retry → success → removal. State accepted types and size limits; distinguish local selection from server persistence.\n- Edit profile: persistent labels → required and email validation → focus first invalid field → prevent duplicate saves → preserve input on failure → retry → success feedback; offer keep editing or discard when leaving unsaved changes.\n- A demo may use a controllable one-time failure. Production must use real endpoints; never report simulated success as persisted data.') : '';
-  return `${intro}：${guide.title[locale]}\n\n${guide.outcome[locale]}\n\n${guide.picks.map(p => `- ${p.title[locale]}：${p.why[locale]}`).join('\n')}${flows}\n\n${needs}`;
-}

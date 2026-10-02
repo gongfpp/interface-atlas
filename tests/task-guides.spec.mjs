@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('curated task paths link home, named concepts and localized task briefs', async ({ page }) => {
+test('curated task paths link home, named concepts and localized guides', async ({ page }) => {
   await page.goto('/');
   const paths = page.locator('.home-tasks');
   await expect(paths.getByRole('link')).toHaveCount(3);
@@ -10,8 +10,6 @@ test('curated task paths link home, named concepts and localized task briefs', a
   await page.goto('/en/tasks/identify');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Name what you see in a screenshot');
   await expect(page.locator('.task-anatomy-preview a')).toHaveCount(4);
-  await page.getByText('Read the complete brief', { exact: true }).click();
-  await expect(page.locator('.task-prompt pre')).toContainText('Requirements: responsive layout');
   for (const link of await page.locator('.task-pick').evaluateAll(links => links.map(link => link.href))) {
     expect((await page.request.get(link)).status()).toBe(200);
   }

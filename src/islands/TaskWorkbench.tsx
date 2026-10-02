@@ -1,6 +1,5 @@
 import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react';
 import type { Locale } from '@/lib/i18n';
-import { useClipboard } from './shared/useClipboard';
 
 // SSR controls stay inert until React has attached their event handlers.
 const subscribeReady = () => () => {};
@@ -9,19 +8,6 @@ const serverReady = () => false;
 const useReady = () => useSyncExternalStore(subscribeReady, clientReady, serverReady);
 
 const words = (locale: Locale) => (zh: string, en: string) => locale === 'zh' ? zh : en;
-
-export function TaskPrompt({ prompt, locale }: { prompt: string; locale: Locale }) {
-  const ready = useReady();
-  const l = words(locale);
-  const { copy, copied, failed } = useClipboard(prompt, () => {});
-  return <section className="task-prompt" aria-label={l('任务说明', 'Task brief')}>
-    <h2>{l('把这条路径带到项目里', 'Bring this path into your project')}</h2>
-    <p>{l('这是一份任务说明，包含精选组件与实现要求。复制后补充你的技术栈和真实数据。', 'This task brief includes the curated components and implementation requirements. Add your stack and real data after copying.')}</p>
-    <details><summary>{l('查看完整说明', 'Read the complete brief')}</summary><pre>{prompt}</pre></details>
-    <button className="task-primary" type="button" disabled={!ready} onClick={copy}>{copied ? l('已复制', 'Copied') : l('复制任务说明', 'Copy task brief')}</button>
-    <p role="status">{failed ? l('复制失败，请展开说明并手动复制。', 'Copy failed. Expand the brief and copy it manually.') : copied ? l('任务说明已复制。', 'Task brief copied.') : ''}</p>
-  </section>;
-}
 
 type UploadState = 'empty' | 'ready' | 'uploading' | 'error' | 'success';
 function UploadFlow({ locale }: { locale: Locale }) {

@@ -72,14 +72,14 @@
   font-size:.9rem}
 .task-section-heading {
   margin-bottom:1.3rem}
-.task-section-heading h2,.task-prompt h2,.task-other-paths h2 {
+.task-section-heading h2,.task-other-paths h2 {
   font-size:1.5rem}
 .task-section-heading>p:last-child {
   font-size:.85rem;
   line-height:1.9;
   color:var(--color-ink-secondary);
   margin-top:.5rem}
-.task-picks,.task-workflows,.task-examples,.task-prompt {
+.task-picks,.task-workflows,.task-examples {
   margin-bottom:3.5rem}
 .task-pick-grid {
   display:grid;
@@ -309,32 +309,6 @@
   line-height:1.9;
   color:var(--color-ink-secondary);
   margin-top:1rem}
-.task-prompt {
-  padding:1.5rem;
-  border:1px solid var(--color-line);
-  border-radius:12px;
-  background:var(--color-code-bg)}
-.task-prompt>p {
-  font-size:.85rem;
-  line-height:1.9;
-  margin:.7rem 0}
-.task-prompt details {
-  margin:1rem 0}
-.task-prompt summary {
-  cursor:pointer;
-  font-size:.85rem}
-.task-prompt pre {
-  font:12px/1.9 var(--font-sans);
-  white-space:pre-wrap;
-  overflow-wrap:anywhere;
-  margin-top:1rem;
-  padding:1rem;
-  border:1px solid var(--color-line);
-  border-radius:6px;
-  background:var(--color-paper-raised)}
-.task-prompt [role=status] {
-  font-size:.75rem;
-  min-height:0}
 .task-other-paths {
   padding-top:1.5rem;
   border-top:1px solid var(--color-line)}

@@ -1,7 +1,7 @@
 ---
 import { localePath, type Locale } from '@/lib/i18n';
-import { TASK_GUIDES, taskPrompt, type TaskGuide } from '@/lib/task-guides';
-import { TaskPrompt, WorkflowLab, ExplainedExamples } from '@/islands/TaskWorkbench';
+import { TASK_GUIDES, type TaskGuide } from '@/lib/task-guides';
+import { WorkflowLab, ExplainedExamples } from '@/islands/TaskWorkbench';
 import '@/styles/task-guides.css';
 interface Props { guide: TaskGuide; locale: Locale }
 const { guide, locale } = Astro.props;
@@ -19,6 +19,5 @@ const l = (zh: string, en: string) => locale === 'zh' ? zh : en;
   </section>}
   <section class="task-picks" aria-labelledby="picks-heading"><div class="task-section-heading"><h2 id="picks-heading">{l('按这个顺序，选出需要的部分', 'Pick the parts in this order')}</h2><p>{l('每个入口都说明它解决什么问题，以及什么时候需要多想一步。', 'Each stop explains the problem it solves and the trade-off to consider.')}</p></div><div class="task-pick-grid">{guide.picks.map((pick, index) => <a class="task-pick" href={localePath(pick.path, locale)}><span class="task-number">{String(index + 1).padStart(2, '0')}</span><div><h3>{pick.title[locale]} <span aria-hidden="true">↗</span></h3><p>{pick.why[locale]}</p></div></a>)}</div></section>
   {guide.id === 'forms' && <><WorkflowLab client:load locale={locale} /><ExplainedExamples client:load locale={locale} /></>}
-  <TaskPrompt client:load prompt={taskPrompt(guide, locale)} locale={locale} />
   <nav class="task-other-paths" aria-label={l('其他任务路径', 'Other task paths')}><h2>{l('继续探索其他任务', 'Explore another task')}</h2>{TASK_GUIDES.filter(item => item.id !== guide.id).map(item => <a href={localePath(`/tasks/${item.id}`, locale)}>{item.title[locale]} →</a>)}</nav>
 </article>
