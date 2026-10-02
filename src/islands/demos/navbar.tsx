@@ -1,3 +1,4 @@
+import { usePreviewVariant } from "../shared/previewVariant";
 import { useId, useState } from "react";
 import type { DemoComponent } from "@/islands/DemoStage";
 const NavbarDemo: DemoComponent = ({ mode, locale = "zh" }) => {
@@ -6,7 +7,7 @@ const NavbarDemo: DemoComponent = ({ mode, locale = "zh" }) => {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [joined, setJoined] = useState(false);
-  const [appearance, setAppearance] = useState(
+  const [appearance, setAppearance] = usePreviewVariant<string>(
     mode === "variants" ? "floating" : "standard",
   );
   const id = useId();
@@ -170,3 +171,5 @@ const NavbarDemo: DemoComponent = ({ mode, locale = "zh" }) => {
   );
 };
 export default NavbarDemo;
+
+export const previewVariants = { ids: ['standard', 'floating', 'centered'], default: 'standard', modes: ['default', 'dark', 'variants'], defaults: { variants: 'floating' } };

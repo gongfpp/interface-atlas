@@ -1,4 +1,5 @@
 ---
+import ComparisonLab from '@/islands/ComparisonLab';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CompareTable from '@/components/CompareTable.astro';
 import { getCompareGroups, type CompareGroup } from '@/lib/compare';
@@ -30,6 +31,7 @@ const namesZh = group.members.map((m) => m.data.name.zh).join(' · ');
       {group.members.length} concepts compared across {group.dimensions.length} dimensions. Click a
       column header to open the concept.
     </p>
+    {['overlay-container', 'scroll-loading'].includes(group.group) && <ComparisonLab locale="en" initialTask={group.group === 'scroll-loading' ? 'browse' : 'overlay'} client:load />}
     <div class="mt-8 pb-20">
       <CompareTable concepts={group.members} locale="en" />
     </div>

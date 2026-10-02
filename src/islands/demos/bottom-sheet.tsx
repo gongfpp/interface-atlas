@@ -1,7 +1,8 @@
+import { usePreviewVariant } from "../shared/previewVariant";
 import { useRef, useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
-type Variant = 'fixed' | 'draggable' | 'full-expand';
+type Variant = 'fixed-height' | 'draggable' | 'full-expand';
 type Detent = 'peek' | 'half' | 'full';
 
 const DETENT_H: Record<Detent, string> = {
@@ -165,8 +166,8 @@ function BottomSheetPanel({
 
 const BottomSheetDemo: DemoComponent = ({ mode, locale }) => {
   const en = locale === 'en';
-  const [variant, setVariant] = useState<Variant>(
-    mode === 'variants' ? 'fixed' : 'draggable',
+  const [variant, setVariant] = usePreviewVariant<Variant>(
+    mode === 'variants' ? 'fixed-height' : 'draggable',
   );
   const [open, setOpen] = useState(false);
 
@@ -199,7 +200,7 @@ const BottomSheetDemo: DemoComponent = ({ mode, locale }) => {
             <div className="mb-2 flex flex-wrap gap-1.5">
               {(
                 [
-                  ['fixed', en ? 'Fixed' : '固定高度'],
+                  ['fixed-height', en ? 'Fixed' : '固定高度'],
                   ['draggable', en ? 'Draggable' : '可拖拽档位'],
                   ['full-expand', en ? 'Full expand' : '全屏展开'],
                 ] as [Variant, string][]
@@ -241,3 +242,5 @@ const BottomSheetDemo: DemoComponent = ({ mode, locale }) => {
 };
 
 export default BottomSheetDemo;
+
+export const previewVariants = { ids: ['fixed-height', 'draggable', 'full-expand'], default: 'draggable', modes: ['default', 'dark', 'variants'], defaults: { variants: 'fixed-height' } };

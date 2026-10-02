@@ -112,8 +112,7 @@
   "demo": {
     "component": "scroll-reveal",
     "modes": [
-      "default",
-      "variants"
+      "default"
     ],
     "motionControls": [
       "slow"

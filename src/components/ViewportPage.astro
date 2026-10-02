@@ -1,0 +1,14 @@
+---
+import '@/styles/global.css';
+import ViewportPreview from '@/islands/ViewportPreview';
+import { getAllConcepts } from '@/lib/content';
+import type { Locale } from '@/lib/i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const concepts = (await getAllConcepts()).filter(c => c.data.demo).map(c => ({ id: c.id, component: c.data.demo!.component, modes: c.data.demo!.modes }));
+---
+<!doctype html>
+<html lang={locale === 'zh' ? 'zh-CN' : 'en'}>
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="robots" content="noindex, nofollow" /><title>{locale === 'zh' ? '独立视口预览 · 界面图谱' : 'Viewport preview · Interface Atlas'}</title></head>
+  <body class="bg-paper"><ViewportPreview client:load concepts={concepts} locale={locale} /></body>
+</html>

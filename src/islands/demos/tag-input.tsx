@@ -1,3 +1,4 @@
+import { usePreviewVariant } from "../shared/previewVariant";
 import { useId, useMemo, useRef, useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -172,7 +173,7 @@ function TagField({
 
 const TagInputDemo: DemoComponent = ({ mode, locale }) => {
   const en = locale === 'en';
-  const [variant, setVariant] = useState<Variant>(
+  const [variant, setVariant] = usePreviewVariant<Variant>(
     mode === 'variants' ? 'free-form' : 'autocomplete',
   );
   const [freeTags, setFreeTags] = useState<string[]>(
@@ -240,3 +241,5 @@ const TagInputDemo: DemoComponent = ({ mode, locale }) => {
 };
 
 export default TagInputDemo;
+
+export const previewVariants = { ids: ['free-form', 'autocomplete', 'file-chips'], default: 'autocomplete', modes: ['default', 'dark', 'variants'], defaults: { variants: 'free-form' } };

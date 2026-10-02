@@ -1,3 +1,4 @@
+import { usePreviewVariant } from '@/islands/shared/previewVariant';
 import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -10,6 +11,8 @@ const VARIANTS = [
 ] as const;
 
 type VariantId = (typeof VARIANTS)[number]['id'];
+
+export const previewVariants = { ids: VARIANTS.map((v) => v.id), default: 'form' };
 
 const METHODS = [
   { icon: '✉', zh: 'hi@acme.com', en: 'hi@acme.com' },
@@ -179,7 +182,7 @@ function Wireframe({ variant, en }: { variant: VariantId; en: boolean }) {
 
 const ContactDemo: DemoComponent = ({ mode, locale }) => {
   const en = locale === 'en';
-  const [variant, setVariant] = useState<VariantId>('form');
+  const [variant, setVariant] = usePreviewVariant<VariantId>('form');
 
   if (mode === 'variants') {
     return (
@@ -206,6 +209,7 @@ const ContactDemo: DemoComponent = ({ mode, locale }) => {
         {VARIANTS.map((v) => (
           <button
             key={v.id}
+            aria-pressed={variant === v.id}
             onClick={() => setVariant(v.id)}
             className={`rounded-full border px-2.5 py-0.5 text-xs transition-colors ${
               variant === v.id ? 'border-accent bg-accent-soft text-accent' : 'border-line text-ink-2 hover:border-accent'

@@ -1,4 +1,5 @@
 ---
+import ComparisonLab from '@/islands/ComparisonLab';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CompareTable from '@/components/CompareTable.astro';
 import { getCompareGroups, type CompareGroup } from '@/lib/compare';
@@ -29,6 +30,7 @@ const namesEn = group.members.map((m) => m.data.name.en).join(' · ');
     <p class="mt-3 max-w-2xl text-ink-2">
       并排对比 {group.members.length} 个概念，按 {group.dimensions.length} 个维度逐项查看差异。点击表头进入对应概念详情。
     </p>
+    {['overlay-container', 'scroll-loading'].includes(group.group) && <ComparisonLab locale="zh" initialTask={group.group === 'scroll-loading' ? 'browse' : 'overlay'} client:load />}
     <div class="mt-8 pb-20">
       <CompareTable concepts={group.members} locale="zh" />
     </div>

@@ -68,7 +68,6 @@ demo:
   component: shared-element-transition
   modes:
     - default
-    - variants
   motionControls:
     - replay
     - slow

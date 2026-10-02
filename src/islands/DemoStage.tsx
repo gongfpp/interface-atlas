@@ -41,7 +41,7 @@ export default function DemoStage({
           role="group"
           aria-label={en ? "Demo mode" : "演示模式"}
         >
-          {visibleModes.map((m) => (
+          {visibleModes.length > 1 && visibleModes.map((m) => (
             <button
               key={m}
               aria-pressed={mode === m}
@@ -61,7 +61,7 @@ export default function DemoStage({
             aria-pressed={narrow}
             onClick={() => setNarrow(!narrow)}
           >
-            {en ? "Narrow canvas" : "窄屏预览"}
+            {en ? "Narrow container" : "窄容器"}
           </button>
           <button
             className="demo-tool"

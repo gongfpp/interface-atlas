@@ -99,8 +99,7 @@
     "component": "organic",
     "modes": [
       "default",
-      "dark",
-      "variants"
+      "dark"
     ]
   },
   "sources": [

@@ -1,9 +1,10 @@
+import { usePreviewVariant } from "../shared/previewVariant";
 import { useId, useRef, useState } from "react";
 import type { DemoComponent } from "@/islands/DemoStage";
 const TabsDemo: DemoComponent = ({ mode, locale = "zh" }) => {
   const en = locale === "en";
   const [active, setActive] = useState(0);
-  const [style, setStyle] = useState(
+  const [style, setStyle] = usePreviewVariant<string>(
     mode === "variants" ? "pill" : "underline",
   );
   const id = useId();
@@ -142,3 +143,5 @@ const TabsDemo: DemoComponent = ({ mode, locale = "zh" }) => {
   );
 };
 export default TabsDemo;
+
+export const previewVariants = { ids: ['underline', 'pill', 'card'], default: 'underline', modes: ['default', 'dark', 'variants'], defaults: { variants: 'pill' } };

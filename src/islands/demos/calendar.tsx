@@ -1,3 +1,4 @@
+import { usePreviewVariant } from '@/islands/shared/previewVariant';
 import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -10,6 +11,8 @@ const VIEWS = [
 ] as const;
 
 type ViewId = (typeof VIEWS)[number]['id'];
+
+export const previewVariants = { ids: VIEWS.map((v) => v.id), default: 'month' };
 
 const DAY_ZH = ['一', '二', '三', '四', '五', '六', '日'];
 const DAY_EN = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
@@ -153,7 +156,7 @@ function Agenda({ events, en, onPick }: { events: Ev[]; en: boolean; onPick: (id
 
 const CalendarDemo: DemoComponent = ({ mode, locale }) => {
   const en = locale === 'en';
-  const [view, setView] = useState<ViewId>('month');
+  const [view, setView] = usePreviewVariant<ViewId>('month');
   const [selected, setSelected] = useState(TODAY);
   const [events, setEvents] = useState<Ev[]>(EVENTS);
   const [open, setOpen] = useState<number | null>(null);
@@ -233,6 +236,7 @@ const CalendarDemo: DemoComponent = ({ mode, locale }) => {
           {VIEWS.map((v) => (
             <button
               key={v.id}
+              aria-pressed={view === v.id}
               onClick={() => setView(v.id)}
               className={`rounded-full px-2 py-0.5 text-[10px] ${
                 view === v.id ? 'bg-accent text-white' : 'text-ink-2 hover:text-accent'

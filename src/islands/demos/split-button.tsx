@@ -1,3 +1,4 @@
+import { usePreviewVariant } from "../shared/previewVariant";
 import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -108,7 +109,7 @@ function SplitControl({
 const SplitButtonDemo: DemoComponent = ({ mode, locale }) => {
   const en = locale === 'en';
   const [log, setLog] = useState<string[]>([]);
-  const [layout, setLayout] = useState<'horizontal' | 'vertical' | 'icon'>('horizontal');
+  const [layout, setLayout] = usePreviewVariant<'horizontal' | 'vertical' | 'with-icon'>('horizontal');
 
   const push = (msg: string) => setLog((l) => [msg, ...l].slice(0, 2));
 
@@ -120,8 +121,8 @@ const SplitButtonDemo: DemoComponent = ({ mode, locale }) => {
             [
               ['horizontal', en ? 'Horizontal' : '水平'],
               ['vertical', en ? 'Vertical' : '垂直'],
-              ['icon', en ? 'With icon' : '带图标'],
-            ] as ['horizontal' | 'vertical' | 'icon', string][]
+              ['with-icon', en ? 'With icon' : '带图标'],
+            ] as ['horizontal' | 'vertical' | 'with-icon', string][]
           ).map(([id, label]) => (
             <button
               key={id}
@@ -140,7 +141,7 @@ const SplitButtonDemo: DemoComponent = ({ mode, locale }) => {
           items={ACTIONS}
           en={en}
           vertical={layout === 'vertical'}
-          withIcon={layout === 'icon'}
+          withIcon={layout === 'with-icon'}
           label={en ? 'Save variants' : '保存变体'}
           onPrimary={() => push(en ? 'Saved' : '已保存')}
           onPick={(item) => push(en ? item.en : item.zh)}
@@ -150,7 +151,7 @@ const SplitButtonDemo: DemoComponent = ({ mode, locale }) => {
             ? en
               ? 'Arrow stacks under the face — narrow toolbars.'
               : '箭头堆叠在主区下方，适合窄工具栏。'
-            : layout === 'icon'
+            : layout === 'with-icon'
               ? en
                 ? 'Icon plus label speeds recognition.'
                 : '图标加文案，识别更快。'
@@ -194,3 +195,5 @@ const SplitButtonDemo: DemoComponent = ({ mode, locale }) => {
 };
 
 export default SplitButtonDemo;
+
+export const previewVariants = { ids: ['horizontal', 'vertical', 'with-icon'], default: 'horizontal', modes: ['variants'] };

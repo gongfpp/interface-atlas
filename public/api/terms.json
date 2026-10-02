@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-27",
+  "generated": "2026-10-02",
   "site": "https://gongfpp.github.io",
   "count": 164,
   "types": [
@@ -5266,6 +5266,17 @@
             "zh": "内嵌图标与清除按钮",
             "en": "Inline icons and a clear button"
           }
+        },
+        {
+          "id": "underline",
+          "name": {
+            "zh": "下划线",
+            "en": "Underline"
+          },
+          "note": {
+            "zh": "仅保留下边线，不使用圆角与填充底色；标签始终可见。",
+            "en": "Keep only the bottom rule with no radius or fill; the label stays visible."
+          }
         }
       ],
       "anatomy": [
@@ -6411,6 +6422,17 @@
           "note": {
             "zh": "压在首屏大图上，滚动后加底色",
             "en": "Floats over the hero, gains a background on scroll"
+          }
+        },
+        {
+          "id": "floating",
+          "name": {
+            "zh": "悬浮容器",
+            "en": "Floating container"
+          },
+          "note": {
+            "zh": "导航置于带圆角、描边与轻阴影的独立容器中。",
+            "en": "Place navigation in a rounded, outlined container with a subtle shadow."
           }
         }
       ],
@@ -16006,8 +16028,7 @@
       "demo": {
         "component": "magnetic-button",
         "modes": [
-          "default",
-          "variants"
+          "default"
         ],
         "motionControls": []
       },
@@ -16648,8 +16669,7 @@
       "demo": {
         "component": "page-transition",
         "modes": [
-          "default",
-          "variants"
+          "default"
         ],
         "motionControls": [
           "replay",
@@ -16808,8 +16828,7 @@
       "demo": {
         "component": "parallax",
         "modes": [
-          "default",
-          "variants"
+          "default"
         ],
         "motionControls": []
       },
@@ -17482,8 +17501,7 @@
       "demo": {
         "component": "scroll-reveal",
         "modes": [
-          "default",
-          "variants"
+          "default"
         ],
         "motionControls": [
           "slow"
@@ -17642,8 +17660,7 @@
       "demo": {
         "component": "shared-element-transition",
         "modes": [
-          "default",
-          "variants"
+          "default"
         ],
         "motionControls": [
           "replay",
@@ -26320,8 +26337,7 @@
         "component": "kanban-board",
         "modes": [
           "default",
-          "dark",
-          "variants"
+          "dark"
         ]
       },
       "implementation": {
@@ -31269,8 +31285,7 @@
         "component": "glassmorphism",
         "modes": [
           "default",
-          "dark",
-          "variants"
+          "dark"
         ]
       },
       "sources": [
@@ -32818,8 +32833,7 @@
         "component": "neumorphism",
         "modes": [
           "default",
-          "dark",
-          "variants"
+          "dark"
         ]
       },
       "sources": [
@@ -33024,8 +33038,7 @@
         "component": "organic",
         "modes": [
           "default",
-          "dark",
-          "variants"
+          "dark"
         ]
       },
       "sources": [

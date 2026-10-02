@@ -1,16 +1,19 @@
+import { usePreviewVariant } from '@/islands/shared/previewVariant';
 import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
 /* 页面结构缩略示意图（wireframe）：色块 + 真实标签 */
 
 const VARIANTS = [
-  { id: 'cover', zh: '封面头图式', en: 'Cover' },
   { id: 'card', zh: '卡片式', en: 'Card' },
+  { id: 'cover', zh: '封面头图式', en: 'Cover' },
   { id: 'minimal', zh: '极简名片式', en: 'Minimal' },
   { id: 'portfolio', zh: '作品集式', en: 'Portfolio' },
 ] as const;
 
 type VariantId = (typeof VARIANTS)[number]['id'];
+
+export const previewVariants = { ids: VARIANTS.map((v) => v.id), default: 'cover' };
 type Tab = '动态' | '作品' | '关于';
 
 const TABS: Tab[] = ['动态', '作品', '关于'];
@@ -161,7 +164,7 @@ function Wireframe({ variant }: { variant: VariantId }) {
 }
 
 const ProfileDemo: DemoComponent = ({ mode }) => {
-  const [variant, setVariant] = useState<VariantId>('cover');
+  const [variant, setVariant] = usePreviewVariant<VariantId>('cover');
 
   if (mode === 'variants') {
     return (
@@ -186,6 +189,7 @@ const ProfileDemo: DemoComponent = ({ mode }) => {
         {VARIANTS.map((v) => (
           <button
             key={v.id}
+            aria-pressed={variant === v.id}
             onClick={() => setVariant(v.id)}
             className={`rounded-full border px-2.5 py-0.5 text-xs transition-colors ${
               variant === v.id ? 'border-accent bg-accent-soft text-accent' : 'border-line text-ink-2 hover:border-accent'

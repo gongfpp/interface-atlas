@@ -99,8 +99,7 @@
     "component": "neumorphism",
     "modes": [
       "default",
-      "dark",
-      "variants"
+      "dark"
     ]
   },
   "sources": [

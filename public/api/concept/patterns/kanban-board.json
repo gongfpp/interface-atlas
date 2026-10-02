@@ -126,8 +126,7 @@
     "component": "kanban-board",
     "modes": [
       "default",
-      "dark",
-      "variants"
+      "dark"
     ]
   },
   "implementation": {

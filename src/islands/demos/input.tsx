@@ -1,3 +1,4 @@
+import { usePreviewVariant } from "../shared/previewVariant";
 import { useId, useState } from "react";
 import type { DemoComponent } from "@/islands/DemoStage";
 
@@ -7,7 +8,7 @@ const InputDemo: DemoComponent = ({ mode, locale = "zh" }) => {
   const [email, setEmail] = useState("lin@example.com");
   const [touched, setTouched] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [shape, setShape] = useState("outline");
+  const [shape, setShape] = usePreviewVariant<string>("outline");
   const invalid = touched && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const choices = [
     ["outline", "描边", "Outlined"],
@@ -138,3 +139,5 @@ const InputDemo: DemoComponent = ({ mode, locale = "zh" }) => {
   );
 };
 export default InputDemo;
+
+export const previewVariants = { ids: ['outline', 'filled', 'underline'], default: 'outline', modes: ['default', 'dark', 'variants'] };

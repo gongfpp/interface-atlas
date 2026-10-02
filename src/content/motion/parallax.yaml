@@ -67,7 +67,6 @@ demo:
   component: parallax
   modes:
     - default
-    - variants
   motionControls: []
 implementation:
   css:

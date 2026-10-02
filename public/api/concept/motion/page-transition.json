@@ -112,8 +112,7 @@
   "demo": {
     "component": "page-transition",
     "modes": [
-      "default",
-      "variants"
+      "default"
     ],
     "motionControls": [
       "replay",

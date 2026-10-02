@@ -1,11 +1,13 @@
 # 中文前端设计参考库 PRD
 
-版本：v0.14
+版本：v0.15
 项目阶段：MVP
 中文名称：界面图谱
 英文名称：Interface Atlas（MVP 使用工作名，域名后定，改名成本 = 文案 + 301）
 
-> v0.14 变更摘要（仓库隔离）：源仓库 `gongfpp/interface-atlas` 转为 **private**，只保留源码与 CI；新增公开构建/部署仓库 `gongfpp/interface-atlas-web`——源仓库 `.github/workflows/deploy-web.yml` 构建后，用 SSH Deploy Key（secret `WEB_DEPLOY_KEY`）把 `dist/` 强制 push 到其 `main`，由该仓库 GitHub Pages（branch `main`，`/`，legacy）发布。站点 URL 变为 `https://gongfpp.github.io/interface-atlas-web/`；giscus 留言板改挂到公开仓库。
+当前产品闭环：从首页任务入口或搜索进入，在统一实验室选择风格、模式与支持的形式，使用当前方案复制实现说明，或按项目保存、恢复、导出 Markdown。三组同任务交互对比、上传/资料编辑流程与正反例帮助选择；图库输入框参考提供编号拆解。存储继续限于当前浏览器，无账号与上传服务。
+
+> v0.14 变更摘要（仓库隔离）：源仓库 `gongfpp/interface-atlas` 转为 **private**，只保留源码与 CI；新增公开构建/部署仓库 `gongfpp/interface-atlas-web`——源仓库 `.github/workflows/deploy-web.yml` 构建后，用 SSH Deploy Key（secret `WEB_DEPLOY_KEY`）在同一提交检查通过后，把 `dist/` 增量提交到其 `main`（保留旧 hash 资源，不 force-push），由该仓库 GitHub Pages（branch `main`，`/`，legacy）发布。站点 URL 变为 `https://gongfpp.github.io/interface-atlas-web/`；giscus 留言板改挂到公开仓库。
 
 > v0.13 变更摘要（留言板）：新增 `/board`（中英双语，共用同一讨论串）——基于 giscus 把评论挂在本仓库的 GitHub Discussions，纯静态部署可用、留言公开可见；评论需 GitHub 登录，数据与审核都在 GitHub。页脚新增入口。
 
@@ -232,7 +234,9 @@ MVP 不建立社区、商城和复杂账户体系。
 
 # 16. Prompt
 
-每个 Concept 提供适合 Coding Agent 的描述，提供**复制 Prompt**。示例（Skeleton）：
+每个 Concept 提供适合 Coding Agent 的描述，提供**复制 Prompt**。统一实验室的「当前方案」直接使用当前风格、演示模式与已实现的形式选择，补上使用检查点、附加要求和可恢复的参考链接。Demo 内部支持切换的形式通过 `usePreviewVariant` 与输出共享状态；没有预览实现的形式明确标为附加要求。复制成功与失败分别反馈，失败时保留可手动复制文本。
+
+「通用概念说明」独立保留下面四层内容，不声称复现当前演示。当前方案可保存到 `/saved`：分组、理由、配置、完整 Prompt 持久化于 localStorage，并可按项目导出 Markdown。临时输入不保存；存储失败不报成功，当前页提示先复制说明。示例（Skeleton）：
 
 ```text
 创建一个 Skeleton Loading 组件。用于文章列表加载状态。要求：
@@ -393,14 +397,17 @@ Motion 播放器（Play / Replay / Slow Motion / Before-After）
 P1 项已全部落地：
 - Concept Compare 独立浏览页（v0.7，见 §19）
 - 带过滤的随机探索页（v0.8，见 §8）
-- 收藏 / 浏览历史（v0.10，localStorage，`/saved`）
+- 项目参考册 + 原有收藏 / 浏览历史（localStorage，`/saved`）：保存具体配置、分组与理由、恢复、Markdown导出
 - 高级 Filter（v0.10，类型列表页文本 + category 筛选）
-- Prompt Builder（v0.10，概念 × 风格组合，详情页）
+- 当前方案输出与独立通用 Prompt（详情页）
+- 同任务体验对比：覆盖层筛选、分页与无限滚动、标签页与折叠面板
+- `/tasks/dashboard`、`/tasks/forms`、`/tasks/identify` 任务路径与英文镜像；两套完整本地模拟流程、单因素正反例
+- 窄容器与独立设备视口预览；参考图编号拆解
 - 页面结构拆解深化（v0.10，见 §20）
 
 # 29. P2
 
-自然语言 AI 搜索（升级版）/ 上传截图识别 UI / 图片 → Design Concept / MCP Server / Agent Skill / CLI / Figma Plugin / VS Code Plugin / 社区投稿 / 个人设计收藏库。
+自然语言 AI 搜索（升级版）/ 上传截图识别 UI / 图片 → Design Concept / MCP Server / Agent Skill / CLI / Figma Plugin / VS Code Plugin / 社区投稿。
 
 # 30. 明确不进入 MVP 的东西
 

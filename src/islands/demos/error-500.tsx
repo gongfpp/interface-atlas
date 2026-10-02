@@ -1,3 +1,4 @@
+import { usePreviewVariant } from '@/islands/shared/previewVariant';
 import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -8,6 +9,8 @@ const VARIANTS = [
 ] as const;
 
 type VariantId = (typeof VARIANTS)[number]['id'];
+
+export const previewVariants = { ids: VARIANTS.map((v) => v.id), default: 'retry' };
 
 const TEXT = {
   zh: {
@@ -116,7 +119,7 @@ function PageBody({
 
 const Error500Demo: DemoComponent = ({ mode, locale = 'zh' }) => {
   const copy = TEXT[locale];
-  const [variant, setVariant] = useState<VariantId>('retry');
+  const [variant, setVariant] = usePreviewVariant<VariantId>('retry');
   const [attempts, setAttempts] = useState(0);
   const [retrying, setRetrying] = useState(false);
   const [detailOpen, setDetailOpen] = useState(false);
@@ -159,6 +162,7 @@ const Error500Demo: DemoComponent = ({ mode, locale = 'zh' }) => {
         {VARIANTS.map((v) => (
           <button
             key={v.id}
+            aria-pressed={variant === v.id}
             onClick={() => {
               setVariant(v.id);
               setAttempts(0);

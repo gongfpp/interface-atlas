@@ -112,7 +112,7 @@ test('saved: save a concept then see it on /saved', async ({ page }) => {
   await page.waitForTimeout(800);
   await page.getByRole('button', { name: /收藏/ }).click();
   await page.goto('/saved');
-  await expect(page.getByRole('heading', { level: 1, name: '我的收藏' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: '我的参考册' })).toBeVisible();
   await expect(page.getByRole('link', { name: /按钮/ }).first()).toBeVisible();
   await expect(page.getByRole('heading', { level: 2, name: '最近浏览' })).toBeVisible();
 });
@@ -131,7 +131,7 @@ test('prompt block: style selection composes the agent prompt', async ({ page })
   const section = page.locator('#prompts');
   await section.scrollIntoViewIfNeeded();
   await page.waitForTimeout(600);
-  await section.locator('select').selectOption('neobrutalism');
+  await page.locator('[data-style=neobrutalism]').click();
   await expect(section.locator('pre')).toContainText('新粗野主义');
 });
 

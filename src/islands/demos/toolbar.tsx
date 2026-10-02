@@ -1,3 +1,4 @@
+import { usePreviewVariant } from "../shared/previewVariant";
 import { useRef, useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -184,7 +185,7 @@ function ToolbarDemoInner({
 
 const ToolbarDemo: DemoComponent = ({ mode, locale }) => {
   const en = locale === 'en';
-  const [variant, setVariant] = useState<Variant>(
+  const [variant, setVariant] = usePreviewVariant<Variant>(
     mode === 'variants' ? 'icon' : 'formatting',
   );
   return (
@@ -197,3 +198,5 @@ const ToolbarDemo: DemoComponent = ({ mode, locale }) => {
 };
 
 export default ToolbarDemo;
+
+export const previewVariants = { ids: ['icon', 'formatting', 'contextual'], default: 'formatting', modes: ['default', 'dark', 'variants'], defaults: { variants: 'icon' } };

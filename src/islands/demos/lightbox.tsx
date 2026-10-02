@@ -1,3 +1,4 @@
+import { usePreviewVariant } from "../shared/previewVariant";
 import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -119,7 +120,7 @@ const LightboxDemo: DemoComponent = ({ mode, locale }) => {
   const en = locale === 'en';
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
-  const [variant, setVariant] = useState<'gallery' | 'zoom' | 'video'>('gallery');
+  const [variant, setVariant] = usePreviewVariant<'gallery' | 'image-zoom' | 'video'>('gallery');
 
   if (mode === 'variants') {
     return (
@@ -127,10 +128,10 @@ const LightboxDemo: DemoComponent = ({ mode, locale }) => {
         <div className="mb-3 flex justify-center gap-1.5">
           {(
             [
-              ['zoom', en ? 'Zoom' : '放大'],
+              ['image-zoom', en ? 'Zoom' : '放大'],
               ['gallery', en ? 'Gallery' : '画廊'],
               ['video', en ? 'Video' : '视频'],
-            ] as ['zoom' | 'gallery' | 'video', string][]
+            ] as ['image-zoom' | 'gallery' | 'video', string][]
           ).map(([id, label]) => (
             <button
               key={id}
@@ -156,7 +157,7 @@ const LightboxDemo: DemoComponent = ({ mode, locale }) => {
           {en ? 'Open lightbox' : '打开灯箱'}
         </button>
         <p className="mt-2 text-[11px] text-ink-3">
-          {variant === 'zoom'
+          {variant === 'image-zoom'
             ? en
               ? 'Single image, detail zoom.'
               : '单图放大查看细节。'
@@ -214,3 +215,5 @@ const LightboxDemo: DemoComponent = ({ mode, locale }) => {
 };
 
 export default LightboxDemo;
+
+export const previewVariants = { ids: ['gallery', 'image-zoom', 'video'], default: 'gallery', modes: ['variants'] };

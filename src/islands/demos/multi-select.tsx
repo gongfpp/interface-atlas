@@ -1,3 +1,4 @@
+import { usePreviewVariant } from "../shared/previewVariant";
 import { useMemo, useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -191,7 +192,7 @@ function DualList({ en }: { en: boolean }) {
 
 const MultiSelectDemo: DemoComponent = ({ mode, locale }) => {
   const en = locale === 'en';
-  const [variant, setVariant] = useState<'chips' | 'checkbox-list' | 'dual'>('chips');
+  const [variant, setVariant] = usePreviewVariant<'chips' | 'checkbox-list' | 'dual-listbox'>('chips');
 
   if (mode === 'variants') {
     return (
@@ -201,8 +202,8 @@ const MultiSelectDemo: DemoComponent = ({ mode, locale }) => {
             [
               ['chips', 'Chips'],
               ['checkbox-list', 'Checkboxes'],
-              ['dual', 'Dual list'],
-            ] as ['chips' | 'checkbox-list' | 'dual', string][]
+              ['dual-listbox', 'Dual list'],
+            ] as ['chips' | 'checkbox-list' | 'dual-listbox', string][]
           ).map(([id, label]) => (
             <button
               key={id}
@@ -219,7 +220,7 @@ const MultiSelectDemo: DemoComponent = ({ mode, locale }) => {
         </div>
         {variant === 'chips' && <MultiSelectField en={en} />}
         {variant === 'checkbox-list' && <CheckboxList en={en} />}
-        {variant === 'dual' && <DualList en={en} />}
+        {variant === 'dual-listbox' && <DualList en={en} />}
       </div>
     );
   }
@@ -240,3 +241,5 @@ const MultiSelectDemo: DemoComponent = ({ mode, locale }) => {
 };
 
 export default MultiSelectDemo;
+
+export const previewVariants = { ids: ['chips', 'checkbox-list', 'dual-listbox'], default: 'chips', modes: ['variants'] };

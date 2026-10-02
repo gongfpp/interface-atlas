@@ -5,6 +5,8 @@ import StyleThumb from '@/components/StyleThumb.astro';
 import { getStylePreviews } from '@/lib/style-previews';
 import { TYPE_LABELS, localePath, t, withBase, type Locale } from '@/lib/i18n';
 import HeroSearch from '@/islands/HeroSearch';
+import { TASK_GUIDES } from '@/lib/task-guides';
+import '@/styles/task-guides.css';
 
 interface Props {
   locale: Locale;
@@ -52,6 +54,12 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
 
 <section class="mb-12 border-y border-line py-5">
   <div class="grid grid-cols-1 gap-4 md:grid-cols-3">{(locale === 'zh' ? [['01','发现','按风格、组件或口语描述找到灵感。'],['02','体验','切换形式与尺寸，在真实交互中理解细节。'],['03','实现','复制说明与 Prompt，接入自己的项目。']] : [['01','Discover','Find an idea by style, component or plain language.'],['02','Explore','Try forms and sizes through real interactions.'],['03','Build','Bring the guidance and prompts into your own project.']]).map(([num,title,desc]) => <div class="flex gap-4"><span class="pt-1 font-mono text-xs text-accent">{num}</span><div><p class="text-sm font-medium">{title}</p><p class="mt-1 text-xs leading-6 text-ink-3">{desc}</p></div></div>)}</div>
+</section>
+
+<section class="home-tasks" aria-labelledby="home-tasks-heading">
+  <h2 id="home-tasks-heading">{locale === 'zh' ? '先说说，你想完成什么？' : 'Start with what you want to do'}</h2>
+  <p>{locale === 'zh' ? '不用先记住术语。沿着一条任务路径，试清楚、选下来，再把说明带走。' : 'No vocabulary required. Follow a task, try the details, then take the brief with you.'}</p>
+  <div class="home-task-grid">{TASK_GUIDES.map((guide, index) => <a class="home-task-card" href={localePath(`/tasks/${guide.id}`, locale)}><span class="task-number">0{index + 1} / START HERE</span><strong>{guide.title[locale]}</strong><p>{guide.intro[locale]}</p><span>{locale === 'zh' ? '打开精选路径' : 'Open the curated path'} →</span></a>)}</div>
 </section>
 
 <!-- 风格 = 首页主视觉 -->

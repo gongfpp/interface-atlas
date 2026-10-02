@@ -1,3 +1,4 @@
+import { usePreviewVariant } from '@/islands/shared/previewVariant';
 import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -10,6 +11,8 @@ const VARIANTS = [
 ] as const;
 
 type VariantId = (typeof VARIANTS)[number]['id'];
+
+export const previewVariants = { ids: VARIANTS.map((v) => v.id), default: 'standard' };
 
 const SECTIONS = [
   { zh: '引言', en: 'Intro' },
@@ -147,7 +150,7 @@ function Wireframe({ variant, en }: { variant: VariantId; en: boolean }) {
 
 const BlogPostDemo: DemoComponent = ({ mode, locale }) => {
   const en = locale === 'en';
-  const [variant, setVariant] = useState<VariantId>('standard');
+  const [variant, setVariant] = usePreviewVariant<VariantId>('standard');
 
   if (mode === 'variants') {
     return (
@@ -174,6 +177,7 @@ const BlogPostDemo: DemoComponent = ({ mode, locale }) => {
         {VARIANTS.map((v) => (
           <button
             key={v.id}
+            aria-pressed={variant === v.id}
             onClick={() => setVariant(v.id)}
             className={`rounded-full border px-2.5 py-0.5 text-xs transition-colors ${
               variant === v.id ? 'border-accent bg-accent-soft text-accent' : 'border-line text-ink-2 hover:border-accent'

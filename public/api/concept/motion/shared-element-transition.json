@@ -111,8 +111,7 @@
   "demo": {
     "component": "shared-element-transition",
     "modes": [
-      "default",
-      "variants"
+      "default"
     ],
     "motionControls": [
       "replay",

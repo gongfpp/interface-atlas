@@ -1,7 +1,7 @@
 ---
 import ConceptCard from '@/components/ConceptCard.astro';
 import type { Concept } from '@/lib/content';
-import type { Locale } from '@/lib/i18n';
+import { localePath, type Locale } from '@/lib/i18n';
 
 interface Props {
   concepts: Concept[];
@@ -59,10 +59,17 @@ const chipIdle = `${chip} border-line text-ink-2`;
     ))}
   </div>
 
-  <p data-list-empty class="hidden pb-20 text-sm text-ink-3">{L.empty}</p>
+  <div data-list-empty class="hidden pb-20 text-sm text-ink-3">
+    <p>{locale === 'zh' ? '当前分类和列表中没有匹配项，可以扩大搜索范围。' : 'No matches in this category and list. Try widening your search.'}</p>
+    <div class="mt-4 flex flex-wrap gap-3">
+      <button data-list-clear class="rounded-lg border border-line px-4 py-2">{locale === 'zh' ? '清除分类' : 'Clear category'}</button>
+      <button data-list-reset class="rounded-lg border border-line px-4 py-2">{locale === 'zh' ? '重置筛选' : 'Reset filters'}</button>
+      <a data-list-global href={localePath('/search', locale)} class="rounded-lg bg-accent px-4 py-2 text-white">{locale === 'zh' ? '在全站搜索这句话' : 'Search the whole atlas'}</a>
+    </div>
+  </div>
 </div>
 
-<script is:inline define:vars={{ countSuffix: L.countSuffix }}>
+<script is:inline define:vars={{ countSuffix: L.countSuffix, searchPath: localePath('/search', locale) }}>
   (function () {
     var root = document.querySelector('[data-list-root]');
     if (!root) return;
@@ -87,6 +94,8 @@ const chipIdle = `${chip} border-line text-ink-2`;
 
     function refresh() {
       var q = input.value.trim().toLowerCase();
+      root.querySelector('[data-list-global]').href = searchPath + '?q=' + encodeURIComponent(input.value.trim());
+      root.querySelector('[data-list-clear]').disabled = cat === 'all';
       var visible = 0;
       items.forEach(function (el) {
         var okCat = cat === 'all' || ('|' + el.dataset.category + '|').indexOf('|' + cat + '|') >= 0;
@@ -103,7 +112,10 @@ const chipIdle = `${chip} border-line text-ink-2`;
       grid.classList.toggle('hidden', visible === 0);
     }
 
+    root.querySelector('[data-list-clear]').addEventListener('click', function () { cat = 'all'; refresh(); });
+    root.querySelector('[data-list-reset]').addEventListener('click', function () { cat = 'all'; input.value = ''; refresh(); input.focus(); });
     input.addEventListener('input', refresh);
+    refresh();
     chips.forEach(function (btn) {
       btn.addEventListener('click', function () {
         cat = btn.dataset.listCat;

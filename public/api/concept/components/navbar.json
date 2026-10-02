@@ -92,6 +92,17 @@
         "zh": "压在首屏大图上，滚动后加底色",
         "en": "Floats over the hero, gains a background on scroll"
       }
+    },
+    {
+      "id": "floating",
+      "name": {
+        "zh": "悬浮容器",
+        "en": "Floating container"
+      },
+      "note": {
+        "zh": "导航置于带圆角、描边与轻阴影的独立容器中。",
+        "en": "Place navigation in a rounded, outlined container with a subtle shadow."
+      }
     }
   ],
   "anatomy": [

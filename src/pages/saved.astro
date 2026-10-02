@@ -11,14 +11,14 @@ const concepts = (await getAllConcepts()).map((c) => ({
 ---
 
 <BaseLayout
-  title="我的收藏 · 界面图谱"
-  description="收藏的概念与最近浏览记录，保存在浏览器本地。"
+  title="我的参考册 · 界面图谱"
+  description="保存具体界面方案，按项目分组、记录选择理由，并导出 Markdown。"
   locale="zh"
   enPath="/saved"
 >
   <section class="pt-14 pb-8">
-    <h1 class="font-serif text-3xl font-semibold md:text-4xl">我的收藏</h1>
-    <p class="mt-3 max-w-2xl text-ink-2">收藏与浏览记录保存在你的浏览器本地，不上传服务器。</p>
+    <h1 class="font-serif text-3xl font-semibold md:text-4xl">我的参考册</h1>
+    <p class="mt-3 max-w-2xl text-ink-2">把看中的方案带回项目。参考册、收藏与浏览记录只保存在当前浏览器，清理浏览器数据会删除它们；重要方案请导出备份。</p>
   </section>
   <SavedView client:load concepts={concepts} locale="zh" />
 </BaseLayout>

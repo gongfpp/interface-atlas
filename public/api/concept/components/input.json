@@ -115,6 +115,17 @@
         "zh": "内嵌图标与清除按钮",
         "en": "Inline icons and a clear button"
       }
+    },
+    {
+      "id": "underline",
+      "name": {
+        "zh": "下划线",
+        "en": "Underline"
+      },
+      "note": {
+        "zh": "仅保留下边线，不使用圆角与填充底色；标签始终可见。",
+        "en": "Keep only the bottom rule with no radius or fill; the label stays visible."
+      }
     }
   ],
   "anatomy": [

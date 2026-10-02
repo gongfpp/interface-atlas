@@ -6,7 +6,7 @@ async function openDemo(page, slug, locale = "") {
   const demo = page.locator("#playground");
   await demo.scrollIntoViewIfNeeded();
   await expect(demo.locator("astro-island[ssr]")).toHaveCount(0);
-  return demo;
+  return demo.locator("#style-variants");
 }
 
 test("input validates, saves, resets and previews at narrow width", async ({
@@ -20,7 +20,7 @@ test("input validates, saves, resets and previews at narrow width", async ({
   await field.fill("hello@example.com");
   await demo.getByRole("button", { name: "保存偏好" }).click();
   await expect(demo.getByRole("status")).toContainText("已在当前演示中保存");
-  await demo.getByRole("button", { name: "窄屏预览" }).click();
+  await demo.getByRole("button", { name: "窄容器" }).click();
   await expect
     .poll(() =>
       demo
@@ -188,7 +188,7 @@ test("all component pages render on mobile, switch modes and reset without error
     .map((x) => x.slice(0, -5));
   for (const slug of slugs) {
     const demo = await openDemo(page, slug);
-    await expect(demo.locator(".demo-workbench")).toBeVisible();
+    await expect(demo).toBeVisible();
     for (const mode of ["深色", "形式", "默认"]) {
       const button = demo.getByRole("button", { name: mode, exact: true });
       if (await button.count()) {
@@ -264,7 +264,7 @@ test("prompt copy reports success and offers manual copying when blocked", async
   await section.scrollIntoViewIfNeeded();
   await expect(section.locator("astro-island[ssr]")).toHaveCount(0);
   await section.getByRole("button", { name: "复制 Prompt" }).click();
-  await expect(section.getByRole("status")).toContainText("已复制");
+  await expect(section.getByRole("status").first()).toContainText("已复制");
   expect(await page.evaluate(() => window.__copiedPrompt)).toContain(
     "可搜索选择框",
   );
@@ -273,9 +273,10 @@ test("prompt copy reports success and offers manual copying when blocked", async
       throw new Error("denied");
     };
   });
+  await section.getByRole("button", { name: "通用概念说明", exact: true }).click();
   await section.getByRole("button", { name: "基础", exact: true }).click();
   await section.getByRole("button", { name: "复制 Prompt" }).click();
-  await expect(section.getByRole("status")).toContainText("手动复制");
+  await expect(section.getByRole("status").first()).toContainText("手动复制");
 });
 
 test('mobile category navigation reaches component library', async ({page})=>{

@@ -65,7 +65,6 @@ demo:
   modes:
     - default
     - dark
-    - variants
 sources:
   - name: V&A — Arts and Crafts
     url: https://www.vam.ac.uk/articles/arts-and-crafts-an-introduction

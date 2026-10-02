@@ -13,7 +13,7 @@ const base = rawBase === '/' ? '/' : `/${rawBase.replace(/^\/+|\/+$/g, '')}`;
 export default defineConfig({
   site,
   base,
-  integrations: [react(), sitemap()],
+  integrations: [react(), sitemap({ filter: (page) => !/\/(?:en\/)?viewport\/?$/.test(page) })],
   vite: {
     plugins: [tailwindcss()],
   },

@@ -1,3 +1,4 @@
+import { usePreviewVariant } from '@/islands/shared/previewVariant';
 import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -11,6 +12,8 @@ const VARIANTS = [
 ] as const;
 
 type VariantId = (typeof VARIANTS)[number]['id'];
+
+export const previewVariants = { ids: VARIANTS.map((v) => v.id), default: 'centered' };
 
 const Bar = ({ w = 'w-full', h = 'h-1.5', cls = 'bg-ink-3/25' }: { w?: string; h?: string; cls?: string }) => (
   <div className={`${h} ${w} rounded-full ${cls}`} />
@@ -115,7 +118,7 @@ function Wireframe({ variant }: { variant: VariantId }) {
 }
 
 const LoginDemo: DemoComponent = ({ mode }) => {
-  const [variant, setVariant] = useState<VariantId>('centered');
+  const [variant, setVariant] = usePreviewVariant<VariantId>('centered');
 
   if (mode === 'variants') {
     return (
@@ -140,6 +143,7 @@ const LoginDemo: DemoComponent = ({ mode }) => {
         {VARIANTS.map((v) => (
           <button
             key={v.id}
+            aria-pressed={variant === v.id}
             onClick={() => setVariant(v.id)}
             className={`rounded-full border px-2.5 py-0.5 text-xs transition-colors ${
               variant === v.id ? 'border-accent bg-accent-soft text-accent' : 'border-line text-ink-2 hover:border-accent'

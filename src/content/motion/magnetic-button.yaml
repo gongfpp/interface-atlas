@@ -70,7 +70,6 @@ demo:
   component: magnetic-button
   modes:
     - default
-    - variants
   motionControls: []
 implementation:
   css:

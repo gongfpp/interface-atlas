@@ -81,7 +81,6 @@ demo:
   modes:
     - default
     - dark
-    - variants
 implementation:
   css:
     - 'flex/grid columns'

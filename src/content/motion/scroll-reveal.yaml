@@ -69,7 +69,6 @@ demo:
   component: scroll-reveal
   modes:
     - default
-    - variants
   motionControls:
     - slow
 implementation:

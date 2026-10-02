@@ -126,8 +126,7 @@
     "component": "glassmorphism",
     "modes": [
       "default",
-      "dark",
-      "variants"
+      "dark"
     ]
   },
   "sources": [

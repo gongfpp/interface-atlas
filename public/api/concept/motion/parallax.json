@@ -110,8 +110,7 @@
   "demo": {
     "component": "parallax",
     "modes": [
-      "default",
-      "variants"
+      "default"
     ],
     "motionControls": []
   },

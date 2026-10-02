@@ -65,7 +65,6 @@ demo:
   modes:
     - default
     - dark
-    - variants
 sources:
   - name: MDN — box-shadow
     url: https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow

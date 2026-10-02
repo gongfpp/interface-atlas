@@ -1,0 +1,24 @@
+---
+import { localePath, type Locale } from '@/lib/i18n';
+import { TASK_GUIDES, taskPrompt, type TaskGuide } from '@/lib/task-guides';
+import { TaskPrompt, WorkflowLab, ExplainedExamples } from '@/islands/TaskWorkbench';
+import '@/styles/task-guides.css';
+interface Props { guide: TaskGuide; locale: Locale }
+const { guide, locale } = Astro.props;
+const l = (zh: string, en: string) => locale === 'zh' ? zh : en;
+---
+<article class="task-guide">
+  <nav class="task-breadcrumb" aria-label={l('面包屑', 'Breadcrumb')}><a href={localePath('/', locale)}>{l('首页', 'Home')}</a><span aria-hidden="true">/</span><span>{l('按任务探索', 'Explore by task')}</span></nav>
+  <header class="task-header"><p class="task-eyebrow">A SMALL PATH, A COMPLETE OUTCOME</p><h1>{guide.title[locale]}</h1><p class="task-intro">{guide.intro[locale]}</p><p class="task-outcome">{guide.outcome[locale]}</p></header>
+  {guide.id === 'identify' && <section class="task-anatomy" aria-label={l('带编号的界面拆解示意', 'Numbered interface anatomy')}>
+    <div class="task-anatomy-preview">
+      <a class="task-anatomy-sidebar" href={localePath('/components/sidebar', locale)}><span class="task-pin">1</span><strong>{l('工作台', 'Workspace')}</strong><span>{l('概览', 'Overview')}</span><span>{l('项目', 'Projects')}</span><span>{l('成员', 'People')}</span></a>
+      <div class="task-anatomy-main"><p>{l('本周计划', 'This week')}</p><a class="task-anatomy-card" href={localePath('/components/card', locale)}><span class="task-pin">2</span><strong>{l('发布个人网站', 'Launch a personal site')}</strong><span>{l('把内容、进度与操作归成一组', 'Group content, progress and actions')}</span></a><a class="task-anatomy-primary" href={localePath('/components/button', locale)}><span class="task-pin">3</span>{l('查看主操作按钮', 'Explore primary buttons')} ↗</a><div class="task-anatomy-glass-stage"><a class="task-anatomy-glass" href={localePath('/styles/glassmorphism', locale)}><span class="task-pin">4</span><strong>{l('透出背景的模糊表面', 'A blurred translucent surface')}</strong><span>{l('玻璃拟态 · 留意文字对比度', 'Glassmorphism · check text contrast')}</span></a></div></div>
+    </div>
+    <p class="task-note">{l('编号可以点击。位置说明结构，透明与模糊说明风格；两者可以组合。截图无法告诉你键盘操作、关闭行为和状态保留，需要再试交互。', 'Select a number to explore the concept. Position describes structure; transparency and blur describe style. Screenshots cannot reveal keyboard behavior, dismissal or retained state—try the interaction too.')}</p>
+  </section>}
+  <section class="task-picks" aria-labelledby="picks-heading"><div class="task-section-heading"><h2 id="picks-heading">{l('按这个顺序，选出需要的部分', 'Pick the parts in this order')}</h2><p>{l('每个入口都说明它解决什么问题，以及什么时候需要多想一步。', 'Each stop explains the problem it solves and the trade-off to consider.')}</p></div><div class="task-pick-grid">{guide.picks.map((pick, index) => <a class="task-pick" href={localePath(pick.path, locale)}><span class="task-number">{String(index + 1).padStart(2, '0')}</span><div><h3>{pick.title[locale]} <span aria-hidden="true">↗</span></h3><p>{pick.why[locale]}</p></div></a>)}</div></section>
+  {guide.id === 'forms' && <><WorkflowLab client:load locale={locale} /><ExplainedExamples client:load locale={locale} /></>}
+  <TaskPrompt client:load prompt={taskPrompt(guide, locale)} locale={locale} />
+  <nav class="task-other-paths" aria-label={l('其他任务路径', 'Other task paths')}><h2>{l('继续探索其他任务', 'Explore another task')}</h2>{TASK_GUIDES.filter(item => item.id !== guide.id).map(item => <a href={localePath(`/tasks/${item.id}`, locale)}>{item.title[locale]} →</a>)}</nav>
+</article>

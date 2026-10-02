@@ -1,3 +1,4 @@
+import { usePreviewVariant } from '@/islands/shared/previewVariant';
 import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -8,6 +9,8 @@ const VARIANTS = [
 ] as const;
 
 type VariantId = (typeof VARIANTS)[number]['id'];
+
+export const previewVariants = { ids: VARIANTS.map((v) => v.id), default: 'search' };
 
 const TEXT = {
   zh: {
@@ -118,7 +121,7 @@ function PageBody({
 
 const Error404Demo: DemoComponent = ({ mode, locale = 'zh' }) => {
   const copy = TEXT[locale];
-  const [variant, setVariant] = useState<VariantId>('search');
+  const [variant, setVariant] = usePreviewVariant<VariantId>('search');
   const [query, setQuery] = useState('');
   const [returning, setReturning] = useState(false);
 
@@ -154,6 +157,7 @@ const Error404Demo: DemoComponent = ({ mode, locale = 'zh' }) => {
         {VARIANTS.map((v) => (
           <button
             key={v.id}
+            aria-pressed={variant === v.id}
             onClick={() => {
               setVariant(v.id);
               setQuery('');

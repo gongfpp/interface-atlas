@@ -80,7 +80,6 @@ demo:
   modes:
     - default
     - dark
-    - variants
 sources:
   - name: Apple HIG — Materials
     url: https://developer.apple.com/design/human-interface-guidelines/materials

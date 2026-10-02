@@ -1,16 +1,19 @@
+import { usePreviewVariant } from '@/islands/shared/previewVariant';
 import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
 /* 页面结构缩略示意图（wireframe）：色块 + 真实标签 */
 
 const VARIANTS = [
-  { id: 'multi-step', zh: '多步结账', en: 'Multi-step' },
   { id: 'one-page', zh: '单页结账', en: 'One-page' },
+  { id: 'multi-step', zh: '多步结账', en: 'Multi-step' },
   { id: 'accordion', zh: '手风琴式', en: 'Accordion' },
   { id: 'express', zh: '快捷支付', en: 'Express' },
 ] as const;
 
 type VariantId = (typeof VARIANTS)[number]['id'];
+
+export const previewVariants = { ids: VARIANTS.map((v) => v.id), default: 'multi-step' };
 
 const STEPS = ['收货', '支付', '确认'];
 const TOTAL = 238;
@@ -201,7 +204,7 @@ function Wireframe({ variant }: { variant: VariantId }) {
 }
 
 const CheckoutDemo: DemoComponent = ({ mode }) => {
-  const [variant, setVariant] = useState<VariantId>('multi-step');
+  const [variant, setVariant] = usePreviewVariant<VariantId>('multi-step');
 
   if (mode === 'variants') {
     return (
@@ -226,6 +229,7 @@ const CheckoutDemo: DemoComponent = ({ mode }) => {
         {VARIANTS.map((v) => (
           <button
             key={v.id}
+            aria-pressed={variant === v.id}
             onClick={() => setVariant(v.id)}
             className={`rounded-full border px-2.5 py-0.5 text-xs transition-colors ${
               variant === v.id ? 'border-accent bg-accent-soft text-accent' : 'border-line text-ink-2 hover:border-accent'

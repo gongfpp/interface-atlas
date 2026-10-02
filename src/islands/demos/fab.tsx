@@ -1,3 +1,4 @@
+import { usePreviewVariant } from "../shared/previewVariant";
 import { useEffect, useRef, useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -144,7 +145,7 @@ function FabStack({
 
 const FabDemo: DemoComponent = ({ mode, locale }) => {
   const en = locale === 'en';
-  const [variant, setVariant] = useState<Variant>(
+  const [variant, setVariant] = usePreviewVariant<Variant>(
     mode === 'variants' ? 'single' : 'speed-dial',
   );
   const [log, setLog] = useState<string | null>(null);
@@ -191,3 +192,5 @@ const FabDemo: DemoComponent = ({ mode, locale }) => {
 };
 
 export default FabDemo;
+
+export const previewVariants = { ids: ['single', 'extended', 'speed-dial'], default: 'speed-dial', modes: ['default', 'dark', 'variants'], defaults: { variants: 'single' } };

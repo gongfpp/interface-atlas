@@ -1,3 +1,4 @@
+import { usePreviewVariant } from '@/islands/shared/previewVariant';
 import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -10,6 +11,8 @@ const VARIANTS = [
 ] as const;
 
 type VariantId = (typeof VARIANTS)[number]['id'];
+
+export const previewVariants = { ids: VARIANTS.map((v) => v.id), default: 'list' };
 
 type Note = {
   id: number;
@@ -243,7 +246,7 @@ function ListBody({
 
 const NotificationCenterDemo: DemoComponent = ({ mode, locale }) => {
   const en = locale === 'en';
-  const [variant, setVariant] = useState<VariantId>('list');
+  const [variant, setVariant] = usePreviewVariant<VariantId>('list');
   const [tab, setTab] = useState<'all' | 'unread'>('all');
   const [read, setRead] = useState<number[]>([4]);
   const [openId, setOpenId] = useState(1);
@@ -325,6 +328,7 @@ const NotificationCenterDemo: DemoComponent = ({ mode, locale }) => {
         {VARIANTS.map((v) => (
           <button
             key={v.id}
+            aria-pressed={variant === v.id}
             onClick={() => setVariant(v.id)}
             className={`rounded-full border px-2.5 py-0.5 text-xs ${
               variant === v.id ? 'border-accent bg-accent-soft text-accent' : 'border-line text-ink-2 hover:border-accent'

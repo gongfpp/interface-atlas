@@ -24,7 +24,7 @@ test("table variant sorts numerically and exposes aria-sort", async ({ page }) =
 test("progress bar never exceeds 100%", async ({ page }) => {
   const section = await selectStyle(page, "progress-bar", "minimalism");
   const bar = section.getByRole("progressbar");
-  for (let i = 0; i < 6; i++) await section.getByRole("button").first().click();
+  for (let i = 0; i < 6; i++) await section.locator(".demo-content").getByRole("button").first().click();
   const now = Number(await bar.getAttribute("aria-valuenow"));
   expect(now).toBeLessThanOrEqual(100);
   expect(now).toBeGreaterThanOrEqual(0);

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { useSearch, type SearchDoc } from '@/lib/use-search';
 import { groupResults, indexById, SEARCH_SUGGESTIONS, TYPE_LABEL } from '@/lib/search-meta';
 import { localePath, t } from '@/lib/i18n';
@@ -7,7 +7,12 @@ import { localePath, t } from '@/lib/i18n';
  * 首页 Hero 内联搜索（PRD §8）：在输入框内直接打字，结果于下方就地展开，
  * 不弹出新窗口。⌘K 仍由 SearchDialog 的命令面板承接。
  */
+const subscribeReady = () => () => {};
+const clientReady = () => true;
+const serverReady = () => false;
+
 export default function HeroSearch({ locale }: { locale: 'zh' | 'en' }) {
+  const ready = useSyncExternalStore(subscribeReady, clientReady, serverReady);
   const { query, setQuery, results, active, setActive, loadingIndex, loadError, ensureIndex } = useSearch();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -46,6 +51,7 @@ export default function HeroSearch({ locale }: { locale: 'zh' | 'en' }) {
         </svg>
         <input
           ref={inputRef}
+          disabled={!ready}
           value={query}
           onChange={(e) => { setQuery(e.target.value); setOpen(true); }}
           onFocus={() => { setOpen(true); ensureIndex(); }}

@@ -1,3 +1,4 @@
+import { usePreviewVariant } from "../shared/previewVariant";
 import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -195,7 +196,7 @@ function Tree({
 
 const TreeViewDemo: DemoComponent = ({ mode, locale }) => {
   const en = locale === 'en';
-  const [variant, setVariant] = useState<'single' | 'multi' | 'file'>('file');
+  const [variant, setVariant] = usePreviewVariant<'single-select' | 'multi-select' | 'file-tree'>('file-tree');
 
   if (mode === 'variants') {
     return (
@@ -203,10 +204,10 @@ const TreeViewDemo: DemoComponent = ({ mode, locale }) => {
         <div className="flex gap-1.5">
           {(
             [
-              ['single', en ? 'Single' : '单选'],
-              ['multi', en ? 'Multi' : '多选'],
-              ['file', en ? 'File tree' : '文件树'],
-            ] as ['single' | 'multi' | 'file', string][]
+              ['single-select', en ? 'Single' : '单选'],
+              ['multi-select', en ? 'Multi' : '多选'],
+              ['file-tree', en ? 'File tree' : '文件树'],
+            ] as ['single-select' | 'multi-select' | 'file-tree', string][]
           ).map(([id, label]) => (
             <button
               key={id}
@@ -221,7 +222,7 @@ const TreeViewDemo: DemoComponent = ({ mode, locale }) => {
             </button>
           ))}
         </div>
-        <Tree root={TREE} en={en} multi={variant === 'multi'} fileIcons={variant === 'file'} />
+        <Tree root={TREE} en={en} multi={variant === 'multi-select'} fileIcons={variant === 'file-tree'} />
       </div>
     );
   }
@@ -238,3 +239,5 @@ const TreeViewDemo: DemoComponent = ({ mode, locale }) => {
 };
 
 export default TreeViewDemo;
+
+export const previewVariants = { ids: ['single-select', 'multi-select', 'file-tree'], default: 'file-tree', modes: ['variants'] };

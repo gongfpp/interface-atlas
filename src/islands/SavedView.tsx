@@ -1,4 +1,5 @@
 import { useSyncExternalStore } from 'react';
+import SolutionNotebook from './SolutionNotebook';
 import { TYPE_LABELS, localePath } from '@/lib/i18n';
 import {
   getHistorySnapshot,
@@ -39,9 +40,10 @@ export default function SavedView({ concepts, locale }: Props) {
 
   return (
     <div className="flex flex-col gap-12 pb-20">
+      <SolutionNotebook locale={locale} />
       <section>
         <h2 className={sectionTitle}>
-          {zh ? '我的收藏' : 'Saved'}
+          {zh ? '条目收藏' : 'Saved concepts'}
           {savedItems.length > 0 && <span className="ml-2 text-sm font-normal text-ink-3">{savedItems.length}</span>}
         </h2>
         {savedItems.length === 0 ? (

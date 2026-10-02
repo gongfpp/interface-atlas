@@ -1,3 +1,4 @@
+import { usePreviewVariant } from '@/islands/shared/previewVariant';
 import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -8,6 +9,8 @@ const VARIANTS = [
 ] as const;
 
 type VariantId = (typeof VARIANTS)[number]['id'];
+
+export const previewVariants = { ids: VARIANTS.map((v) => v.id), default: 'accordion' };
 
 const TEXT = {
   zh: {
@@ -139,7 +142,7 @@ function FaqBody({
 
 const FaqDemo: DemoComponent = ({ mode, locale = 'zh' }) => {
   const copy = TEXT[locale];
-  const [variant, setVariant] = useState<VariantId>('accordion');
+  const [variant, setVariant] = usePreviewVariant<VariantId>('accordion');
   const [open, setOpen] = useState<string | null>(null);
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState(0);
@@ -185,6 +188,7 @@ const FaqDemo: DemoComponent = ({ mode, locale = 'zh' }) => {
         {VARIANTS.map((v) => (
           <button
             key={v.id}
+            aria-pressed={variant === v.id}
             onClick={() => reset(v.id)}
             className={`rounded-full border px-2.5 py-0.5 text-xs transition-colors ${
               variant === v.id ? 'border-accent bg-accent-soft text-accent' : 'border-line text-ink-2 hover:border-accent'

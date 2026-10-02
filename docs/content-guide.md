@@ -130,7 +130,7 @@ export default XDemo;
 
 ## 2b. 组件跨风格变体（style-variants）
 
-组件详情页的「不同风格下的它」由 `src/islands/style-variants/<组件id>.tsx` 提供，按需加载（`import.meta.glob`，无需注册表）。
+组件详情页的统一实验室 `SolutionLab` 中，风格变体由 `src/islands/style-variants/<组件id>.tsx` 提供，按需加载（`import.meta.glob`，无需注册表）。
 
 ```tsx
 import { useState } from 'react';
@@ -148,7 +148,13 @@ export default styleVariants;
 - 只引用 `react`、`./types`、`./session`，不新增依赖；暗色风格自行铺底色（画廊画布是 `bg-paper`）。
 - 状态与反馈：每个变体都应让 `hover / focus / active / disabled` 有可见差异，`selected` 与 `pressed` 语义要区分；focus 不能只靠 hover，且必须保留可见焦点环；动效尊重 `prefers-reduced-motion`。
 - 文案：功能性操作文本（按钮、错误、可访问名）应随 `locale` 本地化；纯装饰性的样例品牌文字可保留英文。
-- 未提供文件的组件不显示该区块，可按组件增量补齐。
+- 未提供变体文件的条目只显示基础示例，不显示无效风格控件。
+- `demo.modes` 只声明真正改变渲染或交互的模式；仅换一句说明不算支持该模式。`dark` 允许通过外层主题变量生效。
+- `SolutionLab` 统一持有选择，`PromptBlock` 的「当前方案」从它派生；「通用概念说明」保留独立四层文本。不要另建一套预览风格状态。
+- 保存方案只记录风格、模式、实现形式、附加要求和生成的说明，不保存演示中输入的个人内容。支持独立形式控制的 Demo 使用 `usePreviewVariant`，并导出 `previewVariants.ids/default`（可声明适用模式与各模式默认形式）；ids 必须对应 YAML 的 variants。实验室、Demo 内部按钮、设备视口与输出共用该形式。未接入此能力的形式下拉只作为交付要求，必须明确不改变演示。
+- 「窄容器」只约束内容宽度；「设备视口」加载 `/viewport` 独立页面，让媒体查询和固定定位按 iframe 宽度运行，不代表真机验收。
+- 跨风格共享状态以变体的 session 实现为准；基础示例、演示模式切换及重置会重新挂载。新增变体不要声称未经实现的状态保留。
+- 参考实现依据：[React 单一状态来源](https://react.dev/learn/sharing-state-between-components)、[Astro 岛组件](https://docs.astro.build/en/guides/framework-components/)、[WAI 弹窗键盘规则](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)、[MDN 本地存储失败条件](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)。
 
 ## 3. 全库 id 清单（164；新增时同步更新此处，并以内容校验结果为准）
 

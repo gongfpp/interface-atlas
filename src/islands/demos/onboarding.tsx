@@ -1,3 +1,4 @@
+import { usePreviewVariant } from '@/islands/shared/previewVariant';
 import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -8,6 +9,8 @@ const VARIANTS = [
 ] as const;
 
 type VariantId = (typeof VARIANTS)[number]['id'];
+
+export const previewVariants = { ids: VARIANTS.map((v) => v.id), default: 'tour' };
 
 const TEXT = {
   zh: {
@@ -221,7 +224,7 @@ function InteractiveBody({
 
 const OnboardingDemo: DemoComponent = ({ mode, locale = 'zh' }) => {
   const copy = TEXT[locale];
-  const [variant, setVariant] = useState<VariantId>('tour');
+  const [variant, setVariant] = usePreviewVariant<VariantId>('tour');
   const [step, setStep] = useState(0);
   const [checked, setChecked] = useState([false, false, false]);
 
@@ -269,6 +272,7 @@ const OnboardingDemo: DemoComponent = ({ mode, locale = 'zh' }) => {
         {VARIANTS.map((v) => (
           <button
             key={v.id}
+            aria-pressed={variant === v.id}
             onClick={() => {
               setVariant(v.id);
               setStep(0);

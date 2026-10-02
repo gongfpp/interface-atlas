@@ -3,22 +3,23 @@ import { useSessionState } from './session';
 
 function Swiss({ session, locale }: VariantDemoProps) {
   const zh = locale === 'zh';
-  const [v, setV] = useSessionState(session, 'value', 'grid');
+  const [v, setV] = useSessionState(session, 'value', 'pro');
   return (
     <div className="mx-auto w-full max-w-sm border border-black bg-white p-5 text-black">
       <div className="grid grid-cols-[auto_1fr] items-baseline gap-x-3 border-b-2 border-black pb-2">
         <span className="font-mono text-[11px] font-bold text-[#e11d2a]">01</span>
-        <span className="text-sm font-bold uppercase tracking-[0.15em]">{zh ? '布局网格' : 'Layout grid'}</span>
+        <span className="text-sm font-bold uppercase tracking-[0.15em]">{zh ? '项目套餐' : 'Project plan'}</span>
       </div>
       <div className="relative mt-4">
         <select
+          aria-label={zh ? '项目套餐' : 'Project plan'}
           value={v}
           onChange={(e) => setV(e.target.value)}
           className="w-full appearance-none border border-black bg-white py-2.5 pl-3 pr-8 text-sm font-medium focus:outline-none"
         >
-          <option value="grid">{zh ? '12 栏网格' : '12-column grid'}</option>
-          <option value="baseline">{zh ? '基线网格' : 'Baseline grid'}</option>
-          <option value="modular">{zh ? '模块化字阶' : 'Modular scale'}</option>
+          <option value="basic">{zh ? '入门版' : 'Starter'}</option>
+          <option value="pro">{zh ? '专业版' : 'Professional'}</option>
+          <option value="team">{zh ? '工作室版' : 'Studio'}</option>
         </select>
         <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#e11d2a]">▼</span>
       </div>
@@ -29,24 +30,25 @@ function Swiss({ session, locale }: VariantDemoProps) {
 
 function Bauhaus({ session, locale }: VariantDemoProps) {
   const zh = locale === 'zh';
-  const [v, setV] = useSessionState(session, 'value', 'b');
+  const [v, setV] = useSessionState(session, 'value', 'pro');
   return (
     <div className="mx-auto w-full max-w-sm bg-[#f4efe3] p-6 text-black">
       <div className="mb-4 flex items-center gap-3">
         <span className="h-4 w-4 rounded-full bg-[#e63946]" />
         <span className="h-4 w-4 bg-[#ffd166]" />
         <span className="h-0 w-0 border-x-[8px] border-b-[14px] border-x-transparent border-b-[#1d4ed8]" />
-        <span className="text-xs font-black uppercase tracking-[0.2em]">{zh ? '表单' : 'Form'}</span>
+        <span className="text-xs font-black uppercase tracking-[0.2em]">{zh ? '项目套餐' : 'Project plan'}</span>
       </div>
       <div className="relative">
         <select
+          aria-label={zh ? '项目套餐' : 'Project plan'}
           value={v}
           onChange={(e) => setV(e.target.value)}
           className="w-full appearance-none rounded-full border-[3px] border-black bg-[#1d4ed8] py-3 pl-5 pr-10 text-sm font-bold uppercase text-white focus:outline-none"
         >
-          <option value="a">{zh ? '圆形' : 'Circle'}</option>
-          <option value="b">{zh ? '三角形' : 'Triangle'}</option>
-          <option value="c">{zh ? '正方形' : 'Square'}</option>
+          <option value="basic">{zh ? '入门版' : 'Starter'}</option>
+          <option value="pro">{zh ? '专业版' : 'Professional'}</option>
+          <option value="team">{zh ? '工作室版' : 'Studio'}</option>
         </select>
         <span className="pointer-events-none absolute right-4 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-[#ffd166]" />
       </div>
@@ -64,6 +66,7 @@ function LiquidGlass({ session, locale }: VariantDemoProps) {
       <p className="relative mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-white/70">{zh ? '套餐' : 'Plan'}</p>
       <div className="relative">
         <select
+          aria-label={zh ? '项目套餐' : 'Project plan'}
           value={v}
           onChange={(e) => setV(e.target.value)}
           className="w-full appearance-none rounded-full border border-white/40 bg-white/15 py-3 pl-5 pr-10 text-sm font-semibold backdrop-blur-xl focus:outline-none"

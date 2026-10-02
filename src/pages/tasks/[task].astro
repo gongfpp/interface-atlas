@@ -1,0 +1,8 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TaskGuideView from '@/components/TaskGuideView.astro';
+import { TASK_GUIDES } from '@/lib/task-guides';
+export function getStaticPaths() { return TASK_GUIDES.map(guide => ({ params: { task: guide.id }, props: { guide } })); }
+const { guide } = Astro.props;
+---
+<BaseLayout title={`${guide.title.zh} — 界面图谱`} description={guide.intro.zh} locale="zh" enPath={`/tasks/${guide.id}`}><TaskGuideView guide={guide} locale="zh" /></BaseLayout>

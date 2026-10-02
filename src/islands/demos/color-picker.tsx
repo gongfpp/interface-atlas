@@ -1,3 +1,4 @@
+import { usePreviewVariant } from "../shared/previewVariant";
 import { useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
 
@@ -114,7 +115,7 @@ const ColorPickerDemo: DemoComponent = ({ mode, locale }) => {
   const [hsv, setHsv] = useState({ h: 174, s: 0.78, v: 0.46 });
   const [alpha, setAlpha] = useState(100);
   const [hexInput, setHexInput] = useState('');
-  const [variant, setVariant] = useState<'swatch' | 'hsv' | 'native'>('hsv');
+  const [variant, setVariant] = usePreviewVariant<'swatch' | 'hsv' | 'native'>('hsv');
   const hex = hsvToHex(hsv.h, hsv.s, hsv.v);
 
   const applyHex = (raw: string) => {
@@ -256,3 +257,5 @@ const ColorPickerDemo: DemoComponent = ({ mode, locale }) => {
 };
 
 export default ColorPickerDemo;
+
+export const previewVariants = { ids: ['swatch', 'hsv', 'native'], default: 'hsv', modes: ['default', 'dark', 'variants'] };
