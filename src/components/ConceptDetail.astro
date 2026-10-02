@@ -124,7 +124,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
       <section id="playground" class="pb-10">
         <div class="mb-5 flex flex-wrap items-baseline justify-between gap-2">
           <h2 class="detail-section-title font-serif text-2xl font-semibold" data-number="01">{styleSpec ? (locale === 'zh' ? '风格演示' : 'Style in action') : locale === 'zh' ? '交互实验室' : 'Interactive playground'}</h2>
-          <span class="text-xs text-ink-3">{styleSpec ? (locale === 'zh' ? '看它怎么动，也看它铺成一整页' : 'See how it moves — and how it fills a page') : locale === 'zh' ? '试一试，再决定怎么用' : 'Try it. Make an informed choice.'}</span>
+          <span class="text-xs text-ink-3">{styleSpec ? (locale === 'zh' ? '先看整页效果，再试交互场景' : 'See the full page, then try the interactive scene') : locale === 'zh' ? '试一试，再决定怎么用' : 'Try it. Make an informed choice.'}</span>
         </div>
         {d.playground && <p class="mb-4 max-w-3xl text-sm leading-relaxed text-ink-2">{d.playground.task[locale]}</p>}
         {unifiedLab && d.demo ? (
@@ -134,18 +134,13 @@ const card = 'rounded-xl border border-line bg-raised p-5';
             forms={d.variants.map(v => ({ id: v.id, name: v.name[locale], note: v.note?.[locale] ?? '' }))}
             checks={d.playground?.checks.map(c => c[locale]) ?? d.use_when.map(c => c[locale])} />
         ) : styleSpec ? (
-          <div>
-            <input type="radio" name="style-view" id="sv-interactive" class="peer/svInteractive sr-only" checked />
-            <input type="radio" name="style-view" id="sv-page" class="peer/svPage sr-only" />
-            <div class="mb-4 flex flex-wrap gap-2" role="group" aria-label={locale === 'zh' ? '查看方式' : 'View mode'}>
-              <label for="sv-interactive" class="cursor-pointer rounded-full border border-line px-3 py-1 text-xs text-ink-2 transition-colors hover:border-accent hover:text-accent peer-checked/svInteractive:border-accent peer-checked/svInteractive:bg-accent-soft peer-checked/svInteractive:text-accent peer-focus-visible/svInteractive:outline peer-focus-visible/svInteractive:outline-2 peer-focus-visible/svInteractive:outline-accent peer-focus-visible/svInteractive:outline-offset-2">
-                {locale === 'zh' ? '交互场景' : 'Interactive'}
-              </label>
-              <label for="sv-page" class="cursor-pointer rounded-full border border-line px-3 py-1 text-xs text-ink-2 transition-colors hover:border-accent hover:text-accent peer-checked/svPage:border-accent peer-checked/svPage:bg-accent-soft peer-checked/svPage:text-accent peer-focus-visible/svPage:outline peer-focus-visible/svPage:outline-2 peer-focus-visible/svPage:outline-accent peer-focus-visible/svPage:outline-offset-2">
-                {locale === 'zh' ? '整页预览' : 'Full page'}
-              </label>
+          <div class="space-y-8">
+            <div data-style-preview>
+              <h3 class="mb-3 text-sm font-semibold">{locale === 'zh' ? '整页预览' : 'Full-page preview'}</h3>
+              <StyleThumb spec={styleSpec} />
             </div>
-            <div class="hidden peer-checked/svInteractive:block">
+            <div data-style-interactive>
+              <h3 class="mb-3 text-sm font-semibold">{locale === 'zh' ? '交互场景' : 'Interactive scene'}</h3>
               <DemoMount
                 client:visible
                 component={d.demo.component}
@@ -155,9 +150,6 @@ const card = 'rounded-xl border border-line bg-raised p-5';
                 motion={concept.conceptType === 'motion'}
                 motionControls={d.demo.motionControls}
               />
-            </div>
-            <div class="hidden peer-checked/svPage:block" data-style-preview>
-              <StyleThumb spec={styleSpec} />
             </div>
           </div>
         ) : (

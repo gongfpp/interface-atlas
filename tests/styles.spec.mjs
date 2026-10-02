@@ -11,18 +11,20 @@ test("homepage shows '先看风格' above the components row", async ({ page }) 
   expect(styleBox && compBox && styleBox.y).toBeLessThan(compBox.y);
 });
 
-for (const slug of ["organic", "art-deco"]) {
-  test(`style page ${slug}: one section switches between interactive demo and full-page preview`, async ({
+for (const slug of ["editorial", "organic", "art-deco"]) {
+  test(`style page ${slug}: full-page preview appears above the interactive scene`, async ({
     page,
   }) => {
     await page.goto(`/styles/${slug}`);
     const section = page.locator("#playground");
     await section.scrollIntoViewIfNeeded();
-    await expect(section.locator("[data-style-preview]")).toBeHidden();
-    await expect(section.locator(".demo-workbench").first()).toBeVisible();
-
-    await section.getByText("整页预览", { exact: true }).click();
-    await expect(section.locator("[data-style-preview]")).toBeVisible();
-    await expect(section.locator("[data-style-preview]").locator("div").first()).toBeVisible();
+    const preview = section.locator("[data-style-preview]");
+    const interactive = section.locator("[data-style-interactive]");
+    await expect(preview).toBeVisible();
+    await interactive.scrollIntoViewIfNeeded();
+    await expect(interactive.locator(".demo-workbench")).toBeVisible();
+    const previewBox = await preview.boundingBox();
+    const interactiveBox = await interactive.boundingBox();
+    expect(previewBox.y + previewBox.height).toBeLessThan(interactiveBox.y);
   });
 }
