@@ -8,3 +8,7 @@ dist/
 # playwright
 test-results/
 playwright-report/
+
+# Local promotional renders and capture output; source remains versioned.
+/atlas-promo-30s.mp4
+/out/
