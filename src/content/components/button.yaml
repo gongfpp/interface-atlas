@@ -171,10 +171,14 @@ prompts:
       Run existing project checks when done and list the modified files.
 playground:
   task:
-    zh: 点击主要与次要操作，比较加载、禁用和不同外观。
-    en: Try primary and secondary actions and compare loading, disabled and visual variants.
+    zh: 在本地模拟中点击保存，处理中取消，再用键盘重试；比较三种风格和四种按钮层级。
+    en: Save in the local simulation, cancel while pending, then retry with the keyboard. Compare three styles and four button levels.
   checks:
     - zh: 同一区域通常只有一个最突出的主操作。
       en: Usually give one action the strongest emphasis in a region.
     - zh: 处理中的操作应防止重复触发并保留结果反馈。
       en: Prevent duplicate activation while processing and show the result.
+    - zh: 取消处理中操作后，旧完成回调不能再显示成功；仍可重新尝试。
+      en: Cancelling a pending action must suppress late success callbacks and allow retry.
+    - zh: Enter / Space 与点击触发相同的行为，焦点可见，触控目标不小于 44px。
+      en: Enter / Space and pointer activation trigger the same behavior, with visible focus and touch targets at least 44px tall.
