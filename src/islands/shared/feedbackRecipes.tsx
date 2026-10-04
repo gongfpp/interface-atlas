@@ -1,4 +1,5 @@
-import { useEffect, useId, useRef, type KeyboardEvent } from 'react';
+import { useCallback, useEffect, useId, useRef, useState, type KeyboardEvent } from 'react';
+import { createTooltipInteraction, tooltipHasHoverPointer, tooltipIsVisible, updateTooltipInteraction, type TooltipAction } from '../../lib/tooltip-interaction';
 import type { VariantDemoProps } from '../style-variants/types';
 import { useSessionState } from '../style-variants/session';
 import { RecipeFrame, recipe, recipeVariant, type RecipeStyleId } from './styleRecipe';
@@ -150,12 +151,29 @@ function ToastRecipe({ style, locale, session }: Props) {
   </RecipeFrame>;
 }
 
-function TooltipRecipe({ style, locale, session }: Props) {
-  const r = recipe(style); const id = useId(); const [open, setOpen] = useSessionState(session, 'open', false);
-  return <RecipeFrame style={style} locale={locale} title={text(locale, title.tooltip)}><div onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} className="relative py-3">
-    <button type="button" className={r.control} aria-describedby={open ? id : undefined} onFocus={() => setOpen(true)} onBlur={() => setOpen(false)} onClick={() => setOpen(true)} onKeyDown={(event) => { if (event.key === 'Escape') { event.preventDefault(); setOpen(false); } }}>{text(locale, ['悬停、聚焦或点按提示', 'Hover, focus or tap for help'])}</button>
-    {open && <div role="tooltip" id={id} className={`mt-3 text-sm ${r.item}`}>{text(locale, ['这条说明补充控件含义；Esc 可以关闭。', 'This hint explains the control. Escape dismisses it.'])}</div>}
-  </div></RecipeFrame>;
+function TooltipRecipe({ style, locale }: Props) {
+  const r = recipe(style); const id = useId(); const root = useRef<HTMLDivElement>(null);
+  const [interaction, setInteraction] = useState(createTooltipInteraction);
+  const update = useCallback((action: TooltipAction) => setInteraction((state) => updateTooltipInteraction(state, action)), []);
+  const open = tooltipIsVisible(interaction);
+  useEffect(() => {
+    if (!open) return;
+    // 悬停并不移动焦点，Esc 也要能在焦点位于别处时关闭当前提示。
+    const onKeyDown = (event: globalThis.KeyboardEvent) => { if (event.key === 'Escape') update('dismiss'); };
+    const onOutsidePointer = (event: PointerEvent) => { if (event.target instanceof Node && !root.current?.contains(event.target)) update('dismiss'); };
+    document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('pointerdown', onOutsidePointer);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('pointerdown', onOutsidePointer);
+    };
+  }, [open, update]);
+  return <RecipeFrame style={style} locale={locale} title={text(locale, title.tooltip)}>
+    <div ref={root} onPointerEnter={(event) => { if (tooltipHasHoverPointer(event.pointerType)) update('pointer-enter'); }} onPointerLeave={(event) => { if (tooltipHasHoverPointer(event.pointerType)) update('pointer-leave'); }} onPointerCancel={(event) => { if (tooltipHasHoverPointer(event.pointerType)) update('pointer-leave'); }} className="relative py-3">
+      <button type="button" className={r.control} aria-describedby={open ? id : undefined} onFocus={() => update('focus')} onBlur={() => update('blur')} onClick={() => update('activate')} onKeyDown={(event) => { if (event.key === 'Escape') { event.preventDefault(); update('dismiss'); } }}>{text(locale, ['悬停、聚焦或点按提示', 'Hover, focus or tap for help'])}</button>
+      {open && <div role="tooltip" id={id} className={`mt-3 text-sm ${r.item}`}>{text(locale, ['这条说明补充控件含义；再次点按或按 Esc 可以关闭。', 'This hint explains the control. Tap again or press Escape to dismiss.'])}</div>}
+    </div>
+  </RecipeFrame>;
 }
 
 export function feedbackVariant(kind: FeedbackKind, style: RecipeStyleId, note: { zh: string; en: string }) {

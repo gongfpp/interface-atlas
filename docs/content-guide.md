@@ -147,6 +147,7 @@ export default styleVariants;
 - `Demo` 收到 `{ locale, session }: VariantDemoProps`。业务状态用 `useSessionState(session, '<key>', initial)`，**同一组件的所有变体共用同一 key**，这样切换风格会保留输入 / 选择 / 展开等状态；hover、按压、指针等瞬态状态留作局部 `useState`。
 - 优先复用 `react`、`./types`、`./session` 与已有共享行为，不新增依赖；暗色风格自行铺底色（画廊画布是 `bg-paper`）。
 - 状态与反馈：每个变体都应让 `hover / focus / active / disabled` 有可见差异，`selected` 与 `pressed` 语义要区分；focus 不能只靠 hover，且必须保留可见焦点环；动效尊重 `prefers-reduced-motion`。
+- Tooltip 的 hover、focus、点按与显式关闭各有独立的本地瞬态：一条输入通道离开不清掉另一条；Esc 的关闭意图保持到本轮 hover/focus 都结束，新的点按可以主动重开。触摸不记为悬停；点按固定可由再次点按、失焦或外部点按结束。切风格或重置时不恢复旧悬停/焦点。提示内容仍可悬停，且只悬停而未聚焦时 Esc 也能关闭。依据：[W3C 悬停与焦点内容的持续、可关闭要求](https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html)。
 - 文案：功能性操作文本（按钮、错误、可访问名）应随 `locale` 本地化；纯装饰性的样例品牌文字可保留英文。
 - `applicable_styles` 与本轮实际实现的覆盖同步；全部 46 个组件当前各 8 套，覆盖矩阵见 `component-style-coverage.md`。风格名称取已有双语定义，不为凑数量强行组合不适用风格。
 - 未提供变体文件的条目只显示基础示例，不显示无效风格控件。

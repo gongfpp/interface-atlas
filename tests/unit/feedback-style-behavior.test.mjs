@@ -6,7 +6,7 @@ const matrix = JSON.parse(readFileSync(new URL('../../src/lib/component-style-co
 const feedback = Object.entries(matrix).filter(([id, row]) => row.group === 'feedback' && !['button', 'card'].includes(id));
 const click = (h, label) => { const button = h.button(label); assert.ok(button, label); button.props.onClick(); };
 
-for (const [id, { styles }] of feedback) test(`${id}: 八种材质中真实回调可操作、可取消/复位，同一会话跨样式保留`, () => {
+for (const [id, { styles }] of feedback) test(`${id}: 八种材质中真实回调可操作、可取消/复位，${id === 'tooltip' ? '提示瞬态在重挂载时复位' : '同一会话跨样式保留'}`, () => {
   let shared;
   for (const style of styles) {
     const h = callbackHarness(id, style, 'en', shared); shared = h.session;
@@ -56,11 +56,13 @@ for (const [id, { styles }] of feedback) test(`${id}: 八种材质中真实回�
       assert.equal(h.button('Undo').props.disabled, true); click(h, 'Dismiss'); assert.equal(shared.get('visible'), false);
       click(h, 'Show toast'); assert.equal(shared.get('toastUndone'), false);
     } else if (id === 'tooltip') {
+      const shown = () => Boolean(h.find((node) => node.props.role === 'tooltip'));
       let trigger = h.button('Hover, focus or tap for help'); trigger.props.onFocus();
-      trigger = h.button('Hover, focus or tap for help'); trigger.props.onClick(); assert.equal(shared.get('open'), true, 'First tap must not undo the preceding focus');
-      trigger = h.button('Hover, focus or tap for help'); trigger.props.onKeyDown(keyEvent('Escape')); assert.equal(shared.get('open'), false);
-      h.find((node) => typeof node.props.onMouseEnter === 'function').props.onMouseEnter(); assert.equal(shared.get('open'), true);
-      h.find((node) => typeof node.props.onMouseLeave === 'function').props.onMouseLeave(); assert.equal(shared.get('open'), false);
+      trigger = h.button('Hover, focus or tap for help'); trigger.props.onClick(); assert.equal(shown(), true, 'First tap must not undo the preceding focus');
+      trigger = h.button('Hover, focus or tap for help'); trigger.props.onKeyDown(keyEvent('Escape')); assert.equal(shown(), false);
+      trigger = h.button('Hover, focus or tap for help'); trigger.props.onBlur();
+      h.find((node) => typeof node.props.onPointerEnter === 'function').props.onPointerEnter({ pointerType: 'mouse' }); assert.equal(shown(), true);
+      h.find((node) => typeof node.props.onPointerLeave === 'function').props.onPointerLeave({ pointerType: 'mouse' }); assert.equal(shown(), false);
     }
     const restored = callbackHarness(id, style, 'zh', shared);
     assert.match(restored.nodes().map(restored.text).join(' '), /本地交互演示/);

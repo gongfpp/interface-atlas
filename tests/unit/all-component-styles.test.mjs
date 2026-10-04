@@ -65,7 +65,6 @@ const feedbackStates = {
   'progress-bar': { pct: 100 },
   'split-button': { open: true, menuAction: 2 },
   toast: { visible: true, toastUndone: true },
-  tooltip: { open: true },
 };
 for (const [id, state] of Object.entries(feedbackStates)) test(`${id}: 全八风格恢复同一已操作状态，附加形式不冒充后端实现`, () => {
   const session = createSession(); for (const [key, value] of Object.entries(state)) session.set(key, value);
@@ -73,7 +72,6 @@ for (const [id, state] of Object.entries(feedbackStates)) test(`${id}: 全八风
     const html = renderToStaticMarkup(createElement(entry.Demo, { session, locale }));
     assert.match(html, locale === 'zh' ? /本地交互演示/ : /Local interaction demo/);
     if (['drawer', 'modal', 'bottom-sheet', 'lightbox'].includes(id)) { assert.match(html, /role="dialog"/); assert.doesNotMatch(html, /aria-modal/); }
-    if (id === 'tooltip') { assert.match(html, /role="tooltip"/); assert.match(html, /aria-describedby/); }
     if (id === 'progress-bar') assert.match(html, /aria-valuenow="100"/);
     if (id === 'toast') assert.match(html, locale === 'zh' ? /已撤销/ : /undone/);
     if (id === 'command-palette') assert.match(html, locale === 'zh' ? /没有匹配命令/ : /No matching commands/);
