@@ -90,6 +90,15 @@ playground:
       en: Current item is visibly indicated after switching
     - zh: 键盘左右键可切换
       en: Left/Right keys switch slides
+applicable_styles:
+  - editorial
+  - cyberpunk
+  - pixel-art
+  - minimalism
+  - flat-design
+  - swiss-style
+  - neobrutalism
+  - art-deco
 related:
   - id: tabs
     relation: alternative_to

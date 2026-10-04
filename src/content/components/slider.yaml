@@ -64,8 +64,14 @@ anatomy:
   - 手柄（Thumb）
   - 数值显示（Value）
 applicable_styles:
+  - brutalism
+  - vaporwave
+  - organic
   - minimalism
+  - flat-design
   - swiss-style
+  - neobrutalism
+  - neumorphism
 applicable_components: []
 applicable_pages:
   - settings

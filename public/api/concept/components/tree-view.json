@@ -133,6 +133,16 @@
       }
     ]
   },
+  "applicable_styles": [
+    "brutalism",
+    "editorial",
+    "neumorphism",
+    "minimalism",
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "art-deco"
+  ],
   "related": [
     {
       "id": "accordion",

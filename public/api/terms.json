@@ -1306,6 +1306,16 @@
         "内容区（Panel）",
         "分隔线（Divider）"
       ],
+      "applicable_styles": [
+        "swiss-style",
+        "brutalism",
+        "liquid-glass",
+        "minimalism",
+        "flat-design",
+        "neobrutalism",
+        "editorial",
+        "art-deco"
+      ],
       "related": [
         {
           "id": "accordion-expand",
@@ -1547,6 +1557,16 @@
         "说明文本（Description）",
         "操作与关闭（Actions / Close）"
       ],
+      "applicable_styles": [
+        "swiss-style",
+        "brutalism",
+        "corporate-memphis",
+        "minimalism",
+        "flat-design",
+        "neobrutalism",
+        "glassmorphism",
+        "cyberpunk"
+      ],
       "related": [
         {
           "id": "toast",
@@ -1748,6 +1768,16 @@
         "状态点（Status dot）",
         "尺寸档位（Sizes）"
       ],
+      "applicable_styles": [
+        "flat-design",
+        "memphis",
+        "art-deco",
+        "minimalism",
+        "neobrutalism",
+        "organic",
+        "glassmorphism",
+        "hand-drawn"
+      ],
       "related": [
         {
           "id": "badge",
@@ -1931,6 +1961,16 @@
         "宿主元素（Host）",
         "徽标本体（Badge）",
         "状态色（Status colour）"
+      ],
+      "applicable_styles": [
+        "neobrutalism",
+        "editorial",
+        "skeuomorphism",
+        "flat-design",
+        "minimalism",
+        "swiss-style",
+        "cyberpunk",
+        "art-deco"
       ],
       "related": [
         {
@@ -2155,6 +2195,16 @@
           }
         }
       ],
+      "applicable_styles": [
+        "glassmorphism",
+        "neumorphism",
+        "swiss-style",
+        "minimalism",
+        "flat-design",
+        "neobrutalism",
+        "cyberpunk",
+        "hand-drawn"
+      ],
       "related": [
         {
           "id": "drawer",
@@ -2362,8 +2412,14 @@
         "当前页（Current page）"
       ],
       "applicable_styles": [
+        "editorial",
+        "pixel-art",
+        "brutalism",
         "minimalism",
-        "editorial"
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "organic"
       ],
       "applicable_pages": [
         "documentation",
@@ -2602,7 +2658,9 @@
         "glassmorphism",
         "swiss-style",
         "cyberpunk",
-        "neumorphism"
+        "neumorphism",
+        "flat-design",
+        "pixel-art"
       ],
       "applicable_components": [],
       "applicable_pages": [
@@ -2834,7 +2892,9 @@
         "bento-grid",
         "editorial",
         "neobrutalism",
-        "neumorphism"
+        "neumorphism",
+        "swiss-style",
+        "art-deco"
       ],
       "related": [
         {
@@ -3075,6 +3135,16 @@
           }
         ]
       },
+      "applicable_styles": [
+        "editorial",
+        "cyberpunk",
+        "pixel-art",
+        "minimalism",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "art-deco"
+      ],
       "related": [
         {
           "id": "tabs",
@@ -3264,8 +3334,14 @@
         "标签文字（Label）"
       ],
       "applicable_styles": [
+        "neumorphism",
+        "pixel-art",
+        "neobrutalism",
         "minimalism",
-        "flat-design"
+        "flat-design",
+        "swiss-style",
+        "organic",
+        "glassmorphism"
       ],
       "applicable_components": [],
       "applicable_pages": [
@@ -3578,7 +3654,17 @@
           "zh": "在当前项目中实现色彩选择器（Color Picker）组件。\n先检查现有表单控件与 Design Token，优先复用滑杆、输入框与色板样式。\n用途：品牌色、主题色与标注色的选定。\n要求：\n- 提供色板与取色区两种取色方式\n- 颜色值可键入且与预览同步\n- 输出合法颜色值（hex / OKLCH）\n- 尊重 prefers-reduced-motion，支持键盘操作\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
           "en": "Implement a Color Picker component in the current project.\nInspect existing form controls and design tokens first and reuse slider, input and swatch styles.\nUsage: choosing brand, theme and annotation colours.\nRequirements:\n- Offer both swatch and canvas ways to pick\n- Typed colour values stay in sync with the preview\n- Emit valid colour values (hex / OKLCH)\n- Respect prefers-reduced-motion and support keyboard operation\n- No new dependencies\nRun the existing project checks when done and list the modified files."
         }
-      }
+      },
+      "applicable_styles": [
+        "cyberpunk",
+        "memphis",
+        "organic",
+        "minimalism",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "neumorphism"
+      ]
     },
     {
       "id": "combobox",
@@ -3729,7 +3815,17 @@
           "zh": "先检查当前项目的组件与样式体系，复用已有能力实现可搜索选择框。\n要求：\n- 焦点留在输入框，用 aria-activedescendant 指向当前选项。配合 aria-expanded、aria-controls、listbox 和 option 表达结构。支持方向键、Enter、Escape，输入变化时重置高亮索引。\n- 键盘高亮必须指向仍存在的候选项。\n- 清空后恢复全部选项，Esc 只关闭列表。\n- 窄屏可用，深浅色一致，尊重 reduced-motion。\n- 不新增依赖。\n运行项目现有检查，并列出修改文件及验证结果。",
           "en": "Inspect existing components and tokens before implementing Combobox.\nRequirements:\n- Keep focus in the input and point aria-activedescendant at the active option. Connect aria-expanded, aria-controls, listbox and option semantics. Support arrows, Enter and Escape, and reset the active index when filtering changes.\n- The active descendant must reference an existing option.\n- Clearing restores options; Escape closes the list.\n- Support narrow screens, both themes and reduced motion.\n- Add no dependencies.\nRun existing checks and list changed files and validation results."
         }
-      }
+      },
+      "applicable_styles": [
+        "corporate-memphis",
+        "cyberpunk",
+        "bento-grid",
+        "minimalism",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "neumorphism"
+      ]
     },
     {
       "id": "command-palette",
@@ -3839,7 +3935,14 @@
         "页脚导航提示（Footer hints）"
       ],
       "applicable_styles": [
-        "minimalism"
+        "aurora",
+        "glassmorphism",
+        "flat-design",
+        "minimalism",
+        "swiss-style",
+        "neobrutalism",
+        "cyberpunk",
+        "neumorphism"
       ],
       "related": [
         {
@@ -4048,7 +4151,13 @@
       ],
       "applicable_styles": [
         "minimalism",
-        "flat-design"
+        "bauhaus",
+        "cyberpunk",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "neumorphism",
+        "organic"
       ],
       "applicable_components": [],
       "applicable_pages": [
@@ -4247,6 +4356,16 @@
         "头部标题（Header）",
         "内容区（Body）",
         "底部操作区（Footer actions）"
+      ],
+      "applicable_styles": [
+        "minimalism",
+        "neobrutalism",
+        "art-deco",
+        "flat-design",
+        "swiss-style",
+        "glassmorphism",
+        "cyberpunk",
+        "neumorphism"
       ],
       "related": [
         {
@@ -4505,7 +4624,13 @@
         "分隔线与危险项（Divider & danger item）"
       ],
       "applicable_styles": [
+        "neumorphism",
+        "y2k",
+        "hand-drawn",
         "minimalism",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
         "glassmorphism"
       ],
       "applicable_components": [],
@@ -4760,6 +4885,16 @@
           }
         ]
       },
+      "applicable_styles": [
+        "neobrutalism",
+        "liquid-glass",
+        "claymorphism",
+        "minimalism",
+        "flat-design",
+        "swiss-style",
+        "glassmorphism",
+        "cyberpunk"
+      ],
       "related": [
         {
           "id": "button",
@@ -4973,7 +5108,17 @@
           "zh": "先检查当前项目的组件与样式体系，复用已有能力实现文件上传区。\n要求：\n- 保留原生 input type=\"file\"，accept 只是筛选提示，还需校验类型与大小；服务端也必须验证上传内容。拖放阻止浏览器默认打开文件，错误明确到限制条件。示例不联网，只展示选择结果。\n- 文件选择与拖放采用相同限制，拒绝时不丢失已选文件。\n- 选择成功不能显示为上传成功；这里没有上传请求。\n- 窄屏可用，深浅色一致，尊重 reduced-motion。\n- 不新增依赖。\n运行项目现有检查，并列出修改文件及验证结果。",
           "en": "Inspect existing components and tokens before implementing File Upload.\nRequirements:\n- Retain a native file input. The accept attribute is a picker hint; validate size and type and verify uploads on the server. Prevent the browser from navigating to dropped files. Explain constraints in errors. This demo only lists local selections.\n- Picker and drop share constraints; a rejection preserves previous files.\n- Do not label a selected file as uploaded; this demo sends no upload request.\n- Support narrow screens, both themes and reduced motion.\n- Add no dependencies.\nRun existing checks and list changed files and validation results."
         }
-      }
+      },
+      "applicable_styles": [
+        "hand-drawn",
+        "flat-design",
+        "skeuomorphism",
+        "minimalism",
+        "swiss-style",
+        "neobrutalism",
+        "neumorphism",
+        "organic"
+      ]
     },
     {
       "id": "filter-panel",
@@ -5163,7 +5308,17 @@
             "en": "Offer a way to clear or relax filters when nothing matches."
           }
         ]
-      }
+      },
+      "applicable_styles": [
+        "swiss-style",
+        "bauhaus",
+        "neumorphism",
+        "minimalism",
+        "flat-design",
+        "neobrutalism",
+        "organic",
+        "glassmorphism"
+      ]
     },
     {
       "id": "input",
@@ -5310,7 +5465,9 @@
         "editorial",
         "swiss-style",
         "cyberpunk",
-        "neumorphism"
+        "neumorphism",
+        "flat-design",
+        "organic"
       ],
       "applicable_components": [],
       "applicable_pages": [
@@ -5540,6 +5697,16 @@
           }
         ]
       },
+      "applicable_styles": [
+        "art-deco",
+        "aurora",
+        "pixel-art",
+        "minimalism",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "glassmorphism"
+      ],
       "related": [
         {
           "id": "modal",
@@ -5760,6 +5927,16 @@
         "菜单面板（Panel）",
         "菜单项（Items）",
         "分隔线（Separator）"
+      ],
+      "applicable_styles": [
+        "bento-grid",
+        "cyberpunk",
+        "organic",
+        "minimalism",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "editorial"
       ],
       "related": [
         {
@@ -6025,6 +6202,16 @@
         "标题（Title）",
         "正文内容（Body）",
         "操作区（Actions）"
+      ],
+      "applicable_styles": [
+        "glassmorphism",
+        "claymorphism",
+        "y2k",
+        "minimalism",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "cyberpunk"
       ],
       "related": [
         {
@@ -6347,7 +6534,17 @@
           "zh": "在当前项目中实现一个 Multi-select 多选控件。\n先检查现有组件体系和 Design Token，优先复用当前组件。\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion，支持键盘操作。\n完成后运行项目现有检查，并列出修改的文件。",
           "en": "Implement a Multi-select control in the current project.\nInspect the existing component system and design tokens first and reuse what is already there.\nKeep the current visual style. Add no unnecessary dependencies.\nRespect prefers-reduced-motion and support keyboard operation.\nRun the existing project checks when done and list the modified files."
         }
-      }
+      },
+      "applicable_styles": [
+        "minimalism",
+        "bauhaus",
+        "liquid-glass",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "neumorphism",
+        "organic"
+      ]
     },
     {
       "id": "navbar",
@@ -6466,9 +6663,14 @@
         "用户 / 操作区"
       ],
       "applicable_styles": [
-        "minimalism",
+        "swiss-style",
+        "neobrutalism",
         "glassmorphism",
-        "editorial"
+        "minimalism",
+        "flat-design",
+        "editorial",
+        "art-deco",
+        "organic"
       ],
       "applicable_pages": [
         "landing-page",
@@ -6684,8 +6886,14 @@
         "省略号与总数计数（Count）"
       ],
       "applicable_styles": [
+        "neumorphism",
+        "vaporwave",
+        "swiss-style",
         "minimalism",
-        "swiss-style"
+        "flat-design",
+        "neobrutalism",
+        "editorial",
+        "art-deco"
       ],
       "applicable_pages": [
         "search",
@@ -6951,6 +7159,16 @@
         "箭头（Arrow）",
         "关闭按钮（Close）"
       ],
+      "applicable_styles": [
+        "flat-design",
+        "neumorphism",
+        "editorial",
+        "minimalism",
+        "swiss-style",
+        "neobrutalism",
+        "glassmorphism",
+        "cyberpunk"
+      ],
       "related": [
         {
           "id": "tooltip",
@@ -7178,6 +7396,16 @@
         "轨道（Track）",
         "填充条（Fill）",
         "标签 / 百分比（Label）"
+      ],
+      "applicable_styles": [
+        "minimalism",
+        "bauhaus",
+        "pixel-art",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "glassmorphism",
+        "cyberpunk"
       ],
       "related": [
         {
@@ -7413,8 +7641,14 @@
         "描述文字（Description）"
       ],
       "applicable_styles": [
+        "glassmorphism",
+        "art-deco",
+        "memphis",
         "minimalism",
-        "flat-design"
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "neumorphism"
       ],
       "applicable_components": [],
       "applicable_pages": [
@@ -7654,7 +7888,17 @@
           "zh": "先检查当前项目的组件与样式体系，复用已有能力实现评分。\n要求：\n- 单选评分可使用同名 radio。每档设置可访问名称，悬停预览不能覆盖已确认分值。未评分时禁用提交；尊重 reduced-motion。只读星级不要使用可交互角色。\n- 悬停只预览，移开后恢复已选分数。\n- 零分值代表未选择，提交后有明确反馈。\n- 窄屏可用，深浅色一致，尊重 reduced-motion。\n- 不新增依赖。\n运行项目现有检查，并列出修改文件及验证结果。",
           "en": "Inspect existing components and tokens before implementing Rating.\nRequirements:\n- Use same-name radios for one score. Label each value and keep hover preview separate from the committed score. Disable submission before selection and respect reduced motion. Do not use interactive roles for read-only ratings.\n- Hover is temporary; leaving restores the selected score.\n- An unset value is distinct from a score; submission gives feedback.\n- Support narrow screens, both themes and reduced motion.\n- Add no dependencies.\nRun existing checks and list changed files and validation results."
         }
-      }
+      },
+      "applicable_styles": [
+        "retro-futurism",
+        "y2k",
+        "memphis",
+        "flat-design",
+        "minimalism",
+        "neobrutalism",
+        "neumorphism",
+        "organic"
+      ]
     },
     {
       "id": "segmented-control",
@@ -7832,7 +8076,17 @@
           "zh": "先检查当前项目的组件与样式体系，复用已有能力实现分段控制器。\n要求：\n- 互斥值优先使用原生同名 radio，保留方向键操作。整段共用一个可访问名称；不要只靠颜色表示选中状态。每个选项至少提供 40px 的点击高度，结果随选择同步更新。\n- 选中项和展示结果应始终一致。\n- 一组只能选中一项，方向键可以连续切换。\n- 窄屏可用，深浅色一致，尊重 reduced-motion。\n- 不新增依赖。\n运行项目现有检查，并列出修改文件及验证结果。",
           "en": "Inspect existing components and tokens before implementing Segmented Control.\nRequirements:\n- Use native radios with the same name to retain arrow-key navigation. Give the group an accessible name and make selection visible beyond color. Aim for a 40px target height and update the result immediately.\n- The selected option must agree with the displayed result.\n- Exactly one option is selected; arrow keys move through the group.\n- Support narrow screens, both themes and reduced motion.\n- Add no dependencies.\nRun existing checks and list changed files and validation results."
         }
-      }
+      },
+      "applicable_styles": [
+        "minimalism",
+        "neobrutalism",
+        "glassmorphism",
+        "flat-design",
+        "swiss-style",
+        "neumorphism",
+        "organic",
+        "cyberpunk"
+      ]
     },
     {
       "id": "select",
@@ -7963,8 +8217,14 @@
         "选中标识（Selected mark）"
       ],
       "applicable_styles": [
+        "swiss-style",
+        "bauhaus",
+        "liquid-glass",
         "minimalism",
-        "swiss-style"
+        "flat-design",
+        "neobrutalism",
+        "neumorphism",
+        "organic"
       ],
       "applicable_components": [],
       "applicable_pages": [
@@ -8165,8 +8425,14 @@
         "底部用户 / 设置区"
       ],
       "applicable_styles": [
+        "art-deco",
+        "bento-grid",
+        "editorial",
         "minimalism",
-        "swiss-style"
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "organic"
       ],
       "applicable_pages": [
         "dashboard",
@@ -8379,8 +8645,14 @@
         "数值显示（Value）"
       ],
       "applicable_styles": [
+        "brutalism",
+        "vaporwave",
+        "organic",
         "minimalism",
-        "swiss-style"
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "neumorphism"
       ],
       "applicable_components": [],
       "applicable_pages": [
@@ -8608,6 +8880,16 @@
           }
         ]
       },
+      "applicable_styles": [
+        "swiss-style",
+        "flat-design",
+        "claymorphism",
+        "minimalism",
+        "neobrutalism",
+        "glassmorphism",
+        "cyberpunk",
+        "neumorphism"
+      ],
       "related": [
         {
           "id": "button",
@@ -8798,6 +9080,16 @@
         "当前步骤 / Current step",
         "步骤内容 / Content",
         "前进与返回 / Controls"
+      ],
+      "applicable_styles": [
+        "editorial",
+        "art-deco",
+        "pixel-art",
+        "minimalism",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "organic"
       ],
       "related": [
         {
@@ -8998,8 +9290,14 @@
         "标签 / 状态文字（Label）"
       ],
       "applicable_styles": [
+        "skeuomorphism",
+        "flat-design",
+        "aurora",
         "minimalism",
-        "claymorphism"
+        "swiss-style",
+        "neobrutalism",
+        "neumorphism",
+        "organic"
       ],
       "applicable_components": [],
       "applicable_pages": [
@@ -9192,6 +9490,16 @@
         "数据行（Body row）",
         "单元格（Cell）",
         "行操作（Row actions）"
+      ],
+      "applicable_styles": [
+        "editorial",
+        "swiss-style",
+        "hand-drawn",
+        "minimalism",
+        "flat-design",
+        "neobrutalism",
+        "art-deco",
+        "organic"
       ],
       "related": [
         {
@@ -9448,8 +9756,14 @@
         "内容面板（Tab panel）"
       ],
       "applicable_styles": [
+        "flat-design",
+        "liquid-glass",
+        "memphis",
         "minimalism",
-        "bento-grid"
+        "swiss-style",
+        "neobrutalism",
+        "editorial",
+        "art-deco"
       ],
       "applicable_pages": [
         "settings",
@@ -9752,7 +10066,17 @@
           "zh": "在当前项目中实现一个 Tag Input 标签输入组件。\n先检查现有组件体系和 Design Token，优先复用输入框与徽标样式。\n支持自由输入、自动补全与文件名三种形态。\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion，支持键盘操作。\n完成后运行项目现有检查，并列出修改的文件。",
           "en": "Implement a Tag Input component in the current project.\nInspect the existing component system and design tokens first; reuse field and badge styles.\nSupport free-form, autocomplete and file-name-chip shapes.\nKeep the project's visual style. Add no unnecessary dependencies.\nRespect prefers-reduced-motion and support keyboard operation.\nRun the project's existing checks when done and list the modified files."
         }
-      }
+      },
+      "applicable_styles": [
+        "minimalism",
+        "memphis",
+        "brutalism",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "neumorphism",
+        "organic"
+      ]
     },
     {
       "id": "textarea",
@@ -9881,8 +10205,14 @@
         "提交 / 操作区（Actions）"
       ],
       "applicable_styles": [
+        "flat-design",
+        "hand-drawn",
+        "cyberpunk",
         "minimalism",
-        "editorial"
+        "swiss-style",
+        "neobrutalism",
+        "neumorphism",
+        "organic"
       ],
       "applicable_components": [],
       "applicable_pages": [
@@ -10049,6 +10379,16 @@
         "事件序列 / Sequence",
         "事件节点 / Marker",
         "展开详情 / Detail"
+      ],
+      "applicable_styles": [
+        "vaporwave",
+        "organic",
+        "brutalism",
+        "minimalism",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "editorial"
       ],
       "related": [
         {
@@ -10275,6 +10615,16 @@
         "状态图标（Status icon）",
         "操作按钮（Action）",
         "关闭按钮（Close）"
+      ],
+      "applicable_styles": [
+        "glassmorphism",
+        "pixel-art",
+        "claymorphism",
+        "minimalism",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "cyberpunk"
       ],
       "related": [
         {
@@ -10519,6 +10869,16 @@
           }
         }
       ],
+      "applicable_styles": [
+        "flat-design",
+        "art-deco",
+        "bauhaus",
+        "minimalism",
+        "swiss-style",
+        "neobrutalism",
+        "editorial",
+        "organic"
+      ],
       "related": [
         {
           "id": "navbar",
@@ -10751,6 +11111,16 @@
         "气泡（Bubble）",
         "箭头（Arrow）"
       ],
+      "applicable_styles": [
+        "retro-futurism",
+        "cyberpunk",
+        "skeuomorphism",
+        "minimalism",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "glassmorphism"
+      ],
       "related": [
         {
           "id": "popover",
@@ -10972,6 +11342,16 @@
           }
         ]
       },
+      "applicable_styles": [
+        "brutalism",
+        "editorial",
+        "neumorphism",
+        "minimalism",
+        "flat-design",
+        "swiss-style",
+        "neobrutalism",
+        "art-deco"
+      ],
       "related": [
         {
           "id": "accordion",

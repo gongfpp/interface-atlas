@@ -3,15 +3,15 @@ import { test, expect } from '@playwright/test';
 // 浏览器验收定义：仅在浏览器访问已授权的环境运行。
 // 源码与服务端渲染检查不等同于浏览器验收。
 const styles = {
-  input: ['minimalism', 'neobrutalism', 'editorial', 'swiss-style', 'cyberpunk', 'neumorphism'],
-  card: ['minimalism', 'aurora', 'bento-grid', 'editorial', 'neobrutalism', 'neumorphism'],
+  input: ['minimalism', 'neobrutalism', 'editorial', 'swiss-style', 'cyberpunk', 'neumorphism', 'flat-design', 'organic'],
+  card: ['minimalism', 'aurora', 'bento-grid', 'editorial', 'neobrutalism', 'neumorphism', 'swiss-style', 'art-deco'],
 };
 
 async function openStyles(page, component, locale = 'en') {
   await page.goto(`${locale === 'en' ? '/en' : ''}/components/${component}`);
   const section = page.locator('#style-variants');
   await section.scrollIntoViewIfNeeded();
-  await expect(section.locator('[data-style]')).toHaveCount(6);
+  await expect(section.locator('[data-style]')).toHaveCount(8);
   const select = async (style) => {
     const pill = section.locator(`[data-style="${style}"]`);
     await pill.click();
@@ -22,7 +22,7 @@ async function openStyles(page, component, locale = 'en') {
 }
 
 for (const locale of ['zh', 'en']) {
-  test(`${locale}: 六套输入框支持输入、校验、清空焦点恢复与跨风格保留`, async ({ page }) => {
+  test(`${locale}: 八套输入框支持输入、校验、清空焦点恢复与跨风格保留`, async ({ page }) => {
     const { preview, select } = await openStyles(page, 'input', locale);
     const field = preview.getByRole('textbox', { name: locale === 'zh' ? '邮箱地址' : 'Email address' });
     for (let index = 0; index < styles.input.length; index += 1) {
@@ -51,7 +51,7 @@ for (const locale of ['zh', 'en']) {
     await expect(field).toHaveValue('shared+long-project-reference@example.org');
   });
 
-  test(`${locale}: 六套卡片支持键盘展开、撤销与跨风格收藏状态`, async ({ page }) => {
+  test(`${locale}: 八套卡片支持键盘展开、撤销与跨风格收藏状态`, async ({ page }) => {
     const { preview, select } = await openStyles(page, 'card', locale);
     const bookmark = preview.getByRole('button', { name: locale === 'zh' ? '在本地演示中收藏' : 'Bookmark in this local demo' });
     const details = preview.locator('[data-card-detail-toggle]');

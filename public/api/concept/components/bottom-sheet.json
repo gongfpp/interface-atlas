@@ -139,6 +139,16 @@
       }
     }
   ],
+  "applicable_styles": [
+    "glassmorphism",
+    "neumorphism",
+    "swiss-style",
+    "minimalism",
+    "flat-design",
+    "neobrutalism",
+    "cyberpunk",
+    "hand-drawn"
+  ],
   "related": [
     {
       "id": "drawer",

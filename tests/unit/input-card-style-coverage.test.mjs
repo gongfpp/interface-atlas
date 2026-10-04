@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -25,7 +25,7 @@ function loadSource(relativePath) {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true },
   });
   const localRequire = (name) => name.startsWith('.')
-    ? loadSource(resolve(dirname(filename), `${name}.ts`))
+    ? loadSource(['.ts', '.tsx'].map((ext) => resolve(dirname(filename), `${name}${ext}`)).find(existsSync))
     : require(name);
   new Function('require', 'module', 'exports', outputText)(localRequire, module, module.exports);
   cache.set(filename, module.exports);
@@ -33,9 +33,9 @@ function loadSource(relativePath) {
 }
 
 const matrix = {
-  button: ['minimalism', 'neobrutalism', 'glassmorphism', 'swiss-style', 'cyberpunk', 'neumorphism'],
-  input: ['minimalism', 'neobrutalism', 'editorial', 'swiss-style', 'cyberpunk', 'neumorphism'],
-  card: ['minimalism', 'aurora', 'bento-grid', 'editorial', 'neobrutalism', 'neumorphism'],
+  button: ['minimalism', 'neobrutalism', 'glassmorphism', 'swiss-style', 'cyberpunk', 'neumorphism', 'flat-design', 'pixel-art'],
+  input: ['minimalism', 'neobrutalism', 'editorial', 'swiss-style', 'cyberpunk', 'neumorphism', 'flat-design', 'organic'],
+  card: ['minimalism', 'aurora', 'bento-grid', 'editorial', 'neobrutalism', 'neumorphism', 'swiss-style', 'art-deco'],
 };
 const sets = Object.fromEntries(Object.keys(matrix).map((id) => [id, loadSource(`src/islands/style-variants/${id}.tsx`).default]));
 const { createSession } = loadSource('src/islands/style-variants/session.ts');
@@ -46,7 +46,7 @@ const render = (variant, locale, values = {}) => {
 };
 
 for (const [component, expected] of Object.entries(matrix)) {
-  test(`${component}: 六套真实风格与内容关联和分类名称完全对应`, () => {
+  test(`${component}: 八套真实风格与内容关联和分类名称完全对应`, () => {
     const variants = sets[component];
     assert.deepEqual(variants.map((variant) => variant.style), expected);
     const content = yaml.load(readFileSync(resolve(root, `src/content/components/${component}.yaml`), 'utf8'));
@@ -86,7 +86,7 @@ test('输入框：各风格均保留受控值、标签与帮助信息关联', ()
   }
 });
 
-test('输入框：六套风格的空值、错误、清空与校验反馈均双语', () => {
+test('输入框：八套风格的空值、错误、清空与校验反馈均双语', () => {
   for (const variant of sets.input) {
     for (const locale of ['zh', 'en']) {
       const empty = render(variant, locale);

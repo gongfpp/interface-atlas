@@ -144,5 +144,15 @@
       "zh": "先检查当前项目的组件与样式体系，复用已有能力实现文件上传区。\n要求：\n- 保留原生 input type=\"file\"，accept 只是筛选提示，还需校验类型与大小；服务端也必须验证上传内容。拖放阻止浏览器默认打开文件，错误明确到限制条件。示例不联网，只展示选择结果。\n- 文件选择与拖放采用相同限制，拒绝时不丢失已选文件。\n- 选择成功不能显示为上传成功；这里没有上传请求。\n- 窄屏可用，深浅色一致，尊重 reduced-motion。\n- 不新增依赖。\n运行项目现有检查，并列出修改文件及验证结果。",
       "en": "Inspect existing components and tokens before implementing File Upload.\nRequirements:\n- Retain a native file input. The accept attribute is a picker hint; validate size and type and verify uploads on the server. Prevent the browser from navigating to dropped files. Explain constraints in errors. This demo only lists local selections.\n- Picker and drop share constraints; a rejection preserves previous files.\n- Do not label a selected file as uploaded; this demo sends no upload request.\n- Support narrow screens, both themes and reduced motion.\n- Add no dependencies.\nRun existing checks and list changed files and validation results."
     }
-  }
+  },
+  "applicable_styles": [
+    "hand-drawn",
+    "flat-design",
+    "skeuomorphism",
+    "minimalism",
+    "swiss-style",
+    "neobrutalism",
+    "neumorphism",
+    "organic"
+  ]
 }

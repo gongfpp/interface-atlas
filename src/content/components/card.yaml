@@ -71,6 +71,8 @@ applicable_styles:
   - editorial
   - neobrutalism
   - neumorphism
+  - swiss-style
+  - art-deco
 related:
   - id: table
     relation: alternative_to

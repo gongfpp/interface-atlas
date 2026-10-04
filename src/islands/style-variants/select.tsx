@@ -1,3 +1,4 @@
+import { recipe, RecipeFrame, recipeVariant, type RecipeStyleId } from '../shared/styleRecipe';
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
@@ -15,7 +16,7 @@ function Swiss({ session, locale }: VariantDemoProps) {
           aria-label={zh ? '项目套餐' : 'Project plan'}
           value={v}
           onChange={(e) => setV(e.target.value)}
-          className="w-full appearance-none border border-black bg-white py-2.5 pl-3 pr-8 text-sm font-medium focus:outline-none"
+          className="focus-visible:outline-2 focus-visible:outline-offset-2 w-full appearance-none border border-black bg-white py-2.5 pl-3 pr-8 text-sm font-medium focus:outline-none"
         >
           <option value="basic">{zh ? '入门版' : 'Starter'}</option>
           <option value="pro">{zh ? '专业版' : 'Professional'}</option>
@@ -23,7 +24,7 @@ function Swiss({ session, locale }: VariantDemoProps) {
         </select>
         <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#e11d2a]">▼</span>
       </div>
-      <p className="mt-3 text-[11px] leading-relaxed text-black/50">A numbered label on a strict baseline, one red accent, square edges — typography is the hierarchy.</p>
+      <p className="mt-3 text-[11px] leading-relaxed text-black/50">{zh ? "编号基线、直角边框和单一红色强调用字体建立层级。本地演示，不变更真实套餐。" : "A numbered label on a strict baseline, one red accent, square edges \u2014 typography is the hierarchy. Local demo; no real plan is changed."}</p>
     </div>
   );
 }
@@ -44,7 +45,7 @@ function Bauhaus({ session, locale }: VariantDemoProps) {
           aria-label={zh ? '项目套餐' : 'Project plan'}
           value={v}
           onChange={(e) => setV(e.target.value)}
-          className="w-full appearance-none rounded-full border-[3px] border-black bg-[#1d4ed8] py-3 pl-5 pr-10 text-sm font-bold uppercase text-white focus:outline-none"
+          className="focus-visible:outline-2 focus-visible:outline-offset-2 w-full appearance-none rounded-full border-[3px] border-black bg-[#1d4ed8] py-3 pl-5 pr-10 text-sm font-bold uppercase text-white focus:outline-none"
         >
           <option value="basic">{zh ? '入门版' : 'Starter'}</option>
           <option value="pro">{zh ? '专业版' : 'Professional'}</option>
@@ -52,7 +53,7 @@ function Bauhaus({ session, locale }: VariantDemoProps) {
         </select>
         <span className="pointer-events-none absolute right-4 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-[#ffd166]" />
       </div>
-      <p className="mt-3 text-[11px] font-medium leading-relaxed">Primary-colour circle, square and triangle head a bold pill field — pure geometric construction.</p>
+      <p className="mt-3 text-[11px] font-medium leading-relaxed">{zh ? "红黄蓝几何表头配粗描边胶囊选择框。本地演示，不变更真实套餐。" : "Primary-colour circle, square and triangle head a bold pill field \u2014 pure geometric construction. Local demo; no real plan is changed."}</p>
     </div>
   );
 }
@@ -69,7 +70,7 @@ function LiquidGlass({ session, locale }: VariantDemoProps) {
           aria-label={zh ? '项目套餐' : 'Project plan'}
           value={v}
           onChange={(e) => setV(e.target.value)}
-          className="w-full appearance-none rounded-full border border-white/40 bg-white/15 py-3 pl-5 pr-10 text-sm font-semibold backdrop-blur-xl focus:outline-none"
+          className="focus-visible:outline-2 focus-visible:outline-offset-2 w-full appearance-none rounded-full border border-white/40 bg-white/15 py-3 pl-5 pr-10 text-sm font-semibold backdrop-blur-xl focus:outline-none"
         >
           <option className="text-black" value="basic">{zh ? '入门版' : 'Starter'}</option>
           <option className="text-black" value="pro">{zh ? '专业版' : 'Professional'}</option>
@@ -78,15 +79,31 @@ function LiquidGlass({ session, locale }: VariantDemoProps) {
         <span className="pointer-events-none absolute left-6 right-6 top-[5px] h-px bg-white/70" />
         <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-xs text-white/80">▾</span>
       </div>
-      <p className="relative mt-3 text-[11px] leading-relaxed text-white/75">A pill of clear glass with a specular hairline across its top, floating over a deep gradient.</p>
+      <p className="relative mt-3 text-[11px] leading-relaxed text-white/75">{zh ? "透明胶囊浮在深色渐变上，顶部一道高光发丝。本地演示，不变更真实套餐。" : "A pill of clear glass with a specular hairline across its top, floating over a deep gradient. Local demo; no real plan is changed."}</p>
     </div>
   );
+}
+
+
+function Expanded({ session, locale, style }: VariantDemoProps & { style: RecipeStyleId }) {
+  const zh = locale === 'zh';
+  const r = recipe(style);
+  const [value, setValue] = useSessionState(session, 'value', 'pro');
+  const choices = [{ id: 'basic', zh: '入门版', en: 'Starter', detailZh: '适合个人试验', detailEn: 'For personal experiments' }, { id: 'pro', zh: '专业版', en: 'Professional', detailZh: '适合持续创作', detailEn: 'For ongoing creative work' }, { id: 'team', zh: '工作室版', en: 'Studio', detailZh: '适合团队协作', detailEn: 'For team collaboration' }];
+  const selected = choices.find((choice) => choice.id === value);
+  return <RecipeFrame style={style} locale={locale} title={zh ? '项目套餐' : 'Project plan'}>
+    <label className="block text-sm">{zh ? '选择示例套餐' : 'Choose a sample plan'}
+      <select value={value} onChange={(event) => setValue(event.target.value)} className={`focus-visible:outline-2 focus-visible:outline-offset-2 mt-3 w-full ${r.field}`}>{choices.map((choice) => <option key={choice.id} value={choice.id}>{zh ? choice.zh : choice.en}</option>)}</select>
+    </label>
+    <div role="status" className={`mt-4 p-4 ${r.item}`}><p className="font-semibold">{selected?.[zh ? 'zh' : 'en']}</p><p className={`mt-1 text-sm ${r.muted}`}>{selected?.[zh ? 'detailZh' : 'detailEn']}</p></div>
+    <button type="button" onClick={() => setValue('pro')} className={`focus-visible:outline-2 focus-visible:outline-offset-2 mt-3 ${r.secondary}`}>{zh ? '恢复默认' : 'Reset plan'}</button>
+  </RecipeFrame>;
 }
 
 const styleVariants: StyleVariantSet = [
   {
     style: 'swiss-style',
-    name: { zh: '瑞士风格', en: 'Swiss Style' },
+    name: {"zh":"瑞士风格","en":"Swiss Style"},
     note: {
       zh: '编号标签对齐基线，直角边框加唯一红色三角箭头，用网格与字重建立层级。',
       en: 'A numbered label sits on the baseline; square edges and a single red triangle arrow build hierarchy from grid and weight.',
@@ -95,7 +112,7 @@ const styleVariants: StyleVariantSet = [
   },
   {
     style: 'bauhaus',
-    name: { zh: '包豪斯', en: 'Bauhaus' },
+    name: {"zh":"包豪斯","en":"Bauhaus"},
     note: {
       zh: '红黄蓝三原色以圆、方、三角构成表头，选择器本体是粗黑边的大圆角胶囊。',
       en: 'A red-yellow-blue header of circle, square and triangle tops a thick-black pill field — geometry reduced to primaries.',
@@ -104,13 +121,18 @@ const styleVariants: StyleVariantSet = [
   },
   {
     style: 'liquid-glass',
-    name: { zh: '液态玻璃', en: 'Liquid Glass' },
+    name: {"zh":"液态玻璃","en":"Liquid Glass"},
     note: {
       zh: '透明玻璃胶囊落在深色渐变上，顶部一道高光发丝，选项文字浮在模糊层之上。',
       en: 'A translucent glass pill over a deep gradient, topped by a specular highlight line, with the value floating on blur.',
     },
     Demo: LiquidGlass,
   },
+  recipeVariant('minimalism', (props) => <Expanded {...props} style="minimalism" />, { zh: "发丝线、黑白反转与留白；原生选择框和套餐说明共用材质，套餐变更会同步本地详情。", en: "Hairlines, monochrome inversion and whitespace; the native select and plan summary share materials and update local details together." }),
+  recipeVariant('flat-design', (props) => <Expanded {...props} style="flat-design" />, { zh: "纯色块与清晰层级，不依赖阴影；原生选择框和套餐说明共用材质，套餐变更会同步本地详情。", en: "Solid blocks and clear hierarchy without shadows; the native select and plan summary share materials and update local details together." }),
+  recipeVariant('neobrutalism', (props) => <Expanded {...props} style="neobrutalism" />, { zh: "粗黑描边、硬投影与高对比选中；原生选择框和套餐说明共用材质，套餐变更会同步本地详情。", en: "Heavy black outlines, hard shadows and bold selection; the native select and plan summary share materials and update local details together." }),
+  recipeVariant('neumorphism', (props) => <Expanded {...props} style="neumorphism" />, { zh: "同色曲面、双向阴影与实体边界；原生选择框和套餐说明共用材质，套餐变更会同步本地详情。", en: "Shared soft surfaces, paired shadows and explicit borders; the native select and plan summary share materials and update local details together." }),
+  recipeVariant('organic', (props) => <Expanded {...props} style="organic" />, { zh: "大地色与不规则圆角，柔和而清楚；原生选择框和套餐说明共用材质，套餐变更会同步本地详情。", en: "Earth tones and irregular corners, soft yet clear; the native select and plan summary share materials and update local details together." }),
 ];
 
 export default styleVariants;

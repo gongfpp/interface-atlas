@@ -104,6 +104,16 @@
     "内容区（Body）",
     "底部操作区（Footer actions）"
   ],
+  "applicable_styles": [
+    "minimalism",
+    "neobrutalism",
+    "art-deco",
+    "flat-design",
+    "swiss-style",
+    "glassmorphism",
+    "cyberpunk",
+    "neumorphism"
+  ],
   "related": [
     {
       "id": "modal",

@@ -63,8 +63,14 @@ anatomy:
   - 页码项（Page items）
   - 省略号与总数计数（Count）
 applicable_styles:
-  - minimalism
+  - neumorphism
+  - vaporwave
   - swiss-style
+  - minimalism
+  - flat-design
+  - neobrutalism
+  - editorial
+  - art-deco
 applicable_pages:
   - search
   - documentation

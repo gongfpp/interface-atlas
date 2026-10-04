@@ -124,8 +124,14 @@
     "选中标识（Selected mark）"
   ],
   "applicable_styles": [
+    "swiss-style",
+    "bauhaus",
+    "liquid-glass",
     "minimalism",
-    "swiss-style"
+    "flat-design",
+    "neobrutalism",
+    "neumorphism",
+    "organic"
   ],
   "applicable_components": [],
   "applicable_pages": [

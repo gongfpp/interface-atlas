@@ -1,3 +1,4 @@
+import { recipe, recipeVariant, type RecipeStyleId } from '../shared/styleRecipe';
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useButtonFeedback } from '../shared/useButtonFeedback';
 import { buttonFeedbackText } from '../../lib/button-feedback';
@@ -130,6 +131,18 @@ function Neumorphic({ session, locale }: VariantDemoProps) {
   );
 }
 
+function AdditionalButton({ style, session, locale }: VariantDemoProps & { style: RecipeStyleId }) {
+  const r = recipe(style); const action = useButtonFeedback(session); const zh = locale === 'zh';
+  return <div data-style-recipe={style} className={`mx-auto w-full max-w-sm [overflow-wrap:anywhere] ${r.frame}`}>
+    <header className={r.header}><h4 className={r.title}>{zh ? '保存更改 · 本地模拟' : 'Save changes · local demo'}</h4></header>
+    <div className={style === 'pixel-art' ? 'grid gap-4' : 'flex flex-wrap gap-3'}>
+      <button type="button" disabled={action.busy} aria-busy={action.busy} onClick={action.start} className={`${r.control} !min-w-28`}>{action.busy ? (zh ? '处理中…' : 'Working…') : zh ? '保存' : 'Save'}</button>
+      <button type="button" onClick={action.cancel} className={r.secondary}>{zh ? '取消' : 'Cancel'}</button>
+    </div>
+    <p role="status" aria-atomic="true" className="mt-4 min-h-10 text-xs leading-relaxed">{buttonFeedbackText(action.state, locale)}</p>
+  </div>;
+}
+
 const styleVariants: StyleVariantSet = [
   {
     style: 'minimalism',
@@ -173,6 +186,8 @@ const styleVariants: StyleVariantSet = [
     note: { zh: '同色软浮雕表面上的凸起主按钮与凹陷次操作；明暗双阴影之外保留深色文字、实线边框和可见焦点。', en: 'A raised primary button and inset secondary action share a soft relief surface; paired shadows retain dark labels, solid borders and visible focus.' },
     Demo: Neumorphic,
   },
+  recipeVariant('flat-design', (props) => <AdditionalButton {...props} style="flat-design" />, { zh: '无投影纯色块、分明圆角与等高操作；保存和取消共享可中断本地状态。', en: 'Shadow-free solid blocks, clear corners and equal-height actions share an interruptible local save state.' }),
+  recipeVariant('pixel-art', (props) => <AdditionalButton {...props} style="pixel-art" />, { zh: '4px 方角边与阶梯硬投影，等宽大写按钮纵向堆叠；加载、取消与完成都有文字反馈。', en: 'Square 4px edges, stepped hard shadows and stacked monospace actions expose loading, cancellation and completion in text.' }),
 ];
 
 export default styleVariants;

@@ -1,3 +1,4 @@
+import { recipe, RecipeFrame, recipeVariant, type RecipeStyleId } from '../shared/styleRecipe';
 import { useId, useRef, type ReactNode } from 'react';
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
@@ -58,14 +59,14 @@ function EmailField({ demo, labelClassName, inputClassName, clearClassName = '',
           placeholder="name@studio.com"
           aria-invalid={demo.invalid}
           aria-describedby={`${demo.id}-hint ${demo.id}-local`}
-          className={`min-h-12 w-full min-w-0 pr-14 text-base focus-visible:outline-2 focus-visible:outline-offset-2 ${inputClassName}`}
+          className={`focus-visible:outline-2 focus-visible:outline-offset-2 min-h-12 w-full min-w-0 pr-14 text-base focus-visible:outline-2 focus-visible:outline-offset-2 ${inputClassName}`}
         />
         {demo.value && (
           <button
             type="button"
             aria-label={demo.zh ? '清空邮箱' : 'Clear email'}
             onClick={() => { demo.clear(); inputRef.current?.focus(); }}
-            className={`absolute inset-y-0 right-0 my-auto flex h-11 w-11 items-center justify-center text-xl focus-visible:outline-2 focus-visible:outline-offset-2 ${clearClassName}`}
+            className={`focus-visible:outline-2 focus-visible:outline-offset-2 absolute inset-y-0 right-0 my-auto flex h-11 w-11 items-center justify-center text-xl focus-visible:outline-2 focus-visible:outline-offset-2 ${clearClassName}`}
           >
             <span aria-hidden="true">×</span>
           </button>
@@ -81,7 +82,7 @@ function EmailFeedback({ demo, buttonClassName, errorClassName = 'text-[#a1281b]
   return (
     <div className="mt-4 space-y-3 text-xs leading-relaxed [overflow-wrap:anywhere]">
       <p id={`${demo.id}-hint`} aria-live="polite" className={demo.invalid ? `font-semibold ${errorClassName}` : hintClassName}>{demo.hint}</p>
-      <button type="submit" className={`min-h-11 max-w-full px-3 py-2 text-left text-xs font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 ${buttonClassName}`}>
+      <button type="submit" className={`focus-visible:outline-2 focus-visible:outline-offset-2 min-h-11 max-w-full px-3 py-2 text-left text-xs font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 ${buttonClassName}`}>
         {demo.zh ? '检查格式' : 'Check format'}
       </button>
       <p role="status" className="min-h-5">{demo.status}</p>
@@ -165,37 +166,51 @@ function Neumorphic(props: VariantDemoProps) {
   );
 }
 
+
+function Expanded(props: VariantDemoProps & { style: RecipeStyleId }) {
+  const demo = useEmailDemo(props);
+  const r = recipe(props.style);
+  return <RecipeFrame style={props.style} locale={props.locale} title={demo.zh ? '联系信息' : 'Contact information'}>
+    <form noValidate onSubmit={(event) => { event.preventDefault(); demo.check(); }}>
+      <EmailField demo={demo} labelClassName={`text-sm font-semibold ${r.muted}`} inputClassName={`${r.field} aria-invalid:border-[#a1281b]`} clearClassName="right-1 rounded-lg" />
+      <EmailFeedback demo={demo} buttonClassName={r.control} hintClassName={r.muted} />
+    </form>
+  </RecipeFrame>;
+}
+
 const styleVariants: StyleVariantSet = [
   {
-    style: 'minimalism', name: { zh: '极简主义', en: 'Minimalism' },
+    style: 'minimalism', name: {"zh":"极简主义","en":"Minimalism"},
     note: { zh: '发丝下划线、微小标签与留白框定输入；本地格式检查与清空可实际操作。', en: 'A hairline underline, tiny label and whitespace frame a working local format check and clear action.' },
     Demo: Minimal,
   },
   {
-    style: 'neobrutalism', name: { zh: '新粗野主义', en: 'Neobrutalism' },
+    style: 'neobrutalism', name: {"zh":"新粗野主义","en":"Neobrutalism"},
     note: { zh: '粗黑描边与硬投影形成按压手感；减少动态效果时保留静态聚焦边框。', en: 'Heavy black outlines and hard shadows create a pressed surface; reduced motion retains a static focus outline.' },
     Demo: Neobrutal,
   },
   {
-    style: 'editorial', name: { zh: '杂志编辑风', en: 'Editorial' },
+    style: 'editorial', name: {"zh":"杂志编辑风","en":"Editorial"},
     note: { zh: '双线书眉、衬线标题与斜体输入行构成通讯版式，仅演示格式检查。', en: 'Double rules, a serif masthead and an italic field create a newsletter layout with local format checking only.' },
     Demo: Editorial,
   },
   {
-    style: 'swiss-style', name: { zh: '瑞士风格', en: 'Swiss Style' },
+    style: 'swiss-style', name: {"zh":"瑞士风格","en":"Swiss Style"},
     note: { zh: '编号侧栏与严格网格对齐，字号跳跃、黑白表面及单一红色编号建立秩序。', en: 'An indexed rail and strict grid use type-scale contrast, black-and-white surfaces and one red index.' },
     Demo: Swiss,
   },
   {
-    style: 'cyberpunk', name: { zh: '赛博朋克', en: 'Cyberpunk' },
+    style: 'cyberpunk', name: {"zh":"赛博朋克","en":"Cyberpunk"},
     note: { zh: '等宽终端、切角标题与静态扫描线配霓虹实体描边，正文保持高对比。', en: 'A monospace terminal, corner-cut header and static scanlines pair solid neon edges with readable body text.' },
     Demo: Cyberpunk,
   },
   {
-    style: 'neumorphism', name: { zh: '新拟态', en: 'Neumorphism' },
+    style: 'neumorphism', name: {"zh":"新拟态","en":"Neumorphism"},
     note: { zh: '同色柔软表面上用双阴影区分凸起控件与凹陷输入，另保留实线边界与焦点。', en: 'Paired shadows distinguish raised controls from an inset field on a shared soft surface, with explicit borders and focus.' },
     Demo: Neumorphic,
   },
+  recipeVariant('flat-design', (props) => <Expanded {...props} style="flat-design" />, { zh: "纯色块与清晰层级，不依赖阴影；输入框与检查按钮采用相同风格，原有邮箱校验、清空与会话状态完整保留。", en: "Solid blocks and clear hierarchy without shadows; the field and check control share the style while preserving email validation, clearing and session state." }),
+  recipeVariant('organic', (props) => <Expanded {...props} style="organic" />, { zh: "大地色与不规则圆角，柔和而清楚；输入框与检查按钮采用相同风格，原有邮箱校验、清空与会话状态完整保留。", en: "Earth tones and irregular corners, soft yet clear; the field and check control share the style while preserving email validation, clearing and session state." }),
 ];
 
 export default styleVariants;

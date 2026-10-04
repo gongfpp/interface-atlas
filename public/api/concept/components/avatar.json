@@ -100,6 +100,16 @@
     "状态点（Status dot）",
     "尺寸档位（Sizes）"
   ],
+  "applicable_styles": [
+    "flat-design",
+    "memphis",
+    "art-deco",
+    "minimalism",
+    "neobrutalism",
+    "organic",
+    "glassmorphism",
+    "hand-drawn"
+  ],
   "related": [
     {
       "id": "badge",

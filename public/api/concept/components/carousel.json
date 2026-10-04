@@ -134,6 +134,16 @@
       }
     ]
   },
+  "applicable_styles": [
+    "editorial",
+    "cyberpunk",
+    "pixel-art",
+    "minimalism",
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "art-deco"
+  ],
   "related": [
     {
       "id": "tabs",

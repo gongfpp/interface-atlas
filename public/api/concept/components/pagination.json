@@ -100,8 +100,14 @@
     "省略号与总数计数（Count）"
   ],
   "applicable_styles": [
+    "neumorphism",
+    "vaporwave",
+    "swiss-style",
     "minimalism",
-    "swiss-style"
+    "flat-design",
+    "neobrutalism",
+    "editorial",
+    "art-deco"
   ],
   "applicable_pages": [
     "search",

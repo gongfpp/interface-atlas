@@ -65,8 +65,14 @@ anatomy:
   - 分隔符（Separator）
   - 当前页（Current page）
 applicable_styles:
-  - minimalism
   - editorial
+  - pixel-art
+  - brutalism
+  - minimalism
+  - flat-design
+  - swiss-style
+  - neobrutalism
+  - organic
 applicable_pages:
   - documentation
   - dashboard

@@ -95,7 +95,13 @@ anatomy:
   - 菜单项（Menu item）
   - 分隔线与危险项（Divider & danger item）
 applicable_styles:
+  - neumorphism
+  - y2k
+  - hand-drawn
   - minimalism
+  - flat-design
+  - swiss-style
+  - neobrutalism
   - glassmorphism
 applicable_components: []
 applicable_pages:

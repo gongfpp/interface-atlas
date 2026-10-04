@@ -72,6 +72,16 @@
     "事件节点 / Marker",
     "展开详情 / Detail"
   ],
+  "applicable_styles": [
+    "vaporwave",
+    "organic",
+    "brutalism",
+    "minimalism",
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "editorial"
+  ],
   "related": [
     {
       "id": "accordion",

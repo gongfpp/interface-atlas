@@ -103,6 +103,16 @@
     "单元格（Cell）",
     "行操作（Row actions）"
   ],
+  "applicable_styles": [
+    "editorial",
+    "swiss-style",
+    "hand-drawn",
+    "minimalism",
+    "flat-design",
+    "neobrutalism",
+    "art-deco",
+    "organic"
+  ],
   "related": [
     {
       "id": "card",

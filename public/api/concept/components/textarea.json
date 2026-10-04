@@ -122,8 +122,14 @@
     "提交 / 操作区（Actions）"
   ],
   "applicable_styles": [
+    "flat-design",
+    "hand-drawn",
+    "cyberpunk",
     "minimalism",
-    "editorial"
+    "swiss-style",
+    "neobrutalism",
+    "neumorphism",
+    "organic"
   ],
   "applicable_components": [],
   "applicable_pages": [

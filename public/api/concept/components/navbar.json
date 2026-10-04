@@ -112,9 +112,14 @@
     "用户 / 操作区"
   ],
   "applicable_styles": [
-    "minimalism",
+    "swiss-style",
+    "neobrutalism",
     "glassmorphism",
-    "editorial"
+    "minimalism",
+    "flat-design",
+    "editorial",
+    "art-deco",
+    "organic"
   ],
   "applicable_pages": [
     "landing-page",

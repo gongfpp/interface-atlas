@@ -1,3 +1,4 @@
+import { recipe, recipeVariant, type RecipeStyleId } from '../shared/styleRecipe';
 import { useId, type ReactNode } from 'react';
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
@@ -158,6 +159,20 @@ function NeumorphicCard(props: VariantDemoProps) {
   );
 }
 
+function AdditionalCard(props: VariantDemoProps & { style: RecipeStyleId }) {
+  const demo = useCardDemo(props); const r = recipe(props.style);
+  return <article data-style-recipe={props.style} className={`mx-auto w-full max-w-sm [overflow-wrap:anywhere] ${r.frame}`}>
+    <header className={r.header}>
+      <span aria-hidden="true" className={props.style === 'swiss-style' ? 'font-mono text-sm font-bold text-[#b51f24]' : 'mb-2 block text-2xl'}>{props.style === 'swiss-style' ? '08' : '◇'}</span>
+      <h3 className={r.title}>{demo.zh ? '可阅读的秩序' : 'Readable order'}</h3>
+    </header>
+    <p className={`text-sm leading-relaxed ${r.muted}`}>{demo.zh ? (props.style === 'swiss-style' ? '编号窄栏、严谨网格和高低字号，用结构呈现内容。' : '对称金色双线、菱形徽记与衬线标题，呈现典藏卡面。') : (props.style === 'swiss-style' ? 'An index rail, rigorous grid and contrasting type sizes organize the content.' : 'Symmetric gold double rules, a diamond marker and serif titles form a collection card.')}</p>
+    <CardControls demo={demo} buttonClassName={r.secondary} detailClassName={props.style === 'art-deco' ? 'font-serif' : ''}>
+      <p>{demo.zh ? '详情与收藏只保留在本次演示中，可以再次点击撤销。' : 'Details and bookmarks stay inside this demo and can be reversed by selecting again.'}</p>
+    </CardControls>
+  </article>;
+}
+
 const styleVariants: StyleVariantSet = [
   {
     style: 'minimalism', name: { zh: '极简主义', en: 'Minimalism' },
@@ -189,6 +204,8 @@ const styleVariants: StyleVariantSet = [
     note: { zh: '灰蓝同色底配凸起卡面、凹陷徽章和双阴影按钮，同时保留可见边界与焦点。', en: 'A shared blue-grey material shapes a raised card, inset badge and paired-shadow buttons with visible boundaries and focus.' },
     Demo: NeumorphicCard,
   },
+  recipeVariant('swiss-style', (props) => <AdditionalCard {...props} style="swiss-style" />, { zh: '编号窄栏对齐严格网格，大标题与细线组织摘要、详情和可撤销收藏。', en: 'An index rail follows a strict grid while large type and rules organize summaries, details and reversible bookmarking.' }),
+  recipeVariant('art-deco', (props) => <AdditionalCard {...props} style="art-deco" />, { zh: '午夜底、金色双线与菱形徽记形成对称典藏卡片，操作沿边框排列。', en: 'A midnight ground, gold double rules and diamond marker form a symmetric collection card with framed actions.' }),
 ];
 
 export default styleVariants;

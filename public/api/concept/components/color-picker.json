@@ -217,5 +217,15 @@
       "zh": "在当前项目中实现色彩选择器（Color Picker）组件。\n先检查现有表单控件与 Design Token，优先复用滑杆、输入框与色板样式。\n用途：品牌色、主题色与标注色的选定。\n要求：\n- 提供色板与取色区两种取色方式\n- 颜色值可键入且与预览同步\n- 输出合法颜色值（hex / OKLCH）\n- 尊重 prefers-reduced-motion，支持键盘操作\n- 不新增依赖\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement a Color Picker component in the current project.\nInspect existing form controls and design tokens first and reuse slider, input and swatch styles.\nUsage: choosing brand, theme and annotation colours.\nRequirements:\n- Offer both swatch and canvas ways to pick\n- Typed colour values stay in sync with the preview\n- Emit valid colour values (hex / OKLCH)\n- Respect prefers-reduced-motion and support keyboard operation\n- No new dependencies\nRun the existing project checks when done and list the modified files."
     }
-  }
+  },
+  "applicable_styles": [
+    "cyberpunk",
+    "memphis",
+    "organic",
+    "minimalism",
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "neumorphism"
+  ]
 }

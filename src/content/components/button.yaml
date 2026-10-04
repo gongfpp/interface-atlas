@@ -91,6 +91,8 @@ applicable_styles:
   - swiss-style
   - cyberpunk
   - neumorphism
+  - flat-design
+  - pixel-art
 applicable_components: []
 applicable_pages:
   - login

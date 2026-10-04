@@ -103,7 +103,14 @@
     "页脚导航提示（Footer hints）"
   ],
   "applicable_styles": [
-    "minimalism"
+    "aurora",
+    "glassmorphism",
+    "flat-design",
+    "minimalism",
+    "swiss-style",
+    "neobrutalism",
+    "cyberpunk",
+    "neumorphism"
   ],
   "related": [
     {

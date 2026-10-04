@@ -101,8 +101,14 @@
     "底部用户 / 设置区"
   ],
   "applicable_styles": [
+    "art-deco",
+    "bento-grid",
+    "editorial",
     "minimalism",
-    "swiss-style"
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "organic"
   ],
   "applicable_pages": [
     "dashboard",

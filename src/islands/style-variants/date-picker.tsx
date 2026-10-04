@@ -1,3 +1,4 @@
+import { recipe, RecipeFrame, recipeVariant, type RecipeStyleId } from '../shared/styleRecipe';
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
 
@@ -27,12 +28,10 @@ function useCalendar(session: VariantDemoProps['session'], initialMonth: number,
   const [day, setDay] = useSessionState(session, 'day', initialDay);
   const { days } = monthInfo(ym.y, ym.m);
   const shift = (delta: number) => {
-    setYm((cur) => {
-      const next = new Date(cur.y, cur.m + delta, 1);
-      const nd = new Date(next.getFullYear(), next.getMonth() + 1, 0).getDate();
-      setDay((d) => Math.min(d, nd));
-      return { y: next.getFullYear(), m: next.getMonth() };
-    });
+    const next = new Date(ym.y, ym.m + delta, 1);
+    const nextDays = monthInfo(next.getFullYear(), next.getMonth()).days;
+    setDay((current) => Math.min(current, nextDays));
+    setYm({ y: next.getFullYear(), m: next.getMonth() });
   };
   return { ym, day, days, setDay, shift };
 }
@@ -51,7 +50,7 @@ function Minimal({ session, locale }: VariantDemoProps) {
           <button type="button" aria-label={en ? 'Next month' : '下个月'} onClick={() => shift(1)}>›</button>
         </div>
       </div>
-      <div className="grid grid-cols-7 gap-y-1 text-center font-mono text-[11px]">
+      <div className="focus-visible:outline-2 focus-visible:outline-offset-2 grid grid-cols-7 gap-y-1 text-center font-mono text-[11px]">
         {DAYS.map((d, i) => <span key={i} className="py-1 text-black/35">{d}</span>)}
         {cellsFor(ym.y, ym.m).map((d, i) =>
           d === null ? <span key={`b${i}`} /> : (
@@ -61,14 +60,16 @@ function Minimal({ session, locale }: VariantDemoProps) {
               aria-pressed={d === day}
               aria-label={en ? `${MONTHS[ym.m]} ${d}, ${ym.y}` : `${ym.y}年${MONTHS[ym.m]}${d}日`}
               onClick={() => setDay(d)}
-              className={`mx-auto flex h-7 w-7 items-center justify-center ${d === day ? 'bg-black text-white' : 'hover:bg-black/5'}`}
+              className={`focus-visible:outline-2 focus-visible:outline-offset-2 mx-auto flex h-7 w-7 items-center justify-center ${d === day ? 'bg-black text-white' : 'hover:bg-black/5'}`}
             >
               {d}
             </button>
           )
         )}
       </div>
-      <p className="mt-3 text-[11px] text-black/45">{en ? `${days} days · selected ${day}` : `${days} 天 · 已选 ${day}`}</p>
+      <p className="mt-3 text-[11px] text-black/45">{en ? `${days} days · ${day ? `selected ${day}` : 'No date selected'}` : `${days} 天 · ${day ? `已选 ${day}` : '尚未选择日期'}`}</p>
+      <button type="button" onClick={() => setDay(0)} className="mt-3 min-h-11 border border-current px-3 text-xs focus-visible:outline-2 focus-visible:outline-offset-2">{en ? 'Clear date' : '清除日期'}</button>
+      <p className="mt-2 text-xs">{en ? 'Local interaction demo. No date is booked.' : '本地交互演示，不创建预约。'}</p>
     </div>
   );
 }
@@ -88,7 +89,7 @@ function Bauhaus({ session, locale }: VariantDemoProps) {
           <button type="button" aria-label={en ? 'Next month' : '下个月'} onClick={() => shift(1)}>›</button>
         </div>
       </div>
-      <div className="grid grid-cols-7 gap-1 text-center font-mono text-[10px] font-bold">
+      <div className="focus-visible:outline-2 focus-visible:outline-offset-2 grid grid-cols-7 gap-1 text-center font-mono text-[10px] font-bold">
         {DAYS.map((d, i) => <span key={i} className="py-1 text-black/50">{d}</span>)}
         {cellsFor(ym.y, ym.m).map((d, i) =>
           d === null ? <span key={`b${i}`} /> : (
@@ -98,13 +99,15 @@ function Bauhaus({ session, locale }: VariantDemoProps) {
               aria-pressed={d === day}
               aria-label={en ? `${MONTHS[ym.m]} ${d}, ${ym.y}` : `${ym.y}年${MONTHS[ym.m]}${d}日`}
               onClick={() => setDay(d)}
-              className={`mx-auto flex h-7 w-7 items-center justify-center rounded-full ${d === day ? 'bg-[#1f5fbf] text-white' : d % 7 === 0 ? 'bg-[#f2c200]' : ''}`}
+              className={`focus-visible:outline-2 focus-visible:outline-offset-2 mx-auto flex h-7 w-7 items-center justify-center rounded-full ${d === day ? 'bg-[#1f5fbf] text-white' : d % 7 === 0 ? 'bg-[#f2c200]' : ''}`}
             >
               {d}
             </button>
           )
         )}
       </div>
+      <button type="button" onClick={() => setDay(0)} className="mt-3 min-h-11 border border-current px-3 text-xs focus-visible:outline-2 focus-visible:outline-offset-2">{en ? 'Clear date' : '清除日期'}</button>
+      <p className="mt-2 text-xs">{en ? 'Local interaction demo. No date is booked.' : '本地交互演示，不创建预约。'}</p>
     </div>
   );
 }
@@ -122,7 +125,7 @@ function Cyberpunk({ session, locale }: VariantDemoProps) {
           <button type="button" aria-label={en ? 'Next month' : '下个月'} onClick={() => shift(1)}>›</button>
         </span>
       </div>
-      <div className="grid grid-cols-7 gap-1 text-center text-[10px]">
+      <div className="focus-visible:outline-2 focus-visible:outline-offset-2 grid grid-cols-7 gap-1 text-center text-[10px]">
         {DAYS.map((d, i) => <span key={i} className="text-[#3d7f8c]">{d}</span>)}
         {cellsFor(ym.y, ym.m).map((d, i) =>
           d === null ? <span key={`b${i}`} /> : (
@@ -132,21 +135,45 @@ function Cyberpunk({ session, locale }: VariantDemoProps) {
               aria-pressed={d === day}
               aria-label={en ? `${MONTHS_EN[ym.m]} ${d}, ${ym.y}` : `${ym.y}年${MONTHS_ZH[ym.m]}${d}日`}
               onClick={() => setDay(d)}
-              className={`border py-1 ${d === day ? 'border-[#ff2bd6] bg-[#ff2bd6]/20 text-[#ff2bd6] shadow-[0_0_12px_#ff2bd6]' : 'border-[#122233] text-[#7df9ff]/70 hover:border-[#00ffff]'}`}
+              className={`focus-visible:outline-2 focus-visible:outline-offset-2 border py-1 ${d === day ? 'border-[#ff2bd6] bg-[#ff2bd6]/20 text-[#ff2bd6] shadow-[0_0_12px_#ff2bd6]' : 'border-[#122233] text-[#7df9ff]/70 hover:border-[#00ffff]'}`}
             >
               {String(d).padStart(2, '0')}
             </button>
           )
         )}
       </div>
+      <button type="button" onClick={() => setDay(0)} className="mt-3 min-h-11 border border-current px-3 text-xs focus-visible:outline-2 focus-visible:outline-offset-2">{en ? 'Clear date' : '清除日期'}</button>
+      <p className="mt-2 text-xs">{en ? 'Local interaction demo. No date is booked.' : '本地交互演示，不创建预约。'}</p>
     </div>
   );
+}
+
+
+function Expanded({ session, locale, style }: VariantDemoProps & { style: RecipeStyleId }) {
+  const zh = locale === 'zh';
+  const r = recipe(style);
+  const { ym, day, setDay, shift } = useCalendar(session, 8, 14);
+  const months = zh ? MONTHS_ZH : MONTHS_EN;
+  const days = zh ? DAYS_ZH : DAYS_EN;
+  return <RecipeFrame style={style} locale={locale} title={zh ? '选择日期' : 'Choose a date'}>
+    <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+      <button type="button" aria-label={zh ? '上个月' : 'Previous month'} onClick={() => shift(-1)} className={r.secondary}>‹</button>
+      <p aria-live="polite" className="text-sm font-semibold">{months[ym.m]} {ym.y}</p>
+      <button type="button" aria-label={zh ? '下个月' : 'Next month'} onClick={() => shift(1)} className={r.secondary}>›</button>
+    </div>
+    <div className="grid grid-cols-7 gap-1 text-center text-xs">
+      {days.map((label, i) => <span key={i} className={`py-2 ${r.muted}`}>{label}</span>)}
+      {cellsFor(ym.y, ym.m).map((date, i) => date === null ? <span key={`blank-${i}`} /> : <button key={date} type="button" aria-pressed={day === date} aria-label={zh ? `${ym.y}年${ym.m + 1}月${date}日` : `${months[ym.m]} ${date}, ${ym.y}`} onClick={() => setDay(date)} className={`focus-visible:outline-2 focus-visible:outline-offset-2 min-h-11 !min-w-0 !p-1 ${day === date ? r.active : r.item}`}>{date}</button>)}
+    </div>
+    <p role="status" className={`mt-4 text-sm ${r.muted}`}>{day ? (zh ? `已选：${ym.y}年${ym.m + 1}月${day}日` : `Selected: ${months[ym.m]} ${day}, ${ym.y}`) : (zh ? '尚未选择日期' : 'No date selected')}</p>
+    <button type="button" onClick={() => setDay(0)} className={`focus-visible:outline-2 focus-visible:outline-offset-2 mt-3 ${r.secondary}`}>{zh ? '清除日期' : 'Clear date'}</button>
+  </RecipeFrame>;
 }
 
 const styleVariants: StyleVariantSet = [
   {
     style: 'minimalism',
-    name: { zh: '极简主义', en: 'Minimalism' },
+    name: {"zh":"极简主义","en":"Minimalism"},
     note: {
       zh: '发丝线分隔的日历网格，选中态只用一块黑色方块，没有任何圆角和阴影；翻月是真实状态。',
       en: 'A hairline-divided calendar grid where the selection is just a black square — no radius, no shadow, with real month paging.',
@@ -155,7 +182,7 @@ const styleVariants: StyleVariantSet = [
   },
   {
     style: 'bauhaus',
-    name: { zh: '包豪斯', en: 'Bauhaus' },
+    name: {"zh":"包豪斯","en":"Bauhaus"},
     note: {
       zh: '红黄蓝三原色圆形日期，粗黑外框与几何标题，把日历变成构成练习。',
       en: 'Primary red/blue/yellow circles inside a heavy black frame turn the calendar into a geometric composition.',
@@ -164,13 +191,18 @@ const styleVariants: StyleVariantSet = [
   },
   {
     style: 'cyberpunk',
-    name: { zh: '赛博朋克', en: 'Cyberpunk' },
+    name: {"zh":"赛博朋克","en":"Cyberpunk"},
     note: {
       zh: '近黑底、青色霓虹边框和等宽数字，选中日发出洋红色辉光。',
       en: 'Near-black with cyan neon borders and monospaced digits; the selected day emits a magenta glow.',
     },
     Demo: Cyberpunk,
   },
+  recipeVariant('flat-design', (props) => <Expanded {...props} style="flat-design" />, { zh: "纯色块与清晰层级，不依赖阴影；日期格、月份导航和选中日使用同一几何体系，真实翻月与清除日期。", en: "Solid blocks and clear hierarchy without shadows; date cells, month controls and the active day share the geometry, with real paging and clear." }),
+  recipeVariant('swiss-style', (props) => <Expanded {...props} style="swiss-style" />, { zh: "编号网格、直角边界与红色强调；日期格、月份导航和选中日使用同一几何体系，真实翻月与清除日期。", en: "An indexed grid, square edges and a red accent; date cells, month controls and the active day share the geometry, with real paging and clear." }),
+  recipeVariant('neobrutalism', (props) => <Expanded {...props} style="neobrutalism" />, { zh: "粗黑描边、硬投影与高对比选中；日期格、月份导航和选中日使用同一几何体系，真实翻月与清除日期。", en: "Heavy black outlines, hard shadows and bold selection; date cells, month controls and the active day share the geometry, with real paging and clear." }),
+  recipeVariant('neumorphism', (props) => <Expanded {...props} style="neumorphism" />, { zh: "同色曲面、双向阴影与实体边界；日期格、月份导航和选中日使用同一几何体系，真实翻月与清除日期。", en: "Shared soft surfaces, paired shadows and explicit borders; date cells, month controls and the active day share the geometry, with real paging and clear." }),
+  recipeVariant('organic', (props) => <Expanded {...props} style="organic" />, { zh: "大地色与不规则圆角，柔和而清楚；日期格、月份导航和选中日使用同一几何体系，真实翻月与清除日期。", en: "Earth tones and irregular corners, soft yet clear; date cells, month controls and the active day share the geometry, with real paging and clear." }),
 ];
 
 export default styleVariants;

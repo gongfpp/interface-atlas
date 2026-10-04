@@ -250,11 +250,11 @@ test('风格方案的附加形式在英文输出中明确覆盖预览，而不�
 });
 
 for (const [locale, width] of [['zh', 390], ['en', 1280]]) {
-  for (const [component, style] of [['button', 'cyberpunk'], ['input', 'swiss-style'], ['card', 'neumorphism']]) {
+  for (const [component, style] of [['button', 'pixel-art'], ['input', 'organic'], ['card', 'art-deco'], ['select', 'neumorphism'], ['toolbar', 'swiss-style'], ['dropdown', 'flat-design']]) {
     test(`${locale} 新增 ${component}/${style} 风格能完整保存、恢复并复制当前方案`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
       const lab = await openLab(page, `${locale === 'en' ? '/en' : ''}/components/${component}`);
-      await expect(lab.locator('[data-style]')).toHaveCount(6);
+      await expect(lab.locator('[data-style]')).toHaveCount(8);
       await lab.locator(`[data-style="${style}"]`).click();
       const text = await lab.locator('pre').innerText();
       expect(text).toContain(`style=${style}`);

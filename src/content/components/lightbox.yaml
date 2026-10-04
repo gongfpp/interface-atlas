@@ -86,6 +86,15 @@ playground:
       en: Outside click or Esc closes; focus returns to the thumbnail
     - zh: 图片加载失败或视频不可用时有替代说明
       en: Failed image or video states carry a replacement message
+applicable_styles:
+  - art-deco
+  - aurora
+  - pixel-art
+  - minimalism
+  - flat-design
+  - swiss-style
+  - neobrutalism
+  - glassmorphism
 related:
   - id: modal
     relation: alternative_to

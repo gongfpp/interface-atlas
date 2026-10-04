@@ -151,6 +151,16 @@
     "箭头（Arrow）",
     "关闭按钮（Close）"
   ],
+  "applicable_styles": [
+    "flat-design",
+    "neumorphism",
+    "editorial",
+    "minimalism",
+    "swiss-style",
+    "neobrutalism",
+    "glassmorphism",
+    "cyberpunk"
+  ],
   "related": [
     {
       "id": "tooltip",

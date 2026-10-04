@@ -78,6 +78,15 @@ anatomy:
   - 展开指示箭头（Chevron）
   - 内容区（Panel）
   - 分隔线（Divider）
+applicable_styles:
+  - swiss-style
+  - brutalism
+  - liquid-glass
+  - minimalism
+  - flat-design
+  - neobrutalism
+  - editorial
+  - art-deco
 related:
   - id: accordion-expand
     relation: used_with

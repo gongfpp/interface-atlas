@@ -204,5 +204,15 @@
       "zh": "在当前项目中实现一个 Tag Input 标签输入组件。\n先检查现有组件体系和 Design Token，优先复用输入框与徽标样式。\n支持自由输入、自动补全与文件名三种形态。\n保持现有项目视觉风格。不要新增不必要依赖。\n尊重 prefers-reduced-motion，支持键盘操作。\n完成后运行项目现有检查，并列出修改的文件。",
       "en": "Implement a Tag Input component in the current project.\nInspect the existing component system and design tokens first; reuse field and badge styles.\nSupport free-form, autocomplete and file-name-chip shapes.\nKeep the project's visual style. Add no unnecessary dependencies.\nRespect prefers-reduced-motion and support keyboard operation.\nRun the project's existing checks when done and list the modified files."
     }
-  }
+  },
+  "applicable_styles": [
+    "minimalism",
+    "memphis",
+    "brutalism",
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "neumorphism",
+    "organic"
+  ]
 }

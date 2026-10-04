@@ -100,6 +100,15 @@ confusable:
     note:
       zh: 模态框居中且强调强制决策；底部抽屉贴底、可下滑关闭。
       en: A modal sits centered and demands a decision; a bottom sheet hugs the bottom and swipes away.
+applicable_styles:
+  - glassmorphism
+  - neumorphism
+  - swiss-style
+  - minimalism
+  - flat-design
+  - neobrutalism
+  - cyberpunk
+  - hand-drawn
 related:
   - id: drawer
     relation: alternative_to

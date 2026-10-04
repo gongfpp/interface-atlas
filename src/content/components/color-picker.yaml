@@ -163,3 +163,13 @@ prompts:
       - Respect prefers-reduced-motion and support keyboard operation
       - No new dependencies
       Run the existing project checks when done and list the modified files.
+
+applicable_styles:
+  - cyberpunk
+  - memphis
+  - organic
+  - minimalism
+  - flat-design
+  - swiss-style
+  - neobrutalism
+  - neumorphism

@@ -64,8 +64,14 @@ anatomy:
   - 分组导航树（Group + Item）
   - 底部用户 / 设置区
 applicable_styles:
+  - art-deco
+  - bento-grid
+  - editorial
   - minimalism
+  - flat-design
   - swiss-style
+  - neobrutalism
+  - organic
 applicable_pages:
   - dashboard
   - settings

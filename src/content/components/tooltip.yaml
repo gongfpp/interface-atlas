@@ -90,6 +90,15 @@ anatomy:
   - 触发元素（Trigger）
   - 气泡（Bubble）
   - 箭头（Arrow）
+applicable_styles:
+  - retro-futurism
+  - cyberpunk
+  - skeuomorphism
+  - minimalism
+  - flat-design
+  - swiss-style
+  - neobrutalism
+  - glassmorphism
 related:
   - id: popover
     relation: similar_to

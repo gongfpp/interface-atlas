@@ -124,3 +124,13 @@ prompts:
       - Add no dependencies.
 
       Run existing checks and list changed files and validation results.
+
+applicable_styles:
+  - hand-drawn
+  - flat-design
+  - skeuomorphism
+  - minimalism
+  - swiss-style
+  - neobrutalism
+  - neumorphism
+  - organic

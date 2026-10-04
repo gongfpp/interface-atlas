@@ -141,3 +141,13 @@ prompts:
       - Add no dependencies.
 
       Run existing checks and list changed files and validation results.
+
+applicable_styles:
+  - minimalism
+  - neobrutalism
+  - glassmorphism
+  - flat-design
+  - swiss-style
+  - neumorphism
+  - organic
+  - cyberpunk
