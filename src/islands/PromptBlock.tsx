@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useClipboard } from "./shared/useClipboard";
 import { beacon, track } from "@/lib/track";
-import { saveSolution } from "@/lib/solutions";
+import { saveSolutionDraft, solutionDraftSignature, type SolutionSaveAttempt } from "@/lib/solutions";
 
 type Layer = "basic" | "design" | "implementation" | "agent";
 
@@ -97,10 +97,7 @@ export default function PromptBlock({
   const setSpecific = onSolutionScopeChange ?? setLocalSpecific;
   const [group, setGroup] = useState("");
   const [note, setNote] = useState("");
-  const [saveResult, setSaveResult] = useState<{
-    signature: string;
-    persisted: boolean;
-  } | null>(null);
+  const [saveResult, setSaveResult] = useState<SolutionSaveAttempt | null>(null);
   const current = selection && specific;
   const selectedStyle = current ? selection.styleId : styleId;
   const [toggles, setToggles] = useState<Record<Toggle, boolean>>(() => {
@@ -228,32 +225,29 @@ export default function PromptBlock({
     beacon("/api/log-prompt", { concept: conceptName, layer });
   });
 
-  const signature = JSON.stringify([text, group.trim(), note.trim()]);
+  const draft = selection ? {
+    conceptId: conceptName,
+    conceptType: selection.conceptType,
+    name: selection.name,
+    locale,
+    styleId: selection.styleId,
+    styleName: selection.styleName,
+    mode: selection.mode,
+    modeName: selection.modeName,
+    variantName: selection.variantName,
+    variant: selection.variant,
+    requirements: (Object.keys(toggles) as Toggle[])
+      .filter((k) => toggles[k])
+      .map((k) => TOGGLE_LABEL[k][locale]),
+    prompt: text,
+    group: group.trim() || (zh ? "我的项目" : "My project"),
+    note: note.trim(),
+    url: sourceURL,
+  } : null;
+  const signature = draft ? solutionDraftSignature(draft) : "";
   const saved = saveResult?.signature === signature ? saveResult : null;
   const save = () => {
-    if (!selection) return;
-    const ok = saveSolution({
-      id: crypto.randomUUID(),
-      conceptId: conceptName,
-      conceptType: selection.conceptType,
-      name: selection.name,
-      locale,
-      styleId: selection.styleId,
-      styleName: selection.styleName,
-      mode: selection.mode,
-      modeName: selection.modeName,
-      variantName: selection.variantName,
-      variant: selection.variant,
-      requirements: (Object.keys(toggles) as Toggle[])
-        .filter((k) => toggles[k])
-        .map((k) => TOGGLE_LABEL[k][locale]),
-      prompt: text,
-      group: group.trim() || (zh ? "我的项目" : "My project"),
-      note: note.trim(),
-      url: sourceURL,
-      createdAt: Date.now(),
-    });
-    setSaveResult({ signature, persisted: ok });
+    if (draft) setSaveResult(saveSolutionDraft(draft, saveResult));
   };
 
   return (

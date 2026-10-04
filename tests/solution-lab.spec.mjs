@@ -164,3 +164,40 @@ test('lab reports failed persistence without claiming the reference is saved', a
   await expect(lab.getByRole('button', { name: '保存方案', exact: true })).toBeEnabled();
   await expect(lab.locator('pre')).toContainText('当前方案');
 });
+
+test('同一方案多次保存失败后恢复，参考册与刷新结果只有一条', async ({ page }) => {
+  const lab = await openLab(page);
+  await page.evaluate(() => {
+    window.__atlasSetItem = Storage.prototype.setItem;
+    Storage.prototype.setItem = () => { throw new DOMException('full', 'QuotaExceededError'); };
+  });
+  const save = lab.getByRole('button', { name: '保存方案', exact: true });
+  await save.click();
+  await expect(lab.getByText('浏览器未能持久保存。请现在复制上方说明；刷新或离开此页可能丢失。', { exact: true })).toBeVisible();
+  await save.click();
+  await page.evaluate(() => { Storage.prototype.setItem = window.__atlasSetItem; delete window.__atlasSetItem; });
+  await save.click();
+  await expect(lab.getByRole('button', { name: /已保存方案/ })).toBeDisabled();
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('ia-solutions-v1')).length)).toBe(1);
+  await lab.getByRole('link', { name: /打开项目参考册/ }).click();
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await page.reload();
+  await expect(page.getByRole('article')).toHaveCount(1);
+});
+
+test('旧复制失败晚到，界面仍保留最近一次成功的反馈', async ({ page }) => {
+  const lab = await openLab(page);
+  await page.evaluate(() => {
+    window.__atlasCopies = [];
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: {
+      writeText: () => new Promise((resolve, reject) => window.__atlasCopies.push({ resolve, reject })),
+    } });
+  });
+  const copy = lab.getByRole('button', { name: /复制 Prompt/ });
+  await copy.click(); await copy.click();
+  await page.evaluate(() => window.__atlasCopies[1].resolve());
+  await expect(lab.getByRole('button', { name: /已复制/ })).toBeVisible();
+  await page.evaluate(() => window.__atlasCopies[0].reject(new Error('old denial')));
+  await expect(lab.getByRole('button', { name: /已复制/ })).toBeVisible();
+  await expect(lab.getByText('无法访问剪贴板，请选中下方文本手动复制。', { exact: true })).toHaveCount(0);
+});

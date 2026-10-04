@@ -19,6 +19,32 @@ export interface SavedSolution {
   createdAt: number;
 }
 
+export type SolutionDraft = Omit<SavedSolution, 'id' | 'createdAt'>;
+export interface SolutionSaveAttempt {
+  signature: string;
+  id: string;
+  createdAt: number;
+  persisted: boolean;
+}
+
+/** 草稿内容未变时，失败重试必须沿用同一条记录的身份。 */
+export function solutionDraftSignature(draft: SolutionDraft): string {
+  return JSON.stringify([
+    draft.conceptId, draft.conceptType, draft.name, draft.locale,
+    draft.styleId, draft.styleName, draft.mode, draft.modeName ?? '',
+    draft.variant, draft.variantName ?? '', draft.requirements, draft.prompt,
+    draft.group.trim(), draft.note.trim(), draft.url,
+  ]);
+}
+
+export function saveSolutionDraft(draft: SolutionDraft, previous: SolutionSaveAttempt | null): SolutionSaveAttempt {
+  const signature = solutionDraftSignature(draft);
+  const sameDraft = previous?.signature === signature;
+  const id = sameDraft ? previous.id : crypto.randomUUID();
+  const createdAt = sameDraft ? previous.createdAt : Date.now();
+  return { signature, id, createdAt, persisted: saveSolution({ ...draft, id, createdAt }) };
+}
+
 const KEY = 'ia-solutions-v1';
 const EMPTY: SavedSolution[] = [];
 const listeners = new Set<() => void>();
