@@ -64,6 +64,13 @@ anatomy:
   - 标题（Title）
   - 描述（Body）
   - 操作区（Actions）
+applicable_styles:
+  - minimalism
+  - aurora
+  - bento-grid
+  - editorial
+  - neobrutalism
+  - neumorphism
 related:
   - id: table
     relation: alternative_to

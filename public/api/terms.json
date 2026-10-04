@@ -2599,7 +2599,10 @@
       "applicable_styles": [
         "minimalism",
         "neobrutalism",
-        "glassmorphism"
+        "glassmorphism",
+        "swiss-style",
+        "cyberpunk",
+        "neumorphism"
       ],
       "applicable_components": [],
       "applicable_pages": [
@@ -2696,8 +2699,8 @@
       },
       "playground": {
         "task": {
-          "zh": "在本地模拟中点击保存，处理中取消，再用键盘重试；比较三种风格和四种按钮层级。",
-          "en": "Save in the local simulation, cancel while pending, then retry with the keyboard. Compare three styles and four button levels."
+          "zh": "在本地模拟中点击保存，处理中取消，再用键盘重试；比较六种风格和四种按钮层级。",
+          "en": "Save in the local simulation, cancel while pending, then retry with the keyboard. Compare six styles and four button levels."
         },
         "checks": [
           {
@@ -2824,6 +2827,14 @@
         "标题（Title）",
         "描述（Body）",
         "操作区（Actions）"
+      ],
+      "applicable_styles": [
+        "minimalism",
+        "aurora",
+        "bento-grid",
+        "editorial",
+        "neobrutalism",
+        "neumorphism"
       ],
       "related": [
         {
@@ -5295,7 +5306,11 @@
       ],
       "applicable_styles": [
         "minimalism",
-        "swiss-style"
+        "neobrutalism",
+        "editorial",
+        "swiss-style",
+        "cyberpunk",
+        "neumorphism"
       ],
       "applicable_components": [],
       "applicable_pages": [

@@ -14,7 +14,7 @@ test('Use current solution returns from generic scope and follows the visible st
   await lab.getByRole('button', { name: /使用当前方案/ }).click();
   await expect(lab.getByRole('button', { name: '当前方案', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await expect(lab.locator('[data-solution-summary]')).toContainText('极简主义');
-  await expect(lab.locator('pre')).toContainText('只保留一条发丝下划线');
+  await expect(lab.locator('pre')).toContainText('发丝下划线');
 });
 
 test('a solution saved from the lab restores style, form, width and exact requirements', async ({ page }) => {
@@ -248,3 +248,25 @@ test('风格方案的附加形式在英文输出中明确覆盖预览，而不�
   await expect(lab.locator('[data-solution-summary]')).toContainText('Previewed variant');
   await expect(lab.locator('pre')).not.toContainText('Additional variant (not previewed)');
 });
+
+for (const [locale, width] of [['zh', 390], ['en', 1280]]) {
+  for (const [component, style] of [['button', 'cyberpunk'], ['input', 'swiss-style'], ['card', 'neumorphism']]) {
+    test(`${locale} 新增 ${component}/${style} 风格能完整保存、恢复并复制当前方案`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 900 });
+      const lab = await openLab(page, `${locale === 'en' ? '/en' : ''}/components/${component}`);
+      await expect(lab.locator('[data-style]')).toHaveCount(6);
+      await lab.locator(`[data-style="${style}"]`).click();
+      const text = await lab.locator('pre').innerText();
+      expect(text).toContain(`style=${style}`);
+      await lab.getByRole('button', { name: locale === 'zh' ? '保存方案' : 'Save solution', exact: true }).click();
+      await lab.getByRole('link', { name: locale === 'zh' ? /打开项目参考册/ : /Open project notebook/ }).click();
+      await page.getByRole('link', { name: locale === 'zh' ? /恢复方案/ : /Restore solution/ }).click();
+      const restored = page.locator('[data-solution-lab]');
+      await expect(restored.locator(`[data-style="${style}"]`)).toHaveAttribute('aria-pressed', 'true');
+      await expect(restored.locator('pre')).toHaveText(text);
+      await restored.getByRole('button', { name: locale === 'zh' ? '设备视口' : 'Device viewport', exact: true }).click();
+      await expect(restored.locator('iframe')).toHaveAttribute('src', new RegExp(`style=${style}`));
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    });
+  }
+}

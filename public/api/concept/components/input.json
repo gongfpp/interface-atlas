@@ -136,7 +136,11 @@
   ],
   "applicable_styles": [
     "minimalism",
-    "swiss-style"
+    "neobrutalism",
+    "editorial",
+    "swiss-style",
+    "cyberpunk",
+    "neumorphism"
   ],
   "applicable_components": [],
   "applicable_pages": [

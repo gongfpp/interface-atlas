@@ -138,16 +138,17 @@ import type { StyleVariantSet } from './types';
 
 const styleVariants: StyleVariantSet = [
   { style: 'neobrutalism', name: { zh: '新粗野主义', en: 'Neobrutalism' }, note: { zh: '…', en: '…' }, Demo: Variant },
-  // …共 3 个
+  // …按适用性增加已实现的变体
 ];
 export default styleVariants;
 ```
 
-- 每个组件 3 个变体，各选一种站点风格；必须按该风格**重新设计**（形态 / 边框 / 投影 / 字体 / 间距 / 交互），不是换色。
+- 每个组件至少 3 个变体，常用组件按真实适用性继续扩展，不设置 3 个的上限；各选一种已有站点风格，必须按该风格**重新设计**（形态 / 边框 / 投影 / 字体 / 间距 / 交互），不是换色。
 - `Demo` 收到 `{ locale, session }: VariantDemoProps`。业务状态用 `useSessionState(session, '<key>', initial)`，**同一组件的所有变体共用同一 key**，这样切换风格会保留输入 / 选择 / 展开等状态；hover、按压、指针等瞬态状态留作局部 `useState`。
-- 只引用 `react`、`./types`、`./session`，不新增依赖；暗色风格自行铺底色（画廊画布是 `bg-paper`）。
+- 优先复用 `react`、`./types`、`./session` 与已有共享行为，不新增依赖；暗色风格自行铺底色（画廊画布是 `bg-paper`）。
 - 状态与反馈：每个变体都应让 `hover / focus / active / disabled` 有可见差异，`selected` 与 `pressed` 语义要区分；focus 不能只靠 hover，且必须保留可见焦点环；动效尊重 `prefers-reduced-motion`。
 - 文案：功能性操作文本（按钮、错误、可访问名）应随 `locale` 本地化；纯装饰性的样例品牌文字可保留英文。
+- `applicable_styles` 与本轮实际实现的覆盖同步；按钮、输入框、卡片当前各 6 套。风格名称取已有双语定义，不为凑数量强行组合不适用风格。
 - 未提供变体文件的条目只显示基础示例，不显示无效风格控件。
 - `demo.modes` 只声明真正改变渲染或交互的模式；仅换一句说明不算支持该模式。`dark` 允许通过外层主题变量生效。
 - `SolutionLab` 统一持有选择，`PromptBlock` 的「当前方案」从它派生；「通用概念说明」保留独立四层文本。不要另建一套预览风格状态。

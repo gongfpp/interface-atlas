@@ -3,13 +3,13 @@ import { useButtonFeedback } from '../shared/useButtonFeedback';
 import { buttonFeedbackText } from '../../lib/button-feedback';
 
 const focus = 'focus-visible:outline-2 focus-visible:outline-offset-4';
-const target = 'min-h-11 min-w-28 disabled:cursor-wait disabled:opacity-60';
+const target = 'min-h-11 min-w-28 max-w-full disabled:cursor-wait disabled:opacity-60';
 
 function Minimal({ session, locale }: VariantDemoProps) {
   const zh = locale === 'zh';
   const action = useButtonFeedback(session);
   return (
-    <div className="mx-auto flex max-w-sm flex-col gap-3 border border-black/10 bg-white p-5 text-black">
+    <div className="mx-auto flex max-w-sm flex-col gap-3 border border-black/10 bg-white p-5 text-black [overflow-wrap:anywhere]">
       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-black/50">{zh ? '保存更改 · 本地模拟' : 'Save changes · local demo'}</p>
       <div className="flex flex-wrap gap-2">
         <button type="button" disabled={action.busy} aria-busy={action.busy} onClick={action.start}
@@ -31,7 +31,7 @@ function Neobrutal({ session, locale }: VariantDemoProps) {
   const action = useButtonFeedback(session);
   const base = `${target} ${focus} focus-visible:outline-black border-[2.5px] border-black px-4 py-2 text-xs font-black uppercase tracking-wide transition-all duration-100 shadow-[5px_5px_0_0_#000] motion-safe:enabled:active:translate-x-[3px] motion-safe:enabled:active:translate-y-[3px] enabled:active:shadow-none motion-reduce:transition-none`;
   return (
-    <div className="mx-auto flex max-w-sm flex-col gap-3 bg-[#fdf6b2] p-5 text-black" style={{ border: '2.5px solid #000' }}>
+    <div className="mx-auto flex max-w-sm flex-col gap-3 bg-[#fdf6b2] p-5 text-black [overflow-wrap:anywhere]" style={{ border: '2.5px solid #000' }}>
       <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em]">{zh ? '保存更改 · 本地模拟' : 'Save changes · local demo'}</p>
       <div className="flex flex-wrap gap-3">
         <button type="button" disabled={action.busy} aria-busy={action.busy} onClick={action.start} className={`${base} bg-[#ff5d5d]`}>
@@ -51,7 +51,7 @@ function Glass({ session, locale }: VariantDemoProps) {
   const zh = locale === 'zh';
   const action = useButtonFeedback(session);
   return (
-    <div className="relative mx-auto flex max-w-sm flex-col gap-4 overflow-hidden rounded-2xl bg-gradient-to-br from-[#7c5cff] via-[#ff6ec7] to-[#5ad1ff] p-6 text-white">
+    <div className="relative mx-auto flex max-w-sm flex-col gap-4 overflow-hidden rounded-2xl bg-gradient-to-br from-[#7c5cff] via-[#ff6ec7] to-[#5ad1ff] p-6 text-white [overflow-wrap:anywhere]">
       <span className="pointer-events-none absolute -left-6 -top-8 h-24 w-24 rounded-full bg-white/40 blur-xl" />
       <span className="pointer-events-none absolute -bottom-10 right-0 h-28 w-28 rounded-full bg-white/30 blur-2xl" />
       <p className="relative font-mono text-[10px] uppercase tracking-[0.25em] text-white/80">{zh ? '保存更改 · 本地模拟' : 'Save changes · local demo'}</p>
@@ -66,6 +66,66 @@ function Glass({ session, locale }: VariantDemoProps) {
       </div>
       <p role="status" aria-atomic="true" className="relative min-h-10 text-xs leading-relaxed">{buttonFeedbackText(action.state, locale)}</p>
       <p className="relative text-[11px] leading-relaxed text-white/80">{zh ? '磨砂玻璃叠在彩色背景上，用边框和模糊建立层次；悬停与键盘聚焦都有反馈。' : 'Frosted glass over a colourful backdrop, with borders and blur for hierarchy. Hover and keyboard focus both give feedback.'}</p>
+    </div>
+  );
+}
+
+function Swiss({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
+  const action = useButtonFeedback(session);
+  return (
+    <div className="mx-auto grid w-full max-w-sm grid-cols-[2rem_minmax(0,1fr)] gap-4 border-y-2 border-black bg-white p-5 text-black [overflow-wrap:anywhere]">
+      <span className="font-mono text-xs font-bold text-[#b21f1f]" aria-hidden="true">01</span>
+      <div className="min-w-0">
+        <p className="border-b border-black pb-3 text-xs font-bold uppercase tracking-[0.18em]">{zh ? '操作 / 本地模拟' : 'Action / local demo'}</p>
+        <h4 className="my-5 text-3xl font-black leading-none tracking-tight">{zh ? '清楚。直接。' : 'Clear. Direct.'}</h4>
+        <button type="button" disabled={action.busy} aria-busy={action.busy} onClick={action.start} className={`${target} ${focus} flex w-full items-center justify-between gap-3 bg-[#b21f1f] px-4 py-3 text-left text-sm font-bold text-white hover:bg-black focus-visible:outline-black`}>
+          <span>{action.busy ? (zh ? '处理中…' : 'Working…') : zh ? '保存' : 'Save'}</span><span aria-hidden="true">↗</span>
+        </button>
+        <button type="button" onClick={action.cancel} className={`${target} ${focus} mt-2 w-full border-b border-black px-4 py-3 text-left text-sm font-semibold hover:bg-black/5 focus-visible:outline-black`}>{zh ? '取消' : 'Cancel'}</button>
+        <p role="status" aria-atomic="true" className="mt-4 min-h-10 border-t border-black/20 pt-3 text-xs leading-relaxed">{buttonFeedbackText(action.state, locale)}</p>
+      </div>
+    </div>
+  );
+}
+
+function Cyberpunk({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
+  const action = useButtonFeedback(session);
+  return (
+    <div className="relative mx-auto w-full max-w-sm border border-[#45f4db] bg-[#080d19] p-5 font-mono text-[#d5fff8] [overflow-wrap:anywhere]">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-10" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 3px, #45f4db 3px, #45f4db 4px)' }} />
+      <div className="relative">
+        <p className="border-b border-[#45f4db]/50 pb-3 text-[10px] uppercase tracking-[0.18em] text-[#ff9df1]">{zh ? '终端 06 / 本地模拟' : 'Terminal 06 / local demo'}</p>
+        <h4 className="my-5 text-2xl font-black uppercase leading-tight">{zh ? '等待指令_' : 'Await command_'}</h4>
+        <div className="flex flex-wrap gap-3">
+          <button type="button" disabled={action.busy} aria-busy={action.busy} onClick={action.start} className={`${target} ${focus} border-2 border-[#45f4db] bg-[#45f4db] px-4 py-3 text-xs font-black uppercase text-[#080d19] shadow-[3px_3px_0_#eb73dc] enabled:hover:shadow-[0_0_16px_#45f4db55] enabled:active:shadow-none focus-visible:outline-[#ff9df1]`}>
+            {action.busy ? (zh ? '处理中…' : 'Working…') : zh ? '保存' : 'Save'}
+          </button>
+          <button type="button" onClick={action.cancel} className={`${target} ${focus} border border-[#ff9df1] bg-[#080d19] px-4 py-3 text-xs uppercase text-[#ffb7f5] hover:bg-[#31182e] focus-visible:outline-[#45f4db]`}>{zh ? '取消' : 'Cancel'}</button>
+        </div>
+        <p role="status" aria-atomic="true" className="mt-5 min-h-10 border-l-2 border-[#45f4db] pl-3 text-xs leading-relaxed">{buttonFeedbackText(action.state, locale)}</p>
+      </div>
+    </div>
+  );
+}
+
+function Neumorphic({ session, locale }: VariantDemoProps) {
+  const zh = locale === 'zh';
+  const action = useButtonFeedback(session);
+  const raised = 'shadow-[5px_5px_10px_#bec8d3,-5px_-5px_10px_#ffffff] enabled:active:shadow-[inset_3px_3px_6px_#bec8d3,inset_-3px_-3px_6px_#ffffff]';
+  return (
+    <div className="mx-auto w-full max-w-sm rounded-3xl bg-[#e7ecf2] p-6 text-[#283c50] shadow-[8px_8px_18px_#bcc6d1,-8px_-8px_18px_#ffffff] [overflow-wrap:anywhere]">
+      <div aria-hidden="true" className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-[#b8c3ce] text-xl text-[#1756a9] shadow-[inset_4px_4px_8px_#bdc8d3,inset_-4px_-4px_8px_#ffffff]">↓</div>
+      <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#4d6175]">{zh ? '保存更改 · 本地模拟' : 'Save changes · local demo'}</p>
+      <div className="mt-5 flex flex-wrap gap-4">
+        <button type="button" disabled={action.busy} aria-busy={action.busy} onClick={action.start} className={`${target} ${focus} ${raised} rounded-2xl border border-[#738496] bg-[#e7ecf2] px-4 py-3 text-sm font-bold text-[#1756a9] hover:border-[#1756a9] focus-visible:outline-[#1756a9]`}>
+          {action.busy ? (zh ? '处理中…' : 'Working…') : zh ? '保存' : 'Save'}
+        </button>
+        <button type="button" onClick={action.cancel} className={`${target} ${focus} rounded-2xl border border-[#738496] bg-[#e7ecf2] px-4 py-3 text-sm shadow-[inset_3px_3px_6px_#bdc8d3,inset_-3px_-3px_6px_#ffffff] hover:border-[#1756a9] focus-visible:outline-[#1756a9]`}>{zh ? '取消' : 'Cancel'}</button>
+      </div>
+      <p role="status" aria-atomic="true" className="mt-5 min-h-10 text-xs leading-relaxed">{buttonFeedbackText(action.state, locale)}</p>
+      <p className="mt-3 text-[11px] leading-relaxed text-[#4d6175]">{zh ? '阴影只表达材质；文字、实线边界与焦点共同说明操作状态。' : 'Shadows express material. Labels, solid borders and focus communicate interaction state.'}</p>
     </div>
   );
 }
@@ -97,6 +157,21 @@ const styleVariants: StyleVariantSet = [
       en: 'A translucent frosted surface over a colourful gradient — border and backdrop blur replace solid fills, lifting gently on hover.',
     },
     Demo: Glass,
+  },
+  {
+    style: 'swiss-style', name: { zh: '瑞士风格', en: 'Swiss Style' },
+    note: { zh: '编号侧栏、严格左对齐与大字号建立网格秩序；单一红色主按钮和细线取消操作突出层级。', en: 'An indexed rail, flush-left grid and strong type scale establish order; one red primary action and a ruled cancel action define hierarchy.' },
+    Demo: Swiss,
+  },
+  {
+    style: 'cyberpunk', name: { zh: '赛博朋克', en: 'Cyberpunk' },
+    note: { zh: '近黑终端、静态扫描线与等宽排版配青色实体主按钮、品红偏移描边；不使用闪烁制造反馈。', en: 'A near-black terminal, static scanlines and monospace type frame a solid cyan action with magenta offsets; feedback never relies on flicker.' },
+    Demo: Cyberpunk,
+  },
+  {
+    style: 'neumorphism', name: { zh: '新拟态', en: 'Neumorphism' },
+    note: { zh: '同色软浮雕表面上的凸起主按钮与凹陷次操作；明暗双阴影之外保留深色文字、实线边框和可见焦点。', en: 'A raised primary button and inset secondary action share a soft relief surface; paired shadows retain dark labels, solid borders and visible focus.' },
+    Demo: Neumorphic,
   },
 ];
 

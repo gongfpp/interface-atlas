@@ -88,6 +88,9 @@ applicable_styles:
   - minimalism
   - neobrutalism
   - glassmorphism
+  - swiss-style
+  - cyberpunk
+  - neumorphism
 applicable_components: []
 applicable_pages:
   - login
@@ -171,8 +174,8 @@ prompts:
       Run existing project checks when done and list the modified files.
 playground:
   task:
-    zh: 在本地模拟中点击保存，处理中取消，再用键盘重试；比较三种风格和四种按钮层级。
-    en: Save in the local simulation, cancel while pending, then retry with the keyboard. Compare three styles and four button levels.
+    zh: 在本地模拟中点击保存，处理中取消，再用键盘重试；比较六种风格和四种按钮层级。
+    en: Save in the local simulation, cancel while pending, then retry with the keyboard. Compare six styles and four button levels.
   checks:
     - zh: 同一区域通常只有一个最突出的主操作。
       en: Usually give one action the strongest emphasis in a region.

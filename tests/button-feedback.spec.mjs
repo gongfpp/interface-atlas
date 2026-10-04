@@ -7,7 +7,7 @@ const copy = {
 
 for (const [locale, width] of [['zh', 390], ['en', 1280]]) {
   const text = copy[locale];
-  for (const style of ['minimalism', 'neobrutalism', 'glassmorphism']) {
+  for (const style of ['minimalism', 'neobrutalism', 'glassmorphism', 'swiss-style', 'cyberpunk', 'neumorphism']) {
     test(`${locale} ${style}：键盘、取消、重试、换风格与重置都有真实反馈`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
       await page.clock.install();

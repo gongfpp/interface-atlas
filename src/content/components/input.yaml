@@ -86,7 +86,11 @@ anatomy:
   - 帮助 / 错误提示（Helper & error）
 applicable_styles:
   - minimalism
+  - neobrutalism
+  - editorial
   - swiss-style
+  - cyberpunk
+  - neumorphism
 applicable_components: []
 applicable_pages:
   - login
