@@ -3,6 +3,7 @@ import {
   PreviewVariantContext,
   type PreviewVariants,
 } from "./shared/previewVariant";
+import { resolveSolutionVariant } from "@/lib/solution-variant";
 import type { DemoComponent, DemoMode } from "./DemoStage";
 import type { StyleVariantSet } from "./style-variants/types";
 import { createSession } from "./style-variants/session";
@@ -43,14 +44,12 @@ export default function ViewportPreview({
         };
         const Demo = demoModule.default;
         const capability = demoModule.previewVariants;
-        const interactive =
-          !current &&
-          capability &&
-          (capability.modes ?? ["default", "dark"]).includes(mode);
-        const form = params.get("form") ?? "";
-        const selected = capability?.ids.includes(form)
-          ? form
-          : (capability?.defaults?.[mode] ?? capability?.default ?? "");
+        const variant = resolveSolutionVariant({
+          forms: capability?.ids.map(id => ({ id, name: id, note: "" })) ?? [],
+          requested: params.get("form") ?? "",
+          previewRequested: params.get("preview") ?? "",
+          mode, styled: Boolean(current), capability,
+        });
         if (!alive) return;
         document.documentElement.classList.toggle(
           "dark",
@@ -64,8 +63,8 @@ export default function ViewportPreview({
               Demo={Demo}
               mode={mode}
               locale={locale}
-              initial={selected}
-              controlled={Boolean(interactive)}
+              initial={variant.preview?.id ?? ""}
+              controlled={Boolean(variant.preview)}
             />
           ),
         );

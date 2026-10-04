@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { useClipboard } from "./shared/useClipboard";
+import { solutionVariantBrief, solutionVariantLabel, type VariantScope } from "@/lib/solution-variant";
 import { beacon, track } from "@/lib/track";
 import { saveSolutionDraft, solutionDraftSignature, type SolutionSaveAttempt } from "@/lib/solutions";
 
@@ -21,6 +22,9 @@ export interface Selection {
   variant: string;
   variantName: string;
   variantNote: string;
+  variantScope?: VariantScope;
+  previewVariant?: string;
+  previewVariantName?: string;
   note: string;
   checks: string[];
   narrow: boolean;
@@ -129,6 +133,7 @@ export default function PromptBlock({
     if (selection.styleId) url.searchParams.set("style", selection.styleId);
     url.searchParams.set("mode", selection.mode);
     if (selection.variant) url.searchParams.set("form", selection.variant);
+    if (selection.variantScope === "requirement" && selection.previewVariant) url.searchParams.set("preview", selection.previewVariant);
     if (selection.narrow) url.searchParams.set("width", "360");
     url.searchParams.set(
       "requirements",
@@ -153,11 +158,7 @@ export default function PromptBlock({
             : `Current solution: ${selection.name} · ${selection.styleName} · ${selection.modeName}`,
           selection.note || prompts.design[locale],
           zh ? `参考方案：${sourceURL}` : `Reference solution: ${sourceURL}`,
-          selection.variantName
-            ? zh
-              ? `实现形式：${selection.variantName}。${selection.variantNote}`
-              : `Implementation variant: ${selection.variantName}. ${selection.variantNote}`
-            : "",
+          ...solutionVariantBrief(selection, locale),
           zh ? "交互与验收要求：" : "Interaction and acceptance requirements:",
           ...selection.checks.map((c) => `- ${c}`),
           zh
@@ -177,8 +178,8 @@ export default function PromptBlock({
             ? `预览宽度：${selection.narrow ? "360px 窄容器" : "自适应容器"}。另外验证真实手机视口、长内容与缩放。`
             : `Preview width: ${selection.narrow ? "360px container" : "responsive container"}. Also verify a real mobile viewport, long content and zoom.`,
           zh
-            ? "按上述选中方案实现，完成后对照参考预览验证外观与交互。"
-            : "Implement this selected specification, then verify appearance and interactions against the reference preview.",
+            ? "按上述选中方案实现，完成后对照参考预览验证外观与交互；标为未预览的附加要求需另外验收。"
+            : "Implement this selected specification, then verify appearance and interactions against the reference preview. Check any not-previewed requirements separately.",
         ].filter(Boolean)
       : [base.trim()];
     const style = styles.find((s) => s.id === selectedStyle);
@@ -189,8 +190,8 @@ export default function PromptBlock({
         style.guide.trim(),
         current
           ? zh
-            ? "该风格规范用于补充；若与上方当前演示的具体描述冲突，以当前演示描述为准。"
-            : "Use the style guide as supplementary context; the specific preview description above takes precedence."
+            ? "该风格规范用于补充，不覆盖上方预览描述与附加形式要求；若后两者冲突，以附加形式要求为准。"
+            : "Use the style guide as supplementary context. The preview description and additional variant requirements take precedence; if those conflict, follow the additional variant requirements."
           : "",
       );
     }
@@ -236,6 +237,9 @@ export default function PromptBlock({
     modeName: selection.modeName,
     variantName: selection.variantName,
     variant: selection.variant,
+    variantScope: selection.variantScope,
+    previewVariant: selection.previewVariant,
+    previewVariantName: selection.previewVariantName,
     requirements: (Object.keys(toggles) as Toggle[])
       .filter((k) => toggles[k])
       .map((k) => TOGGLE_LABEL[k][locale]),
@@ -276,7 +280,7 @@ export default function PromptBlock({
           </div>
           <p data-solution-summary className="text-sm font-medium">
             {current
-              ? `${zh ? "当前方案" : "Current solution"}：${selection.name} · ${selection.styleName} · ${selection.modeName}${selection.variantName ? ` · ${selection.variantName}` : ""}`
+              ? `${zh ? "当前方案" : "Current solution"}：${selection.name} · ${selection.styleName} · ${selection.modeName}${selection.variantName ? ` · ${solutionVariantLabel(selection.variantScope, locale)}：${selection.variantName}` : ""}`
               : zh
                 ? "通用说明：不跟随上方演示选择"
                 : "General brief: independent of the preview selection"}

@@ -60,3 +60,52 @@ test('签名覆盖配置与要求，分组和理由边缘空白不制造副本',
     assert.notEqual(store.solutionDraftSignature({ ...draft, ...patch }), first.signature);
   }
 });
+
+test('未预览附加要求与真实预览分别保存，重开与双语导出保留边界', async () => {
+  const { store, recover } = await setup(); recover();
+  const clarified = {
+    ...draft, variant: 'with-addons', variantName: '带前后缀', variantScope: 'requirement',
+    previewVariant: 'filled', previewVariantName: '填充',
+    url: 'https://atlas.example/components/input?form=with-addons&preview=filled',
+  };
+  const saved = store.saveSolutionDraft(clarified, null);
+  assert.equal(saved.persisted, true);
+  const reopened = await import(`../../src/lib/solutions.ts?save=${sequence++}`);
+  const [item] = reopened.getSolutionsSnapshot();
+  assert.equal(item.variantScope, 'requirement');
+  assert.equal(item.previewVariant, 'filled');
+  const zh = reopened.exportSolutionsMarkdown([item], 'zh');
+  const en = reopened.exportSolutionsMarkdown([item], 'en');
+  assert.match(zh, /实际预览形式: 填充/);
+  assert.match(zh, /附加形式（未预览）: 带前后缀/);
+  assert.match(en, /Actual preview variant: 填充/);
+  assert.match(en, /Additional variant \(not previewed\): 带前后缀/);
+  assert.match(zh, /form=with-addons&preview=filled/);
+  assert.notEqual(store.solutionDraftSignature({ ...clarified, previewVariant: 'outline' }), saved.signature);
+  assert.notEqual(store.solutionDraftSignature({ ...clarified, variantScope: 'preview' }), saved.signature);
+});
+
+test('旧版本方案仍可恢复，不倒推它从未记录的预览状态', async () => {
+  const { store, recover } = await setup(); recover();
+  assert.equal(store.saveSolutionDraft(draft, null).persisted, true);
+  const reopened = await import(`../../src/lib/solutions.ts?save=${sequence++}`);
+  const [item] = reopened.getSolutionsSnapshot();
+  assert.equal(item.variantScope, undefined);
+  const text = reopened.exportSolutionsMarkdown([item], 'zh');
+  assert.match(text, /形式: 填充/);
+  assert.doesNotMatch(text, /已预览形式|实际预览形式|附加形式/);
+});
+
+test('损坏的新预览元数据不能冒充有效方案，旧记录不受影响', async () => {
+  const { store, disk, recover } = await setup(); recover();
+  const attempt = store.saveSolutionDraft(draft, null);
+  const original = JSON.parse(disk.get('ia-solutions-v1'))[0];
+  disk.set('ia-solutions-v1', JSON.stringify([
+    original,
+    { ...original, id: 'bad-scope', variantScope: 'verified-by-browser' },
+    { ...original, id: 'bad-preview', previewVariant: 1 },
+    { ...original, id: 'bad-name', previewVariantName: {} },
+  ]));
+  const reopened = await import(`../../src/lib/solutions.ts?save=${sequence++}`);
+  assert.deepEqual(reopened.getSolutionsSnapshot().map(item => item.id), [attempt.id]);
+});

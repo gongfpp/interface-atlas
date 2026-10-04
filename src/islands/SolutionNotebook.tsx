@@ -4,6 +4,7 @@ import {
   removeSolution, solutionsStorageAvailable, subscribeSolutions, updateSolution,
   type SavedSolution,
 } from '@/lib/solutions';
+import { solutionVariantLabel } from '@/lib/solution-variant';
 import { localePath } from '@/lib/i18n';
 
 const control = 'rounded-lg border border-line bg-paper px-3 py-2 text-sm text-ink transition-colors hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent';
@@ -23,7 +24,8 @@ function SolutionCard({ item, locale, report }: { item: SavedSolution; locale: '
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h3 className="break-words font-serif text-lg font-semibold">{item.name}</h3>
-          <p className="mt-1 break-words text-sm text-ink-2">{item.styleName} · {item.modeName || item.mode}{item.variant ? ` · ${item.variantName || item.variant}` : ''}</p>
+          {item.variantScope === 'requirement' && item.previewVariant && <p className="mt-1 text-xs text-ink-3">{zh ? '实际预览形式' : 'Actual preview variant'}：{item.previewVariantName || item.previewVariant}</p>}
+          <p className="mt-1 break-words text-sm text-ink-2">{item.styleName} · {item.modeName || item.mode}{item.variant ? ` · ${solutionVariantLabel(item.variantScope, locale)}：${item.variantName || item.variant}` : ''}</p>
         </div>
         <button type="button" className={control} aria-label={`${zh ? '移除方案' : 'Remove solution'} ${item.name}`} onClick={() => report(removeSolution(item.id), zh ? '方案已移除。' : 'Solution removed.')}>{zh ? '移除' : 'Remove'}</button>
       </div>

@@ -201,3 +201,50 @@ test('旧复制失败晚到，界面仍保留最近一次成功的反馈', async
   await expect(lab.getByRole('button', { name: /已复制/ })).toBeVisible();
   await expect(lab.getByText('无法访问剪贴板，请选中下方文本手动复制。', { exact: true })).toHaveCount(0);
 });
+
+for (const width of [390, 1280]) {
+  test(`附加形式不冒充已预览效果，并可保存恢复原预览（${width}px）`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    // 普通恢复链接只有 form，不能依赖用户先点击一次已实现形式来保存预览状态。
+    const lab = await openLab(page, '/components/input?form=filled');
+    const forms = lab.getByRole('combobox', { name: /预览形式/ });
+    await forms.selectOption('with-addons');
+    await expect(lab.locator('.demo-content').getByRole('button', { name: '填充', exact: true })).toHaveAttribute('aria-pressed', 'true');
+    await expect(lab.locator('[data-solution-summary]')).toContainText('附加形式（未预览）：带前后缀');
+    const prompt = await lab.locator('pre').innerText();
+    expect(prompt).toContain('实际预览形式：填充');
+    expect(prompt).toContain('以附加形式要求为准');
+    expect(prompt).toContain('form=with-addons');
+    expect(prompt).toContain('preview=filled');
+    await lab.getByRole('button', { name: '设备视口', exact: true }).click();
+    await expect(lab.locator('iframe')).toHaveAttribute('src', /form=filled/);
+    await expect(lab.frameLocator('iframe').getByRole('button', { name: '填充', exact: true })).toHaveAttribute('aria-pressed', 'true');
+    await lab.getByRole('button', { name: '保存方案', exact: true }).click();
+    await lab.getByRole('link', { name: /打开项目参考册/ }).click();
+    await expect(page.getByRole('article')).toContainText('附加形式（未预览）：带前后缀');
+    await expect(page.getByRole('article')).toContainText('实际预览形式：填充');
+    await page.getByRole('link', { name: /恢复方案/ }).click();
+    const restored = page.locator('[data-solution-lab]');
+    await expect(restored.getByRole('combobox', { name: /预览形式/ })).toHaveValue('with-addons');
+    await expect(restored.locator('.demo-content').getByRole('button', { name: '填充', exact: true })).toHaveAttribute('aria-pressed', 'true');
+    await expect(restored.locator('pre')).toHaveText(prompt);
+    await restored.locator('.demo-content').getByRole('button', { name: '下划线', exact: true }).click();
+    await expect(restored.locator('[data-solution-summary]')).toContainText('已预览形式：下划线');
+    await expect(restored.locator('pre')).not.toContainText('附加形式（未预览）：');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  });
+}
+
+test('风格方案的附加形式在英文输出中明确覆盖预览，而不是声称已经演示', async ({ page }) => {
+  const lab = await openLab(page, '/en/components/input');
+  await lab.getByRole('button', { name: 'Minimalism', exact: true }).click();
+  await lab.getByRole('combobox', { name: /Implementation variant/ }).selectOption('filled');
+  await expect(lab.locator('[data-solution-summary]')).toContainText('Additional variant (not previewed)');
+  await expect(lab.locator('pre')).toContainText('additional variant takes precedence');
+  await expect(lab.locator('pre')).toContainText('must be verified separately');
+  await lab.getByRole('button', { name: 'Device viewport', exact: true }).click();
+  await expect(lab.locator('iframe')).not.toHaveAttribute('src', /form=filled/);
+  await lab.getByRole('button', { name: 'Base example', exact: true }).click();
+  await expect(lab.locator('[data-solution-summary]')).toContainText('Previewed variant');
+  await expect(lab.locator('pre')).not.toContainText('Additional variant (not previewed)');
+});

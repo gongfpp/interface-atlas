@@ -7,6 +7,7 @@ import {
   type PreviewVariants,
 } from "./shared/previewVariant";
 import PromptBlock, { type PromptProps } from "./PromptBlock";
+import { resolveSolutionVariant, selectSolutionVariant, solutionVariantLabel } from "@/lib/solution-variant";
 import { localePath } from "@/lib/i18n";
 
 const demos = import.meta.glob("./demos/*.tsx");
@@ -40,6 +41,7 @@ export default function SolutionLab(props: Props) {
   const [styleId, setStyle] = useState("");
   const [mode, setMode] = useState<DemoMode>("default");
   const [form, setForm] = useState("");
+  const [previewForm, setPreviewForm] = useState("");
   const [specific, setSpecific] = useState(true);
   const [narrow, setNarrow] = useState(false);
   const [device, setDevice] = useState(false);
@@ -74,6 +76,7 @@ export default function SolutionLab(props: Props) {
             ? params.get("form")!
             : "",
         );
+        setPreviewForm(params.get("preview") ?? "");
         setNarrow(params.get("width") === "360");
       })
       .catch(() => {
@@ -100,20 +103,16 @@ export default function SolutionLab(props: Props) {
   if (!loaded)
     return <p role="status">{zh ? "正在加载实验室…" : "Loading lab…"}</p>;
   const current = loaded.styles.find((s) => s.style === styleId);
-  const interactiveForms =
-    !current &&
-    (loaded.previewVariants?.modes ?? ["default", "dark"]).includes(mode)
-      ? loaded.previewVariants
-      : undefined;
-  const selectedFormId = interactiveForms
-    ? interactiveForms.ids.includes(form)
-      ? form
-      : (interactiveForms.defaults?.[mode] ?? interactiveForms.default)
-    : form;
-  const selectedForm = forms.find((v) => v.id === selectedFormId);
-  const visibleForms = interactiveForms
-    ? forms.filter((v) => interactiveForms.ids.includes(v.id))
-    : forms;
+  const variant = resolveSolutionVariant({
+    forms, requested: form, previewRequested: previewForm, mode, styled: Boolean(current), capability: loaded.previewVariants,
+  });
+  const chooseForm = (value: string) => {
+    const next = selectSolutionVariant(variant, value);
+    setForm(next.requested);
+    setPreviewForm(next.previewRequested);
+  };
+  const selectedFormId = variant.variant?.id ?? "";
+  const selectedForm = variant.variant;
   const activeMode = current ? "default" : mode;
   const selection = {
     conceptType: props.conceptType,
@@ -125,11 +124,14 @@ export default function SolutionLab(props: Props) {
     variant: selectedFormId,
     variantName: selectedForm?.name ?? "",
     variantNote: selectedForm?.note ?? "",
-    note: current?.note[locale] ?? selectedForm?.note ?? "",
+    variantScope: variant.scope,
+    previewVariant: variant.preview?.id ?? "",
+    previewVariantName: variant.preview?.name ?? "",
+    note: current?.note[locale] ?? variant.preview?.note ?? "",
     checks,
     narrow,
   };
-  const previewURL = `${localePath("/viewport", locale)}?concept=${encodeURIComponent(props.conceptName)}&mode=${activeMode}&style=${encodeURIComponent(styleId)}&form=${encodeURIComponent(selectedFormId)}`;
+  const previewURL = `${localePath("/viewport", locale)}?concept=${encodeURIComponent(props.conceptName)}&mode=${activeMode}&style=${encodeURIComponent(styleId)}&form=${encodeURIComponent(variant.preview?.id ?? "")}`;
   return (
     <div className="space-y-5" data-solution-lab>
       <div id="style-variants" className="demo-workbench">
@@ -145,7 +147,7 @@ export default function SolutionLab(props: Props) {
                 aria-pressed={!current}
                 onClick={() => {
                   setStyle("");
-                  if (current) setForm("");
+                  if (current) { setForm(""); setPreviewForm(""); }
                   setPart(null);
                 }}
               >
@@ -159,7 +161,7 @@ export default function SolutionLab(props: Props) {
                   aria-pressed={s.style === styleId}
                   onClick={() => {
                     setStyle(s.style);
-                    if (!current) setForm("");
+                    if (!current) { setForm(""); setPreviewForm(""); }
                     setPart(null);
                   }}
                 >
@@ -184,7 +186,7 @@ export default function SolutionLab(props: Props) {
                   aria-pressed={mode === m}
                   onClick={() => {
                     setMode(m);
-                    if (mode !== m) setForm("");
+                    if (mode !== m) { setForm(""); setPreviewForm(""); }
                     setPart(null);
                   }}
                 >
@@ -212,6 +214,7 @@ export default function SolutionLab(props: Props) {
               onClick={() => {
                 setSession(createSession());
                 setForm("");
+                setPreviewForm("");
                 setRevision((n) => n + 1);
                 setPart(null);
               }}
@@ -243,8 +246,8 @@ export default function SolutionLab(props: Props) {
               ) : (
                 <PreviewVariantContext.Provider
                   value={
-                    interactiveForms
-                      ? { value: selectedFormId, onChange: setForm }
+                    variant.preview
+                      ? { value: variant.preview.id, onChange: chooseForm }
                       : null
                   }
                 >
@@ -390,30 +393,36 @@ export default function SolutionLab(props: Props) {
         {forms.length > 0 && (
           <label className="mb-3 block text-sm text-ink-2">
             {zh
-              ? interactiveForms
-                ? "预览形式（与上方演示同步）"
+              ? variant.supported.length > 0
+                ? "预览形式（部分选项仅为附加要求）"
                 : "实现形式（附加要求，不改变上方演示）"
-              : interactiveForms
-                ? "Preview variant (synced with the demo)"
+              : variant.supported.length > 0
+                ? "Preview variant (some options are additional requirements)"
                 : "Implementation variant (a requirement, not a preview control)"}
             <select
               className="ml-2 max-w-full rounded-lg border border-line bg-paper p-2"
               value={selectedFormId}
-              onChange={(e) => setForm(e.target.value)}
+              onChange={(e) => chooseForm(e.target.value)}
             >
-              {!interactiveForms && (
+              {variant.supported.length === 0 && (
                 <option value="">
                   {zh ? "沿用演示形式" : "As demonstrated"}
                 </option>
               )}
-              {visibleForms.map((v) => (
-                <option key={v.id} value={v.id}>
-                  {v.name}
-                </option>
-              ))}
+              {variant.supported.length > 0 && <optgroup label={zh ? "与预览同步" : "Synced with preview"}>
+                {variant.supported.map((v) => <option key={v.id} value={v.id}>{v.name}</option>)}
+              </optgroup>}
+              {variant.additional.length > 0 && <optgroup label={solutionVariantLabel('requirement', locale)}>
+                {variant.additional.map((v) => <option key={v.id} value={v.id}>{v.name} · {zh ? "未预览" : "not previewed"}</option>)}
+              </optgroup>}
             </select>
           </label>
         )}
+        {variant.scope === 'requirement' && <p className="mb-3 text-xs text-ink-3" role="status">
+          {zh
+            ? `「${selectedForm?.name}」只加入实现要求，不改变上方演示${variant.preview ? `（仍为${variant.preview.name}）` : ''}；复制、保存和恢复时都会保留这一说明。`
+            : `${selectedForm?.name} is an additional requirement. The demo stays unchanged${variant.preview ? ` (${variant.preview.name})` : ''}; this distinction is kept when copying, saving and restoring.`}
+        </p>}
         <PromptBlock
           {...props}
           selection={selection}
