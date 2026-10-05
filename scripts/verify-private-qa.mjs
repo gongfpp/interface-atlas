@@ -35,7 +35,7 @@ for (const job of ciJobs) {
   assert.match(job, /retention-days: 7/);
   assert.match(header, /PUBLIC_LOG_API: 'off'/);
 }
-const tests = readdirSync('tests', { recursive: true }).filter((name) => name.endsWith('.spec.mjs'));
+const tests = readdirSync('tests', { recursive: true }).filter((name) => /\.(?:spec|diagnostic)\.mjs$/.test(name));
 assert.ok(tests.length > 0);
 for (const name of tests) {
   const content = readFileSync('tests/' + name, 'utf8');

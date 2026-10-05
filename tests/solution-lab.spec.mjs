@@ -129,17 +129,53 @@ for (const scenario of [
   });
 }
 
-test('a failed demo module can recover by reloading after the network is restored', async ({ page }) => {
+test('a failed demo module can recover by reloading after the network is restored', async ({ page }, testInfo) => {
   const demoChunk = /\/(?:src\/islands\/demos\/input\.tsx|_astro\/input\.[^/]+\.js)(?:\?.*)?$/;
   let aborted = 0;
-  await page.route(demoChunk, route => { aborted++; return route.abort('failed'); });
-  await page.goto('/components/input', { waitUntil: 'domcontentloaded' });
-  await expect(page.getByRole('alert').filter({ hasText: '实验室加载失败' })).toBeVisible();
-  expect(aborted).toBeGreaterThan(0);
-  await page.unroute(demoChunk);
-  await page.getByRole('button', { name: '重新加载页面', exact: true }).click();
-  await expect(page.locator('[data-solution-lab]')).toBeVisible();
-  await expect(page.locator('.demo-content').getByRole('textbox', { name: '工作邮箱', exact: true })).toBeVisible();
+  const started = Date.now(), events = [], documents = [], requestIds = new WeakMap();
+  let phase = '注入失败', nextRequestId = 0;
+  const record = (kind, details) => events.push({ elapsedMs: Date.now() - started, phase, kind, ...details });
+  const requestInfo = request => {
+    if (!requestIds.has(request)) requestIds.set(request, ++nextRequestId);
+    return { requestId: requestIds.get(request), url: request.url(), method: request.method(), resourceType: request.resourceType(), navigation: request.isNavigationRequest() };
+  };
+  const onRequest = request => record('request', requestInfo(request));
+  const onResponse = response => record('response', { ...requestInfo(response.request()), status: response.status(), cacheControl: response.headers()['cache-control'] ?? null });
+  const onFailure = request => record('requestfailed', { ...requestInfo(request), error: request.failure()?.errorText ?? null });
+  const onNavigation = frame => { if (frame === page.mainFrame()) record('framenavigated', { url: frame.url() }); };
+  page.on('request', onRequest); page.on('response', onResponse);
+  page.on('requestfailed', onFailure); page.on('framenavigated', onNavigation);
+  const captureDocument = async label => {
+    try {
+      documents.push({ label, phase, elapsedMs: Date.now() - started, ...await page.evaluate(() => ({
+        url: location.href, readyState: document.readyState, timeOrigin: performance.timeOrigin,
+        navigation: performance.getEntriesByType('navigation').map(entry => ({ type: entry.type, responseEnd: entry.responseEnd, domContentLoadedEventEnd: entry.domContentLoadedEventEnd, loadEventEnd: entry.loadEventEnd })),
+        modulepreload: [...document.querySelectorAll('link[rel="modulepreload"]')].map(link => link.href),
+        labCount: document.querySelectorAll('[data-solution-lab]').length,
+        alerts: [...document.querySelectorAll('[role="alert"]')].map(node => node.textContent?.trim()),
+      })) });
+    } catch (error) {
+      documents.push({ label, phase, elapsedMs: Date.now() - started, captureError: String(error) });
+    }
+  };
+  try {
+    await page.route(demoChunk, route => { aborted++; return route.abort('failed'); });
+    await page.goto('/components/input', { waitUntil: 'domcontentloaded' });
+    await expect(page.getByRole('alert').filter({ hasText: '实验室加载失败' })).toBeVisible();
+    expect(aborted).toBeGreaterThan(0);
+    await captureDocument('首轮加载失败');
+    await page.unroute(demoChunk);
+    phase = '网络恢复后点击原重载按钮';
+    await page.getByRole('button', { name: '重新加载页面', exact: true }).click();
+    phase = '重载后的恢复断言';
+    await expect(page.locator('[data-solution-lab]')).toBeVisible();
+    await expect(page.locator('.demo-content').getByRole('textbox', { name: '工作邮箱', exact: true })).toBeVisible();
+  } finally {
+    await captureDocument('最终状态');
+    page.off('request', onRequest); page.off('response', onResponse);
+    page.off('requestfailed', onFailure); page.off('framenavigated', onNavigation);
+    await testInfo.attach('demo-reload-evidence.json', { body: JSON.stringify({ aborted, events, documents }, null, 2), contentType: 'application/json' });
+  }
 });
 
 test('list empty state widens the category and carries the exact query into global search', async ({ page }) => {

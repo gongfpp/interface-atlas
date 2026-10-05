@@ -42,3 +42,13 @@ Tooltip 定位保留 DOM 归属，优先使用原生 manual-popover 顶层，翻
 这是 [Playwright 官方浏览器构建](https://playwright.dev/docs/browsers)在 Linux CI 上的验收。WebKit 与 Apple Safari 产品、macOS/iOS 真机并不等价；最终通过范围以实际运行报告与截图审阅为准。
 
 跨引擎首次运行中，WebKit 的两种语言 390px Tooltip 检查暴露了初次离屏挂载的独立问题：暂停的浮层仍为无边界的 `max-content` 隐藏盒，可能扩大文档宽度。暂停时移除该布局盒，锚点回到视口后再恢复原始 display 并测量。回归保留原生聚焦矩阵，并额外记录初次离屏聚焦前、立即之后和稳定后的宽度与浮层状态；不通过页面级裁切隐藏溢出。
+
+## 临时预加载恢复 A/B 诊断
+
+`50a3f868` 的 Chromium 与 Firefox 全量均通过；WebKit 全量为 416 通过、6 失败。五项是原生滚动期间点击移动风格按钮的测试前提问题，现复用有界几何观察，仍执行一次真实点击、原有选中断言及聚焦后的立即宽度断言。另一项与 [WebKit 270357](https://bugs.webkit.org/show_bug.cgi?id=270357) 的失败 modulepreload 缓存问题吻合：普通 reload 后不重新请求失败模块，不能用 503 替换原 abort 注入掩盖。
+
+当前临时流水线仅执行私有 WebKit A/B，不重复完整验收：默认构建与显式 `astro.preload-qa.config.mjs` 候选各跑六项回归和十八项冷加载采样，报告分开保存。基线失败仍使 job 失败，没有重试、跳过或 `continue-on-error`。完成诊断后必须恢复完整门禁；不能把本次 A/B 当作完整通过。
+
+默认 `astro.config.mjs` 未启用候选。候选使用 Vite client 环境配置，只取消 SolutionLab、ViewportPreview、DemoMount 三个源文件对应注册器的 JS 动态预加载；懒加载保留，其他路径沿用原策略。通过 bundler 的 `augmentChunkHash` 加入策略版本，避免手工改写已定名资产。构建对照拒绝同名 JS 内容变化，并核验仅三个注册器更名。
+
+冷加载各采三次，记录三个注册器的请求、资源时间与界面就绪时间；另以每个本地 JS 请求额外 120ms 的人工延迟观察依赖串行成本。这是同一 CI 的诊断样本，不是实际公网或移动网络性能承诺。是否采用候选，须先核实恢复成功、请求变化及性能代价。
