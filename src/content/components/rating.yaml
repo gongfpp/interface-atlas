@@ -124,3 +124,13 @@ prompts:
       - Add no dependencies.
 
       Run existing checks and list changed files and validation results.
+
+applicable_styles:
+  - retro-futurism
+  - y2k
+  - memphis
+  - flat-design
+  - minimalism
+  - neobrutalism
+  - neumorphism
+  - organic

@@ -123,6 +123,16 @@
     "填充条（Fill）",
     "标签 / 百分比（Label）"
   ],
+  "applicable_styles": [
+    "minimalism",
+    "bauhaus",
+    "pixel-art",
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "glassmorphism",
+    "cyberpunk"
+  ],
   "related": [
     {
       "id": "loading-spinner",

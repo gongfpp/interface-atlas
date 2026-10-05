@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/private-browser.mjs";
 import { readdirSync } from "node:fs";
 
 // 每个 src/islands/style-variants/<id>.tsx 都应有对应组件详情页上的“不同风格”画廊。
@@ -19,9 +19,9 @@ test("each component style-variant set renders and switches without errors", asy
     await expect(section, `${id} missing gallery`).toBeVisible();
     const group = section.getByRole("group", { name: /风格变体|Style variants/ });
     const pills = group.getByRole("button");
-    await expect(pills, `${id} needs >=2 styles`).not.toHaveCount(0, { timeout: 10_000 });
+    await expect(pills, `${id} needs >=8 styles`).not.toHaveCount(0, { timeout: 10_000 });
     const count = await pills.count();
-    expect(count, `${id} needs >=2 styles`).toBeGreaterThanOrEqual(2);
+    expect(count, `${id} needs >=8 styles`).toBeGreaterThanOrEqual(8);
     await pills.nth(Math.min(1, count - 1)).click();
     await expect(pills.nth(Math.min(1, count - 1))).toHaveAttribute("aria-pressed", "true");
   }

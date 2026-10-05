@@ -129,6 +129,16 @@
     "菜单项（Items）",
     "分隔线（Separator）"
   ],
+  "applicable_styles": [
+    "bento-grid",
+    "cyberpunk",
+    "organic",
+    "minimalism",
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "editorial"
+  ],
   "related": [
     {
       "id": "dropdown",

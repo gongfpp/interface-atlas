@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers/private-browser.mjs';
 
 async function openLab(page, path = '/components/input') {
   await page.goto(path, { waitUntil: 'domcontentloaded' });
@@ -14,7 +14,7 @@ test('Use current solution returns from generic scope and follows the visible st
   await lab.getByRole('button', { name: /使用当前方案/ }).click();
   await expect(lab.getByRole('button', { name: '当前方案', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await expect(lab.locator('[data-solution-summary]')).toContainText('极简主义');
-  await expect(lab.locator('pre')).toContainText('只保留一条发丝下划线');
+  await expect(lab.locator('pre')).toContainText('发丝下划线');
 });
 
 test('a solution saved from the lab restores style, form, width and exact requirements', async ({ page }) => {
@@ -129,17 +129,53 @@ for (const scenario of [
   });
 }
 
-test('a failed demo module can recover by reloading after the network is restored', async ({ page }) => {
+test('a failed demo module can recover by reloading after the network is restored', async ({ page }, testInfo) => {
   const demoChunk = /\/(?:src\/islands\/demos\/input\.tsx|_astro\/input\.[^/]+\.js)(?:\?.*)?$/;
   let aborted = 0;
-  await page.route(demoChunk, route => { aborted++; return route.abort('failed'); });
-  await page.goto('/components/input', { waitUntil: 'domcontentloaded' });
-  await expect(page.getByRole('alert').filter({ hasText: '实验室加载失败' })).toBeVisible();
-  expect(aborted).toBeGreaterThan(0);
-  await page.unroute(demoChunk);
-  await page.getByRole('button', { name: '重新加载页面', exact: true }).click();
-  await expect(page.locator('[data-solution-lab]')).toBeVisible();
-  await expect(page.locator('.demo-content').getByRole('textbox', { name: '工作邮箱', exact: true })).toBeVisible();
+  const started = Date.now(), events = [], documents = [], requestIds = new WeakMap();
+  let phase = '注入失败', nextRequestId = 0;
+  const record = (kind, details) => events.push({ elapsedMs: Date.now() - started, phase, kind, ...details });
+  const requestInfo = request => {
+    if (!requestIds.has(request)) requestIds.set(request, ++nextRequestId);
+    return { requestId: requestIds.get(request), url: request.url(), method: request.method(), resourceType: request.resourceType(), navigation: request.isNavigationRequest() };
+  };
+  const onRequest = request => record('request', requestInfo(request));
+  const onResponse = response => record('response', { ...requestInfo(response.request()), status: response.status(), cacheControl: response.headers()['cache-control'] ?? null });
+  const onFailure = request => record('requestfailed', { ...requestInfo(request), error: request.failure()?.errorText ?? null });
+  const onNavigation = frame => { if (frame === page.mainFrame()) record('framenavigated', { url: frame.url() }); };
+  page.on('request', onRequest); page.on('response', onResponse);
+  page.on('requestfailed', onFailure); page.on('framenavigated', onNavigation);
+  const captureDocument = async label => {
+    try {
+      documents.push({ label, phase, elapsedMs: Date.now() - started, ...await page.evaluate(() => ({
+        url: location.href, readyState: document.readyState, timeOrigin: performance.timeOrigin,
+        navigation: performance.getEntriesByType('navigation').map(entry => ({ type: entry.type, responseEnd: entry.responseEnd, domContentLoadedEventEnd: entry.domContentLoadedEventEnd, loadEventEnd: entry.loadEventEnd })),
+        modulepreload: [...document.querySelectorAll('link[rel="modulepreload"]')].map(link => link.href),
+        labCount: document.querySelectorAll('[data-solution-lab]').length,
+        alerts: [...document.querySelectorAll('[role="alert"]')].map(node => node.textContent?.trim()),
+      })) });
+    } catch (error) {
+      documents.push({ label, phase, elapsedMs: Date.now() - started, captureError: String(error) });
+    }
+  };
+  try {
+    await page.route(demoChunk, route => { aborted++; return route.abort('failed'); });
+    await page.goto('/components/input', { waitUntil: 'domcontentloaded' });
+    await expect(page.getByRole('alert').filter({ hasText: '实验室加载失败' })).toBeVisible();
+    expect(aborted).toBeGreaterThan(0);
+    await captureDocument('首轮加载失败');
+    await page.unroute(demoChunk);
+    phase = '网络恢复后点击原重载按钮';
+    await page.getByRole('button', { name: '重新加载页面', exact: true }).click();
+    phase = '重载后的恢复断言';
+    await expect(page.locator('[data-solution-lab]')).toBeVisible();
+    await expect(page.locator('.demo-content').getByRole('textbox', { name: '工作邮箱', exact: true })).toBeVisible();
+  } finally {
+    await captureDocument('最终状态');
+    page.off('request', onRequest); page.off('response', onResponse);
+    page.off('requestfailed', onFailure); page.off('framenavigated', onNavigation);
+    await testInfo.attach('demo-reload-evidence.json', { body: JSON.stringify({ aborted, events, documents }, null, 2), contentType: 'application/json' });
+  }
 });
 
 test('list empty state widens the category and carries the exact query into global search', async ({ page }) => {
@@ -164,3 +200,109 @@ test('lab reports failed persistence without claiming the reference is saved', a
   await expect(lab.getByRole('button', { name: '保存方案', exact: true })).toBeEnabled();
   await expect(lab.locator('pre')).toContainText('当前方案');
 });
+
+test('同一方案多次保存失败后恢复，参考册与刷新结果只有一条', async ({ page }) => {
+  const lab = await openLab(page);
+  await page.evaluate(() => {
+    window.__atlasSetItem = Storage.prototype.setItem;
+    Storage.prototype.setItem = () => { throw new DOMException('full', 'QuotaExceededError'); };
+  });
+  const save = lab.getByRole('button', { name: '保存方案', exact: true });
+  await save.click();
+  await expect(lab.getByText('浏览器未能持久保存。请现在复制上方说明；刷新或离开此页可能丢失。', { exact: true })).toBeVisible();
+  await save.click();
+  await page.evaluate(() => { Storage.prototype.setItem = window.__atlasSetItem; delete window.__atlasSetItem; });
+  await save.click();
+  await expect(lab.getByRole('button', { name: /已保存方案/ })).toBeDisabled();
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('ia-solutions-v1')).length)).toBe(1);
+  await lab.getByRole('link', { name: /打开项目参考册/ }).click();
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await page.reload();
+  await expect(page.getByRole('article')).toHaveCount(1);
+});
+
+test('旧复制失败晚到，界面仍保留最近一次成功的反馈', async ({ page }) => {
+  const lab = await openLab(page);
+  await page.evaluate(() => {
+    window.__atlasCopies = [];
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: {
+      writeText: () => new Promise((resolve, reject) => window.__atlasCopies.push({ resolve, reject })),
+    } });
+  });
+  const copy = lab.getByRole('button', { name: /复制 Prompt/ });
+  await copy.click(); await copy.click();
+  await page.evaluate(() => window.__atlasCopies[1].resolve());
+  await expect(lab.getByRole('button', { name: /已复制/ })).toBeVisible();
+  await page.evaluate(() => window.__atlasCopies[0].reject(new Error('old denial')));
+  await expect(lab.getByRole('button', { name: /已复制/ })).toBeVisible();
+  await expect(lab.getByText('无法访问剪贴板，请选中下方文本手动复制。', { exact: true })).toHaveCount(0);
+});
+
+for (const width of [390, 1280]) {
+  test(`附加形式不冒充已预览效果，并可保存恢复原预览（${width}px）`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    // 普通恢复链接只有 form，不能依赖用户先点击一次已实现形式来保存预览状态。
+    const lab = await openLab(page, '/components/input?form=filled');
+    const forms = lab.getByRole('combobox', { name: /预览形式/ });
+    await forms.selectOption('with-addons');
+    await expect(lab.locator('.demo-content').getByRole('button', { name: '填充', exact: true })).toHaveAttribute('aria-pressed', 'true');
+    await expect(lab.locator('[data-solution-summary]')).toContainText('附加形式（未预览）：带前后缀');
+    const prompt = await lab.locator('pre').innerText();
+    expect(prompt).toContain('实际预览形式：填充');
+    expect(prompt).toContain('以附加形式要求为准');
+    expect(prompt).toContain('form=with-addons');
+    expect(prompt).toContain('preview=filled');
+    await lab.getByRole('button', { name: '设备视口', exact: true }).click();
+    await expect(lab.locator('iframe')).toHaveAttribute('src', /form=filled/);
+    await expect(lab.frameLocator('iframe').getByRole('button', { name: '填充', exact: true })).toHaveAttribute('aria-pressed', 'true');
+    await lab.getByRole('button', { name: '保存方案', exact: true }).click();
+    await lab.getByRole('link', { name: /打开项目参考册/ }).click();
+    await expect(page.getByRole('article')).toContainText('附加形式（未预览）：带前后缀');
+    await expect(page.getByRole('article')).toContainText('实际预览形式：填充');
+    await page.getByRole('link', { name: /恢复方案/ }).click();
+    const restored = page.locator('[data-solution-lab]');
+    await expect(restored.getByRole('combobox', { name: /预览形式/ })).toHaveValue('with-addons');
+    await expect(restored.locator('.demo-content').getByRole('button', { name: '填充', exact: true })).toHaveAttribute('aria-pressed', 'true');
+    await expect(restored.locator('pre')).toHaveText(prompt);
+    await restored.locator('.demo-content').getByRole('button', { name: '下划线', exact: true }).click();
+    await expect(restored.locator('[data-solution-summary]')).toContainText('已预览形式：下划线');
+    await expect(restored.locator('pre')).not.toContainText('附加形式（未预览）：');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  });
+}
+
+test('风格方案的附加形式在英文输出中明确覆盖预览，而不是声称已经演示', async ({ page }) => {
+  const lab = await openLab(page, '/en/components/input');
+  await lab.getByRole('button', { name: 'Minimalism', exact: true }).click();
+  await lab.getByRole('combobox', { name: /Implementation variant/ }).selectOption('filled');
+  await expect(lab.locator('[data-solution-summary]')).toContainText('Additional variant (not previewed)');
+  await expect(lab.locator('pre')).toContainText('additional variant takes precedence');
+  await expect(lab.locator('pre')).toContainText('must be verified separately');
+  await lab.getByRole('button', { name: 'Device viewport', exact: true }).click();
+  await expect(lab.locator('iframe')).not.toHaveAttribute('src', /form=filled/);
+  await lab.getByRole('button', { name: 'Base example', exact: true }).click();
+  await expect(lab.locator('[data-solution-summary]')).toContainText('Previewed variant');
+  await expect(lab.locator('pre')).not.toContainText('Additional variant (not previewed)');
+});
+
+for (const [locale, width] of [['zh', 390], ['en', 1280]]) {
+  for (const [component, style] of [['button', 'pixel-art'], ['input', 'organic'], ['card', 'art-deco'], ['select', 'neumorphism'], ['toolbar', 'swiss-style'], ['dropdown', 'flat-design']]) {
+    test(`${locale} 新增 ${component}/${style} 风格能完整保存、恢复并复制当前方案`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 900 });
+      const lab = await openLab(page, `${locale === 'en' ? '/en' : ''}/components/${component}`);
+      await expect(lab.locator('[data-style]')).toHaveCount(8);
+      await lab.locator(`[data-style="${style}"]`).click();
+      const text = await lab.locator('pre').innerText();
+      expect(text).toContain(`style=${style}`);
+      await lab.getByRole('button', { name: locale === 'zh' ? '保存方案' : 'Save solution', exact: true }).click();
+      await lab.getByRole('link', { name: locale === 'zh' ? /打开项目参考册/ : /Open project notebook/ }).click();
+      await page.getByRole('link', { name: locale === 'zh' ? /恢复方案/ : /Restore solution/ }).click();
+      const restored = page.locator('[data-solution-lab]');
+      await expect(restored.locator(`[data-style="${style}"]`)).toHaveAttribute('aria-pressed', 'true');
+      await expect(restored.locator('pre')).toHaveText(text);
+      await restored.getByRole('button', { name: locale === 'zh' ? '设备视口' : 'Device viewport', exact: true }).click();
+      await expect(restored.locator('iframe')).toHaveAttribute('src', new RegExp(`style=${style}`));
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    });
+  }
+}

@@ -183,5 +183,15 @@
         "en": "Offer a way to clear or relax filters when nothing matches."
       }
     ]
-  }
+  },
+  "applicable_styles": [
+    "swiss-style",
+    "bauhaus",
+    "neumorphism",
+    "minimalism",
+    "flat-design",
+    "neobrutalism",
+    "organic",
+    "glassmorphism"
+  ]
 }

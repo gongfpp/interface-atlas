@@ -85,6 +85,15 @@ playground:
       en: Expanded state and selected state are independent
     - zh: 键盘可在父子与兄弟节点间连续移动
       en: Keyboard focus walks parents, children and siblings in order
+applicable_styles:
+  - brutalism
+  - editorial
+  - neumorphism
+  - minimalism
+  - flat-design
+  - swiss-style
+  - neobrutalism
+  - art-deco
 related:
   - id: accordion
     relation: alternative_to

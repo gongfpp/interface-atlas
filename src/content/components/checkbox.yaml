@@ -76,8 +76,14 @@ anatomy:
   - 对勾标识（Check mark）
   - 标签文字（Label）
 applicable_styles:
+  - neumorphism
+  - pixel-art
+  - neobrutalism
   - minimalism
   - flat-design
+  - swiss-style
+  - organic
+  - glassmorphism
 applicable_components: []
 applicable_pages:
   - settings

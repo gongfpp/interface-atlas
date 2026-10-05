@@ -78,8 +78,14 @@ anatomy:
   - 标签文字（Label）
   - 描述文字（Description）
 applicable_styles:
+  - glassmorphism
+  - art-deco
+  - memphis
   - minimalism
   - flat-design
+  - swiss-style
+  - neobrutalism
+  - neumorphism
 applicable_components: []
 applicable_pages:
   - checkout

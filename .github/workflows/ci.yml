@@ -19,6 +19,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Storage unit tests
+        run: npm run test:unit
+
       - name: Type check (astro check)
         run: npm run check
 

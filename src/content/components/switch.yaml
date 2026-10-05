@@ -74,8 +74,14 @@ anatomy:
   - 滑块（Thumb）
   - 标签 / 状态文字（Label）
 applicable_styles:
+  - skeuomorphism
+  - flat-design
+  - aurora
   - minimalism
-  - claymorphism
+  - swiss-style
+  - neobrutalism
+  - neumorphism
+  - organic
 applicable_components: []
 applicable_pages:
   - settings

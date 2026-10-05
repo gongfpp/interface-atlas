@@ -138,6 +138,16 @@
       }
     ]
   },
+  "applicable_styles": [
+    "neobrutalism",
+    "liquid-glass",
+    "claymorphism",
+    "minimalism",
+    "flat-design",
+    "swiss-style",
+    "glassmorphism",
+    "cyberpunk"
+  ],
   "related": [
     {
       "id": "button",

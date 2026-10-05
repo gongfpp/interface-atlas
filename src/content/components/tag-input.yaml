@@ -173,3 +173,13 @@ prompts:
       Keep the project's visual style. Add no unnecessary dependencies.
       Respect prefers-reduced-motion and support keyboard operation.
       Run the project's existing checks when done and list the modified files.
+
+applicable_styles:
+  - minimalism
+  - memphis
+  - brutalism
+  - flat-design
+  - swiss-style
+  - neobrutalism
+  - neumorphism
+  - organic

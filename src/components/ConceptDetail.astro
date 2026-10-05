@@ -60,8 +60,8 @@ const card = 'rounded-xl border border-line bg-raised p-5';
       {d.category.length > 0 && (
         <span class="ml-3 text-xs text-ink-3">{d.category.join(' / ')}</span>
       )}
-      <div class="mt-3 flex items-start justify-between gap-4">
-        <div>
+      <div class="mt-3 flex flex-wrap items-start justify-between gap-4">
+        <div class="min-w-0 flex-1 [overflow-wrap:anywhere]">
           <h1 class="font-serif text-4xl font-semibold md:text-5xl">{d.name[locale]}</h1>
           <p class="mt-2 text-lg text-ink-2">{d.name[otherLocale]}</p>
           {d.aliases.length > 0 && (

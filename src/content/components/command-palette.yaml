@@ -66,7 +66,14 @@ anatomy:
   - 快捷键提示（Key hints）
   - 页脚导航提示（Footer hints）
 applicable_styles:
+  - aurora
+  - glassmorphism
+  - flat-design
   - minimalism
+  - swiss-style
+  - neobrutalism
+  - cyberpunk
+  - neumorphism
 related:
   - id: search
     relation: used_with

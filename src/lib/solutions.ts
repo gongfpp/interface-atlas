@@ -1,3 +1,5 @@
+import { solutionVariantLabel, type VariantScope } from "./solution-variant.ts";
+
 /** A chosen preview and its implementation brief, stored only in this browser. */
 export interface SavedSolution {
   id: string;
@@ -11,12 +13,42 @@ export interface SavedSolution {
   modeName?: string;
   variant: string;
   variantName?: string;
+  variantScope?: VariantScope;
+  previewVariant?: string;
+  previewVariantName?: string;
   requirements: string[];
   prompt: string;
   group: string;
   note: string;
   url: string;
   createdAt: number;
+}
+
+export type SolutionDraft = Omit<SavedSolution, 'id' | 'createdAt'>;
+export interface SolutionSaveAttempt {
+  signature: string;
+  id: string;
+  createdAt: number;
+  persisted: boolean;
+}
+
+/** 草稿内容未变时，失败重试必须沿用同一条记录的身份。 */
+export function solutionDraftSignature(draft: SolutionDraft): string {
+  return JSON.stringify([
+    draft.conceptId, draft.conceptType, draft.name, draft.locale,
+    draft.styleId, draft.styleName, draft.mode, draft.modeName ?? '',
+    draft.variant, draft.variantName ?? '', draft.variantScope ?? '', draft.previewVariant ?? '',
+    draft.previewVariantName ?? '', draft.requirements, draft.prompt,
+    draft.group.trim(), draft.note.trim(), draft.url,
+  ]);
+}
+
+export function saveSolutionDraft(draft: SolutionDraft, previous: SolutionSaveAttempt | null): SolutionSaveAttempt {
+  const signature = solutionDraftSignature(draft);
+  const sameDraft = previous?.signature === signature;
+  const id = sameDraft ? previous.id : crypto.randomUUID();
+  const createdAt = sameDraft ? previous.createdAt : Date.now();
+  return { signature, id, createdAt, persisted: saveSolution({ ...draft, id, createdAt }) };
 }
 
 const KEY = 'ia-solutions-v1';
@@ -68,6 +100,9 @@ function isSolution(value: unknown): value is SavedSolution {
     && Array.isArray(item.requirements) && item.requirements.every((text) => typeof text === 'string')
     && (item.modeName === undefined || typeof item.modeName === 'string')
     && (item.variantName === undefined || typeof item.variantName === 'string')
+    && (item.variantScope === undefined || item.variantScope === 'preview' || item.variantScope === 'requirement')
+    && (item.previewVariant === undefined || typeof item.previewVariant === 'string')
+    && (item.previewVariantName === undefined || typeof item.previewVariantName === 'string')
     && safeUrl(item.url);
 }
 
@@ -152,7 +187,8 @@ export function exportSolutionsMarkdown(items: SavedSolution[], locale: 'zh' | '
       let url = item.url;
       if (typeof window !== 'undefined') url = new URL(url, window.location.origin).href;
       lines.push(`### ${inline(item.name)}`, '', `- ${zh ? '风格' : 'Style'}: ${inline(item.styleName)}`, `- ${zh ? '模式' : 'Mode'}: ${inline(item.modeName || item.mode)}`);
-      if (item.variant) lines.push(`- ${zh ? '形式' : 'Variant'}: ${inline(item.variantName || item.variant)}`);
+      if (item.variantScope === 'requirement' && item.previewVariant) lines.push(`- ${zh ? '实际预览形式' : 'Actual preview variant'}: ${inline(item.previewVariantName || item.previewVariant)}`);
+      if (item.variant) lines.push(`- ${solutionVariantLabel(item.variantScope, locale)}: ${inline(item.variantName || item.variant)}`);
       if (item.note) lines.push(`- ${zh ? '选择理由' : 'Why this solution'}: ${inline(item.note)}`);
       if (item.requirements.length) lines.push(`- ${zh ? '要求' : 'Requirements'}: ${item.requirements.map(inline).join(' · ')}`);
       lines.push(`- [${zh ? '恢复方案' : 'Restore solution'}](<${url.replace(/[<>\s]/g, (char) => encodeURIComponent(char))}>)`, '', `#### ${zh ? '实现任务' : 'Implementation brief'}`, '');

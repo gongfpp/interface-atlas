@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/private-browser.mjs";
 
 test("search shows an error with retry instead of a false empty result", async ({
   page,
@@ -6,7 +6,7 @@ test("search shows an error with retry instead of a false empty result", async (
   let fail = true;
   await page.route("**/data/search-docs.json", (route) => {
     if (fail) route.fulfill({ status: 500, body: "boom" });
-    else route.continue();
+    else route.fallback();
   });
 
   await page.goto("/");
@@ -23,7 +23,7 @@ test("search shows an error with retry instead of a false empty result", async (
 test("markdown mirror links related concepts to their real type and base path", async ({
   request,
 }) => {
-  const res = await request.get("/motion/hover-lift.md");
+  const res = await request.get("/motion/hover-lift.md", { maxRedirects: 0 });
   expect(res.ok()).toBeTruthy();
   const text = await res.text();
   // hover-lift applies_to card (a component) → must resolve to /components/card, not /motion/card

@@ -100,6 +100,16 @@
     "徽标本体（Badge）",
     "状态色（Status colour）"
   ],
+  "applicable_styles": [
+    "neobrutalism",
+    "editorial",
+    "skeuomorphism",
+    "flat-design",
+    "minimalism",
+    "swiss-style",
+    "cyberpunk",
+    "art-deco"
+  ],
   "related": [
     {
       "id": "avatar",

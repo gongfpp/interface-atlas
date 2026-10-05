@@ -124,8 +124,14 @@
     "描述文字（Description）"
   ],
   "applicable_styles": [
+    "glassmorphism",
+    "art-deco",
+    "memphis",
     "minimalism",
-    "flat-design"
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "neumorphism"
   ],
   "applicable_components": [],
   "applicable_pages": [

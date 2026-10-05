@@ -78,8 +78,14 @@ anatomy:
   - 选项（Option）
   - 选中标识（Selected mark）
 applicable_styles:
-  - minimalism
   - swiss-style
+  - bauhaus
+  - liquid-glass
+  - minimalism
+  - flat-design
+  - neobrutalism
+  - neumorphism
+  - organic
 applicable_components: []
 applicable_pages:
   - settings

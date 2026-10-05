@@ -16,7 +16,8 @@
     "gen:registry": "node scripts/gen-registry.mjs",
     "build:fast": "node scripts/build-api-layer.mjs && astro build",
     "lint": "eslint src --max-warnings 200",
-    "test:smoke": "playwright test"
+    "test:smoke": "playwright test",
+    "test:unit": "node --test tests/unit/*.test.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.6",

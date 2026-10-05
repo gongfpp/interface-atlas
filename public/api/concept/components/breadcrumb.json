@@ -102,8 +102,14 @@
     "当前页（Current page）"
   ],
   "applicable_styles": [
+    "editorial",
+    "pixel-art",
+    "brutalism",
     "minimalism",
-    "editorial"
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "organic"
   ],
   "applicable_pages": [
     "documentation",

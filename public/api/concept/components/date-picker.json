@@ -103,7 +103,13 @@
   ],
   "applicable_styles": [
     "minimalism",
-    "flat-design"
+    "bauhaus",
+    "cyberpunk",
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "neumorphism",
+    "organic"
   ],
   "applicable_components": [],
   "applicable_pages": [

@@ -150,8 +150,14 @@
     "内容面板（Tab panel）"
   ],
   "applicable_styles": [
+    "flat-design",
+    "liquid-glass",
+    "memphis",
     "minimalism",
-    "bento-grid"
+    "swiss-style",
+    "neobrutalism",
+    "editorial",
+    "art-deco"
   ],
   "applicable_pages": [
     "settings",

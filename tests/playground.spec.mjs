@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/private-browser.mjs";
 import { readdirSync } from "node:fs";
 
 async function openDemo(page, slug, locale = "") {

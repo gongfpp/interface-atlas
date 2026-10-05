@@ -6,13 +6,8 @@ import {
   type SetStateAction,
 } from "react";
 
-/** 只有实际支持独立形式选择的演示导出此能力，ids 与演示的选项表一致。 */
-export interface PreviewVariants {
-  ids: readonly string[];
-  default: string;
-  modes?: readonly string[];
-  defaults?: Record<string, string>;
-}
+export type { PreviewVariants } from '../../lib/solution-variant';
+
 export const PreviewVariantContext = createContext<{
   value: string;
   onChange: (value: string) => void;

@@ -6,7 +6,8 @@ const EMPTY: string[] = [];
 const listeners = new Set<() => void>();
 /** 存储不可用时的内存回退，保证同一会话内读写一致（刷新后不持久化）。 */
 const memory = new Map<string, string>();
-let storageBroken = false;
+const pendingWrites = new Set<string>();
+const failedReads = new Set<string>();
 
 function emit() {
   for (const listener of listeners) listener();
@@ -18,11 +19,15 @@ function bindCrossTab() {
   if (crossTabBound || typeof window === 'undefined') return;
   crossTabBound = true;
   window.addEventListener('storage', (e) => {
-    if (e.key !== SAVED_KEY && e.key !== HISTORY_KEY) return;
-    memory.delete(SAVED_KEY);
-    memory.delete(HISTORY_KEY);
-    savedRaw = undefined;
-    historyRaw = undefined;
+    if (e.key !== SAVED_KEY && e.key !== HISTORY_KEY && e.key !== null) return;
+    // 其他标签页的写入或清空不能丢弃当前页尚未落盘的操作。
+    for (const key of [SAVED_KEY, HISTORY_KEY]) {
+      if (e.key !== null && e.key !== key) continue;
+      if (pendingWrites.has(key)) continue;
+      memory.delete(key);
+      if (key === SAVED_KEY) savedRaw = undefined;
+      else historyRaw = undefined;
+    }
     emit();
   });
 }
@@ -36,16 +41,20 @@ export function subscribe(cb: () => void) {
 }
 
 export function storageAvailable(): boolean {
-  return !storageBroken;
+  return pendingWrites.size === 0 && failedReads.size === 0;
 }
 
 function safeGet(key: string): string | null {
   if (typeof window === 'undefined') return null;
+  if (pendingWrites.has(key)) return memory.get(key) ?? null;
   try {
     const value = window.localStorage.getItem(key);
-    if (value !== null) return value;
+    failedReads.delete(key);
+    if (value === null) memory.delete(key);
+    else memory.set(key, value);
+    return value;
   } catch {
-    storageBroken = true;
+    failedReads.add(key);
   }
   return memory.get(key) ?? null;
 }
@@ -55,10 +64,25 @@ function safeSet(key: string, value: string) {
   if (typeof window === 'undefined') return;
   try {
     window.localStorage.setItem(key, value);
-    storageBroken = false;
+    pendingWrites.delete(key);
+    failedReads.delete(key);
   } catch {
-    storageBroken = true;
+    pendingWrites.add(key);
   }
+}
+
+/** 水合时不读取浏览器存储。 */
+export function getServerStorageSnapshot(): boolean { return true; }
+
+/** 重试当前页未保存的值，不需要再次切换收藏。 */
+export function retryUserdataStorage(): boolean {
+  if (typeof window === 'undefined') return false;
+  for (const key of [SAVED_KEY, HISTORY_KEY]) {
+    if (pendingWrites.has(key)) safeSet(key, memory.get(key) ?? '[]');
+    else safeGet(key);
+  }
+  emit();
+  return storageAvailable();
 }
 
 function parse(raw: string | null): string[] {

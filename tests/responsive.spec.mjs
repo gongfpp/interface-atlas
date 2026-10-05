@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/private-browser.mjs";
 
 // 目标设备：iPhone 12–18 的常见 CSS 宽度（360 / 390 / 430）+ 安卓高分屏等效宽度。
 const WIDTHS = [360, 390, 430];

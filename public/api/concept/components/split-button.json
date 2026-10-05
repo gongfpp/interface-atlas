@@ -132,6 +132,16 @@
       }
     ]
   },
+  "applicable_styles": [
+    "swiss-style",
+    "flat-design",
+    "claymorphism",
+    "minimalism",
+    "neobrutalism",
+    "glassmorphism",
+    "cyberpunk",
+    "neumorphism"
+  ],
   "related": [
     {
       "id": "button",

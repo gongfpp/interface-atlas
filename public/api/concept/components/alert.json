@@ -153,6 +153,16 @@
     "说明文本（Description）",
     "操作与关闭（Actions / Close）"
   ],
+  "applicable_styles": [
+    "swiss-style",
+    "brutalism",
+    "corporate-memphis",
+    "minimalism",
+    "flat-design",
+    "neobrutalism",
+    "glassmorphism",
+    "cyberpunk"
+  ],
   "related": [
     {
       "id": "toast",

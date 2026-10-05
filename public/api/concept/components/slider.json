@@ -101,8 +101,14 @@
     "数值显示（Value）"
   ],
   "applicable_styles": [
+    "brutalism",
+    "vaporwave",
+    "organic",
     "minimalism",
-    "swiss-style"
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "neumorphism"
   ],
   "applicable_components": [],
   "applicable_pages": [

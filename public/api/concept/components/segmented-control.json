@@ -171,5 +171,15 @@
       "zh": "先检查当前项目的组件与样式体系，复用已有能力实现分段控制器。\n要求：\n- 互斥值优先使用原生同名 radio，保留方向键操作。整段共用一个可访问名称；不要只靠颜色表示选中状态。每个选项至少提供 40px 的点击高度，结果随选择同步更新。\n- 选中项和展示结果应始终一致。\n- 一组只能选中一项，方向键可以连续切换。\n- 窄屏可用，深浅色一致，尊重 reduced-motion。\n- 不新增依赖。\n运行项目现有检查，并列出修改文件及验证结果。",
       "en": "Inspect existing components and tokens before implementing Segmented Control.\nRequirements:\n- Use native radios with the same name to retain arrow-key navigation. Give the group an accessible name and make selection visible beyond color. Aim for a 40px target height and update the result immediately.\n- The selected option must agree with the displayed result.\n- Exactly one option is selected; arrow keys move through the group.\n- Support narrow screens, both themes and reduced motion.\n- Add no dependencies.\nRun existing checks and list changed files and validation results."
     }
-  }
+  },
+  "applicable_styles": [
+    "minimalism",
+    "neobrutalism",
+    "glassmorphism",
+    "flat-design",
+    "swiss-style",
+    "neumorphism",
+    "organic",
+    "cyberpunk"
+  ]
 }

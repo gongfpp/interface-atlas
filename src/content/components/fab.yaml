@@ -99,6 +99,15 @@ playground:
       en: The button floats above scrolling content and stays unoccluded
     - zh: 扇出的子动作均可键盘到达
       en: Every fanned-out sub-action is keyboard reachable
+applicable_styles:
+  - neobrutalism
+  - liquid-glass
+  - claymorphism
+  - minimalism
+  - flat-design
+  - swiss-style
+  - glassmorphism
+  - cyberpunk
 related:
   - id: button
     relation: alternative_to

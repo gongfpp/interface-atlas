@@ -2,9 +2,12 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
+  testMatch: '**/*.spec.mjs',
   timeout: 30_000,
   retries: 0,
+  workers: 2,
   use: {
+    serviceWorkers: 'block',
     baseURL: 'http://127.0.0.1:4337',
     ...devices['Desktop Chrome'],
   },

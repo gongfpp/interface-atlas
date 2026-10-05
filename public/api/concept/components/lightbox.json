@@ -133,6 +133,16 @@
       }
     ]
   },
+  "applicable_styles": [
+    "art-deco",
+    "aurora",
+    "pixel-art",
+    "minimalism",
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "glassmorphism"
+  ],
   "related": [
     {
       "id": "modal",

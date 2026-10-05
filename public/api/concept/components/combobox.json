@@ -144,5 +144,15 @@
       "zh": "先检查当前项目的组件与样式体系，复用已有能力实现可搜索选择框。\n要求：\n- 焦点留在输入框，用 aria-activedescendant 指向当前选项。配合 aria-expanded、aria-controls、listbox 和 option 表达结构。支持方向键、Enter、Escape，输入变化时重置高亮索引。\n- 键盘高亮必须指向仍存在的候选项。\n- 清空后恢复全部选项，Esc 只关闭列表。\n- 窄屏可用，深浅色一致，尊重 reduced-motion。\n- 不新增依赖。\n运行项目现有检查，并列出修改文件及验证结果。",
       "en": "Inspect existing components and tokens before implementing Combobox.\nRequirements:\n- Keep focus in the input and point aria-activedescendant at the active option. Connect aria-expanded, aria-controls, listbox and option semantics. Support arrows, Enter and Escape, and reset the active index when filtering changes.\n- The active descendant must reference an existing option.\n- Clearing restores options; Escape closes the list.\n- Support narrow screens, both themes and reduced motion.\n- Add no dependencies.\nRun existing checks and list changed files and validation results."
     }
-  }
+  },
+  "applicable_styles": [
+    "corporate-memphis",
+    "cyberpunk",
+    "bento-grid",
+    "minimalism",
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "neumorphism"
+  ]
 }

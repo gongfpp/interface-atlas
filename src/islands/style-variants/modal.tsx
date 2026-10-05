@@ -1,144 +1,16 @@
-import { type ReactNode } from 'react';
-import type { StyleVariantSet, VariantDemoProps } from './types';
-import { useDialogBehavior } from './behavior';
+import type { StyleVariantSet } from './types';
+import { feedbackVariant } from '../shared/feedbackRecipes';
 
-function Overlay({
-  children,
-  onClose,
-  dialogRef,
-  labelledBy,
-  className,
-  cardClassName,
-}: {
-  children: ReactNode;
-  onClose: () => void;
-  dialogRef: React.RefObject<HTMLDivElement | null>;
-  labelledBy: string;
-  className: string;
-  cardClassName: string;
-}) {
-  return (
-    <div className={className} onClick={onClose}>
-      <div
-        ref={dialogRef}
-        role="dialog"
-        aria-labelledby={labelledBy}
-        onClick={(e) => e.stopPropagation()}
-        className={cardClassName}
-      >
-        {children}
-      </div>
-    </div>
-  );
-}
-
-function Glass({ session, locale }: VariantDemoProps) {
-  const en = locale === 'en';
-  const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialogBehavior(session);
-  return (
-    <div className="relative mx-auto flex min-h-[220px] w-full max-w-md items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#7c5cff] via-[#ff6ec7] to-[#5ad1ff] p-6 text-white">
-      <button ref={triggerRef} type="button" onClick={openDialog} className="rounded-xl border border-white/40 bg-white/20 px-4 py-2 text-xs font-semibold backdrop-blur-md">{en ? 'Open dialog' : '打开对话框'}</button>
-      {open && (
-        <Overlay
-          onClose={closeDialog}
-          dialogRef={dialogRef}
-          labelledBy="glass-modal-title"
-          className="absolute inset-0 flex items-center justify-center bg-black/30 p-6 backdrop-blur-sm"
-          cardClassName="w-full rounded-2xl border border-white/50 bg-white/25 p-5 backdrop-blur-xl"
-        >
-          <p id="glass-modal-title" className="text-sm font-semibold">{en ? 'Delete project?' : '删除项目？'}</p>
-          <p className="mt-1 text-xs text-white/85">{en ? 'This action cannot be undone.' : '此操作无法撤销。'}</p>
-          <div className="mt-4 flex justify-end gap-2">
-            <button type="button" onClick={closeDialog} className="rounded-lg px-3 py-1.5 text-xs text-white/90 hover:bg-white/15">{en ? 'Cancel' : '取消'}</button>
-            <button type="button" onClick={closeDialog} className="rounded-lg bg-white/90 px-3 py-1.5 text-xs font-semibold text-[#3a2f6b]">{en ? 'Delete' : '删除'}</button>
-          </div>
-        </Overlay>
-      )}
-    </div>
-  );
-}
-
-function Clay({ session, locale }: VariantDemoProps) {
-  const en = locale === 'en';
-  const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialogBehavior(session);
-  return (
-    <div className="relative mx-auto flex min-h-[220px] w-full max-w-md items-center justify-center overflow-hidden rounded-[36px] bg-[#e8ecff] p-6">
-      <button ref={triggerRef} type="button" onClick={openDialog} className="rounded-2xl bg-[#b8c0ff] px-4 py-2 text-xs font-bold text-[#4b3f8f] shadow-[6px_6px_14px_#c5c9e0,-6px_-6px_14px_#ffffff]">{en ? 'Open' : '打开'}</button>
-      {open && (
-        <Overlay
-          onClose={closeDialog}
-          dialogRef={dialogRef}
-          labelledBy="clay-modal-title"
-          className="absolute inset-0 flex items-center justify-center bg-[#c9cff0]/60 p-6"
-          cardClassName="w-full rounded-[32px] bg-[#e8ecff] p-6 text-center shadow-[10px_10px_20px_#c5c9e0,-10px_-10px_20px_#ffffff]"
-        >
-          <div className="mx-auto mb-3 h-12 w-12 rounded-full bg-[#ffb8d9] shadow-[inset_-4px_-4px_8px_#e58fbb,inset_4px_4px_8px_#ffd6e9]" />
-          <p id="clay-modal-title" className="text-sm font-bold text-[#4b3f8f]">{en ? 'Save your changes?' : '保存更改？'}</p>
-          <div className="mt-4 flex justify-center gap-3">
-            <button type="button" onClick={closeDialog} className="rounded-2xl bg-[#c9cff0] px-4 py-2 text-xs font-bold text-[#4b3f8f] shadow-[4px_4px_10px_#b0b5d6,-4px_-4px_10px_#ffffff]">{en ? 'Later' : '稍后'}</button>
-            <button type="button" onClick={closeDialog} className="rounded-2xl bg-[#b8c0ff] px-4 py-2 text-xs font-bold text-[#3a2f6b] shadow-[4px_4px_10px_#9aa2e0,-4px_-4px_10px_#ffffff]">{en ? 'Save' : '保存'}</button>
-          </div>
-        </Overlay>
-      )}
-    </div>
-  );
-}
-
-function Y2K({ session, locale }: VariantDemoProps) {
-  const en = locale === 'en';
-  const { open, openDialog, closeDialog, triggerRef, dialogRef } = useDialogBehavior(session);
-  return (
-    <div className="relative mx-auto flex min-h-[220px] w-full max-w-md items-center justify-center overflow-hidden rounded-[28px] bg-gradient-to-br from-[#c7f0ff] to-[#ffd6f5] p-6">
-      <button ref={triggerRef} type="button" onClick={openDialog} className="rounded-full border-2 border-white bg-gradient-to-b from-[#bfe9ff] to-[#6aa6ff] px-4 py-2 text-xs font-bold text-white shadow-[0_4px_0_#3d6fb8]">{en ? 'Open' : '打开'}</button>
-      {open && (
-        <Overlay
-          onClose={closeDialog}
-          dialogRef={dialogRef}
-          labelledBy="y2k-modal-title"
-          className="absolute inset-0 flex items-center justify-center bg-[#6aa6ff]/25 p-6 backdrop-blur-[2px]"
-          cardClassName="relative w-full overflow-hidden rounded-3xl border-2 border-white bg-gradient-to-b from-white/90 to-[#dcecff]/90 p-6 shadow-[0_10px_24px_rgba(70,110,190,.35)]"
-        >
-          <span className="pointer-events-none absolute -right-4 -top-4 h-14 w-14 rounded-full bg-gradient-to-br from-white to-[#bfe9ff] opacity-80" />
-          <p id="y2k-modal-title" className="text-sm font-bold text-[#2b4b8f]">New message ✦</p>
-          <p className="mt-1 text-xs text-[#5b76ad]">Chrome, gloss and sparkle.</p>
-          <div className="mt-4 flex justify-end gap-2">
-            <button type="button" onClick={closeDialog} className="rounded-full border border-[#9dbcf0] bg-white/70 px-3 py-1.5 text-xs font-semibold text-[#3d6fb8]">{en ? 'Close' : '关闭'}</button>
-            <button type="button" onClick={closeDialog} className="rounded-full bg-gradient-to-b from-[#ff9fe0] to-[#ff5cc8] px-3 py-1.5 text-xs font-bold text-white shadow-[0_3px_0_#c93a9a]">{en ? 'Send' : '发送'}</button>
-          </div>
-        </Overlay>
-      )}
-    </div>
-  );
-}
-
+// 保留已有风格语言；所有皮肤使用相同的可逆本地交互与键盘契约。
 const styleVariants: StyleVariantSet = [
-  {
-    style: 'glassmorphism',
-    name: { zh: '玻璃拟态', en: 'Glassmorphism' },
-    note: {
-      zh: '居中磨砂玻璃卡片浮在彩色渐变上，遮罩自带模糊；打开移入焦点、Esc 关闭、关闭归还焦点。',
-      en: 'A centred frosted card floats over a colourful gradient with a blurred scrim — focus moves in, Esc closes, focus returns.',
-    },
-    Demo: Glass,
-  },
-  {
-    style: 'claymorphism',
-    name: { zh: '黏土拟态', en: 'Claymorphism' },
-    note: {
-      zh: '大圆角奶油色卡片靠双向柔影鼓成黏土块，配一枚凹陷的粉色圆球图标。',
-      en: 'A large-radius cream card puffs into clay via dual soft shadows, anchored by a sunken pink orb icon.',
-    },
-    Demo: Clay,
-  },
-  {
-    style: 'y2k',
-    name: { zh: '千禧风', en: 'Y2K' },
-    note: {
-      zh: '铬色渐变、白色高光泡与圆润大按钮，弹窗像 2000 年代的软件对话框一样有光泽。',
-      en: 'Chrome gradients, glossy bubbles and pill buttons make the dialog gleam like early-2000s software.',
-    },
-    Demo: Y2K,
-  },
+  feedbackVariant('modal', 'glassmorphism', { zh: "深色彩底上的亮边磨砂层与模糊材质；确认本地选项或取消并保持原值。", en: "Bright-edged frosted layers and blur over a dark colourful ground; confirm a local choice or cancel while preserving its value." }),
+  feedbackVariant('modal', 'claymorphism', { zh: "粉彩厚圆角、内凹高光与软糖底阴影；确认本地选项或取消并保持原值。", en: "Pastel inflated corners, inset highlights and thick soft base shadows; confirm a local choice or cancel while preserving its value." }),
+  feedbackVariant('modal', 'y2k', { zh: "铬色垂直渐变、白色泡状高光与胶囊字形；确认本地选项或取消并保持原值。", en: "Chrome vertical gradients, white bubble highlights and capsule typography; confirm a local choice or cancel while preserving its value." }),
+  feedbackVariant('modal', 'minimalism', { zh: "直角细线与留白层级；确认本地选项或取消并保持原值。", en: "Square edges, thin rules and spacious hierarchy; confirm a local choice or cancel while preserving its value." }),
+  feedbackVariant('modal', 'flat-design', { zh: "纯色块与清晰圆角分区；确认本地选项或取消并保持原值。", en: "Solid blocks and clear rounded sections; confirm a local choice or cancel while preserving its value." }),
+  feedbackVariant('modal', 'swiss-style', { zh: "编号网格、粗细横线与字号跳跃；确认本地选项或取消并保持原值。", en: "Indexed grids, two rule weights and strong type scale; confirm a local choice or cancel while preserving its value." }),
+  feedbackVariant('modal', 'neobrutalism', { zh: "粗黑框、硬偏移投影与实体按压；确认本地选项或取消并保持原值。", en: "Heavy black outlines, hard shadows and solid press states; confirm a local choice or cancel while preserving its value." }),
+  feedbackVariant('modal', 'cyberpunk', { zh: "终端等宽字、霓虹边与高对比状态条；确认本地选项或取消并保持原值。", en: "Monospace terminal type, neon edges and high-contrast state bars; confirm a local choice or cancel while preserving its value." }),
 ];
 
 export default styleVariants;

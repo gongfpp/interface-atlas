@@ -144,5 +144,15 @@
       "zh": "先检查当前项目的组件与样式体系，复用已有能力实现评分。\n要求：\n- 单选评分可使用同名 radio。每档设置可访问名称，悬停预览不能覆盖已确认分值。未评分时禁用提交；尊重 reduced-motion。只读星级不要使用可交互角色。\n- 悬停只预览，移开后恢复已选分数。\n- 零分值代表未选择，提交后有明确反馈。\n- 窄屏可用，深浅色一致，尊重 reduced-motion。\n- 不新增依赖。\n运行项目现有检查，并列出修改文件及验证结果。",
       "en": "Inspect existing components and tokens before implementing Rating.\nRequirements:\n- Use same-name radios for one score. Label each value and keep hover preview separate from the committed score. Disable submission before selection and respect reduced motion. Do not use interactive roles for read-only ratings.\n- Hover is temporary; leaving restores the selected score.\n- An unset value is distinct from a score; submission gives feedback.\n- Support narrow screens, both themes and reduced motion.\n- Add no dependencies.\nRun existing checks and list changed files and validation results."
     }
-  }
+  },
+  "applicable_styles": [
+    "retro-futurism",
+    "y2k",
+    "memphis",
+    "flat-design",
+    "minimalism",
+    "neobrutalism",
+    "neumorphism",
+    "organic"
+  ]
 }

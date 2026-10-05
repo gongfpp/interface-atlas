@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers/private-browser.mjs';
 
 async function openLab(page, path = '/compare') {
   await page.goto(path);

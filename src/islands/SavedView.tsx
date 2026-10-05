@@ -6,6 +6,9 @@ import {
   getSavedSnapshot,
   getServerSnapshot,
   removeSaved,
+  storageAvailable,
+  getServerStorageSnapshot,
+  retryUserdataStorage,
   subscribe,
 } from '@/lib/userdata';
 
@@ -26,6 +29,8 @@ export default function SavedView({ concepts, locale }: Props) {
   const savedIds = useSyncExternalStore(subscribe, getSavedSnapshot, getServerSnapshot);
   const historyIds = useSyncExternalStore(subscribe, getHistorySnapshot, getServerSnapshot);
 
+  const storageOK = useSyncExternalStore(subscribe, storageAvailable, getServerStorageSnapshot);
+
   const zh = locale === 'zh';
   const byId = new Map(concepts.map((c) => [c.id, c]));
   const savedItems = savedIds.map((id) => byId.get(id)).filter((x): x is Item => Boolean(x));
@@ -41,6 +46,10 @@ export default function SavedView({ concepts, locale }: Props) {
   return (
     <div className="flex flex-col gap-12 pb-20">
       <SolutionNotebook locale={locale} />
+      {!storageOK && <p className="rounded-lg border border-line p-4 text-sm text-ink-2" role="status">
+        {zh ? '收藏或浏览记录尚未保存，当前更改仅在本页有效，刷新或关闭后可能丢失。' : 'Saves or history could not be stored. Current changes last only on this page and may be lost after reloading or closing it.'}{' '}
+        <button type="button" className="underline hover:text-accent" onClick={retryUserdataStorage}>{zh ? '重试保存' : 'Retry saving'}</button>
+      </p>}
       <section>
         <h2 className={sectionTitle}>
           {zh ? '条目收藏' : 'Saved concepts'}

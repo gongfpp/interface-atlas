@@ -147,6 +147,16 @@
     "操作按钮（Action）",
     "关闭按钮（Close）"
   ],
+  "applicable_styles": [
+    "glassmorphism",
+    "pixel-art",
+    "claymorphism",
+    "minimalism",
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "cyberpunk"
+  ],
   "related": [
     {
       "id": "alert",

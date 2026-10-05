@@ -85,6 +85,15 @@ playground:
       en: Main face and arrow are two independent focus targets
     - zh: 菜单打开时箭头呈展开态，Esc 收起并焦点归位
       en: The arrow shows expanded state; Esc closes and restores focus
+applicable_styles:
+  - swiss-style
+  - flat-design
+  - claymorphism
+  - minimalism
+  - neobrutalism
+  - glassmorphism
+  - cyberpunk
+  - neumorphism
 related:
   - id: button
     relation: similar_to

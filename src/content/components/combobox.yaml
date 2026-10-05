@@ -123,3 +123,13 @@ prompts:
       - Add no dependencies.
 
       Run existing checks and list changed files and validation results.
+
+applicable_styles:
+  - corporate-memphis
+  - cyberpunk
+  - bento-grid
+  - minimalism
+  - flat-design
+  - swiss-style
+  - neobrutalism
+  - neumorphism

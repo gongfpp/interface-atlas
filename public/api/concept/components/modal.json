@@ -160,6 +160,16 @@
     "正文内容（Body）",
     "操作区（Actions）"
   ],
+  "applicable_styles": [
+    "glassmorphism",
+    "claymorphism",
+    "y2k",
+    "minimalism",
+    "flat-design",
+    "swiss-style",
+    "neobrutalism",
+    "cyberpunk"
+  ],
   "related": [
     {
       "id": "drawer",

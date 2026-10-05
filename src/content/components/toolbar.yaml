@@ -100,6 +100,15 @@ confusable:
     note:
       zh: 菜单点开后再选一项；工具条按钮点击即执行。
       en: A menu opens a list to choose from; a toolbar button acts on click.
+applicable_styles:
+  - flat-design
+  - art-deco
+  - bauhaus
+  - minimalism
+  - swiss-style
+  - neobrutalism
+  - editorial
+  - organic
 related:
   - id: navbar
     relation: alternative_to

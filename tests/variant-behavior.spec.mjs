@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/private-browser.mjs";
 
 /** 打开某组件的风格画廊并选中指定风格变体。 */
 async function selectStyle(page, component, style) {
@@ -15,16 +15,19 @@ async function selectStyle(page, component, style) {
 test("table variant sorts numerically and exposes aria-sort", async ({ page }) => {
   const section = await selectStyle(page, "table", "editorial");
   const firstCity = section.locator("tbody tr td:first-child").first();
-  await expect(firstCity).toHaveText("Tokyo"); // descending by default
-  await section.getByRole("button", { name: /Population|人口/ }).click();
-  await expect(firstCity).toHaveText("Lima");
+  await expect(firstCity).toHaveText(/Layout|布局/); // descending by default
+  await section.getByRole("button", { name: /Count|数量/ }).click();
+  await expect(firstCity).toHaveText(/Colour|色彩/);
   await expect(section.locator("th[aria-sort='ascending']")).toHaveCount(1);
 });
 
 test("progress bar never exceeds 100%", async ({ page }) => {
   const section = await selectStyle(page, "progress-bar", "minimalism");
   const bar = section.getByRole("progressbar");
-  for (let i = 0; i < 6; i++) await section.locator(".demo-content").getByRole("button").first().click();
+  for (let i = 0; i < 6; i++) {
+    const advance = section.locator(".demo-content").getByRole("button").first();
+    if (await advance.isEnabled()) await advance.click();
+  }
   const now = Number(await bar.getAttribute("aria-valuenow"));
   expect(now).toBeLessThanOrEqual(100);
   expect(now).toBeGreaterThanOrEqual(0);
@@ -42,11 +45,11 @@ test("date picker navigation changes month and grid", async ({ page }) => {
 test("tabs expose panels and arrow-key navigation", async ({ page }) => {
   const section = await selectStyle(page, "tabs", "liquid-glass");
   const tabs = section.getByRole("tab");
-  await expect(section.getByRole("tabpanel", { name: /周|Week/ })).toBeVisible();
+  await expect(section.getByRole("tabpanel", { name: /设计|Design/ })).toBeVisible();
   await tabs.first().focus();
   await page.keyboard.press("ArrowRight");
   await expect(tabs.nth(1)).toHaveAttribute("aria-selected", "true");
-  await expect(section.getByRole("tabpanel", { name: /周|Week/ })).toBeVisible();
+  await expect(section.getByRole("tabpanel", { name: /原型|Prototype/ })).toBeVisible();
 });
 
 test("tooltip shows on keyboard focus and hides on Escape", async ({ page }) => {

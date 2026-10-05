@@ -65,6 +65,15 @@ anatomy:
   - 当前步骤 / Current step
   - 步骤内容 / Content
   - 前进与返回 / Controls
+applicable_styles:
+  - editorial
+  - art-deco
+  - pixel-art
+  - minimalism
+  - flat-design
+  - swiss-style
+  - neobrutalism
+  - organic
 related:
   - id: progress-bar
     relation: similar_to

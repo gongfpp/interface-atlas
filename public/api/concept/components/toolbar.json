@@ -138,6 +138,16 @@
       }
     }
   ],
+  "applicable_styles": [
+    "flat-design",
+    "art-deco",
+    "bauhaus",
+    "minimalism",
+    "swiss-style",
+    "neobrutalism",
+    "editorial",
+    "organic"
+  ],
   "related": [
     {
       "id": "navbar",

@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './helpers/private-browser.mjs';
 import { readdirSync } from 'node:fs';
 
 const CONCEPT_TYPES = ['components', 'patterns', 'styles', 'pages', 'motion', 'foundation', 'a11y'];

@@ -1,0 +1,839 @@
+{
+  "accordion": {
+    "group": "navigation",
+    "original": [
+      "swiss-style",
+      "brutalism",
+      "liquid-glass"
+    ],
+    "styles": [
+      "swiss-style",
+      "brutalism",
+      "liquid-glass",
+      "minimalism",
+      "flat-design",
+      "neobrutalism",
+      "editorial",
+      "art-deco"
+    ]
+  },
+  "alert": {
+    "group": "feedback",
+    "original": [
+      "swiss-style",
+      "brutalism",
+      "corporate-memphis"
+    ],
+    "styles": [
+      "swiss-style",
+      "brutalism",
+      "corporate-memphis",
+      "minimalism",
+      "flat-design",
+      "neobrutalism",
+      "glassmorphism",
+      "cyberpunk"
+    ]
+  },
+  "avatar": {
+    "group": "navigation",
+    "original": [
+      "flat-design",
+      "memphis",
+      "art-deco"
+    ],
+    "styles": [
+      "flat-design",
+      "memphis",
+      "art-deco",
+      "minimalism",
+      "neobrutalism",
+      "organic",
+      "glassmorphism",
+      "hand-drawn"
+    ]
+  },
+  "badge": {
+    "group": "navigation",
+    "original": [
+      "neobrutalism",
+      "editorial",
+      "skeuomorphism"
+    ],
+    "styles": [
+      "neobrutalism",
+      "editorial",
+      "skeuomorphism",
+      "flat-design",
+      "minimalism",
+      "swiss-style",
+      "cyberpunk",
+      "art-deco"
+    ]
+  },
+  "bottom-sheet": {
+    "group": "feedback",
+    "original": [
+      "glassmorphism",
+      "neumorphism",
+      "swiss-style"
+    ],
+    "styles": [
+      "glassmorphism",
+      "neumorphism",
+      "swiss-style",
+      "minimalism",
+      "flat-design",
+      "neobrutalism",
+      "cyberpunk",
+      "hand-drawn"
+    ]
+  },
+  "breadcrumb": {
+    "group": "navigation",
+    "original": [
+      "editorial",
+      "pixel-art",
+      "brutalism"
+    ],
+    "styles": [
+      "editorial",
+      "pixel-art",
+      "brutalism",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "organic"
+    ]
+  },
+  "button": {
+    "group": "feedback",
+    "original": [
+      "minimalism",
+      "neobrutalism",
+      "glassmorphism",
+      "swiss-style",
+      "cyberpunk",
+      "neumorphism"
+    ],
+    "styles": [
+      "minimalism",
+      "neobrutalism",
+      "glassmorphism",
+      "swiss-style",
+      "cyberpunk",
+      "neumorphism",
+      "flat-design",
+      "pixel-art"
+    ]
+  },
+  "card": {
+    "group": "feedback",
+    "original": [
+      "minimalism",
+      "aurora",
+      "bento-grid",
+      "editorial",
+      "neobrutalism",
+      "neumorphism"
+    ],
+    "styles": [
+      "minimalism",
+      "aurora",
+      "bento-grid",
+      "editorial",
+      "neobrutalism",
+      "neumorphism",
+      "swiss-style",
+      "art-deco"
+    ]
+  },
+  "carousel": {
+    "group": "navigation",
+    "original": [
+      "editorial",
+      "cyberpunk",
+      "pixel-art"
+    ],
+    "styles": [
+      "editorial",
+      "cyberpunk",
+      "pixel-art",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "art-deco"
+    ]
+  },
+  "checkbox": {
+    "group": "forms",
+    "original": [
+      "neumorphism",
+      "pixel-art",
+      "neobrutalism"
+    ],
+    "styles": [
+      "neumorphism",
+      "pixel-art",
+      "neobrutalism",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "organic",
+      "glassmorphism"
+    ]
+  },
+  "color-picker": {
+    "group": "forms",
+    "original": [
+      "cyberpunk",
+      "memphis",
+      "organic"
+    ],
+    "styles": [
+      "cyberpunk",
+      "memphis",
+      "organic",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "neumorphism"
+    ]
+  },
+  "combobox": {
+    "group": "forms",
+    "original": [
+      "corporate-memphis",
+      "cyberpunk",
+      "bento-grid"
+    ],
+    "styles": [
+      "corporate-memphis",
+      "cyberpunk",
+      "bento-grid",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "neumorphism"
+    ]
+  },
+  "command-palette": {
+    "group": "feedback",
+    "original": [
+      "aurora",
+      "glassmorphism",
+      "flat-design"
+    ],
+    "styles": [
+      "aurora",
+      "glassmorphism",
+      "flat-design",
+      "minimalism",
+      "swiss-style",
+      "neobrutalism",
+      "cyberpunk",
+      "neumorphism"
+    ]
+  },
+  "date-picker": {
+    "group": "forms",
+    "original": [
+      "minimalism",
+      "bauhaus",
+      "cyberpunk"
+    ],
+    "styles": [
+      "minimalism",
+      "bauhaus",
+      "cyberpunk",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "neumorphism",
+      "organic"
+    ]
+  },
+  "drawer": {
+    "group": "feedback",
+    "original": [
+      "minimalism",
+      "neobrutalism",
+      "art-deco"
+    ],
+    "styles": [
+      "minimalism",
+      "neobrutalism",
+      "art-deco",
+      "flat-design",
+      "swiss-style",
+      "glassmorphism",
+      "cyberpunk",
+      "neumorphism"
+    ]
+  },
+  "dropdown": {
+    "group": "feedback",
+    "original": [
+      "neumorphism",
+      "y2k",
+      "hand-drawn"
+    ],
+    "styles": [
+      "neumorphism",
+      "y2k",
+      "hand-drawn",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "glassmorphism"
+    ]
+  },
+  "fab": {
+    "group": "feedback",
+    "original": [
+      "neobrutalism",
+      "liquid-glass",
+      "claymorphism"
+    ],
+    "styles": [
+      "neobrutalism",
+      "liquid-glass",
+      "claymorphism",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "glassmorphism",
+      "cyberpunk"
+    ]
+  },
+  "file-upload": {
+    "group": "forms",
+    "original": [
+      "hand-drawn",
+      "flat-design",
+      "skeuomorphism"
+    ],
+    "styles": [
+      "hand-drawn",
+      "flat-design",
+      "skeuomorphism",
+      "minimalism",
+      "swiss-style",
+      "neobrutalism",
+      "neumorphism",
+      "organic"
+    ]
+  },
+  "filter-panel": {
+    "group": "forms",
+    "original": [
+      "swiss-style",
+      "bauhaus",
+      "neumorphism"
+    ],
+    "styles": [
+      "swiss-style",
+      "bauhaus",
+      "neumorphism",
+      "minimalism",
+      "flat-design",
+      "neobrutalism",
+      "organic",
+      "glassmorphism"
+    ]
+  },
+  "input": {
+    "group": "forms",
+    "original": [
+      "minimalism",
+      "neobrutalism",
+      "editorial",
+      "swiss-style",
+      "cyberpunk",
+      "neumorphism"
+    ],
+    "styles": [
+      "minimalism",
+      "neobrutalism",
+      "editorial",
+      "swiss-style",
+      "cyberpunk",
+      "neumorphism",
+      "flat-design",
+      "organic"
+    ]
+  },
+  "lightbox": {
+    "group": "feedback",
+    "original": [
+      "art-deco",
+      "aurora",
+      "pixel-art"
+    ],
+    "styles": [
+      "art-deco",
+      "aurora",
+      "pixel-art",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "glassmorphism"
+    ]
+  },
+  "menu": {
+    "group": "navigation",
+    "original": [
+      "bento-grid",
+      "cyberpunk",
+      "organic"
+    ],
+    "styles": [
+      "bento-grid",
+      "cyberpunk",
+      "organic",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "editorial"
+    ]
+  },
+  "modal": {
+    "group": "feedback",
+    "original": [
+      "glassmorphism",
+      "claymorphism",
+      "y2k"
+    ],
+    "styles": [
+      "glassmorphism",
+      "claymorphism",
+      "y2k",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "cyberpunk"
+    ]
+  },
+  "multi-select": {
+    "group": "forms",
+    "original": [
+      "minimalism",
+      "bauhaus",
+      "liquid-glass"
+    ],
+    "styles": [
+      "minimalism",
+      "bauhaus",
+      "liquid-glass",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "neumorphism",
+      "organic"
+    ]
+  },
+  "navbar": {
+    "group": "navigation",
+    "original": [
+      "swiss-style",
+      "neobrutalism",
+      "glassmorphism"
+    ],
+    "styles": [
+      "swiss-style",
+      "neobrutalism",
+      "glassmorphism",
+      "minimalism",
+      "flat-design",
+      "editorial",
+      "art-deco",
+      "organic"
+    ]
+  },
+  "pagination": {
+    "group": "navigation",
+    "original": [
+      "neumorphism",
+      "vaporwave",
+      "swiss-style"
+    ],
+    "styles": [
+      "neumorphism",
+      "vaporwave",
+      "swiss-style",
+      "minimalism",
+      "flat-design",
+      "neobrutalism",
+      "editorial",
+      "art-deco"
+    ]
+  },
+  "popover": {
+    "group": "feedback",
+    "original": [
+      "flat-design",
+      "neumorphism",
+      "editorial"
+    ],
+    "styles": [
+      "flat-design",
+      "neumorphism",
+      "editorial",
+      "minimalism",
+      "swiss-style",
+      "neobrutalism",
+      "glassmorphism",
+      "cyberpunk"
+    ]
+  },
+  "progress-bar": {
+    "group": "feedback",
+    "original": [
+      "minimalism",
+      "bauhaus",
+      "pixel-art"
+    ],
+    "styles": [
+      "minimalism",
+      "bauhaus",
+      "pixel-art",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "glassmorphism",
+      "cyberpunk"
+    ]
+  },
+  "radio": {
+    "group": "forms",
+    "original": [
+      "glassmorphism",
+      "art-deco",
+      "memphis"
+    ],
+    "styles": [
+      "glassmorphism",
+      "art-deco",
+      "memphis",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "neumorphism"
+    ]
+  },
+  "rating": {
+    "group": "forms",
+    "original": [
+      "retro-futurism",
+      "y2k",
+      "memphis"
+    ],
+    "styles": [
+      "retro-futurism",
+      "y2k",
+      "memphis",
+      "flat-design",
+      "minimalism",
+      "neobrutalism",
+      "neumorphism",
+      "organic"
+    ]
+  },
+  "segmented-control": {
+    "group": "forms",
+    "original": [
+      "minimalism",
+      "neobrutalism",
+      "glassmorphism"
+    ],
+    "styles": [
+      "minimalism",
+      "neobrutalism",
+      "glassmorphism",
+      "flat-design",
+      "swiss-style",
+      "neumorphism",
+      "organic",
+      "cyberpunk"
+    ]
+  },
+  "select": {
+    "group": "forms",
+    "original": [
+      "swiss-style",
+      "bauhaus",
+      "liquid-glass"
+    ],
+    "styles": [
+      "swiss-style",
+      "bauhaus",
+      "liquid-glass",
+      "minimalism",
+      "flat-design",
+      "neobrutalism",
+      "neumorphism",
+      "organic"
+    ]
+  },
+  "sidebar": {
+    "group": "navigation",
+    "original": [
+      "art-deco",
+      "bento-grid",
+      "editorial"
+    ],
+    "styles": [
+      "art-deco",
+      "bento-grid",
+      "editorial",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "organic"
+    ]
+  },
+  "slider": {
+    "group": "forms",
+    "original": [
+      "brutalism",
+      "vaporwave",
+      "organic"
+    ],
+    "styles": [
+      "brutalism",
+      "vaporwave",
+      "organic",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "neumorphism"
+    ]
+  },
+  "split-button": {
+    "group": "feedback",
+    "original": [
+      "swiss-style",
+      "flat-design",
+      "claymorphism"
+    ],
+    "styles": [
+      "swiss-style",
+      "flat-design",
+      "claymorphism",
+      "minimalism",
+      "neobrutalism",
+      "glassmorphism",
+      "cyberpunk",
+      "neumorphism"
+    ]
+  },
+  "stepper": {
+    "group": "navigation",
+    "original": [
+      "editorial",
+      "art-deco",
+      "pixel-art"
+    ],
+    "styles": [
+      "editorial",
+      "art-deco",
+      "pixel-art",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "organic"
+    ]
+  },
+  "switch": {
+    "group": "forms",
+    "original": [
+      "skeuomorphism",
+      "flat-design",
+      "aurora"
+    ],
+    "styles": [
+      "skeuomorphism",
+      "flat-design",
+      "aurora",
+      "minimalism",
+      "swiss-style",
+      "neobrutalism",
+      "neumorphism",
+      "organic"
+    ]
+  },
+  "table": {
+    "group": "navigation",
+    "original": [
+      "editorial",
+      "swiss-style",
+      "hand-drawn"
+    ],
+    "styles": [
+      "editorial",
+      "swiss-style",
+      "hand-drawn",
+      "minimalism",
+      "flat-design",
+      "neobrutalism",
+      "art-deco",
+      "organic"
+    ]
+  },
+  "tabs": {
+    "group": "navigation",
+    "original": [
+      "flat-design",
+      "liquid-glass",
+      "memphis"
+    ],
+    "styles": [
+      "flat-design",
+      "liquid-glass",
+      "memphis",
+      "minimalism",
+      "swiss-style",
+      "neobrutalism",
+      "editorial",
+      "art-deco"
+    ]
+  },
+  "tag-input": {
+    "group": "forms",
+    "original": [
+      "minimalism",
+      "memphis",
+      "brutalism"
+    ],
+    "styles": [
+      "minimalism",
+      "memphis",
+      "brutalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "neumorphism",
+      "organic"
+    ]
+  },
+  "textarea": {
+    "group": "forms",
+    "original": [
+      "flat-design",
+      "hand-drawn",
+      "cyberpunk"
+    ],
+    "styles": [
+      "flat-design",
+      "hand-drawn",
+      "cyberpunk",
+      "minimalism",
+      "swiss-style",
+      "neobrutalism",
+      "neumorphism",
+      "organic"
+    ]
+  },
+  "timeline": {
+    "group": "navigation",
+    "original": [
+      "vaporwave",
+      "organic",
+      "brutalism"
+    ],
+    "styles": [
+      "vaporwave",
+      "organic",
+      "brutalism",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "editorial"
+    ]
+  },
+  "toast": {
+    "group": "feedback",
+    "original": [
+      "glassmorphism",
+      "pixel-art",
+      "claymorphism"
+    ],
+    "styles": [
+      "glassmorphism",
+      "pixel-art",
+      "claymorphism",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "cyberpunk"
+    ]
+  },
+  "toolbar": {
+    "group": "navigation",
+    "original": [
+      "flat-design",
+      "art-deco",
+      "bauhaus"
+    ],
+    "styles": [
+      "flat-design",
+      "art-deco",
+      "bauhaus",
+      "minimalism",
+      "swiss-style",
+      "neobrutalism",
+      "editorial",
+      "organic"
+    ]
+  },
+  "tooltip": {
+    "group": "feedback",
+    "original": [
+      "retro-futurism",
+      "cyberpunk",
+      "skeuomorphism"
+    ],
+    "styles": [
+      "retro-futurism",
+      "cyberpunk",
+      "skeuomorphism",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "glassmorphism"
+    ]
+  },
+  "tree-view": {
+    "group": "navigation",
+    "original": [
+      "brutalism",
+      "editorial",
+      "neumorphism"
+    ],
+    "styles": [
+      "brutalism",
+      "editorial",
+      "neumorphism",
+      "minimalism",
+      "flat-design",
+      "swiss-style",
+      "neobrutalism",
+      "art-deco"
+    ]
+  }
+}
