@@ -1,4 +1,5 @@
 import { test, expect } from './helpers/private-browser.mjs';
+import { observeSettledGeometry } from './helpers/settled-geometry.mjs';
 import { readFileSync } from 'node:fs';
 const { tooltip: { styles } } = JSON.parse(readFileSync(new URL('../src/lib/component-style-coverage.json', import.meta.url), 'utf8'));
 
@@ -10,35 +11,6 @@ async function tooltipPreview(page, style, locale) {
   const preview = lab.locator('.demo-content');
   return { lab, trigger: preview.getByRole('button'), tip: preview.getByRole('tooltip') };
 }
-// 观察原生焦点滚动与实际元素几何；不修改页面滚动方式或注入焦点目标。
-async function observeSettledGeometry(trigger) {
-  const observation = await trigger.evaluate(node => new Promise(resolve => {
-    const started = performance.now();
-    let previous = null, stableSince = started, frame = 0, settled = false;
-    const read = () => {
-      const rect = node.getBoundingClientRect();
-      return { scrollX, scrollY, x: rect.x, y: rect.y, width: rect.width, height: rect.height };
-    };
-    const initial = read();
-    const finish = () => {
-      cancelAnimationFrame(frame);
-      clearTimeout(deadline);
-      resolve({ settled, elapsed: performance.now() - started, initial, final: read() });
-    };
-    const deadline = setTimeout(finish, 2500);
-    const sample = now => {
-      const current = read();
-      if (!previous || Object.keys(current).some(key => Math.abs(current[key] - previous[key]) > 0.25)) stableSince = now;
-      previous = current;
-      if (now - stableSince >= 150) { settled = true; finish(); }
-      else frame = requestAnimationFrame(sample);
-    };
-    frame = requestAnimationFrame(sample);
-  }));
-  expect(observation.settled, JSON.stringify(observation)).toBe(true);
-  return observation;
-}
-
 for (const style of styles) for (const locale of ['zh', 'en']) {
   test(`${style}/${locale}: 焦点和悬停交错、悬停内容、全局 Esc 与重挂载`, async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 1000 });

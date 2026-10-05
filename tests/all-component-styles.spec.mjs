@@ -1,4 +1,5 @@
 import { test, expect } from './helpers/private-browser.mjs';
+import { observeSettledGeometry } from './helpers/settled-geometry.mjs';
 import { readFileSync } from 'node:fs';
 const matrix = JSON.parse(readFileSync(new URL('../src/lib/component-style-coverage.json', import.meta.url), 'utf8'));
 
@@ -15,6 +16,10 @@ for (const [id, { styles }] of Object.entries(matrix)) {
       const preview = lab.locator('.demo-content');
       for (const style of styles) {
         const pill = lab.locator(`[data-style="${style}"]`);
+        // 上一控件的原生聚焦可能仍在平滑滚动；先观察停止，再正常滚动到本次点击目标。
+        await observeSettledGeometry(pill);
+        await pill.scrollIntoViewIfNeeded();
+        await observeSettledGeometry(pill);
         await pill.click(); await expect(pill).toHaveAttribute('aria-pressed', 'true');
         await expect(preview).toBeVisible();
         const control = preview.locator('button:not([disabled]), input:not([type=hidden]):not([disabled]), select:not([disabled]), textarea:not([disabled])').first();
