@@ -52,8 +52,8 @@ jobs:
         run: npm run search:test
       - name: 安装 Chromium
         run: npx playwright install --with-deps chromium
-      - name: 定位窄屏页面溢出
-        run: npx playwright test --config=playwright.private-qa.config.mjs tests/layout-diagnostics.spec.mjs
+      - name: 真实浏览器、交互和截图
+        run: npx playwright test --config=playwright.private-qa.config.mjs
       - name: 记录截图哈希与运行版本
         if: ${{ always() }}
         run: |

@@ -1,13 +1,13 @@
 import { test, expect } from './helpers/private-browser.mjs';
 
-// 临时诊断：保留实际尺寸与完整页面，不以隐藏溢出来掩盖布局原因。
+// 保存溢出回归的几何与截图证据，区分页面越界与有意的局部滚动。
 const cases = [
   ...['zh', 'en'].flatMap(locale => ['button', 'rating', 'tree-view'].map(id => ({ locale, width: 390, route: `/components/${id}` }))),
   ...['zh', 'en'].flatMap(locale => [360, 390, 430].map(width => ({ locale, width, route: '/styles/brutalism' }))),
 ];
 
 for (const { locale, width, route } of cases) {
-  test(`布局诊断 ${locale} ${width}px ${route}`, async ({ page, browser }, testInfo) => {
+  test(`窄屏布局回归 ${locale} ${width}px ${route}`, async ({ page, browser }, testInfo) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto(`${locale === 'en' ? '/en' : ''}${route}`);
     if (route.startsWith('/components')) {
@@ -53,10 +53,17 @@ for (const { locale, width, route } of cases) {
       };
     });
     geometry.browserVersion = browser.version();
-    console.log(`LAYOUT_DIAGNOSTIC ${locale} ${width} ${route} ${JSON.stringify(geometry)}`);
+    console.log(`LAYOUT_GEOMETRY ${locale} ${width} ${route} document=${geometry.documentWidth} viewport=${geometry.viewport} chromium=${geometry.browserVersion}`);
     await testInfo.attach('layout-geometry.json', { body: JSON.stringify(geometry, null, 2), contentType: 'application/json' });
     const screenshot = testInfo.outputPath('full-page.png');
     await page.screenshot({ path: screenshot, fullPage: true, animations: 'disabled' });
     await testInfo.attach('full-page.png', { path: screenshot, contentType: 'image/png' });
+    expect(geometry.documentWidth, `${locale} ${route} 页面不得横向溢出`).toBeLessThanOrEqual(geometry.viewport);
+    const header = page.locator('article > header');
+    const headerRect = await header.boundingBox();
+    const bookmarkRect = await header.locator('button[aria-pressed]').boundingBox();
+    expect(headerRect).not.toBeNull();
+    expect(bookmarkRect).not.toBeNull();
+    expect(bookmarkRect.x + bookmarkRect.width).toBeLessThanOrEqual(headerRect.x + headerRect.width + 0.5);
   });
 }
