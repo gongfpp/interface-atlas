@@ -1,41 +1,73 @@
-name: CI
+name: 私有浏览器验收
 
 on:
   push:
-    branches: [main]
-  pull_request:
+    branches: [dot/atlas-private-browser-qa]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: atlas-private-browser-qa
+  cancel-in-progress: false
 
 jobs:
   verify:
+    if: ${{ github.event_name == 'push' && github.repository == 'gongfpp/interface-atlas' && github.event.repository.private == true && github.ref == 'refs/heads/dot/atlas-private-browser-qa' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PUBLIC_LOG_API: 'off'
+      PUBLIC_UMAMI_SRC: ''
+      PUBLIC_UMAMI_ID: ''
+      PUBLIC_CF_BEACON_TOKEN: ''
+      ASTRO_TELEMETRY_DISABLED: '1'
     steps:
       - uses: actions/checkout@v7
-
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
-
-      - name: Install dependencies
+      - name: 验证发布隔离与来源
+        run: |
+          node scripts/verify-private-qa.mjs
+          mkdir -p qa-evidence
+          git rev-parse HEAD > qa-evidence/commit.txt
+          git rev-parse HEAD^{tree} > qa-evidence/tree.txt
+          git log -1 --format=%P > qa-evidence/parents.txt
+          node --version > qa-evidence/node.txt
+      - name: 安装锁定依赖
         run: npm ci
-
-      - name: Storage unit tests
+      - name: 全量单元测试
         run: npm run test:unit
-
-      - name: Type check (astro check)
+      - name: 类型检查
         run: npm run check
-
-      - name: Lint (react-hooks rules included)
+      - name: Lint
         run: npm run lint
-
-      - name: "Build (prebuild: content check + api layer + search index → astro build)"
+      - name: 构建内容、API、搜索和站点
         run: npm run build
-
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
-
-      - name: Smoke test (search → concept → detail)
-        run: npm run test:smoke
-
-      - name: Golden query regression (Top-3 ≥ 80%)
+      - name: 搜索金标回归
         run: npm run search:test
+      - name: 安装 Chromium
+        run: npx playwright install --with-deps chromium
+      - name: 真实浏览器、交互和截图
+        run: npx playwright test --config=playwright.private-qa.config.mjs
+      - name: 记录截图哈希与运行版本
+        if: ${{ always() }}
+        run: |
+          mkdir -p qa-evidence
+          if [ -x node_modules/.bin/playwright ]; then node_modules/.bin/playwright --version > qa-evidence/playwright-version.txt; fi
+          find test-results -type f -name '*.png' -print0 | sort -z | xargs -0 -r sha256sum > qa-evidence/screenshots.sha256
+      - name: 保存私有验收证据
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-private-qa-${{ github.sha }}
+          path: |
+            qa-evidence/
+            test-results/
+            playwright-report/
+          if-no-files-found: error
+          retention-days: 7

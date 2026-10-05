@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers/private-browser.mjs';
 
 async function openLab(page, path = '/components/input') {
   await page.goto(path, { waitUntil: 'domcontentloaded' });

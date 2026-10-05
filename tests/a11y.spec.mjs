@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/private-browser.mjs";
 
 test("skip link is the first focusable element and targets main", async ({
   page,

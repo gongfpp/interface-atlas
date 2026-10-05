@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers/private-browser.mjs';
 import { readFileSync } from 'node:fs';
 const { tooltip: { styles } } = JSON.parse(readFileSync(new URL('../src/lib/component-style-coverage.json', import.meta.url), 'utf8'));
 

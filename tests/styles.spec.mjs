@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/private-browser.mjs";
 
 test("homepage shows '先看风格' above the components row", async ({ page }) => {
   await page.goto("/");

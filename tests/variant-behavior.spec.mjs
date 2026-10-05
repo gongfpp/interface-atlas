@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/private-browser.mjs";
 
 /** 打开某组件的风格画廊并选中指定风格变体。 */
 async function selectStyle(page, component, style) {
