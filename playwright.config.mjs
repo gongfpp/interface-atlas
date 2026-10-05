@@ -5,7 +5,9 @@ export default defineConfig({
   testMatch: '**/*.spec.mjs',
   timeout: 30_000,
   retries: 0,
+  workers: 2,
   use: {
+    serviceWorkers: 'block',
     baseURL: 'http://127.0.0.1:4337',
     ...devices['Desktop Chrome'],
   },

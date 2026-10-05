@@ -21,7 +21,7 @@ export default function ConceptActions({ conceptId, locale }: Props) {
   const active = 'shrink-0 rounded-full border border-accent bg-accent-soft px-3 py-1.5 text-xs font-medium text-accent';
 
   return (
-    <span className="flex flex-wrap items-center gap-2">
+    <span className="flex max-w-full shrink-0 flex-wrap items-center gap-2">
       <button
         type="button"
         aria-pressed={saved}

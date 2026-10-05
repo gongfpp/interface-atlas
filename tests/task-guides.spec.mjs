@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers/private-browser.mjs';
 
 test('curated task paths link home, named concepts and localized guides', async ({ page }) => {
   await page.goto('/');
@@ -11,7 +11,8 @@ test('curated task paths link home, named concepts and localized guides', async 
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Name what you see in a screenshot');
   await expect(page.locator('.task-anatomy-preview a')).toHaveCount(4);
   for (const link of await page.locator('.task-pick').evaluateAll(links => links.map(link => link.href))) {
-    expect((await page.request.get(link)).status()).toBe(200);
+    expect(new URL(link).origin).toBe('http://127.0.0.1:4337');
+    expect((await page.request.get(link, { maxRedirects: 0 })).status()).toBe(200);
   }
 });
 
@@ -89,7 +90,7 @@ test('workflow controls wait for hydration before accepting input', async ({ pag
   const scriptsReady = new Promise(resolve => { releaseScripts = resolve; });
   await page.route('**/*.js', async route => {
     await scriptsReady;
-    await route.continue();
+    await route.fallback();
   });
   try {
     await page.goto('/tasks/forms', { waitUntil: 'commit' });

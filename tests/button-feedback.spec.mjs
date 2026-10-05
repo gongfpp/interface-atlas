@@ -1,23 +1,30 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers/private-browser.mjs';
 
 const copy = {
   zh: { path: '/components/button', cancel: '取消', save: '保存更改', idle: '不会提交或保存真实数据', pending: '正在模拟保存', success: '保存模拟已完成', cancelled: '本次演示已取消', reset: '↺ 重置', variants: '形式', primary: '主要', tried: '已试用「主要」' },
   en: { path: '/en/components/button', cancel: 'Cancel', save: 'Save changes', idle: 'No real data is submitted or saved', pending: 'Simulating a save', success: 'Save simulation complete', cancelled: 'Demo cancelled', reset: '↺ Reset', variants: 'Variants', primary: 'Primary', tried: 'Primary button tried' },
 };
 
-for (const [locale, width] of [['zh', 390], ['en', 1280]]) {
+for (const [locale, width] of [['zh', 390], ['zh', 1280], ['en', 390], ['en', 1280]]) {
   const text = copy[locale];
   for (const style of ['minimalism', 'neobrutalism', 'glassmorphism', 'swiss-style', 'cyberpunk', 'neumorphism', 'flat-design', 'pixel-art']) {
-    test(`${locale} ${style}：键盘、取消、重试、换风格与重置都有真实反馈`, async ({ page }) => {
+    test(`${locale} ${width}px ${style}：键盘、取消、重试、换风格与重置都有真实反馈`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
-      await page.clock.install();
+      await page.clock.install({ time: new Date('2026-01-01T00:00:00Z') });
       await page.goto(text.path);
+      // 固定演示计时，避免滚动与点击等待消耗 900ms 后误把已完成视为取消失败。
+      await page.clock.pauseAt(new Date('2026-01-01T01:00:00Z'));
       const lab = page.locator('[data-solution-lab]');
       await lab.locator(`[data-style="${style}"]`).click();
       const canvas = lab.locator('.demo-content');
       const primary = canvas.getByRole('button').first();
       const status = canvas.getByRole('status');
       await expect(status).toContainText(text.idle);
+      if (style === 'glassmorphism') {
+        const colors = await canvas.locator('button, p').evaluateAll(nodes => nodes.map(node => getComputedStyle(node).color));
+        expect(colors.length).toBeGreaterThan(0);
+        expect(colors.every(color => color === 'rgb(8, 5, 17)')).toBe(true);
+      }
       await primary.focus();
       await page.keyboard.press('Space');
       await expect(primary).toBeDisabled();
@@ -36,6 +43,8 @@ for (const [locale, width] of [['zh', 390], ['en', 1280]]) {
       await lab.getByRole('button', { name: text.reset, exact: true }).click();
       await expect(status).toContainText(text.idle);
       await primary.click();
+      await expect(primary).toBeDisabled();
+      await expect(status).toContainText(text.pending);
       await lab.locator(`[data-style="${style}"]`).click();
       await page.clock.fastForward(1200);
       await expect(status).toContainText(text.cancelled);
@@ -47,10 +56,12 @@ for (const [locale, width] of [['zh', 390], ['en', 1280]]) {
     });
   }
 
-  test(`${locale} 基础按钮：取消后不会晚报保存成功，重试保持按钮宽度`, async ({ page }) => {
+  test(`${locale} ${width}px 基础按钮：取消后不会晚报保存成功，重试保持按钮宽度`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
-    await page.clock.install();
+    await page.clock.install({ time: new Date('2026-01-01T00:00:00Z') });
     await page.goto(text.path);
+    // 固定演示计时，避免滚动与点击等待消耗 900ms 后误把已完成视为取消失败。
+    await page.clock.pauseAt(new Date('2026-01-01T01:00:00Z'));
     const canvas = page.locator('.demo-content');
     const save = canvas.getByRole('button', { name: text.save, exact: true });
     const before = await save.boundingBox();
@@ -67,7 +78,7 @@ for (const [locale, width] of [['zh', 390], ['en', 1280]]) {
     if (locale === 'en') expect(await canvas.innerText()).not.toMatch(/[\u4e00-\u9fff]/);
   });
 
-  test(`${locale} 状态样板：可操作按钮有反馈，禁用和加载态不可触发`, async ({ page }) => {
+  test(`${locale} ${width}px 状态样板：可操作按钮有反馈，禁用和加载态不可触发`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto(text.path);
     const lab = page.locator('[data-solution-lab]');

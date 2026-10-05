@@ -52,21 +52,21 @@ function Glass({ session, locale }: VariantDemoProps) {
   const zh = locale === 'zh';
   const action = useButtonFeedback(session);
   return (
-    <div className="relative mx-auto flex max-w-sm flex-col gap-4 overflow-hidden rounded-2xl bg-gradient-to-br from-[#7c5cff] via-[#ff6ec7] to-[#5ad1ff] p-6 text-white [overflow-wrap:anywhere]">
+    <div className="relative mx-auto flex max-w-sm flex-col gap-4 overflow-hidden rounded-2xl bg-gradient-to-br from-[#7c5cff] via-[#ff6ec7] to-[#5ad1ff] p-6 text-[#080511] [overflow-wrap:anywhere]">
       <span className="pointer-events-none absolute -left-6 -top-8 h-24 w-24 rounded-full bg-white/40 blur-xl" />
       <span className="pointer-events-none absolute -bottom-10 right-0 h-28 w-28 rounded-full bg-white/30 blur-2xl" />
-      <p className="relative font-mono text-[10px] uppercase tracking-[0.25em] text-white/80">{zh ? '保存更改 · 本地模拟' : 'Save changes · local demo'}</p>
+      <p className="relative font-mono text-[10px] uppercase tracking-[0.25em]">{zh ? '保存更改 · 本地模拟' : 'Save changes · local demo'}</p>
       <div className="relative flex flex-wrap gap-3">
         <button type="button" disabled={action.busy} aria-busy={action.busy} onClick={action.start}
-          className={`${target} ${focus} focus-visible:outline-white rounded-xl border border-white/50 bg-white/20 px-4 py-2 text-xs font-semibold shadow-md shadow-black/10 backdrop-blur-md transition-all duration-200 motion-safe:enabled:hover:-translate-y-0.5 enabled:hover:bg-white/35 enabled:hover:shadow-lg motion-safe:enabled:focus-visible:-translate-y-0.5 enabled:focus-visible:bg-white/35 enabled:focus-visible:shadow-lg motion-reduce:transition-none`}>
+          className={`${target} ${focus} focus-visible:outline-[#080511] rounded-xl border border-white/50 bg-white/20 px-4 py-2 text-xs font-semibold shadow-md shadow-black/10 backdrop-blur-md transition-all duration-200 motion-safe:enabled:hover:-translate-y-0.5 enabled:hover:bg-white/35 enabled:hover:shadow-lg motion-safe:enabled:focus-visible:-translate-y-0.5 enabled:focus-visible:bg-white/35 enabled:focus-visible:shadow-lg motion-reduce:transition-none`}>
           {action.busy ? (zh ? '处理中…' : 'Working…') : zh ? '保存' : 'Save'}
         </button>
-        <button type="button" onClick={action.cancel} className={`${target} ${focus} focus-visible:outline-white rounded-xl border border-white/30 bg-transparent px-4 py-2 text-xs font-medium text-white/90 backdrop-blur-sm transition-colors duration-200 hover:bg-white/15`}>
+        <button type="button" onClick={action.cancel} className={`${target} ${focus} focus-visible:outline-[#080511] rounded-xl border border-white/30 bg-transparent px-4 py-2 text-xs font-medium backdrop-blur-sm transition-colors duration-200 hover:bg-white/15`}>
           {zh ? '取消' : 'Cancel'}
         </button>
       </div>
       <p role="status" aria-atomic="true" className="relative min-h-10 text-xs leading-relaxed">{buttonFeedbackText(action.state, locale)}</p>
-      <p className="relative text-[11px] leading-relaxed text-white/80">{zh ? '磨砂玻璃叠在彩色背景上，用边框和模糊建立层次；悬停与键盘聚焦都有反馈。' : 'Frosted glass over a colourful backdrop, with borders and blur for hierarchy. Hover and keyboard focus both give feedback.'}</p>
+      <p className="relative text-[11px] leading-relaxed">{zh ? '磨砂玻璃叠在彩色背景上，用边框和模糊建立层次；悬停与键盘聚焦都有反馈。' : 'Frosted glass over a colourful backdrop, with borders and blur for hierarchy. Hover and keyboard focus both give feedback.'}</p>
     </div>
   );
 }
