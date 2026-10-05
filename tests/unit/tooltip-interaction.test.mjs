@@ -5,6 +5,14 @@ import { createTooltipInteraction, tooltipHasHoverPointer, tooltipIsVisible, upd
 import { callbackHarness, keyEvent } from '../helpers/callback-harness.mjs';
 const trace = (...actions) => actions.reduce(updateTooltipInteraction, createTooltipInteraction());
 
+test('瑞士风格的独立提示浮层保留白色表面，避免底层文字透出', () => {
+  const h = callbackHarness('tooltip', 'swiss-style', 'zh');
+  h.find(node => node.type === 'button').props.onFocus();
+  const tip = h.find(node => node.props.role === 'tooltip');
+  assert.ok(tip.props.className.split(/\s+/).includes('bg-white'));
+  assert.ok(tip.props.className.split(/\s+/).includes('border-t'));
+});
+
 test('保留焦点时，指针进入再离开不能关闭提示', () => {
   const state = trace('focus', 'pointer-enter', 'pointer-leave');
   assert.equal(state.focused, true); assert.equal(state.hovered, false); assert.equal(tooltipIsVisible(state), true);

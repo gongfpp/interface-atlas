@@ -182,7 +182,7 @@ function TooltipRecipe({ style, locale }: Props) {
   return <RecipeFrame style={style} locale={locale} title={text(locale, title.tooltip)}>
     <div ref={root} onPointerEnter={(event) => { if (tooltipHasHoverPointer(event.pointerType)) update('pointer-enter'); }} onPointerLeave={(event) => { if (tooltipHasHoverPointer(event.pointerType)) update('pointer-leave'); }} onPointerCancel={(event) => { if (tooltipHasHoverPointer(event.pointerType)) update('pointer-leave'); }} className="relative py-3">
       <button ref={trigger} type="button" className={r.control} aria-describedby={open ? id : undefined} onFocus={() => update('focus')} onBlur={() => update('blur')} onClick={() => update('activate')} onKeyDown={(event) => { if (event.key === 'Escape') { event.preventDefault(); update('dismiss'); } }}>{text(locale, ['悬停、聚焦或点按提示', 'Hover, focus or tap for help'])}</button>
-      {open && <TooltipLayer root={root} anchor={trigger} matchRootWidth><div role="tooltip" id={id} className={`text-sm ${r.item}`}>{text(locale, ['这条说明补充控件含义；再次点按或按 Esc 可以关闭。', 'This hint explains the control. Tap again or press Escape to dismiss.'])}</div></TooltipLayer>}
+      {open && <TooltipLayer root={root} anchor={trigger} matchRootWidth><div role="tooltip" id={id} className={`text-sm ${r.item} ${style === 'swiss-style' ? 'bg-white' : ''}`}>{text(locale, ['这条说明补充控件含义；再次点按或按 Esc 可以关闭。', 'This hint explains the control. Tap again or press Escape to dismiss.'])}</div></TooltipLayer>}
     </div>
   </RecipeFrame>;
 }

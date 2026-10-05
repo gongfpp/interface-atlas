@@ -25,6 +25,7 @@ for (const [id, { styles }] of Object.entries(matrix)) {
           const path = test.info().outputPath(file);
           if (id === 'tooltip') {
             await expect(preview.getByRole('tooltip')).toBeInViewport({ ratio: 1 });
+            if (style === 'swiss-style') await expect(preview.getByRole('tooltip')).toHaveCSS('background-color', 'rgb(255, 255, 255)');
             await page.screenshot({ path, animations: 'disabled' });
           } else {
             await lab.locator('.demo-viewport').screenshot({ path, animations: 'disabled' });
