@@ -28,6 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
+          path: harness
           persist-credentials: false
       - name: 独立检出未发布候选
         uses: actions/checkout@v7
@@ -41,14 +42,14 @@ jobs:
           cache: npm
           cache-dependency-path: candidate/package-lock.json
       - name: 验证私有 runner 的发布隔离
-        working-directory: .
+        working-directory: harness
         run: node scripts/verify-private-qa.mjs
       - name: 记录独立候选与 runner 来源
         run: |
           test "$(git rev-parse HEAD)" = "d5ee5cdeaf272685783ca78e6736807b8d293a30"
           test "$(git rev-parse HEAD^{tree})" = "cab09fef234489e659593c8d71df93202f31100d"
           git diff --exit-code
-          node ../scripts/write-clean-qa-config.mjs
+          node ../harness/scripts/write-clean-qa-config.mjs
           mkdir -p qa-evidence
           printf '%s\n' "${{ github.sha }}" > qa-evidence/runner-commit.txt
           git rev-parse HEAD > qa-evidence/commit.txt
@@ -86,7 +87,7 @@ jobs:
       - name: 生产子路径构建与发布内容隔离
         run: |
           npm run build:fast
-          node ../scripts/audit-clean-dist.mjs
+          node ../harness/scripts/audit-clean-dist.mjs
         env:
           PUBLIC_SITE_URL: https://gongfpp.github.io
           PUBLIC_BASE_PATH: /interface-atlas-web
@@ -133,6 +134,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
+          path: harness
           persist-credentials: false
       - name: 独立检出未发布候选
         uses: actions/checkout@v7
@@ -146,14 +148,14 @@ jobs:
           cache: npm
           cache-dependency-path: candidate/package-lock.json
       - name: 验证私有 runner 的发布隔离
-        working-directory: .
+        working-directory: harness
         run: node scripts/verify-private-qa.mjs
       - name: 记录独立候选与 runner 来源
         run: |
           test "$(git rev-parse HEAD)" = "d5ee5cdeaf272685783ca78e6736807b8d293a30"
           test "$(git rev-parse HEAD^{tree})" = "cab09fef234489e659593c8d71df93202f31100d"
           git diff --exit-code
-          node ../scripts/write-clean-qa-config.mjs
+          node ../harness/scripts/write-clean-qa-config.mjs
           mkdir -p qa-evidence
           printf '%s\n' "${{ github.sha }}" > qa-evidence/runner-commit.txt
           git rev-parse HEAD > qa-evidence/commit.txt
