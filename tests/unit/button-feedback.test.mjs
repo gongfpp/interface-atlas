@@ -118,3 +118,22 @@ test('真实按钮位移类在编译后受 prefers-reduced-motion 安全门控',
     assert.match(css, /(?:translate|scale):/);
   }
 });
+
+
+test('玻璃按钮保留明亮渐变，但文字在最暗色标上仍有至少 4.5:1 对比', async () => {
+  const { readFileSync } = await import('node:fs');
+  const source = readFileSync(new URL('../../src/islands/style-variants/button.tsx', import.meta.url), 'utf8');
+  const glass = source.slice(source.indexOf('function Glass('), source.indexOf('function Swiss('));
+  const foreground = glass.match(/text-\[(#[0-9a-f]{6})\]/i)?.[1];
+  const stops = [...glass.matchAll(/(?:from|via|to)-\[(#[0-9a-f]{6})\]/gi)].map(match => match[1]);
+  assert.equal(foreground, '#080511');
+  assert.equal(stops.length, 3);
+  assert.doesNotMatch(glass, /\btext-white(?:\/\d+)?\b/);
+  const luminance = hex => {
+    const rgb = [1, 3, 5].map(index => parseInt(hex.slice(index, index + 2), 16) / 255)
+      .map(value => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+    return rgb.reduce((sum, value, index) => sum + value * [0.2126, 0.7152, 0.0722][index], 0);
+  };
+  const text = luminance(foreground);
+  for (const stop of stops) assert.ok((luminance(stop) + 0.05) / (text + 0.05) >= 4.5, stop);
+});

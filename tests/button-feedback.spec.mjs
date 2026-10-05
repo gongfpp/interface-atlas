@@ -20,6 +20,11 @@ for (const [locale, width] of [['zh', 390], ['zh', 1280], ['en', 390], ['en', 12
       const primary = canvas.getByRole('button').first();
       const status = canvas.getByRole('status');
       await expect(status).toContainText(text.idle);
+      if (style === 'glassmorphism') {
+        const colors = await canvas.locator('button, p').evaluateAll(nodes => nodes.map(node => getComputedStyle(node).color));
+        expect(colors.length).toBeGreaterThan(0);
+        expect(colors.every(color => color === 'rgb(8, 5, 17)')).toBe(true);
+      }
       await primary.focus();
       await page.keyboard.press('Space');
       await expect(primary).toBeDisabled();

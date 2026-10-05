@@ -22,3 +22,5 @@ Actions artifact 名称包含运行提交 SHA。`commit.txt`、`tree.txt`、`par
 构建关闭分析和日志上报；测试 fixture 阻断非本地浏览器请求。失败注入使用 route.fallback 保留 allowlist，APIRequestContext 检查只允许本地目标并禁用重定向。不测试留言提交或登录。
 
 本验收不包含真实 iOS/Android 硬件、WebKit/Firefox、第三方留言服务、公开部署或发布后验证。
+
+玻璃按钮的文字使用不透明深色，针对配置中的全部渐变色标保留至少 4.5:1 的静态配色回归，并在双语、两种宽度的浏览器检查中核验实际前景色。此项修复不改变玻璃材质、布局或演示计时；它不是全站 WCAG 合规声明。判定依据：[W3C Contrast (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html)。
