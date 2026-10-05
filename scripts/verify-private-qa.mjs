@@ -22,6 +22,19 @@ assert.match(ci, /github\.ref == 'refs\/heads\/dot\/atlas-private-browser-qa'/);
 assert.match(ci, /persist-credentials: false/);
 assert.match(ci, /retention-days: 7/);
 assert.match(ci, /PUBLIC_LOG_API: 'off'/);
+const ciJobs = ci.split(/^jobs:\n/m)[1].split(/^  [\w-]+:\n/m).slice(1);
+assert.equal(ciJobs.length, 2);
+for (const job of ciJobs) {
+  const header = job.split(/^    steps:/m)[0];
+  assert.match(header, /github\.event_name == 'push'/);
+  assert.match(header, /github\.repository == 'gongfpp\/interface-atlas'/);
+  assert.match(header, /github\.event\.repository\.private == true/);
+  assert.match(header, /github\.ref == 'refs\/heads\/dot\/atlas-private-browser-qa'/);
+  assert.doesNotMatch(job, /^    permissions:/m);
+  assert.match(job, /persist-credentials: false/);
+  assert.match(job, /retention-days: 7/);
+  assert.match(header, /PUBLIC_LOG_API: 'off'/);
+}
 const tests = readdirSync('tests', { recursive: true }).filter((name) => name.endsWith('.spec.mjs'));
 assert.ok(tests.length > 0);
 for (const name of tests) {

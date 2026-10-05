@@ -51,7 +51,9 @@ jobs:
       - name: 搜索金标回归
         run: npm run search:test
       - name: 安装 Chromium
-        run: npx playwright install --with-deps chromium
+        run: |
+          npx playwright install --with-deps chromium
+          node --input-type=module -e 'import { chromium } from "playwright"; const browser = await chromium.launch(); console.log(await browser.version()); await browser.close();' > qa-evidence/browser-version.txt
       - name: Tooltip 视口边缘与重测门禁
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/viewport-results.json
@@ -82,6 +84,85 @@ jobs:
             test-results/
             targeted-results/
             viewport-results/
+            playwright-report/
+          if-no-files-found: error
+          retention-days: 7
+
+  cross-browser:
+    if: ${{ github.event_name == 'push' && github.repository == 'gongfpp/interface-atlas' && github.event.repository.private == true && github.ref == 'refs/heads/dot/atlas-private-browser-qa' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [firefox, webkit]
+    env:
+      PUBLIC_LOG_API: 'off'
+      PUBLIC_UMAMI_SRC: ''
+      PUBLIC_UMAMI_ID: ''
+      PUBLIC_CF_BEACON_TOKEN: ''
+      ASTRO_TELEMETRY_DISABLED: '1'
+      QA_BROWSER: ${{ matrix.engine }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - name: 验证发布隔离与来源
+        run: |
+          node scripts/verify-private-qa.mjs
+          mkdir -p qa-evidence
+          git rev-parse HEAD > qa-evidence/commit.txt
+          git rev-parse HEAD^{tree} > qa-evidence/tree.txt
+          git cat-file -p HEAD | sed -n 's/^parent //p' > qa-evidence/parents.txt
+          node --version > qa-evidence/node.txt
+          printf '%s\n' "$QA_BROWSER" > qa-evidence/engine.txt
+      - name: 安装锁定依赖
+        run: npm ci
+      - name: 构建同一源码
+        run: npm run build
+      - name: 安装并检查官方浏览器
+        id: install
+        run: |
+          npx playwright install --with-deps "$QA_BROWSER"
+          node --input-type=module -e 'import { firefox, webkit } from "playwright"; const browser = await ({ firefox, webkit }[process.env.QA_BROWSER]).launch(); console.log(await browser.version()); await browser.close();' > qa-evidence/browser-version.txt
+      - name: 四类组件八套风格与代表截图
+        id: representative
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/representative-results.json
+        run: |
+          npx playwright test --config=playwright.cross-browser-qa.config.mjs --project="$QA_BROWSER" tests/all-component-styles.spec.mjs --grep ' (button|input|card|tooltip) (zh|en) (390|1280)px:' --max-failures=8 --reporter=line,json --output=representative-results
+      - name: 提示、表单卡片和修正页头交互
+        id: interactions
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/interaction-results.json
+        run: |
+          npx playwright test --config=playwright.cross-browser-qa.config.mjs --project="$QA_BROWSER" tests/tooltip-interaction.spec.mjs tests/button-feedback.spec.mjs tests/input-card-style-expansion.spec.mjs tests/detail-header-layout.spec.mjs tests/layout-diagnostics.spec.mjs --max-failures=8 --reporter=line,json --output=interaction-results
+      - name: 扩展引擎全量回归
+        if: ${{ !cancelled() && steps.representative.outcome == 'success' && steps.interactions.outcome == 'success' }}
+        run: npx playwright test --config=playwright.cross-browser-qa.config.mjs --project="$QA_BROWSER" --max-failures=8
+      - name: 记录截图哈希与运行版本
+        if: ${{ always() }}
+        run: |
+          mkdir -p qa-evidence
+          if [ -x node_modules/.bin/playwright ]; then node_modules/.bin/playwright --version > qa-evidence/playwright-version.txt; fi
+          for dir in test-results representative-results interaction-results; do
+            if [ -d "$dir" ]; then find "$dir" -type f -name '*.png' -print0; fi
+          done | sort -z | xargs -0 -r sha256sum > qa-evidence/screenshots.sha256
+      - name: 保存私有跨引擎证据
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-private-qa-${{ matrix.engine }}-${{ github.sha }}
+          path: |
+            qa-evidence/
+            test-results/
+            representative-results/
+            interaction-results/
             playwright-report/
           if-no-files-found: error
           retention-days: 7

@@ -32,3 +32,11 @@ Actions artifact 名称包含运行提交 SHA。`commit.txt`、`tree.txt`、`par
 Tooltip 定位保留 DOM 归属，优先使用原生 manual-popover 顶层，翻转与限制视口边界，并在滚动、resize 和尺寸变化时重测。绝对定位回退的几何已做单元回归；它不能提供原生顶层的跨祖先裁剪/层叠保证，未据此声称旧浏览器已通过等价验收。
 
 真实截图审阅还发现：瑞士风格原本透明的行项目作为独立浮层时，会透出下面的标题、分隔线和说明文字。仅该 Tooltip 的表面补为白色，保留黑色网格线和字重；共享样式配方及其他组件不变。单元测试与四种语言/宽度的浏览器计算样式检查防止回退，仍需复核实际截图。
+
+## Firefox / WebKit 补充验收
+
+保留 `e4f36d8beea1f6b71503ca3ef56fa068658b4012` 的 Chromium 已验收结果，在同一受保护私有分支增加独立引擎 job。使用锁定 Playwright 版本的官方 Firefox、WebKit 构建及系统依赖；各自先执行 16 个代表组合（128 张截图）和 133 个提示、按钮、输入框、卡片、页头及布局案例，两个阶段均通过后才执行全部 420 个案例。诊断阶段最多累计八个失败就停止当前命令，报告保留未执行数量，不将其视为完整通过；重试仍为零。
+
+每个引擎独立保留源码 commit/tree/parent、运行时浏览器版本、JSON 结果、截图与哈希，artifact 仍为私有七天期。Chromium 的完整门禁同时保留，用于检查补充工作没有回退既有结果。
+
+这是 [Playwright 官方浏览器构建](https://playwright.dev/docs/browsers)在 Linux CI 上的验收。WebKit 与 Apple Safari 产品、macOS/iOS 真机并不等价；最终通过范围以实际运行报告与截图审阅为准。

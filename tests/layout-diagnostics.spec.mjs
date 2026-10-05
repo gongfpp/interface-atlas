@@ -53,7 +53,8 @@ for (const { locale, width, route } of cases) {
       };
     });
     geometry.browserVersion = browser.version();
-    console.log(`LAYOUT_GEOMETRY ${locale} ${width} ${route} document=${geometry.documentWidth} viewport=${geometry.viewport} chromium=${geometry.browserVersion}`);
+    geometry.browserName = browser.browserType().name();
+    console.log(`LAYOUT_GEOMETRY ${locale} ${width} ${route} document=${geometry.documentWidth} viewport=${geometry.viewport} ${geometry.browserName}=${geometry.browserVersion}`);
     await testInfo.attach('layout-geometry.json', { body: JSON.stringify(geometry, null, 2), contentType: 'application/json' });
     const screenshot = testInfo.outputPath('full-page.png');
     await page.screenshot({ path: screenshot, fullPage: true, animations: 'disabled' });
