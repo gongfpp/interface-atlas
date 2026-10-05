@@ -155,6 +155,45 @@ test('视口外的聚焦触发器暂停浮层，滚回后恢复；resize 不制�
   await page.keyboard.press('Escape'); await expect(tip).toHaveCount(0);
 });
 
+async function tooltipLayoutSnapshot(page) {
+  return page.evaluate(() => {
+    const layer = document.querySelector('[data-solution-lab] [data-tooltip-layer]');
+    const rect = layer?.getBoundingClientRect(), style = layer && getComputedStyle(layer);
+    return { viewportWidth: innerWidth, viewportHeight: innerHeight, documentWidth: document.documentElement.scrollWidth, bodyWidth: document.body.scrollWidth, scrollX, scrollY,
+      layer: layer && { display: style.display, inlineDisplay: layer.style.display, visibility: style.visibility, position: style.position, width: style.width, maxWidth: style.maxWidth, suspended: layer.dataset.tooltipSuspended, popoverOpen: layer.matches(':popover-open'), rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height } },
+    };
+  });
+}
+for (const locale of ['zh', 'en']) test(`${locale}/390px: 初次离屏聚焦不产生横向溢出，原生滚动恢复浮层`, async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  const { lab, trigger, tip } = await tooltipPreview(page, 'retro-futurism', locale);
+  await page.mouse.move(0, 0);
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  const initial = await observeSettledGeometry(trigger);
+  expect(initial.final.y).toBeGreaterThanOrEqual(844);
+  const beforeFocus = await tooltipLayoutSnapshot(page);
+  expect(beforeFocus.layer).toBeNull();
+  await trigger.evaluate(node => node.focus({ preventScroll: true }));
+  const immediate = await tooltipLayoutSnapshot(page);
+  const layer = lab.locator('[data-tooltip-layer]');
+  await expect(layer).toHaveAttribute('data-tooltip-suspended', 'true');
+  await observeSettledGeometry(trigger);
+  const settled = await tooltipLayoutSnapshot(page);
+  await test.info().attach('offscreen-focus-width.json', { body: JSON.stringify({ beforeFocus, immediate, settled }), contentType: 'application/json' });
+  for (const snapshot of [beforeFocus, immediate, settled]) expect(snapshot.documentWidth, JSON.stringify(snapshot)).toBeLessThanOrEqual(snapshot.viewportWidth);
+  await expect(layer).toHaveCSS('display', 'none'); await expect(trigger).toBeFocused();
+  expect(settled.layer.popoverOpen).toBe(true);
+  await placeTriggerAtEdge(trigger, 'bottom');
+  const resumed = await tooltipLayoutSnapshot(page);
+  await test.info().attach('resumed-tooltip-width.json', { body: JSON.stringify(resumed), contentType: 'application/json' });
+  await expect(layer).toHaveAttribute('data-tooltip-suspended', 'false');
+  await expect(layer).not.toHaveCSS('display', 'none');
+  expect(resumed.layer.popoverOpen).toBe(true);
+  expect(resumed.documentWidth).toBeLessThanOrEqual(resumed.viewportWidth);
+  await expectTooltipOnTopLayer(tip); await expect(trigger).toBeFocused();
+  await page.keyboard.press('Escape'); await expect(tip).toHaveCount(0);
+});
+
 test.describe('触屏事件顺序', () => {
   test.use({ hasTouch: true, viewport: { width: 390, height: 844 } });
   for (const style of styles) for (const locale of ['zh', 'en']) {

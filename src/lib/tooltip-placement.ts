@@ -36,6 +36,7 @@ export function observeTooltipPlacement(root: HTMLElement, anchor: HTMLElement, 
   const content = layer.firstElementChild as HTMLElement | null;
   if (!view || !content) return () => {};
   const { preferred = 'bottom', gap = 12, matchRootWidth = false, onPlacement } = options;
+  const originalDisplay = layer.style.display;
   // manual 顶层绕过容器/滤镜和 sticky 的层叠，但不改变 DOM 归属、焦点或关闭契约。
   const topLayer = typeof layer.showPopover === 'function';
   if (topLayer) layer.showPopover();
@@ -48,7 +49,9 @@ export function observeTooltipPlacement(root: HTMLElement, anchor: HTMLElement, 
     // 焦点可以仍在屏幕外的触发器上；暂停绘制，不修改交互状态或留下透明大命中区。
     const suspended = anchorRect.bottom <= viewport.top || anchorRect.top >= viewport.top + viewport.height || anchorRect.right <= viewport.left || anchorRect.left >= viewport.left + viewport.width;
     layer.dataset.tooltipSuspended = String(suspended);
-    if (suspended) { layer.style.visibility = 'hidden'; layer.style.padding = '0px'; return; }
+    // visibility:hidden 仍可能让初次挂载的 max-content 浮层扩大 WebKit 的滚动范围。
+    if (suspended) { layer.style.display = 'none'; layer.style.visibility = 'hidden'; layer.style.padding = '0px'; return; }
+    layer.style.display = originalDisplay;
     const maxWidth = Math.max(0, viewport.width - 16), maxHeight = Math.max(0, viewport.height - 16);
     layer.style.width = matchRootWidth ? `${Math.min(rootRect.width, maxWidth)}px` : 'max-content';
     layer.style.maxWidth = `${maxWidth}px`;
@@ -89,5 +92,6 @@ export function observeTooltipPlacement(root: HTMLElement, anchor: HTMLElement, 
     view.visualViewport?.removeEventListener('resize', measure);
     observer.disconnect();
     if (topLayer && layer.matches(':popover-open')) layer.hidePopover();
+    layer.style.display = originalDisplay;
   };
 }

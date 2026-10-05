@@ -58,7 +58,7 @@ jobs:
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/viewport-results.json
         run: |
-          npx playwright test --config=playwright.private-qa.config.mjs tests/tooltip-interaction.spec.mjs --grep '视口底边|基础提示|视口外的聚焦' --reporter=line,json --output=viewport-results
+          npx playwright test --config=playwright.private-qa.config.mjs tests/tooltip-interaction.spec.mjs --grep '视口底边|基础提示|视口外的聚焦|初次离屏聚焦' --reporter=line,json --output=viewport-results
       - name: 计时与滚动边界重复回归（各五次）
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/timing-repeat-results.json

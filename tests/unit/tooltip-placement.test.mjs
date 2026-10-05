@@ -44,7 +44,7 @@ function events() {
     dispatch(type, capture = false) { for (const callback of [...(listeners.get(`${type}/${capture}`) ?? [])]) callback(); },
   };
 }
-for (const topLayer of [true, false]) test(`${topLayer ? 'manual 顶层' : '绝对定位回退'}：滚动/resize/尺寸变化重测，保留透明 hover 桥并释放订阅`, () => {
+for (const topLayer of [true, false]) test(`${topLayer ? 'manual 顶层' : '绝对定位回退'}：初始离屏不布局，恢复后滚动/resize/尺寸变化重测并释放订阅`, () => {
   let observed = [], disconnected = false, popoverOpen = false, showCount = 0, hideCount = 0, resized;
   const visualViewport = { ...events(), offsetLeft: 0, offsetTop: 0, width: 800, height: 800 };
   const view = { ...events(), visualViewport, innerHeight: 800, ResizeObserver: class {
@@ -53,16 +53,40 @@ for (const topLayer of [true, false]) test(`${topLayer ? 'manual 顶层' : '绝�
     disconnect() { disconnected = true; observed = []; }
   } };
   let rootRect = { left: 100, top: 700, width: 400, height: 68 };
-  let triggerRect = { left: 110, top: 712, width: 170, height: 44 };
-  let contentHeight = 72;
+  let triggerRect = { left: 110, top: 1200, width: 170, height: 44 };
+  let contentHeight = 72, sizeReads = 0;
+  const originalDisplay = topLayer ? '' : 'inline-block';
   const root = { ownerDocument: { defaultView: view, documentElement: { clientWidth: 800 } }, getBoundingClientRect: () => rootRect, clientLeft: 0, clientTop: 0, scrollLeft: 0, scrollTop: 0 };
   const trigger = { getBoundingClientRect: () => ({ ...triggerRect, right: triggerRect.left + triggerRect.width, bottom: triggerRect.top + triggerRect.height }) };
-  const content = { style: {}, get offsetWidth() { return Math.min(400, parseFloat(layer.style.maxWidth)); }, get offsetHeight() { return Math.min(contentHeight, parseFloat(this.style.maxHeight)); }, get scrollHeight() { return contentHeight; } };
-  const layer = { firstElementChild: content, style: { setProperty(name, value) { this[name] = value; } }, dataset: {}, removeAttribute(name) { assert.equal(name, 'popover'); }, matches: () => popoverOpen, hidePopover() { popoverOpen = false; hideCount++; } };
+  const assertMeasurable = () => { assert.equal(layer.style.display, originalDisplay, '恢复原 display 后才能读取内容尺寸'); sizeReads++; };
+  const content = { style: {}, get offsetWidth() { assertMeasurable(); return Math.min(400, parseFloat(layer.style.maxWidth)); }, get offsetHeight() { assertMeasurable(); return Math.min(contentHeight, parseFloat(this.style.maxHeight)); }, get scrollHeight() { assertMeasurable(); return contentHeight; } };
+  const layer = { firstElementChild: content, style: { display: originalDisplay, setProperty(name, value) { this[name] = value; } }, dataset: {}, removeAttribute(name) { assert.equal(name, 'popover'); }, matches: () => popoverOpen, hidePopover() { popoverOpen = false; hideCount++; } };
   if (topLayer) layer.showPopover = () => { popoverOpen = true; showCount++; };
   const placements = [];
-  const cleanup = observeTooltipPlacement(root, trigger, layer, { matchRootWidth: true, onPlacement: (value) => placements.push(value) });
+  let cleanup = observeTooltipPlacement(root, trigger, layer, { gap: 8, matchRootWidth: true, onPlacement: (value) => placements.push(value) });
   assert.equal(showCount, topLayer ? 1 : 0);
+  assert.equal(layer.dataset.tooltipSuspended, 'true');
+  assert.equal(layer.style.display, 'none', '初始离屏层不参与布局或产生滚动溢出');
+  assert.equal(sizeReads, 0);
+  resized(); view.dispatch('scroll', true);
+  assert.equal(layer.style.display, 'none', '离屏回调不能短暂恢复 display');
+  assert.equal(sizeReads, 0);
+  assert.equal(popoverOpen, topLayer, '暂停布局不关闭原生 popover');
+  // 同一节点在离屏时因定位参数改变而重启 effect，不能把暂停用的 none 当成原 display。
+  cleanup();
+  assert.equal(layer.style.display, originalDisplay, '清理归还 display，供下一次 effect 正确捕获');
+  assert.equal(disconnected, true);
+  assert.equal(popoverOpen, false);
+  assert.ok([...view.listeners.values(), ...visualViewport.listeners.values()].every((set) => set.size === 0));
+  disconnected = false;
+  cleanup = observeTooltipPlacement(root, trigger, layer, { gap: 12, matchRootWidth: true, onPlacement: (value) => placements.push(value) });
+  assert.equal(layer.style.display, 'none');
+  assert.equal(sizeReads, 0);
+  assert.equal(showCount, topLayer ? 2 : 0);
+  triggerRect = { ...triggerRect, top: 712 }; view.dispatch('scroll', true);
+  assert.equal(layer.style.display, originalDisplay);
+  assert.ok(sizeReads > 0);
+  assert.equal(showCount, topLayer ? 2 : 0, '恢复无需再次打开 popover');
   assert.equal(layer.dataset.tooltipPlacement, 'top');
   assert.equal(layer.style.padding, '0px 0px 12px 0px');
   assert.equal(layer.style.top, topLayer ? '628px' : '-72px');
@@ -87,15 +111,18 @@ for (const topLayer of [true, false]) test(`${topLayer ? 'manual 顶层' : '绝�
   assert.equal(layer.style.visibility, 'visible');
   triggerRect = { ...triggerRect, top: -4000 }; view.dispatch('scroll', true);
   assert.equal(layer.dataset.tooltipSuspended, 'true');
+  assert.equal(layer.style.display, 'none');
   assert.equal(layer.style.visibility, 'hidden');
   assert.equal(layer.style.padding, '0px', '屏幕外的触发器不能产生巨大的透明命中区');
   triggerRect = { ...triggerRect, top: 200 }; view.dispatch('scroll', true);
   assert.equal(layer.dataset.tooltipSuspended, 'false');
+  assert.equal(layer.style.display, originalDisplay);
   assert.equal(layer.style.visibility, 'visible', '重新滚入视口后恢复，而不重置输入状态');
   assert.ok(layer.style.padding.split(' ').every((value) => parseFloat(value) <= 12));
   assert.ok(placements.includes('top') && placements.includes('bottom'));
   cleanup();
   assert.equal(disconnected, true);
-  assert.equal(hideCount, topLayer ? 1 : 0);
+  assert.equal(hideCount, topLayer ? 2 : 0);
+  assert.equal(layer.style.display, originalDisplay);
   assert.ok([...view.listeners.values(), ...visualViewport.listeners.values()].every((set) => set.size === 0));
 });
