@@ -157,6 +157,16 @@ function TooltipRecipe({ style, locale }: Props) {
   const update = useCallback((action: TooltipAction) => setInteraction((state) => updateTooltipInteraction(state, action)), []);
   const open = tooltipIsVisible(interaction);
   useEffect(() => {
+    if (!interaction.dismissed || !interaction.hovered) return;
+    // Esc 会移除当前悬停的提示节点，React 可能收不到它离开整个区域的事件。
+    // 用后续真实指针位置补齐离开；焦点仍由 blur 结束，不能顺带解除 Esc 抑制。
+    const onPointerMove = (event: PointerEvent) => {
+      if (tooltipHasHoverPointer(event.pointerType) && event.target instanceof Node && !root.current?.contains(event.target)) update('pointer-leave');
+    };
+    document.addEventListener('pointermove', onPointerMove);
+    return () => document.removeEventListener('pointermove', onPointerMove);
+  }, [interaction.dismissed, interaction.hovered, update]);
+  useEffect(() => {
     if (!open) return;
     // 悬停并不移动焦点，Esc 也要能在焦点位于别处时关闭当前提示。
     const onKeyDown = (event: globalThis.KeyboardEvent) => { if (event.key === 'Escape') update('dismiss'); };
