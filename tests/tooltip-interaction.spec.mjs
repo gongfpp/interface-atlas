@@ -88,7 +88,8 @@ for (const style of styles) for (const locale of ['zh', 'en']) {
     const { trigger, tip } = await tooltipPreview(page, style, locale);
     await page.mouse.move(0, 0);
     const edge = await placeTriggerAtEdge(trigger, 'bottom');
-    expect(edge.final.y + edge.final.height).toBeCloseTo(792, 0);
+    // 中文行高可产生半像素边界，而 scrollY 按 CSS 像素取整；只容许设置位置的 1px 舍入误差。
+    expect(Math.abs(edge.final.y + edge.final.height - 792)).toBeLessThanOrEqual(1);
     const heightBefore = await page.evaluate(() => document.documentElement.scrollHeight);
     await trigger.hover();
     await expectTooltipOnTopLayer(tip);
