@@ -23,7 +23,12 @@ for (const [id, { styles }] of Object.entries(matrix)) {
         if (['button', 'input', 'card', 'tooltip'].includes(id)) {
           const file = `${id}-${style}-${locale}-${width}.png`;
           const path = test.info().outputPath(file);
-          await lab.locator('.demo-viewport').screenshot({ path, animations: 'disabled' });
+          if (id === 'tooltip') {
+            await expect(preview.getByRole('tooltip')).toBeInViewport({ ratio: 1 });
+            await page.screenshot({ path, animations: 'disabled' });
+          } else {
+            await lab.locator('.demo-viewport').screenshot({ path, animations: 'disabled' });
+          }
           await test.info().attach(file, { path, contentType: 'image/png' });
         }
         if (locale === 'en') expect(await preview.innerText()).not.toMatch(/[\u4e00-\u9fff]/);

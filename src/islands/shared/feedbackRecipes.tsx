@@ -3,6 +3,7 @@ import { createTooltipInteraction, tooltipHasHoverPointer, tooltipIsVisible, upd
 import type { VariantDemoProps } from '../style-variants/types';
 import { useSessionState } from '../style-variants/session';
 import { RecipeFrame, recipe, recipeVariant, type RecipeStyleId } from './styleRecipe';
+import { TooltipLayer } from './TooltipLayer';
 
 type Props = VariantDemoProps & { style: RecipeStyleId };
 export type FeedbackKind = 'alert' | 'bottom-sheet' | 'command-palette' | 'drawer' | 'dropdown' | 'fab' | 'lightbox' | 'modal' | 'popover' | 'progress-bar' | 'split-button' | 'toast' | 'tooltip';
@@ -152,7 +153,7 @@ function ToastRecipe({ style, locale, session }: Props) {
 }
 
 function TooltipRecipe({ style, locale }: Props) {
-  const r = recipe(style); const id = useId(); const root = useRef<HTMLDivElement>(null);
+  const r = recipe(style); const id = useId(); const root = useRef<HTMLDivElement>(null); const trigger = useRef<HTMLButtonElement>(null);
   const [interaction, setInteraction] = useState(createTooltipInteraction);
   const update = useCallback((action: TooltipAction) => setInteraction((state) => updateTooltipInteraction(state, action)), []);
   const open = tooltipIsVisible(interaction);
@@ -180,8 +181,8 @@ function TooltipRecipe({ style, locale }: Props) {
   }, [open, update]);
   return <RecipeFrame style={style} locale={locale} title={text(locale, title.tooltip)}>
     <div ref={root} onPointerEnter={(event) => { if (tooltipHasHoverPointer(event.pointerType)) update('pointer-enter'); }} onPointerLeave={(event) => { if (tooltipHasHoverPointer(event.pointerType)) update('pointer-leave'); }} onPointerCancel={(event) => { if (tooltipHasHoverPointer(event.pointerType)) update('pointer-leave'); }} className="relative py-3">
-      <button type="button" className={r.control} aria-describedby={open ? id : undefined} onFocus={() => update('focus')} onBlur={() => update('blur')} onClick={() => update('activate')} onKeyDown={(event) => { if (event.key === 'Escape') { event.preventDefault(); update('dismiss'); } }}>{text(locale, ['悬停、聚焦或点按提示', 'Hover, focus or tap for help'])}</button>
-      {open && <div role="tooltip" id={id} className={`mt-3 text-sm ${r.item}`}>{text(locale, ['这条说明补充控件含义；再次点按或按 Esc 可以关闭。', 'This hint explains the control. Tap again or press Escape to dismiss.'])}</div>}
+      <button ref={trigger} type="button" className={r.control} aria-describedby={open ? id : undefined} onFocus={() => update('focus')} onBlur={() => update('blur')} onClick={() => update('activate')} onKeyDown={(event) => { if (event.key === 'Escape') { event.preventDefault(); update('dismiss'); } }}>{text(locale, ['悬停、聚焦或点按提示', 'Hover, focus or tap for help'])}</button>
+      {open && <TooltipLayer root={root} anchor={trigger} matchRootWidth><div role="tooltip" id={id} className={`text-sm ${r.item}`}>{text(locale, ['这条说明补充控件含义；再次点按或按 Esc 可以关闭。', 'This hint explains the control. Tap again or press Escape to dismiss.'])}</div></TooltipLayer>}
     </div>
   </RecipeFrame>;
 }

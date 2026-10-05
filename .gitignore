@@ -12,3 +12,4 @@ playwright-report/
 # 私有浏览器验收的临时证据
 qa-evidence/
 targeted-results/
+viewport-results/

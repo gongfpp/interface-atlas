@@ -8,6 +8,7 @@ export function callbackHarness(id, style, locale = 'en', sharedSession) {
     useRef: (initial) => refs[refCursor++] ??= { current: initial },
     // 默认仍不运行副作用；测试可显式注入节点替身并执行当前渲染捕获的 effect。
     useEffect: (effect) => { effects.push(effect); },
+    useLayoutEffect: (effect) => { effects.push(effect); },
     useCallback: (callback) => callback,
     useState(initial) {
       const index = cursor++;

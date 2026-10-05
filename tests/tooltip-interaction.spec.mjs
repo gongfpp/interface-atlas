@@ -65,6 +65,93 @@ for (const style of styles) for (const locale of ['zh', 'en']) {
     await expect(tip).toHaveCount(0);
   });
 }
+// 将真实页面滚到明确边缘位置，保留页面原来的平滑滚动设置与原生焦点行为。
+async function placeTriggerAtEdge(trigger, edge) {
+  await trigger.evaluate((node, edge) => {
+    const rect = node.getBoundingClientRect();
+    const delta = edge === 'bottom' ? rect.bottom - innerHeight + 8 : rect.top - 8;
+    window.scrollTo({ top: scrollY + delta, behavior: 'instant' });
+  }, edge);
+  return observeSettledGeometry(trigger);
+}
+async function expectTooltipOnTopLayer(tip) {
+  await expect(tip).toBeInViewport({ ratio: 1 });
+  await expect.poll(() => tip.evaluate(node => {
+    const rect = node.getBoundingClientRect();
+    return node.contains(document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2));
+  })).toBe(true);
+}
+
+for (const style of styles) for (const locale of ['zh', 'en']) {
+  test(`${style}/${locale}: 视口底边悬停向上、连续移入、聚焦滚动与窄屏 resize`, async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    const { trigger, tip } = await tooltipPreview(page, style, locale);
+    await page.mouse.move(0, 0);
+    const edge = await placeTriggerAtEdge(trigger, 'bottom');
+    expect(edge.final.y + edge.final.height).toBeCloseTo(792, 0);
+    const heightBefore = await page.evaluate(() => document.documentElement.scrollHeight);
+    await trigger.hover();
+    await expectTooltipOnTopLayer(tip);
+    await expect(tip.locator('..')).toHaveAttribute('data-tooltip-placement', 'top');
+    expect((await trigger.boundingBox()).y).toBeCloseTo(edge.final.y, 1);
+    expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBe(heightBefore);
+    const buttonBox = await trigger.boundingBox(), bubbleBox = await tip.boundingBox();
+    // 在透明间隔中暂停，再慢速移入气泡，验证 hover 区域连续。
+    await page.mouse.move(buttonBox.x + buttonBox.width / 2, (buttonBox.y + bubbleBox.y + bubbleBox.height) / 2, { steps: 5 });
+    await expect(tip).toBeVisible();
+    await tip.hover(); await expect(tip).toBeVisible();
+    await page.keyboard.press('Escape'); await expect(tip).toHaveCount(0);
+    await page.mouse.move(0, 0);
+    await trigger.evaluate(node => node.focus({ preventScroll: true }));
+    await expect(trigger).toBeFocused(); await expectTooltipOnTopLayer(tip);
+    await placeTriggerAtEdge(trigger, 'top');
+    await expect(tip.locator('..')).toHaveAttribute('data-tooltip-placement', 'bottom');
+    await expectTooltipOnTopLayer(tip);
+    await page.setViewportSize({ width: 320, height: 600 });
+    await placeTriggerAtEdge(trigger, 'bottom');
+    await expectTooltipOnTopLayer(tip);
+    await expect(trigger).toBeFocused();
+    await page.keyboard.press('Escape'); await expect(tip).toHaveCount(0);
+    await trigger.press('Tab'); await expect(tip).toHaveCount(0);
+  });
+}
+
+for (const locale of ['zh', 'en']) test(`basic/${locale}: 基础提示保留聚焦契约并在底边翻转、窄屏换行`, async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(`${locale === 'en' ? '/en' : ''}/components/tooltip`);
+  const preview = page.locator('[data-solution-lab] .demo-content');
+  const trigger = preview.getByRole('button', { name: /Acme Design System/ });
+  const tip = preview.getByRole('tooltip');
+  await placeTriggerAtEdge(trigger, 'bottom');
+  await trigger.evaluate(node => node.focus({ preventScroll: true }));
+  await expect(trigger).toBeFocused(); await expect(tip).toBeInViewport({ ratio: 1 });
+  await expect(tip.locator('..')).toHaveAttribute('data-tooltip-placement', 'top');
+  await page.setViewportSize({ width: 320, height: 600 });
+  await placeTriggerAtEdge(trigger, 'bottom');
+  await expect(tip).toBeInViewport({ ratio: 1 });
+  await trigger.press('Tab'); await expect(tip).toHaveCount(0);
+});
+
+test('视口外的聚焦触发器暂停浮层，滚回后恢复；resize 不制造透明覆盖区', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 1000 });
+  const { lab, trigger, tip } = await tooltipPreview(page, 'neobrutalism', 'en');
+  await placeTriggerAtEdge(trigger, 'bottom');
+  await trigger.evaluate(node => node.focus({ preventScroll: true }));
+  await expectTooltipOnTopLayer(tip);
+  const layer = lab.locator('[data-tooltip-layer]');
+  await page.setViewportSize({ width: 1280, height: 600 });
+  await expect(layer).toHaveAttribute('data-tooltip-suspended', 'true');
+  await expect(layer).toBeHidden(); await expect(trigger).toBeFocused();
+  await placeTriggerAtEdge(trigger, 'bottom');
+  await expect(layer).toHaveAttribute('data-tooltip-suspended', 'false');
+  await expectTooltipOnTopLayer(tip); await expect(trigger).toBeFocused();
+  await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
+  await expect(layer).toBeHidden(); await expect(trigger).toBeFocused();
+  await placeTriggerAtEdge(trigger, 'top');
+  await expectTooltipOnTopLayer(tip); await expect(trigger).toBeFocused();
+  await page.keyboard.press('Escape'); await expect(tip).toHaveCount(0);
+});
+
 test.describe('触屏事件顺序', () => {
   test.use({ hasTouch: true, viewport: { width: 390, height: 844 } });
   for (const style of styles) for (const locale of ['zh', 'en']) {
