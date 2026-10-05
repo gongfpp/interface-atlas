@@ -2,7 +2,7 @@ import { test, expect } from './helpers/private-browser.mjs';
 import { readFileSync } from 'node:fs';
 const { tooltip: { styles } } = JSON.parse(readFileSync(new URL('../src/lib/component-style-coverage.json', import.meta.url), 'utf8'));
 
-// 待真实浏览器访问允许后执行；当前只允许收集定义，不代表焦点/触屏/视觉已验收。
+// 以实际浏览器执行结果为准；仅收集定义不代表焦点、触屏或视觉已验收。
 async function tooltipPreview(page, style, locale) {
   await page.goto(`${locale === 'en' ? '/en' : ''}/components/tooltip`);
   const lab = page.locator('[data-solution-lab]');
@@ -47,13 +47,15 @@ for (const style of styles) for (const locale of ['zh', 'en']) {
     await expect(trigger).toBeFocused(); await expect(tip).toBeVisible();
     await trigger.press('Tab'); await expect(tip).toHaveCount(0);
     await trigger.hover(); await trigger.focus(); await trigger.press('Tab');
-    await expect(trigger).not.toBeFocused(); await expect(tip).toBeVisible();
-    // Tab 可能仍在原生平滑滚动；观察停止后，再用真实悬停恢复指针与控件的关系。
+    await expect(trigger).not.toBeFocused();
+    // Tab 的原生滚动可能已让控件离开静止指针；先观察停止，再恢复真实悬停的前提。
     const afterTab = await observeSettledGeometry(trigger);
     await trigger.hover(); await expect(tip).toBeVisible();
     const afterHover = await observeSettledGeometry(trigger);
     await test.info().attach('native-scroll-geometry.json', { body: JSON.stringify({ afterTab, afterHover }), contentType: 'application/json' });
     await expect(trigger).not.toBeFocused();
+    await expect.poll(() => trigger.evaluate(node => node.matches(':hover'))).toBe(true);
+    await expect(tip).toBeVisible();
     await expect(tip).toBeInViewport({ ratio: 1 });
     await tip.hover(); await expect(tip).toBeVisible();
     await page.keyboard.press('Escape'); await expect(tip).toHaveCount(0);
