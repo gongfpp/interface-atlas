@@ -52,6 +52,11 @@ jobs:
         run: npm run search:test
       - name: 安装 Chromium
         run: npx playwright install --with-deps chromium
+      - name: 计时与滚动边界重复回归（各五次）
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/timing-repeat-results.json
+        run: |
+          npx playwright test --config=playwright.private-qa.config.mjs tests/button-feedback.spec.mjs tests/tooltip-interaction.spec.mjs --grep 'glassmorphism/en: 焦点|en 1280px neumorphism' --repeat-each=5 --reporter=line,json --output=targeted-results
       - name: 真实浏览器、交互和截图
         run: npx playwright test --config=playwright.private-qa.config.mjs
       - name: 记录截图哈希与运行版本
@@ -59,7 +64,9 @@ jobs:
         run: |
           mkdir -p qa-evidence
           if [ -x node_modules/.bin/playwright ]; then node_modules/.bin/playwright --version > qa-evidence/playwright-version.txt; fi
-          find test-results -type f -name '*.png' -print0 | sort -z | xargs -0 -r sha256sum > qa-evidence/screenshots.sha256
+          for dir in test-results targeted-results; do
+            if [ -d "$dir" ]; then find "$dir" -type f -name '*.png' -print0; fi
+          done | sort -z | xargs -0 -r sha256sum > qa-evidence/screenshots.sha256
       - name: 保存私有验收证据
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
@@ -68,6 +75,7 @@ jobs:
           path: |
             qa-evidence/
             test-results/
+            targeted-results/
             playwright-report/
           if-no-files-found: error
           retention-days: 7

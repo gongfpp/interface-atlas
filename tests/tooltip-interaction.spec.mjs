@@ -19,6 +19,8 @@ for (const style of styles) for (const locale of ['zh', 'en']) {
     await trigger.press('Tab'); await expect(tip).toHaveCount(0);
     await trigger.hover(); await trigger.focus(); await trigger.press('Tab');
     await expect(trigger).not.toBeFocused(); await expect(tip).toBeVisible();
+    // Tab 可能滚动页面；移入提示内容前，先让指针重新悬停在当前触发器位置。
+    await trigger.hover(); await expect(tip).toBeVisible();
     await tip.hover(); await expect(tip).toBeVisible();
     await page.keyboard.press('Escape'); await expect(tip).toHaveCount(0);
     await page.mouse.move(0, 0); await trigger.hover(); await expect(tip).toBeVisible();
