@@ -56,7 +56,7 @@ jobs:
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/timing-repeat-results.json
         run: |
-          npx playwright test --config=playwright.private-qa.config.mjs tests/button-feedback.spec.mjs tests/tooltip-interaction.spec.mjs --grep 'glassmorphism/en: 焦点|en 1280px neumorphism' --repeat-each=5 --reporter=line,json --output=targeted-results
+          npx playwright test --config=playwright.private-qa.config.mjs tests/button-feedback.spec.mjs tests/tooltip-interaction.spec.mjs --grep '焦点和悬停交错|en 1280px neumorphism' --repeat-each=5 --reporter=line,json --output=targeted-results
       - name: 真实浏览器、交互和截图
         run: npx playwright test --config=playwright.private-qa.config.mjs
       - name: 记录截图哈希与运行版本
