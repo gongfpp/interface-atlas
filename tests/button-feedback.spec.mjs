@@ -10,8 +10,10 @@ for (const [locale, width] of [['zh', 390], ['zh', 1280], ['en', 390], ['en', 12
   for (const style of ['minimalism', 'neobrutalism', 'glassmorphism', 'swiss-style', 'cyberpunk', 'neumorphism', 'flat-design', 'pixel-art']) {
     test(`${locale} ${width}px ${style}：键盘、取消、重试、换风格与重置都有真实反馈`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
-      await page.clock.install();
+      await page.clock.install({ time: new Date('2026-01-01T00:00:00Z') });
       await page.goto(text.path);
+      // 固定演示计时，避免滚动与点击等待消耗 900ms 后误把已完成视为取消失败。
+      await page.clock.pauseAt(new Date('2026-01-01T01:00:00Z'));
       const lab = page.locator('[data-solution-lab]');
       await lab.locator(`[data-style="${style}"]`).click();
       const canvas = lab.locator('.demo-content');
@@ -36,6 +38,8 @@ for (const [locale, width] of [['zh', 390], ['zh', 1280], ['en', 390], ['en', 12
       await lab.getByRole('button', { name: text.reset, exact: true }).click();
       await expect(status).toContainText(text.idle);
       await primary.click();
+      await expect(primary).toBeDisabled();
+      await expect(status).toContainText(text.pending);
       await lab.locator(`[data-style="${style}"]`).click();
       await page.clock.fastForward(1200);
       await expect(status).toContainText(text.cancelled);
@@ -49,8 +53,10 @@ for (const [locale, width] of [['zh', 390], ['zh', 1280], ['en', 390], ['en', 12
 
   test(`${locale} ${width}px 基础按钮：取消后不会晚报保存成功，重试保持按钮宽度`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
-    await page.clock.install();
+    await page.clock.install({ time: new Date('2026-01-01T00:00:00Z') });
     await page.goto(text.path);
+    // 固定演示计时，避免滚动与点击等待消耗 900ms 后误把已完成视为取消失败。
+    await page.clock.pauseAt(new Date('2026-01-01T01:00:00Z'));
     const canvas = page.locator('.demo-content');
     const save = canvas.getByRole('button', { name: text.save, exact: true });
     const before = await save.boundingBox();
