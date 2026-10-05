@@ -1,4 +1,4 @@
-// 仅供私有 A/B 构建验证；修改兼容策略时必须同步更新哈希版本。
+// 避免 WebKit 缓存失败的演示 modulepreload；修改兼容策略时必须同步更新哈希版本。
 export const DEMO_PRELOAD_COMPAT_VERSION = 'atlas-demo-registry-no-js-modulepreload-v1';
 
 const registrySources = [

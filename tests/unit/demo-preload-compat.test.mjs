@@ -5,11 +5,13 @@ import { demoPreloadCompat, DEMO_PRELOAD_COMPAT_VERSION } from '../../build/demo
 const registry = name => ({ type: 'chunk', fileName: `${name}.hash.js`, facadeModuleId: `/project/src/islands/${name === 'DemoMount' ? 'demos/' : ''}${name}.tsx` });
 const client = { environment: { name: 'client' } }, server = { environment: { name: 'ssr' } };
 
-test('预加载兼容实验仅配置 client 环境，默认站点配置未引用它', async () => {
-  const { readFileSync } = await import('node:fs');
+test('预加载兼容仅配置 client 环境，默认与显式诊断入口均只安装一次', async () => {
   const plugin = demoPreloadCompat();
   assert.equal(plugin.configEnvironment('ssr', {}), undefined);
-  assert.doesNotMatch(readFileSync(new URL('../../astro.config.mjs', import.meta.url), 'utf8'), /demoPreloadCompat/);
+  for (const file of ['../../astro.config.mjs', '../../astro.preload-qa.config.mjs']) {
+    const { default: config } = await import(new URL(file, import.meta.url));
+    assert.equal(config.vite.plugins.flat(Infinity).filter(value => value?.name === plugin.name).length, 1);
+  }
 });
 test('仅三个注册器的 JS 预加载依赖置空，其他 JS 与 HTML 保留前序策略', () => {
   const plugin = demoPreloadCompat();
