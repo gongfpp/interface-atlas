@@ -1,4 +1,4 @@
-name: 私有浏览器验收
+name: 干净发布树私有验收
 
 on:
   push:
@@ -15,6 +15,9 @@ jobs:
   verify:
     if: ${{ github.event_name == 'push' && github.repository == 'gongfpp/interface-atlas' && github.event.repository.private == true && github.ref == 'refs/heads/dot/atlas-private-browser-qa' }}
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: candidate
     timeout-minutes: 45
     env:
       PUBLIC_LOG_API: 'off'
@@ -26,14 +29,28 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+      - name: 独立检出未发布候选
+        uses: actions/checkout@v7
+        with:
+          ref: d5ee5cdeaf272685783ca78e6736807b8d293a30
+          path: candidate
+          persist-credentials: false
       - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
-      - name: 验证发布隔离与来源
+          cache-dependency-path: candidate/package-lock.json
+      - name: 验证私有 runner 的发布隔离
+        working-directory: .
+        run: node scripts/verify-private-qa.mjs
+      - name: 记录独立候选与 runner 来源
         run: |
-          node scripts/verify-private-qa.mjs
+          test "$(git rev-parse HEAD)" = "d5ee5cdeaf272685783ca78e6736807b8d293a30"
+          test "$(git rev-parse HEAD^{tree})" = "cab09fef234489e659593c8d71df93202f31100d"
+          git diff --exit-code
+          node ../scripts/write-clean-qa-config.mjs
           mkdir -p qa-evidence
+          printf '%s\n' "${{ github.sha }}" > qa-evidence/runner-commit.txt
           git rev-parse HEAD > qa-evidence/commit.txt
           git rev-parse HEAD^{tree} > qa-evidence/tree.txt
           git cat-file -p HEAD | sed -n 's/^parent //p' > qa-evidence/parents.txt
@@ -58,14 +75,21 @@ jobs:
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/viewport-results.json
         run: |
-          npx playwright test --config=playwright.private-qa.config.mjs tests/tooltip-interaction.spec.mjs --grep '视口底边|基础提示|视口外的聚焦|初次离屏聚焦' --reporter=line,json --output=viewport-results
+          npx playwright test --config=.qa-clean.config.mjs --project=chromium tests/tooltip-interaction.spec.mjs --grep '视口底边|基础提示|视口外的聚焦|初次离屏聚焦' --reporter=line,json --output=viewport-results
       - name: 计时与滚动边界重复回归（各五次）
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/timing-repeat-results.json
         run: |
-          npx playwright test --config=playwright.private-qa.config.mjs tests/button-feedback.spec.mjs tests/tooltip-interaction.spec.mjs --grep '焦点和悬停交错|en 1280px neumorphism' --repeat-each=5 --reporter=line,json --output=targeted-results
+          npx playwright test --config=.qa-clean.config.mjs --project=chromium tests/button-feedback.spec.mjs tests/tooltip-interaction.spec.mjs --grep '焦点和悬停交错|en 1280px neumorphism' --repeat-each=5 --reporter=line,json --output=targeted-results
       - name: 真实浏览器、交互和截图
-        run: npx playwright test --config=playwright.private-qa.config.mjs
+        run: npx playwright test --config=.qa-clean.config.mjs --project=chromium
+      - name: 生产子路径构建与发布内容隔离
+        run: |
+          npm run build:fast
+          node ../scripts/audit-clean-dist.mjs
+        env:
+          PUBLIC_SITE_URL: https://gongfpp.github.io
+          PUBLIC_BASE_PATH: /interface-atlas-web
       - name: 记录截图哈希与运行版本
         if: ${{ always() }}
         run: |
@@ -78,19 +102,22 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: atlas-private-qa-${{ github.sha }}
+          name: atlas-clean-chromium-d5ee5cdeaf272685783ca78e6736807b8d293a30-${{ github.sha }}
           path: |
-            qa-evidence/
-            test-results/
-            targeted-results/
-            viewport-results/
-            playwright-report/
+            candidate/qa-evidence/
+            candidate/test-results/
+            candidate/targeted-results/
+            candidate/viewport-results/
+            candidate/playwright-report/
           if-no-files-found: error
           retention-days: 7
 
   cross-browser:
     if: ${{ github.event_name == 'push' && github.repository == 'gongfpp/interface-atlas' && github.event.repository.private == true && github.ref == 'refs/heads/dot/atlas-private-browser-qa' }}
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: candidate
     timeout-minutes: 60
     strategy:
       fail-fast: false
@@ -107,14 +134,28 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+      - name: 独立检出未发布候选
+        uses: actions/checkout@v7
+        with:
+          ref: d5ee5cdeaf272685783ca78e6736807b8d293a30
+          path: candidate
+          persist-credentials: false
       - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
-      - name: 验证发布隔离与来源
+          cache-dependency-path: candidate/package-lock.json
+      - name: 验证私有 runner 的发布隔离
+        working-directory: .
+        run: node scripts/verify-private-qa.mjs
+      - name: 记录独立候选与 runner 来源
         run: |
-          node scripts/verify-private-qa.mjs
+          test "$(git rev-parse HEAD)" = "d5ee5cdeaf272685783ca78e6736807b8d293a30"
+          test "$(git rev-parse HEAD^{tree})" = "cab09fef234489e659593c8d71df93202f31100d"
+          git diff --exit-code
+          node ../scripts/write-clean-qa-config.mjs
           mkdir -p qa-evidence
+          printf '%s\n' "${{ github.sha }}" > qa-evidence/runner-commit.txt
           git rev-parse HEAD > qa-evidence/commit.txt
           git rev-parse HEAD^{tree} > qa-evidence/tree.txt
           git cat-file -p HEAD | sed -n 's/^parent //p' > qa-evidence/parents.txt
@@ -134,24 +175,24 @@ jobs:
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/representative-results.json
         run: |
-          npx playwright test --config=playwright.cross-browser-qa.config.mjs --project="$QA_BROWSER" tests/all-component-styles.spec.mjs --grep ' (button|input|card|tooltip) (zh|en) (390|1280)px:' --max-failures=8 --reporter=line,json --output=representative-results
+          npx playwright test --config=.qa-clean.config.mjs --project="$QA_BROWSER" tests/all-component-styles.spec.mjs --grep ' (button|input|card|tooltip) (zh|en) (390|1280)px:' --max-failures=8 --reporter=line,json --output=representative-results
       - name: 提示、表单卡片和修正页头交互
         id: interactions
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/interaction-results.json
         run: |
-          npx playwright test --config=playwright.cross-browser-qa.config.mjs --project="$QA_BROWSER" tests/tooltip-interaction.spec.mjs tests/button-feedback.spec.mjs tests/input-card-style-expansion.spec.mjs tests/detail-header-layout.spec.mjs tests/layout-diagnostics.spec.mjs --max-failures=8 --reporter=line,json --output=interaction-results
+          npx playwright test --config=.qa-clean.config.mjs --project="$QA_BROWSER" tests/tooltip-interaction.spec.mjs tests/button-feedback.spec.mjs tests/input-card-style-expansion.spec.mjs tests/detail-header-layout.spec.mjs tests/layout-diagnostics.spec.mjs --max-failures=8 --reporter=line,json --output=interaction-results
       - name: 六项历史失败各重复三次
         id: regression_repeat
         if: ${{ !cancelled() && steps.representative.outcome == 'success' && steps.interactions.outcome == 'success' }}
         env:
           PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/cross-repeat-results.json
         run: |
-          npx playwright test --config=playwright.cross-browser-qa.config.mjs --project="$QA_BROWSER" tests/all-component-styles.spec.mjs tests/solution-lab.spec.mjs --grep ' (breadcrumb en 390px|command-palette zh 390px|menu en 390px|multi-select en 390px|textarea en 390px):|a failed demo module can recover' --repeat-each=3 --max-failures=8 --reporter=line,json --output=cross-repeat-results
+          npx playwright test --config=.qa-clean.config.mjs --project="$QA_BROWSER" tests/all-component-styles.spec.mjs tests/solution-lab.spec.mjs --grep ' (breadcrumb en 390px|command-palette zh 390px|menu en 390px|multi-select en 390px|textarea en 390px):|a failed demo module can recover' --repeat-each=3 --max-failures=8 --reporter=line,json --output=cross-repeat-results
       - name: 扩展引擎全量回归
         if: ${{ !cancelled() && steps.representative.outcome == 'success' && steps.interactions.outcome == 'success' && steps.regression_repeat.outcome == 'success' }}
-        run: npx playwright test --config=playwright.cross-browser-qa.config.mjs --project="$QA_BROWSER" --max-failures=8
+        run: npx playwright test --config=.qa-clean.config.mjs --project="$QA_BROWSER" --max-failures=8
       - name: 记录截图哈希与运行版本
         if: ${{ always() }}
         run: |
@@ -164,13 +205,13 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: atlas-private-qa-${{ matrix.engine }}-${{ github.sha }}
+          name: atlas-clean-${{ matrix.engine }}-d5ee5cdeaf272685783ca78e6736807b8d293a30-${{ github.sha }}
           path: |
-            qa-evidence/
-            test-results/
-            representative-results/
-            interaction-results/
-            cross-repeat-results/
-            playwright-report/
+            candidate/qa-evidence/
+            candidate/test-results/
+            candidate/representative-results/
+            candidate/interaction-results/
+            candidate/cross-repeat-results/
+            candidate/playwright-report/
           if-no-files-found: error
           retention-days: 7
