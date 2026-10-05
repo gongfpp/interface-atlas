@@ -36,7 +36,7 @@ jobs:
           mkdir -p qa-evidence
           git rev-parse HEAD > qa-evidence/commit.txt
           git rev-parse HEAD^{tree} > qa-evidence/tree.txt
-          git log -1 --format=%P > qa-evidence/parents.txt
+          git cat-file -p HEAD | sed -n 's/^parent //p' > qa-evidence/parents.txt
           node --version > qa-evidence/node.txt
       - name: 安装锁定依赖
         run: npm ci
@@ -52,8 +52,8 @@ jobs:
         run: npm run search:test
       - name: 安装 Chromium
         run: npx playwright install --with-deps chromium
-      - name: 真实浏览器、交互和截图
-        run: npx playwright test --config=playwright.private-qa.config.mjs
+      - name: 定位窄屏页面溢出
+        run: npx playwright test --config=playwright.private-qa.config.mjs tests/layout-diagnostics.spec.mjs
       - name: 记录截图哈希与运行版本
         if: ${{ always() }}
         run: |
