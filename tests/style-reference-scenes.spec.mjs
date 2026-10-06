@@ -94,7 +94,9 @@ async function capture(page, target, label, testInfo) {
   const file = `${candidateCommit}-${testInfo.project.name}-${label}.png`;
   const screenshotPath = testInfo.outputPath(file);
   const screenshotFiles = [file];
+  const screenshotViewports = [{ file, viewport: page.viewportSize(), mode: label.startsWith('home-') ? 'full-page' : 'element' }];
   let viewportGeometry = null;
+  let overviewGeometry = null;
   if (label.startsWith('home-')) {
     // 高于视口的区块截图会把真实 sticky 页头拍到图中段；返回页首后保留完整页面与真实页头。
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
@@ -122,10 +124,42 @@ async function capture(page, target, label, testInfo) {
     await page.screenshot({ path: viewportPath, animations: 'disabled', scale: 'css' });
     await testInfo.attach(viewportFile, { path: viewportPath, contentType: 'image/png' });
     screenshotFiles.push(viewportFile);
+    screenshotViewports.push({ file: viewportFile, viewport: page.viewportSize(), mode: 'viewport' });
+  }
+  if (/^home-(zh|en)-1280$/.test(label)) {
+    // 交付总览使用真实加高视口；不裁切、拼接或隐藏导航，之后恢复用例原来的 900px 高度。
+    const originalViewport = page.viewportSize();
+    const originalScroll = await page.evaluate(() => ({ x: scrollX, y: scrollY }));
+    const headerHeight = await page.locator('body > header').evaluate(element => element.getBoundingClientRect().height);
+    const sectionHeight = await target.evaluate(element => element.getBoundingClientRect().height);
+    const overviewViewport = { width: originalViewport.width, height: Math.ceil(sectionHeight + headerHeight + 48) };
+    const overviewFile = `${candidateCommit}-${testInfo.project.name}-${label.replace('home-', 'home-style-overview-')}.png`;
+    const overviewPath = testInfo.outputPath(overviewFile);
+    try {
+      await page.setViewportSize(overviewViewport);
+      await target.evaluate((element, topGap) => {
+        window.scrollTo({ top: scrollY + element.getBoundingClientRect().top - topGap, behavior: 'instant' });
+      }, headerHeight + 20);
+      overviewGeometry = await page.evaluate(() => {
+        const header = document.querySelector('body > header').getBoundingClientRect();
+        const section = document.querySelector('[data-home-styles]').getBoundingClientRect();
+        return { headerTop: header.top, headerBottom: header.bottom, sectionTop: section.top, sectionBottom: section.bottom, viewportWidth: innerWidth, viewportHeight: innerHeight, scrollY };
+      });
+      expect(Math.abs(overviewGeometry.headerTop), JSON.stringify(overviewGeometry)).toBeLessThanOrEqual(0.5);
+      expect(overviewGeometry.sectionTop, JSON.stringify(overviewGeometry)).toBeGreaterThanOrEqual(overviewGeometry.headerBottom + 19);
+      expect(overviewGeometry.sectionBottom, JSON.stringify(overviewGeometry)).toBeLessThanOrEqual(overviewViewport.height - 19);
+      await page.screenshot({ path: overviewPath, animations: 'disabled', scale: 'css' });
+      await testInfo.attach(overviewFile, { path: overviewPath, contentType: 'image/png' });
+      screenshotFiles.push(overviewFile);
+      screenshotViewports.push({ file: overviewFile, viewport: overviewViewport, mode: 'viewport' });
+    } finally {
+      await page.setViewportSize(originalViewport);
+      await page.evaluate(({ x, y }) => window.scrollTo({ left: x, top: y, behavior: 'instant' }), originalScroll);
+    }
   }
   await testInfo.attach(`${label}-source.json`, {
     body: JSON.stringify({
-      candidateCommit, engine: testInfo.project.name, url: page.url(), viewport: page.viewportSize(), screenshotScale: 'css', screenshotFiles, viewportGeometry,
+      candidateCommit, engine: testInfo.project.name, url: page.url(), viewport: page.viewportSize(), screenshotScale: 'css', screenshotFiles, screenshotViewports, viewportGeometry, overviewGeometry,
       sceneSlugs: await target.locator('[data-style-scene]').evaluateAll((elements) => elements.map((element) => element.dataset.styleScene)),
     }, null, 2),
     contentType: 'application/json',
