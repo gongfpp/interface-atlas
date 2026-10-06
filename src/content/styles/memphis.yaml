@@ -155,7 +155,7 @@ style_spec:
     en: Hover offsets and deepens the hard shadow; focus shows a visible 2px black frame; active shifts flush to the shadow; disabled desaturates without shifting; error uses a pink accent
 
 preview:
-  order: 11
+  order: 15
   keywords:
     en: PLAY & REPEAT
     zh: 撞色 · 波点 · 顽皮

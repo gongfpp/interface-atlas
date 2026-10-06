@@ -98,6 +98,7 @@
 - [Organic / 有机自然](/api/concept/styles/organic.json): 以自然形态、温暖材质和低饱和大地色建立亲近感的视觉语言。页面通过不规则曲线、圆润容器和宽松留白形成舒展节奏，文字与按钮仍保持明确边界。适合生活方式与可持续主题；
 - [Pixel Art UI / 像素风](/api/concept/styles/pixel-art.json): 用硬像素边缘、有限色板与点阵字形表示「游戏机记忆」的界面视觉语言。锯齿即正确， 缩放必须整数倍，抖动网点做过渡。刻意站在抗锯齿的对立面。
 - [Retro-Futurism / 复古未来主义](/api/concept/styles/retro-futurism.json): "过去的人想象中的未来"的视觉语言：奶油橙棕的暖色底、粗圆角机身、轨道线 与星球贴纸、像素化屏幕与 CRT 荧光，乐观却已过时的科技感。它把登机舱 仪表盘、老式
+- [Retro Web / 复古互联网](/api/concept/styles/retro-web.json): 借用早期个人网站与桌面浏览器的视觉语言：灰色凹凸边框、衬线文字、蓝色下划线链接、侧栏目录和访客计数器。它表达的是手工制作网页的亲切感；不等同于像素艺术，也不需要
 - [Skeuomorphism / 拟物化](/api/concept/styles/skeuomorphism.json): 用现实世界的材质与物理形态表示数字控件的视觉语言：皮革缝线、木质纹理、拉丝 金属、玻璃光泽，按钮做成可以按压的实体，开关做成拨杆。界面元件拥有高光、 投影与倒角
 - [Swiss Style / 瑞士风格](/api/concept/styles/swiss-style.json): 以客观网格与排版传达信息的视觉语言：严密的数学网格、无衬线字体、左对齐、 黑白加一个强调色（经典为红），用留白与字号对比建立秩序。装饰被视为噪音， 设计的目标是
 - [Vaporwave / 蒸汽波](/api/concept/styles/vaporwave.json): 用霓虹粉紫青、透视网格地平线、镀铬 3D 字与棕榈树剪影表示「消费主义怀旧」的视觉语言。 拼贴 80-90 年代商场、早期 CGI 与故障信号，甜腻、迷幻、又带

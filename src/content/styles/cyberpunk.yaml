@@ -153,7 +153,7 @@ style_spec:
     en: Hover brightens the cyan neon; focus shows a visible 2px cyan outline; active flickers inverted once; disabled fades to dim grey without glow; error uses magenta neon
 
 preview:
-  order: 10
+  order: 14
   keywords:
     en: NEON NIGHTS
     zh: 霓虹 · 夜色 · 终端

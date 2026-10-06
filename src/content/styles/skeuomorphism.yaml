@@ -155,7 +155,7 @@ style_spec:
     en: Hover deepens the highlight; focus shows a visible blue glow outline; active presses via inset shadow; disabled lowers contrast; error uses a red highlight
 
 preview:
-  order: 6
+  order: 7
   keywords:
     en: REAL TEXTURES
     zh: 质感 · 拟真 · 凹凸

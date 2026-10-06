@@ -174,7 +174,7 @@ style_spec:
     zh: hover 增强多层霓虹光晕；focus 用青色可见亮环；active 压低饱和；disabled 去光降透明；error 用粉红霓虹
     en: Hover strengthens the layered neon glow; focus shows a visible cyan ring; active lowers saturation; disabled loses glow and opacity; error uses pink neon
 preview:
-  order: 24
+  order: 25
   keywords:
     zh: 霓虹 · 网格 · 镀铬
     en: NEON NOSTALGIA

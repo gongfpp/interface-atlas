@@ -155,7 +155,7 @@ style_spec:
     en: Hover brightens the chrome and pink glow; focus shows a visible pink ring; active lowers brightness; disabled loses glow and saturation; error uses magenta neon
 
 preview:
-  order: 13
+  order: 16
   keywords:
     en: SYNTH 84
     zh: 霓虹渐变 · 复古日落

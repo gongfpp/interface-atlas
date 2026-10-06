@@ -155,7 +155,7 @@ style_spec:
     en: Hover uses a brighter flat fill; focus shows a visible 2px dark solid frame; active uses a deeper fill; disabled drops to 50% opacity; error uses a red flat fill with no shadow
 
 preview:
-  order: 7
+  order: 11
   keywords:
     en: SOLID & SIMPLE
     zh: 平涂 · 直接 · 去装饰

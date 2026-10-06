@@ -125,6 +125,7 @@ import RatingDemo from './rating';
 import ReducedMotionDemo from './reduced-motion';
 import RelativeUnitsDemo from './relative-units';
 import RetroFuturismDemo from './retro-futurism';
+import RetroWebDemo from './retro-web';
 import RippleDemo from './ripple';
 import ScrollDrivenAnimationDemo from './scroll-driven-animation';
 import ScrollRevealDemo from './scroll-reveal';
@@ -291,6 +292,7 @@ export const demos: Record<string, DemoComponent> = {
   'reduced-motion': ReducedMotionDemo,
   'relative-units': RelativeUnitsDemo,
   'retro-futurism': RetroFuturismDemo,
+  'retro-web': RetroWebDemo,
   'ripple': RippleDemo,
   'scroll-driven-animation': ScrollDrivenAnimationDemo,
   'scroll-reveal': ScrollRevealDemo,

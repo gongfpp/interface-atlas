@@ -1,0 +1,243 @@
+{
+  "id": "retro-web",
+  "type": "styles",
+  "status": "published",
+  "name": {
+    "zh": "复古互联网",
+    "en": "Retro Web"
+  },
+  "aliases": [
+    "老网页",
+    "早期互联网",
+    "个人主页风格",
+    "Web 1.0",
+    "old-school web",
+    "retro website"
+  ],
+  "category": [
+    "Style",
+    "Visual Language"
+  ],
+  "description": {
+    "zh": "借用早期个人网站与桌面浏览器的视觉语言：灰色凹凸边框、衬线文字、蓝色下划线链接、侧栏目录和访客计数器。它表达的是手工制作网页的亲切感；不等同于像素艺术，也不需要牺牲今天的键盘操作、响应式布局和阅读体验。",
+    "en": "A visual language borrowed from early personal websites and desktop browsers: grey beveled borders, serif text, blue underlined links, directory sidebars and visitor counters. It recalls the intimacy of a handmade website without sacrificing modern keyboard access, responsive layout or readability."
+  },
+  "use_when": [
+    {
+      "zh": "个人主页、爱好者站点、互联网历史展览或怀旧创意项目。",
+      "en": "Personal sites, fan pages, internet-history exhibits and nostalgic creative projects."
+    },
+    {
+      "zh": "希望强调手工整理、慢慢发现和个人表达的内容。",
+      "en": "Content that celebrates human curation, slow discovery and personal expression."
+    }
+  ],
+  "avoid_when": [
+    {
+      "zh": "高密度工作系统或依赖可信支付与身份验证的关键流程。",
+      "en": "Dense work applications and critical payment or identity flows."
+    },
+    {
+      "zh": "不要复制闪烁文字、弹窗广告、固定宽度和过小触控目标等旧网页缺陷。",
+      "en": "Do not bring back blinking text, pop-up ads, rigid widths or tiny touch targets."
+    }
+  ],
+  "tags": [
+    "retro-web",
+    "web-1.0",
+    "nostalgia",
+    "beveled",
+    "hyperlinks"
+  ],
+  "variants": [
+    {
+      "id": "personal-homepage",
+      "name": {
+        "zh": "个人主页",
+        "en": "Personal homepage"
+      },
+      "note": {
+        "zh": "目录侧栏、短文和精选链接组成的手工小站。",
+        "en": "A handmade site with a directory sidebar, short writing and curated links."
+      }
+    },
+    {
+      "id": "desktop-browser",
+      "name": {
+        "zh": "旧浏览器窗口",
+        "en": "Vintage browser window"
+      },
+      "note": {
+        "zh": "用标题栏、菜单和凹凸边框营造桌面窗口层次。",
+        "en": "Title bars, menus and beveled borders evoke a desktop window."
+      }
+    }
+  ],
+  "applicable_components": [
+    "button",
+    "card",
+    "input",
+    "tabs"
+  ],
+  "applicable_pages": [
+    "landing-page",
+    "profile"
+  ],
+  "related": [
+    {
+      "id": "pixel-art",
+      "relation": "similar_to"
+    },
+    {
+      "id": "skeuomorphism",
+      "relation": "similar_to"
+    },
+    {
+      "id": "y2k",
+      "relation": "similar_to"
+    },
+    {
+      "id": "tabs",
+      "relation": "used_with"
+    }
+  ],
+  "confusable": [
+    {
+      "id": "pixel-art",
+      "note": {
+        "zh": "像素艺术由点阵与有限色板定义；复古互联网由页面结构、超链接和旧浏览器视觉语汇定义，可包含照片与常规文字。",
+        "en": "Pixel art is defined by bitmap edges and limited palettes; Retro Web is defined by page structure, hyperlinks and browser-era conventions, and can include photos and ordinary type."
+      }
+    }
+  ],
+  "demo": {
+    "component": "retro-web",
+    "modes": [
+      "default"
+    ]
+  },
+  "playground": {
+    "task": {
+      "zh": "打开目录中的页面，再向留言簿写一句话。留言仅存在当前演示内，不发送到任何服务，刷新即清空。",
+      "en": "Explore the directory, then add a guestbook message. Messages exist only in this preview, are never sent to a service, and disappear on reload."
+    },
+    "checks": [
+      {
+        "zh": "用 Tab 和 Enter 切换目录；当前页面有文字加粗和明确状态。",
+        "en": "Use Tab and Enter to navigate; the current page has bold text and an explicit state."
+      },
+      {
+        "zh": "试一次空白留言和正常留言，观察验证与提交反馈。",
+        "en": "Try an empty message and a valid one, then observe validation and feedback."
+      },
+      {
+        "zh": "缩到窄容器时目录换行，内容依然可读。",
+        "en": "At narrow widths the directory wraps and the content stays readable."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "name": "MDN — border-style",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border-style"
+    },
+    {
+      "name": "MDN — The anchor element",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a"
+    }
+  ],
+  "implementation": {
+    "css": [
+      "border-style",
+      "text-decoration",
+      "font-family",
+      ":focus-visible",
+      "flex-wrap"
+    ],
+    "notes": {
+      "zh": "用 inset/outset 或多层阴影表达灰色面板层次；正文使用可读字号，链接保留下划线。视觉样张可以还原固定构图，真实交互区必须换行并支持键盘。留言只用组件状态，明确不持久保存。",
+      "en": "Use inset/outset borders or layered shadows for grey panels. Keep readable type and underlined links. A visual study may preserve its composition, while the interactive area must wrap and support keyboards. Store demo messages in component state only and disclose that they are not persisted."
+    }
+  },
+  "style_spec": {
+    "typography": {
+      "zh": "衬线正文、系统字体菜单、可读的蓝色下划线链接。",
+      "en": "Serif body copy, system-font menus and readable blue underlined links."
+    },
+    "color": {
+      "zh": "浅灰窗口、白色内容、深蓝标题栏与链接。",
+      "en": "Grey chrome, white content and dark-blue title bars and links."
+    },
+    "border": {
+      "zh": "方角与 2px 凹凸边框，无模糊投影。",
+      "en": "Square corners and 2px beveled borders without blurred shadows."
+    },
+    "shadow": {
+      "zh": "使用边框明暗方向表达凹凸，不加模糊阴影。",
+      "en": "Use light and dark border edges for relief, without blurred shadows."
+    },
+    "spacing": {
+      "zh": "紧凑但保持足够触控面积，窄屏目录换行。",
+      "en": "Compact spacing with adequate targets and a wrapping directory."
+    },
+    "motion": {
+      "zh": "即时切换，避免闪烁和自动滚动。",
+      "en": "Immediate changes without blinking or automatic scrolling."
+    },
+    "states": {
+      "zh": "当前页加粗、焦点有清晰轮廓，表单反馈使用实时区域。",
+      "en": "Bold current-page text, a clear focus ring and a live region for form feedback."
+    }
+  },
+  "preview": {
+    "order": 10,
+    "keywords": {
+      "zh": "经典界面 · 超链接 · 手作网页",
+      "en": "CLASSIC. LINKED. HANDMADE."
+    },
+    "url": "goodoldnet / home",
+    "scene": "generic",
+    "brand": "GoodOldNet",
+    "nav": [
+      "Home",
+      "About",
+      "Projects",
+      "Links",
+      "Guestbook"
+    ],
+    "heroTitle": "Welcome to",
+    "heroTitle2": "GoodOldNet!",
+    "heroSub": "一个值得慢慢发现的互联网角落。",
+    "cta": "进入站点",
+    "panel": "screen",
+    "tokens": {
+      "bg": "#c4c4c4",
+      "fg": "#111111",
+      "sub": "#555555",
+      "accent": "#000080",
+      "accentFg": "#ffffff",
+      "card": "#ffffff",
+      "cardBorder": "#808080",
+      "radius": "0px",
+      "font": "Times New Roman, serif"
+    }
+  },
+  "prompts": {
+    "basic": {
+      "zh": "使用复古互联网风格设计个人主页。保留灰色凹凸窗口、衬线正文、蓝色下划线链接和目录侧栏；保留现代可访问性，不使用闪烁文字和侵入弹窗。",
+      "en": "Design a personal homepage in Retro Web style with grey beveled chrome, serif copy, blue underlined links and a directory sidebar. Retain modern accessibility; avoid blinking text and intrusive pop-ups."
+    },
+    "design": {
+      "zh": "以白色内容区和浅灰窗口形成层次，深蓝标题栏配系统字体。紧凑边距、方角和凹凸边框传达旧浏览器质感；链接必须可辨，触控目标不能随缩景变小。",
+      "en": "Layer white content inside grey chrome with a dark-blue system-font title bar. Compact spacing, square corners and beveled borders evoke a vintage browser. Keep links recognizable and targets large enough."
+    },
+    "implementation": {
+      "zh": "复用语义 HTML，以 flex-wrap 让侧栏和内容响应窄屏。使用真正按钮或链接、可见 focus 和 aria-current。访客留言仅作为本地模拟，提交时明确反馈、不向外部服务发送内容。",
+      "en": "Use semantic HTML and flex-wrap to adapt the sidebar and content. Use real buttons or links, visible focus and aria-current. Keep guestbook entries as a local simulation with explicit feedback and no external requests."
+    },
+    "agent": {
+      "zh": "检查项目现有路由和样式后，创建一个复古互联网个人主页。\n包含目录导航、内容区和仅本地模拟的留言簿，所有页面入口都必须有效。\n用灰色凹凸窗口、深蓝标题栏、衬线正文与蓝色下划线链接建立风格，不以整张截图替代 DOM。\n不新增后端、凭据或外部请求。键盘可以完成切换和留言，空白提交有明确反馈，窄屏无页面横向溢出。\n验证中英文本、焦点、页面切换与刷新后的状态边界，再报告实际通过和未验证的检查。",
+      "en": "Inspect existing routing and styles, then create a Retro Web personal homepage.\nInclude working directory navigation, content and a local-only guestbook simulation.\nUse grey beveled chrome, a navy title bar, serif copy and blue underlined links; never replace the DOM with a screenshot.\nAdd no backend, credentials or external requests. Support keyboard navigation and messages, clear empty-submit feedback and narrow layouts without page overflow.\nVerify both languages, focus, navigation and state after reload. Report passed and unverified checks accurately."
+    }
+  }
+}

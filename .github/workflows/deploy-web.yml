@@ -17,6 +17,8 @@ concurrency:
 jobs:
   # 发布前先在同一提交上跑完整检查：检查不过就不发布
   verify:
+    # 当前参考风格需求仅允许私有验收，不能从手动入口发布。
+    if: ${{ github.ref != 'refs/heads/dot/atlas-reference-style-scenes' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -42,6 +44,7 @@ jobs:
         run: npm run search:test
 
   build-and-deploy:
+    if: ${{ github.ref != 'refs/heads/dot/atlas-reference-style-scenes' }}
     needs: verify
     runs-on: ubuntu-latest
     env:

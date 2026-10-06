@@ -8,3 +8,7 @@ dist/
 # playwright
 test-results/
 playwright-report/
+qa-evidence/
+style-scene-results/
+regression-results/
+style-quick-results/

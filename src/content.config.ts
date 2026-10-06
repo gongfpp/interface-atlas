@@ -38,7 +38,7 @@ export type Relation = ReturnType<typeof relationType.parse>;
 export const RELATION_TYPES = relationType.options;
 
 /**
- * Style 缩略预览规格（PRD §21，审计改进：YAML 为唯一事实源，组件只做 renderer）。
+ * Style 缩略预览规格（PRD §21，YAML 管理条目顺序与通用预览；参考样张由专属 DOM 场景呈现）。
  * 仅 styles collection 使用；`order` 决定列表页与首页风格墙的展示顺序。
  */
 const stylePreview = z.object({

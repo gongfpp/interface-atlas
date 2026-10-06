@@ -17,23 +17,31 @@ const num = String(index + 1).padStart(2, '0');
 
 <a
   href={localePath(`/styles/${spec.slug}`, locale)}
-  class="group grid gap-6 rounded-2xl border border-line bg-raised p-5 transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md md:grid-cols-[240px_minmax(0,1fr)] md:p-7"
+  aria-label={primary ? `查看${spec.nameZh}的风格与交互` : `Explore ${spec.nameEn}: visual style and interactions`}
+  class="style-reference-row group"
 >
   <!-- 左：文字 -->
-  <div class="flex min-w-0 flex-col items-start gap-2">
-    <p class="font-serif text-4xl font-semibold text-ink-3/70 transition-colors group-hover:text-accent md:mb-2">{num}</p>
+  <div class="style-row-label">
+    <p class="style-row-number">{num}</p>
     <div class="min-w-0">
       <h2 class="font-serif text-2xl font-semibold leading-tight md:text-3xl">{nameMain}</h2>
       <p class="mt-1 text-lg text-ink-2 md:text-xl">{nameSub}</p>
     </div>
-    <div class="min-w-0 md:mt-auto">
+    <div class="style-row-keywords">
       <p class="break-words text-[11px] uppercase tracking-wider text-ink-3">{spec.keywords.en}</p>
       <p class="mt-0.5 break-words text-xs text-ink-3">{spec.keywords.zh}</p>
     </div>
   </div>
 
   <!-- 右：风格实况缩略 -->
-  <div class="transition-transform duration-300 group-hover:scale-[1.01]">
-    <StyleThumb spec={spec} />
+  <div class="style-row-preview">
+    <StyleThumb spec={spec} locale={locale} />
   </div>
 </a>
+
+<style>
+.style-reference-row{display:grid;grid-template-columns:minmax(0,230px) minmax(0,1fr);gap:24px;background:color-mix(in srgb,var(--color-line) 38%,var(--color-paper));border:1px solid transparent;border-radius:12px;padding:14px 14px 14px 24px;transition:border-color .2s,box-shadow .2s;min-width:0}
+.style-reference-row:hover{border-color:var(--color-line-strong);box-shadow:0 5px 18px #17150f08}.style-reference-row:focus-visible{outline:2px solid var(--color-accent);outline-offset:4px}.style-row-label{display:flex;min-width:0;flex-direction:column;align-items:flex-start;gap:14px;padding:0 0 9px}.style-row-number{font-family:var(--font-serif);font-size:46px;line-height:1;color:var(--color-ink-tertiary);opacity:.6;font-weight:400}.style-row-number:after{content:"";display:block;width:24px;border-top:1px solid currentColor;margin-top:13px}.style-row-keywords{margin-top:auto;padding-top:12px;max-width:100%}.style-row-keywords>p:first-child{font-size:10px;max-width:190px;line-height:1.8}.style-row-keywords>p:last-child{font-size:11px;line-height:1.8}.style-row-preview{align-self:center;min-width:0}
+@media(max-width:1023px){.style-reference-row{grid-template-columns:180px minmax(0,1fr);gap:18px;padding:14px}.style-row-number{font-size:38px}.style-row-label{gap:9px}.style-row-label h2{font-size:24px}.style-row-label h2+p{font-size:16px}.style-row-keywords{padding-top:5px}}
+@media(max-width:767px){.style-reference-row{grid-template-columns:minmax(0,1fr);gap:14px;padding:12px}.style-row-label{display:grid;grid-template-columns:42px minmax(0,1fr);gap:10px;align-items:start;padding:4px 2px}.style-row-number{font-size:32px}.style-row-number:after{display:none}.style-row-label h2{font-size:22px}.style-row-label h2+p{font-size:13px;margin-top:3px}.style-row-keywords{grid-column:2;margin-top:0;display:flex;flex-wrap:wrap;column-gap:10px;padding:0}.style-row-keywords>p:first-child{max-width:none;font-size:9px}.style-row-keywords>p:last-child{font-size:10px}.style-row-preview{width:100%}}
+</style>

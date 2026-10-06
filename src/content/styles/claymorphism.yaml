@@ -155,7 +155,7 @@ style_spec:
     en: Hover lifts and deepens the outer shadow; focus shows a visible violet ring; active becomes an inset press; disabled flattens and desaturates; error uses a coral inset
 
 preview:
-  order: 14
+  order: 17
   keywords:
     en: SOFT & PUFFY
     zh: 软糯 · 圆润 · 大圆角

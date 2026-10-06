@@ -154,7 +154,7 @@ style_spec:
     en: Hover brightens the glow; focus shows a visible violet-pink ring; active dims the bloom; disabled loses opacity and glow; error tints the glow red, fading colour only
 
 preview:
-  order: 15
+  order: 18
   keywords:
     en: GRADIENT GLOW
     zh: 光晕 · 流动 · 暗夜

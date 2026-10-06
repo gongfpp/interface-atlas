@@ -103,7 +103,7 @@ style_spec:
     zh: hover 金色描边增亮；focus 用双层金色可见外框；active 描边收紧；disabled 降为暗金；error 用红金强调，保持轴对称
     en: Hover brightens the gold rule; focus shows a visible double gold frame; active tightens the border; disabled fades to dim gold; error uses red-gold, staying axially symmetric
 preview:
-  order: 17
+  order: 20
   keywords:
     zh: 装饰艺术 · 材质与排版
     en: ART DECO

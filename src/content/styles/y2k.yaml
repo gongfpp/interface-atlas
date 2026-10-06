@@ -155,7 +155,7 @@ style_spec:
     en: Hover strengthens the chrome gradient and glow; focus shows a visible violet ring; active scales down and darkens; disabled loses opacity and glow; error uses a red-pink gradient
 
 preview:
-  order: 9
+  order: 13
   keywords:
     en: METAL & BUBBLE
     zh: 金属 · 气泡 · 梦幻

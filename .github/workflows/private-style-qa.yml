@@ -1,0 +1,206 @@
+name: 参考风格私有三引擎验收
+
+# 只验收此需求的同仓库 PR。没有发布入口，不使用 pull_request_target 或部署凭据。
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: atlas-reference-style-qa-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}
+  cancel-in-progress: false
+
+jobs:
+  browser-qa:
+    if: ${{ github.event_name == 'pull_request' && github.repository == 'gongfpp/interface-atlas' && github.event.repository.private == true && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'dot/atlas-reference-style-scenes' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, firefox, webkit]
+    env:
+      QA_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+      QA_BROWSER: ${{ matrix.engine }}
+      PUBLIC_LOG_API: 'off'
+      PUBLIC_UMAMI_SRC: ''
+      PUBLIC_UMAMI_ID: ''
+      PUBLIC_CF_BEACON_TOKEN: ''
+      ASTRO_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - name: 记录候选提交与运行来源
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$QA_CANDIDATE_SHA"
+          git diff --exit-code
+          mkdir -p qa-evidence
+          git rev-parse HEAD > qa-evidence/commit.txt
+          git rev-parse HEAD^{tree} > qa-evidence/tree.txt
+          printf '%s\n' "$GITHUB_SHA" > qa-evidence/event-commit.txt
+          printf '%s\n' "$GITHUB_RUN_ID" > qa-evidence/run-id.txt
+          printf '%s\n' "$QA_BROWSER" > qa-evidence/engine.txt
+          node --version > qa-evidence/node.txt
+      - name: 安装锁定依赖并检查发布隔离
+        run: |
+          npm ci
+          node --test tests/unit/private-style-qa.test.mjs
+      - name: 构建候选站点
+        id: build
+        run: npm run build
+      - name: 安装并记录官方浏览器
+        id: install
+        run: |
+          npx playwright install --with-deps "$QA_BROWSER"
+          node --input-type=module -e 'import { chromium, firefox, webkit } from "playwright"; const browser = await ({ chromium, firefox, webkit }[process.env.QA_BROWSER]).launch(); console.log(await browser.version()); await browser.close();' > qa-evidence/browser-version.txt
+          npx playwright --version > qa-evidence/playwright-version.txt
+      - name: 先采集首页与代表详情，尽早提供可下载截图
+        id: quick
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/quick-style-scenes-results.json
+        run: >-
+          npx playwright test --config=playwright.style-qa.config.mjs --project="$QA_BROWSER"
+          tests/style-reference-scenes.spec.mjs
+          --grep '参考缩景 (首页 (zh|en) 1280px|(minimalism|editorial|glassmorphism|brutalism|neobrutalism|retro-web) zh 1280px)'
+          --output=style-quick-results
+      - name: 记录首批原始截图校验值
+        if: ${{ always() }}
+        run: |
+          mkdir -p qa-evidence
+          if [ -d style-quick-results ]; then find style-quick-results -path '*/attachments' -prune -o -type f -name '*.png' -print0 | sort -z | xargs -0 -r sha256sum > qa-evidence/quick-style-scenes-screenshots.sha256; fi
+      - name: 立即保存首批私有截图（不含重复附件及 HTML 副本）
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-style-quick-${{ matrix.engine }}-${{ github.event.pull_request.head.sha }}
+          path: |
+            qa-evidence/*.txt
+            qa-evidence/quick-style-scenes-results.json
+            qa-evidence/quick-style-scenes-screenshots.sha256
+            style-quick-results/**/*.png
+            style-quick-results/**/*.json
+            !style-quick-results/**/attachments/*.png
+          if-no-files-found: error
+          retention-days: 7
+      - name: 先验收参考缩景、入口、语言、收藏与原交互
+        id: target
+        if: ${{ !cancelled() && steps.build.outcome == 'success' && steps.install.outcome == 'success' }}
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/style-scenes-results.json
+        run: npx playwright test --config=playwright.style-qa.config.mjs --project="$QA_BROWSER" tests/styles.spec.mjs tests/style-reference-scenes.spec.mjs --output=style-scene-results
+      - name: 按视口记录无重复的原始截图校验值
+        if: ${{ always() }}
+        run: |
+          mkdir -p qa-evidence
+          if [ -d style-scene-results ]; then
+            find style-scene-results -path '*/attachments' -prune -o -type f -name '*-1280.png' -print0 | sort -z | xargs -0 -r sha256sum > qa-evidence/style-scenes-desktop-screenshots.sha256
+            find style-scene-results -path '*/attachments' -prune -o -type f \( -name '*-390.png' -o -name '*-320.png' \) -print0 | sort -z | xargs -0 -r sha256sum > qa-evidence/style-scenes-narrow-screenshots.sha256
+          fi
+      - name: 保存桌面原始截图（不含重复附件）
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-style-desktop-${{ matrix.engine }}-${{ github.event.pull_request.head.sha }}
+          path: |
+            qa-evidence/*.txt
+            qa-evidence/style-scenes-results.json
+            qa-evidence/style-scenes-desktop-screenshots.sha256
+            style-scene-results/**/*-1280.png
+            style-scene-results/**/attachments/*-source-*.json
+          if-no-files-found: error
+          retention-days: 7
+      - name: 保存窄屏原始截图（390 与 320，不含重复附件）
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-style-narrow-${{ matrix.engine }}-${{ github.event.pull_request.head.sha }}
+          path: |
+            qa-evidence/*.txt
+            qa-evidence/style-scenes-results.json
+            qa-evidence/style-scenes-narrow-screenshots.sha256
+            style-scene-results/**/*-390.png
+            style-scene-results/**/*-320.png
+            style-scene-results/**/attachments/*-source-*.json
+          if-no-files-found: error
+          retention-days: 7
+      - name: 保存目标诊断数据（JSON、失败截图与 trace）
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-style-diagnostics-${{ matrix.engine }}-${{ github.event.pull_request.head.sha }}
+          path: |
+            qa-evidence/
+            style-scene-results/**/*.json
+            style-scene-results/**/*.zip
+            style-scene-results/**/test-failed-*.png
+            style-scene-results/**/error-context.md
+            style-quick-results/**/*.zip
+            style-quick-results/**/test-failed-*.png
+            style-quick-results/**/error-context.md
+          if-no-files-found: error
+          retention-days: 7
+      - name: 重复复核按钮原生取消与连续路由的首轮失败
+        if: ${{ !cancelled() && steps.build.outcome == 'success' && steps.install.outcome == 'success' }}
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/targeted-regression-results.json
+          DEBUG: pw:browser
+        run: >-
+          npx playwright test --config=playwright.style-qa.config.mjs --project="$QA_BROWSER"
+          tests/button-feedback.spec.mjs tests/responsive.spec.mjs
+          --grep 'en 390px (neobrutalism|flat-design)|430px across top-level routes'
+          --repeat-each=3 --output=targeted-regression-results
+      - name: 全量单元、类型、Lint 与搜索回归
+        if: ${{ !cancelled() && steps.build.outcome == 'success' && matrix.engine == 'chromium' }}
+        run: |
+          npm run test:unit
+          npm run check
+          npm run lint
+          npm run search:test
+      - name: 保留全部既有浏览器回归（含八套组件风格）
+        if: ${{ !cancelled() && steps.build.outcome == 'success' && steps.install.outcome == 'success' }}
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/regression-results.json
+        run: npx playwright test --config=playwright.style-qa.config.mjs --project="$QA_BROWSER" --grep-invert '参考缩景' --max-failures=12 --output=regression-results
+      - name: 记录全量截图校验值
+        if: ${{ always() }}
+        run: |
+          mkdir -p qa-evidence
+          if [ -d regression-results ]; then find regression-results -path '*/attachments' -prune -o -type f -name '*.png' -print0 | sort -z | xargs -0 -r sha256sum > qa-evidence/regression-screenshots.sha256; fi
+      - name: 保存私有全量回归原始截图
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-style-regression-images-${{ matrix.engine }}-${{ github.event.pull_request.head.sha }}
+          path: |
+            qa-evidence/*.txt
+            qa-evidence/regression-screenshots.sha256
+            regression-results/**/*.png
+            !regression-results/**/attachments/*.png
+          if-no-files-found: error
+          retention-days: 7
+      - name: 保存私有全量回归诊断数据
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-style-regression-data-${{ matrix.engine }}-${{ github.event.pull_request.head.sha }}
+          path: |
+            qa-evidence/
+            regression-results/**/*.json
+            regression-results/**/*.zip
+            regression-results/**/error-context.md
+            targeted-regression-results/**/*.json
+            targeted-regression-results/**/*.zip
+            targeted-regression-results/**/test-failed-*.png
+            targeted-regression-results/**/error-context.md
+          if-no-files-found: error
+          retention-days: 7

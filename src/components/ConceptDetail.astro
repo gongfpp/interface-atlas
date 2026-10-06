@@ -137,7 +137,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
           <div class="space-y-8">
             <div data-style-preview>
               <h3 class="mb-3 text-sm font-semibold">{locale === 'zh' ? '整页预览' : 'Full-page preview'}</h3>
-              <StyleThumb spec={styleSpec} />
+              <StyleThumb spec={styleSpec} locale={locale} />
             </div>
             <div data-style-interactive>
               <h3 class="mb-3 text-sm font-semibold">{locale === 'zh' ? '交互场景' : 'Interactive scene'}</h3>

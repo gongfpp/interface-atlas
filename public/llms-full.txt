@@ -1,6 +1,6 @@
 # Interface Atlas — Full Catalog
 
-> 164 concepts. Per-concept JSON at /api/concept/<type>/<id>.json · Markdown at /<type>/<id>.md
+> 165 concepts. Per-concept JSON at /api/concept/<type>/<id>.json · Markdown at /<type>/<id>.md
 
 ## a11y/alt-text — Alt Text / 替代文本
 
@@ -4446,6 +4446,29 @@
 - 若有动效，尊重 prefers-reduced-motion
 - 不新增任何依赖
 完成后运行项目现有检查，并列出修改的文件。
+```
+
+## styles/retro-web — Retro Web / 复古互联网
+
+- Type: styles · Aliases: 老网页 · 早期互联网 · 个人主页风格 · Web 1.0 · old-school web · retro website
+- Page: /styles/retro-web · JSON: /api/concept/styles/retro-web.json · MD: /styles/retro-web.md
+
+**What / 这是什么:** 借用早期个人网站与桌面浏览器的视觉语言：灰色凹凸边框、衬线文字、蓝色下划线链接、侧栏目录和访客计数器。它表达的是手工制作网页的亲切感；不等同于像素艺术，也不需要牺牲今天的键盘操作、响应式布局和阅读体验。
+
+**What (en):** A visual language borrowed from early personal websites and desktop browsers: grey beveled borders, serif text, blue underlined links, directory sidebars and visitor counters. It recalls the intimacy of a handmade website without sacrificing modern keyboard access, responsive layout or readability.
+
+**When to use:** 个人主页、爱好者站点、互联网历史展览或怀旧创意项目。；希望强调手工整理、慢慢发现和个人表达的内容。
+
+**When not to use:** 高密度工作系统或依赖可信支付与身份验证的关键流程。；不要复制闪烁文字、弹窗广告、固定宽度和过小触控目标等旧网页缺陷。
+
+**Agent prompt (zh):**
+
+```text
+检查项目现有路由和样式后，创建一个复古互联网个人主页。
+包含目录导航、内容区和仅本地模拟的留言簿，所有页面入口都必须有效。
+用灰色凹凸窗口、深蓝标题栏、衬线正文与蓝色下划线链接建立风格，不以整张截图替代 DOM。
+不新增后端、凭据或外部请求。键盘可以完成切换和留言，空白提交有明确反馈，窄屏无页面横向溢出。
+验证中英文本、焦点、页面切换与刷新后的状态边界，再报告实际通过和未验证的检查。
 ```
 
 ## styles/skeuomorphism — Skeuomorphism / 拟物化
