@@ -175,7 +175,7 @@ style_spec:
     zh: hover 高光沿边缘滑动并轻微放大；focus 用白色可见亮环；active 压低折射；disabled 降透明去高光；error 用红调折射且仅淡入颜色
     en: Hover slides the specular along the rim and scales slightly; focus shows a visible white ring; active lowers refraction; disabled loses opacity and speculars; error tints refraction red, fading colour only
 preview:
-  order: 22
+  order: 23
   keywords:
     zh: 厚玻璃 · 折射 · 高光
     en: THICK REFRACTIVE GLASS

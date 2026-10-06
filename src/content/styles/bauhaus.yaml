@@ -155,7 +155,7 @@ style_spec:
     en: 'Hover swaps to another primary; focus shows a visible 2px black frame; active inverts the block; disabled drops to greyscale; error uses red #E23B2E'
 
 preview:
-  order: 8
+  order: 12
   keywords:
     en: FORM & FUNCTION
     zh: 几何 · 三原色 · 秩序

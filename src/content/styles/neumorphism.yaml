@@ -102,7 +102,7 @@ style_spec:
     zh: hover 阴影加深并抬升；focus 必须保留 2px 可见外轮廓；active 切换为 inset 内陷；disabled 降低对比；error 用红色 inset 内陷
     en: Hover deepens and raises the shadow; focus must keep a visible 2px outline; active switches to an inset press; disabled lowers contrast; error uses a red inset shadow
 preview:
-  order: 18
+  order: 6
   keywords:
     zh: 新拟态 · 材质与排版
     en: NEUMORPHISM

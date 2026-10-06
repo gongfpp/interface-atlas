@@ -63,22 +63,23 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
 </section>
 
 <!-- 风格 = 首页主视觉 -->
-<section class="pb-16">
-  <div class="mb-6 flex items-baseline justify-between">
+<section class="pb-16" data-home-styles>
+  <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
     <div>
+      <p class="mb-2 font-mono text-[10px] tracking-[.2em] text-ink-3">A FIELD GUIDE TO VISUAL LANGUAGES</p>
       <h2 class="font-serif text-2xl font-semibold md:text-3xl">{locale === 'zh' ? '先看风格' : 'Start with a style'}</h2>
-      <p class="mt-1 text-sm text-ink-3">{locale === 'zh' ? `${styleSpecs.length} 种视觉语言，点开就是完整页面示范` : `${styleSpecs.length} visual languages — every card is a live page demo`}</p>
+      <p class="mt-1 text-sm text-ink-3">{locale === 'zh' ? `从 ${styleSpecs.length} 种视觉语言中精选 10 种，先看画面，再点开试交互。` : `10 studies from ${styleSpecs.length} visual languages. See the composition, then open the interactive demo.`}</p>
     </div>
     <a href={localePath('/styles', locale)} class="text-sm text-accent hover:underline">{t('viewAll', locale)} →</a>
   </div>
   <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
-    {styleSpecs.slice(0, 6).map((spec) => (
+    {styleSpecs.slice(0, 10).map((spec) => (
       <a
         href={localePath(`/styles/${spec.slug}`, locale)}
-        class="group transition-transform duration-300 hover:-translate-y-1"
+        class="home-style-card group transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         title={`${spec.nameZh} ${spec.nameEn}`}
       >
-        <StyleThumb spec={spec} />
+        <StyleThumb spec={spec} locale={locale} />
         <p class="mt-2.5 flex items-baseline justify-between px-0.5">
           <span class="font-serif text-lg font-semibold transition-colors group-hover:text-accent">{locale === 'zh' ? spec.nameZh : spec.nameEn}</span>
           <span class="text-sm text-ink-3">{locale === 'zh' ? spec.nameEn : spec.nameZh}</span>

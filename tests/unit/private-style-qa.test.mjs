@@ -1,0 +1,60 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { test } from 'node:test';
+import { load } from 'js-yaml';
+
+const read = (file) => readFileSync(new URL(`../../${file}`, import.meta.url), 'utf8');
+const branch = 'dot/atlas-reference-style-scenes';
+
+test('参考风格验收仅允许私有同仓库 PR，不含发布或凭据入口', () => {
+  const text = read('.github/workflows/private-style-qa.yml');
+  const workflow = load(text);
+  assert.deepEqual(Object.keys(workflow.on), ['pull_request']);
+  assert.deepEqual(workflow.on.pull_request.branches, ['main']);
+  assert.deepEqual(workflow.permissions, { contents: 'read' });
+  const job = workflow.jobs['browser-qa'];
+  for (const guard of [
+    "github.event_name == 'pull_request'",
+    "github.repository == 'gongfpp/interface-atlas'",
+    'github.event.repository.private == true',
+    'github.event.pull_request.head.repo.full_name == github.repository',
+    `github.event.pull_request.head.ref == '${branch}'`,
+  ]) assert.ok(job.if.includes(guard), `缺少私有验收限制：${guard}`);
+  assert.deepEqual(job.strategy.matrix.engine, ['chromium', 'firefox', 'webkit']);
+  assert.equal(job.env.PUBLIC_LOG_API, 'off');
+  for (const variable of ['PUBLIC_UMAMI_SRC', 'PUBLIC_UMAMI_ID', 'PUBLIC_CF_BEACON_TOKEN']) assert.equal(job.env[variable], '');
+  const checkout = job.steps.find((step) => step.uses?.startsWith('actions/checkout@'));
+  assert.equal(checkout.with.ref, '${{ github.event.pull_request.head.sha }}');
+  assert.equal(checkout.with['persist-credentials'], false);
+  assert.doesNotMatch(text, /secrets\.|DEPLOY_KEY|git push|repository_dispatch:|workflow_dispatch:|pull_request_target:/);
+  const artifacts = job.steps.filter((step) => step.uses?.startsWith('actions/upload-artifact@'));
+  assert.equal(artifacts.length, 2);
+  for (const artifact of artifacts) {
+    assert.ok(artifact.with.name.includes('${{ github.event.pull_request.head.sha }}'));
+    assert.equal(artifact.with['retention-days'], 7);
+  }
+  const targetIndex = job.steps.findIndex((step) => step.id === 'target');
+  const firstArtifactIndex = job.steps.indexOf(artifacts[0]);
+  const regressionIndex = job.steps.findIndex((step) => step.run?.includes("--grep-invert '参考缩景'"));
+  assert.ok(targetIndex < firstArtifactIndex && firstArtifactIndex < regressionIndex);
+});
+
+test('当前需求分支不能自动或手动公开预览，PR 不触发正式发布', () => {
+  const preview = load(read('.github/workflows/deploy-preview.yml'));
+  assert.ok(preview.on.push['branches-ignore'].includes(branch));
+  assert.ok(preview.jobs['build-and-deploy'].if.includes(`github.ref != 'refs/heads/${branch}'`));
+  const release = load(read('.github/workflows/deploy-web.yml'));
+  assert.deepEqual(release.on.push.branches, ['main']);
+  assert.equal(release.on.pull_request, undefined);
+  assert.equal(release.on.pull_request_target, undefined);
+  assert.equal(release.on.workflow_run, undefined);
+  for (const job of Object.values(release.jobs)) assert.ok(job.if.includes(`github.ref != 'refs/heads/${branch}'`));
+});
+
+test('三引擎配置与目标测试保留本地请求隔离', () => {
+  const config = read('playwright.style-qa.config.mjs');
+  for (const engine of ['chromium', 'firefox', 'webkit']) assert.ok(config.includes(`name: '${engine}'`));
+  assert.match(config, /QA_CANDIDATE_SHA !== candidateCommit/);
+  assert.match(read('tests/style-reference-scenes.spec.mjs'), /from '\.\/helpers\/private-browser\.mjs'/);
+  assert.match(read('tests/helpers/private-browser.mjs'), /url\.origin === 'http:\/\/127\.0\.0\.1:4337'/);
+});

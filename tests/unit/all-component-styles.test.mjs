@@ -19,7 +19,7 @@ test('范围门禁：46 个组件各八套，保留 147 套基线，总计 368 �
   assert.equal(ids.length, 46);
   assert.equal(Object.values(matrix).reduce((total, row) => total + row.original.length, 0), 147);
   assert.equal(Object.values(sets).reduce((total, set) => total + set.length, 0), 368);
-  assert.equal(readdirSync(new URL('src/content/styles/', root)).filter((file) => file.endsWith('.yaml')).length, 24);
+  assert.equal(readdirSync(new URL('src/content/styles/', root)).filter((file) => file.endsWith('.yaml')).length, 25);
 });
 
 for (const [id, row] of Object.entries(matrix)) {

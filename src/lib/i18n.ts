@@ -36,8 +36,8 @@ export const TYPE_LABELS: Record<string, Record<Locale, string>> = {
 /** 各分区页标题下方的简介：这个页面是用来看什么的（zh/en 均为自然表达，非逐字翻译）。 */
 export const TYPE_INTROS: Record<string, Record<Locale, string>> = {
   styles: {
-    zh: '同一套按钮和页面，换一种视觉语言就完全不同。这里收集了 24 种可运行的设计风格——从极简、粗野到玻璃拟态、像素风，每种都做了一个完整迷你站点，先看见效果，再决定要不要用。',
-    en: 'The same buttons and pages feel completely different in another visual language. These 24 styles — from minimalism and brutalism to glassmorphism and pixel art — each ship as a full mini site, so you can see the effect before you commit to it.',
+    zh: '同一套按钮和页面，换一种视觉语言就完全不同。这里收集了 25 种可运行的设计风格——从极简、粗野到玻璃拟态、像素风，每种都做了一个完整迷你站点，先看见效果，再决定要不要用。',
+    en: 'The same buttons and pages feel completely different in another visual language. These 25 styles — from minimalism and brutalism to glassmorphism and pixel art — each ship as a full mini site, so you can see the effect before you commit to it.',
   },
   components: {
     zh: '组件是界面里被反复复用的零件。每个组件都配了可交互的 Live Demo、形态变体、结构拆解和多框架命名对照，帮你说得清它叫什么、看得见它怎么动，也知道它什么时候不该用。',

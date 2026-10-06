@@ -164,7 +164,7 @@ export default styleVariants;
 
 **patterns (21)**：infinite-scroll, progressive-disclosure, master-detail, inline-editing, optimistic-ui, empty-state, pull-to-refresh, lazy-loading, form-validation, drag-and-drop-sorting, undo-action, search-filtering, onboarding-tour, kanban-board, skeleton-loading, wizard, drag-and-drop, bulk-actions, cookie-consent, paywall, keyboard-shortcuts
 
-**styles (24)**：minimalism, neobrutalism, glassmorphism, skeuomorphism, flat-design, swiss-style, bauhaus, y2k, cyberpunk, memphis, bento-grid, editorial, retro-futurism, claymorphism, aurora, organic, art-deco, neumorphism, brutalism, corporate-memphis, hand-drawn, liquid-glass, pixel-art, vaporwave
+**styles (25)**：minimalism, neobrutalism, glassmorphism, skeuomorphism, flat-design, swiss-style, bauhaus, y2k, cyberpunk, memphis, bento-grid, editorial, retro-futurism, claymorphism, aurora, organic, art-deco, neumorphism, brutalism, corporate-memphis, hand-drawn, liquid-glass, pixel-art, vaporwave, retro-web
 
 **pages (26)**：dashboard, landing-page, login, pricing, settings, profile, search, checkout, documentation, signup, onboarding, error-404, error-500, faq, blog-index, blog-post, about, contact, notification-center, chat, calendar, help-center, features-comparison, order-confirmation, changelog, team
 

@@ -157,7 +157,7 @@ style_spec:
     en: Hover lifts slightly and deepens the shadow; focus shows a visible violet ring; active settles back flat; disabled reduces opacity; error uses a red border
 
 preview:
-  order: 12
+  order: 5
   keywords:
     en: MODULAR & FLEX
     zh: 模块化 · 一切尽在掌控

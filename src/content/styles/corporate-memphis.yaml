@@ -179,7 +179,7 @@ style_spec:
     zh: hover 换用相邻色块；focus 用紫色 2px 可见外框；active 换深色平涂；disabled 降不透明；error 用桃粉平涂
     en: Hover switches to an adjacent fill; focus shows a visible 2px violet frame; active uses a darker flat fill; disabled reduces opacity; error uses a peach fill
 preview:
-  order: 20
+  order: 21
   keywords:
     zh: 扁平小人 · 友好 · 大厂感
     en: FLAT & FRIENDLY

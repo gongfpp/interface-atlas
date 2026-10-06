@@ -4,7 +4,7 @@ name: Deploy preview to interface-atlas-web
 # 生产（main）只更新根目录，且生产 rsync 已排除 preview/，两者互不删除。
 on:
   push:
-    branches-ignore: [main]
+    branches-ignore: [main, dot/atlas-reference-style-scenes]
   workflow_dispatch:
 
 permissions:
@@ -16,6 +16,8 @@ concurrency:
 
 jobs:
   build-and-deploy:
+    # 此需求只能在私有 PR 中验收；手动触发也不得发布该分支。
+    if: ${{ github.ref != 'refs/heads/dot/atlas-reference-style-scenes' }}
     runs-on: ubuntu-latest
     env:
       WEB_REPOSITORY: git@github.com:gongfpp/interface-atlas-web.git

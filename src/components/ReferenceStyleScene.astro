@@ -1,0 +1,112 @@
+---
+import { Image } from 'astro:assets';
+import type { Locale } from '@/lib/i18n';
+import minimalism from '@/assets/style-scenes/minimalism.png';
+import editorial from '@/assets/style-scenes/editorial.png';
+import skeuomorphism from '@/assets/style-scenes/skeuomorphism.png';
+import brutalism from '@/assets/style-scenes/brutalism.png';
+import mountains from '@/assets/style-scenes/mountains.png';
+import '@/styles/reference-scenes.css';
+interface Props { slug: string; locale: Locale; }
+const { slug, locale } = Astro.props;
+const l = (zh: string, en: string) => locale === 'zh' ? zh : en;
+const brands: Record<string, string> = {
+  'minimalism': 'LUMO', 'swiss-style': 'VERTEX', 'editorial': 'The Paper Room',
+  'glassmorphism': 'Aurora', 'bento-grid': '◉ Tasko', 'neumorphism': 'Mellow',
+  'skeuomorphism': 'Daily Goods', 'brutalism': 'STUDIO VOID', 'neobrutalism': 'PlayLab', 'retro-web': 'GoodOldNet',
+};
+const brand = brands[slug];
+const nav = slug === 'swiss-style' ? ['WORK', 'STUDIO', 'APPROACH', 'CONTACT']
+  : slug === 'brutalism' ? ['WORK', 'ABOUT', 'NEWS', 'CONTACT']
+  : slug === 'editorial' ? [l('专栏','Journal'), l('生活','Living'), l('旅行','Travel'), l('人物','People'), l('关于','About')]
+  : slug === 'skeuomorphism' ? [l('产品','Objects'), l('故事','Stories'), l('手工制作','Craft'), l('门店','Stores')]
+  : slug === 'neobrutalism' ? [l('项目','Work'), l('服务','Services'), l('关于','About')]
+  : [l('产品','Product'), l('方案','Solutions'), l('灵感','Inspiration'), l('关于','About')];
+---
+
+<!-- 真实 DOM 排版的视觉样张。卡片由外层链接打开，交互在详情页另行演示。 -->
+<div class:list={['reference-scene', `scene-${slug}`]} data-style-scene={slug} data-scene-locale={locale}>
+  <div class="scene-browser" aria-hidden="true">
+    <i></i><i></i><i></i><span class="browser-arrows">‹　›</span>
+    <span class="browser-address">{brand.toLowerCase().replaceAll(' ', '')} / {l('设计样张','design study')}</span><span>⋮</span>
+  </div>
+  <div class="scene-page">
+    {slug !== 'retro-web' && <div class="scene-nav">
+      <span class="scene-brand">{slug === 'skeuomorphism' && <span class="goods-mark">▦</span>}{brand}</span>
+      <div class="scene-nav-links">{nav.map(n => <span>{n}</span>)}</div>
+      {slug === 'minimalism' && <span class="scene-pill">{l('立即购买','Shop now')}</span>}
+      {slug === 'swiss-style' && <><span class="scene-language">EN / 中文</span><span class="scene-menu">☰</span></>}
+      {slug === 'editorial' && <span class="scene-search">⌕</span>}
+      {slug === 'glassmorphism' && <span class="scene-pill">{l('立即体验','Try it now')}</span>}
+      {slug === 'bento-grid' && <><span>{l('登录','Log in')}</span><span class="scene-pill">{l('免费注册','Get started')}</span></>}
+      {slug === 'neumorphism' && <><span class="mellow-login">{l('登录','Log in')}</span><span class="scene-pill">{l('开始使用','Get started')}</span></>}
+      {slug === 'skeuomorphism' && <><span class="scene-search">⌕</span><svg class="scene-bag" viewBox="0 0 20 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h14l1 13H2L3 7Z"/><path d="M7 10V5a3 3 0 0 1 6 0v5"/></svg></>}
+      {slug === 'neobrutalism' && <span class="scene-pill">{l('开始项目','Start a project')} ↗</span>}
+    </div>}
+
+    {slug === 'minimalism' && <div class="lumo-body">
+      <div class="lumo-copy"><p class="scene-eyebrow">{l('让 专 注 成 为 一 种 日 常','MAKE SPACE FOR EVERYDAY FOCUS')}</p><p class="scene-title">A calmer<br/>digital life</p><p class="scene-description">{l('简洁的工具，成就更专注的你。','Simple tools. A more focused you.')}</p><span class="scene-pill">{l('立即体验','Explore Lumo')} <b>→</b></span></div>
+      <Image src={minimalism} alt={l('白色圆角设备置于大理石台上，旁边是天然灰石','A rounded white device on a marble plinth beside a grey stone')} class="lumo-photo" width={1200} format="webp" quality={85} loading="lazy" />
+      <p class="lumo-caption">{l('更少的干扰','Less distraction')}<br/>{l('更多的生活','More living')}</p><span class="scene-pagination">01 / 03　 ↔　 →</span>
+    </div>}
+
+    {slug === 'swiss-style' && <div class="vertex-body">
+      <div class="vertex-display"><p>IDEAS<br/>BUILD<br/>TOMORROW<span>/</span></p></div>
+      <div class="vertex-copy"><p class="scene-title">{l('用设计','Design for')}<br/>{l('构建更好的未来','a better future.')}</p><p class="scene-description">{l('我们是一家专注于品牌与数字体验的设计工作室。通过策略、设计与技术，塑造创新未来。','An independent studio for brands and digital experiences. Strategy, design and technology for what comes next.')}</p><span class="scene-outline">{l('探索项目','Explore work')}　→</span></div>
+      <div class="vertex-poster"><p>DESIGN<br/>FOR A<br/>BRIGHTER<br/>TOMORROW.</p><small>© 2024<br/>VERTEX STUDIO</small></div>
+    </div>}
+
+    {slug === 'editorial' && <div class="paper-body">
+      <div class="paper-copy"><p class="scene-title">Good Life<br/><span>in Small Things</span></p><p class="paper-deck">{l('在细微处，发现更好的生活','A little room for the everyday.')}</p><p class="scene-description">{l('我们记录真实的生活方式、人与地方的故事，相信日常之中，藏着最动人的答案。','Stories of people, places and the rituals that make an ordinary day feel extraordinary.')}</p><span class="paper-read">{l('阅读更多','Read the journal')} →</span></div>
+      <div class="paper-photo"><Image src={editorial} alt={l('晨光照进房间，木桌上的书、咖啡与枝叶','Morning light across a wooden table with a book, coffee and branches')} width={1000} format="webp" quality={85} loading="lazy" /><p>{l('生活不在别处，','Life is here,')}<br/>{l('就在此刻。','in the little things.')}</p></div>
+      <div class="paper-stories">{[
+        [l('一间面朝山的房子','A home in the hills'), l('与自然相处的三种方式','Three ways to live with nature'), '2024.04.12'],
+        [l('城市漫游指南','The art of wandering'), l('在熟悉的街巷中发现新鲜','A fresh look at familiar streets'), '2024.04.08'],
+        [l('慢下来的周末','A slower weekend'), l('关于生活节奏的重新思考','Finding your own rhythm'), '2024.04.01'],
+      ].map(([title,desc,date],i) => <div class="paper-story"><div class:list={['story-photo', `story-photo-${i}`]}>{i === 0 ? <Image src={mountains} alt="" width={300} format="webp" loading="lazy" /> : <Image src={i === 1 ? brutalism : editorial} alt="" width={300} format="webp" loading="lazy" />}</div><div><strong>{title}</strong><p>{desc}</p><time>{date}</time></div></div>)}</div>
+    </div>}
+
+    {slug === 'glassmorphism' && <>
+      <Image src={mountains} alt="" class="aurora-landscape" width={1600} format="webp" quality={85} loading="lazy" />
+      <div class="aurora-light"></div><div class="aurora-body"><div class="aurora-copy"><p class="scene-title">{l('让灵感','Let your ideas')}<br/>{l('自然流动','flow naturally.')}</p><p class="scene-description">{l('Aurora 是一款全新的 AI 创作工具，','A new home for creative thinking.')}<br/>{l('在想法与现实之间，创造更短的距离。','Less distance between idea and reality.')}</p><span class="scene-pill">{l('免费开始','Start creating')} →</span></div>
+      <div class="aurora-features">{[
+        ['✧',l('AI 灵感助手','Creative assistant'),l('激发创意，辅助创作','Find a spark. Make it yours.')],
+        ['♧',l('云端同步','Always in sync'),l('随时随地，灵感不丢失','Your ideas, wherever you are.')],
+        ['▤',l('多格式导出','Flexible export'),l('连接你的工作流','Fits the way you create.')],
+      ].map(([icon,title,subtitle]) => <div class="glass-feature"><span>{icon}</span><div><strong>{title}</strong><p>{subtitle}</p></div></div>)}</div>
+      <div class="aurora-graph"><p>{l('好的创意','Good ideas')}<br/>{l('值得被看见。','deserve to be seen.')}</p><svg viewBox="0 0 160 70" fill="none"><path d="M0 53 20 34 37 55 53 25 67 31 84 7 100 35 118 34 141 23 160 33" stroke="white" stroke-width="1.3"/><circle cx="84" cy="7" r="2.5" fill="white"/></svg><small>Ideas flow.<br/>A brighter tomorrow.</small></div></div>
+    </>}
+
+    {slug === 'bento-grid' && <div class="tasko-body">
+      <div class="bento-intro"><p class="scene-title">{l('高效生活','A little order.')}<br/>{l('从有序开始','A better day.')}</p><p class="scene-description">{l('Tasko 帮助你整合任务、笔记与日程，让每一天都更专注、更有意义。','Tasks, notes and plans, together. Make room for what matters in your day.')}</p><span class="scene-pill">{l('开始使用','Get started')} →</span><div class="tasko-people"><i>J</i><i>M</i><i>L</i><i>A</i><span>+12K <small>{l('全球用户的选择','happy, focused people')}</small></span></div></div>
+      <div class="bento-calendar"><div><strong>{l('四月 2024','April 2024')}</strong><span>‹　　›</span></div><div class="calendar-grid">{l('一 二 三 四 五 六 日','M T W T F S S').split(' ').map(day => <b>{day}</b>)}{Array.from({length:28},(_,i) => <span class:list={{'calendar-today':i===14}}>{i+1}</span>)}</div></div>
+      <div class="bento-stat"><span>{l('专注时段','Focused time')}</span><strong>3h 24m</strong><small>{l('比上周 +40%','↑ 40% this week')}</small><div class="stat-bars">{[25,38,67,40,90,54,74,100].map(h=><i style={`height:${h}%`}></i>)}</div></div>
+      <div class="bento-count bento-tasks"><span>{l('任务','Tasks')} <b>✓</b></span><strong>5</strong><small>{l('今日待完成','To do today')}</small></div>
+      <div class="bento-count bento-notes"><span>{l('笔记','Notes')} <b>▤</b></span><strong>12</strong><small>{l('记录灵感','Little sparks')}</small></div>
+      <div class="bento-landscape"><Image src={mountains} alt="" width={600} format="webp" loading="lazy" /><div><strong>{l('小小的进步','Small steps,')}<br/>{l('也是一种伟大','a little further.')}</strong><small>Keep going →</small></div></div>
+    </div>}
+
+    {slug === 'neumorphism' && <div class="mellow-body">
+      <div class="mellow-copy"><p class="scene-title">{l('让专注','Make focus')}<br/>{l('成为一种日常','an everyday ritual.')}</p><p class="scene-description">{l('简洁的工具，安静的体验。','Simple tools. A quieter experience.')}<br/>{l('帮助你更好地管理时间与生活。','More time for the things that matter.')}</p><span class="scene-pill">{l('立即体验','Explore Mellow')} →</span></div>
+      <div class="mellow-weather"><svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="30" cy="30" r="10"/><path d="M30 4v9m0 34v9M4 30h9m34 0h9M11 11l7 7m24 24 7 7M11 49l7-7m24-24 7-7"/></svg><p>{l('今天天气不错','A lovely day ahead.')}<br/>{l('保持好心情','Take a little breath.')}</p></div>
+      <div class="mellow-clock"><div class="clock-inset"><i></i><strong>10:24</strong><span>{l('专注中','Stay focused')}</span></div></div>
+      <div class="mellow-tools">{[['◴',l('专注','Focus')],['▣',l('任务','Tasks')],['▥',l('统计','Stats')],['⚙',l('设置','Settings')]].map(([icon,label],i)=><div class:list={{active:i===0}}><span>{icon}</span>{label}</div>)}</div>
+      <span class="mellow-caption">「 {l('更少干扰，更多可能','Less noise, more possibility')} 」</span><span class="scene-pagination">01 / 03　 ‹　 ›</span>
+    </div>}
+
+    {slug === 'skeuomorphism' && <div class="goods-body">
+      <Image src={skeuomorphism} alt={l('银黑相机放在木桌上的书本上，旁边有绿植','A silver and black camera on a book and wooden table, beside a plant')} class="goods-photo" width={1600} format="webp" quality={85} loading="lazy" />
+      <div class="goods-copy"><p class="scene-title">{l('好物，','Good things.')}<br/>{l('让生活更真实','A life well lived.')}</p><p class="scene-description">{l('从真实的材料出发，感受物品本身的温度。','Honest materials. Objects with warmth.')}<br/>{l('我们相信，好的设计经得起时间的触摸。','Design that only gets better with time.')}</p><span class="scene-pill">{l('探索系列','Explore the collection')} →</span><span class="goods-pagination">01　　02　　03</span></div>
+      <div class="goods-note">{l('美好的生活','A good life lives')}<br/>{l('源于真实的细节。','in the real details.')}</div>
+    </div>}
+
+    {slug === 'brutalism' && <div class="void-body">
+      <p class="void-display">GOOD<br/>IDEAS<br/>NO LIMITS.</p><div class="void-copy"><p>{l('我们是一家独立的创意工作室。','We are an independent creative studio.')}<br/>{l('专注于品牌、数字体验与实验性项目。','Brands, digital experiences, experiments.')}<br/>{l('用设计打破常规，探索更多可能。','Design beyond the expected.')}</p><span class="scene-pill">{l('查看作品','View our work')} →</span><hr/><strong>DESIGN<br/>FOR A MORE<br/>OPEN WORLD.</strong></div>
+      <div class="void-photo"><Image src={brutalism} alt={l('强光阴影中的黑白混凝土建筑','Monochrome concrete architecture in hard light and shadow')} width={900} format="webp" quality={85} loading="lazy" /><p>IDEAS<br/>PEOPLE<br/>CULTURE</p><svg viewBox="0 0 50 50" fill="none" stroke="white" stroke-width="1.5"><circle cx="25" cy="25" r="22"/><ellipse cx="25" cy="25" rx="10" ry="22"/><path d="M3 25h44M8 12h34M8 38h34"/></svg></div>
+    </div>}
+
+    {slug === 'neobrutalism' && <div class="play-body"><div class="play-copy"><p class="scene-title"><span>{l('好的创意','Good ideas')}</span><br/><span>{l('让世界更有趣。','make a brighter world.')}</span></p><p class="scene-description">{l('我们用设计、内容和技术，','We bring design, content and code together')}<br/>{l('为品牌创造有温度的数字体验。','to make brands feel a little more human.')}</p><span class="scene-pill">{l('一起创造','Let’s make it')} →</span><span class="play-note">Good<br/>Design.<br/>More Fun!<b>⤴</b></span></div><div class="play-art"><div class="play-block blue"></div><div class="play-block pink"></div><div class="play-block green"></div><div class="play-window ideas"><div>●●●</div><p>IDEAS<br/>MAKE A<br/>BRIGHTER<br/>TOMORROW.</p></div><div class="play-smile"><i></i><i></i><b></b></div><div class="play-window checklist"><div>●●●</div><p>☑ Design</p><p>☑ Develop</p><p><span>☑</span> Create</p><small>Together</small></div><svg class="play-cursor" viewBox="0 0 38 48"><path d="M3 2v37l9-10 9 16 8-4-10-15 15-1Z" fill="#080808" stroke="white" stroke-width="2"/></svg><strong class="play-sign">PLAY<br/>EXPLORE<br/>BELONG</strong></div></div>}
+
+    {slug === 'retro-web' && <div class="retro-shell"><div class="retro-titlebar"><span>▧ GoodOldNet - Welcome</span><span class="retro-window-buttons">_ ▢ ×</span></div><div class="retro-menu">File　 Edit　 View　 Favorites　 Tools　 Help</div><div class="retro-toolbar"><b>◀</b> Back　 <span>▶</span> Forward　⌂ Home　⌕ Search　☆ Favorites　<span class="retro-address">Address　 ▧ goodoldnet / home</span><span>↵ Go</span></div><div class="retro-content"><div class="retro-sidebar"><strong>🌐　<u>GoodOldNet</u></strong>{['Home','About','Projects','Links','Guestbook'].map(s=><span>▷　<u>{s}</u></span>)}</div><div class="retro-main"><strong>Welcome to GoodOldNet!</strong><hr/><p>{l('这里是一个关于互联网早期记忆的空间。','A small corner of the early internet.')}<br/>{l('我们收集有趣的页面、链接与值得慢慢发现的故事。','Interesting pages, favourite links and stories worth a slower look.')}</p><div class="retro-links">&gt; {l('进入站点','Enter the site')}　 &gt; {l('浏览项目','Browse projects')}　 &gt; {l('留下你的一句话','Sign the guestbook')}</div><p class="retro-counter">YOU ARE VISITOR <b>0 0 1 2 8 4</b></p></div><div class="retro-picture"><svg viewBox="0 0 180 95" shape-rendering="crispEdges"><path fill="#69a8fa" d="M0 0h180v95H0z"/><path fill="white" d="M14 24h7v-7h18v7h12v7H14zm98-10h8V7h17v7h10v7h-35zm31 31h8v-6h14v6h9v6h-31z"/><path fill="#5f8b2f" d="M0 75V60h11v6h11V54h11v8h10v-5h14v9h12v-9h11v9h17v-8h13v8h13v-8h15v5h12v-9h12v8h18v33H0z"/><path fill="#143c16" d="M11 69V36h5v-8h7v8h5v33zm21 0V41h5v-9h7v9h5v28zm126 0V41h5v-9h7v9h5v28z"/><path fill="#2f85ce" d="M0 74h180v21H0z"/><path fill="#91c8ec" d="M0 84h85v3H0zm112-4h68v3h-68z"/></svg><p>A simpler internet.<br/>A brighter tomorrow.</p></div></div><div class="retro-status">✓ Done <span>Internet zone</span></div></div>}
+  </div>
+</div>

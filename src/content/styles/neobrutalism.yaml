@@ -156,7 +156,7 @@ style_spec:
     en: Hover shifts into the hard shadow; focus shows a visible 3px black frame; active presses down and removes the shadow; disabled greys out without shifting; error uses a harsh orange-red border
 
 preview:
-  order: 5
+  order: 9
   keywords:
     en: RAW & LOUD
     zh: 粗边 · 高对比 · 直给
