@@ -1,4 +1,11 @@
 @font-face {
+  font-family: Atlas Heavy;
+  src: url(../assets/fonts/Anton-Regular.ttf) format("truetype");
+  font-style: normal;
+  font-weight: 400 950;
+  font-display: swap;
+}
+@font-face {
   font-family: Atlas Display;
   src: url(../assets/fonts/BebasNeue-Regular.ttf) format("truetype");
   font-style: normal;
@@ -210,6 +217,7 @@
   height: 37cqw;
   object-fit: contain;
   mix-blend-mode: multiply;
+  mask-image: linear-gradient(to right, transparent, #000 18%, #000);
 }
 .lumo-caption {
   position: absolute;
@@ -252,17 +260,17 @@
 }
 .vertex-display > p {
   font-family:
-    "Atlas Display", Impact, "Arial Narrow", "Liberation Sans Narrow", Arial,
-    sans-serif;
+    "Atlas Heavy", "Atlas Display", Impact, "Arial Narrow",
+    "Liberation Sans Narrow", Arial, sans-serif;
   font-stretch: condensed;
   font-weight: 950;
-  letter-spacing: -0.055em;
-  font-size: 7.3cqw;
-  line-height: 0.99;
+  letter-spacing: -0.035em;
+  font-size: 8.1cqw;
+  line-height: 0.95;
   white-space: nowrap;
-  transform: scaleX(0.84);
+  transform: scaleX(1.25);
   transform-origin: left top;
-  width: 119%;
+  width: 80%;
 }
 .vertex-display > p > span {
   display: inline-block;
@@ -297,15 +305,15 @@
 }
 .vertex-poster > p {
   font-family:
-    "Atlas Display", Impact, "Arial Narrow", "Liberation Sans Narrow", Arial,
-    sans-serif;
+    "Atlas Heavy", "Atlas Display", Impact, "Arial Narrow",
+    "Liberation Sans Narrow", Arial, sans-serif;
   font-weight: 950;
-  font-size: 3.55cqw;
-  line-height: 0.96;
-  letter-spacing: -0.035em;
-  transform: scaleX(0.82);
+  font-size: 3.65cqw;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transform: scaleX(1.05);
   transform-origin: left;
-  width: 122%;
+  width: 95%;
 }
 .vertex-poster > small {
   font-size: 0.97cqw;
@@ -566,12 +574,13 @@
   line-height: 1.55;
 }
 .aurora-graph > svg {
-  margin: 2.8cqw 0 1.7cqw;
+  margin: 1.9cqw 0 1cqw;
   width: 100%;
-  height: 7.5cqw;
+  height: 7cqw;
   overflow: visible;
 }
 .aurora-graph > small {
+  display: block;
   font-size: 0.97cqw;
   line-height: 1.45;
   color: #f1f1ff;
@@ -833,19 +842,19 @@
   padding-left: 7.2cqw;
 }
 .mellow-copy {
-  padding-top: 4.3cqw;
+  padding-top: 3.2cqw;
   width: 37%;
 }
 .mellow-copy .scene-title {
   font-family: Georgia, "Songti SC", serif;
-  font-size: 4.75cqw;
+  font-size: 4.5cqw;
   line-height: 1.16;
   letter-spacing: -0.03em;
 }
 .mellow-copy .scene-description {
   font-size: 1.52cqw;
   color: #808185;
-  margin: 1.8cqw 0 1.4cqw;
+  margin: 1.3cqw 0 1cqw;
   line-height: 1.65;
 }
 .mellow-weather {
@@ -1095,16 +1104,16 @@
 }
 .void-display {
   font-family:
-    "Atlas Display", Impact, "Arial Narrow", "Liberation Sans Narrow", Arial,
-    sans-serif;
+    "Atlas Heavy", "Atlas Display", Impact, "Arial Narrow",
+    "Liberation Sans Narrow", Arial, sans-serif;
   font-weight: 950;
-  font-size: 8.65cqw;
-  line-height: 0.97;
-  letter-spacing: -0.065em;
+  font-size: 8.9cqw;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
   white-space: nowrap;
-  transform: scaleX(0.82);
+  transform: scaleX(1.12);
   transform-origin: left top;
-  width: 122%;
+  width: 89%;
 }
 .void-copy {
   padding: 4.7cqw 1.6cqw 0 0.5cqw;
@@ -1145,8 +1154,8 @@
   bottom: 6.8cqw;
   color: #fff;
   font-family:
-    "Atlas Display", Impact, "Arial Narrow", "Liberation Sans Narrow", Arial,
-    sans-serif;
+    "Atlas Heavy", "Atlas Display", Impact, "Arial Narrow",
+    "Liberation Sans Narrow", Arial, sans-serif;
   font-size: 2.75cqw;
   font-weight: 950;
   line-height: 0.95;
@@ -1294,8 +1303,8 @@
 }
 .play-window.ideas > p {
   font-family:
-    "Atlas Display", Impact, "Arial Narrow", "Liberation Sans Narrow", Arial,
-    sans-serif;
+    "Atlas Heavy", "Atlas Display", Impact, "Arial Narrow",
+    "Liberation Sans Narrow", Arial, sans-serif;
   font-size: 2.58cqw;
   line-height: 1.03;
   letter-spacing: -0.025em;

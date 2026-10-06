@@ -24,7 +24,7 @@
 
 源码保留 PNG 原始生成字节，Astro Image 仅在构建时产出适合页面的 WebP。照片的可见区域由 CSS 决定；其他局部小图复用这五个资产，不新增外部图片请求。
 
-压缩英文展示字使用 [Bebas Neue](https://github.com/google/fonts/tree/main/ofl/bebasneue)，版权 © 2010 Dharma Type，SIL Open Font License 1.1。原字体保存在 `src/assets/fonts/`，许可证随站点放在 `public/licenses/BebasNeue-OFL.txt`。其余字体沿用系统字体。
+粗黑压缩标题使用 [Anton](https://github.com/google/fonts/tree/main/ofl/anton)，版权 © 2020 The Anton Project Authors，SIL Open Font License 1.1，许可证随站点放在 `public/licenses/Anton-OFL.txt`。备用压缩英文展示字使用 [Bebas Neue](https://github.com/google/fonts/tree/main/ofl/bebasneue)，版权 © 2010 Dharma Type，SIL Open Font License 1.1。原字体保存在 `src/assets/fonts/`，许可证随站点放在 `public/licenses/BebasNeue-OFL.txt`。其余字体沿用系统字体。
 
 ## 验证与发布边界
 

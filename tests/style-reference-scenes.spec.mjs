@@ -30,6 +30,27 @@ async function assertNoOverflow(page, label) {
   expect(dimensions.body, `${label}: ${JSON.stringify(dimensions)}`).toBeLessThanOrEqual(dimensions.viewport + 1);
 }
 
+async function assertSceneContentGap(scene, slug) {
+  const target = slug === 'neumorphism' ? '.mellow-copy .scene-pill'
+    : slug === 'glassmorphism' ? '.aurora-graph > small' : null;
+  if (!target) return;
+  const boundary = slug === 'neumorphism' ? '.scene-page' : '.aurora-graph';
+  const geometry = await scene.evaluate((element, selectors) => {
+    const sceneRect = element.getBoundingClientRect();
+    const contentRect = element.querySelector(selectors.target).getBoundingClientRect();
+    const boundaryRect = element.querySelector(selectors.boundary).getBoundingClientRect();
+    return {
+      sceneWidth: sceneRect.width,
+      bottom: contentRect.bottom,
+      boundaryBottom: boundaryRect.bottom,
+      gap: boundaryRect.bottom - contentRect.bottom,
+      minimumGap: sceneRect.width * 0.007,
+    };
+  }, { target, boundary });
+  await test.info().attach(`${slug}-content-gap.json`, { body: JSON.stringify(geometry, null, 2), contentType: 'application/json' });
+  expect(geometry.gap, `${slug} 文案/按钮底部应完整显示并留出至少场景宽度 0.7% 的间隙：${JSON.stringify(geometry)}`).toBeGreaterThanOrEqual(geometry.minimumGap - 0.5);
+}
+
 async function readyScene(scene, locale) {
   await expect(scene).toBeVisible();
   await scene.scrollIntoViewIfNeeded();
@@ -43,6 +64,8 @@ async function readyScene(scene, locale) {
   // 完整 DOM 场景允许局部照片，不允许用 iframe、canvas 或整页截图取代页面结构。
   await expect(scene.locator('iframe, canvas')).toHaveCount(0);
   expect(await scene.locator('*').count()).toBeGreaterThan(8);
+  await scene.evaluate(() => document.fonts.ready);
+  await assertSceneContentGap(scene, slug);
   const text = await scene.innerText();
   expect(text.trim().length).toBeGreaterThan(30);
   if (locale === 'en') expect(text.replace(/EN\s*\/\s*中文/g, '')).not.toMatch(/[\u4e00-\u9fff]/);
@@ -56,11 +79,39 @@ async function capture(page, target, label, testInfo) {
   const candidateCommit = testInfo.config.metadata.candidateCommit || process.env.QA_CANDIDATE_SHA || 'local';
   const file = `${candidateCommit}-${testInfo.project.name}-${label}.png`;
   const screenshotPath = testInfo.outputPath(file);
-  await target.screenshot({ path: screenshotPath, animations: 'disabled' });
+  const screenshotFiles = [file];
+  let viewportGeometry = null;
+  if (label.startsWith('home-')) {
+    // 高于视口的区块截图会把真实 sticky 页头拍到图中段；返回页首后保留完整页面与真实页头。
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+    await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+    await page.screenshot({ path: screenshotPath, fullPage: true, animations: 'disabled' });
+  } else {
+    await target.screenshot({ path: screenshotPath, animations: 'disabled' });
+  }
   await testInfo.attach(file, { path: screenshotPath, contentType: 'image/png' });
+  if (label.startsWith('home-')) {
+    // 再记录正常滚动时的真实视口；sticky 页头保留在视口顶端，首批参考卡片位于其下方。
+    await target.locator('[data-style-scene]').first().evaluate((element) => {
+      const top = scrollY + element.getBoundingClientRect().top - 80;
+      window.scrollTo({ top, behavior: 'instant' });
+    });
+    viewportGeometry = await page.evaluate(() => {
+      const header = document.querySelector('body > header').getBoundingClientRect();
+      const scene = document.querySelector('[data-home-styles] [data-style-scene]').getBoundingClientRect();
+      return { headerTop: header.top, headerBottom: header.bottom, sceneTop: scene.top, scrollY };
+    });
+    expect(Math.abs(viewportGeometry.headerTop), JSON.stringify(viewportGeometry)).toBeLessThanOrEqual(0.5);
+    expect(viewportGeometry.headerBottom, JSON.stringify(viewportGeometry)).toBeLessThanOrEqual(viewportGeometry.sceneTop);
+    const viewportFile = `${candidateCommit}-${testInfo.project.name}-${label.replace('home-', 'home-style-viewport-')}.png`;
+    const viewportPath = testInfo.outputPath(viewportFile);
+    await page.screenshot({ path: viewportPath, animations: 'disabled' });
+    await testInfo.attach(viewportFile, { path: viewportPath, contentType: 'image/png' });
+    screenshotFiles.push(viewportFile);
+  }
   await testInfo.attach(`${label}-source.json`, {
     body: JSON.stringify({
-      candidateCommit, engine: testInfo.project.name, url: page.url(), viewport: page.viewportSize(),
+      candidateCommit, engine: testInfo.project.name, url: page.url(), viewport: page.viewportSize(), screenshotFiles, viewportGeometry,
       sceneSlugs: await target.locator('[data-style-scene]').evaluateAll((elements) => elements.map((element) => element.dataset.styleScene)),
     }, null, 2),
     contentType: 'application/json',

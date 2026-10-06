@@ -60,7 +60,7 @@ const nav = slug === 'swiss-style' ? ['WORK', 'STUDIO', 'APPROACH', 'CONTACT']
       <div class="paper-copy"><p class="scene-title">Good Life<br/><span>in Small Things</span></p><p class="paper-deck">{l('在细微处，发现更好的生活','A little room for the everyday.')}</p><p class="scene-description">{l('我们记录真实的生活方式、人与地方的故事，相信日常之中，藏着最动人的答案。','Stories of people, places and the rituals that make an ordinary day feel extraordinary.')}</p><span class="paper-read">{l('阅读更多','Read the journal')} →</span></div>
       <div class="paper-photo"><Image src={editorial} alt={l('晨光照进房间，木桌上的书、咖啡与枝叶','Morning light across a wooden table with a book, coffee and branches')} width={1000} format="webp" quality={85} loading="lazy" /><p>{l('生活不在别处，','Life is here,')}<br/>{l('就在此刻。','in the little things.')}</p></div>
       <div class="paper-stories">{[
-        [l('一间面朝山的房子','A home in the hills'), l('与自然相处的三种方式','Three ways to live with nature'), '2024.04.12'],
+        [l('群山间的清晨','Morning in the mountains'), l('在山色与晨光中慢下来','Slow down with the morning light'), '2024.04.12'],
         [l('城市漫游指南','The art of wandering'), l('在熟悉的街巷中发现新鲜','A fresh look at familiar streets'), '2024.04.08'],
         [l('慢下来的周末','A slower weekend'), l('关于生活节奏的重新思考','Finding your own rhythm'), '2024.04.01'],
       ].map(([title,desc,date],i) => <div class="paper-story"><div class:list={['story-photo', `story-photo-${i}`]}>{i === 0 ? <Image src={mountains} alt="" width={300} format="webp" loading="lazy" /> : <Image src={i === 1 ? brutalism : editorial} alt="" width={300} format="webp" loading="lazy" />}</div><div><strong>{title}</strong><p>{desc}</p><time>{date}</time></div></div>)}</div>
