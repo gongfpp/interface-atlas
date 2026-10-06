@@ -67,7 +67,7 @@ test('跨标签更新与清空同步正常快照，但不抹掉本页未保存�
   assert.deepEqual(data.getSavedSnapshot(), ['drawer']);
   blocked.add('ia-saved'); data.toggleSaved('tabs');
   disk.clear(); event(null);
-  assert.deepEqual(data.getSavedSnapshot(), ['tabs', 'drawer']);
+  assert.deepEqual(data.getSavedSnapshot(), ['tabs']);
   assert.deepEqual(data.getHistorySnapshot(), []); assert.equal(data.storageAvailable(), false);
   blocked.delete('ia-saved'); data.retryUserdataStorage();
   disk.clear(); event(null); assert.deepEqual(data.getSavedSnapshot(), []);

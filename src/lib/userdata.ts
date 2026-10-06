@@ -1,12 +1,13 @@
-const SAVED_KEY = 'ia-saved';
-const HISTORY_KEY = 'ia-history';
+const SAVED_KEY = "ia-saved";
+const HISTORY_KEY = "ia-history";
 const HISTORY_MAX = 30;
 const EMPTY: string[] = [];
 
 const listeners = new Set<() => void>();
 /** 存储不可用时的内存回退，保证同一会话内读写一致（刷新后不持久化）。 */
-const memory = new Map<string, string>();
-const pendingWrites = new Set<string>();
+const lastDisk = new Map<string, string | null>();
+type Mutation = { type: "add" | "remove" | "visit"; id: string };
+const pending = new Map<string, Mutation[]>();
 const failedReads = new Set<string>();
 
 function emit() {
@@ -16,18 +17,10 @@ function emit() {
 /** 跨标签页同步：另一个标签页写入时刷新缓存并通知订阅者。 */
 let crossTabBound = false;
 function bindCrossTab() {
-  if (crossTabBound || typeof window === 'undefined') return;
+  if (crossTabBound || typeof window === "undefined") return;
   crossTabBound = true;
-  window.addEventListener('storage', (e) => {
+  window.addEventListener("storage", (e) => {
     if (e.key !== SAVED_KEY && e.key !== HISTORY_KEY && e.key !== null) return;
-    // 其他标签页的写入或清空不能丢弃当前页尚未落盘的操作。
-    for (const key of [SAVED_KEY, HISTORY_KEY]) {
-      if (e.key !== null && e.key !== key) continue;
-      if (pendingWrites.has(key)) continue;
-      memory.delete(key);
-      if (key === SAVED_KEY) savedRaw = undefined;
-      else historyRaw = undefined;
-    }
     emit();
   });
 }
@@ -41,45 +34,69 @@ export function subscribe(cb: () => void) {
 }
 
 export function storageAvailable(): boolean {
-  return pendingWrites.size === 0 && failedReads.size === 0;
+  return pending.size === 0 && failedReads.size === 0;
 }
 
-function safeGet(key: string): string | null {
-  if (typeof window === 'undefined') return null;
-  if (pendingWrites.has(key)) return memory.get(key) ?? null;
+function readDisk(key: string): { raw: string | null; readable: boolean } {
   try {
-    const value = window.localStorage.getItem(key);
+    const raw = window.localStorage.getItem(key);
+    lastDisk.set(key, raw);
     failedReads.delete(key);
-    if (value === null) memory.delete(key);
-    else memory.set(key, value);
-    return value;
+    return { raw, readable: true };
   } catch {
     failedReads.add(key);
   }
-  return memory.get(key) ?? null;
+  return { raw: lastDisk.get(key) ?? null, readable: false };
 }
 
-function safeSet(key: string, value: string) {
-  memory.set(key, value);
-  if (typeof window === 'undefined') return;
+function apply(key: string, raw: string | null): string[] {
+  return (pending.get(key) ?? []).reduce((ids, op) => {
+    const rest = ids.filter((id) => id !== op.id);
+    if (op.type === "remove") return rest;
+    const next = [op.id, ...rest];
+    return op.type === "visit" ? next.slice(0, HISTORY_MAX) : next;
+  }, parse(raw));
+}
+
+function safeGet(key: string): string | null {
+  if (typeof window === "undefined") return null;
+  return JSON.stringify(apply(key, readDisk(key).raw));
+}
+
+function flush(key: string) {
+  const disk = readDisk(key);
+  if (!disk.readable) return;
+  if (!pending.has(key)) return;
+  const raw = JSON.stringify(apply(key, disk.raw));
   try {
-    window.localStorage.setItem(key, value);
-    pendingWrites.delete(key);
-    failedReads.delete(key);
+    window.localStorage.setItem(key, raw);
+    lastDisk.set(key, raw);
+    pending.delete(key);
   } catch {
-    pendingWrites.add(key);
+    /* Pending operations remain available for retry. */
   }
 }
 
+function write(key: string, operation: Mutation) {
+  if (typeof window === "undefined") return;
+  pending.set(key, [
+    ...(pending.get(key) ?? []).filter((op) => op.id !== operation.id),
+    operation,
+  ]);
+  flush(key);
+  emit();
+}
+
 /** 水合时不读取浏览器存储。 */
-export function getServerStorageSnapshot(): boolean { return true; }
+export function getServerStorageSnapshot(): boolean {
+  return true;
+}
 
 /** 重试当前页未保存的值，不需要再次切换收藏。 */
 export function retryUserdataStorage(): boolean {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === "undefined") return false;
   for (const key of [SAVED_KEY, HISTORY_KEY]) {
-    if (pendingWrites.has(key)) safeSet(key, memory.get(key) ?? '[]');
-    else safeGet(key);
+    flush(key);
   }
   emit();
   return storageAvailable();
@@ -87,8 +104,10 @@ export function retryUserdataStorage(): boolean {
 
 function parse(raw: string | null): string[] {
   try {
-    const parsed = JSON.parse(raw ?? '[]');
-    return Array.isArray(parsed) ? parsed.filter((x): x is string => typeof x === 'string') : EMPTY;
+    const parsed = JSON.parse(raw ?? "[]");
+    return Array.isArray(parsed)
+      ? parsed.filter((x): x is string => typeof x === "string")
+      : EMPTY;
   } catch {
     return EMPTY;
   }
@@ -98,18 +117,13 @@ function readIds(key: string): string[] {
   return parse(safeGet(key));
 }
 
-function writeIds(key: string, ids: string[]) {
-  safeSet(key, JSON.stringify(ids));
-  emit();
-}
-
 // --- 缓存快照：raw 未变时返回同一引用，满足 useSyncExternalStore 的稳定性要求 ---
 let savedRaw: string | null | undefined;
 let savedCache: string[] = EMPTY;
 
 /** 收藏快照（useSyncExternalStore getSnapshot） */
 export function getSavedSnapshot(): string[] {
-  if (typeof window === 'undefined') return EMPTY;
+  if (typeof window === "undefined") return EMPTY;
   const raw = safeGet(SAVED_KEY);
   if (raw !== savedRaw) {
     savedRaw = raw;
@@ -123,7 +137,7 @@ let historyCache: string[] = EMPTY;
 
 /** 浏览历史快照（最近在最前，去重，上限 30） */
 export function getHistorySnapshot(): string[] {
-  if (typeof window === 'undefined') return EMPTY;
+  if (typeof window === "undefined") return EMPTY;
   const raw = safeGet(HISTORY_KEY);
   if (raw !== historyRaw) {
     historyRaw = raw;
@@ -139,24 +153,16 @@ export function getServerSnapshot(): string[] {
 
 /** 切换收藏，返回切换后的状态 */
 export function toggleSaved(id: string): boolean {
-  const ids = readIds(SAVED_KEY).slice();
-  const index = ids.indexOf(id);
-  if (index >= 0) ids.splice(index, 1);
-  else ids.unshift(id);
-  writeIds(SAVED_KEY, ids);
-  return index < 0;
+  const exists = readIds(SAVED_KEY).includes(id);
+  write(SAVED_KEY, { type: exists ? "remove" : "add", id });
+  return !exists;
 }
 
 export function removeSaved(id: string) {
-  writeIds(
-    SAVED_KEY,
-    readIds(SAVED_KEY).filter((x) => x !== id),
-  );
+  write(SAVED_KEY, { type: "remove", id });
 }
 
 /** 记录浏览历史 */
 export function pushHistory(id: string) {
-  const next = readIds(HISTORY_KEY).filter((x) => x !== id);
-  next.unshift(id);
-  writeIds(HISTORY_KEY, next.slice(0, HISTORY_MAX));
+  write(HISTORY_KEY, { type: "visit", id });
 }
