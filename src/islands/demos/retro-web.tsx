@@ -1,30 +1,305 @@
-import { useState, type CSSProperties } from 'react';
-import type { DemoComponent } from '@/islands/DemoStage';
+import { useState, type CSSProperties } from "react";
+import type { DemoComponent } from "@/islands/DemoStage";
 
-const Demo: DemoComponent = ({ locale = 'zh' }) => {
-  const en = locale === 'en';
-  const labels = en ? ['Home', 'About', 'Projects', 'Links', 'Guestbook'] : ['首页', '关于', '项目', '链接', '留言簿'];
+const Demo: DemoComponent = ({ locale = "zh" }) => {
+  const en = locale === "en";
+  const labels = en
+    ? ["Home", "About", "Projects", "Links", "Guestbook"]
+    : ["首页", "关于", "项目", "链接", "留言簿"];
   const [section, setSection] = useState(0);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [entries, setEntries] = useState<string[]>([]);
-  const [status, setStatus] = useState('');
-  const bevel: CSSProperties = { border: '2px outset #e6e6e6', background: '#c8c8c8', color: '#111', padding: '7px 12px', minHeight: 36 };
-  return <div className="retro-web-demo mx-auto w-full max-w-3xl" style={{ background: '#c8c8c8', color: '#111', border: '3px outset #eee', fontFamily: 'Times New Roman, serif', fontSize: 14 }}>
-    <div style={{ background: 'linear-gradient(90deg,#143d72,#377eb8)', color: 'white', padding: '5px 9px', fontFamily: 'Arial, sans-serif', fontSize: 12, fontWeight: 700 }}>▧ GoodOldNet - {labels[section]}</div>
-    <div style={{ padding: '6px 9px', borderBottom: '2px groove #eee', fontSize: 12 }}>File Edit View Favorites Help</div>
-    <div style={{ display: 'flex', gap: 8, alignItems: 'center', padding: 7, flexWrap: 'wrap', fontFamily: 'Arial, sans-serif', fontSize: 11 }}><button type="button" style={bevel} onClick={() => { setSection(0); setStatus(''); }}>⌂ {en ? 'Home' : '首页'}</button><span style={{ flex: 1, minWidth: 100, background: 'white', border: '2px inset #eee', padding: '5px 7px', overflowWrap: 'anywhere' }}>Address goodoldnet / {['home','about','projects','links','guestbook'][section]}</span></div>
-    <div className="retro-demo-content" style={{ background: '#fff', border: '2px inset #ddd', display: 'flex', alignItems: 'stretch', flexWrap: 'wrap' }}>
-      <nav aria-label={en ? 'Demo pages' : '演示页面'} style={{ padding: 12, background: '#e1e1e1', minWidth: 118, flex: '1 0 118px', maxWidth: 180, borderRight: '2px groove #eee' }}><strong style={{ display: 'block', color: '#000080', marginBottom: 13 }}>🌐 GoodOldNet</strong>{labels.map((label, index) => <button key={label} type="button" aria-current={section === index ? 'page' : undefined} onClick={() => { setSection(index); setStatus(''); }} style={{ display: 'block', textAlign: 'left', width: '100%', background: section === index ? '#fff' : 'transparent', color: '#0000a0', textDecoration: 'underline', padding: '7px 3px', border: 0, font: 'inherit', fontWeight: section === index ? 700 : 400 }}>▷ {label}</button>)}</nav>
-      <section aria-label={labels[section]} style={{ flex: '999 1 220px', minWidth: 0, padding: 18, minHeight: 270 }}>
-        <h3 style={{ fontSize: 24, lineHeight: 1.2, margin: '0 0 10px', fontWeight: 700 }}>{section === 0 ? 'Welcome to GoodOldNet!' : labels[section]}</h3><hr style={{ border: 0, borderTop: '1px solid #000080', marginBottom: 15 }} />
-        {section === 0 && <><p style={{ lineHeight: 1.7 }}>{en ? 'A small corner of the early internet. Blue links, modest pages, and discoveries worth a slower look.' : '这里是互联网早期记忆的一角：蓝色链接、简单页面，还有值得慢慢发现的故事。'}</p><p style={{ margin: '16px 0', lineHeight: 1.6 }}>{en ? 'The old look keeps modern keyboard navigation, clear labels and readable text.' : '复古的是样子。键盘导航、清楚的标签和可读的文字依然重要。'}</p><button type="button" style={bevel} onClick={() => setSection(4)}>{en ? 'Sign the guestbook' : '在留言簿写一句话'} →</button></>}
-        {section === 1 && <p style={{ lineHeight: 1.8 }}>{en ? 'This is a visual study of personal websites from the early web: browser chrome, beveled panels, serif text and underlined links. It is distinct from pixel-art games or neon retro-futurism.' : '这是早期个人网站的视觉样例：浏览器边框、凹凸面板、衬线文字和带下划线的链接。它与像素游戏、霓虹复古未来风是不同的视觉语言。'}</p>}
-        {section === 2 && <ul style={{ listStyle: 'square', paddingLeft: 20, lineHeight: 2.2 }}><li>{en ? 'A personal photo journal' : '个人照片日记'}</li><li>{en ? 'A hand-built web directory' : '手工整理的网站目录'}</li><li>{en ? 'A tiny fan page' : '小小的爱好者主页'}</li></ul>}
-        {section === 3 && <><p style={{ marginBottom: 14 }}>{en ? 'Local shortcuts for this demo. Nothing opens an external website.' : '这些是本演示内的快捷入口，不会打开外部网站。'}</p>{[1,2,4].map(i=><button key={i} type="button" onClick={()=>setSection(i)} style={{ display: 'block', color: '#0000a0', textDecoration: 'underline', padding: '8px 0', border: 0, background: 'none', font: 'inherit' }}>➜ {labels[i]}</button>)}</>}
-        {section === 4 && <form onSubmit={event => { event.preventDefault(); const value=message.trim(); if (!value) { setStatus(en ? 'Write a message first.' : '请先写一句话。'); return; } setEntries(old => [...old,value]); setMessage(''); setStatus(en ? 'Added to this preview only.' : '已加入当前预览。'); }}><p style={{ fontSize: 12, lineHeight: 1.6, marginBottom: 12 }}>{en ? 'Local simulation only. Messages stay in this demo until you reload; they are never sent or stored.' : '仅本地模拟：留言只保留在本次演示中，刷新即清空，不会发送或持久保存。'}</p><label style={{ display: 'block' }}>{en ? 'Your message' : '你的留言'}<textarea maxLength={200} value={message} onChange={event => setMessage(event.target.value)} rows={3} style={{ display: 'block', width: '100%', margin: '6px 0 10px', border: '2px inset #ddd', padding: 7, color: '#111', background: 'white', font: 'inherit', resize: 'vertical' }} /></label><button type="submit" style={bevel}>{en ? 'Add message' : '添加留言'}</button><p role="status" aria-live="polite" style={{ minHeight: 20, marginTop: 8, fontSize: 12 }}>{status}</p><ul aria-label={en ? 'Demo messages' : '演示留言'} style={{ margin: 0, paddingLeft: 18, overflowWrap: 'anywhere' }}>{entries.map((entry,index)=><li key={index} style={{ margin: '8px 0' }}>{entry}</li>)}</ul></form>}
-      </section>
-    </div><div style={{ padding: '5px 8px', fontFamily: 'Arial, sans-serif', fontSize: 11 }}>✓ {en ? 'Ready · local demo' : '就绪 · 本地演示'}</div>
-    <style>{`.retro-web-demo button{cursor:pointer}.retro-web-demo button:focus-visible,.retro-web-demo textarea:focus-visible{outline:3px solid #145bd7;outline-offset:2px}.retro-web-demo button:active{border-style:inset!important}@media(max-width:440px){.retro-web-demo nav{max-width:none!important;display:flex;flex-wrap:wrap;gap:2px}.retro-web-demo nav>strong{width:100%;margin-bottom:2px!important}.retro-web-demo nav>button{width:auto!important;padding:7px!important}}`}</style>
-  </div>;
+  const [status, setStatus] = useState("");
+  const bevel: CSSProperties = {
+    border: "2px outset #e6e6e6",
+    background: "#c8c8c8",
+    color: "#111",
+    padding: "7px 12px",
+    minHeight: 36,
+  };
+  return (
+    <div
+      className="retro-web-demo mx-auto w-full max-w-3xl"
+      style={{
+        background: "#c8c8c8",
+        color: "#111",
+        border: "3px outset #eee",
+        fontFamily: "Times New Roman, serif",
+        fontSize: 14,
+      }}
+    >
+      <div
+        style={{
+          background: "linear-gradient(90deg,#143d72,#377eb8)",
+          color: "white",
+          padding: "5px 9px",
+          fontFamily: "Arial, sans-serif",
+          fontSize: 12,
+          fontWeight: 700,
+        }}
+      >
+        ▧ GoodOldNet - {labels[section]}
+      </div>
+      <div
+        style={{
+          padding: "6px 9px",
+          borderBottom: "2px groove #eee",
+          fontSize: 12,
+        }}
+      >
+        File Edit View Favorites Help
+      </div>
+      <div
+        style={{
+          display: "flex",
+          gap: 8,
+          alignItems: "center",
+          padding: 7,
+          flexWrap: "wrap",
+          fontFamily: "Arial, sans-serif",
+          fontSize: 11,
+        }}
+      >
+        <button
+          type="button"
+          style={bevel}
+          onClick={() => {
+            setSection(0);
+            setStatus("");
+          }}
+        >
+          ⌂ {en ? "Home" : "首页"}
+        </button>
+        <span
+          style={{
+            flex: 1,
+            minWidth: 100,
+            background: "white",
+            border: "2px inset #eee",
+            padding: "5px 7px",
+            overflowWrap: "anywhere",
+          }}
+        >
+          Address goodoldnet /{" "}
+          {["home", "about", "projects", "links", "guestbook"][section]}
+        </span>
+      </div>
+      <div
+        className="retro-demo-content"
+        style={{
+          background: "#fff",
+          border: "2px inset #ddd",
+          display: "flex",
+          alignItems: "stretch",
+          flexWrap: "wrap",
+        }}
+      >
+        <nav
+          aria-label={en ? "Demo pages" : "演示页面"}
+          style={{
+            padding: 12,
+            background: "#e1e1e1",
+            minWidth: 118,
+            flex: "1 0 118px",
+            maxWidth: 180,
+            borderRight: "2px groove #eee",
+          }}
+        >
+          <strong
+            style={{ display: "block", color: "#000080", marginBottom: 13 }}
+          >
+            🌐 GoodOldNet
+          </strong>
+          {labels.map((label, index) => (
+            <button
+              key={label}
+              type="button"
+              aria-current={section === index ? "page" : undefined}
+              onClick={() => {
+                setSection(index);
+                setStatus("");
+              }}
+              style={{
+                display: "block",
+                textAlign: "left",
+                width: "100%",
+                background: section === index ? "#fff" : "transparent",
+                color: "#0000a0",
+                textDecoration: "underline",
+                padding: "7px 3px",
+                border: 0,
+                font: "inherit",
+                fontWeight: section === index ? 700 : 400,
+              }}
+            >
+              ▷ {label}
+            </button>
+          ))}
+        </nav>
+        <section
+          aria-label={labels[section]}
+          style={{
+            flex: "999 1 220px",
+            minWidth: 0,
+            padding: 18,
+            minHeight: 270,
+          }}
+        >
+          <h3
+            style={{
+              fontSize: 24,
+              lineHeight: 1.2,
+              margin: "0 0 10px",
+              fontWeight: 700,
+            }}
+          >
+            {section === 0 ? "Welcome to GoodOldNet!" : labels[section]}
+          </h3>
+          <hr
+            style={{
+              border: 0,
+              borderTop: "1px solid #000080",
+              marginBottom: 15,
+            }}
+          />
+          {section === 0 && (
+            <>
+              <p style={{ lineHeight: 1.7 }}>
+                {en
+                  ? "A small corner of the early internet. Blue links, modest pages, and discoveries worth a slower look."
+                  : "这里是互联网早期记忆的一角：蓝色链接、简单页面，还有值得慢慢发现的故事。"}
+              </p>
+              <p style={{ margin: "16px 0", lineHeight: 1.6 }}>
+                {en
+                  ? "The old look keeps modern keyboard navigation, clear labels and readable text."
+                  : "复古的是样子。键盘导航、清楚的标签和可读的文字依然重要。"}
+              </p>
+              <button type="button" style={bevel} onClick={() => setSection(4)}>
+                {en ? "Sign the guestbook" : "在留言簿写一句话"} →
+              </button>
+            </>
+          )}
+          {section === 1 && (
+            <p style={{ lineHeight: 1.8 }}>
+              {en
+                ? "This is a visual study of personal websites from the early web: browser chrome, beveled panels, serif text and underlined links. It is distinct from pixel-art games or neon retro-futurism."
+                : "这是早期个人网站的视觉样例：浏览器边框、凹凸面板、衬线文字和带下划线的链接。它与像素游戏、霓虹复古未来风是不同的视觉语言。"}
+            </p>
+          )}
+          {section === 2 && (
+            <ul
+              style={{ listStyle: "square", paddingLeft: 20, lineHeight: 2.2 }}
+            >
+              <li>{en ? "A personal photo journal" : "个人照片日记"}</li>
+              <li>
+                {en ? "A hand-built web directory" : "手工整理的网站目录"}
+              </li>
+              <li>{en ? "A tiny fan page" : "小小的爱好者主页"}</li>
+            </ul>
+          )}
+          {section === 3 && (
+            <>
+              <p style={{ marginBottom: 14 }}>
+                {en
+                  ? "Local shortcuts for this demo. Nothing opens an external website."
+                  : "这些是本演示内的快捷入口，不会打开外部网站。"}
+              </p>
+              {[1, 2, 4].map((i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setSection(i)}
+                  style={{
+                    display: "block",
+                    color: "#0000a0",
+                    textDecoration: "underline",
+                    padding: "8px 0",
+                    border: 0,
+                    background: "none",
+                    font: "inherit",
+                  }}
+                >
+                  ➜ {labels[i]}
+                </button>
+              ))}
+            </>
+          )}
+          {section === 4 && (
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                const value = message.trim();
+                if (!value) {
+                  setStatus(en ? "Write a message first." : "请先写一句话。");
+                  return;
+                }
+                setEntries((old) => [...old, value]);
+                setMessage("");
+                setStatus(
+                  en ? "Added to this preview only." : "已加入当前预览。",
+                );
+              }}
+            >
+              <p style={{ fontSize: 12, lineHeight: 1.6, marginBottom: 12 }}>
+                {en
+                  ? "Local simulation only. Messages stay in this demo until you reload; they are never sent or stored."
+                  : "仅本地模拟：留言只保留在本次演示中，刷新即清空，不会发送或持久保存。"}
+              </p>
+              <label style={{ display: "block" }}>
+                {en ? "Your message" : "你的留言"}
+                <textarea
+                  maxLength={200}
+                  value={message}
+                  onChange={(event) => setMessage(event.target.value)}
+                  rows={3}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    margin: "6px 0 10px",
+                    border: "2px inset #ddd",
+                    padding: 7,
+                    color: "#111",
+                    background: "white",
+                    font: "inherit",
+                    resize: "vertical",
+                  }}
+                />
+              </label>
+              <button type="submit" style={bevel}>
+                {en ? "Add message" : "添加留言"}
+              </button>
+              <p
+                role="status"
+                aria-live="polite"
+                style={{ minHeight: 20, marginTop: 8, fontSize: 12 }}
+              >
+                {status}
+              </p>
+              <ul
+                aria-label={en ? "Demo messages" : "演示留言"}
+                style={{ margin: 0, paddingLeft: 18, overflowWrap: "anywhere" }}
+              >
+                {entries.map((entry, index) => (
+                  <li key={index} style={{ margin: "8px 0" }}>
+                    {entry}
+                  </li>
+                ))}
+              </ul>
+            </form>
+          )}
+        </section>
+      </div>
+      <div
+        style={{
+          padding: "5px 8px",
+          fontFamily: "Arial, sans-serif",
+          fontSize: 11,
+        }}
+      >
+        ✓ {en ? "Ready · local demo" : "就绪 · 本地演示"}
+      </div>
+      <style>{`.retro-web-demo button{cursor:pointer}.retro-web-demo button:focus-visible,.retro-web-demo textarea:focus-visible{outline:3px solid #145bd7;outline-offset:2px}.retro-web-demo button:active{border-style:inset!important}@media(max-width:440px){.retro-web-demo nav{max-width:none!important;display:flex;flex-wrap:wrap;gap:2px}.retro-web-demo nav>strong{width:100%;margin-bottom:2px!important}.retro-web-demo nav>button{width:auto!important;padding:7px!important}}`}</style>
+    </div>
+  );
 };
 export default Demo;

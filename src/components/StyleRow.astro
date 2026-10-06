@@ -17,6 +17,7 @@ const num = String(index + 1).padStart(2, '0');
 
 <a
   href={localePath(`/styles/${spec.slug}`, locale)}
+  aria-label={primary ? `查看${spec.nameZh}的风格与交互` : `Explore ${spec.nameEn}: visual style and interactions`}
   class="style-reference-row group"
 >
   <!-- 左：文字 -->

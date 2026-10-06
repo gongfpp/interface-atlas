@@ -12,6 +12,8 @@ test('参考风格验收仅允许私有同仓库 PR，不含发布或凭据入�
   assert.deepEqual(Object.keys(workflow.on), ['pull_request']);
   assert.deepEqual(workflow.on.pull_request.branches, ['main']);
   assert.deepEqual(workflow.permissions, { contents: 'read' });
+  assert.ok(workflow.concurrency.group.includes('github.event.pull_request.head.sha'), '候选应能独立采集首批截图，不等待旧版全量结束');
+  assert.equal(workflow.concurrency['cancel-in-progress'], false);
   const job = workflow.jobs['browser-qa'];
   for (const guard of [
     "github.event_name == 'pull_request'",
@@ -28,15 +30,26 @@ test('参考风格验收仅允许私有同仓库 PR，不含发布或凭据入�
   assert.equal(checkout.with['persist-credentials'], false);
   assert.doesNotMatch(text, /secrets\.|DEPLOY_KEY|git push|repository_dispatch:|workflow_dispatch:|pull_request_target:/);
   const artifacts = job.steps.filter((step) => step.uses?.startsWith('actions/upload-artifact@'));
-  assert.equal(artifacts.length, 2);
+  assert.equal(artifacts.length, 6);
   for (const artifact of artifacts) {
     assert.ok(artifact.with.name.includes('${{ github.event.pull_request.head.sha }}'));
     assert.equal(artifact.with['retention-days'], 7);
   }
   const targetIndex = job.steps.findIndex((step) => step.id === 'target');
+  const quickIndex = job.steps.findIndex((step) => step.id === 'quick');
   const firstArtifactIndex = job.steps.indexOf(artifacts[0]);
+  const desktopArtifactIndex = job.steps.indexOf(artifacts[1]);
+  assert.ok(artifacts[0].with.name.startsWith('atlas-style-quick-'));
+  assert.ok(artifacts[1].with.name.startsWith('atlas-style-desktop-'));
+  assert.ok(artifacts[2].with.name.startsWith('atlas-style-narrow-'));
+  for (const artifact of artifacts) assert.ok(!artifact.with.path.includes('playwright-report/'), '不得重复打包全部截图的 HTML 副本');
+  assert.ok(artifacts[0].with.path.includes('!style-quick-results/**/attachments/*.png'));
+  assert.ok(artifacts[1].with.path.includes('style-scene-results/**/*-1280.png'));
+  assert.ok(artifacts[2].with.path.includes('style-scene-results/**/*-390.png'));
+  assert.ok(artifacts[2].with.path.includes('style-scene-results/**/*-320.png'));
   const regressionIndex = job.steps.findIndex((step) => step.run?.includes("--grep-invert '参考缩景'"));
-  assert.ok(targetIndex < firstArtifactIndex && firstArtifactIndex < regressionIndex);
+  assert.ok(quickIndex < firstArtifactIndex && firstArtifactIndex < targetIndex);
+  assert.ok(targetIndex < desktopArtifactIndex && desktopArtifactIndex < regressionIndex);
 });
 
 test('当前需求分支不能自动或手动公开预览，PR 不触发正式发布', () => {
