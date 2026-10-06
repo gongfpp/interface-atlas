@@ -3,6 +3,10 @@ import { observeSettledGeometry } from './helpers/settled-geometry.mjs';
 import { readFileSync } from 'node:fs';
 const matrix = JSON.parse(readFileSync(new URL('../src/lib/component-style-coverage.json', import.meta.url), 'utf8'));
 
+// 每个用例有独立的 context/page 和输出目录，按配置的 workers 上限并行执行。
+// 单个用例内仍逐一切换八套风格，保留原生聚焦/滚动及几何稳定检查。
+test.describe.configure({ mode: 'parallel' });
+
 // 实际执行结果与截图绑定到本次 CI 提交；收集定义不等于浏览器或视觉验收。
 for (const [id, { styles }] of Object.entries(matrix)) {
   for (const [locale, width] of [['zh', 390], ['zh', 1280], ['en', 390], ['en', 1280]]) {
