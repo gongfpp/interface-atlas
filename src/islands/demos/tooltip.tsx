@@ -1,21 +1,15 @@
 import { useRef, useState } from 'react';
 import type { DemoComponent } from '@/islands/DemoStage';
+import { TooltipLayer } from '../shared/TooltipLayer';
+import type { TooltipPlacement as Placement } from '../../lib/tooltip-placement';
 
-type Placement = 'top' | 'bottom' | 'left' | 'right';
 type Skin = 'dark' | 'light' | 'rich';
 
-const POS: Record<Placement, string> = {
-  top: 'bottom-full left-1/2 -translate-x-1/2 mb-2',
-  bottom: 'top-full left-1/2 -translate-x-1/2 mt-2',
-  left: 'right-full top-1/2 -translate-y-1/2 mr-2',
-  right: 'left-full top-1/2 -translate-y-1/2 ml-2',
-};
-
 const ARROW: Record<Placement, string> = {
-  top: 'top-full left-1/2 -translate-x-1/2 -mt-[3px]',
-  bottom: 'bottom-full left-1/2 -translate-x-1/2 -mb-[3px]',
-  left: 'left-full top-1/2 -translate-y-1/2 -ml-[3px]',
-  right: 'right-full top-1/2 -translate-y-1/2 -mr-[3px]',
+  top: 'top-full left-[var(--tooltip-arrow-x)] -translate-x-1/2 -mt-[3px]',
+  bottom: 'bottom-full left-[var(--tooltip-arrow-x)] -translate-x-1/2 -mb-[3px]',
+  left: 'left-full top-[var(--tooltip-arrow-y)] -translate-y-1/2 -ml-[3px]',
+  right: 'right-full top-[var(--tooltip-arrow-y)] -translate-y-1/2 -mr-[3px]',
 };
 
 function Tip({
@@ -35,6 +29,8 @@ function Tip({
 }) {
   const [show, setShow] = useState(false);
   const timer = useRef<number | undefined>(undefined);
+  const root = useRef<HTMLSpanElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
 
   const enter = () => {
     window.clearTimeout(timer.current);
@@ -53,6 +49,7 @@ function Tip({
 
   return (
     <span
+      ref={root}
       className="relative inline-flex"
       onMouseEnter={enter}
       onMouseLeave={leave}
@@ -60,6 +57,7 @@ function Tip({
       onBlur={leave}
     >
       <button
+        ref={trigger}
         data-anatomy="1"
         aria-describedby={show ? 'tip' : undefined}
         className={`rounded-lg border border-line bg-raised px-2.5 py-1 text-xs text-ink-2 transition-colors hover:border-accent hover:text-accent ${triggerClass ?? ''}`}
@@ -67,23 +65,23 @@ function Tip({
         {children}
       </button>
       {show && (
-        <span className={`pointer-events-none absolute z-20 ${POS[placement]}`}>
+        <TooltipLayer as="span" root={root} anchor={trigger} preferred={placement} gap={8} className="pointer-events-none">{(actualPlacement) => (
           <span
             id="tip"
             role="tooltip"
             data-anatomy="2"
-            className={`block whitespace-nowrap rounded-md px-2 py-1 text-[11px] leading-snug ${bubbleSkin}`}
+            className={`relative block whitespace-normal break-words rounded-md px-2 py-1 text-[11px] leading-snug ${bubbleSkin}`}
             style={{ animation: 'demo-tip-in calc(150ms * var(--demo-speed, 1)) both' }}
           >
             {label}
             <span
               data-anatomy="3"
               aria-hidden="true"
-              className={`absolute h-1.5 w-1.5 rotate-45 ${arrowSkin} ${skin === 'light' || skin === 'rich' ? 'border-line' : ''} ${ARROW[placement]}`}
+              className={`absolute h-1.5 w-1.5 rotate-45 ${arrowSkin} ${skin === 'light' || skin === 'rich' ? 'border-line' : ''} ${ARROW[actualPlacement]}`}
               style={skin === 'dark' ? undefined : { clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}
             />
           </span>
-        </span>
+        )}</TooltipLayer>
       )}
     </span>
   );

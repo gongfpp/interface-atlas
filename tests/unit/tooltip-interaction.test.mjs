@@ -5,6 +5,14 @@ import { createTooltipInteraction, tooltipHasHoverPointer, tooltipIsVisible, upd
 import { callbackHarness, keyEvent } from '../helpers/callback-harness.mjs';
 const trace = (...actions) => actions.reduce(updateTooltipInteraction, createTooltipInteraction());
 
+test('瑞士风格的独立提示浮层保留白色表面，避免底层文字透出', () => {
+  const h = callbackHarness('tooltip', 'swiss-style', 'zh');
+  h.find(node => node.type === 'button').props.onFocus();
+  const tip = h.find(node => node.props.role === 'tooltip');
+  assert.ok(tip.props.className.split(/\s+/).includes('bg-white'));
+  assert.ok(tip.props.className.split(/\s+/).includes('border-t'));
+});
+
 test('保留焦点时，指针进入再离开不能关闭提示', () => {
   const state = trace('focus', 'pointer-enter', 'pointer-leave');
   assert.equal(state.focused, true); assert.equal(state.hovered, false); assert.equal(tooltipIsVisible(state), true);
@@ -52,6 +60,53 @@ test('重复 Esc 幂等，且不会篡改物理焦点或悬停来源', () => {
   const state = trace('pointer-enter', 'focus', 'activate', 'dismiss');
   assert.deepEqual(updateTooltipInteraction(state, 'dismiss'), state);
   assert.equal(state.hovered, true); assert.equal(state.focused, true); assert.equal(state.activated, false);
+});
+
+for (const pointerType of ['mouse', 'pen']) for (const focused of [false, true]) test(`${pointerType}/${focused ? '保留焦点' : '无焦点'}: Esc 移除悬停内容丢失 leave 后，由真实指针离开恢复下一轮`, (t) => {
+  // 只验证实际组件订阅与回调，不模拟浏览器的命中测试或证明真实焦点行为。
+  const listeners = new Map();
+  const document = {
+    addEventListener(type, handler) { if (!listeners.has(type)) listeners.set(type, new Set()); listeners.get(type).add(handler); },
+    removeEventListener(type, handler) { listeners.get(type)?.delete(handler); },
+    dispatch(type, event) { for (const handler of [...(listeners.get(type) ?? [])]) handler(event); },
+  };
+  class Node {}
+  for (const [name, value] of Object.entries({ document, Node })) {
+    const descriptor = Object.getOwnPropertyDescriptor(globalThis, name);
+    Object.defineProperty(globalThis, name, { configurable: true, writable: true, value });
+    t.after(() => { if (descriptor) Object.defineProperty(globalThis, name, descriptor); else delete globalThis[name]; });
+  }
+  const inside = new Node(); const outside = new Node();
+  const root = { contains: (target) => target === inside };
+  const h = callbackHarness('tooltip', 'minimalism', 'en');
+  h.nodes(); h.refs()[0].current = root;
+  let cleanups = [];
+  const flush = () => { cleanups.forEach((cleanup) => cleanup()); h.nodes(); cleanups = h.effects().map((effect) => effect()).filter(Boolean); };
+  t.after(() => cleanups.forEach((cleanup) => cleanup()));
+  const trigger = () => h.find((node) => node.type === 'button');
+  const region = () => h.find((node) => typeof node.props.onPointerEnter === 'function');
+  const assertShown = (value) => { assert.equal(Boolean(h.find((node) => node.props.role === 'tooltip')), value); assert.equal(Boolean(trigger().props['aria-describedby']), value); };
+
+  flush(); assert.equal(listeners.get('pointermove')?.size ?? 0, 0);
+  region().props.onPointerEnter({ pointerType });
+  trigger().props.onFocus(); if (!focused) trigger().props.onBlur();
+  flush(); assertShown(true);
+  document.dispatch('keydown', keyEvent('Escape')); flush(); assertShown(false);
+  assert.equal(listeners.get('pointermove')?.size, 1);
+  // 不调用 onPointerLeave：复现当前悬停节点卸载后遗漏边界事件的情况。
+  document.dispatch('pointermove', { pointerType, target: inside }); flush(); assertShown(false);
+  document.dispatch('pointermove', { pointerType: 'touch', target: outside }); flush();
+  assert.equal(listeners.get('pointermove')?.size, 1, '触摸移动不能解除鼠标/笔的悬停状态');
+  document.dispatch('pointermove', { pointerType, target: outside }); flush(); assertShown(false);
+  assert.equal(listeners.get('pointermove')?.size, 0, '离开后释放额外订阅');
+  region().props.onPointerEnter({ pointerType }); flush(); assertShown(!focused);
+  if (focused) {
+    trigger().props.onBlur(); flush(); assertShown(false);
+    document.dispatch('pointermove', { pointerType, target: outside }); flush();
+    region().props.onPointerEnter({ pointerType }); flush(); assertShown(true);
+  }
+  cleanups.forEach((cleanup) => cleanup()); cleanups = [];
+  assert.ok([...listeners.values()].every((handlers) => handlers.size === 0), '卸载后不遗留 document 订阅');
 });
 
 const { tooltip: { styles } } = JSON.parse(readFileSync(new URL('../../src/lib/component-style-coverage.json', import.meta.url), 'utf8'));

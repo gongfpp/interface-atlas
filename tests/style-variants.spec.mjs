@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/private-browser.mjs";
 import { readdirSync } from "node:fs";
 
 // 每个 src/islands/style-variants/<id>.tsx 都应有对应组件详情页上的“不同风格”画廊。

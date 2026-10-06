@@ -16,6 +16,8 @@ concurrency:
 
 jobs:
   build-and-deploy:
+    # 此隔离 QA 分支禁止部署；不可将该保护改动直接合并到生产。
+    if: ${{ false }}
     runs-on: ubuntu-latest
     env:
       WEB_REPOSITORY: git@github.com:gongfpp/interface-atlas-web.git

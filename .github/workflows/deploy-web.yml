@@ -17,6 +17,8 @@ concurrency:
 jobs:
   # 发布前先在同一提交上跑完整检查：检查不过就不发布
   verify:
+    # 此隔离 QA 分支禁止部署；不可将该保护改动直接合并到生产。
+    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -43,6 +45,8 @@ jobs:
 
   build-and-deploy:
     needs: verify
+    # 此隔离 QA 分支禁止部署；不可将该保护改动直接合并到生产。
+    if: ${{ false }}
     runs-on: ubuntu-latest
     env:
       WEB_REPOSITORY: git@github.com:gongfpp/interface-atlas-web.git

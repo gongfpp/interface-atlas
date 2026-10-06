@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers/private-browser.mjs';
 
 for (const locale of ['zh', 'en']) {
   test(`gallery annotations identify real image regions and update their explanation (${locale})`, async ({ page }) => {
