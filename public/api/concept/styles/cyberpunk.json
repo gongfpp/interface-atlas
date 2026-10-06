@@ -211,30 +211,75 @@
     "scene": "generic",
     "brand": "NEON://CITY",
     "nav": [
-      "街区",
-      "装备",
-      "黑市"
+      {
+        "zh": "街区",
+        "en": "Districts"
+      },
+      {
+        "zh": "装备",
+        "en": "Gear"
+      },
+      {
+        "zh": "黑市",
+        "en": "Black market"
+      }
     ],
     "navExt": [
-      "[SYS:OK]"
+      {
+        "zh": "[SYS:OK]",
+        "en": "[SYS:OK]"
+      }
     ],
-    "heroTitle": "WAKE UP,",
-    "heroTitle2": "SAMURAI",
-    "heroSub": "霓虹永不熄灭。",
-    "cta": "接入网络",
-    "heroCaption": "高对比 · 霓虹边框 · 全息投影",
+    "heroTitle": {
+      "zh": "WAKE UP,",
+      "en": "WAKE UP,"
+    },
+    "heroTitle2": {
+      "zh": "SAMURAI",
+      "en": "SAMURAI"
+    },
+    "heroSub": {
+      "zh": "霓虹永不熄灭。",
+      "en": "The neon never sleeps."
+    },
+    "cta": {
+      "zh": "接入网络",
+      "en": "Connect to the network"
+    },
+    "heroCaption": {
+      "zh": "高对比 · 霓虹边框 · 全息投影",
+      "en": "High contrast · Neon borders · Holograms"
+    },
     "features": [
       {
-        "t": "义体改造",
-        "s": "+15% 神经速率"
+        "t": {
+          "zh": "义体改造",
+          "en": "Cybernetic upgrades"
+        },
+        "s": {
+          "zh": "+15% 神经速率",
+          "en": "+15% neural speed"
+        }
       },
       {
-        "t": "黑客接口",
-        "s": "破防只要 3 秒"
+        "t": {
+          "zh": "黑客接口",
+          "en": "Hacking interface"
+        },
+        "s": {
+          "zh": "破防只要 3 秒",
+          "en": "A breach in just 3 seconds"
+        }
       },
       {
-        "t": "黑市信用",
-        "s": "匿名交易"
+        "t": {
+          "zh": "黑市信用",
+          "en": "Black-market credits"
+        },
+        "s": {
+          "zh": "匿名交易",
+          "en": "Anonymous trading"
+        }
       }
     ],
     "panel": "chart",

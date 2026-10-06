@@ -47,18 +47,18 @@ const stylePreview = z.object({
   url: z.string(),
   scene: z.enum(['lumo', 'vertex', 'paper', 'aurora', 'tasko', 'generic']),
   brand: z.string(),
-  nav: z.array(z.string()),
-  navExt: z.array(z.string()).optional(),
-  heroTitle: z.string(),
-  heroTitle2: z.string().optional(),
-  heroSub: z.string(),
-  cta: z.string(),
-  heroCaption: z.string().optional(),
+  nav: bilingualList,
+  navExt: bilingualList.optional(),
+  heroTitle: bilingualText,
+  heroTitle2: bilingualText.optional(),
+  heroSub: bilingualText,
+  cta: bilingualText,
+  heroCaption: bilingualText.optional(),
   features: z
     .array(
       z.object({
-        t: z.string(),
-        s: z.string(),
+        t: bilingualText,
+        s: bilingualText,
       }),
     )
     .optional(),

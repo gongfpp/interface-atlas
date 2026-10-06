@@ -159,13 +159,31 @@
     "scene": "generic",
     "brand": "mori / 森",
     "nav": [
-      "Collection",
-      "About"
+      {
+        "zh": "Collection",
+        "en": "Collection"
+      },
+      {
+        "zh": "About",
+        "en": "About"
+      }
     ],
-    "heroTitle": "Closer to",
-    "heroTitle2": "nature.",
-    "heroSub": "让设计回到生活本来的样子。",
-    "cta": "Explore",
+    "heroTitle": {
+      "zh": "Closer to",
+      "en": "Closer to"
+    },
+    "heroTitle2": {
+      "zh": "nature.",
+      "en": "nature."
+    },
+    "heroSub": {
+      "zh": "让设计回到生活本来的样子。",
+      "en": "Bring design back to the way life feels."
+    },
+    "cta": {
+      "zh": "Explore",
+      "en": "Explore"
+    },
     "panel": "photo",
     "tokens": {
       "bg": "#f1efe5",

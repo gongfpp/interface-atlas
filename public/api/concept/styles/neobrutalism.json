@@ -213,30 +213,75 @@
     "scene": "generic",
     "brand": "BRUTAL*",
     "nav": [
-      "WORK",
-      "ABOUT",
-      "SHOP"
+      {
+        "zh": "WORK",
+        "en": "WORK"
+      },
+      {
+        "zh": "ABOUT",
+        "en": "ABOUT"
+      },
+      {
+        "zh": "SHOP",
+        "en": "SHOP"
+      }
     ],
     "navExt": [
-      "CART (2)"
+      {
+        "zh": "CART (2)",
+        "en": "CART (2)"
+      }
     ],
-    "heroTitle": "MAKE IT",
-    "heroTitle2": "LOUD.",
-    "heroSub": "粗野直给的设计，绝不拐弯。",
-    "cta": "GO →",
-    "heroCaption": "NO GRADIENTS. NO MERCY.",
+    "heroTitle": {
+      "zh": "MAKE IT",
+      "en": "MAKE IT"
+    },
+    "heroTitle2": {
+      "zh": "LOUD.",
+      "en": "LOUD."
+    },
+    "heroSub": {
+      "zh": "粗野直给的设计，绝不拐弯。",
+      "en": "Bold, direct design that gets to the point."
+    },
+    "cta": {
+      "zh": "GO →",
+      "en": "GO →"
+    },
+    "heroCaption": {
+      "zh": "NO GRADIENTS. NO MERCY.",
+      "en": "NO GRADIENTS. NO MERCY."
+    },
     "features": [
       {
-        "t": "HUGE TYPE",
-        "s": "字要大，话要狠"
+        "t": {
+          "zh": "HUGE TYPE",
+          "en": "HUGE TYPE"
+        },
+        "s": {
+          "zh": "字要大，话要狠",
+          "en": "Big type, bold words"
+        }
       },
       {
-        "t": "THICK BORDER",
-        "s": "3px 起步的黑边"
+        "t": {
+          "zh": "THICK BORDER",
+          "en": "THICK BORDER"
+        },
+        "s": {
+          "zh": "3px 起步的黑边",
+          "en": "Black borders from 3px"
+        }
       },
       {
-        "t": "HARD SHADOW",
-        "s": "位移阴影不模糊"
+        "t": {
+          "zh": "HARD SHADOW",
+          "en": "HARD SHADOW"
+        },
+        "s": {
+          "zh": "位移阴影不模糊",
+          "en": "Offset shadows with no blur"
+        }
       }
     ],
     "panel": "shapes",

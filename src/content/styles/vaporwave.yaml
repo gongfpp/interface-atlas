@@ -182,21 +182,46 @@ preview:
   scene: generic
   brand: MALL★95
   nav:
-    - 音像
-    - 美食广场
-    - 关于
-  heroTitle: WELCOME TO
-  heroTitle2: THE MALL
-  heroSub: 消费主义的夏日永不落幕。
-  cta: 步入中庭
-  heroCaption: GRID FOREVER. SUNSET NEVER ENDS.
+    - zh: 音像
+      en: Media
+    - zh: 美食广场
+      en: Food court
+    - zh: 关于
+      en: About
+  heroTitle:
+    zh: WELCOME TO
+    en: WELCOME TO
+  heroTitle2:
+    zh: THE MALL
+    en: THE MALL
+  heroSub:
+    zh: 消费主义的夏日永不落幕。
+    en: An endless summer in a consumer paradise.
+  cta:
+    zh: 步入中庭
+    en: Enter the atrium
+  heroCaption:
+    zh: GRID FOREVER. SUNSET NEVER ENDS.
+    en: GRID FOREVER. SUNSET NEVER ENDS.
   features:
-    - t: 网格地平线
-      s: 透视无限远
-    - t: 镀铬大字
-      s: 液态金属
-    - t: 霓虹粉青
-      s: 招牌色
+    - t:
+        zh: 网格地平线
+        en: Grid horizon
+      s:
+        zh: 透视无限远
+        en: Perspective to infinity
+    - t:
+        zh: 镀铬大字
+        en: Chrome headlines
+      s:
+        zh: 液态金属
+        en: Liquid metal
+    - t:
+        zh: 霓虹粉青
+        en: Neon pink and cyan
+      s:
+        zh: 招牌色
+        en: Signature colors
   panel: mountain
   tokens:
     bg: linear-gradient(180deg,#2B0F54 0%,#5B1E8C 45%,#FF71CE 100%)
@@ -208,6 +233,6 @@ preview:
     cardBorder: rgba(1,205,254,.55)
     radius: 999px
     shadow: 0 0 16px rgba(1,205,254,.45)
-    font: "Arial Black, Futura, Helvetica Neue, PingFang SC, sans-serif"
+    font: Arial Black, Futura, Helvetica Neue, PingFang SC, sans-serif
     upper: true
     heroSize: 26px

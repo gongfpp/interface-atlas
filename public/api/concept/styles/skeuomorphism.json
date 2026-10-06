@@ -211,29 +211,71 @@
     "scene": "generic",
     "brand": "WoodNote",
     "nav": [
-      "笔记",
-      "图书馆",
-      "同步"
+      {
+        "zh": "笔记",
+        "en": "Notes"
+      },
+      {
+        "zh": "图书馆",
+        "en": "Library"
+      },
+      {
+        "zh": "同步",
+        "en": "Sync"
+      }
     ],
     "navExt": [
-      "⚙︎"
+      {
+        "zh": "⚙︎",
+        "en": "⚙︎"
+      }
     ],
-    "heroTitle": "Real as Physical",
-    "heroSub": "像真实物件一样可靠、可触。",
-    "cta": "打开面板",
-    "heroCaption": "皮革纹理 · 纸张质感 · 金属旋钮",
+    "heroTitle": {
+      "zh": "Real as Physical",
+      "en": "Real as Physical"
+    },
+    "heroSub": {
+      "zh": "像真实物件一样可靠、可触。",
+      "en": "As dependable and tangible as a real object."
+    },
+    "cta": {
+      "zh": "打开面板",
+      "en": "Open the panel"
+    },
+    "heroCaption": {
+      "zh": "皮革纹理 · 纸张质感 · 金属旋钮",
+      "en": "Leather textures · Paper surfaces · Metal dials"
+    },
     "features": [
       {
-        "t": "拟真书架",
-        "s": "木纹与皮革"
+        "t": {
+          "zh": "拟真书架",
+          "en": "Lifelike shelves"
+        },
+        "s": {
+          "zh": "木纹与皮革",
+          "en": "Woodgrain and leather"
+        }
       },
       {
-        "t": "真实纸张",
-        "s": "书写有阻力"
+        "t": {
+          "zh": "真实纸张",
+          "en": "Real paper"
+        },
+        "s": {
+          "zh": "书写有阻力",
+          "en": "A tactile writing surface"
+        }
       },
       {
-        "t": "物理旋钮",
-        "s": "转动见反馈"
+        "t": {
+          "zh": "物理旋钮",
+          "en": "Physical dials"
+        },
+        "s": {
+          "zh": "转动见反馈",
+          "en": "Feedback with every turn"
+        }
       }
     ],
     "panel": "screen",

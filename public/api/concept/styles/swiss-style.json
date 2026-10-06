@@ -212,18 +212,45 @@
     "scene": "vertex",
     "brand": "VERTEX",
     "nav": [
-      "WORK",
-      "STUDIO",
-      "APPROACH",
-      "CONTACT"
+      {
+        "zh": "WORK",
+        "en": "WORK"
+      },
+      {
+        "zh": "STUDIO",
+        "en": "STUDIO"
+      },
+      {
+        "zh": "APPROACH",
+        "en": "APPROACH"
+      },
+      {
+        "zh": "CONTACT",
+        "en": "CONTACT"
+      }
     ],
     "navExt": [
-      "EN / 中文"
+      {
+        "zh": "EN / 中文",
+        "en": "EN / 中文"
+      }
     ],
-    "heroTitle": "IDEAS",
-    "heroTitle2": "BUILD TOMORROW",
-    "heroSub": "用设计构建更好的未来",
-    "cta": "探索项目 →",
+    "heroTitle": {
+      "zh": "IDEAS",
+      "en": "IDEAS"
+    },
+    "heroTitle2": {
+      "zh": "BUILD TOMORROW",
+      "en": "BUILD TOMORROW"
+    },
+    "heroSub": {
+      "zh": "用设计构建更好的未来",
+      "en": "Build a better tomorrow through design"
+    },
+    "cta": {
+      "zh": "探索项目 →",
+      "en": "Explore projects →"
+    },
     "tokens": {
       "bg": "#F2F1ED",
       "fg": "#101010",

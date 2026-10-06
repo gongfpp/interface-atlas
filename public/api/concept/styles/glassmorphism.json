@@ -210,30 +210,75 @@
     "scene": "aurora",
     "brand": "Aurora",
     "nav": [
-      "产品",
-      "方案",
-      "价格",
-      "关于"
+      {
+        "zh": "产品",
+        "en": "Product"
+      },
+      {
+        "zh": "方案",
+        "en": "Solutions"
+      },
+      {
+        "zh": "价格",
+        "en": "Pricing"
+      },
+      {
+        "zh": "关于",
+        "en": "About"
+      }
     ],
     "navExt": [
-      "立即体验"
+      {
+        "zh": "立即体验",
+        "en": "Try it now"
+      }
     ],
-    "heroTitle": "让灵感",
-    "heroTitle2": "自然流动",
-    "heroSub": "Aurora 是一款全新的 AI 创作工具，\n在想法与灵感之间，创建更短的距离。",
-    "cta": "免费开始 →",
+    "heroTitle": {
+      "zh": "让灵感",
+      "en": "Let inspiration"
+    },
+    "heroTitle2": {
+      "zh": "自然流动",
+      "en": "flow naturally"
+    },
+    "heroSub": {
+      "zh": "Aurora 是一款全新的 AI 创作工具，\n在想法与灵感之间，创建更短的距离。",
+      "en": "Aurora is a new AI creative tool.\nBring your ideas and inspiration closer together."
+    },
+    "cta": {
+      "zh": "免费开始 →",
+      "en": "Start free →"
+    },
     "features": [
       {
-        "t": "AI 灵感助手",
-        "s": "激发灵感、辅助创作"
+        "t": {
+          "zh": "AI 灵感助手",
+          "en": "AI idea assistant"
+        },
+        "s": {
+          "zh": "激发灵感、辅助创作",
+          "en": "Inspiration for your creations"
+        }
       },
       {
-        "t": "云端同步",
-        "s": "随时随用、灵感不丢失"
+        "t": {
+          "zh": "云端同步",
+          "en": "Cloud sync"
+        },
+        "s": {
+          "zh": "随时随用、灵感不丢失",
+          "en": "Ideas that stay with you"
+        }
       },
       {
-        "t": "多格式导出",
-        "s": "连接创作的工作流"
+        "t": {
+          "zh": "多格式导出",
+          "en": "Multiple export formats"
+        },
+        "s": {
+          "zh": "连接创作的工作流",
+          "en": "Connect your creative workflow"
+        }
       }
     ],
     "panel": "mountain",

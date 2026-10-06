@@ -211,30 +211,75 @@
     "scene": "generic",
     "brand": "SYNTH-84",
     "nav": [
-      "电台",
-      "巡演",
-      "磁带"
+      {
+        "zh": "电台",
+        "en": "Radio"
+      },
+      {
+        "zh": "巡演",
+        "en": "Tour"
+      },
+      {
+        "zh": "磁带",
+        "en": "Tapes"
+      }
     ],
     "navExt": [
-      "REC ●"
+      {
+        "zh": "REC ●",
+        "en": "REC ●"
+      }
     ],
-    "heroTitle": "DRIVE INTO",
-    "heroTitle2": "THE SUNSET",
-    "heroSub": "回到 1984 年想象的未来。",
-    "cta": "播放电台",
-    "heroCaption": "合成器 · 网格地平线 · 铬金标题",
+    "heroTitle": {
+      "zh": "DRIVE INTO",
+      "en": "DRIVE INTO"
+    },
+    "heroTitle2": {
+      "zh": "THE SUNSET",
+      "en": "THE SUNSET"
+    },
+    "heroSub": {
+      "zh": "回到 1984 年想象的未来。",
+      "en": "Return to the future imagined in 1984."
+    },
+    "cta": {
+      "zh": "播放电台",
+      "en": "Play the radio"
+    },
+    "heroCaption": {
+      "zh": "合成器 · 网格地平线 · 铬金标题",
+      "en": "Synths · Grid horizons · Chrome type"
+    },
     "features": [
       {
-        "t": "日落渐变",
-        "s": "粉紫橙三段"
+        "t": {
+          "zh": "日落渐变",
+          "en": "Sunset gradient"
+        },
+        "s": {
+          "zh": "粉紫橙三段",
+          "en": "Pink, purple and orange"
+        }
       },
       {
-        "t": "透视网格",
-        "s": "无尽公路感"
+        "t": {
+          "zh": "透视网格",
+          "en": "Perspective grid"
+        },
+        "s": {
+          "zh": "无尽公路感",
+          "en": "An endless road ahead"
+        }
       },
       {
-        "t": "铬金字",
-        "s": "金属反光标题"
+        "t": {
+          "zh": "铬金字",
+          "en": "Chrome type"
+        },
+        "s": {
+          "zh": "金属反光标题",
+          "en": "Reflective metallic headlines"
+        }
       }
     ],
     "panel": "chart",

@@ -223,27 +223,69 @@
     "scene": "aurora",
     "brand": "Lumen",
     "nav": [
-      "光学",
-      "材质",
-      "价格"
+      {
+        "zh": "光学",
+        "en": "Optics"
+      },
+      {
+        "zh": "材质",
+        "en": "Materials"
+      },
+      {
+        "zh": "价格",
+        "en": "Pricing"
+      }
     ],
-    "heroTitle": "让界面",
-    "heroTitle2": "变成一块厚玻璃",
-    "heroSub": "折射内容，反射环境，边缘会流动。",
-    "cta": "体验折射 →",
-    "heroCaption": "REFRACT. REFLECT. MORPH.",
+    "heroTitle": {
+      "zh": "让界面",
+      "en": "Let the interface"
+    },
+    "heroTitle2": {
+      "zh": "变成一块厚玻璃",
+      "en": "become thick glass"
+    },
+    "heroSub": {
+      "zh": "折射内容，反射环境，边缘会流动。",
+      "en": "Refract content, reflect the surroundings and let edges flow."
+    },
+    "cta": {
+      "zh": "体验折射 →",
+      "en": "Explore refraction →"
+    },
+    "heroCaption": {
+      "zh": "REFRACT. REFLECT. MORPH.",
+      "en": "REFRACT. REFLECT. MORPH."
+    },
     "features": [
       {
-        "t": "厚折射",
-        "s": "像透镜"
+        "t": {
+          "zh": "厚折射",
+          "en": "Deep refraction"
+        },
+        "s": {
+          "zh": "像透镜",
+          "en": "Lens-like depth"
+        }
       },
       {
-        "t": "镜面高光",
-        "s": "顶边一线光"
+        "t": {
+          "zh": "镜面高光",
+          "en": "Specular highlights"
+        },
+        "s": {
+          "zh": "顶边一线光",
+          "en": "A bright rim of light"
+        }
       },
       {
-        "t": "边缘流动",
-        "s": "lensing 变形"
+        "t": {
+          "zh": "边缘流动",
+          "en": "Flowing edges"
+        },
+        "s": {
+          "zh": "lensing 变形",
+          "en": "Lensing distortion"
+        }
       }
     ],
     "panel": "mountain",

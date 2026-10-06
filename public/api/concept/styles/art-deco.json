@@ -161,13 +161,31 @@
     "scene": "generic",
     "brand": "THE AURELIA",
     "nav": [
-      "Collection",
-      "About"
+      {
+        "zh": "Collection",
+        "en": "Collection"
+      },
+      {
+        "zh": "About",
+        "en": "About"
+      }
     ],
-    "heroTitle": "An evening,",
-    "heroTitle2": "extraordinary.",
-    "heroSub": "为值得铭记的夜晚，预留一个位置。",
-    "cta": "Explore",
+    "heroTitle": {
+      "zh": "An evening,",
+      "en": "An evening,"
+    },
+    "heroTitle2": {
+      "zh": "extraordinary.",
+      "en": "extraordinary."
+    },
+    "heroSub": {
+      "zh": "为值得铭记的夜晚，预留一个位置。",
+      "en": "Save a place for a night to remember."
+    },
+    "cta": {
+      "zh": "Explore",
+      "en": "Explore"
+    },
     "panel": "shapes",
     "tokens": {
       "bg": "#151c24",

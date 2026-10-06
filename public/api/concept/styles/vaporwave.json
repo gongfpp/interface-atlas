@@ -218,27 +218,69 @@
     "scene": "generic",
     "brand": "MALL★95",
     "nav": [
-      "音像",
-      "美食广场",
-      "关于"
+      {
+        "zh": "音像",
+        "en": "Media"
+      },
+      {
+        "zh": "美食广场",
+        "en": "Food court"
+      },
+      {
+        "zh": "关于",
+        "en": "About"
+      }
     ],
-    "heroTitle": "WELCOME TO",
-    "heroTitle2": "THE MALL",
-    "heroSub": "消费主义的夏日永不落幕。",
-    "cta": "步入中庭",
-    "heroCaption": "GRID FOREVER. SUNSET NEVER ENDS.",
+    "heroTitle": {
+      "zh": "WELCOME TO",
+      "en": "WELCOME TO"
+    },
+    "heroTitle2": {
+      "zh": "THE MALL",
+      "en": "THE MALL"
+    },
+    "heroSub": {
+      "zh": "消费主义的夏日永不落幕。",
+      "en": "An endless summer in a consumer paradise."
+    },
+    "cta": {
+      "zh": "步入中庭",
+      "en": "Enter the atrium"
+    },
+    "heroCaption": {
+      "zh": "GRID FOREVER. SUNSET NEVER ENDS.",
+      "en": "GRID FOREVER. SUNSET NEVER ENDS."
+    },
     "features": [
       {
-        "t": "网格地平线",
-        "s": "透视无限远"
+        "t": {
+          "zh": "网格地平线",
+          "en": "Grid horizon"
+        },
+        "s": {
+          "zh": "透视无限远",
+          "en": "Perspective to infinity"
+        }
       },
       {
-        "t": "镀铬大字",
-        "s": "液态金属"
+        "t": {
+          "zh": "镀铬大字",
+          "en": "Chrome headlines"
+        },
+        "s": {
+          "zh": "液态金属",
+          "en": "Liquid metal"
+        }
       },
       {
-        "t": "霓虹粉青",
-        "s": "招牌色"
+        "t": {
+          "zh": "霓虹粉青",
+          "en": "Neon pink and cyan"
+        },
+        "s": {
+          "zh": "招牌色",
+          "en": "Signature colors"
+        }
       }
     ],
     "panel": "mountain",

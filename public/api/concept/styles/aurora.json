@@ -211,30 +211,75 @@
     "scene": "generic",
     "brand": "Borealis",
     "nav": [
-      "光",
-      "色",
-      "场"
+      {
+        "zh": "光",
+        "en": "Light"
+      },
+      {
+        "zh": "色",
+        "en": "Color"
+      },
+      {
+        "zh": "场",
+        "en": "Space"
+      }
     ],
     "navExt": [
-      "v2.0"
+      {
+        "zh": "v2.0",
+        "en": "v2.0"
+      }
     ],
-    "heroTitle": "Flow with",
-    "heroTitle2": "the Light",
-    "heroSub": "让颜色像极光一样流动。",
-    "cta": "点亮",
-    "heroCaption": "暗夜底 · 光斑 · 渐变文字",
+    "heroTitle": {
+      "zh": "Flow with",
+      "en": "Flow with"
+    },
+    "heroTitle2": {
+      "zh": "the Light",
+      "en": "the Light"
+    },
+    "heroSub": {
+      "zh": "让颜色像极光一样流动。",
+      "en": "Let color flow like the northern lights."
+    },
+    "cta": {
+      "zh": "点亮",
+      "en": "Light it up"
+    },
+    "heroCaption": {
+      "zh": "暗夜底 · 光斑 · 渐变文字",
+      "en": "Night sky · Light blooms · Gradient type"
+    },
     "features": [
       {
-        "t": "极光底色",
-        "s": "绿紫粉光晕"
+        "t": {
+          "zh": "极光底色",
+          "en": "Aurora backdrop"
+        },
+        "s": {
+          "zh": "绿紫粉光晕",
+          "en": "Green, violet and pink glows"
+        }
       },
       {
-        "t": "玻璃浮层",
-        "s": "轻透的内容卡"
+        "t": {
+          "zh": "玻璃浮层",
+          "en": "Glass layers"
+        },
+        "s": {
+          "zh": "轻透的内容卡",
+          "en": "Light, translucent cards"
+        }
       },
       {
-        "t": "流动渐变",
-        "s": "缓慢变色动画"
+        "t": {
+          "zh": "流动渐变",
+          "en": "Flowing gradients"
+        },
+        "s": {
+          "zh": "缓慢变色动画",
+          "en": "Slow color transitions"
+        }
       }
     ],
     "panel": "mountain",

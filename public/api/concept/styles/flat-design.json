@@ -211,29 +211,71 @@
     "scene": "generic",
     "brand": "Flatly",
     "nav": [
-      "功能",
-      "价格",
-      "博客"
+      {
+        "zh": "功能",
+        "en": "Features"
+      },
+      {
+        "zh": "价格",
+        "en": "Pricing"
+      },
+      {
+        "zh": "博客",
+        "en": "Blog"
+      }
     ],
     "navExt": [
-      "登录"
+      {
+        "zh": "登录",
+        "en": "Log in"
+      }
     ],
-    "heroTitle": "Simple & Solid",
-    "heroSub": "去掉装饰，信息直达。",
-    "cta": "开始使用",
-    "heroCaption": "没有渐变 · 没有阴影 · 只有信息",
+    "heroTitle": {
+      "zh": "Simple & Solid",
+      "en": "Simple & Solid"
+    },
+    "heroSub": {
+      "zh": "去掉装饰，信息直达。",
+      "en": "Strip away decoration. Get to the point."
+    },
+    "cta": {
+      "zh": "开始使用",
+      "en": "Get started"
+    },
+    "heroCaption": {
+      "zh": "没有渐变 · 没有阴影 · 只有信息",
+      "en": "No gradients · No shadows · Just information"
+    },
     "features": [
       {
-        "t": "色块即层级",
-        "s": "大色块分区"
+        "t": {
+          "zh": "色块即层级",
+          "en": "Hierarchy through color"
+        },
+        "s": {
+          "zh": "大色块分区",
+          "en": "Large blocks define sections"
+        }
       },
       {
-        "t": "图标即语言",
-        "s": "几何小图标"
+        "t": {
+          "zh": "图标即语言",
+          "en": "Icons as language"
+        },
+        "s": {
+          "zh": "几何小图标",
+          "en": "Small geometric icons"
+        }
       },
       {
-        "t": "直角与留白",
-        "s": "克制的圆角"
+        "t": {
+          "zh": "直角与留白",
+          "en": "Clean edges and space"
+        },
+        "s": {
+          "zh": "克制的圆角",
+          "en": "Restrained corner radii"
+        }
       }
     ],
     "panel": "shapes",

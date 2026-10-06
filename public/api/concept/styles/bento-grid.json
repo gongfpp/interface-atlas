@@ -213,31 +213,79 @@
     "scene": "tasko",
     "brand": "◉ Tasko",
     "nav": [
-      "产品",
-      "模板",
-      "资源",
-      "定价"
+      {
+        "zh": "产品",
+        "en": "Product"
+      },
+      {
+        "zh": "模板",
+        "en": "Templates"
+      },
+      {
+        "zh": "资源",
+        "en": "Resources"
+      },
+      {
+        "zh": "定价",
+        "en": "Pricing"
+      }
     ],
     "navExt": [
-      "登录",
-      "免费注册"
+      {
+        "zh": "登录",
+        "en": "Log in"
+      },
+      {
+        "zh": "免费注册",
+        "en": "Sign up free"
+      }
     ],
-    "heroTitle": "高效生活",
-    "heroTitle2": "从有序开始",
-    "heroSub": "Tasko 帮助你管理任务、笔记与日程，让每一天更专注、更有意义。",
-    "cta": "开始使用 →",
+    "heroTitle": {
+      "zh": "高效生活",
+      "en": "Productive living"
+    },
+    "heroTitle2": {
+      "zh": "从有序开始",
+      "en": "starts with order"
+    },
+    "heroSub": {
+      "zh": "Tasko 帮助你管理任务、笔记与日程，让每一天更专注、更有意义。",
+      "en": "Tasko organizes tasks, notes and schedules for more focused, meaningful days."
+    },
+    "cta": {
+      "zh": "开始使用 →",
+      "en": "Get started →"
+    },
     "features": [
       {
-        "t": "任务 5",
-        "s": "今日待完成"
+        "t": {
+          "zh": "任务 5",
+          "en": "Tasks 5"
+        },
+        "s": {
+          "zh": "今日待完成",
+          "en": "Due today"
+        }
       },
       {
-        "t": "笔记 12",
-        "s": "记录灵感"
+        "t": {
+          "zh": "笔记 12",
+          "en": "Notes 12"
+        },
+        "s": {
+          "zh": "记录灵感",
+          "en": "Capture ideas"
+        }
       },
       {
-        "t": "专注 3h24m",
-        "s": "比上周 +40%"
+        "t": {
+          "zh": "专注 3h24m",
+          "en": "Focus 3h24m"
+        },
+        "s": {
+          "zh": "比上周 +40%",
+          "en": "+40% from last week"
+        }
       }
     ],
     "tokens": {

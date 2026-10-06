@@ -211,30 +211,75 @@
     "scene": "paper",
     "brand": "The Paper Room",
     "nav": [
-      "专栏",
-      "生活",
-      "旅行",
-      "人物"
+      {
+        "zh": "专栏",
+        "en": "Columns"
+      },
+      {
+        "zh": "生活",
+        "en": "Life"
+      },
+      {
+        "zh": "旅行",
+        "en": "Travel"
+      },
+      {
+        "zh": "人物",
+        "en": "People"
+      }
     ],
     "navExt": [
-      "🔍"
+      {
+        "zh": "🔍",
+        "en": "🔍"
+      }
     ],
-    "heroTitle": "Good Life",
-    "heroTitle2": "in Small Things",
-    "heroSub": "我们记录真实的生活方式、人与地方的故事，\n恰在寻常之中，藏着最动人的答案。",
-    "cta": "阅读更多 →",
+    "heroTitle": {
+      "zh": "Good Life",
+      "en": "Good Life"
+    },
+    "heroTitle2": {
+      "zh": "in Small Things",
+      "en": "in Small Things"
+    },
+    "heroSub": {
+      "zh": "我们记录真实的生活方式、人与地方的故事，\n恰在寻常之中，藏着最动人的答案。",
+      "en": "Stories of real lives, people and places.\nThe most moving answers hide in everyday things."
+    },
+    "cta": {
+      "zh": "阅读更多 →",
+      "en": "Read more →"
+    },
     "features": [
       {
-        "t": "一间面朝山腰的房子",
-        "s": "2024.04.12"
+        "t": {
+          "zh": "一间面朝山腰的房子",
+          "en": "A house facing the hillside"
+        },
+        "s": {
+          "zh": "2024.04.12",
+          "en": "2024.04.12"
+        }
       },
       {
-        "t": "城市漫游指南",
-        "s": "2024.04.09"
+        "t": {
+          "zh": "城市漫游指南",
+          "en": "A guide to city wandering"
+        },
+        "s": {
+          "zh": "2024.04.09",
+          "en": "2024.04.09"
+        }
       },
       {
-        "t": "慢下来的周末",
-        "s": "2024.04.01"
+        "t": {
+          "zh": "慢下来的周末",
+          "en": "A slower weekend"
+        },
+        "s": {
+          "zh": "2024.04.01",
+          "en": "2024.04.01"
+        }
       }
     ],
     "panel": "photo",

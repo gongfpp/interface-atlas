@@ -218,27 +218,69 @@
     "scene": "paper",
     "brand": "scribble&",
     "nav": [
-      "日记",
-      "素材",
-      "关于"
+      {
+        "zh": "日记",
+        "en": "Journal"
+      },
+      {
+        "zh": "素材",
+        "en": "Materials"
+      },
+      {
+        "zh": "关于",
+        "en": "About"
+      }
     ],
-    "heroTitle": "画歪一点",
-    "heroTitle2": "没关系",
-    "heroSub": "人手的温度，比完美的像素更可信。",
-    "cta": "随手记一笔",
-    "heroCaption": "PERFECT CIRCLES ARE A LIE.",
+    "heroTitle": {
+      "zh": "画歪一点",
+      "en": "A little crooked"
+    },
+    "heroTitle2": {
+      "zh": "没关系",
+      "en": "is fine"
+    },
+    "heroSub": {
+      "zh": "人手的温度，比完美的像素更可信。",
+      "en": "A human touch feels more trustworthy than perfect pixels."
+    },
+    "cta": {
+      "zh": "随手记一笔",
+      "en": "Make a quick note"
+    },
+    "heroCaption": {
+      "zh": "PERFECT CIRCLES ARE A LIE.",
+      "en": "PERFECT CIRCLES ARE A LIE."
+    },
     "features": [
       {
-        "t": "抖动描边",
-        "s": "圆画不圆"
+        "t": {
+          "zh": "抖动描边",
+          "en": "Wobbly outlines"
+        },
+        "s": {
+          "zh": "圆画不圆",
+          "en": "Circles with character"
+        }
       },
       {
-        "t": "纸张纹理",
-        "s": "横线本底"
+        "t": {
+          "zh": "纸张纹理",
+          "en": "Paper texture"
+        },
+        "s": {
+          "zh": "横线本底",
+          "en": "Ruled notebook pages"
+        }
       },
       {
-        "t": "马克笔高亮",
-        "s": "划重点"
+        "t": {
+          "zh": "马克笔高亮",
+          "en": "Marker highlights"
+        },
+        "s": {
+          "zh": "划重点",
+          "en": "Mark what matters"
+        }
       }
     ],
     "panel": "photo",

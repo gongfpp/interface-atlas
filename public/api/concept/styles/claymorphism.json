@@ -211,29 +211,71 @@
     "scene": "generic",
     "brand": "Claymates",
     "nav": [
-      "主页",
-      "小屋",
-      "商店"
+      {
+        "zh": "主页",
+        "en": "Home"
+      },
+      {
+        "zh": "小屋",
+        "en": "Cabin"
+      },
+      {
+        "zh": "商店",
+        "en": "Shop"
+      }
     ],
     "navExt": [
-      "🧸"
+      {
+        "zh": "🧸",
+        "en": "🧸"
+      }
     ],
-    "heroTitle": "Soft & Squishy",
-    "heroSub": "捏一捏就有好心情。",
-    "cta": "捏一下",
-    "heroCaption": "内阴影 · 大圆角 · 糖果色",
+    "heroTitle": {
+      "zh": "Soft & Squishy",
+      "en": "Soft & Squishy"
+    },
+    "heroSub": {
+      "zh": "捏一捏就有好心情。",
+      "en": "A little squeeze, a little joy."
+    },
+    "cta": {
+      "zh": "捏一下",
+      "en": "Give it a squeeze"
+    },
+    "heroCaption": {
+      "zh": "内阴影 · 大圆角 · 糖果色",
+      "en": "Inner shadows · Rounded corners · Candy colors"
+    },
     "features": [
       {
-        "t": "软糖按钮",
-        "s": "按下会回弹"
+        "t": {
+          "zh": "软糖按钮",
+          "en": "Gummy buttons"
+        },
+        "s": {
+          "zh": "按下会回弹",
+          "en": "Bounce back on press"
+        }
       },
       {
-        "t": "黏土角色",
-        "s": "圆润无棱角"
+        "t": {
+          "zh": "黏土角色",
+          "en": "Clay characters"
+        },
+        "s": {
+          "zh": "圆润无棱角",
+          "en": "Soft edges all around"
+        }
       },
       {
-        "t": "奶油底色",
-        "s": "低饱和背景"
+        "t": {
+          "zh": "奶油底色",
+          "en": "Creamy backdrop"
+        },
+        "s": {
+          "zh": "低饱和背景",
+          "en": "Low-saturation surfaces"
+        }
       }
     ],
     "panel": "device",

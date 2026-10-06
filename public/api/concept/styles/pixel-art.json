@@ -218,27 +218,69 @@
     "scene": "generic",
     "brand": "BITMAP",
     "nav": [
-      "开始",
-      "图鉴",
-      "商店"
+      {
+        "zh": "开始",
+        "en": "Start"
+      },
+      {
+        "zh": "图鉴",
+        "en": "Atlas"
+      },
+      {
+        "zh": "商店",
+        "en": "Shop"
+      }
     ],
-    "heroTitle": "PRESS",
-    "heroTitle2": "START",
-    "heroSub": "整数倍缩放，锯齿即正确。",
-    "cta": "INSERT COIN",
-    "heroCaption": "NO ANTI-ALIASING ALLOWED.",
+    "heroTitle": {
+      "zh": "PRESS",
+      "en": "PRESS"
+    },
+    "heroTitle2": {
+      "zh": "START",
+      "en": "START"
+    },
+    "heroSub": {
+      "zh": "整数倍缩放，锯齿即正确。",
+      "en": "Scale in whole numbers. Sharp pixels are the point."
+    },
+    "cta": {
+      "zh": "INSERT COIN",
+      "en": "INSERT COIN"
+    },
+    "heroCaption": {
+      "zh": "NO ANTI-ALIASING ALLOWED.",
+      "en": "NO ANTI-ALIASING ALLOWED."
+    },
     "features": [
       {
-        "t": "硬像素",
-        "s": "不做抗锯齿"
+        "t": {
+          "zh": "硬像素",
+          "en": "Sharp pixels"
+        },
+        "s": {
+          "zh": "不做抗锯齿",
+          "en": "No anti-aliasing"
+        }
       },
       {
-        "t": "有限色板",
-        "s": "六色封顶"
+        "t": {
+          "zh": "有限色板",
+          "en": "Limited palette"
+        },
+        "s": {
+          "zh": "六色封顶",
+          "en": "Up to six colors"
+        }
       },
       {
-        "t": "抖动网点",
-        "s": "两色交替"
+        "t": {
+          "zh": "抖动网点",
+          "en": "Dither patterns"
+        },
+        "s": {
+          "zh": "两色交替",
+          "en": "Alternating two colors"
+        }
       }
     ],
     "panel": "screen",

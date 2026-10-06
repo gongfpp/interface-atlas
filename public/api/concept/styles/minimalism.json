@@ -215,31 +215,79 @@
     "scene": "lumo",
     "brand": "L U M O",
     "nav": [
-      "产品",
-      "关于",
-      "灵感",
-      "支持"
+      {
+        "zh": "产品",
+        "en": "Product"
+      },
+      {
+        "zh": "关于",
+        "en": "About"
+      },
+      {
+        "zh": "灵感",
+        "en": "Inspiration"
+      },
+      {
+        "zh": "支持",
+        "en": "Support"
+      }
     ],
     "navExt": [
-      "更多干扰 更纯粹生活"
+      {
+        "zh": "更多干扰 更纯粹生活",
+        "en": "Fewer distractions. A simpler life."
+      }
     ],
-    "heroTitle": "A calmer",
-    "heroTitle2": "digital life",
-    "heroSub": "简洁的工具，成就更专注的你。",
-    "cta": "立即体验 →",
-    "heroCaption": "让专注成为一种日常",
+    "heroTitle": {
+      "zh": "A calmer",
+      "en": "A calmer"
+    },
+    "heroTitle2": {
+      "zh": "digital life",
+      "en": "digital life"
+    },
+    "heroSub": {
+      "zh": "简洁的工具，成就更专注的你。",
+      "en": "Simple tools for a more focused you."
+    },
+    "cta": {
+      "zh": "立即体验 →",
+      "en": "Try it now →"
+    },
+    "heroCaption": {
+      "zh": "让专注成为一种日常",
+      "en": "Make focus an everyday habit"
+    },
     "features": [
       {
-        "t": "专注模式",
-        "s": "屏蔽一切打扰"
+        "t": {
+          "zh": "专注模式",
+          "en": "Focus mode"
+        },
+        "s": {
+          "zh": "屏蔽一切打扰",
+          "en": "Keep distractions away"
+        }
       },
       {
-        "t": "极简界面",
-        "s": "只留下必要"
+        "t": {
+          "zh": "极简界面",
+          "en": "Minimal interface"
+        },
+        "s": {
+          "zh": "只留下必要",
+          "en": "Keep only what matters"
+        }
       },
       {
-        "t": "自然提醒",
-        "s": "轻声不吵闹"
+        "t": {
+          "zh": "自然提醒",
+          "en": "Gentle reminders"
+        },
+        "s": {
+          "zh": "轻声不吵闹",
+          "en": "Quiet, unobtrusive nudges"
+        }
       }
     ],
     "panel": "device",

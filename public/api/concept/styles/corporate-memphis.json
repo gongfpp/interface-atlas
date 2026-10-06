@@ -228,28 +228,73 @@
     "scene": "tasko",
     "brand": "alegria",
     "nav": [
-      "产品",
-      "客户",
-      "价格",
-      "招聘"
+      {
+        "zh": "产品",
+        "en": "Product"
+      },
+      {
+        "zh": "客户",
+        "en": "Customers"
+      },
+      {
+        "zh": "价格",
+        "en": "Pricing"
+      },
+      {
+        "zh": "招聘",
+        "en": "Careers"
+      }
     ],
-    "heroTitle": "一起把事情",
-    "heroTitle2": "做简单",
-    "heroSub": "友好、包容、人人可用的协作空间。",
-    "cta": "免费试用 →",
-    "heroCaption": "LONG LIMBS. SHORT STANDUPS.",
+    "heroTitle": {
+      "zh": "一起把事情",
+      "en": "Let's make things"
+    },
+    "heroTitle2": {
+      "zh": "做简单",
+      "en": "simpler together"
+    },
+    "heroSub": {
+      "zh": "友好、包容、人人可用的协作空间。",
+      "en": "A friendly, inclusive workspace for everyone."
+    },
+    "cta": {
+      "zh": "免费试用 →",
+      "en": "Try it free →"
+    },
+    "heroCaption": {
+      "zh": "LONG LIMBS. SHORT STANDUPS.",
+      "en": "LONG LIMBS. SHORT STANDUPS."
+    },
     "features": [
       {
-        "t": "扁平人形",
-        "s": "长手长脚"
+        "t": {
+          "zh": "扁平人形",
+          "en": "Flat figures"
+        },
+        "s": {
+          "zh": "长手长脚",
+          "en": "Long arms and legs"
+        }
       },
       {
-        "t": "有限色板",
-        "s": "紫黄桃三色"
+        "t": {
+          "zh": "有限色板",
+          "en": "Limited palette"
+        },
+        "s": {
+          "zh": "紫黄桃三色",
+          "en": "Purple, yellow and peach"
+        }
       },
       {
-        "t": "圆润构图",
-        "s": "胶囊与色块"
+        "t": {
+          "zh": "圆润构图",
+          "en": "Rounded composition"
+        },
+        "s": {
+          "zh": "胶囊与色块",
+          "en": "Pills and color blocks"
+        }
       }
     ],
     "panel": "shapes",

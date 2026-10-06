@@ -211,30 +211,75 @@
     "scene": "generic",
     "brand": "☆ CyberDream ☆",
     "nav": [
-      "音乐",
-      "装扮",
-      "星球"
+      {
+        "zh": "音乐",
+        "en": "Music"
+      },
+      {
+        "zh": "装扮",
+        "en": "Outfits"
+      },
+      {
+        "zh": "星球",
+        "en": "Planet"
+      }
     ],
     "navExt": [
-      "会员卡"
+      {
+        "zh": "会员卡",
+        "en": "Member card"
+      }
     ],
-    "heroTitle": "Y2K CYBER",
-    "heroTitle2": "DREAM ✦",
-    "heroSub": "千禧年的怀旧未来主义。",
-    "cta": "立即进入",
-    "heroCaption": "金属光泽 · 气泡字 · 荧光小熊",
+    "heroTitle": {
+      "zh": "Y2K CYBER",
+      "en": "Y2K CYBER"
+    },
+    "heroTitle2": {
+      "zh": "DREAM ✦",
+      "en": "DREAM ✦"
+    },
+    "heroSub": {
+      "zh": "千禧年的怀旧未来主义。",
+      "en": "Nostalgic futurism from the turn of the millennium."
+    },
+    "cta": {
+      "zh": "立即进入",
+      "en": "Enter now"
+    },
+    "heroCaption": {
+      "zh": "金属光泽 · 气泡字 · 荧光小熊",
+      "en": "Metallic shine · Bubble type · Neon bears"
+    },
     "features": [
       {
-        "t": "镭射背景",
-        "s": "流动的银紫"
+        "t": {
+          "zh": "镭射背景",
+          "en": "Holographic backdrop"
+        },
+        "s": {
+          "zh": "流动的银紫",
+          "en": "Flowing silver and violet"
+        }
       },
       {
-        "t": "气泡按钮",
-        "s": "圆滚滚的触感"
+        "t": {
+          "zh": "气泡按钮",
+          "en": "Bubble buttons"
+        },
+        "s": {
+          "zh": "圆滚滚的触感",
+          "en": "A soft, rounded feel"
+        }
       },
       {
-        "t": "像素贴纸",
-        "s": "闪星与小熊"
+        "t": {
+          "zh": "像素贴纸",
+          "en": "Pixel stickers"
+        },
+        "s": {
+          "zh": "闪星与小熊",
+          "en": "Sparkling stars and bears"
+        }
       }
     ],
     "panel": "chart",

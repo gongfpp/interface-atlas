@@ -227,27 +227,69 @@
     "scene": "generic",
     "brand": "RAW",
     "nav": [
-      "作品",
-      "方法",
-      "关于"
+      {
+        "zh": "作品",
+        "en": "Work"
+      },
+      {
+        "zh": "方法",
+        "en": "Approach"
+      },
+      {
+        "zh": "关于",
+        "en": "About"
+      }
     ],
-    "heroTitle": "不修边幅",
-    "heroTitle2": "也是一种设计",
-    "heroSub": "裸露结构，拒绝打磨。",
-    "cta": "看看作品 →",
-    "heroCaption": "NO RADIUS. NO GRADIENT. NO MERCY.",
+    "heroTitle": {
+      "zh": "不修边幅",
+      "en": "Unpolished"
+    },
+    "heroTitle2": {
+      "zh": "也是一种设计",
+      "en": "by design"
+    },
+    "heroSub": {
+      "zh": "裸露结构，拒绝打磨。",
+      "en": "Exposed structure. Deliberately unpolished."
+    },
+    "cta": {
+      "zh": "看看作品 →",
+      "en": "View work →"
+    },
+    "heroCaption": {
+      "zh": "NO RADIUS. NO GRADIENT. NO MERCY.",
+      "en": "NO RADIUS. NO GRADIENT. NO MERCY."
+    },
     "features": [
       {
-        "t": "极端对比",
-        "s": "黑白硬切"
+        "t": {
+          "zh": "极端对比",
+          "en": "Extreme contrast"
+        },
+        "s": {
+          "zh": "黑白硬切",
+          "en": "Hard cuts in black and white"
+        }
       },
       {
-        "t": "裸露结构",
-        "s": "网格可见"
+        "t": {
+          "zh": "裸露结构",
+          "en": "Exposed structure"
+        },
+        "s": {
+          "zh": "网格可见",
+          "en": "A visible grid"
+        }
       },
       {
-        "t": "超大字号",
-        "s": "标题即海报"
+        "t": {
+          "zh": "超大字号",
+          "en": "Oversized type"
+        },
+        "s": {
+          "zh": "标题即海报",
+          "en": "Headlines as posters"
+        }
       }
     ],
     "panel": "shapes",

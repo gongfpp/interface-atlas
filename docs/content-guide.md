@@ -94,10 +94,11 @@ plain 标量里的 ASCII 逗号会让解析器**静默拆键**（值截断 + 产
 
 ### 1.6 Style 预览规格（仅 styles 条目）
 
-Style 的"风格实况"缩略图完全由 YAML 的 `preview` 字段驱动——`src/lib/style-previews.ts` 只做读取与派生，`StyleThumb.astro` 只做 renderer，不存在第二份风格数据。新增或修改风格时：
+风格预览的排序与通用场景由 YAML 的 `preview` 字段驱动；十套专属参考样张使用 `ReferenceStyleScene.astro` 的 DOM 构图，范围见 `docs/style-reference-scenes.md`。`src/lib/style-previews.ts` 在渲染入口按语言派生文案。新增或修改风格时：
 
 - `preview.order`：整数，决定 `/styles` 列表与首页风格墙的展示顺序（从 1 连续编号）。
 - `scene` / `brand` / `nav` / `heroTitle` / `heroSub` / `cta` / `features` / `panel` / `tokens` 等定义缩略图的视觉与文案，schema 见 `src/content.config.ts` 的 `stylePreview`。
+- `nav` / `navExt` 的每项、`heroTitle` / `heroTitle2` / `heroSub` / `cta` / `heroCaption`、`features` 的 `t` / `s` 必须为 `{ zh, en }` 双语字段；品牌名和视觉 tokens 保持语言无关。schema 会拒绝缺失语言，英文预览回归同时检查隐藏导航和说明。
 - `slug` 与显示名不写进 `preview`：组件从条目 id 与 `name`（zh/en）派生，因此 `name` 即列表上显示的规范名称。
 
 ## 2. Demo 组件规范
@@ -185,3 +186,11 @@ export default styleVariants;
 - [ ] demo.component = 条目 id；tsx 文件存在、默认导出、无新依赖
 - [ ] 动画乘 --demo-speed；data-anatomy 与 YAML anatomy 对齐
 - [ ] aliases 含 ≥2 条中文口语
+
+## 参考册保存与恢复
+
+- 方案、普通收藏和历史的待保存操作在重试时重放到最新磁盘内容，不能直接写回旧快照。新增/显式保存与删除以本页操作为准；方案编辑只修改实际变化的字段，不复活另一页已删除的记录。读取失败时不盲写。
+- 「撤销移除」在本页会话中按相反顺序恢复完整记录；若另一页已经恢复同一 ID，不覆盖它的新内容。存储失败时也可以撤销，并在恢复后重试。
+- Markdown 用于阅读和交付；JSON 用于完整备份和导入，包含方案 ID、配置、分组、理由、Prompt 与站内恢复链接。下载范围与当前项目筛选一致。
+- JSON 备份版本为 1，文件上限 5 MB、2000 条记录。必须整份校验通过再导入，拒绝不支持的版本、损坏记录、重复 ID 和站外/非概念详情链接；导入时调整部署前缀。导入只新增缺失 ID，已有方案保留。页面先展示新增数量，再合并，并明确报告存储失败。
+- 全组件风格测试的独立用例可并行，仍保留每用例的真实原生操作、几何同步和截图隔离；工作进程上限及失败重试设置按 `playwright.config.mjs` 执行。

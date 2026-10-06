@@ -199,16 +199,43 @@
     "scene": "generic",
     "brand": "GoodOldNet",
     "nav": [
-      "Home",
-      "About",
-      "Projects",
-      "Links",
-      "Guestbook"
+      {
+        "zh": "Home",
+        "en": "Home"
+      },
+      {
+        "zh": "About",
+        "en": "About"
+      },
+      {
+        "zh": "Projects",
+        "en": "Projects"
+      },
+      {
+        "zh": "Links",
+        "en": "Links"
+      },
+      {
+        "zh": "Guestbook",
+        "en": "Guestbook"
+      }
     ],
-    "heroTitle": "Welcome to",
-    "heroTitle2": "GoodOldNet!",
-    "heroSub": "一个值得慢慢发现的互联网角落。",
-    "cta": "进入站点",
+    "heroTitle": {
+      "zh": "Welcome to",
+      "en": "Welcome to"
+    },
+    "heroTitle2": {
+      "zh": "GoodOldNet!",
+      "en": "GoodOldNet!"
+    },
+    "heroSub": {
+      "zh": "一个值得慢慢发现的互联网角落。",
+      "en": "A corner of the internet worth exploring slowly."
+    },
+    "cta": {
+      "zh": "进入站点",
+      "en": "Enter the site"
+    },
     "panel": "screen",
     "tokens": {
       "bg": "#c4c4c4",

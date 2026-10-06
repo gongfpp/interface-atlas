@@ -211,30 +211,75 @@
     "scene": "generic",
     "brand": "BAUHAUS",
     "nav": [
-      "形式",
-      "色彩",
-      "工坊"
+      {
+        "zh": "形式",
+        "en": "Form"
+      },
+      {
+        "zh": "色彩",
+        "en": "Color"
+      },
+      {
+        "zh": "工坊",
+        "en": "Workshop"
+      }
     ],
     "navExt": [
-      "1923"
+      {
+        "zh": "1923",
+        "en": "1923"
+      }
     ],
-    "heroTitle": "FORM &",
-    "heroTitle2": "FUNCTION",
-    "heroSub": "几何与三原色的秩序。",
-    "cta": "进入工坊",
-    "heroCaption": "圆 · 三角 · 方块",
+    "heroTitle": {
+      "zh": "FORM &",
+      "en": "FORM &"
+    },
+    "heroTitle2": {
+      "zh": "FUNCTION",
+      "en": "FUNCTION"
+    },
+    "heroSub": {
+      "zh": "几何与三原色的秩序。",
+      "en": "Geometry and primary colors in harmony."
+    },
+    "cta": {
+      "zh": "进入工坊",
+      "en": "Enter the workshop"
+    },
+    "heroCaption": {
+      "zh": "圆 · 三角 · 方块",
+      "en": "Circle · Triangle · Square"
+    },
     "features": [
       {
-        "t": "红之圆",
-        "s": "统一的起点"
+        "t": {
+          "zh": "红之圆",
+          "en": "Red circle"
+        },
+        "s": {
+          "zh": "统一的起点",
+          "en": "A shared starting point"
+        }
       },
       {
-        "t": "蓝之方",
-        "s": "功能的稳定"
+        "t": {
+          "zh": "蓝之方",
+          "en": "Blue square"
+        },
+        "s": {
+          "zh": "功能的稳定",
+          "en": "A foundation for function"
+        }
       },
       {
-        "t": "黄之角",
-        "s": "能量的指向"
+        "t": {
+          "zh": "黄之角",
+          "en": "Yellow triangle"
+        },
+        "s": {
+          "zh": "能量的指向",
+          "en": "A direction for energy"
+        }
       }
     ],
     "panel": "shapes",

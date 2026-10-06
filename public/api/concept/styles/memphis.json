@@ -211,30 +211,75 @@
     "scene": "generic",
     "brand": "Milano '88",
     "nav": [
-      "家居",
-      "图案",
-      "派对"
+      {
+        "zh": "家居",
+        "en": "Homeware"
+      },
+      {
+        "zh": "图案",
+        "en": "Patterns"
+      },
+      {
+        "zh": "派对",
+        "en": "Party"
+      }
     ],
     "navExt": [
-      "意大利制造"
+      {
+        "zh": "意大利制造",
+        "en": "Made in Italy"
+      }
     ],
-    "heroTitle": "PLAY &",
-    "heroTitle2": "REPEAT!",
-    "heroSub": "八十年代的顽皮几何。",
-    "cta": "开派对",
-    "heroCaption": "波点 · 折线 · 甜品色",
+    "heroTitle": {
+      "zh": "PLAY &",
+      "en": "PLAY &"
+    },
+    "heroTitle2": {
+      "zh": "REPEAT!",
+      "en": "REPEAT!"
+    },
+    "heroSub": {
+      "zh": "八十年代的顽皮几何。",
+      "en": "Playful geometry from the eighties."
+    },
+    "cta": {
+      "zh": "开派对",
+      "en": "Start the party"
+    },
+    "heroCaption": {
+      "zh": "波点 · 折线 · 甜品色",
+      "en": "Polka dots · Zigzags · Candy colors"
+    },
     "features": [
       {
-        "t": "撞色格纹",
-        "s": "粉蓝黄绿"
+        "t": {
+          "zh": "撞色格纹",
+          "en": "Clashing checks"
+        },
+        "s": {
+          "zh": "粉蓝黄绿",
+          "en": "Pink, blue, yellow and green"
+        }
       },
       {
-        "t": "几何贴纸",
-        "s": "圆点与折线"
+        "t": {
+          "zh": "几何贴纸",
+          "en": "Geometric stickers"
+        },
+        "s": {
+          "zh": "圆点与折线",
+          "en": "Dots and zigzags"
+        }
       },
       {
-        "t": "歪斜排版",
-        "s": "故意不整齐"
+        "t": {
+          "zh": "歪斜排版",
+          "en": "Offbeat typography"
+        },
+        "s": {
+          "zh": "故意不整齐",
+          "en": "Deliberately uneven"
+        }
       }
     ],
     "panel": "shapes",

@@ -110,12 +110,22 @@ preview:
   scene: generic
   brand: STILL
   nav:
-    - Collection
-    - About
-  heroTitle: A softer
-  heroTitle2: focus.
-  heroSub: 用柔和的层次，安放每一个专注时刻。
-  cta: Explore
+    - zh: Collection
+      en: Collection
+    - zh: About
+      en: About
+  heroTitle:
+    zh: A softer
+    en: A softer
+  heroTitle2:
+    zh: focus.
+    en: focus.
+  heroSub:
+    zh: 用柔和的层次，安放每一个专注时刻。
+    en: Soft layers give every focused moment a place.
+  cta:
+    zh: Explore
+    en: Explore
   panel: device
   tokens:
     bg: '#e7ebf0'

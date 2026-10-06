@@ -29156,13 +29156,31 @@
         "scene": "generic",
         "brand": "THE AURELIA",
         "nav": [
-          "Collection",
-          "About"
+          {
+            "zh": "Collection",
+            "en": "Collection"
+          },
+          {
+            "zh": "About",
+            "en": "About"
+          }
         ],
-        "heroTitle": "An evening,",
-        "heroTitle2": "extraordinary.",
-        "heroSub": "为值得铭记的夜晚，预留一个位置。",
-        "cta": "Explore",
+        "heroTitle": {
+          "zh": "An evening,",
+          "en": "An evening,"
+        },
+        "heroTitle2": {
+          "zh": "extraordinary.",
+          "en": "extraordinary."
+        },
+        "heroSub": {
+          "zh": "为值得铭记的夜晚，预留一个位置。",
+          "en": "Save a place for a night to remember."
+        },
+        "cta": {
+          "zh": "Explore",
+          "en": "Explore"
+        },
         "panel": "shapes",
         "tokens": {
           "bg": "#151c24",
@@ -29412,30 +29430,75 @@
         "scene": "generic",
         "brand": "Borealis",
         "nav": [
-          "光",
-          "色",
-          "场"
+          {
+            "zh": "光",
+            "en": "Light"
+          },
+          {
+            "zh": "色",
+            "en": "Color"
+          },
+          {
+            "zh": "场",
+            "en": "Space"
+          }
         ],
         "navExt": [
-          "v2.0"
+          {
+            "zh": "v2.0",
+            "en": "v2.0"
+          }
         ],
-        "heroTitle": "Flow with",
-        "heroTitle2": "the Light",
-        "heroSub": "让颜色像极光一样流动。",
-        "cta": "点亮",
-        "heroCaption": "暗夜底 · 光斑 · 渐变文字",
+        "heroTitle": {
+          "zh": "Flow with",
+          "en": "Flow with"
+        },
+        "heroTitle2": {
+          "zh": "the Light",
+          "en": "the Light"
+        },
+        "heroSub": {
+          "zh": "让颜色像极光一样流动。",
+          "en": "Let color flow like the northern lights."
+        },
+        "cta": {
+          "zh": "点亮",
+          "en": "Light it up"
+        },
+        "heroCaption": {
+          "zh": "暗夜底 · 光斑 · 渐变文字",
+          "en": "Night sky · Light blooms · Gradient type"
+        },
         "features": [
           {
-            "t": "极光底色",
-            "s": "绿紫粉光晕"
+            "t": {
+              "zh": "极光底色",
+              "en": "Aurora backdrop"
+            },
+            "s": {
+              "zh": "绿紫粉光晕",
+              "en": "Green, violet and pink glows"
+            }
           },
           {
-            "t": "玻璃浮层",
-            "s": "轻透的内容卡"
+            "t": {
+              "zh": "玻璃浮层",
+              "en": "Glass layers"
+            },
+            "s": {
+              "zh": "轻透的内容卡",
+              "en": "Light, translucent cards"
+            }
           },
           {
-            "t": "流动渐变",
-            "s": "缓慢变色动画"
+            "t": {
+              "zh": "流动渐变",
+              "en": "Flowing gradients"
+            },
+            "s": {
+              "zh": "缓慢变色动画",
+              "en": "Slow color transitions"
+            }
           }
         ],
         "panel": "mountain",
@@ -29669,30 +29732,75 @@
         "scene": "generic",
         "brand": "BAUHAUS",
         "nav": [
-          "形式",
-          "色彩",
-          "工坊"
+          {
+            "zh": "形式",
+            "en": "Form"
+          },
+          {
+            "zh": "色彩",
+            "en": "Color"
+          },
+          {
+            "zh": "工坊",
+            "en": "Workshop"
+          }
         ],
         "navExt": [
-          "1923"
+          {
+            "zh": "1923",
+            "en": "1923"
+          }
         ],
-        "heroTitle": "FORM &",
-        "heroTitle2": "FUNCTION",
-        "heroSub": "几何与三原色的秩序。",
-        "cta": "进入工坊",
-        "heroCaption": "圆 · 三角 · 方块",
+        "heroTitle": {
+          "zh": "FORM &",
+          "en": "FORM &"
+        },
+        "heroTitle2": {
+          "zh": "FUNCTION",
+          "en": "FUNCTION"
+        },
+        "heroSub": {
+          "zh": "几何与三原色的秩序。",
+          "en": "Geometry and primary colors in harmony."
+        },
+        "cta": {
+          "zh": "进入工坊",
+          "en": "Enter the workshop"
+        },
+        "heroCaption": {
+          "zh": "圆 · 三角 · 方块",
+          "en": "Circle · Triangle · Square"
+        },
         "features": [
           {
-            "t": "红之圆",
-            "s": "统一的起点"
+            "t": {
+              "zh": "红之圆",
+              "en": "Red circle"
+            },
+            "s": {
+              "zh": "统一的起点",
+              "en": "A shared starting point"
+            }
           },
           {
-            "t": "蓝之方",
-            "s": "功能的稳定"
+            "t": {
+              "zh": "蓝之方",
+              "en": "Blue square"
+            },
+            "s": {
+              "zh": "功能的稳定",
+              "en": "A foundation for function"
+            }
           },
           {
-            "t": "黄之角",
-            "s": "能量的指向"
+            "t": {
+              "zh": "黄之角",
+              "en": "Yellow triangle"
+            },
+            "s": {
+              "zh": "能量的指向",
+              "en": "A direction for energy"
+            }
           }
         ],
         "panel": "shapes",
@@ -29934,31 +30042,79 @@
         "scene": "tasko",
         "brand": "◉ Tasko",
         "nav": [
-          "产品",
-          "模板",
-          "资源",
-          "定价"
+          {
+            "zh": "产品",
+            "en": "Product"
+          },
+          {
+            "zh": "模板",
+            "en": "Templates"
+          },
+          {
+            "zh": "资源",
+            "en": "Resources"
+          },
+          {
+            "zh": "定价",
+            "en": "Pricing"
+          }
         ],
         "navExt": [
-          "登录",
-          "免费注册"
+          {
+            "zh": "登录",
+            "en": "Log in"
+          },
+          {
+            "zh": "免费注册",
+            "en": "Sign up free"
+          }
         ],
-        "heroTitle": "高效生活",
-        "heroTitle2": "从有序开始",
-        "heroSub": "Tasko 帮助你管理任务、笔记与日程，让每一天更专注、更有意义。",
-        "cta": "开始使用 →",
+        "heroTitle": {
+          "zh": "高效生活",
+          "en": "Productive living"
+        },
+        "heroTitle2": {
+          "zh": "从有序开始",
+          "en": "starts with order"
+        },
+        "heroSub": {
+          "zh": "Tasko 帮助你管理任务、笔记与日程，让每一天更专注、更有意义。",
+          "en": "Tasko organizes tasks, notes and schedules for more focused, meaningful days."
+        },
+        "cta": {
+          "zh": "开始使用 →",
+          "en": "Get started →"
+        },
         "features": [
           {
-            "t": "任务 5",
-            "s": "今日待完成"
+            "t": {
+              "zh": "任务 5",
+              "en": "Tasks 5"
+            },
+            "s": {
+              "zh": "今日待完成",
+              "en": "Due today"
+            }
           },
           {
-            "t": "笔记 12",
-            "s": "记录灵感"
+            "t": {
+              "zh": "笔记 12",
+              "en": "Notes 12"
+            },
+            "s": {
+              "zh": "记录灵感",
+              "en": "Capture ideas"
+            }
           },
           {
-            "t": "专注 3h24m",
-            "s": "比上周 +40%"
+            "t": {
+              "zh": "专注 3h24m",
+              "en": "Focus 3h24m"
+            },
+            "s": {
+              "zh": "比上周 +40%",
+              "en": "+40% from last week"
+            }
           }
         ],
         "tokens": {
@@ -30207,27 +30363,69 @@
         "scene": "generic",
         "brand": "RAW",
         "nav": [
-          "作品",
-          "方法",
-          "关于"
+          {
+            "zh": "作品",
+            "en": "Work"
+          },
+          {
+            "zh": "方法",
+            "en": "Approach"
+          },
+          {
+            "zh": "关于",
+            "en": "About"
+          }
         ],
-        "heroTitle": "不修边幅",
-        "heroTitle2": "也是一种设计",
-        "heroSub": "裸露结构，拒绝打磨。",
-        "cta": "看看作品 →",
-        "heroCaption": "NO RADIUS. NO GRADIENT. NO MERCY.",
+        "heroTitle": {
+          "zh": "不修边幅",
+          "en": "Unpolished"
+        },
+        "heroTitle2": {
+          "zh": "也是一种设计",
+          "en": "by design"
+        },
+        "heroSub": {
+          "zh": "裸露结构，拒绝打磨。",
+          "en": "Exposed structure. Deliberately unpolished."
+        },
+        "cta": {
+          "zh": "看看作品 →",
+          "en": "View work →"
+        },
+        "heroCaption": {
+          "zh": "NO RADIUS. NO GRADIENT. NO MERCY.",
+          "en": "NO RADIUS. NO GRADIENT. NO MERCY."
+        },
         "features": [
           {
-            "t": "极端对比",
-            "s": "黑白硬切"
+            "t": {
+              "zh": "极端对比",
+              "en": "Extreme contrast"
+            },
+            "s": {
+              "zh": "黑白硬切",
+              "en": "Hard cuts in black and white"
+            }
           },
           {
-            "t": "裸露结构",
-            "s": "网格可见"
+            "t": {
+              "zh": "裸露结构",
+              "en": "Exposed structure"
+            },
+            "s": {
+              "zh": "网格可见",
+              "en": "A visible grid"
+            }
           },
           {
-            "t": "超大字号",
-            "s": "标题即海报"
+            "t": {
+              "zh": "超大字号",
+              "en": "Oversized type"
+            },
+            "s": {
+              "zh": "标题即海报",
+              "en": "Headlines as posters"
+            }
           }
         ],
         "panel": "shapes",
@@ -30462,29 +30660,71 @@
         "scene": "generic",
         "brand": "Claymates",
         "nav": [
-          "主页",
-          "小屋",
-          "商店"
+          {
+            "zh": "主页",
+            "en": "Home"
+          },
+          {
+            "zh": "小屋",
+            "en": "Cabin"
+          },
+          {
+            "zh": "商店",
+            "en": "Shop"
+          }
         ],
         "navExt": [
-          "🧸"
+          {
+            "zh": "🧸",
+            "en": "🧸"
+          }
         ],
-        "heroTitle": "Soft & Squishy",
-        "heroSub": "捏一捏就有好心情。",
-        "cta": "捏一下",
-        "heroCaption": "内阴影 · 大圆角 · 糖果色",
+        "heroTitle": {
+          "zh": "Soft & Squishy",
+          "en": "Soft & Squishy"
+        },
+        "heroSub": {
+          "zh": "捏一捏就有好心情。",
+          "en": "A little squeeze, a little joy."
+        },
+        "cta": {
+          "zh": "捏一下",
+          "en": "Give it a squeeze"
+        },
+        "heroCaption": {
+          "zh": "内阴影 · 大圆角 · 糖果色",
+          "en": "Inner shadows · Rounded corners · Candy colors"
+        },
         "features": [
           {
-            "t": "软糖按钮",
-            "s": "按下会回弹"
+            "t": {
+              "zh": "软糖按钮",
+              "en": "Gummy buttons"
+            },
+            "s": {
+              "zh": "按下会回弹",
+              "en": "Bounce back on press"
+            }
           },
           {
-            "t": "黏土角色",
-            "s": "圆润无棱角"
+            "t": {
+              "zh": "黏土角色",
+              "en": "Clay characters"
+            },
+            "s": {
+              "zh": "圆润无棱角",
+              "en": "Soft edges all around"
+            }
           },
           {
-            "t": "奶油底色",
-            "s": "低饱和背景"
+            "t": {
+              "zh": "奶油底色",
+              "en": "Creamy backdrop"
+            },
+            "s": {
+              "zh": "低饱和背景",
+              "en": "Low-saturation surfaces"
+            }
           }
         ],
         "panel": "device",
@@ -30736,28 +30976,73 @@
         "scene": "tasko",
         "brand": "alegria",
         "nav": [
-          "产品",
-          "客户",
-          "价格",
-          "招聘"
+          {
+            "zh": "产品",
+            "en": "Product"
+          },
+          {
+            "zh": "客户",
+            "en": "Customers"
+          },
+          {
+            "zh": "价格",
+            "en": "Pricing"
+          },
+          {
+            "zh": "招聘",
+            "en": "Careers"
+          }
         ],
-        "heroTitle": "一起把事情",
-        "heroTitle2": "做简单",
-        "heroSub": "友好、包容、人人可用的协作空间。",
-        "cta": "免费试用 →",
-        "heroCaption": "LONG LIMBS. SHORT STANDUPS.",
+        "heroTitle": {
+          "zh": "一起把事情",
+          "en": "Let's make things"
+        },
+        "heroTitle2": {
+          "zh": "做简单",
+          "en": "simpler together"
+        },
+        "heroSub": {
+          "zh": "友好、包容、人人可用的协作空间。",
+          "en": "A friendly, inclusive workspace for everyone."
+        },
+        "cta": {
+          "zh": "免费试用 →",
+          "en": "Try it free →"
+        },
+        "heroCaption": {
+          "zh": "LONG LIMBS. SHORT STANDUPS.",
+          "en": "LONG LIMBS. SHORT STANDUPS."
+        },
         "features": [
           {
-            "t": "扁平人形",
-            "s": "长手长脚"
+            "t": {
+              "zh": "扁平人形",
+              "en": "Flat figures"
+            },
+            "s": {
+              "zh": "长手长脚",
+              "en": "Long arms and legs"
+            }
           },
           {
-            "t": "有限色板",
-            "s": "紫黄桃三色"
+            "t": {
+              "zh": "有限色板",
+              "en": "Limited palette"
+            },
+            "s": {
+              "zh": "紫黄桃三色",
+              "en": "Purple, yellow and peach"
+            }
           },
           {
-            "t": "圆润构图",
-            "s": "胶囊与色块"
+            "t": {
+              "zh": "圆润构图",
+              "en": "Rounded composition"
+            },
+            "s": {
+              "zh": "胶囊与色块",
+              "en": "Pills and color blocks"
+            }
           }
         ],
         "panel": "shapes",
@@ -30996,30 +31281,75 @@
         "scene": "generic",
         "brand": "NEON://CITY",
         "nav": [
-          "街区",
-          "装备",
-          "黑市"
+          {
+            "zh": "街区",
+            "en": "Districts"
+          },
+          {
+            "zh": "装备",
+            "en": "Gear"
+          },
+          {
+            "zh": "黑市",
+            "en": "Black market"
+          }
         ],
         "navExt": [
-          "[SYS:OK]"
+          {
+            "zh": "[SYS:OK]",
+            "en": "[SYS:OK]"
+          }
         ],
-        "heroTitle": "WAKE UP,",
-        "heroTitle2": "SAMURAI",
-        "heroSub": "霓虹永不熄灭。",
-        "cta": "接入网络",
-        "heroCaption": "高对比 · 霓虹边框 · 全息投影",
+        "heroTitle": {
+          "zh": "WAKE UP,",
+          "en": "WAKE UP,"
+        },
+        "heroTitle2": {
+          "zh": "SAMURAI",
+          "en": "SAMURAI"
+        },
+        "heroSub": {
+          "zh": "霓虹永不熄灭。",
+          "en": "The neon never sleeps."
+        },
+        "cta": {
+          "zh": "接入网络",
+          "en": "Connect to the network"
+        },
+        "heroCaption": {
+          "zh": "高对比 · 霓虹边框 · 全息投影",
+          "en": "High contrast · Neon borders · Holograms"
+        },
         "features": [
           {
-            "t": "义体改造",
-            "s": "+15% 神经速率"
+            "t": {
+              "zh": "义体改造",
+              "en": "Cybernetic upgrades"
+            },
+            "s": {
+              "zh": "+15% 神经速率",
+              "en": "+15% neural speed"
+            }
           },
           {
-            "t": "黑客接口",
-            "s": "破防只要 3 秒"
+            "t": {
+              "zh": "黑客接口",
+              "en": "Hacking interface"
+            },
+            "s": {
+              "zh": "破防只要 3 秒",
+              "en": "A breach in just 3 seconds"
+            }
           },
           {
-            "t": "黑市信用",
-            "s": "匿名交易"
+            "t": {
+              "zh": "黑市信用",
+              "en": "Black-market credits"
+            },
+            "s": {
+              "zh": "匿名交易",
+              "en": "Anonymous trading"
+            }
           }
         ],
         "panel": "chart",
@@ -31255,30 +31585,75 @@
         "scene": "paper",
         "brand": "The Paper Room",
         "nav": [
-          "专栏",
-          "生活",
-          "旅行",
-          "人物"
+          {
+            "zh": "专栏",
+            "en": "Columns"
+          },
+          {
+            "zh": "生活",
+            "en": "Life"
+          },
+          {
+            "zh": "旅行",
+            "en": "Travel"
+          },
+          {
+            "zh": "人物",
+            "en": "People"
+          }
         ],
         "navExt": [
-          "🔍"
+          {
+            "zh": "🔍",
+            "en": "🔍"
+          }
         ],
-        "heroTitle": "Good Life",
-        "heroTitle2": "in Small Things",
-        "heroSub": "我们记录真实的生活方式、人与地方的故事，\n恰在寻常之中，藏着最动人的答案。",
-        "cta": "阅读更多 →",
+        "heroTitle": {
+          "zh": "Good Life",
+          "en": "Good Life"
+        },
+        "heroTitle2": {
+          "zh": "in Small Things",
+          "en": "in Small Things"
+        },
+        "heroSub": {
+          "zh": "我们记录真实的生活方式、人与地方的故事，\n恰在寻常之中，藏着最动人的答案。",
+          "en": "Stories of real lives, people and places.\nThe most moving answers hide in everyday things."
+        },
+        "cta": {
+          "zh": "阅读更多 →",
+          "en": "Read more →"
+        },
         "features": [
           {
-            "t": "一间面朝山腰的房子",
-            "s": "2024.04.12"
+            "t": {
+              "zh": "一间面朝山腰的房子",
+              "en": "A house facing the hillside"
+            },
+            "s": {
+              "zh": "2024.04.12",
+              "en": "2024.04.12"
+            }
           },
           {
-            "t": "城市漫游指南",
-            "s": "2024.04.09"
+            "t": {
+              "zh": "城市漫游指南",
+              "en": "A guide to city wandering"
+            },
+            "s": {
+              "zh": "2024.04.09",
+              "en": "2024.04.09"
+            }
           },
           {
-            "t": "慢下来的周末",
-            "s": "2024.04.01"
+            "t": {
+              "zh": "慢下来的周末",
+              "en": "A slower weekend"
+            },
+            "s": {
+              "zh": "2024.04.01",
+              "en": "2024.04.01"
+            }
           }
         ],
         "panel": "photo",
@@ -31512,29 +31887,71 @@
         "scene": "generic",
         "brand": "Flatly",
         "nav": [
-          "功能",
-          "价格",
-          "博客"
+          {
+            "zh": "功能",
+            "en": "Features"
+          },
+          {
+            "zh": "价格",
+            "en": "Pricing"
+          },
+          {
+            "zh": "博客",
+            "en": "Blog"
+          }
         ],
         "navExt": [
-          "登录"
+          {
+            "zh": "登录",
+            "en": "Log in"
+          }
         ],
-        "heroTitle": "Simple & Solid",
-        "heroSub": "去掉装饰，信息直达。",
-        "cta": "开始使用",
-        "heroCaption": "没有渐变 · 没有阴影 · 只有信息",
+        "heroTitle": {
+          "zh": "Simple & Solid",
+          "en": "Simple & Solid"
+        },
+        "heroSub": {
+          "zh": "去掉装饰，信息直达。",
+          "en": "Strip away decoration. Get to the point."
+        },
+        "cta": {
+          "zh": "开始使用",
+          "en": "Get started"
+        },
+        "heroCaption": {
+          "zh": "没有渐变 · 没有阴影 · 只有信息",
+          "en": "No gradients · No shadows · Just information"
+        },
         "features": [
           {
-            "t": "色块即层级",
-            "s": "大色块分区"
+            "t": {
+              "zh": "色块即层级",
+              "en": "Hierarchy through color"
+            },
+            "s": {
+              "zh": "大色块分区",
+              "en": "Large blocks define sections"
+            }
           },
           {
-            "t": "图标即语言",
-            "s": "几何小图标"
+            "t": {
+              "zh": "图标即语言",
+              "en": "Icons as language"
+            },
+            "s": {
+              "zh": "几何小图标",
+              "en": "Small geometric icons"
+            }
           },
           {
-            "t": "直角与留白",
-            "s": "克制的圆角"
+            "t": {
+              "zh": "直角与留白",
+              "en": "Clean edges and space"
+            },
+            "s": {
+              "zh": "克制的圆角",
+              "en": "Restrained corner radii"
+            }
           }
         ],
         "panel": "shapes",
@@ -31772,30 +32189,75 @@
         "scene": "aurora",
         "brand": "Aurora",
         "nav": [
-          "产品",
-          "方案",
-          "价格",
-          "关于"
+          {
+            "zh": "产品",
+            "en": "Product"
+          },
+          {
+            "zh": "方案",
+            "en": "Solutions"
+          },
+          {
+            "zh": "价格",
+            "en": "Pricing"
+          },
+          {
+            "zh": "关于",
+            "en": "About"
+          }
         ],
         "navExt": [
-          "立即体验"
+          {
+            "zh": "立即体验",
+            "en": "Try it now"
+          }
         ],
-        "heroTitle": "让灵感",
-        "heroTitle2": "自然流动",
-        "heroSub": "Aurora 是一款全新的 AI 创作工具，\n在想法与灵感之间，创建更短的距离。",
-        "cta": "免费开始 →",
+        "heroTitle": {
+          "zh": "让灵感",
+          "en": "Let inspiration"
+        },
+        "heroTitle2": {
+          "zh": "自然流动",
+          "en": "flow naturally"
+        },
+        "heroSub": {
+          "zh": "Aurora 是一款全新的 AI 创作工具，\n在想法与灵感之间，创建更短的距离。",
+          "en": "Aurora is a new AI creative tool.\nBring your ideas and inspiration closer together."
+        },
+        "cta": {
+          "zh": "免费开始 →",
+          "en": "Start free →"
+        },
         "features": [
           {
-            "t": "AI 灵感助手",
-            "s": "激发灵感、辅助创作"
+            "t": {
+              "zh": "AI 灵感助手",
+              "en": "AI idea assistant"
+            },
+            "s": {
+              "zh": "激发灵感、辅助创作",
+              "en": "Inspiration for your creations"
+            }
           },
           {
-            "t": "云端同步",
-            "s": "随时随用、灵感不丢失"
+            "t": {
+              "zh": "云端同步",
+              "en": "Cloud sync"
+            },
+            "s": {
+              "zh": "随时随用、灵感不丢失",
+              "en": "Ideas that stay with you"
+            }
           },
           {
-            "t": "多格式导出",
-            "s": "连接创作的工作流"
+            "t": {
+              "zh": "多格式导出",
+              "en": "Multiple export formats"
+            },
+            "s": {
+              "zh": "连接创作的工作流",
+              "en": "Connect your creative workflow"
+            }
           }
         ],
         "panel": "mountain",
@@ -32037,27 +32499,69 @@
         "scene": "paper",
         "brand": "scribble&",
         "nav": [
-          "日记",
-          "素材",
-          "关于"
+          {
+            "zh": "日记",
+            "en": "Journal"
+          },
+          {
+            "zh": "素材",
+            "en": "Materials"
+          },
+          {
+            "zh": "关于",
+            "en": "About"
+          }
         ],
-        "heroTitle": "画歪一点",
-        "heroTitle2": "没关系",
-        "heroSub": "人手的温度，比完美的像素更可信。",
-        "cta": "随手记一笔",
-        "heroCaption": "PERFECT CIRCLES ARE A LIE.",
+        "heroTitle": {
+          "zh": "画歪一点",
+          "en": "A little crooked"
+        },
+        "heroTitle2": {
+          "zh": "没关系",
+          "en": "is fine"
+        },
+        "heroSub": {
+          "zh": "人手的温度，比完美的像素更可信。",
+          "en": "A human touch feels more trustworthy than perfect pixels."
+        },
+        "cta": {
+          "zh": "随手记一笔",
+          "en": "Make a quick note"
+        },
+        "heroCaption": {
+          "zh": "PERFECT CIRCLES ARE A LIE.",
+          "en": "PERFECT CIRCLES ARE A LIE."
+        },
         "features": [
           {
-            "t": "抖动描边",
-            "s": "圆画不圆"
+            "t": {
+              "zh": "抖动描边",
+              "en": "Wobbly outlines"
+            },
+            "s": {
+              "zh": "圆画不圆",
+              "en": "Circles with character"
+            }
           },
           {
-            "t": "纸张纹理",
-            "s": "横线本底"
+            "t": {
+              "zh": "纸张纹理",
+              "en": "Paper texture"
+            },
+            "s": {
+              "zh": "横线本底",
+              "en": "Ruled notebook pages"
+            }
           },
           {
-            "t": "马克笔高亮",
-            "s": "划重点"
+            "t": {
+              "zh": "马克笔高亮",
+              "en": "Marker highlights"
+            },
+            "s": {
+              "zh": "划重点",
+              "en": "Mark what matters"
+            }
           }
         ],
         "panel": "photo",
@@ -32305,27 +32809,69 @@
         "scene": "aurora",
         "brand": "Lumen",
         "nav": [
-          "光学",
-          "材质",
-          "价格"
+          {
+            "zh": "光学",
+            "en": "Optics"
+          },
+          {
+            "zh": "材质",
+            "en": "Materials"
+          },
+          {
+            "zh": "价格",
+            "en": "Pricing"
+          }
         ],
-        "heroTitle": "让界面",
-        "heroTitle2": "变成一块厚玻璃",
-        "heroSub": "折射内容，反射环境，边缘会流动。",
-        "cta": "体验折射 →",
-        "heroCaption": "REFRACT. REFLECT. MORPH.",
+        "heroTitle": {
+          "zh": "让界面",
+          "en": "Let the interface"
+        },
+        "heroTitle2": {
+          "zh": "变成一块厚玻璃",
+          "en": "become thick glass"
+        },
+        "heroSub": {
+          "zh": "折射内容，反射环境，边缘会流动。",
+          "en": "Refract content, reflect the surroundings and let edges flow."
+        },
+        "cta": {
+          "zh": "体验折射 →",
+          "en": "Explore refraction →"
+        },
+        "heroCaption": {
+          "zh": "REFRACT. REFLECT. MORPH.",
+          "en": "REFRACT. REFLECT. MORPH."
+        },
         "features": [
           {
-            "t": "厚折射",
-            "s": "像透镜"
+            "t": {
+              "zh": "厚折射",
+              "en": "Deep refraction"
+            },
+            "s": {
+              "zh": "像透镜",
+              "en": "Lens-like depth"
+            }
           },
           {
-            "t": "镜面高光",
-            "s": "顶边一线光"
+            "t": {
+              "zh": "镜面高光",
+              "en": "Specular highlights"
+            },
+            "s": {
+              "zh": "顶边一线光",
+              "en": "A bright rim of light"
+            }
           },
           {
-            "t": "边缘流动",
-            "s": "lensing 变形"
+            "t": {
+              "zh": "边缘流动",
+              "en": "Flowing edges"
+            },
+            "s": {
+              "zh": "lensing 变形",
+              "en": "Lensing distortion"
+            }
           }
         ],
         "panel": "mountain",
@@ -32561,30 +33107,75 @@
         "scene": "generic",
         "brand": "Milano '88",
         "nav": [
-          "家居",
-          "图案",
-          "派对"
+          {
+            "zh": "家居",
+            "en": "Homeware"
+          },
+          {
+            "zh": "图案",
+            "en": "Patterns"
+          },
+          {
+            "zh": "派对",
+            "en": "Party"
+          }
         ],
         "navExt": [
-          "意大利制造"
+          {
+            "zh": "意大利制造",
+            "en": "Made in Italy"
+          }
         ],
-        "heroTitle": "PLAY &",
-        "heroTitle2": "REPEAT!",
-        "heroSub": "八十年代的顽皮几何。",
-        "cta": "开派对",
-        "heroCaption": "波点 · 折线 · 甜品色",
+        "heroTitle": {
+          "zh": "PLAY &",
+          "en": "PLAY &"
+        },
+        "heroTitle2": {
+          "zh": "REPEAT!",
+          "en": "REPEAT!"
+        },
+        "heroSub": {
+          "zh": "八十年代的顽皮几何。",
+          "en": "Playful geometry from the eighties."
+        },
+        "cta": {
+          "zh": "开派对",
+          "en": "Start the party"
+        },
+        "heroCaption": {
+          "zh": "波点 · 折线 · 甜品色",
+          "en": "Polka dots · Zigzags · Candy colors"
+        },
         "features": [
           {
-            "t": "撞色格纹",
-            "s": "粉蓝黄绿"
+            "t": {
+              "zh": "撞色格纹",
+              "en": "Clashing checks"
+            },
+            "s": {
+              "zh": "粉蓝黄绿",
+              "en": "Pink, blue, yellow and green"
+            }
           },
           {
-            "t": "几何贴纸",
-            "s": "圆点与折线"
+            "t": {
+              "zh": "几何贴纸",
+              "en": "Geometric stickers"
+            },
+            "s": {
+              "zh": "圆点与折线",
+              "en": "Dots and zigzags"
+            }
           },
           {
-            "t": "歪斜排版",
-            "s": "故意不整齐"
+            "t": {
+              "zh": "歪斜排版",
+              "en": "Offbeat typography"
+            },
+            "s": {
+              "zh": "故意不整齐",
+              "en": "Deliberately uneven"
+            }
           }
         ],
         "panel": "shapes",
@@ -32828,31 +33419,79 @@
         "scene": "lumo",
         "brand": "L U M O",
         "nav": [
-          "产品",
-          "关于",
-          "灵感",
-          "支持"
+          {
+            "zh": "产品",
+            "en": "Product"
+          },
+          {
+            "zh": "关于",
+            "en": "About"
+          },
+          {
+            "zh": "灵感",
+            "en": "Inspiration"
+          },
+          {
+            "zh": "支持",
+            "en": "Support"
+          }
         ],
         "navExt": [
-          "更多干扰 更纯粹生活"
+          {
+            "zh": "更多干扰 更纯粹生活",
+            "en": "Fewer distractions. A simpler life."
+          }
         ],
-        "heroTitle": "A calmer",
-        "heroTitle2": "digital life",
-        "heroSub": "简洁的工具，成就更专注的你。",
-        "cta": "立即体验 →",
-        "heroCaption": "让专注成为一种日常",
+        "heroTitle": {
+          "zh": "A calmer",
+          "en": "A calmer"
+        },
+        "heroTitle2": {
+          "zh": "digital life",
+          "en": "digital life"
+        },
+        "heroSub": {
+          "zh": "简洁的工具，成就更专注的你。",
+          "en": "Simple tools for a more focused you."
+        },
+        "cta": {
+          "zh": "立即体验 →",
+          "en": "Try it now →"
+        },
+        "heroCaption": {
+          "zh": "让专注成为一种日常",
+          "en": "Make focus an everyday habit"
+        },
         "features": [
           {
-            "t": "专注模式",
-            "s": "屏蔽一切打扰"
+            "t": {
+              "zh": "专注模式",
+              "en": "Focus mode"
+            },
+            "s": {
+              "zh": "屏蔽一切打扰",
+              "en": "Keep distractions away"
+            }
           },
           {
-            "t": "极简界面",
-            "s": "只留下必要"
+            "t": {
+              "zh": "极简界面",
+              "en": "Minimal interface"
+            },
+            "s": {
+              "zh": "只留下必要",
+              "en": "Keep only what matters"
+            }
           },
           {
-            "t": "自然提醒",
-            "s": "轻声不吵闹"
+            "t": {
+              "zh": "自然提醒",
+              "en": "Gentle reminders"
+            },
+            "s": {
+              "zh": "轻声不吵闹",
+              "en": "Quiet, unobtrusive nudges"
+            }
           }
         ],
         "panel": "device",
@@ -33089,30 +33728,75 @@
         "scene": "generic",
         "brand": "BRUTAL*",
         "nav": [
-          "WORK",
-          "ABOUT",
-          "SHOP"
+          {
+            "zh": "WORK",
+            "en": "WORK"
+          },
+          {
+            "zh": "ABOUT",
+            "en": "ABOUT"
+          },
+          {
+            "zh": "SHOP",
+            "en": "SHOP"
+          }
         ],
         "navExt": [
-          "CART (2)"
+          {
+            "zh": "CART (2)",
+            "en": "CART (2)"
+          }
         ],
-        "heroTitle": "MAKE IT",
-        "heroTitle2": "LOUD.",
-        "heroSub": "粗野直给的设计，绝不拐弯。",
-        "cta": "GO →",
-        "heroCaption": "NO GRADIENTS. NO MERCY.",
+        "heroTitle": {
+          "zh": "MAKE IT",
+          "en": "MAKE IT"
+        },
+        "heroTitle2": {
+          "zh": "LOUD.",
+          "en": "LOUD."
+        },
+        "heroSub": {
+          "zh": "粗野直给的设计，绝不拐弯。",
+          "en": "Bold, direct design that gets to the point."
+        },
+        "cta": {
+          "zh": "GO →",
+          "en": "GO →"
+        },
+        "heroCaption": {
+          "zh": "NO GRADIENTS. NO MERCY.",
+          "en": "NO GRADIENTS. NO MERCY."
+        },
         "features": [
           {
-            "t": "HUGE TYPE",
-            "s": "字要大，话要狠"
+            "t": {
+              "zh": "HUGE TYPE",
+              "en": "HUGE TYPE"
+            },
+            "s": {
+              "zh": "字要大，话要狠",
+              "en": "Big type, bold words"
+            }
           },
           {
-            "t": "THICK BORDER",
-            "s": "3px 起步的黑边"
+            "t": {
+              "zh": "THICK BORDER",
+              "en": "THICK BORDER"
+            },
+            "s": {
+              "zh": "3px 起步的黑边",
+              "en": "Black borders from 3px"
+            }
           },
           {
-            "t": "HARD SHADOW",
-            "s": "位移阴影不模糊"
+            "t": {
+              "zh": "HARD SHADOW",
+              "en": "HARD SHADOW"
+            },
+            "s": {
+              "zh": "位移阴影不模糊",
+              "en": "Offset shadows with no blur"
+            }
           }
         ],
         "panel": "shapes",
@@ -33297,13 +33981,31 @@
         "scene": "generic",
         "brand": "STILL",
         "nav": [
-          "Collection",
-          "About"
+          {
+            "zh": "Collection",
+            "en": "Collection"
+          },
+          {
+            "zh": "About",
+            "en": "About"
+          }
         ],
-        "heroTitle": "A softer",
-        "heroTitle2": "focus.",
-        "heroSub": "用柔和的层次，安放每一个专注时刻。",
-        "cta": "Explore",
+        "heroTitle": {
+          "zh": "A softer",
+          "en": "A softer"
+        },
+        "heroTitle2": {
+          "zh": "focus.",
+          "en": "focus."
+        },
+        "heroSub": {
+          "zh": "用柔和的层次，安放每一个专注时刻。",
+          "en": "Soft layers give every focused moment a place."
+        },
+        "cta": {
+          "zh": "Explore",
+          "en": "Explore"
+        },
         "panel": "device",
         "tokens": {
           "bg": "#e7ebf0",
@@ -33501,13 +34203,31 @@
         "scene": "generic",
         "brand": "mori / 森",
         "nav": [
-          "Collection",
-          "About"
+          {
+            "zh": "Collection",
+            "en": "Collection"
+          },
+          {
+            "zh": "About",
+            "en": "About"
+          }
         ],
-        "heroTitle": "Closer to",
-        "heroTitle2": "nature.",
-        "heroSub": "让设计回到生活本来的样子。",
-        "cta": "Explore",
+        "heroTitle": {
+          "zh": "Closer to",
+          "en": "Closer to"
+        },
+        "heroTitle2": {
+          "zh": "nature.",
+          "en": "nature."
+        },
+        "heroSub": {
+          "zh": "让设计回到生活本来的样子。",
+          "en": "Bring design back to the way life feels."
+        },
+        "cta": {
+          "zh": "Explore",
+          "en": "Explore"
+        },
         "panel": "photo",
         "tokens": {
           "bg": "#f1efe5",
@@ -33763,27 +34483,69 @@
         "scene": "generic",
         "brand": "BITMAP",
         "nav": [
-          "开始",
-          "图鉴",
-          "商店"
+          {
+            "zh": "开始",
+            "en": "Start"
+          },
+          {
+            "zh": "图鉴",
+            "en": "Atlas"
+          },
+          {
+            "zh": "商店",
+            "en": "Shop"
+          }
         ],
-        "heroTitle": "PRESS",
-        "heroTitle2": "START",
-        "heroSub": "整数倍缩放，锯齿即正确。",
-        "cta": "INSERT COIN",
-        "heroCaption": "NO ANTI-ALIASING ALLOWED.",
+        "heroTitle": {
+          "zh": "PRESS",
+          "en": "PRESS"
+        },
+        "heroTitle2": {
+          "zh": "START",
+          "en": "START"
+        },
+        "heroSub": {
+          "zh": "整数倍缩放，锯齿即正确。",
+          "en": "Scale in whole numbers. Sharp pixels are the point."
+        },
+        "cta": {
+          "zh": "INSERT COIN",
+          "en": "INSERT COIN"
+        },
+        "heroCaption": {
+          "zh": "NO ANTI-ALIASING ALLOWED.",
+          "en": "NO ANTI-ALIASING ALLOWED."
+        },
         "features": [
           {
-            "t": "硬像素",
-            "s": "不做抗锯齿"
+            "t": {
+              "zh": "硬像素",
+              "en": "Sharp pixels"
+            },
+            "s": {
+              "zh": "不做抗锯齿",
+              "en": "No anti-aliasing"
+            }
           },
           {
-            "t": "有限色板",
-            "s": "六色封顶"
+            "t": {
+              "zh": "有限色板",
+              "en": "Limited palette"
+            },
+            "s": {
+              "zh": "六色封顶",
+              "en": "Up to six colors"
+            }
           },
           {
-            "t": "抖动网点",
-            "s": "两色交替"
+            "t": {
+              "zh": "抖动网点",
+              "en": "Dither patterns"
+            },
+            "s": {
+              "zh": "两色交替",
+              "en": "Alternating two colors"
+            }
           }
         ],
         "panel": "screen",
@@ -34019,30 +34781,75 @@
         "scene": "generic",
         "brand": "SYNTH-84",
         "nav": [
-          "电台",
-          "巡演",
-          "磁带"
+          {
+            "zh": "电台",
+            "en": "Radio"
+          },
+          {
+            "zh": "巡演",
+            "en": "Tour"
+          },
+          {
+            "zh": "磁带",
+            "en": "Tapes"
+          }
         ],
         "navExt": [
-          "REC ●"
+          {
+            "zh": "REC ●",
+            "en": "REC ●"
+          }
         ],
-        "heroTitle": "DRIVE INTO",
-        "heroTitle2": "THE SUNSET",
-        "heroSub": "回到 1984 年想象的未来。",
-        "cta": "播放电台",
-        "heroCaption": "合成器 · 网格地平线 · 铬金标题",
+        "heroTitle": {
+          "zh": "DRIVE INTO",
+          "en": "DRIVE INTO"
+        },
+        "heroTitle2": {
+          "zh": "THE SUNSET",
+          "en": "THE SUNSET"
+        },
+        "heroSub": {
+          "zh": "回到 1984 年想象的未来。",
+          "en": "Return to the future imagined in 1984."
+        },
+        "cta": {
+          "zh": "播放电台",
+          "en": "Play the radio"
+        },
+        "heroCaption": {
+          "zh": "合成器 · 网格地平线 · 铬金标题",
+          "en": "Synths · Grid horizons · Chrome type"
+        },
         "features": [
           {
-            "t": "日落渐变",
-            "s": "粉紫橙三段"
+            "t": {
+              "zh": "日落渐变",
+              "en": "Sunset gradient"
+            },
+            "s": {
+              "zh": "粉紫橙三段",
+              "en": "Pink, purple and orange"
+            }
           },
           {
-            "t": "透视网格",
-            "s": "无尽公路感"
+            "t": {
+              "zh": "透视网格",
+              "en": "Perspective grid"
+            },
+            "s": {
+              "zh": "无尽公路感",
+              "en": "An endless road ahead"
+            }
           },
           {
-            "t": "铬金字",
-            "s": "金属反光标题"
+            "t": {
+              "zh": "铬金字",
+              "en": "Chrome type"
+            },
+            "s": {
+              "zh": "金属反光标题",
+              "en": "Reflective metallic headlines"
+            }
           }
         ],
         "panel": "chart",
@@ -34265,16 +35072,43 @@
         "scene": "generic",
         "brand": "GoodOldNet",
         "nav": [
-          "Home",
-          "About",
-          "Projects",
-          "Links",
-          "Guestbook"
+          {
+            "zh": "Home",
+            "en": "Home"
+          },
+          {
+            "zh": "About",
+            "en": "About"
+          },
+          {
+            "zh": "Projects",
+            "en": "Projects"
+          },
+          {
+            "zh": "Links",
+            "en": "Links"
+          },
+          {
+            "zh": "Guestbook",
+            "en": "Guestbook"
+          }
         ],
-        "heroTitle": "Welcome to",
-        "heroTitle2": "GoodOldNet!",
-        "heroSub": "一个值得慢慢发现的互联网角落。",
-        "cta": "进入站点",
+        "heroTitle": {
+          "zh": "Welcome to",
+          "en": "Welcome to"
+        },
+        "heroTitle2": {
+          "zh": "GoodOldNet!",
+          "en": "GoodOldNet!"
+        },
+        "heroSub": {
+          "zh": "一个值得慢慢发现的互联网角落。",
+          "en": "A corner of the internet worth exploring slowly."
+        },
+        "cta": {
+          "zh": "进入站点",
+          "en": "Enter the site"
+        },
         "panel": "screen",
         "tokens": {
           "bg": "#c4c4c4",
@@ -34523,29 +35357,71 @@
         "scene": "generic",
         "brand": "WoodNote",
         "nav": [
-          "笔记",
-          "图书馆",
-          "同步"
+          {
+            "zh": "笔记",
+            "en": "Notes"
+          },
+          {
+            "zh": "图书馆",
+            "en": "Library"
+          },
+          {
+            "zh": "同步",
+            "en": "Sync"
+          }
         ],
         "navExt": [
-          "⚙︎"
+          {
+            "zh": "⚙︎",
+            "en": "⚙︎"
+          }
         ],
-        "heroTitle": "Real as Physical",
-        "heroSub": "像真实物件一样可靠、可触。",
-        "cta": "打开面板",
-        "heroCaption": "皮革纹理 · 纸张质感 · 金属旋钮",
+        "heroTitle": {
+          "zh": "Real as Physical",
+          "en": "Real as Physical"
+        },
+        "heroSub": {
+          "zh": "像真实物件一样可靠、可触。",
+          "en": "As dependable and tangible as a real object."
+        },
+        "cta": {
+          "zh": "打开面板",
+          "en": "Open the panel"
+        },
+        "heroCaption": {
+          "zh": "皮革纹理 · 纸张质感 · 金属旋钮",
+          "en": "Leather textures · Paper surfaces · Metal dials"
+        },
         "features": [
           {
-            "t": "拟真书架",
-            "s": "木纹与皮革"
+            "t": {
+              "zh": "拟真书架",
+              "en": "Lifelike shelves"
+            },
+            "s": {
+              "zh": "木纹与皮革",
+              "en": "Woodgrain and leather"
+            }
           },
           {
-            "t": "真实纸张",
-            "s": "书写有阻力"
+            "t": {
+              "zh": "真实纸张",
+              "en": "Real paper"
+            },
+            "s": {
+              "zh": "书写有阻力",
+              "en": "A tactile writing surface"
+            }
           },
           {
-            "t": "物理旋钮",
-            "s": "转动见反馈"
+            "t": {
+              "zh": "物理旋钮",
+              "en": "Physical dials"
+            },
+            "s": {
+              "zh": "转动见反馈",
+              "en": "Feedback with every turn"
+            }
           }
         ],
         "panel": "screen",
@@ -34781,18 +35657,45 @@
         "scene": "vertex",
         "brand": "VERTEX",
         "nav": [
-          "WORK",
-          "STUDIO",
-          "APPROACH",
-          "CONTACT"
+          {
+            "zh": "WORK",
+            "en": "WORK"
+          },
+          {
+            "zh": "STUDIO",
+            "en": "STUDIO"
+          },
+          {
+            "zh": "APPROACH",
+            "en": "APPROACH"
+          },
+          {
+            "zh": "CONTACT",
+            "en": "CONTACT"
+          }
         ],
         "navExt": [
-          "EN / 中文"
+          {
+            "zh": "EN / 中文",
+            "en": "EN / 中文"
+          }
         ],
-        "heroTitle": "IDEAS",
-        "heroTitle2": "BUILD TOMORROW",
-        "heroSub": "用设计构建更好的未来",
-        "cta": "探索项目 →",
+        "heroTitle": {
+          "zh": "IDEAS",
+          "en": "IDEAS"
+        },
+        "heroTitle2": {
+          "zh": "BUILD TOMORROW",
+          "en": "BUILD TOMORROW"
+        },
+        "heroSub": {
+          "zh": "用设计构建更好的未来",
+          "en": "Build a better tomorrow through design"
+        },
+        "cta": {
+          "zh": "探索项目 →",
+          "en": "Explore projects →"
+        },
         "tokens": {
           "bg": "#F2F1ED",
           "fg": "#101010",
@@ -35030,27 +35933,69 @@
         "scene": "generic",
         "brand": "MALL★95",
         "nav": [
-          "音像",
-          "美食广场",
-          "关于"
+          {
+            "zh": "音像",
+            "en": "Media"
+          },
+          {
+            "zh": "美食广场",
+            "en": "Food court"
+          },
+          {
+            "zh": "关于",
+            "en": "About"
+          }
         ],
-        "heroTitle": "WELCOME TO",
-        "heroTitle2": "THE MALL",
-        "heroSub": "消费主义的夏日永不落幕。",
-        "cta": "步入中庭",
-        "heroCaption": "GRID FOREVER. SUNSET NEVER ENDS.",
+        "heroTitle": {
+          "zh": "WELCOME TO",
+          "en": "WELCOME TO"
+        },
+        "heroTitle2": {
+          "zh": "THE MALL",
+          "en": "THE MALL"
+        },
+        "heroSub": {
+          "zh": "消费主义的夏日永不落幕。",
+          "en": "An endless summer in a consumer paradise."
+        },
+        "cta": {
+          "zh": "步入中庭",
+          "en": "Enter the atrium"
+        },
+        "heroCaption": {
+          "zh": "GRID FOREVER. SUNSET NEVER ENDS.",
+          "en": "GRID FOREVER. SUNSET NEVER ENDS."
+        },
         "features": [
           {
-            "t": "网格地平线",
-            "s": "透视无限远"
+            "t": {
+              "zh": "网格地平线",
+              "en": "Grid horizon"
+            },
+            "s": {
+              "zh": "透视无限远",
+              "en": "Perspective to infinity"
+            }
           },
           {
-            "t": "镀铬大字",
-            "s": "液态金属"
+            "t": {
+              "zh": "镀铬大字",
+              "en": "Chrome headlines"
+            },
+            "s": {
+              "zh": "液态金属",
+              "en": "Liquid metal"
+            }
           },
           {
-            "t": "霓虹粉青",
-            "s": "招牌色"
+            "t": {
+              "zh": "霓虹粉青",
+              "en": "Neon pink and cyan"
+            },
+            "s": {
+              "zh": "招牌色",
+              "en": "Signature colors"
+            }
           }
         ],
         "panel": "mountain",
@@ -35286,30 +36231,75 @@
         "scene": "generic",
         "brand": "☆ CyberDream ☆",
         "nav": [
-          "音乐",
-          "装扮",
-          "星球"
+          {
+            "zh": "音乐",
+            "en": "Music"
+          },
+          {
+            "zh": "装扮",
+            "en": "Outfits"
+          },
+          {
+            "zh": "星球",
+            "en": "Planet"
+          }
         ],
         "navExt": [
-          "会员卡"
+          {
+            "zh": "会员卡",
+            "en": "Member card"
+          }
         ],
-        "heroTitle": "Y2K CYBER",
-        "heroTitle2": "DREAM ✦",
-        "heroSub": "千禧年的怀旧未来主义。",
-        "cta": "立即进入",
-        "heroCaption": "金属光泽 · 气泡字 · 荧光小熊",
+        "heroTitle": {
+          "zh": "Y2K CYBER",
+          "en": "Y2K CYBER"
+        },
+        "heroTitle2": {
+          "zh": "DREAM ✦",
+          "en": "DREAM ✦"
+        },
+        "heroSub": {
+          "zh": "千禧年的怀旧未来主义。",
+          "en": "Nostalgic futurism from the turn of the millennium."
+        },
+        "cta": {
+          "zh": "立即进入",
+          "en": "Enter now"
+        },
+        "heroCaption": {
+          "zh": "金属光泽 · 气泡字 · 荧光小熊",
+          "en": "Metallic shine · Bubble type · Neon bears"
+        },
         "features": [
           {
-            "t": "镭射背景",
-            "s": "流动的银紫"
+            "t": {
+              "zh": "镭射背景",
+              "en": "Holographic backdrop"
+            },
+            "s": {
+              "zh": "流动的银紫",
+              "en": "Flowing silver and violet"
+            }
           },
           {
-            "t": "气泡按钮",
-            "s": "圆滚滚的触感"
+            "t": {
+              "zh": "气泡按钮",
+              "en": "Bubble buttons"
+            },
+            "s": {
+              "zh": "圆滚滚的触感",
+              "en": "A soft, rounded feel"
+            }
           },
           {
-            "t": "像素贴纸",
-            "s": "闪星与小熊"
+            "t": {
+              "zh": "像素贴纸",
+              "en": "Pixel stickers"
+            },
+            "s": {
+              "zh": "闪星与小熊",
+              "en": "Sparkling stars and bears"
+            }
           }
         ],
         "panel": "chart",
