@@ -3,8 +3,6 @@ name: Deploy site to interface-atlas-web
 # 源仓库保持 private；构建产物 push 到公开的 gongfpp/interface-atlas-web，
 # 由该仓库的 GitHub Pages（branch: main, /）对外发布。机制与 Iscream → Iscream-web 一致。
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:

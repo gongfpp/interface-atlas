@@ -6,33 +6,32 @@ import { load } from 'js-yaml';
 const read = (file) => readFileSync(new URL(`../../${file}`, import.meta.url), 'utf8');
 const branch = 'dot/atlas-reference-style-scenes';
 
-test('参考风格验收仅允许私有同仓库 PR，不含发布或凭据入口', () => {
+test('参考风格验收仅允许私有同仓库指定分支手动触发，不含发布或凭据入口', () => {
   const text = read('.github/workflows/private-style-qa.yml');
   const workflow = load(text);
-  assert.deepEqual(Object.keys(workflow.on), ['pull_request']);
-  assert.deepEqual(workflow.on.pull_request.branches, ['main']);
+  assert.deepEqual(Object.keys(workflow.on), ['workflow_dispatch']);
+  assert.equal(workflow.on.workflow_dispatch, null);
   assert.deepEqual(workflow.permissions, { contents: 'read' });
-  assert.ok(workflow.concurrency.group.includes('github.event.pull_request.head.sha'), '候选应能独立采集首批截图，不等待旧版全量结束');
+  assert.ok(workflow.concurrency.group.includes('github.sha'), '候选应能独立采集首批截图，不等待旧版全量结束');
   assert.equal(workflow.concurrency['cancel-in-progress'], false);
   const job = workflow.jobs['browser-qa'];
   for (const guard of [
-    "github.event_name == 'pull_request'",
+    "github.event_name == 'workflow_dispatch'",
     "github.repository == 'gongfpp/interface-atlas'",
     'github.event.repository.private == true',
-    'github.event.pull_request.head.repo.full_name == github.repository',
-    `github.event.pull_request.head.ref == '${branch}'`,
+    `github.ref == 'refs/heads/${branch}'`,
   ]) assert.ok(job.if.includes(guard), `缺少私有验收限制：${guard}`);
   assert.deepEqual(job.strategy.matrix.engine, ['chromium', 'firefox', 'webkit']);
   assert.equal(job.env.PUBLIC_LOG_API, 'off');
   for (const variable of ['PUBLIC_UMAMI_SRC', 'PUBLIC_UMAMI_ID', 'PUBLIC_CF_BEACON_TOKEN']) assert.equal(job.env[variable], '');
   const checkout = job.steps.find((step) => step.uses?.startsWith('actions/checkout@'));
-  assert.equal(checkout.with.ref, '${{ github.event.pull_request.head.sha }}');
+  assert.equal(checkout.with.ref, '${{ github.sha }}');
   assert.equal(checkout.with['persist-credentials'], false);
-  assert.doesNotMatch(text, /secrets\.|DEPLOY_KEY|git push|repository_dispatch:|workflow_dispatch:|pull_request_target:/);
+  assert.doesNotMatch(text, /secrets\.|DEPLOY_KEY|git push|repository_dispatch:|pull_request:|push:|pull_request_target:/);
   const artifacts = job.steps.filter((step) => step.uses?.startsWith('actions/upload-artifact@'));
   assert.equal(artifacts.length, 6);
   for (const artifact of artifacts) {
-    assert.ok(artifact.with.name.includes('${{ github.event.pull_request.head.sha }}'));
+    assert.ok(artifact.with.name.includes('${{ github.sha }}'));
     assert.equal(artifact.with['retention-days'], 7);
   }
   const targetIndex = job.steps.findIndex((step) => step.id === 'target');
@@ -54,10 +53,10 @@ test('参考风格验收仅允许私有同仓库 PR，不含发布或凭据入�
 
 test('当前需求分支不能自动或手动公开预览，PR 不触发正式发布', () => {
   const preview = load(read('.github/workflows/deploy-preview.yml'));
-  assert.ok(preview.on.push['branches-ignore'].includes(branch));
+  assert.deepEqual(Object.keys(preview.on), ['workflow_dispatch']);
   assert.ok(preview.jobs['build-and-deploy'].if.includes(`github.ref != 'refs/heads/${branch}'`));
   const release = load(read('.github/workflows/deploy-web.yml'));
-  assert.deepEqual(release.on.push.branches, ['main']);
+  assert.deepEqual(Object.keys(release.on), ['workflow_dispatch']);
   assert.equal(release.on.pull_request, undefined);
   assert.equal(release.on.pull_request_target, undefined);
   assert.equal(release.on.workflow_run, undefined);

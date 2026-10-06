@@ -3,8 +3,6 @@ name: Deploy preview to interface-atlas-web
 # feature/预览分支 → 部署到公开仓库的子目录 /interface-atlas-web/preview/<branch>/
 # 生产（main）只更新根目录，且生产 rsync 已排除 preview/，两者互不删除。
 on:
-  push:
-    branches-ignore: [main, dot/atlas-reference-style-scenes]
   workflow_dispatch:
 
 permissions:

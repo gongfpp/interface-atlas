@@ -1,21 +1,19 @@
 name: 参考风格私有三引擎验收
 
-# 只验收此需求的同仓库 PR。没有发布入口，不使用 pull_request_target 或部署凭据。
+# 仅手动验收此需求的私有同仓库指定分支。没有发布入口，不使用 pull_request_target 或部署凭据。
 on:
-  pull_request:
-    branches: [main]
-    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: atlas-reference-style-qa-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}
+  group: atlas-reference-style-qa-${{ github.ref }}-${{ github.sha }}
   cancel-in-progress: false
 
 jobs:
   browser-qa:
-    if: ${{ github.event_name == 'pull_request' && github.repository == 'gongfpp/interface-atlas' && github.event.repository.private == true && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'dot/atlas-reference-style-scenes' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.repository == 'gongfpp/interface-atlas' && github.event.repository.private == true && github.ref == 'refs/heads/dot/atlas-reference-style-scenes' }}
     runs-on: ubuntu-latest
     timeout-minutes: 75
     strategy:
@@ -23,7 +21,7 @@ jobs:
       matrix:
         engine: [chromium, firefox, webkit]
     env:
-      QA_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+      QA_CANDIDATE_SHA: ${{ github.sha }}
       QA_BROWSER: ${{ matrix.engine }}
       PUBLIC_LOG_API: 'off'
       PUBLIC_UMAMI_SRC: ''
@@ -33,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.sha }}
           persist-credentials: false
       - uses: actions/setup-node@v7
         with:
@@ -82,7 +80,7 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: atlas-style-quick-${{ matrix.engine }}-${{ github.event.pull_request.head.sha }}
+          name: atlas-style-quick-${{ matrix.engine }}-${{ github.sha }}
           path: |
             qa-evidence/*.txt
             qa-evidence/quick-style-scenes-results.json
@@ -110,7 +108,7 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: atlas-style-desktop-${{ matrix.engine }}-${{ github.event.pull_request.head.sha }}
+          name: atlas-style-desktop-${{ matrix.engine }}-${{ github.sha }}
           path: |
             qa-evidence/*.txt
             qa-evidence/style-scenes-results.json
@@ -123,7 +121,7 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: atlas-style-narrow-${{ matrix.engine }}-${{ github.event.pull_request.head.sha }}
+          name: atlas-style-narrow-${{ matrix.engine }}-${{ github.sha }}
           path: |
             qa-evidence/*.txt
             qa-evidence/style-scenes-results.json
@@ -137,7 +135,7 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: atlas-style-diagnostics-${{ matrix.engine }}-${{ github.event.pull_request.head.sha }}
+          name: atlas-style-diagnostics-${{ matrix.engine }}-${{ github.sha }}
           path: |
             qa-evidence/
             style-scene-results/**/*.json
@@ -180,7 +178,7 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: atlas-style-regression-images-${{ matrix.engine }}-${{ github.event.pull_request.head.sha }}
+          name: atlas-style-regression-images-${{ matrix.engine }}-${{ github.sha }}
           path: |
             qa-evidence/*.txt
             qa-evidence/regression-screenshots.sha256
@@ -192,7 +190,7 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: atlas-style-regression-data-${{ matrix.engine }}-${{ github.event.pull_request.head.sha }}
+          name: atlas-style-regression-data-${{ matrix.engine }}-${{ github.sha }}
           path: |
             qa-evidence/
             regression-results/**/*.json
