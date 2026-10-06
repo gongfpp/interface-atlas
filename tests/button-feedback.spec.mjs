@@ -25,12 +25,16 @@ for (const [locale, width] of [['zh', 390], ['zh', 1280], ['en', 390], ['en', 12
         expect(colors.length).toBeGreaterThan(0);
         expect(colors.every(color => color === 'rgb(8, 5, 17)')).toBe(true);
       }
+      // 时钟暂停时，先把操作区稳定在真实视口内，避免 WebKit 焦点平滑滚动与指针坐标竞争。
+      // 真实时钟和浏览器自动滚动另由下面的原生点击用例覆盖。
+      await canvas.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
       await primary.focus();
       await page.keyboard.press('Space');
       await expect(primary).toBeDisabled();
       await expect(primary).toHaveAttribute('aria-busy', 'true');
       await expect(status).toContainText(text.pending);
       await canvas.getByRole('button', { name: text.cancel, exact: true }).click();
+      await expect(status).toContainText(text.cancelled);
       await page.clock.fastForward(1200);
       await expect(status).toContainText(text.cancelled);
       await expect(primary).toBeEnabled();
@@ -42,6 +46,7 @@ for (const [locale, width] of [['zh', 390], ['zh', 1280], ['en', 390], ['en', 12
       await expect(status).toContainText(text.success);
       await lab.getByRole('button', { name: text.reset, exact: true }).click();
       await expect(status).toContainText(text.idle);
+      await canvas.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
       await primary.click();
       await expect(primary).toBeDisabled();
       await expect(status).toContainText(text.pending);
@@ -64,12 +69,14 @@ for (const [locale, width] of [['zh', 390], ['zh', 1280], ['en', 390], ['en', 12
     await page.clock.pauseAt(new Date('2026-01-01T01:00:00Z'));
     const canvas = page.locator('.demo-content');
     const save = canvas.getByRole('button', { name: text.save, exact: true });
+    await canvas.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
     const before = await save.boundingBox();
     await save.press('Enter');
     await expect(save).toBeDisabled();
     const during = await save.boundingBox();
     expect(Math.abs(before.width - during.width)).toBeLessThanOrEqual(1);
     await canvas.getByRole('button', { name: text.cancel, exact: true }).click();
+    await expect(canvas.getByRole('status')).toContainText(text.cancelled);
     await page.clock.fastForward(1200);
     await expect(canvas.getByRole('status')).toContainText(text.cancelled);
     await save.click();
@@ -89,5 +96,40 @@ for (const [locale, width] of [['zh', 390], ['zh', 1280], ['en', 390], ['en', 12
     await expect(canvas.locator('button:disabled')).toHaveCount(8);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     if (locale === 'en') expect(await canvas.innerText()).not.toMatch(/[\u4e00-\u9fff]/);
+  });
+}
+
+for (const style of ['neobrutalism', 'flat-design']) {
+  test(`en 390px ${style}：真实时钟原生取消不被延迟成功覆盖`, async ({ page }, testInfo) => {
+    await page.setViewportSize({ width: 390, height: 900 });
+    await page.goto(copy.en.path);
+    const lab = page.locator('[data-solution-lab]');
+    await lab.locator(`[data-style="${style}"]`).click();
+    const canvas = lab.locator('.demo-content');
+    const status = canvas.getByRole('status');
+    await expect(status).toContainText(copy.en.idle);
+    // 保留原生时钟、正常平滑滚动及 Playwright 的真实指针操作，不瞬移、不强制派发事件。
+    await page.evaluate(() => {
+      window.__buttonInputEvidence = [];
+      for (const type of ['pointerdown', 'pointerup', 'click']) document.addEventListener(type, event => {
+        const button = event.target.closest?.('.demo-content button');
+        if (button) window.__buttonInputEvidence.push({ type, target: button.textContent, time: Date.now(), x: event.clientX, y: event.clientY, scrollY });
+      }, true);
+    });
+    try {
+      await canvas.getByRole('button').first().click();
+      await expect(status).toContainText(copy.en.pending);
+      await canvas.getByRole('button', { name: copy.en.cancel, exact: true }).click();
+      await expect(status).toContainText(copy.en.cancelled);
+      // 控制器的真实延迟是 900ms；等待超过该边界验证旧回调不能覆盖取消结果。
+      await page.waitForTimeout(1100);
+      await expect(status).toContainText(copy.en.cancelled);
+      await expect(canvas.getByRole('button').first()).toBeEnabled();
+    } finally {
+      await testInfo.attach('native-button-input.json', {
+        body: JSON.stringify(await page.evaluate(() => ({ events: window.__buttonInputEvidence, status: document.querySelector('.demo-content [role="status"]')?.textContent, scrollY })), null, 2),
+        contentType: 'application/json',
+      });
+    }
   });
 }

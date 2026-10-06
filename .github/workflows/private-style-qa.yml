@@ -149,6 +149,16 @@ jobs:
             style-quick-results/**/error-context.md
           if-no-files-found: error
           retention-days: 7
+      - name: 重复复核按钮原生取消与连续路由的首轮失败
+        if: ${{ !cancelled() && steps.build.outcome == 'success' && steps.install.outcome == 'success' }}
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: qa-evidence/targeted-regression-results.json
+          DEBUG: pw:browser
+        run: >-
+          npx playwright test --config=playwright.style-qa.config.mjs --project="$QA_BROWSER"
+          tests/button-feedback.spec.mjs tests/responsive.spec.mjs
+          --grep 'en 390px (neobrutalism|flat-design)|430px across top-level routes'
+          --repeat-each=3 --output=targeted-regression-results
       - name: 全量单元、类型、Lint 与搜索回归
         if: ${{ !cancelled() && steps.build.outcome == 'success' && matrix.engine == 'chromium' }}
         run: |
@@ -188,5 +198,9 @@ jobs:
             regression-results/**/*.json
             regression-results/**/*.zip
             regression-results/**/error-context.md
+            targeted-regression-results/**/*.json
+            targeted-regression-results/**/*.zip
+            targeted-regression-results/**/test-failed-*.png
+            targeted-regression-results/**/error-context.md
           if-no-files-found: error
           retention-days: 7
