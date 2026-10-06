@@ -15,8 +15,8 @@ for (const name of workflows) {
   }
 }
 const ci = readFileSync(root + 'ci.yml', 'utf8');
-assert.match(ci, /on:\n  push:\n    branches: \[dot\/atlas-private-browser-qa\]\n\npermissions:/);
-assert.doesNotMatch(ci, /secrets\.|DEPLOY_KEY|git push|workflow_dispatch|pull_request:/);
+assert.match(ci, /on:\n  workflow_dispatch:\n\npermissions:/);
+assert.doesNotMatch(ci, /secrets\.|DEPLOY_KEY|git push|push:|pull_request:/);
 assert.match(ci, /github\.event\.repository\.private == true/);
 assert.match(ci, /github\.ref == 'refs\/heads\/dot\/atlas-private-browser-qa'/);
 assert.match(ci, /persist-credentials: false/);
@@ -26,7 +26,7 @@ const ciJobs = ci.split(/^jobs:\n/m)[1].split(/^  [\w-]+:\n/m).slice(1);
 assert.equal(ciJobs.length, 2);
 for (const job of ciJobs) {
   const header = job.split(/^    steps:/m)[0];
-  assert.match(header, /github\.event_name == 'push'/);
+  assert.match(header, /github\.event_name == 'workflow_dispatch'/);
   assert.match(header, /github\.repository == 'gongfpp\/interface-atlas'/);
   assert.match(header, /github\.event\.repository\.private == true/);
   assert.match(header, /github\.ref == 'refs\/heads\/dot\/atlas-private-browser-qa'/);
@@ -42,4 +42,4 @@ for (const name of tests) {
   assert.doesNotMatch(content, /from ['"]@playwright\/test['"]/);
   assert.match(content, /from ['"]\.\/helpers\/private-browser\.mjs['"]/);
 }
-console.log(`三个 workflow 已校验：发布 jobs 关闭，CI 仅私有 QA 分支，${tests.length} 个浏览器文件使用本地请求隔离。`);
+console.log(`三个 workflow 已校验：发布 jobs 关闭，CI 仅手动私有 QA 分支，${tests.length} 个浏览器文件使用本地请求隔离。`);
