@@ -80,6 +80,7 @@
 }
 .scene-page {
   height: 32.2cqw;
+  font-size: 1.3cqw;
   position: relative;
   overflow: hidden;
   background: #fff;

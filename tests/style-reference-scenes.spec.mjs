@@ -31,24 +31,38 @@ async function assertNoOverflow(page, label) {
 }
 
 async function assertSceneContentGap(scene, slug) {
-  const target = slug === 'neumorphism' ? '.mellow-copy .scene-pill'
-    : slug === 'glassmorphism' ? '.aurora-graph > small' : null;
-  if (!target) return;
-  const boundary = slug === 'neumorphism' ? '.scene-page' : '.aurora-graph';
+  const checks = slug === 'neumorphism'
+    ? [{ target: '.mellow-copy .scene-pill', boundary: '.scene-page' }]
+    : slug === 'glassmorphism' ? [
+      { target: '.aurora-graph > small', boundary: '.aurora-graph' },
+      { target: '.aurora-features', boundary: '.scene-page' },
+      { target: '.glass-feature:last-child p', boundary: '.aurora-features' },
+    ] : [];
+  if (!checks.length) return;
   const geometry = await scene.evaluate((element, selectors) => {
     const sceneRect = element.getBoundingClientRect();
-    const contentRect = element.querySelector(selectors.target).getBoundingClientRect();
-    const boundaryRect = element.querySelector(selectors.boundary).getBoundingClientRect();
-    return {
-      sceneWidth: sceneRect.width,
-      bottom: contentRect.bottom,
-      boundaryBottom: boundaryRect.bottom,
-      gap: boundaryRect.bottom - contentRect.bottom,
-      minimumGap: sceneRect.width * 0.007,
+    const rect = node => {
+      const box = node.getBoundingClientRect();
+      return { top: box.top, right: box.right, bottom: box.bottom, left: box.left };
     };
-  }, { target, boundary });
+    return selectors.map(({ target, boundary }) => {
+      const contentRect = rect(element.querySelector(target));
+      const boundaryRect = rect(element.querySelector(boundary));
+      return {
+        target, boundary, sceneWidth: sceneRect.width, contentRect, boundaryRect,
+        gap: boundaryRect.bottom - contentRect.bottom,
+        minimumGap: sceneRect.width * 0.007,
+      };
+    });
+  }, checks);
   await test.info().attach(`${slug}-content-gap.json`, { body: JSON.stringify(geometry, null, 2), contentType: 'application/json' });
-  expect(geometry.gap, `${slug} 文案/按钮底部应完整显示并留出至少场景宽度 0.7% 的间隙：${JSON.stringify(geometry)}`).toBeGreaterThanOrEqual(geometry.minimumGap - 0.5);
+  for (const item of geometry) {
+    const context = `${slug} ${item.target} 应完整显示并留出至少场景宽度 0.7% 的底部间隙：${JSON.stringify(item)}`;
+    expect(item.gap, context).toBeGreaterThanOrEqual(item.minimumGap - 0.5);
+    expect(item.contentRect.top, context).toBeGreaterThanOrEqual(item.boundaryRect.top - 0.5);
+    expect(item.contentRect.left, context).toBeGreaterThanOrEqual(item.boundaryRect.left - 0.5);
+    expect(item.contentRect.right, context).toBeLessThanOrEqual(item.boundaryRect.right + 0.5);
+  }
 }
 
 async function readyScene(scene, locale) {
@@ -85,9 +99,9 @@ async function capture(page, target, label, testInfo) {
     // 高于视口的区块截图会把真实 sticky 页头拍到图中段；返回页首后保留完整页面与真实页头。
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
     await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
-    await page.screenshot({ path: screenshotPath, fullPage: true, animations: 'disabled' });
+    await page.screenshot({ path: screenshotPath, fullPage: true, animations: 'disabled', scale: 'css' });
   } else {
-    await target.screenshot({ path: screenshotPath, animations: 'disabled' });
+    await target.screenshot({ path: screenshotPath, animations: 'disabled', scale: 'css' });
   }
   await testInfo.attach(file, { path: screenshotPath, contentType: 'image/png' });
   if (label.startsWith('home-')) {
@@ -105,13 +119,13 @@ async function capture(page, target, label, testInfo) {
     expect(viewportGeometry.headerBottom, JSON.stringify(viewportGeometry)).toBeLessThanOrEqual(viewportGeometry.sceneTop);
     const viewportFile = `${candidateCommit}-${testInfo.project.name}-${label.replace('home-', 'home-style-viewport-')}.png`;
     const viewportPath = testInfo.outputPath(viewportFile);
-    await page.screenshot({ path: viewportPath, animations: 'disabled' });
+    await page.screenshot({ path: viewportPath, animations: 'disabled', scale: 'css' });
     await testInfo.attach(viewportFile, { path: viewportPath, contentType: 'image/png' });
     screenshotFiles.push(viewportFile);
   }
   await testInfo.attach(`${label}-source.json`, {
     body: JSON.stringify({
-      candidateCommit, engine: testInfo.project.name, url: page.url(), viewport: page.viewportSize(), screenshotFiles, viewportGeometry,
+      candidateCommit, engine: testInfo.project.name, url: page.url(), viewport: page.viewportSize(), screenshotScale: 'css', screenshotFiles, viewportGeometry,
       sceneSlugs: await target.locator('[data-style-scene]').evaluateAll((elements) => elements.map((element) => element.dataset.styleScene)),
     }, null, 2),
     contentType: 'application/json',

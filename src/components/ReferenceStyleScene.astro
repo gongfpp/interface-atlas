@@ -87,7 +87,7 @@ const nav = slug === 'swiss-style' ? ['WORK', 'STUDIO', 'APPROACH', 'CONTACT']
     </div>}
 
     {slug === 'neumorphism' && <div class="mellow-body">
-      <div class="mellow-copy"><p class="scene-title">{l('让专注','Make focus')}<br/>{l('成为一种日常','an everyday ritual.')}</p><p class="scene-description">{l('简洁的工具，安静的体验。','Simple tools. A quieter experience.')}<br/>{l('帮助你更好地管理时间与生活。','More time for the things that matter.')}</p><span class="scene-pill">{l('立即体验','Explore Mellow')} →</span></div>
+      <div class="mellow-copy"><p class="scene-title">{l('让专注','Make focus')}<br/>{l('成为一种日常','a daily ritual.')}</p><p class="scene-description">{l('简洁的工具，安静的体验。','Simple tools. A quieter experience.')}<br/>{l('帮助你更好地管理时间与生活。','More time for the things that matter.')}</p><span class="scene-pill">{l('立即体验','Explore Mellow')} →</span></div>
       <div class="mellow-weather"><svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="30" cy="30" r="10"/><path d="M30 4v9m0 34v9M4 30h9m34 0h9M11 11l7 7m24 24 7 7M11 49l7-7m24-24 7-7"/></svg><p>{l('今天天气不错','A lovely day ahead.')}<br/>{l('保持好心情','Take a little breath.')}</p></div>
       <div class="mellow-clock"><div class="clock-inset"><i></i><strong>10:24</strong><span>{l('专注中','Stay focused')}</span></div></div>
       <div class="mellow-tools">{[['◴',l('专注','Focus')],['▣',l('任务','Tasks')],['▥',l('统计','Stats')],['⚙',l('设置','Settings')]].map(([icon,label],i)=><div class:list={{active:i===0}}><span>{icon}</span>{label}</div>)}</div>
