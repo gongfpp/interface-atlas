@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useSearch, type SearchDoc } from '@/lib/use-search';
 import { groupResults, indexById, SEARCH_SUGGESTIONS, TYPE_LABEL } from '@/lib/search-meta';
 import { localePath } from '@/lib/i18n';
+import { trackSearchResult } from '@/lib/track';
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -67,6 +68,7 @@ export default function SearchDialog({ locale, autoOpen = false }: { locale: 'zh
   const indexMap = useMemo(() => indexById(results), [results]);
 
   const go = (doc: SearchDoc) => {
+    trackSearchResult(doc.type, doc.id, (indexMap.get(`${doc.type}/${doc.id}`) ?? 0) + 1, 'search-dialog');
     window.location.href = localePath(`/${doc.type}/${doc.id}`, locale);
   };
 
@@ -182,7 +184,7 @@ export default function SearchDialog({ locale, autoOpen = false }: { locale: 'zh
                 {TYPE_LABEL[type]?.[locale] ?? type}
               </p>
               {items.map((r) => {
-                const i = indexMap.get(r.doc.id) ?? 0;
+                const i = indexMap.get(`${r.doc.type}/${r.doc.id}`) ?? 0;
                 return (
                   <button
                     key={r.doc.id}

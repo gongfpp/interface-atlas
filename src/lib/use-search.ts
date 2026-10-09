@@ -86,19 +86,23 @@ export function useSearch(initialQuery = '') {
     return () => clearTimeout(t);
   }, [query, docs]);
 
-  // 查询日志回流（PRD §9.3）：只记录无结果 / 弱命中查询，防止把强命中原文全部入库
+  // 输入稳定后记录结果数量，不记录原文；弱命中原文仅走独立日志端点。
   useEffect(() => {
     if (!query.trim() || !docs) return;
-    const top = results[0];
-    const weak = !top || top.kw < 30;
-    if (!weak) return;
-    track('search-miss', { results: results.length });
     if (logTimer.current) clearTimeout(logTimer.current);
-    logTimer.current = setTimeout(() => logSearch(query), 900);
+    logTimer.current = setTimeout(() => {
+      const hits = (search(query, docs) as SearchHit[]).filter(hit => hit.kw > 0).slice(0, 12);
+      const weak = !hits[0] || hits[0].kw < 30;
+      track('search', { query_length: query.trim().length, results: hits.length, weak });
+      if (weak) {
+        track('search-miss', { results: hits.length });
+        logSearch(query);
+      }
+    }, 900);
     return () => {
       if (logTimer.current) clearTimeout(logTimer.current);
     };
-  }, [query, results, docs]);
+  }, [query, docs]);
 
   return { query, setQuery, results, active, setActive, loadingIndex: !docs && !loadError, loadError, ensureIndex };
 }

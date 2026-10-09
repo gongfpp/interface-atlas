@@ -30,7 +30,7 @@ const themeScript = `
 ---
 
 <!doctype html>
-<html lang={locale === 'zh' ? 'zh-CN' : 'en'}>
+<html lang={locale === 'zh' ? 'zh-CN' : 'en'} data-analytics-preview={import.meta.env.PUBLIC_PREVIEW === 'true' ? 'true' : undefined}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -43,11 +43,13 @@ const themeScript = `
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
     <script is:inline set:html={themeScript} />
     {/* Umami 埋点（PRD §27a）：PUBLIC_UMAMI_SRC + PUBLIC_UMAMI_ID 配置后启用 */}
-    {import.meta.env.PUBLIC_UMAMI_SRC && import.meta.env.PUBLIC_UMAMI_ID && (
-      <script is:inline defer src={import.meta.env.PUBLIC_UMAMI_SRC} data-website-id={import.meta.env.PUBLIC_UMAMI_ID}></script>
+    {import.meta.env.PUBLIC_PREVIEW !== 'true' && import.meta.env.PUBLIC_UMAMI_SRC && import.meta.env.PUBLIC_UMAMI_ID && (
+      <script is:inline defer src={import.meta.env.PUBLIC_UMAMI_SRC} data-website-id={import.meta.env.PUBLIC_UMAMI_ID}
+        data-exclude-search="true" data-exclude-hash="true" data-do-not-track="true" data-performance="true"
+        onload="window.dispatchEvent(new Event('ia:analytics-ready'))"></script>
     )}
     {/* Cloudflare Web Analytics（无 cookie 访客统计）：PUBLIC_CF_BEACON_TOKEN 配置后启用 */}
-    {import.meta.env.PUBLIC_CF_BEACON_TOKEN && (
+    {import.meta.env.PUBLIC_PREVIEW !== 'true' && import.meta.env.PUBLIC_CF_BEACON_TOKEN && (
       <script
         is:inline
         defer
@@ -72,5 +74,9 @@ const themeScript = `
     </main>
     <Footer locale={locale} />
     <SearchDialog client:idle locale={locale} autoOpen={autoOpenSearch} />
+    <script>
+      import { startAnalytics } from '@/lib/analytics';
+      startAnalytics();
+    </script>
   </body>
 </html>

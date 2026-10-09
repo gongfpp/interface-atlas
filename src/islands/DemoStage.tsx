@@ -34,7 +34,7 @@ export default function DemoStage({
   const en = locale === "en";
   const visibleModes = modes.length ? modes : (["default"] as DemoMode[]);
   return (
-    <div className="demo-workbench">
+    <div className="demo-workbench" data-track-region={`demo-${component}`}>
       <div className="demo-toolbar">
         <div
           className="flex flex-wrap gap-1"
@@ -44,6 +44,7 @@ export default function DemoStage({
           {visibleModes.length > 1 && visibleModes.map((m) => (
             <button
               key={m}
+              data-track-label={`demo-mode-${m}`}
               aria-pressed={mode === m}
               onClick={() => {
                 setMode(m);
@@ -58,6 +59,7 @@ export default function DemoStage({
         <div className="flex flex-wrap gap-1">
           <button
             className="demo-tool"
+            data-track-label="demo-width-toggle"
             aria-pressed={narrow}
             onClick={() => setNarrow(!narrow)}
           >
@@ -65,6 +67,7 @@ export default function DemoStage({
           </button>
           <button
             className="demo-tool"
+            data-track-label="demo-reset"
             onClick={() => {
               setRevision((r) => r + 1);
               setPart(null);
@@ -111,6 +114,7 @@ export default function DemoStage({
               <li key={label}>
                 <button
                   className="anatomy-part"
+                  data-track-label={`demo-anatomy-${i + 1}`}
                   aria-pressed={part === i + 1}
                   onMouseEnter={() => setPart(i + 1)}
                   onMouseLeave={() => setPart(null)}

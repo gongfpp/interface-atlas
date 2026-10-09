@@ -6,7 +6,7 @@
 
 源代码仓库 `gongfpp/interface-atlas` 为 **private**，只保存源码与 CI；对外发布走公开的构建仓库 `gongfpp/interface-atlas-web`（与 `Iscream` → `Iscream-web` 同一模式）：
 
-- 源仓库 `.github/workflows/deploy-web.yml` 在 push 到 `main` 时构建，再把 `dist/` **增量提交**到公开仓库的 `main` 分支（clone 现有仓库 → rsync 覆盖 → commit → push，不再 force-push）。
+- 源仓库 `.github/workflows/deploy-web.yml` 在手动触发并选择 `main` 时验证、构建，再把 `dist/` **增量提交**到公开仓库的 `main` 分支（clone 现有仓库 → rsync 覆盖 → commit → push，不再 force-push）。常规验证本地优先，push 本身不会触发发布。
   - 为什么：GitHub Pages 对 HTML 有约 10 分钟缓存。若每次都 force-push 覆盖整棵树，旧的文件名带 hash 的 `/_astro/*.css|js` 会被删除，而缓存里的旧 HTML 仍引用它们，导致这段时间内页面拿不到 CSS（无样式）。增量提交会保留这些旧资源，等缓存过期自然淘汰。
   - 移除旧页面 HTML 仍会被 rsync `--delete` 清掉，只有 `_astro` 下的 hash 资源会被保留。
 
@@ -16,7 +16,7 @@
 
 ### 预览部署（feature 分支）
 
-`deploy-preview.yml` 在推送到非 `main` 分支时，把该分支构建到公开仓库的子目录 `/interface-atlas-web/preview/<branch>/`：
+`deploy-preview.yml` 手动触发并选择 feature 分支时，把该分支构建到公开仓库的子目录 `/interface-atlas-web/preview/<branch>/`：
 
 - 构建时注入 `PUBLIC_BASE_PATH=/interface-atlas-web/preview/<branch>`、`PUBLIC_PREVIEW=true`，因此所有站内链接/资源都带预览前缀，并输出 `<meta name="robots" content="noindex, nofollow">`（预览不进 sitemap、不被索引）。
 - 生产发布的 rsync 带 `--exclude=preview`，预览目录不会被正式部署删除；预览只 `--delete` 自己那层目录。
@@ -41,7 +41,7 @@ analytics 变量要配在**源仓库** **Settings → Secrets and variables → 
 - `PUBLIC_UMAMI_ID`：Umami 网站 ID
 - 可选 `PUBLIC_CF_BEACON_TOKEN`：Cloudflare Web Analytics token（支持非 Cloudflare 站点，无 cookie）
 
-配好后重新运行 “Deploy site to interface-atlas-web” 工作流即可生效；未配置则自动跳过。站内已内置无 PII 事件：`search-miss`、`prompt-copy`。
+配好后重新运行 “Deploy site to interface-atlas-web” 工作流即可生效；未配置则自动跳过。访问/时长/退出、全局点击、首页去向、区块曝光、搜索结果与复制事件，以及后台查看方式、指标口径和漏报边界见 [访问与行为统计](./analytics.md)。预览不采集，自动 pageview 排除查询参数与 hash。
 命令行设置：`gh variable set PUBLIC_UMAMI_SRC --body '…'`、`gh variable set PUBLIC_UMAMI_ID --body '…'`。
 
 ## Cloudflare Pages（可选）
@@ -72,8 +72,7 @@ analytics 变量要配在**源仓库** **Settings → Secrets and variables → 
 - `PUBLIC_UMAMI_SRC`: 如 `https://analytics.example.com/script.js`
 - `PUBLIC_UMAMI_ID`: Umami 网站 ID
 
-两个都配置后，BaseLayout 自动注入脚本。自定义事件（搜索、Prompt 复制）已通过 `/api/log-*` + sendBeacon 上报，不依赖 Umami 特殊配置。
-配置 Umami 后，站内还会上报两个无 PII 的聚合事件：`search-miss`（弱命中/无结果次数）、`prompt-copy`（概念 + 层级）。
+两个都配置后，BaseLayout 自动注入脚本。行为事件直接发给 Umami；`/api/log-*` + sendBeacon 为独立的查询原文/复制聚合落库通道，只有 Cloudflare Functions 部署启用。完整事件清单与指标口径见 [访问与行为统计](./analytics.md)。
 
 ### 访客统计（Cloudflare Web Analytics）
 

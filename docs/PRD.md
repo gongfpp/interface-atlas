@@ -383,14 +383,11 @@ Motion 播放器（Play / Replay / Slow Motion / Before-After）
 
 ## 27a. 埋点与度量（v0.2 新增）
 
-§37 的指标要求 P0 具备埋点。实现：**Umami 自定义事件**，搜索查询原文经 Cloudflare KV/D1 落库（§9.3）。事件清单：
+§37 的指标通过 **Umami 自动 pageview + 自定义事件**采集。生产 GitHub Pages 直接发给已配置的 Umami Cloud，关闭 `/api/log-*`；Cloudflare 部署才可启用弱命中查询的清洗与 TTL 日志（§9.3）。
 
-- 搜索（含查询原文、结果点击）
-- Concept 浏览、Related 点击
-- Demo 交互、Motion 播放器操作
-- Prompt 复制（含层级：basic / design / implementation / agent）
+覆盖到达/离开、可见与活跃时长、心跳、后台切换、滚动深度、区块曝光、点击控件及坐标、站内/站外跳转、首页去向、搜索结果数量与排名、Demo/参考册操作和成功 Prompt 复制。事件字段、统计口径、后台查看和验证方式以 [访问与行为统计](./analytics.md) 为准。
 
-匿名 ID 即可，不采集个人信息。
+不上传输入原文、参考册正文或评论；自动 pageview 排除查询参数与 hash。页面访问 ID 随机且仅保存在内存中；尊重 Do Not Track 和 Umami 排除设置，预览不采集，页脚提供说明。
 
 # 28. P1
 

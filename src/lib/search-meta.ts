@@ -35,10 +35,10 @@ export function groupResults(results: SearchHit[]): Array<[string, SearchHit[]]>
   );
 }
 
-/** id → 在扁平结果中的下标（键盘上下键的顺序基准） */
+/** type/id → 扁平结果下标；图库与概念可能同名，不能只用 id。 */
 export function indexById(results: SearchHit[]): Map<string, number> {
   const map = new Map<string, number>();
-  results.forEach((r, i) => map.set(r.doc.id, i));
+  results.forEach((r, i) => map.set(`${r.doc.type}/${r.doc.id}`, i));
   return map;
 }
 

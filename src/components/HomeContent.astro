@@ -35,7 +35,7 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
 );
 ---
 
-<section class="home-hero">
+<section class="home-hero" data-track-region="home-hero">
   <div class="min-w-0">
     <p class="mb-5 font-mono text-[10px] tracking-[.22em] text-accent">A FIELD GUIDE TO DIGITAL INTERFACES</p>
     <h1 class="font-serif text-4xl font-semibold leading-[1.2] tracking-tight md:text-5xl">{locale === 'zh' ? '看见好设计，' : 'Discover the design.'}<br/><span class="text-accent">{locale === 'zh' ? '也看懂好设计。' : 'Understand the details.'}</span></h1>
@@ -56,14 +56,14 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
   <div class="grid grid-cols-1 gap-4 md:grid-cols-3">{(locale === 'zh' ? [['01','发现','按风格、组件或口语描述找到灵感。'],['02','体验','切换形式与尺寸，在真实交互中理解细节。'],['03','实现','复制说明与 Prompt，接入自己的项目。']] : [['01','Discover','Find an idea by style, component or plain language.'],['02','Explore','Try forms and sizes through real interactions.'],['03','Build','Bring the guidance and prompts into your own project.']]).map(([num,title,desc]) => <div class="flex gap-4"><span class="pt-1 font-mono text-xs text-accent">{num}</span><div><p class="text-sm font-medium">{title}</p><p class="mt-1 text-xs leading-6 text-ink-3">{desc}</p></div></div>)}</div>
 </section>
 
-<section class="home-tasks" aria-labelledby="home-tasks-heading">
+<section class="home-tasks" aria-labelledby="home-tasks-heading" data-track-region="home-tasks">
   <h2 id="home-tasks-heading">{locale === 'zh' ? '先说说，你想完成什么？' : 'Start with what you want to do'}</h2>
   <p>{locale === 'zh' ? '不用先记住术语。沿着一条任务路径，试清楚、选下来，再把说明带走。' : 'No vocabulary required. Follow a task, try the details, then take the brief with you.'}</p>
   <div class="home-task-grid">{TASK_GUIDES.map((guide, index) => <a class="home-task-card" href={localePath(`/tasks/${guide.id}`, locale)}><span class="task-number">0{index + 1} / START HERE</span><strong>{guide.title[locale]}</strong><p>{guide.intro[locale]}</p><span>{locale === 'zh' ? '打开精选路径' : 'Open the curated path'} →</span></a>)}</div>
 </section>
 
 <!-- 风格 = 首页主视觉 -->
-<section class="pb-16" data-home-styles>
+<section class="pb-16" data-home-styles data-track-region="home-styles">
   <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
     <div>
       <p class="mb-2 font-mono text-[10px] tracking-[.2em] text-ink-3">A FIELD GUIDE TO VISUAL LANGUAGES</p>
@@ -151,6 +151,7 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
 <section class="pb-20">
   <button
     id="random-btn"
+    data-track-label="random-explore"
     type="button"
     data-entries={JSON.stringify(allIds)}
     data-locale={locale}
@@ -160,12 +161,17 @@ const allIds: Array<{ type: string; id: string }> = all.flatMap((g) =>
   </button>
 </section>
 
-<script is:inline define:vars={{ base: import.meta.env.BASE_URL.replace(/\/+$/, '') }}>
+<script>
+  import { withBase } from '@/lib/i18n';
+  import { trackNavigation } from '@/lib/track';
   document.getElementById('random-btn')?.addEventListener('click', function () {
-    const entries = JSON.parse(this.dataset.entries || '[]');
+    const button = this as HTMLButtonElement;
+    const entries = JSON.parse(button.dataset.entries || '[]');
     if (!entries.length) return;
     const pick = entries[Math.floor(Math.random() * entries.length)];
-    const prefix = this.dataset.locale === 'zh' ? '' : '/en';
-    window.location.href = `${base}${prefix}/${pick.type}/${pick.id}`;
+    const prefix = button.dataset.locale === 'zh' ? '' : '/en';
+    const destination = `${prefix}/${pick.type}/${pick.id}`;
+    trackNavigation(destination, 'random-explore');
+    window.location.href = withBase(destination);
   });
 </script>

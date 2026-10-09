@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'reac
 import { useSearch, type SearchDoc } from '@/lib/use-search';
 import { groupResults, indexById, SEARCH_SUGGESTIONS, TYPE_LABEL } from '@/lib/search-meta';
 import { localePath, t } from '@/lib/i18n';
+import { trackSearchResult } from '@/lib/track';
 
 /**
  * 首页 Hero 内联搜索（PRD §8）：在输入框内直接打字，结果于下方就地展开，
@@ -32,15 +33,16 @@ export default function HeroSearch({ locale }: { locale: 'zh' | 'en' }) {
   const indexMap = useMemo(() => indexById(results), [results]);
 
   const go = (doc: SearchDoc) => {
+    trackSearchResult(doc.type, doc.id, (indexMap.get(`${doc.type}/${doc.id}`) ?? 0) + 1, 'hero-search');
     window.location.href = localePath(`/${doc.type}/${doc.id}`, locale);
   };
 
   const showPanel = open && query.trim().length > 0;
   const empty = showPanel && !loadingIndex && !loadError && results.length === 0;
-  const activeId = showPanel && results[active] ? `hero-opt-${results[active].doc.id}` : undefined;
+  const activeId = showPanel && results[active] ? `hero-opt-${results[active].doc.type}-${results[active].doc.id}` : undefined;
 
   return (
-    <div ref={rootRef} className="relative mt-7 w-full max-w-xl">
+    <div ref={rootRef} className="relative mt-7 w-full max-w-xl" data-track-region="hero-search">
       <div
         className={`flex items-center gap-3 rounded-xl border bg-raised px-4 py-3 transition-colors ${
           showPanel ? 'border-line-strong' : 'border-line hover:border-line-strong'
@@ -124,12 +126,12 @@ export default function HeroSearch({ locale }: { locale: 'zh' | 'en' }) {
                 {TYPE_LABEL[type]?.[locale] ?? type}
               </p>
               {items.map((r) => {
-                const i = indexMap.get(r.doc.id) ?? 0;
+                const i = indexMap.get(`${r.doc.type}/${r.doc.id}`) ?? 0;
                 return (
                   <button
                     key={r.doc.id}
                     type="button"
-                    id={`hero-opt-${r.doc.id}`}
+                    id={`hero-opt-${r.doc.type}-${r.doc.id}`}
                     role="option"
                     aria-selected={i === active}
                     className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm ${

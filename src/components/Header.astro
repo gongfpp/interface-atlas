@@ -13,7 +13,7 @@ const current = stripBase(Astro.url.pathname).replace(/^\/en(?=\/|$)/, '') || '/
 const isActive = (path: string) => current === path || current.startsWith(`${path}/`);
 ---
 
-<header class="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur">
+<header class="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur" data-track-region="header">
   <div class="mx-auto flex h-14 w-full max-w-6xl items-center gap-6 px-5 md:px-8">
     <a href={localePath('/', locale)} class="font-serif text-lg font-semibold tracking-tight">
       界面图谱<span class="mx-2 text-ink-3 font-sans text-xs font-normal">Interface Atlas</span>
@@ -37,11 +37,12 @@ const isActive = (path: string) => current === path || current.startsWith(`${pat
         </nav>
       </details>
       <SearchButton locale={locale} />
-      <a href={switchTo} class="text-sm text-ink-2 hover:text-accent" lang={otherLocale}>
+      <a href={switchTo} class="text-sm text-ink-2 hover:text-accent" lang={otherLocale} data-track-label="language-switch">
         {otherLocale === 'en' ? 'EN' : '中文'}
       </a>
       <button
         id="theme-toggle"
+        data-track-label="theme-toggle"
         type="button"
         aria-label={locale === 'zh' ? '切换深色模式' : 'Toggle dark mode'}
         aria-pressed="false"

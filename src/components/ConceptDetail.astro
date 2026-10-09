@@ -316,7 +316,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
     </section>}
 
     {related.length > 0 && (
-      <section class="pb-10">
+      <section class="pb-10" data-track-region="related-concepts">
         <h2 class={sectionTitle}>{locale === 'zh' ? '相关概念' : 'Related concepts'}</h2>
         <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
           {related.map((r) => <ConceptCard concept={r.concept} locale={locale} relation={r.relation} />)}
