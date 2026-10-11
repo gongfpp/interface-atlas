@@ -7,7 +7,7 @@
 
 当前产品闭环：从首页任务入口或搜索进入，在统一实验室选择风格、模式与支持的形式，使用当前方案复制实现说明，或按项目保存、恢复、导出 Markdown。三组同任务交互对比、上传/资料编辑流程与正反例帮助选择；图库输入框参考提供编号拆解。存储继续限于当前浏览器，无账号与上传服务。
 
-> v0.14 变更摘要（仓库隔离）：源仓库 `gongfpp/interface-atlas` 转为 **private**，只保留源码与 CI；新增公开构建/部署仓库 `gongfpp/interface-atlas-web`——源仓库 `.github/workflows/deploy-web.yml` 构建后，用 SSH Deploy Key（secret `WEB_DEPLOY_KEY`）在同一提交检查通过后，把 `dist/` 增量提交到其 `main`（保留旧 hash 资源，不 force-push），由该仓库 GitHub Pages（branch `main`，`/`，legacy）发布。站点 URL 变为 `https://gongfpp.github.io/interface-atlas-web/`；giscus 留言板改挂到公开仓库。
+> v0.14 变更摘要（仓库隔离）：源仓库 `gongfpp/interface-atlas` 为 **public**，只保留源码与 CI；新增公开构建/部署仓库 `gongfpp/interface-atlas-web`——源仓库 `.github/workflows/deploy-web.yml` 构建后，用 SSH Deploy Key（secret `WEB_DEPLOY_KEY`）在同一提交检查通过后，把 `dist/` 增量提交到其 `main`（保留旧 hash 资源，不 force-push），由该仓库 GitHub Pages（branch `main`，`/`，legacy）发布。站点 URL 变为 `https://gongfpp.github.io/interface-atlas-web/`；giscus 留言板改挂到公开仓库。
 
 > v0.13 变更摘要（留言板）：新增 `/board`（中英双语，共用同一讨论串）——基于 giscus 把评论挂在本仓库的 GitHub Discussions，纯静态部署可用、留言公开可见；评论需 GitHub 登录，数据与审核都在 GitHub。页脚新增入口。
 
@@ -387,7 +387,7 @@ Motion 播放器（Play / Replay / Slow Motion / Before-After）
 
 覆盖到达/离开、可见与活跃时长、心跳、后台切换、滚动深度、区块曝光、点击控件及坐标、站内/站外跳转、首页去向、搜索结果数量与排名、Demo/参考册操作和成功 Prompt 复制。事件字段、统计口径、后台查看和验证方式以 [访问与行为统计](./analytics.md) 为准。
 
-不上传输入原文、参考册正文或评论；自动 pageview 排除查询参数与 hash。页面访问 ID 随机且仅保存在内存中；尊重 Do Not Track 和 Umami 排除设置，预览不采集，页脚提供说明。
+不上传输入原文、参考册正文或评论；自动 pageview 排除查询参数与 hash。使用随机匿名会话 ID，通过 sessionStorage 跨页面串联，不写持久身份或剪贴板正文；尊重 Do Not Track 和 Umami 排除设置，预览不采集，页脚提供说明。
 
 # 28. P1
 
@@ -708,6 +708,6 @@ get_agent_prompt()
 # 44. 留言板（v0.13 新增）
 
 - `/board` + `/en/board`（中英双语），两页共用同一 Discussion 串（giscus `specific` 映射，term `interface-atlas-board`）。
-- 基于公开构建仓库 `gongfpp/interface-atlas-web` 的 GitHub Discussions（giscus；源仓库为 private 不能承载）：纯静态部署可用、免费、留言公开可见；评论需 GitHub 登录，数据与审核都在 GitHub，站点侧无需后端。
+- 基于公开构建仓库 `gongfpp/interface-atlas-web` 的 GitHub Discussions（giscus；讨论串继续由构建仓承载）：纯静态部署可用、免费、留言公开可见；评论需 GitHub 登录，数据与审核都在 GitHub，站点侧无需后端。
 - 定位：收集"缺哪个概念 / 内容纠错 / 功能建议"，与 §9.3 的搜索弱命中日志互补（后者只记未命中查询，不公开）。
 - 主题跟随站点深色/浅色切换；页脚新增入口。配置与维护见 `docs/deploy.md` 的「留言板」小节。

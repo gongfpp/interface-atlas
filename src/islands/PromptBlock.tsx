@@ -222,6 +222,10 @@ export default function PromptBlock({
       concept: conceptName,
       layer,
       style: selectedStyle || "none",
+      source: current ? 'current-solution' : 'concept-prompt',
+      mode: selection?.mode || 'default',
+      variant: selection?.variant || 'default',
+      outcome: 'success',
     });
     beacon("/api/log-prompt", { concept: conceptName, layer });
   });
@@ -255,7 +259,7 @@ export default function PromptBlock({
   };
 
   return (
-    <div className="rounded-xl border border-line bg-raised">
+    <div className="rounded-xl border border-line bg-raised" data-track-region="prompt-output">
       {selection && (
         <div className="border-b border-line p-4">
           <div
@@ -266,6 +270,7 @@ export default function PromptBlock({
             <button
               className="demo-tool"
               aria-pressed={specific}
+              data-track-label="prompt-scope-current"
               onClick={() => setSpecific(true)}
             >
               {zh ? "当前方案" : "Current solution"}
@@ -273,6 +278,7 @@ export default function PromptBlock({
             <button
               className="demo-tool"
               aria-pressed={!specific}
+              data-track-label="prompt-scope-general"
               onClick={() => setSpecific(false)}
             >
               {zh ? "通用概念说明" : "General concept"}
@@ -292,6 +298,7 @@ export default function PromptBlock({
           layers.map((l) => (
             <button
               key={l}
+              data-track-label={`prompt-layer-${l}`}
               aria-pressed={layer === l}
               onClick={() => setLayer(l)}
               className={`rounded-lg px-3 py-1.5 text-xs transition-colors ${
@@ -306,6 +313,7 @@ export default function PromptBlock({
           ))}
         <button
           onClick={copy}
+          data-track-label={`copy-prompt-${current ? 'current-solution' : layer}`}
           className="ml-auto rounded-lg bg-ink px-3 py-1.5 text-xs font-medium text-paper transition-opacity hover:opacity-85"
         >
           {copied ? "✓" : "⧉"}{" "}
@@ -402,6 +410,7 @@ export default function PromptBlock({
           <button
             className="demo-tool"
             onClick={save}
+            data-track-label="save-current-solution"
             disabled={saved?.persisted}
           >
             {saved?.persisted

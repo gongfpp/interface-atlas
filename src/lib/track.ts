@@ -17,6 +17,84 @@ const pending: Array<{ event: string; data: TrackProps }> = [];
 let retry: ReturnType<typeof setTimeout> | undefined;
 let attempts = 0;
 
+const SESSION_KEY = 'ia:analytics:session:v2';
+const SESSION_IDLE = 30 * 60 * 1000;
+interface JourneySession {
+  id: string;
+  started: number;
+  last: number;
+  pages: number;
+  events: number;
+  entry: string;
+  source: string;
+}
+let session: JourneySession | undefined;
+let pageStep = 0;
+let visitId = '';
+let visitSequence = 0;
+
+function readSession(): JourneySession | undefined {
+  try {
+    const value = JSON.parse(sessionStorage.getItem(SESSION_KEY) || 'null');
+    if (value && /^[\da-f-]{36}$/.test(value.id)
+      && ['started', 'last', 'pages', 'events'].every(key => Number.isFinite(value[key]))
+      && typeof value.entry === 'string' && typeof value.source === 'string') return value;
+  } catch { /* 存储受限时本页仍可统计 */ }
+}
+
+function saveSession() {
+  try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch { /* 回退到内存 */ }
+}
+
+/** 匿名会话跨页面保留；无操作 30 分钟后轮换，不记录跨会话身份。 */
+function ensureSession() {
+  const now = Date.now();
+  const stored = readSession();
+  if (!session && stored && now - stored.last < SESSION_IDLE && now >= stored.last) session = stored;
+  if (!session) {
+    let source = 'direct';
+    try { source = new URL(document.referrer).hostname; } catch { /* 直接访问 */ }
+    session = { id: crypto.randomUUID(), started: now, last: now, pages: 0, events: 0, entry: analyticsPath(), source };
+    pageStep = 0;
+    visitId = '';
+  } else if (stored?.id === session.id) {
+    session.pages = Math.max(session.pages, stored.pages);
+    session.events = Math.max(session.events, stored.events);
+  }
+  if (!visitId) {
+    visitId = crypto.randomUUID();
+    pageStep = ++session.pages;
+    visitSequence = 0;
+  }
+  session.last = now;
+  saveSession();
+  return session;
+}
+
+/** BFCache 恢复算一次新的页面访问，会话仍连续。 */
+export function beginAnalyticsVisit(reset = false) {
+  if (reset) visitId = '';
+  return analyticsContext(false).visit_id as string;
+}
+
+export function analyticsContext(advance = true): TrackProps {
+  const current = ensureSession();
+  if (advance) current.events += 1;
+  saveSession();
+  return {
+    session_id: current.id,
+    visit_id: visitId,
+    page_step: pageStep,
+    sequence: advance ? ++visitSequence : visitSequence,
+    session_sequence: current.events,
+    event_time: Date.now(),
+    session_started: current.started,
+    entry_page: current.entry,
+    entry_source: current.source,
+    embedded: window.self !== window.top,
+  };
+}
+
 /** 统一路由维度，去掉部署前缀、查询参数及 hash。 */
 export function analyticsPath(pathname = window.location.pathname) {
   return stripBase(pathname).replace(/\/+$/, '') || '/';
@@ -59,10 +137,11 @@ export function track(event: string, data?: TrackProps) {
   const page = analyticsPath();
   const payload = {
     ...data,
+    ...analyticsContext(),
     page,
     locale: document.documentElement.lang.startsWith('en') ? 'en' : 'zh',
     page_type: page.replace(/^\/en(?=\/|$)/, '').split('/')[1] || 'home',
-    schema: 1,
+    schema: 2,
   };
   if (window.umami) {
     flushTracking();
@@ -99,7 +178,7 @@ export function trackNavigation(destination: string, source: string) {
 
 /** 尽力上报到后端日志端点（未启用或失败时静默）；path 会自动带上部署 base。 */
 export function beacon(path: string, data: TrackProps) {
-  if (!LOG_ENABLED) return;
+  if (!LOG_ENABLED || !analyticsAllowed()) return;
   try {
     navigator.sendBeacon?.(withBase(path), JSON.stringify({ ...data, t: Date.now() }));
   } catch {

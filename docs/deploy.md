@@ -4,7 +4,7 @@
 
 公开站点：**https://gongfpp.github.io/interface-atlas-web/**（项目站点，挂在子路径 `/interface-atlas-web/`）
 
-源代码仓库 `gongfpp/interface-atlas` 为 **private**，只保存源码与 CI；对外发布走公开的构建仓库 `gongfpp/interface-atlas-web`（与 `Iscream` → `Iscream-web` 同一模式）：
+源代码仓库 `gongfpp/interface-atlas` 为 **public**，保存源码与 CI，凭据只放 GitHub Secrets；对外发布继续走独立的构建仓库 `gongfpp/interface-atlas-web`：
 
 - 源仓库 `.github/workflows/deploy-web.yml` 在手动触发并选择 `main` 时验证、构建，再把 `dist/` **增量提交**到公开仓库的 `main` 分支（clone 现有仓库 → rsync 覆盖 → commit → push，不再 force-push）。常规验证本地优先，push 本身不会触发发布。
   - 为什么：GitHub Pages 对 HTML 有约 10 分钟缓存。若每次都 force-push 覆盖整棵树，旧的文件名带 hash 的 `/_astro/*.css|js` 会被删除，而缓存里的旧 HTML 仍引用它们，导致这段时间内页面拿不到 CSS（无样式）。增量提交会保留这些旧资源，等缓存过期自然淘汰。
@@ -88,7 +88,7 @@ analytics 变量要配在**源仓库** **Settings → Secrets and variables → 
 
 ## 留言板（giscus / GitHub Discussions）
 
-`/board`（中英共用同一讨论串）通过 [giscus](https://giscus.app) 把评论挂在**公开仓库 `gongfpp/interface-atlas-web`** 的 GitHub Discussions 上：纯静态可用、免费、留言公开可见，评论需 GitHub 登录，数据在 GitHub，审核也在 GitHub。（源仓库为 private，不能承载 giscus，故挂在公开仓库。）
+`/board`（中英共用同一讨论串）通过 [giscus](https://giscus.app) 把评论挂在**公开仓库 `gongfpp/interface-atlas-web`** 的 GitHub Discussions 上：纯静态可用、免费、留言公开可见，评论需 GitHub 登录，数据在 GitHub，审核也在 GitHub。讨论串继续由构建仓承载，管理与登录入口保持一致。
 
 一次性配置（仓库 Owner）：
 

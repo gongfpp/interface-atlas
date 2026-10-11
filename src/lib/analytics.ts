@@ -1,4 +1,4 @@
-import { analyticsAllowed, analyticsPath, flushTracking, track, type TrackProps } from '@/lib/track';
+import { analyticsAllowed, analyticsPath, beginAnalyticsVisit, flushTracking, track, type TrackProps } from '@/lib/track';
 
 const ACTIVE_WINDOW = 30_000;
 const HEARTBEAT = 30_000;
@@ -50,8 +50,7 @@ export function startAnalytics() {
   let sentActive = 0;
   let visible = document.visibilityState === 'visible';
   let ended = false;
-  let visit = crypto.randomUUID();
-  let sequence = 0;
+  beginAnalyticsVisit();
   let clicks = 0;
   let maxScroll = 0;
   const milestones = new Set<number>();
@@ -76,7 +75,7 @@ export function startAnalytics() {
   }
 
   function emit(event: string, data: TrackProps = {}) {
-    if (!ended) track(event, { ...data, visit_id: visit, sequence: ++sequence });
+    if (!ended) track(event, data);
   }
 
   function summary(): TrackProps {
@@ -166,9 +165,9 @@ export function startAnalytics() {
   function onRestore(event: PageTransitionEvent) {
     if (!event.persisted || !ended) return;
     started = lastTick = lastActivity = performance.now();
-    visibleMs = activeMs = sentVisible = sentActive = clicks = maxScroll = sequence = 0;
+    visibleMs = activeMs = sentVisible = sentActive = clicks = maxScroll = 0;
     visible = document.visibilityState === 'visible';
-    visit = crypto.randomUUID();
+    beginAnalyticsVisit(true);
     milestones.clear();
     fields = new WeakSet<Element>();
     viewed.clear();
@@ -178,14 +177,17 @@ export function startAnalytics() {
 
   function onClick(event: MouseEvent) {
     if (ended || !(event.target instanceof Element)) return;
+    if (event.type === 'auxclick' && event.button !== 1) return;
     const raw = event.target;
     if (raw.closest('[data-track-ignore], [contenteditable="true"]')) return;
     activity();
     clicks += 1;
     const element = raw.closest('a, button, summary, input, select, textarea, [role="button"], [role="tab"], [role="option"]') || raw;
     const props = targetProps(element);
+    const selected = element.getAttribute('aria-pressed') ?? element.getAttribute('aria-expanded') ?? element.getAttribute('aria-selected');
     emit('ui-click', {
       ...props,
+      state_before: selected || '',
       pointer: event.detail === 0 ? 'keyboard' : 'pointer',
       x_pct: event.detail === 0 ? -1 : Math.round(event.clientX / Math.max(innerWidth, 1) * 100),
       y_pct: event.detail === 0 ? -1 : Math.round((event.clientY + scrollY) / Math.max(document.documentElement.scrollHeight, 1) * 100),
@@ -196,7 +198,7 @@ export function startAnalytics() {
       const url = new URL(link.getAttribute('href')!, location.href);
       if (!['http:', 'https:'].includes(url.protocol)) return;
       const internal = url.origin === location.origin;
-      const anchor = internal && url.pathname === location.pathname && !!url.hash;
+      const anchor = internal && url.pathname === location.pathname && (!!url.hash || link.getAttribute('href') === '#');
       const destination = internal ? analyticsPath(url.pathname) : url.hostname;
       const newTab = link.getAttribute('target') === '_blank' || event.ctrlKey || event.metaKey || event.button === 1;
       const data = { ...props, destination, kind: anchor ? 'anchor' : internal ? 'internal' : 'external', new_tab: newTab };
@@ -219,10 +221,29 @@ export function startAnalytics() {
     emit('form-submit', targetProps(event.target));
   }
 
+  function onClipboard(event: ClipboardEvent) {
+    const anchor = event.type === 'paste' ? null : window.getSelection()?.anchorNode;
+    const selected = anchor instanceof Element ? anchor : anchor?.parentElement;
+    const element = selected || (event.target instanceof Element ? event.target : document.activeElement) || document.body;
+    if (element.closest('[data-track-ignore]')) return;
+    activity();
+    // 仅借助选区所在 DOM 定位，不读取选中文字、clipboardData 或输入值。
+    emit(`clipboard-${event.type}`, targetProps(element));
+  }
+
+  function onChange(event: Event) {
+    onField(event);
+    if (!(event.target instanceof Element) || event.target.closest('[data-track-ignore]')) return;
+    emit('control-change', targetProps(event.target));
+  }
+
   document.addEventListener('click', onClick, true);
   document.addEventListener('auxclick', onClick, true);
   document.addEventListener('input', onField, true);
-  document.addEventListener('change', onField, true);
+  document.addEventListener('change', onChange, true);
+  document.addEventListener('copy', onClipboard, true);
+  document.addEventListener('cut', onClipboard, true);
+  document.addEventListener('paste', onClipboard, true);
   document.addEventListener('submit', onSubmit, true);
   document.addEventListener('keydown', activity, { passive: true });
   document.addEventListener('pointerdown', activity, { passive: true });
@@ -241,7 +262,10 @@ export function startAnalytics() {
     document.removeEventListener('click', onClick, true);
     document.removeEventListener('auxclick', onClick, true);
     document.removeEventListener('input', onField, true);
-    document.removeEventListener('change', onField, true);
+    document.removeEventListener('change', onChange, true);
+    document.removeEventListener('copy', onClipboard, true);
+    document.removeEventListener('cut', onClipboard, true);
+    document.removeEventListener('paste', onClipboard, true);
     document.removeEventListener('submit', onSubmit, true);
     document.removeEventListener('keydown', activity);
     document.removeEventListener('pointerdown', activity);

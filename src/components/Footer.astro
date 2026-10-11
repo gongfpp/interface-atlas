@@ -25,6 +25,6 @@ const { locale } = Astro.props;
     </nav>
     <p class="font-serif text-ink-2">界面图谱 · Interface Atlas</p>
     <p>{t('footerNote', locale)}</p>
-    <p class="text-xs">{locale === 'zh' ? '本站使用 Umami 匿名统计访问、停留与点击，用于改进内容；不记录输入内容。支持浏览器 Do Not Track 设置。' : 'We use Umami for anonymous visit, engagement and click statistics to improve the atlas. Input content is not recorded. Browser Do Not Track settings are respected.'}</p>
+    <p class="text-xs">{locale === 'zh' ? '本站使用 Umami 匿名统计访问路径、停留、点击与复制/粘贴操作，用于改进内容；不记录输入或剪贴板正文。支持浏览器 Do Not Track 设置。' : 'We use Umami for anonymous visit paths, engagement, clicks and copy/paste actions to improve the atlas. Input and clipboard content is not recorded. Browser Do Not Track settings are respected.'}</p>
   </div>
 </footer>

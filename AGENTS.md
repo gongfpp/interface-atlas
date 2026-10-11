@@ -28,7 +28,7 @@ Project profile: `project`
 
 ## 项目 Git 约定
 
-- 源仓库：`github.com/gongfpp/interface-atlas`（**private**），`main` 为默认分支。只放源码与 CI。
+- 源仓库：`github.com/gongfpp/interface-atlas`（**public**），`main` 为默认分支。源码与 CI 可公开，凭据只放 GitHub Secrets；公开检查见 `docs/public-source-audit.md`。
 - 发布走公开构建仓库 `github.com/gongfpp/interface-atlas-web`：源仓库 `.github/workflows/deploy-web.yml` 先跑完整检查（`verify` job），通过后再构建并**增量提交** `dist/` 到公开仓库 `main`（clone → rsync → 保留旧 `_astro` hash 资源 → commit → push，不再 force-push；旧资源继续可用可避免 Pages HTML 缓存造成的无样式窗口），由该仓库 GitHub Pages 发布（<https://gongfpp.github.io/interface-atlas-web/>）。不要在该公开仓库手工改文件，产物由源仓库覆盖。
 - 发布与检查是同一提交上的依赖关系：检查不通过就不会发布。手动触发 `Deploy site to interface-atlas-web` 等同于正式发布，不要用它做未经验证的预览。
 - 任务边界区分：只读审阅/解释不写文件；修改类任务在本地提交；是否 push 到 `main` 由本约定决定——**任务完成并验证通过后，提交并 push 到 `origin/main`**（用户已授权持续 push，无需逐次询问）。未完成或未验证的改动不要 push。

@@ -76,13 +76,14 @@ export default function MotionPlayer({
   );
 
   return (
-    <div className="demo-workbench">
+    <div className="demo-workbench" data-track-region="motion-player">
       <div className="demo-toolbar mb-0">
         {visibleModes.length > 1 && (
           <div className="flex flex-wrap gap-1" role="group" aria-label={en ? 'Variants' : '变体'}>
             {visibleModes.map((m) => (
               <button
                 key={m}
+                data-track-label={`motion-mode-${m}`}
                 aria-pressed={mode === m}
                 className="demo-tool"
                 onClick={() => {
@@ -97,13 +98,14 @@ export default function MotionPlayer({
         )}
         <div className="flex flex-wrap gap-1">
           {has('play') && (
-            <button className={running ? btnOn : btn} aria-pressed={running} onClick={() => setRunning((r) => !r)}>
+            <button className={running ? btnOn : btn} aria-pressed={running} onClick={() => setRunning((r) => !r)} data-track-label={running ? 'motion-pause' : 'motion-play'}>
               {running ? label.pause[locale] : label.play[locale]}
             </button>
           )}
           {has('replay') && (
             <button
               className={btn}
+              data-track-label="motion-replay"
               onClick={() => {
                 setReplayKey((k) => k + 1);
                 setRunning(true);
@@ -115,6 +117,7 @@ export default function MotionPlayer({
           {has('slow') && (
             <button
               className={speed !== 1 ? btnOn : btn}
+              data-track-label="motion-speed"
               aria-pressed={speed !== 1}
               title={en ? 'Restart at the new speed' : '按新速度重新播放'}
               onClick={() => {
@@ -128,7 +131,7 @@ export default function MotionPlayer({
             </button>
           )}
           {has('compare') && (
-            <button className={compare ? btnOn : btn} aria-pressed={compare} onClick={() => setCompare((c) => !c)}>
+            <button className={compare ? btnOn : btn} aria-pressed={compare} onClick={() => setCompare((c) => !c)} data-track-label="motion-compare">
               ⇋ {label.beforeAfter[locale]}
             </button>
           )}

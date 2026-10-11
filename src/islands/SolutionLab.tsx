@@ -133,7 +133,7 @@ export default function SolutionLab(props: Props) {
   };
   const previewURL = `${localePath("/viewport", locale)}?concept=${encodeURIComponent(props.conceptName)}&mode=${activeMode}&style=${encodeURIComponent(styleId)}&form=${encodeURIComponent(variant.preview?.id ?? "")}`;
   return (
-    <div className="space-y-5" data-solution-lab>
+    <div className="space-y-5" data-solution-lab data-track-region="solution-lab">
       <div id="style-variants" className="demo-workbench">
         {loaded.styles.length > 0 && (
           <div className="demo-toolbar">
@@ -144,6 +144,7 @@ export default function SolutionLab(props: Props) {
             >
               <button
                 className="demo-tool"
+                data-track-label="solution-style-base"
                 aria-pressed={!current}
                 onClick={() => {
                   setStyle("");
@@ -158,6 +159,7 @@ export default function SolutionLab(props: Props) {
                   key={s.style}
                   className="demo-tool"
                   data-style={s.style}
+                  data-track-label={`solution-style-${s.style}`}
                   aria-pressed={s.style === styleId}
                   onClick={() => {
                     setStyle(s.style);
@@ -182,6 +184,7 @@ export default function SolutionLab(props: Props) {
               modes.map((m) => (
                 <button
                   key={m}
+                  data-track-label={`solution-mode-${m}`}
                   className="demo-tool"
                   aria-pressed={mode === m}
                   onClick={() => {
@@ -198,6 +201,7 @@ export default function SolutionLab(props: Props) {
             <button
               className="demo-tool"
               aria-pressed={narrow}
+              data-track-label="solution-width-toggle"
               onClick={() => setNarrow(!narrow)}
             >
               {zh ? "窄容器" : "Narrow container"}
@@ -205,12 +209,14 @@ export default function SolutionLab(props: Props) {
             <button
               className="demo-tool"
               aria-expanded={device}
+              data-track-label="solution-device-toggle"
               onClick={() => setDevice(!device)}
             >
               {zh ? "设备视口" : "Device viewport"}
             </button>
             <button
               className="demo-tool"
+              data-track-label="solution-reset"
               onClick={() => {
                 setSession(createSession());
                 setForm("");
@@ -307,6 +313,7 @@ export default function SolutionLab(props: Props) {
               {zh ? "视口宽度" : "Viewport width"}{" "}
               <select
                 value={deviceWidth}
+                data-track-label="solution-device-width"
                 onChange={(e) => setDeviceWidth(Number(e.target.value))}
                 className="rounded border border-line bg-paper p-2"
               >
@@ -367,6 +374,7 @@ export default function SolutionLab(props: Props) {
         </div>
         <button
           className="rounded-lg bg-accent px-5 py-3 text-sm font-medium text-white"
+          data-track-label="use-current-solution"
           onClick={() => {
             setSpecific(true);
             output.current?.scrollIntoView({

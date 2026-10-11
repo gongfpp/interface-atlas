@@ -31,7 +31,76 @@ test('首页链接记录入口、去向，下一页到达记录实际来源', as
   const nav = history.find(e => e.name === 'home-navigation');
   expect(nav.data).toMatchObject({ page: '/', destination: '/styles/organic', region: 'home-hero', kind: 'internal', new_tab: false });
   expect(history.filter(e => e.name === 'page-leave')).toHaveLength(1);
+  expect(new Set(history.map(e => e.data.session_id)).size).toBe(1);
+  expect(history.filter(e => e.name === 'page-arrival').map(e => e.data.page_step)).toEqual([1, 2]);
+  expect(history.map(e => e.data.session_sequence)).toEqual(history.map((_, i) => i + 1));
   expect(history.filter(e => e.name === 'page-arrival').at(-1).data).toMatchObject({ from: '/', page: '/styles/organic' });
+});
+
+test('完整匿名路径包含外部来源、Agent 复制、粘贴位置与最后页面，正文不上报', async ({ page }) => {
+  await capture(page);
+  await page.addInitScript(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async () => {} } }));
+  await page.goto('/', { referer: 'https://example.org/article?private=secret' });
+  await page.locator('.home-mini').click();
+  await expect(page).toHaveURL(/\/components\/tabs/);
+  const copy = page.locator('[data-track-label^="copy-prompt-"]');
+  await expect(copy).toBeVisible();
+  await copy.click();
+  await expect.poll(async () => (await events(page)).some(e => e.name === 'prompt-copy')).toBe(true);
+  await page.evaluate(() => {
+    const input = document.createElement('input');
+    input.dataset.trackLabel = 'test-field';
+    input.value = 'private.person@example.com';
+    document.querySelector('main').appendChild(input);
+    const clipboardData = new DataTransfer();
+    clipboardData.setData('text/plain', 'private clipboard body 13800138000');
+    input.dispatchEvent(new ClipboardEvent('paste', { bubbles: true, clipboardData }));
+    window.dispatchEvent(new PageTransitionEvent('pagehide'));
+  });
+  const history = await page.evaluate(() => JSON.parse(sessionStorage.getItem('analytics-test')));
+  expect(new Set(history.map(e => e.data.session_id)).size).toBe(1);
+  const copied = history.find(e => e.name === 'prompt-copy');
+  expect(copied.data).toMatchObject({ page: '/components/tabs', layer: 'agent', outcome: 'success', entry_source: 'example.org', entry_page: '/' });
+  expect(history.find(e => e.name === 'clipboard-paste').data.label).toBe('test-field');
+  expect(history.filter(e => e.name === 'page-leave').at(-1).data.page).toBe('/components/tabs');
+  expect(JSON.stringify(history)).not.toMatch(/private\.person|13800138000|private clipboard body|article\?private/);
+});
+
+test('图库成功复制同时记录具体图集与 Prompt 语言', async ({ page }) => {
+  await capture(page);
+  await page.addInitScript(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async () => {} } }));
+  await page.goto('/gallery/input');
+  await page.locator('#copy-prompt-en').click();
+  await expect.poll(async () => (await events(page)).some(e => e.name === 'prompt-copy')).toBe(true);
+  const event = (await events(page)).find(e => e.name === 'prompt-copy');
+  expect(event.data).toMatchObject({ concept: 'gallery:/gallery/input', layer: 'image', prompt_locale: 'en', source: 'gallery-prompt', outcome: 'success' });
+  expect(event.data.session_id).toBeTruthy();
+  expect(event.data.visit_id).toBeTruthy();
+});
+
+test('新页面在会话过期后换匿名编号，存储受限时仍可正常操作', async ({ page }) => {
+  await capture(page);
+  await page.goto('/');
+  await expect.poll(async () => (await events(page)).some(e => e.name === 'page-arrival')).toBe(true);
+  const first = (await events(page))[0].data.session_id;
+  await page.evaluate(() => {
+    window.dispatchEvent(new PageTransitionEvent('pagehide'));
+    const key = 'ia:analytics:session:v2';
+    const state = JSON.parse(sessionStorage.getItem(key));
+    state.last = Date.now() - 31 * 60 * 1000;
+    sessionStorage.setItem(key, JSON.stringify(state));
+  });
+  await page.goto('/en/');
+  await expect.poll(async () => (await events(page)).some(e => e.name === 'page-arrival')).toBe(true);
+  expect((await events(page))[0].data.session_id).not.toBe(first);
+  await page.addInitScript(() => {
+    Storage.prototype.getItem = () => { throw new Error('unavailable'); };
+    Storage.prototype.setItem = () => { throw new Error('unavailable'); };
+    window.umami = { track(name, data) { window.__analytics.push({ name, data }); } };
+  });
+  await page.goto('/');
+  await page.locator('#theme-toggle').click();
+  await expect.poll(async () => (await events(page)).some(e => e.name === 'ui-click')).toBe(true);
 });
 
 test('可见与活跃时长分开统计，隐藏不计时，离开仅结算一次', async ({ page }) => {

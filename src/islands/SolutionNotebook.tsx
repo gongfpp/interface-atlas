@@ -5,6 +5,7 @@ import {
   useSyncExternalStore,
   type SyntheticEvent,
 } from "react";
+import { track } from '@/lib/track';
 import {
   exportSolutionsMarkdown,
   getServerSolutionsSnapshot,
@@ -251,6 +252,7 @@ export default function SolutionNotebook({ locale }: { locale: "zh" | "en" }) {
     const markdown = exportSolutionsMarkdown(visible, locale);
     try {
       await navigator.clipboard.writeText(markdown);
+      track('notebook-copy', { source: 'notebook-markdown', count: visible.length, outcome: 'success' });
       setManualCopy("");
       setMessage(
         zh
@@ -258,6 +260,7 @@ export default function SolutionNotebook({ locale }: { locale: "zh" | "en" }) {
           : "Markdown copied with configurations, notes, and implementation briefs.",
       );
     } catch {
+      track('notebook-copy', { source: 'notebook-markdown', count: visible.length, outcome: 'failed' });
       setManualCopy(markdown);
       setMessage(
         zh
@@ -364,7 +367,7 @@ export default function SolutionNotebook({ locale }: { locale: "zh" | "en" }) {
       (item) => !solutions.some((existing) => existing.id === item.id),
     ).length ?? 0;
   return (
-    <section ref={root} aria-labelledby="solution-notebook-title">
+    <section ref={root} aria-labelledby="solution-notebook-title" data-track-region="solution-notebook">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h2
@@ -387,7 +390,7 @@ export default function SolutionNotebook({ locale }: { locale: "zh" | "en" }) {
         <div className="flex flex-wrap gap-2">
           {solutions.length > 0 && (
             <>
-              <button type="button" className={control} onClick={copy}>
+              <button type="button" className={control} onClick={copy} data-track-label="copy-notebook-markdown">
                 {zh ? "复制 Markdown" : "Copy Markdown"}
               </button>
               <button
