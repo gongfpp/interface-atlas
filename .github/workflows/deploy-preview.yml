@@ -34,7 +34,8 @@ jobs:
       - name: Type check
         run: npm run check
 
-      # base 路径与发布目录必须用同一个 slug：分支名含 / 时 github.ref_name 会保留斜杠
+      # base 路径与发布目录必须用同一个 slug：分支名含 / 时 github.ref_name 会保留斜杠。
+      # slug 转换会把 a/b 与 a-b 归到同一个预览目录，属可接受的碰撞：预览目录可被覆盖重建。
       - name: Compute preview slug
         id: slug
         run: echo "slug=$(printf '%s' "$GITHUB_REF_NAME" | tr -c 'A-Za-z0-9._-' '-')" >> "$GITHUB_OUTPUT"
