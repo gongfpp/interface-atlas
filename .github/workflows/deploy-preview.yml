@@ -34,11 +34,16 @@ jobs:
       - name: Type check
         run: npm run check
 
+      # base 路径与发布目录必须用同一个 slug：分支名含 / 时 github.ref_name 会保留斜杠
+      - name: Compute preview slug
+        id: slug
+        run: echo "slug=$(printf '%s' "$GITHUB_REF_NAME" | tr -c 'A-Za-z0-9._-' '-')" >> "$GITHUB_OUTPUT"
+
       - name: Build (preview base, noindex)
         run: npm run build:fast
         env:
           PUBLIC_SITE_URL: https://gongfpp.github.io
-          PUBLIC_BASE_PATH: /interface-atlas-web/preview/${{ github.ref_name }}
+          PUBLIC_BASE_PATH: /interface-atlas-web/preview/${{ steps.slug.outputs.slug }}
           PUBLIC_PREVIEW: 'true'
           PUBLIC_LOG_API: 'off'
           PUBLIC_UMAMI_SRC: ''
@@ -56,7 +61,7 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           export GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=no"
 
-          SLUG="$(printf '%s' "$BRANCH" | tr -c 'A-Za-z0-9._-' '-')"
+          SLUG="${{ steps.slug.outputs.slug }}"
           touch dist/.nojekyll
 
           if git clone --depth 1 "$WEB_REPOSITORY" web 2>/dev/null; then
