@@ -142,7 +142,20 @@
     "cyberpunk",
     "neumorphism",
     "flat-design",
-    "pixel-art"
+    "pixel-art",
+    "brutalism",
+    "corporate-memphis",
+    "aurora",
+    "liquid-glass",
+    "claymorphism",
+    "y2k",
+    "retro-futurism",
+    "skeuomorphism",
+    "organic",
+    "editorial",
+    "art-deco",
+    "hand-drawn",
+    "bauhaus"
   ],
   "applicable_components": [],
   "applicable_pages": [
@@ -239,8 +252,8 @@
   },
   "playground": {
     "task": {
-      "zh": "在本地模拟中点击保存，处理中取消，再用键盘重试；比较六种风格和四种按钮层级。",
-      "en": "Save in the local simulation, cancel while pending, then retry with the keyboard. Compare six styles and four button levels."
+      "zh": "在本地模拟中点击保存，处理中取消，再用键盘重试；比较 21 种风格和四种按钮层级。",
+      "en": "Save in the local simulation, cancel while pending, then retry with the keyboard. Compare 21 styles and four button levels."
     },
     "checks": [
       {

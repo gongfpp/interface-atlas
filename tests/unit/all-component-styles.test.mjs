@@ -8,24 +8,26 @@ import { sourceLoader } from '../helpers/load-source.mjs';
 const load = sourceLoader();
 const root = new URL('../../', import.meta.url);
 const matrix = JSON.parse(readFileSync(new URL('src/lib/component-style-coverage.json', root), 'utf8'));
+const wallComponents = new Set(['button', 'input', 'card', 'select', 'checkbox', 'switch']);
 const { createSession } = load('src/islands/style-variants/session.ts');
 const definition = (kind, id) => yaml.load(readFileSync(new URL(`src/content/${kind}/${id}.yaml`, root), 'utf8'));
 const sets = Object.fromEntries(Object.keys(matrix).map((id) => [id, load(`src/islands/style-variants/${id}.tsx`).default]));
 const render = (variant, locale, state = {}) => { const session = createSession(); for (const [key, value] of Object.entries(state)) session.set(key, value); return renderToStaticMarkup(createElement(variant.Demo, { locale, session })); };
 
-test('范围门禁：46 个组件各八套，保留 147 套基线，总计 368 套，不混入页面或交互模式', () => {
+test('范围门禁：40 个组件各八套，核心六类按批准数量扩展，保留 147 套基线，总计 401 套', () => {
   const ids = readdirSync(new URL('src/content/components/', root)).filter((file) => file.endsWith('.yaml')).map((file) => file.slice(0, -5)).sort();
   assert.deepEqual(Object.keys(matrix), ids);
   assert.equal(ids.length, 46);
   assert.equal(Object.values(matrix).reduce((total, row) => total + row.original.length, 0), 147);
-  assert.equal(Object.values(sets).reduce((total, set) => total + set.length, 0), 368);
+  assert.equal(Object.values(sets).reduce((total, set) => total + set.length, 0), 401);
+  for (const id of Object.keys(matrix)) assert.equal(sets[id].length, wallComponents.has(id) ? id === 'button' ? 21 : 12 : 8, `${id}: approved coverage`);
   assert.equal(readdirSync(new URL('src/content/styles/', root)).filter((file) => file.endsWith('.yaml')).length, 25);
 });
 
 for (const [id, row] of Object.entries(matrix)) {
-  test(`${id}: 八套真实注册、完整保留原风格、精确 taxonomy 与 YAML 关联`, () => {
+  test(`${id}: 注册数量精确、完整保留原风格、taxonomy 与 YAML 关联一致`, () => {
     const set = sets[id];
-    assert.equal(set.length, 8); assert.equal(new Set(set.map((entry) => entry.style)).size, 8);
+    assert.equal(set.length, row.styles.length); assert.equal(new Set(set.map((entry) => entry.style)).size, row.styles.length);
     assert.deepEqual(set.map((entry) => entry.style), row.styles);
     assert.deepEqual(set.slice(0, row.original.length).map((entry) => entry.style), row.original);
     assert.deepEqual(definition('components', id).applicable_styles, row.styles);
@@ -33,9 +35,18 @@ for (const [id, row] of Object.entries(matrix)) {
       assert.deepEqual(entry.name, definition('styles', entry.style).name, `${id}/${entry.style}: canonical style name`);
       assert.ok(entry.note.zh.length > 8 && entry.note.en.length > 8);
       assert.equal(typeof entry.Demo, 'function');
+      if (wallComponents.has(id)) {
+        assert.equal(typeof entry.Sample, 'function');
+        for (const locale of ['zh', 'en']) {
+          const sample = renderToStaticMarkup(createElement(entry.Sample, { locale }));
+          assert.match(sample, new RegExp(`data-style-sample="${entry.style}"`));
+          assert.match(sample, /aria-hidden="true"/);
+          assert.doesNotMatch(sample, /<(?:button|input|select|textarea)\b/);
+        }
+      } else assert.equal(entry.Sample, undefined);
     }
   });
-  test(`${id}: 八套均以真实 React 双语渲染，材质结构不同且具备实际控件`, () => {
+  test(`${id}: 所有风格均以真实 React 双语渲染，材质结构不同且具备实际控件`, () => {
     const signatures = new Set();
     for (const entry of sets[id]) {
       for (const locale of ['zh', 'en']) {
@@ -48,7 +59,7 @@ for (const [id, row] of Object.entries(matrix)) {
         if (locale === 'en') signatures.add([...html.matchAll(/class="([^"]+)"/g)].map((match) => match[1]).join('|'));
       }
     }
-    assert.equal(signatures.size, 8, `${id}: each style changes material, type, shape or layout classes`);
+    assert.equal(signatures.size, row.styles.length, `${id}: each style changes material, type, shape or layout classes`);
   });
 }
 

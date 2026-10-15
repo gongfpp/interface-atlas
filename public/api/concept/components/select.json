@@ -131,7 +131,11 @@
     "flat-design",
     "neobrutalism",
     "neumorphism",
-    "organic"
+    "organic",
+    "glassmorphism",
+    "cyberpunk",
+    "art-deco",
+    "pixel-art"
   ],
   "applicable_components": [],
   "applicable_pages": [

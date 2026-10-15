@@ -73,6 +73,10 @@ applicable_styles:
   - neumorphism
   - swiss-style
   - art-deco
+  - glassmorphism
+  - claymorphism
+  - hand-drawn
+  - pixel-art
 related:
   - id: table
     relation: alternative_to

@@ -1,4 +1,6 @@
 import { test, expect } from './helpers/private-browser.mjs';
+import { readFileSync } from 'node:fs';
+const styleCoverage = JSON.parse(readFileSync(new URL('../src/lib/component-style-coverage.json', import.meta.url), 'utf8'));
 
 async function openLab(page, path = '/components/input') {
   await page.goto(path, { waitUntil: 'domcontentloaded' });
@@ -273,14 +275,14 @@ for (const width of [390, 1280]) {
 
 test('风格方案的附加形式在英文输出中明确覆盖预览，而不是声称已经演示', async ({ page }) => {
   const lab = await openLab(page, '/en/components/input');
-  await lab.getByRole('button', { name: 'Minimalism', exact: true }).click();
+  await lab.locator('[data-style="minimalism"]').click();
   await lab.getByRole('combobox', { name: /Implementation variant/ }).selectOption('filled');
   await expect(lab.locator('[data-solution-summary]')).toContainText('Additional variant (not previewed)');
   await expect(lab.locator('pre')).toContainText('additional variant takes precedence');
   await expect(lab.locator('pre')).toContainText('must be verified separately');
   await lab.getByRole('button', { name: 'Device viewport', exact: true }).click();
   await expect(lab.locator('iframe')).not.toHaveAttribute('src', /form=filled/);
-  await lab.getByRole('button', { name: 'Base example', exact: true }).click();
+  await lab.locator('[data-track-label="solution-style-base"]').click();
   await expect(lab.locator('[data-solution-summary]')).toContainText('Previewed variant');
   await expect(lab.locator('pre')).not.toContainText('Additional variant (not previewed)');
 });
@@ -290,7 +292,7 @@ for (const [locale, width] of [['zh', 390], ['en', 1280]]) {
     test(`${locale} 新增 ${component}/${style} 风格能完整保存、恢复并复制当前方案`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
       const lab = await openLab(page, `${locale === 'en' ? '/en' : ''}/components/${component}`);
-      await expect(lab.locator('[data-style]')).toHaveCount(8);
+      await expect(lab.locator('[data-style]')).toHaveCount(styleCoverage[component].styles.length);
       await lab.locator(`[data-style="${style}"]`).click();
       const text = await lab.locator('pre').innerText();
       expect(text).toContain(`style=${style}`);

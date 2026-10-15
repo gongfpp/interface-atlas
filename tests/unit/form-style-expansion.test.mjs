@@ -44,9 +44,9 @@ function render(variant, locale = 'en', state = {}) {
 }
 
 for (const [id, entry] of forms) {
-  test(`${id}: 八种真实适配保留原风格，名称和内容关联准确`, () => {
+  test(`${id}: 注册数量准确且保留原风格，名称和内容关联一致`, () => {
     const variants = sets[id];
-    assert.equal(variants.length, 8);
+    assert.equal(variants.length, entry.styles.length);
     assert.deepEqual(variants.map((variant) => variant.style), entry.styles);
     assert.ok(entry.original.every((style) => variants.some((variant) => variant.style === style)));
     const content = yaml.load(readFileSync(resolve(root, `src/content/components/${id}.yaml`), 'utf8'));
@@ -57,7 +57,7 @@ for (const [id, entry] of forms) {
       assert.ok(variant.note.zh.length > 10 && variant.note.en.length > 10);
     }
   });
-  test(`${id}: 八种适配均可中英文 SSR，控件可见且不联网`, () => {
+  test(`${id}: 所有适配均可中英文 SSR，控件可见且不联网`, () => {
     for (const variant of sets[id]) {
       for (const locale of ['zh', 'en']) {
         const html = render(variant, locale);

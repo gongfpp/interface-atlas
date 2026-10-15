@@ -2,6 +2,7 @@ import { recipe, recipeVariant, type RecipeStyleId } from '../shared/styleRecipe
 import { useId, type ReactNode } from 'react';
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
+import { withStyleSamples } from '../shared/styleSamples';
 
 function useCardDemo({ session, locale }: VariantDemoProps) {
   const id = useId();
@@ -161,12 +162,21 @@ function NeumorphicCard(props: VariantDemoProps) {
 
 function AdditionalCard(props: VariantDemoProps & { style: RecipeStyleId }) {
   const demo = useCardDemo(props); const r = recipe(props.style);
+  const contentByStyle: Partial<Record<RecipeStyleId, { mark: string; zh: string; en: string }>> = {
+    'swiss-style': { mark: '08', zh: '编号窄栏、严谨网格和字号对比，用结构呈现内容。', en: 'An index rail, rigorous grid and contrasting type sizes organize the content.' },
+    'art-deco': { mark: '◇', zh: '金色双线、菱形徽记与衬线标题，构成对称典藏卡面。', en: 'Gold double rules, a diamond marker and serif type form a symmetric collection card.' },
+    glassmorphism: { mark: '✦', zh: '半透明磨砂层和高亮边缘叠出轻盈的玻璃卡面。', en: 'Translucent frosted layers and bright edges give the card a light glass surface.' },
+    claymorphism: { mark: '●', zh: '厚圆角、软内高光与外凸底影让卡片像柔软黏土塑形。', en: 'Deep corners, soft inner highlights and a raised base shape the card like soft clay.' },
+    'hand-drawn': { mark: '✎', zh: '纸面、手绘边缘和随手标记营造笔记卡片的松弛感。', en: 'Paper, hand-drawn edges and a casual mark give the card a loose notebook feel.' },
+    'pixel-art': { mark: '▦', zh: '等宽字、方角像素边与分格信息块组成游戏菜单卡片。', en: 'Monospace type, pixel-square edges and tiled information blocks build a game-menu card.' },
+  };
+  const content = contentByStyle[props.style] ?? { mark: '◇', zh: '卡片以清晰标题、摘要和可撤销操作组织信息。', en: 'The card organizes information with a clear heading, summary and reversible actions.' };
   return <article data-style-recipe={props.style} className={`mx-auto w-full max-w-sm [overflow-wrap:anywhere] ${r.frame}`}>
     <header className={r.header}>
-      <span aria-hidden="true" className={props.style === 'swiss-style' ? 'font-mono text-sm font-bold text-[#b51f24]' : 'mb-2 block text-2xl'}>{props.style === 'swiss-style' ? '08' : '◇'}</span>
+      <span aria-hidden="true" className={props.style === 'swiss-style' ? 'font-mono text-sm font-bold text-[#b51f24]' : 'mb-2 block text-2xl'}>{content.mark}</span>
       <h3 className={r.title}>{demo.zh ? '可阅读的秩序' : 'Readable order'}</h3>
     </header>
-    <p className={`text-sm leading-relaxed ${r.muted}`}>{demo.zh ? (props.style === 'swiss-style' ? '编号窄栏、严谨网格和高低字号，用结构呈现内容。' : '对称金色双线、菱形徽记与衬线标题，呈现典藏卡面。') : (props.style === 'swiss-style' ? 'An index rail, rigorous grid and contrasting type sizes organize the content.' : 'Symmetric gold double rules, a diamond marker and serif titles form a collection card.')}</p>
+    <p className={`text-sm leading-relaxed ${r.muted}`}>{demo.zh ? content.zh : content.en}</p>
     <CardControls demo={demo} buttonClassName={r.secondary} detailClassName={props.style === 'art-deco' ? 'font-serif' : ''}>
       <p>{demo.zh ? '详情与收藏只保留在本次演示中，可以再次点击撤销。' : 'Details and bookmarks stay inside this demo and can be reversed by selecting again.'}</p>
     </CardControls>
@@ -206,6 +216,10 @@ const styleVariants: StyleVariantSet = [
   },
   recipeVariant('swiss-style', (props) => <AdditionalCard {...props} style="swiss-style" />, { zh: '编号窄栏对齐严格网格，大标题与细线组织摘要、详情和可撤销收藏。', en: 'An index rail follows a strict grid while large type and rules organize summaries, details and reversible bookmarking.' }),
   recipeVariant('art-deco', (props) => <AdditionalCard {...props} style="art-deco" />, { zh: '午夜底、金色双线与菱形徽记形成对称典藏卡片，操作沿边框排列。', en: 'A midnight ground, gold double rules and diamond marker form a symmetric collection card with framed actions.' }),
+  recipeVariant('glassmorphism', (props) => <AdditionalCard {...props} style="glassmorphism" />, { zh: '半透明磨砂面、玻璃高光边和模糊叠层形成轻盈卡片；详情与收藏可撤销。', en: 'Translucent frost, glass highlights and blurred layers create a light card; details and bookmarks remain reversible.' }),
+  recipeVariant('claymorphism', (props) => <AdditionalCard {...props} style="claymorphism" />, { zh: '厚软圆角、内侧柔光与凸起底影塑出黏土体积；详情和收藏保留本地状态。', en: 'Deep soft corners, inner highlights and a raised base build clay-like volume while details and bookmarks keep local state.' }),
+  recipeVariant('hand-drawn', (props) => <AdditionalCard {...props} style="hand-drawn" />, { zh: '纸感底色、不规则手绘边缘与随手符号组成笔记卡片；操作仍可撤销。', en: 'Paper-like color, irregular hand-drawn edges and a casual symbol form a notebook card with reversible actions.' }),
+  recipeVariant('pixel-art', (props) => <AdditionalCard {...props} style="pixel-art" />, { zh: '方角像素描边、等宽字与分格内容块形成游戏菜单卡片；本地详情和收藏可切换。', en: 'Pixel-square outlines, monospace type and tiled content form a game-menu card with toggleable local details and bookmarks.' }),
 ];
 
-export default styleVariants;
+export default withStyleSamples('card', styleVariants);

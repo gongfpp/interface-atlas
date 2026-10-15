@@ -1,6 +1,7 @@
 import { recipe, RecipeFrame, recipeVariant, type RecipeStyleId } from '../shared/styleRecipe';
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
+import { withStyleSamples } from '../shared/styleSamples';
 
 function Skeuo({ session, locale }: VariantDemoProps) {
   const zh = locale === 'zh';
@@ -19,7 +20,7 @@ function Skeuo({ session, locale }: VariantDemoProps) {
         }`}
       >
         <span
-          className={`absolute top-1 h-8 w-8 rounded-full border border-[#8b9099] bg-gradient-to-b from-white to-[#cfd3d9] shadow-[0_2px_4px_#0006,inset_0_1px_0_#fff] transition-all duration-200 ${
+          className={`absolute top-1 h-8 w-8 rounded-full border border-[#8b9099] bg-gradient-to-b from-white to-[#cfd3d9] shadow-[0_2px_4px_#0006,inset_0_1px_0_#fff] motion-safe:transition-all motion-safe:duration-200 ${
             on ? 'left-11' : 'left-1'
           }`}
         >
@@ -47,7 +48,7 @@ function Flat({ session, locale }: VariantDemoProps) {
           className={`focus-visible:outline-2 focus-visible:outline-offset-2 relative h-7 w-14 rounded-full ${on ? 'bg-[#22c55e]' : 'bg-[#d1d5db]'}`}
         >
           <span
-            className="absolute top-1 h-5 w-5 rounded-full bg-white transition-all duration-150"
+            className="absolute top-1 h-5 w-5 rounded-full bg-white motion-safe:transition-all motion-safe:duration-150"
             style={{ left: on ? '2rem' : '0.25rem' }}
           />
         </button>
@@ -63,12 +64,12 @@ function Aurora({ session, locale }: VariantDemoProps) {
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-[#070b16] p-6 text-white">
       <span
-        className={`pointer-events-none absolute -top-10 left-6 h-32 w-48 rounded-full bg-[#22d3ee]/50 blur-3xl transition-opacity duration-500 ${
+        className={`pointer-events-none absolute -top-10 left-6 h-32 w-48 rounded-full bg-[#22d3ee]/50 blur-3xl motion-safe:transition-opacity motion-safe:duration-500 ${
           on ? 'opacity-100' : 'opacity-0'
         }`}
       />
       <span
-        className={`pointer-events-none absolute -bottom-12 right-4 h-32 w-40 rounded-full bg-[#a855f7]/50 blur-3xl transition-opacity duration-500 ${
+        className={`pointer-events-none absolute -bottom-12 right-4 h-32 w-40 rounded-full bg-[#a855f7]/50 blur-3xl motion-safe:transition-opacity motion-safe:duration-500 ${
           on ? 'opacity-100' : 'opacity-0'
         }`}
       />
@@ -80,12 +81,12 @@ function Aurora({ session, locale }: VariantDemoProps) {
           aria-checked={on}
           aria-label={zh ? '极光模式' : 'Aurora mode'}
           onClick={() => setOn(!on)}
-          className={`focus-visible:outline-2 focus-visible:outline-offset-2 relative h-8 w-16 rounded-full border transition-colors duration-500 ${
+          className={`focus-visible:outline-2 focus-visible:outline-offset-2 relative h-8 w-16 rounded-full border motion-safe:transition-colors motion-safe:duration-500 ${
             on ? 'border-white/30 bg-white/10 shadow-[0_0_24px_#22d3ee55]' : 'border-white/15 bg-white/5'
           }`}
         >
           <span
-            className={`absolute top-1 h-6 w-6 rounded-full transition-all duration-500 ${
+            className={`absolute top-1 h-6 w-6 rounded-full motion-safe:transition-all motion-safe:duration-500 ${
               on ? 'left-9 bg-[#7df9ff] shadow-[0_0_16px_#7df9ff]' : 'left-1 bg-white/40'
             }`}
           />
@@ -147,6 +148,10 @@ const styleVariants: StyleVariantSet = [
   recipeVariant('neobrutalism', (props) => <Expanded {...props} style="neobrutalism" />, { zh: "粗黑描边、硬投影与高对比选中；开关轨道与旋钮采用相应几何和材质，状态可切换并恢复关闭。", en: "Heavy black outlines, hard shadows and bold selection; switch track and thumb use matching geometry and materials, with toggling and reset to off." }),
   recipeVariant('neumorphism', (props) => <Expanded {...props} style="neumorphism" />, { zh: "同色曲面、双向阴影与实体边界；开关轨道与旋钮采用相应几何和材质，状态可切换并恢复关闭。", en: "Shared soft surfaces, paired shadows and explicit borders; switch track and thumb use matching geometry and materials, with toggling and reset to off." }),
   recipeVariant('organic', (props) => <Expanded {...props} style="organic" />, { zh: "大地色与不规则圆角，柔和而清楚；开关轨道与旋钮采用相应几何和材质，状态可切换并恢复关闭。", en: "Earth tones and irregular corners, soft yet clear; switch track and thumb use matching geometry and materials, with toggling and reset to off." }),
+  recipeVariant('glassmorphism', (props) => <Expanded {...props} style="glassmorphism" />, { zh: "磨砂玻璃轨道、透亮边缘与柔化暗底表达开关状态；可切换并恢复关闭。", en: "A frosted glass track, bright edge and softened dark ground express the switch state; toggling and reset remain available." }),
+  recipeVariant('pixel-art', (props) => <Expanded {...props} style="pixel-art" />, { zh: "方角像素轨道与硬切位置变化呈现游戏菜单开关，不依赖平滑位移动效。", en: "A pixel-square track and snapped thumb position create a game-menu switch without relying on smooth movement." }),
+  recipeVariant('art-deco', (props) => <Expanded {...props} style="art-deco" />, { zh: "金色双线铭牌、几何旋钮和衬线标签让开关成为对称装饰构件。", en: "Gold double-rule framing, a geometric thumb and serif label turn the switch into a symmetric decorative element." }),
+  recipeVariant('cyberpunk', (props) => <Expanded {...props} style="cyberpunk" />, { zh: "暗色控制台、霓虹轨道和终端字形强化开关状态，仍支持键盘切换。", en: "A dark console, neon track and terminal typography sharpen the switch state while keyboard toggling remains available." }),
 ];
 
-export default styleVariants;
+export default withStyleSamples('switch', styleVariants);

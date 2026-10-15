@@ -1,6 +1,7 @@
 import { recipe, RecipeFrame, recipeVariant, type RecipeStyleId } from '../shared/styleRecipe';
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
+import { withStyleSamples } from '../shared/styleSamples';
 
 function Neumorph({ session, locale }: VariantDemoProps) {
   const zh = locale === 'zh';
@@ -10,14 +11,14 @@ function Neumorph({ session, locale }: VariantDemoProps) {
       <p className="mb-4 text-xs font-semibold tracking-wide">{zh ? '偏好设置' : 'Preferences'}</p>
       <button type="button"
         role="checkbox" aria-checked={on} onClick={() => setOn(!on)}
-        className={`focus-visible:outline-2 focus-visible:outline-offset-2 flex w-full items-center gap-4 rounded-xl bg-[#e6ebf2] px-4 py-3 text-left transition-all duration-200 ${
+        className={`focus-visible:outline-2 focus-visible:outline-offset-2 flex w-full items-center gap-4 rounded-xl bg-[#e6ebf2] px-4 py-3 text-left motion-safe:transition-all motion-safe:duration-200 ${
           on
             ? 'shadow-[6px_6px_12px_#c3cad6,-6px_-6px_12px_#ffffff]'
             : 'shadow-[inset_5px_5px_10px_#c3cad6,inset_-5px_-5px_10px_#ffffff]'
         }`}
       >
         <span
-          className={`flex h-6 w-6 items-center justify-center rounded-md bg-[#e6ebf2] text-xs font-bold transition-all duration-200 ${
+          className={`flex h-6 w-6 items-center justify-center rounded-md bg-[#e6ebf2] text-xs font-bold motion-safe:transition-all motion-safe:duration-200 ${
             on
               ? 'text-[#5566ff] shadow-[inset_2px_2px_4px_#c3cad6,inset_-2px_-2px_4px_#ffffff]'
               : 'text-transparent shadow-[3px_3px_6px_#c3cad6,-3px_-3px_6px_#ffffff]'
@@ -60,7 +61,7 @@ function Neobrutal({ session, locale }: VariantDemoProps) {
     <div className="mx-auto w-full max-w-sm border-[3px] border-black bg-[#ffe066] p-5 text-black">
       <button type="button"
         role="checkbox" aria-checked={on} onClick={() => setOn(!on)}
-        className={`focus-visible:outline-2 focus-visible:outline-offset-2 flex w-full items-center gap-3 border-[3px] border-black px-3 py-3 text-left transition-all duration-100 ${
+        className={`focus-visible:outline-2 focus-visible:outline-offset-2 flex w-full items-center gap-3 border-[3px] border-black px-3 py-3 text-left motion-safe:transition-all motion-safe:duration-100 ${
           on ? 'bg-white shadow-none' : 'bg-[#ff8fab] shadow-[4px_4px_0_0_#000]'
         }`}
       >
@@ -127,6 +128,10 @@ const styleVariants: StyleVariantSet = [
   recipeVariant('swiss-style', (props) => <Expanded {...props} style="swiss-style" />, { zh: "编号网格、直角边界与红色强调；复选项与方框同步选中；保留原生空格键与可清除状态。", en: "An indexed grid, square edges and a red accent; selection styles the checkbox row while native Space toggling and clear remain available." }),
   recipeVariant('organic', (props) => <Expanded {...props} style="organic" />, { zh: "大地色与不规则圆角，柔和而清楚；复选项与方框同步选中；保留原生空格键与可清除状态。", en: "Earth tones and irregular corners, soft yet clear; selection styles the checkbox row while native Space toggling and clear remain available." }),
   recipeVariant('glassmorphism', (props) => <Expanded {...props} style="glassmorphism" />, { zh: "深色背景上的磨砂透明层与高亮边缘；复选项与方框同步选中；保留原生空格键与可清除状态。", en: "Frosted layers and highlighted edges over a deep backdrop; selection styles the checkbox row while native Space toggling and clear remain available." }),
+  recipeVariant('bauhaus', (props) => <Expanded {...props} style="bauhaus" />, { zh: "原色几何、粗体无衬线字和模块化间距构成包豪斯选项行；保留原生空格键操作。", en: "Primary geometry, bold sans-serif type and modular spacing form a Bauhaus option row with native Space-key operation." }),
+  recipeVariant('art-deco', (props) => <Expanded {...props} style="art-deco" />, { zh: "对称金色双线、几何徽记和衬线标题将复选项排成装饰艺术铭牌。", en: "Symmetric gold rules, geometric markers and serif headings arrange the checkbox as an Art Deco plaque." }),
+  recipeVariant('cyberpunk', (props) => <Expanded {...props} style="cyberpunk" />, { zh: "暗色终端、霓虹描边与等宽字突出选中状态；原生键盘操作与清除仍有效。", en: "A dark terminal, neon outlines and monospace type make selection explicit while native keyboard use and clearing remain available." }),
+  recipeVariant('claymorphism', (props) => <Expanded {...props} style="claymorphism" />, { zh: "软黏土凸面选项与凹陷方框通过内外阴影区分状态，保留原生空格键操作。", en: "A soft raised clay row and inset checkbox separate states through paired shadows while keeping native Space-key operation." }),
 ];
 
-export default styleVariants;
+export default withStyleSamples('checkbox', styleVariants);

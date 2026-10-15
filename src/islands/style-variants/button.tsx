@@ -1,5 +1,6 @@
 import { recipe, recipeVariant, type RecipeStyleId } from '../shared/styleRecipe';
 import type { StyleVariantSet, VariantDemoProps } from './types';
+import { withStyleSamples } from '../shared/styleSamples';
 import { useButtonFeedback } from '../shared/useButtonFeedback';
 import { buttonFeedbackText } from '../../lib/button-feedback';
 
@@ -14,10 +15,10 @@ function Minimal({ session, locale }: VariantDemoProps) {
       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-black/50">{zh ? '保存更改 · 本地模拟' : 'Save changes · local demo'}</p>
       <div className="flex flex-wrap gap-2">
         <button type="button" disabled={action.busy} aria-busy={action.busy} onClick={action.start}
-          className={`${target} ${focus} border border-black bg-black px-4 py-2 text-xs font-medium uppercase tracking-wider text-white transition-colors duration-150 hover:bg-white hover:text-black focus-visible:outline-black`}>
+          className={`${target} ${focus} border border-black bg-black px-4 py-2 text-xs font-medium uppercase tracking-wider text-white motion-safe:transition-colors motion-safe:duration-150 hover:bg-white hover:text-black focus-visible:outline-black`}>
           {action.busy ? (zh ? '处理中…' : 'Working…') : zh ? '保存' : 'Save'}
         </button>
-        <button type="button" onClick={action.cancel} className={`${target} ${focus} focus-visible:outline-black border border-black/20 px-4 py-2 text-xs uppercase tracking-wider text-black/70 transition-colors duration-150 hover:border-black hover:text-black`}>
+        <button type="button" onClick={action.cancel} className={`${target} ${focus} focus-visible:outline-black border border-black/20 px-4 py-2 text-xs uppercase tracking-wider text-black/70 motion-safe:transition-colors motion-safe:duration-150 hover:border-black hover:text-black`}>
           {zh ? '取消' : 'Cancel'}
         </button>
       </div>
@@ -61,7 +62,7 @@ function Glass({ session, locale }: VariantDemoProps) {
           className={`${target} ${focus} focus-visible:outline-[#080511] rounded-xl border border-white/50 bg-white/20 px-4 py-2 text-xs font-semibold shadow-md shadow-black/10 backdrop-blur-md transition-all duration-200 motion-safe:enabled:hover:-translate-y-0.5 enabled:hover:bg-white/35 enabled:hover:shadow-lg motion-safe:enabled:focus-visible:-translate-y-0.5 enabled:focus-visible:bg-white/35 enabled:focus-visible:shadow-lg motion-reduce:transition-none`}>
           {action.busy ? (zh ? '处理中…' : 'Working…') : zh ? '保存' : 'Save'}
         </button>
-        <button type="button" onClick={action.cancel} className={`${target} ${focus} focus-visible:outline-[#080511] rounded-xl border border-white/30 bg-transparent px-4 py-2 text-xs font-medium backdrop-blur-sm transition-colors duration-200 hover:bg-white/15`}>
+        <button type="button" onClick={action.cancel} className={`${target} ${focus} focus-visible:outline-[#080511] rounded-xl border border-white/30 bg-transparent px-4 py-2 text-xs font-medium backdrop-blur-sm motion-safe:transition-colors motion-safe:duration-200 hover:bg-white/15`}>
           {zh ? '取消' : 'Cancel'}
         </button>
       </div>
@@ -133,11 +134,12 @@ function Neumorphic({ session, locale }: VariantDemoProps) {
 
 function AdditionalButton({ style, session, locale }: VariantDemoProps & { style: RecipeStyleId }) {
   const r = recipe(style); const action = useButtonFeedback(session); const zh = locale === 'zh';
+  const feedback = `motion-safe:transition-transform motion-safe:enabled:hover:-translate-y-0.5 motion-safe:enabled:active:translate-y-0.5 motion-reduce:transition-none ${style === 'hand-drawn' ? 'motion-safe:enabled:active:-rotate-1' : ''}`;
   return <div data-style-recipe={style} className={`mx-auto w-full max-w-sm [overflow-wrap:anywhere] ${r.frame}`}>
     <header className={r.header}><h4 className={r.title}>{zh ? '保存更改 · 本地模拟' : 'Save changes · local demo'}</h4></header>
     <div className={style === 'pixel-art' ? 'grid gap-4' : 'flex flex-wrap gap-3'}>
-      <button type="button" disabled={action.busy} aria-busy={action.busy} onClick={action.start} className={`${r.control} !min-w-28`}>{action.busy ? (zh ? '处理中…' : 'Working…') : zh ? '保存' : 'Save'}</button>
-      <button type="button" onClick={action.cancel} className={r.secondary}>{zh ? '取消' : 'Cancel'}</button>
+      <button type="button" disabled={action.busy} aria-busy={action.busy} onClick={action.start} className={`${r.control} ${feedback} !min-w-28`}>{action.busy ? (zh ? '处理中…' : 'Working…') : zh ? '保存' : 'Save'}</button>
+      <button type="button" onClick={action.cancel} className={`${r.secondary} ${feedback}`}>{zh ? '取消' : 'Cancel'}</button>
     </div>
     <p role="status" aria-atomic="true" className="mt-4 min-h-10 text-xs leading-relaxed">{buttonFeedbackText(action.state, locale)}</p>
   </div>;
@@ -188,6 +190,19 @@ const styleVariants: StyleVariantSet = [
   },
   recipeVariant('flat-design', (props) => <AdditionalButton {...props} style="flat-design" />, { zh: '无投影纯色块、分明圆角与等高操作；保存和取消共享可中断本地状态。', en: 'Shadow-free solid blocks, clear corners and equal-height actions share an interruptible local save state.' }),
   recipeVariant('pixel-art', (props) => <AdditionalButton {...props} style="pixel-art" />, { zh: '4px 方角边与阶梯硬投影，等宽大写按钮纵向堆叠；加载、取消与完成都有文字反馈。', en: 'Square 4px edges, stepped hard shadows and stacked monospace actions expose loading, cancellation and completion in text.' }),
+  recipeVariant('brutalism', (props) => <AdditionalButton {...props} style="brutalism" />, { zh: '荧光黄黑底、等宽大写字与无修饰直角，按下时短促下沉，保留粗粝海报感。', en: 'Acid yellow on black, monospace capitals and raw square edges create a poster-like action with a short press sink.' }),
+  recipeVariant('corporate-memphis', (props) => <AdditionalButton {...props} style="corporate-memphis" />, { zh: '圆胶囊按钮、亲和圆角与轻快字重，把企业界面的克制层次做得更活泼。', en: 'Pill-shaped controls, friendly corners and lively weight soften an otherwise orderly corporate interface.' }),
+  recipeVariant('aurora', (props) => <AdditionalButton {...props} style="aurora" />, { zh: '深色极光渐层与冷光浮层包住圆弧按钮，明暗雾面形成前后景深。', en: 'A dark aurora gradient and cool luminous surface frame rounded actions with atmospheric depth.' }),
+  recipeVariant('liquid-glass', (props) => <AdditionalButton {...props} style="liquid-glass" />, { zh: '流体圆角、半透明玻璃、内侧高光与模糊叠层形成水滴般的折射按钮。', en: 'Fluid corners, translucent glass, inner highlights and backdrop blur give the controls a refractive, droplet-like surface.' }),
+  recipeVariant('claymorphism', (props) => <AdditionalButton {...props} style="claymorphism" />, { zh: '厚圆角与软黏土内凹、外凸阴影叠出体积，按下时阴影收拢。', en: 'Deep rounded forms combine soft inset and raised shadows; pressing gathers the relief into the surface.' }),
+  recipeVariant('y2k', (props) => <AdditionalButton {...props} style="y2k" />, { zh: '镀铬渐层、斜体粗字与立体高光回到千禧年网页质感，悬停轻抬。', en: 'Chrome-like gradients, italic heavy type and glossy bevels recall early-2000s web controls that lift on hover.' }),
+  recipeVariant('retro-futurism', (props) => <AdditionalButton {...props} style="retro-futurism" />, { zh: '琥珀金属渐层、等宽大写字与微光阴影呈现复古仪表台操作键。', en: 'Amber metallic gradients, monospace capitals and restrained glow make the controls feel like retro-future console keys.' }),
+  recipeVariant('skeuomorphism', (props) => <AdditionalButton {...props} style="skeuomorphism" />, { zh: '上下金属渐层、内侧反光与实体凸缘模拟按键帽，按下时投影消失。', en: 'Metallic bevels, inset highlights and raised edges imitate a physical keycap; its shadow collapses on press.' }),
+  recipeVariant('organic', (props) => <AdditionalButton {...props} style="organic" />, { zh: '叶片式不对称圆角、衬线字与柔和自然边界，主次按钮形状各自呼应。', en: 'Leaf-like asymmetric corners, serif type and soft natural edges give primary and secondary actions related but distinct forms.' }),
+  recipeVariant('editorial', (props) => <AdditionalButton {...props} style="editorial" />, { zh: '衬线斜体、细线书眉与下划线型主操作，把按钮放进杂志版式节奏。', en: 'Serif italics, fine rules and an underline-led primary action place the control inside an editorial rhythm.' }),
+  recipeVariant('art-deco', (props) => <AdditionalButton {...props} style="art-deco" />, { zh: '对称双线边饰、几何切面与大写衬线字将按钮做成装饰艺术铭牌。', en: 'Symmetric double rules, geometric facets and uppercase serif lettering turn each action into an Art Deco plaque.' }),
+  recipeVariant('hand-drawn', (props) => <AdditionalButton {...props} style="hand-drawn" />, { zh: '不规则手绘边缘、虚线笔触和轻微旋转反馈，让按钮像纸上标注。', en: 'Irregular hand-drawn edges, dashed strokes and a slight press rotation make the actions feel sketched on paper.' }),
+  recipeVariant('bauhaus', (props) => <AdditionalButton {...props} style="bauhaus" />, { zh: '圆形几何、原色构成与粗体无衬线字让操作按钮成为构图的一部分。', en: 'Primary geometry and bold sans-serif type make the controls part of the composition rather than decorated rectangles.' }),
 ];
 
-export default styleVariants;
+export default withStyleSamples('button', styleVariants);

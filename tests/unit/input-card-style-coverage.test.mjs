@@ -33,9 +33,9 @@ function loadSource(relativePath) {
 }
 
 const matrix = {
-  button: ['minimalism', 'neobrutalism', 'glassmorphism', 'swiss-style', 'cyberpunk', 'neumorphism', 'flat-design', 'pixel-art'],
-  input: ['minimalism', 'neobrutalism', 'editorial', 'swiss-style', 'cyberpunk', 'neumorphism', 'flat-design', 'organic'],
-  card: ['minimalism', 'aurora', 'bento-grid', 'editorial', 'neobrutalism', 'neumorphism', 'swiss-style', 'art-deco'],
+  button: ['minimalism', 'neobrutalism', 'glassmorphism', 'swiss-style', 'cyberpunk', 'neumorphism', 'flat-design', 'pixel-art', 'brutalism', 'corporate-memphis', 'aurora', 'liquid-glass', 'claymorphism', 'y2k', 'retro-futurism', 'skeuomorphism', 'organic', 'editorial', 'art-deco', 'hand-drawn', 'bauhaus'],
+  input: ['minimalism', 'neobrutalism', 'editorial', 'swiss-style', 'cyberpunk', 'neumorphism', 'flat-design', 'organic', 'skeuomorphism', 'glassmorphism', 'hand-drawn', 'claymorphism'],
+  card: ['minimalism', 'aurora', 'bento-grid', 'editorial', 'neobrutalism', 'neumorphism', 'swiss-style', 'art-deco', 'glassmorphism', 'claymorphism', 'hand-drawn', 'pixel-art'],
 };
 const sets = Object.fromEntries(Object.keys(matrix).map((id) => [id, loadSource(`src/islands/style-variants/${id}.tsx`).default]));
 const { createSession } = loadSource('src/islands/style-variants/session.ts');
@@ -46,7 +46,7 @@ const render = (variant, locale, values = {}) => {
 };
 
 for (const [component, expected] of Object.entries(matrix)) {
-  test(`${component}: 八套真实风格与内容关联和分类名称完全对应`, () => {
+  test(`${component}: 所有已注册风格与内容关联和分类名称完全对应`, () => {
     const variants = sets[component];
     assert.deepEqual(variants.map((variant) => variant.style), expected);
     const content = yaml.load(readFileSync(resolve(root, `src/content/components/${component}.yaml`), 'utf8'));
@@ -86,7 +86,7 @@ test('输入框：各风格均保留受控值、标签与帮助信息关联', ()
   }
 });
 
-test('输入框：八套风格的空值、错误、清空与校验反馈均双语', () => {
+test('输入框：全部十二套风格的空值、错误、清空与校验反馈均双语', () => {
   for (const variant of sets.input) {
     for (const locale of ['zh', 'en']) {
       const empty = render(variant, locale);

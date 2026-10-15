@@ -103,6 +103,7 @@ export default function SolutionLab(props: Props) {
   if (!loaded)
     return <p role="status">{zh ? "正在加载实验室…" : "Loading lab…"}</p>;
   const current = loaded.styles.find((s) => s.style === styleId);
+  const hasStyleWall = loaded.styles.length > 0 && loaded.styles.every((style) => style.Sample);
   const variant = resolveSolutionVariant({
     forms, requested: form, previewRequested: previewForm, mode, styled: Boolean(current), capability: loaded.previewVariants,
   });
@@ -136,42 +137,90 @@ export default function SolutionLab(props: Props) {
     <div className="space-y-5" data-solution-lab data-track-region="solution-lab">
       <div id="style-variants" className="demo-workbench">
         {loaded.styles.length > 0 && (
-          <div className="demo-toolbar">
-            <div
-              className="flex flex-wrap gap-1"
-              role="group"
-              aria-label={zh ? "风格变体" : "Style variants"}
-            >
-              <button
-                className="demo-tool"
-                data-track-label="solution-style-base"
-                aria-pressed={!current}
-                onClick={() => {
-                  setStyle("");
-                  if (current) { setForm(""); setPreviewForm(""); }
-                  setPart(null);
-                }}
-              >
-                {zh ? "基础示例" : "Base example"}
-              </button>
-              {loaded.styles.map((s) => (
+          hasStyleWall ? (
+            <section className="border-b border-line p-3 sm:p-4" aria-labelledby="style-wall-title" data-style-wall={component}>
+              <div className="mb-3">
+                <h3 id="style-wall-title" className="font-medium">{zh ? "风格对照墙" : "Style comparison wall"}</h3>
+                <p className="mt-1 text-xs text-ink-3">{zh ? "选中一张样例卡，在下方完整体验对应组件。" : "Choose a sample card to try the full component below."}</p>
+              </div>
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 xl:grid-cols-5" role="group" aria-label={zh ? "风格变体" : "Style variants"}>
                 <button
-                  key={s.style}
-                  className="demo-tool"
-                  data-style={s.style}
-                  data-track-label={`solution-style-${s.style}`}
-                  aria-pressed={s.style === styleId}
+                  type="button"
+                  className="min-h-36 min-w-0 rounded-xl border border-line bg-paper p-2 text-left motion-safe:transition-colors hover:bg-code-bg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent aria-pressed:border-accent aria-pressed:bg-code-bg"
+                  data-track-label="solution-style-base"
+                  aria-pressed={!current}
                   onClick={() => {
-                    setStyle(s.style);
-                    if (!current) { setForm(""); setPreviewForm(""); }
+                    setStyle("");
+                    if (current) { setForm(""); setPreviewForm(""); }
                     setPart(null);
                   }}
                 >
-                  {s.name[locale]}
+                  <span className="grid min-h-[5.5rem] place-items-center overflow-hidden rounded-lg bg-code-bg p-3 text-center font-serif text-2xl text-ink">Aa</span>
+                  <span className="mt-2 block text-xs font-semibold leading-snug text-ink">{zh ? "基础示例" : "Base example"}</span>
                 </button>
-              ))}
+                {loaded.styles.map((style) => {
+                  const Sample = style.Sample;
+                  if (!Sample) return null;
+                  return (
+                    <button
+                      key={style.style}
+                      type="button"
+                      className="min-h-36 min-w-0 rounded-xl border border-line bg-paper p-2 text-left motion-safe:transition-colors hover:bg-code-bg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent aria-pressed:border-accent aria-pressed:bg-code-bg"
+                      data-style={style.style}
+                      data-style-wall-tile={style.style}
+                      data-track-label={`solution-style-${style.style}`}
+                      aria-pressed={style.style === styleId}
+                      onClick={() => {
+                        setStyle(style.style);
+                        if (!current) { setForm(""); setPreviewForm(""); }
+                        setPart(null);
+                      }}
+                    >
+                      <Sample locale={locale} />
+                      <span data-style-label className="mt-2 block text-xs font-semibold leading-snug text-ink">{style.name[locale]}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+          ) : (
+            <div className="demo-toolbar">
+              <div
+                className="flex flex-wrap gap-1"
+                role="group"
+                aria-label={zh ? "风格变体" : "Style variants"}
+              >
+                <button
+                  className="demo-tool"
+                  data-track-label="solution-style-base"
+                  aria-pressed={!current}
+                  onClick={() => {
+                    setStyle("");
+                    if (current) { setForm(""); setPreviewForm(""); }
+                    setPart(null);
+                  }}
+                >
+                  {zh ? "基础示例" : "Base example"}
+                </button>
+                {loaded.styles.map((style) => (
+                  <button
+                    key={style.style}
+                    className="demo-tool"
+                    data-style={style.style}
+                    data-track-label={`solution-style-${style.style}`}
+                    aria-pressed={style.style === styleId}
+                    onClick={() => {
+                      setStyle(style.style);
+                      if (!current) { setForm(""); setPreviewForm(""); }
+                      setPart(null);
+                    }}
+                  >
+                    {style.name[locale]}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+          )
         )}
         <div className="demo-toolbar">
           <div
@@ -245,6 +294,7 @@ export default function SolutionLab(props: Props) {
             <div
               className="demo-content"
               key={`${styleId}-${mode}-${revision}`}
+              data-active-style={current?.style}
               data-active-part={part ?? undefined}
             >
               {current ? (

@@ -2,6 +2,7 @@ import { recipe, RecipeFrame, recipeVariant, type RecipeStyleId } from '../share
 import { useId, useRef, type ReactNode } from 'react';
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
+import { withStyleSamples } from '../shared/styleSamples';
 
 const validEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
@@ -211,6 +212,10 @@ const styleVariants: StyleVariantSet = [
   },
   recipeVariant('flat-design', (props) => <Expanded {...props} style="flat-design" />, { zh: "纯色块与清晰层级，不依赖阴影；输入框与检查按钮采用相同风格，原有邮箱校验、清空与会话状态完整保留。", en: "Solid blocks and clear hierarchy without shadows; the field and check control share the style while preserving email validation, clearing and session state." }),
   recipeVariant('organic', (props) => <Expanded {...props} style="organic" />, { zh: "大地色与不规则圆角，柔和而清楚；输入框与检查按钮采用相同风格，原有邮箱校验、清空与会话状态完整保留。", en: "Earth tones and irregular corners, soft yet clear; the field and check control share the style while preserving email validation, clearing and session state." }),
+  recipeVariant('skeuomorphism', (props) => <Expanded {...props} style="skeuomorphism" />, { zh: "金属渐层边缘、内侧反光与实体凹槽塑出仪表式输入面；错误、清空和本地格式检查仍可操作。", en: "Metallic bevels, inset highlights and a recessed well create an instrument-panel field while validation, clearing and local format checks remain usable." }),
+  recipeVariant('glassmorphism', (props) => <Expanded {...props} style="glassmorphism" />, { zh: "深色底上的半透明磨砂输入层以高光细边分层；校验状态保留清晰边界与焦点。", en: "A translucent frosted field sits over a dark ground with a highlighted hairline; validation keeps a clear boundary and focus state." }),
+  recipeVariant('hand-drawn', (props) => <Expanded {...props} style="hand-drawn" />, { zh: "纸感底色、略不规则描边与手写式标题构成笔记表单；清空与校验仍可操作。", en: "Paper-like surfaces, irregular outlines and handwritten-style headings form a note-like form while clear and validation actions stay available." }),
+  recipeVariant('claymorphism', (props) => <Expanded {...props} style="claymorphism" />, { zh: "圆润厚边、柔软凹陷输入槽与凸起操作键形成黏土体积；保留错误提示和真实焦点。", en: "Rounded weight, a soft inset field and raised controls build clay-like volume while retaining error messages and visible focus." }),
 ];
 
-export default styleVariants;
+export default withStyleSamples('input', styleVariants);

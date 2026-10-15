@@ -42,6 +42,11 @@ export interface VariantDemoProps {
   session: LabSession;
 }
 
+/** 静态紧凑样例，只表达外观；完整行为仍由 Demo 提供。 */
+export interface VariantSampleProps {
+  locale: 'zh' | 'en';
+}
+
 export interface StyleVariant {
   /** 风格条目 id（src/content/styles/<id>），用于展示与追溯 */
   style: StyleId;
@@ -50,6 +55,8 @@ export interface StyleVariant {
   note: { zh: string; en: string };
   /** 小 Demo 组件；可读取 session 以在切换风格时保留状态 */
   Demo: ComponentType<VariantDemoProps>;
+  /** 风格墙使用的静态控件样例，不包含第二份业务交互。 */
+  Sample?: ComponentType<VariantSampleProps>;
 }
 
 export type StyleVariantSet = StyleVariant[];

@@ -125,7 +125,20 @@
       "cyberpunk",
       "neumorphism",
       "flat-design",
-      "pixel-art"
+      "pixel-art",
+      "brutalism",
+      "corporate-memphis",
+      "aurora",
+      "liquid-glass",
+      "claymorphism",
+      "y2k",
+      "retro-futurism",
+      "skeuomorphism",
+      "organic",
+      "editorial",
+      "art-deco",
+      "hand-drawn",
+      "bauhaus"
     ]
   },
   "card": {
@@ -146,7 +159,11 @@
       "neobrutalism",
       "neumorphism",
       "swiss-style",
-      "art-deco"
+      "art-deco",
+      "glassmorphism",
+      "claymorphism",
+      "hand-drawn",
+      "pixel-art"
     ]
   },
   "carousel": {
@@ -182,7 +199,11 @@
       "flat-design",
       "swiss-style",
       "organic",
-      "glassmorphism"
+      "glassmorphism",
+      "bauhaus",
+      "art-deco",
+      "cyberpunk",
+      "claymorphism"
     ]
   },
   "color-picker": {
@@ -365,7 +386,11 @@
       "cyberpunk",
       "neumorphism",
       "flat-design",
-      "organic"
+      "organic",
+      "skeuomorphism",
+      "glassmorphism",
+      "hand-drawn",
+      "claymorphism"
     ]
   },
   "lightbox": {
@@ -581,7 +606,11 @@
       "flat-design",
       "neobrutalism",
       "neumorphism",
-      "organic"
+      "organic",
+      "glassmorphism",
+      "cyberpunk",
+      "art-deco",
+      "pixel-art"
     ]
   },
   "sidebar": {
@@ -671,7 +700,11 @@
       "swiss-style",
       "neobrutalism",
       "neumorphism",
-      "organic"
+      "organic",
+      "glassmorphism",
+      "pixel-art",
+      "art-deco",
+      "cyberpunk"
     ]
   },
   "table": {

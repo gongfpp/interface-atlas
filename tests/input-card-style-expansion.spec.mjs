@@ -3,15 +3,15 @@ import { test, expect } from './helpers/private-browser.mjs';
 // 浏览器验收定义：仅在浏览器访问已授权的环境运行。
 // 源码与服务端渲染检查不等同于浏览器验收。
 const styles = {
-  input: ['minimalism', 'neobrutalism', 'editorial', 'swiss-style', 'cyberpunk', 'neumorphism', 'flat-design', 'organic'],
-  card: ['minimalism', 'aurora', 'bento-grid', 'editorial', 'neobrutalism', 'neumorphism', 'swiss-style', 'art-deco'],
+  input: ['minimalism', 'neobrutalism', 'editorial', 'swiss-style', 'cyberpunk', 'neumorphism', 'flat-design', 'organic', 'skeuomorphism', 'glassmorphism', 'hand-drawn', 'claymorphism'],
+  card: ['minimalism', 'aurora', 'bento-grid', 'editorial', 'neobrutalism', 'neumorphism', 'swiss-style', 'art-deco', 'glassmorphism', 'claymorphism', 'hand-drawn', 'pixel-art'],
 };
 
 async function openStyles(page, component, locale = 'en') {
   await page.goto(`${locale === 'en' ? '/en' : ''}/components/${component}`);
   const section = page.locator('#style-variants');
   await section.scrollIntoViewIfNeeded();
-  await expect(section.locator('[data-style]')).toHaveCount(8);
+  await expect(section.locator('[data-style]')).toHaveCount(styles[component].length);
   const select = async (style) => {
     const pill = section.locator(`[data-style="${style}"]`);
     await pill.click();
@@ -22,7 +22,7 @@ async function openStyles(page, component, locale = 'en') {
 }
 
 for (const [locale, width] of [['zh', 390], ['zh', 1280], ['en', 390], ['en', 1280]]) {
-  test(`${locale} ${width}px: 八套输入框支持输入、校验、清空焦点恢复与跨风格保留`, async ({ page }) => {
+  test(`${locale} ${width}px: 十二套输入框支持输入、校验、清空焦点恢复与跨风格保留`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     const { preview, select } = await openStyles(page, 'input', locale);
     const field = preview.getByRole('textbox', { name: locale === 'zh' ? '邮箱地址' : 'Email address' });
@@ -52,7 +52,7 @@ for (const [locale, width] of [['zh', 390], ['zh', 1280], ['en', 390], ['en', 12
     await expect(field).toHaveValue('shared+long-project-reference@example.org');
   });
 
-  test(`${locale} ${width}px: 八套卡片支持键盘展开、撤销与跨风格收藏状态`, async ({ page }) => {
+  test(`${locale} ${width}px: 十二套卡片支持键盘展开、撤销与跨风格收藏状态`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     const { preview, select } = await openStyles(page, 'card', locale);
     const bookmark = preview.getByRole('button', { name: locale === 'zh' ? '在本地演示中收藏' : 'Bookmark in this local demo' });

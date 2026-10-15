@@ -1,6 +1,6 @@
-# 全组件八风格覆盖矩阵
+# 全组件风格覆盖矩阵
 
-范围：46 个组件；21 个交互模式和 26 个页面模式是独立内容分类，不计入组件分母。25 个风格条目保留。原基线 147 套；本轮已实现 368 套，每组件 8 套，新增 221 套。
+范围：46 个组件；21 个交互模式和 26 个页面模式是独立内容分类，不计入组件分母。25 个风格条目保留。原基线 147 套；当前实现 401 套，其中 40 个组件各 8 套、按钮 21 套、输入框/卡片/选择框/复选框/开关各 12 套，较原基线新增 254 套。
 
 下列为逐组件已实现矩阵。已有风格在前，保留其视觉语言；新增样例复用组件语义状态，材质、排版、几何与实际控件按风格改变。不是所有风格适用于所有组件。
 
@@ -12,10 +12,10 @@
 | badge | 3 | neobrutalism / editorial / skeuomorphism / flat-design / minimalism / swiss-style / cyberpunk / art-deco |
 | bottom-sheet | 3 | glassmorphism / neumorphism / swiss-style / minimalism / flat-design / neobrutalism / cyberpunk / hand-drawn |
 | breadcrumb | 3 | editorial / pixel-art / brutalism / minimalism / flat-design / swiss-style / neobrutalism / organic |
-| button | 6 | minimalism / neobrutalism / glassmorphism / swiss-style / cyberpunk / neumorphism / flat-design / pixel-art |
-| card | 6 | minimalism / aurora / bento-grid / editorial / neobrutalism / neumorphism / swiss-style / art-deco |
+| button | 6 | minimalism / neobrutalism / glassmorphism / swiss-style / cyberpunk / neumorphism / flat-design / pixel-art / brutalism / corporate-memphis / aurora / liquid-glass / claymorphism / y2k / retro-futurism / skeuomorphism / organic / editorial / art-deco / hand-drawn / bauhaus |
+| card | 6 | minimalism / aurora / bento-grid / editorial / neobrutalism / neumorphism / swiss-style / art-deco / glassmorphism / claymorphism / hand-drawn / pixel-art |
 | carousel | 3 | editorial / cyberpunk / pixel-art / minimalism / flat-design / swiss-style / neobrutalism / art-deco |
-| checkbox | 3 | neumorphism / pixel-art / neobrutalism / minimalism / flat-design / swiss-style / organic / glassmorphism |
+| checkbox | 3 | neumorphism / pixel-art / neobrutalism / minimalism / flat-design / swiss-style / organic / glassmorphism / bauhaus / art-deco / cyberpunk / claymorphism |
 | color-picker | 3 | cyberpunk / memphis / organic / minimalism / flat-design / swiss-style / neobrutalism / neumorphism |
 | combobox | 3 | corporate-memphis / cyberpunk / bento-grid / minimalism / flat-design / swiss-style / neobrutalism / neumorphism |
 | command-palette | 3 | aurora / glassmorphism / flat-design / minimalism / swiss-style / neobrutalism / cyberpunk / neumorphism |
@@ -25,7 +25,7 @@
 | fab | 3 | neobrutalism / liquid-glass / claymorphism / minimalism / flat-design / swiss-style / glassmorphism / cyberpunk |
 | file-upload | 3 | hand-drawn / flat-design / skeuomorphism / minimalism / swiss-style / neobrutalism / neumorphism / organic |
 | filter-panel | 3 | swiss-style / bauhaus / neumorphism / minimalism / flat-design / neobrutalism / organic / glassmorphism |
-| input | 6 | minimalism / neobrutalism / editorial / swiss-style / cyberpunk / neumorphism / flat-design / organic |
+| input | 6 | minimalism / neobrutalism / editorial / swiss-style / cyberpunk / neumorphism / flat-design / organic / skeuomorphism / glassmorphism / hand-drawn / claymorphism |
 | lightbox | 3 | art-deco / aurora / pixel-art / minimalism / flat-design / swiss-style / neobrutalism / glassmorphism |
 | menu | 3 | bento-grid / cyberpunk / organic / minimalism / flat-design / swiss-style / neobrutalism / editorial |
 | modal | 3 | glassmorphism / claymorphism / y2k / minimalism / flat-design / swiss-style / neobrutalism / cyberpunk |
@@ -37,12 +37,12 @@
 | radio | 3 | glassmorphism / art-deco / memphis / minimalism / flat-design / swiss-style / neobrutalism / neumorphism |
 | rating | 3 | retro-futurism / y2k / memphis / flat-design / minimalism / neobrutalism / neumorphism / organic |
 | segmented-control | 3 | minimalism / neobrutalism / glassmorphism / flat-design / swiss-style / neumorphism / organic / cyberpunk |
-| select | 3 | swiss-style / bauhaus / liquid-glass / minimalism / flat-design / neobrutalism / neumorphism / organic |
+| select | 3 | swiss-style / bauhaus / liquid-glass / minimalism / flat-design / neobrutalism / neumorphism / organic / glassmorphism / cyberpunk / art-deco / pixel-art |
 | sidebar | 3 | art-deco / bento-grid / editorial / minimalism / flat-design / swiss-style / neobrutalism / organic |
 | slider | 3 | brutalism / vaporwave / organic / minimalism / flat-design / swiss-style / neobrutalism / neumorphism |
 | split-button | 3 | swiss-style / flat-design / claymorphism / minimalism / neobrutalism / glassmorphism / cyberpunk / neumorphism |
 | stepper | 3 | editorial / art-deco / pixel-art / minimalism / flat-design / swiss-style / neobrutalism / organic |
-| switch | 3 | skeuomorphism / flat-design / aurora / minimalism / swiss-style / neobrutalism / neumorphism / organic |
+| switch | 3 | skeuomorphism / flat-design / aurora / minimalism / swiss-style / neobrutalism / neumorphism / organic / glassmorphism / pixel-art / art-deco / cyberpunk |
 | table | 3 | editorial / swiss-style / hand-drawn / minimalism / flat-design / neobrutalism / art-deco / organic |
 | tabs | 3 | flat-design / liquid-glass / memphis / minimalism / swiss-style / neobrutalism / editorial / art-deco |
 | tag-input | 3 | minimalism / memphis / brutalism / flat-design / swiss-style / neobrutalism / neumorphism / organic |
@@ -62,7 +62,7 @@
 - 源码、SSR、单元测试、类型检查、构建通过不能替代桌面/移动端真实浏览器验收
 - 真实 Chromium、Firefox、WebKit 使用中英双语和 390/1280 宽度执行浏览器门禁；截图另行视觉审阅。Linux WebKit 不等于 Apple Safari 或 iOS 真机，触屏模拟不等于真实设备。
 
-全组件风格回归的 184 个用例（46 组件 × 2 语言 × 2 宽度）按用例并行，仍受 Playwright 配置的 2 个 worker 上限约束，不重试失败。每个用例使用独立的浏览器 context/page 和输出目录；用例内部顺序切换 8 套风格，保留真实点击、原生聚焦与滚动、几何稳定等待、语言与溢出检查，以及 button/input/card/tooltip 的截图和附件。执行耗时以实际报告为准。
+全组件风格回归的 184 个用例（46 组件 × 2 语言 × 2 宽度）按用例并行，仍受 Playwright 配置的 2 个 worker 上限约束，不重试失败。每个用例使用独立的浏览器 context/page 和输出目录；用例内按注册数量顺序选择风格（按钮 21 套、五个核心组件 12 套、其余 40 个组件 8 套），检查样例墙、真实键盘选择、原生聚焦与滚动、语言和溢出，并保留 button/input/card/tooltip 的截图和附件。执行耗时以实际报告为准。
 
 ## 验证记录（2026-10-05）
 

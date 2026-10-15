@@ -1,6 +1,7 @@
 import { recipe, RecipeFrame, recipeVariant, type RecipeStyleId } from '../shared/styleRecipe';
 import type { StyleVariantSet, VariantDemoProps } from './types';
 import { useSessionState } from './session';
+import { withStyleSamples } from '../shared/styleSamples';
 
 function Swiss({ session, locale }: VariantDemoProps) {
   const zh = locale === 'zh';
@@ -133,6 +134,10 @@ const styleVariants: StyleVariantSet = [
   recipeVariant('neobrutalism', (props) => <Expanded {...props} style="neobrutalism" />, { zh: "粗黑描边、硬投影与高对比选中；原生选择框和套餐说明共用材质，套餐变更会同步本地详情。", en: "Heavy black outlines, hard shadows and bold selection; the native select and plan summary share materials and update local details together." }),
   recipeVariant('neumorphism', (props) => <Expanded {...props} style="neumorphism" />, { zh: "同色曲面、双向阴影与实体边界；原生选择框和套餐说明共用材质，套餐变更会同步本地详情。", en: "Shared soft surfaces, paired shadows and explicit borders; the native select and plan summary share materials and update local details together." }),
   recipeVariant('organic', (props) => <Expanded {...props} style="organic" />, { zh: "大地色与不规则圆角，柔和而清楚；原生选择框和套餐说明共用材质，套餐变更会同步本地详情。", en: "Earth tones and irregular corners, soft yet clear; the native select and plan summary share materials and update local details together." }),
+  recipeVariant('glassmorphism', (props) => <Expanded {...props} style="glassmorphism" />, { zh: "磨砂透明选项层搭配细亮边和柔焦背景，选择结果会同步下方套餐说明。", en: "A frosted translucent field with a fine bright edge and softened backdrop updates the plan summary when selected." }),
+  recipeVariant('cyberpunk', (props) => <Expanded {...props} style="cyberpunk" />, { zh: "终端等宽字、切角霓虹边和暗色控制台构成赛博选择器，选项仍使用原生键盘交互。", en: "Terminal monospace type, clipped neon edges and a dark console shape a cyber selector while native keyboard selection remains intact." }),
+  recipeVariant('art-deco', (props) => <Expanded {...props} style="art-deco" />, { zh: "对称金色双线与装饰衬线字将选择框做成仪式感铭牌，结果说明随选项更新。", en: "Symmetric gold rules and decorative serif type frame the select as a ceremonial plaque; its summary follows the chosen option." }),
+  recipeVariant('pixel-art', (props) => <Expanded {...props} style="pixel-art" />, { zh: "像素方角、等宽字和分格状态区形成复古游戏菜单式选择器。", en: "Pixel-square corners, monospace type and tiled status blocks give the selector a retro game-menu structure." }),
 ];
 
-export default styleVariants;
+export default withStyleSamples('select', styleVariants);

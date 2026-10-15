@@ -2,11 +2,15 @@ import type { ReactNode } from 'react';
 import type { StyleId, StyleVariant, VariantDemoProps } from '../style-variants/types';
 
 /** 实际组件使用的材质、字形与空间配方；不是套在既有截图外的换色壳。 */
-export type RecipeStyleId = 'minimalism' | 'flat-design' | 'swiss-style' | 'neobrutalism' | 'glassmorphism' | 'cyberpunk' | 'neumorphism' | 'organic' | 'editorial' | 'art-deco' | 'hand-drawn' | 'bauhaus' | 'pixel-art' | 'brutalism' | 'corporate-memphis' | 'aurora' | 'liquid-glass' | 'claymorphism' | 'y2k' | 'retro-futurism' | 'skeuomorphism';
+export type RecipeStyleId = 'minimalism' | 'flat-design' | 'swiss-style' | 'neobrutalism' | 'glassmorphism' | 'cyberpunk' | 'neumorphism' | 'organic' | 'editorial' | 'art-deco' | 'hand-drawn' | 'bauhaus' | 'pixel-art' | 'brutalism' | 'corporate-memphis' | 'aurora' | 'liquid-glass' | 'claymorphism' | 'y2k' | 'retro-futurism' | 'skeuomorphism' | 'bento-grid';
 type Recipe = { frame: string; header: string; title: string; body: string; item: string; active: string; control: string; secondary: string; field: string; muted: string; divider: string };
 const focus = 'min-h-11 min-w-11 max-w-full focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none';
 const basic = 'px-3 py-2 text-sm';
 const recipes: Record<RecipeStyleId, Recipe> = {
+  'bento-grid': {
+    frame: 'grid gap-3 rounded-2xl border-2 border-[#cbd5e1] bg-[#edf2f7] p-4 text-[#203247]', header: 'mb-1 border-b border-[#cbd5e1] pb-2', title: 'text-sm font-bold tracking-tight', body: 'grid grid-cols-2 gap-2',
+    item: 'rounded-xl border border-[#cbd5e1] bg-white p-3 shadow-sm', active: 'bg-[#dcecff] font-semibold text-[#17304e]', control: `${basic} rounded-md bg-[#243b53] font-semibold text-white shadow-sm hover:shadow-md`, secondary: `${basic} rounded-md border border-[#94a3b8] bg-white text-[#203247]`, field: `${basic} w-full rounded-md border border-[#94a3b8] bg-white text-[#203247]`, muted: 'text-[#526579]', divider: 'border-[#cbd5e1]',
+  },
   brutalism: {
     frame: 'border-2 border-[#eaff00] bg-black p-5 font-mono text-[#eaff00]', header: 'mb-5 border-b-2 border-[#eaff00] pb-4', title: 'break-words text-4xl font-black uppercase leading-none tracking-tighter', body: 'space-y-3',
     item: 'border-2 border-[#eaff00] bg-black p-3', active: 'bg-[#eaff00] font-black text-black', control: `${basic} border-2 border-[#eaff00] bg-[#eaff00] font-black uppercase text-black`, secondary: `${basic} border-2 border-[#eaff00] bg-black font-mono text-[#eaff00]`, field: `${basic} w-full border-2 border-[#eaff00] bg-black font-mono text-[#eaff00]`, muted: 'text-[#d8de8f]', divider: 'border-[#eaff00]',
@@ -106,7 +110,7 @@ export function recipe(style: RecipeStyleId): Recipe {
 const names: Record<RecipeStyleId, { zh: string; en: string }> = {
   brutalism: { zh: '粗野主义', en: 'Brutalism' }, 'corporate-memphis': { zh: '企业孟菲斯', en: 'Corporate Memphis' }, aurora: { zh: '极光渐变', en: 'Aurora Gradient' }, 'liquid-glass': { zh: '液态玻璃', en: 'Liquid Glass' }, claymorphism: { zh: '黏土风', en: 'Claymorphism' }, y2k: { zh: 'Y2K 千禧美学', en: 'Y2K Aesthetic' }, 'retro-futurism': { zh: '复古未来主义', en: 'Retro-Futurism' }, skeuomorphism: { zh: '拟物化', en: 'Skeuomorphism' },
 
-  minimalism: { zh: '极简主义', en: 'Minimalism' }, 'flat-design': { zh: '扁平化设计', en: 'Flat Design' }, 'swiss-style': { zh: '瑞士风格', en: 'Swiss Style' }, neobrutalism: { zh: '新粗野主义', en: 'Neobrutalism' }, glassmorphism: { zh: '玻璃拟态', en: 'Glassmorphism' }, cyberpunk: { zh: '赛博朋克', en: 'Cyberpunk' }, neumorphism: { zh: '新拟态', en: 'Neumorphism' }, organic: { zh: '有机自然', en: 'Organic' }, editorial: { zh: '杂志编辑风', en: 'Editorial' }, 'art-deco': { zh: '装饰艺术', en: 'Art Deco' }, 'hand-drawn': { zh: '手绘涂鸦', en: 'Hand-drawn UI' }, bauhaus: { zh: '包豪斯', en: 'Bauhaus' }, 'pixel-art': { zh: '像素风', en: 'Pixel Art UI' },
+  minimalism: { zh: '极简主义', en: 'Minimalism' }, 'flat-design': { zh: '扁平化设计', en: 'Flat Design' }, 'swiss-style': { zh: '瑞士风格', en: 'Swiss Style' }, neobrutalism: { zh: '新粗野主义', en: 'Neobrutalism' }, glassmorphism: { zh: '玻璃拟态', en: 'Glassmorphism' }, cyberpunk: { zh: '赛博朋克', en: 'Cyberpunk' }, neumorphism: { zh: '新拟态', en: 'Neumorphism' }, organic: { zh: '有机自然', en: 'Organic' }, editorial: { zh: '杂志编辑风', en: 'Editorial' }, 'art-deco': { zh: '装饰艺术', en: 'Art Deco' }, 'hand-drawn': { zh: '手绘涂鸦', en: 'Hand-drawn UI' }, bauhaus: { zh: '包豪斯', en: 'Bauhaus' }, 'pixel-art': { zh: '像素风', en: 'Pixel Art UI' }, 'bento-grid': { zh: '便当盒布局', en: 'Bento Grid' },
 };
 
 export function RecipeFrame({ style, locale, title, children }: { style: RecipeStyleId; locale: 'zh' | 'en'; title: string; children: ReactNode }) {

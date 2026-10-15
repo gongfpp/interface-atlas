@@ -93,6 +93,10 @@ applicable_styles:
   - neumorphism
   - flat-design
   - organic
+  - skeuomorphism
+  - glassmorphism
+  - hand-drawn
+  - claymorphism
 applicable_components: []
 applicable_pages:
   - login

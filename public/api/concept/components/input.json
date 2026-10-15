@@ -142,7 +142,11 @@
     "cyberpunk",
     "neumorphism",
     "flat-design",
-    "organic"
+    "organic",
+    "skeuomorphism",
+    "glassmorphism",
+    "hand-drawn",
+    "claymorphism"
   ],
   "applicable_components": [],
   "applicable_pages": [

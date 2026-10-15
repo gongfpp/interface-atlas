@@ -82,6 +82,10 @@ applicable_styles:
   - neobrutalism
   - neumorphism
   - organic
+  - glassmorphism
+  - pixel-art
+  - art-deco
+  - cyberpunk
 applicable_components: []
 applicable_pages:
   - settings

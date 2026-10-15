@@ -129,7 +129,11 @@
     "flat-design",
     "swiss-style",
     "organic",
-    "glassmorphism"
+    "glassmorphism",
+    "bauhaus",
+    "art-deco",
+    "cyberpunk",
+    "claymorphism"
   ],
   "applicable_components": [],
   "applicable_pages": [

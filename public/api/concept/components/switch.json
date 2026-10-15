@@ -127,7 +127,11 @@
     "swiss-style",
     "neobrutalism",
     "neumorphism",
-    "organic"
+    "organic",
+    "glassmorphism",
+    "pixel-art",
+    "art-deco",
+    "cyberpunk"
   ],
   "applicable_components": [],
   "applicable_pages": [

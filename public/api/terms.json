@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-06",
+  "generated": "2026-10-15",
   "site": "https://gongfpp.github.io",
   "count": 165,
   "types": [
@@ -2660,7 +2660,20 @@
         "cyberpunk",
         "neumorphism",
         "flat-design",
-        "pixel-art"
+        "pixel-art",
+        "brutalism",
+        "corporate-memphis",
+        "aurora",
+        "liquid-glass",
+        "claymorphism",
+        "y2k",
+        "retro-futurism",
+        "skeuomorphism",
+        "organic",
+        "editorial",
+        "art-deco",
+        "hand-drawn",
+        "bauhaus"
       ],
       "applicable_components": [],
       "applicable_pages": [
@@ -2757,8 +2770,8 @@
       },
       "playground": {
         "task": {
-          "zh": "在本地模拟中点击保存，处理中取消，再用键盘重试；比较六种风格和四种按钮层级。",
-          "en": "Save in the local simulation, cancel while pending, then retry with the keyboard. Compare six styles and four button levels."
+          "zh": "在本地模拟中点击保存，处理中取消，再用键盘重试；比较 21 种风格和四种按钮层级。",
+          "en": "Save in the local simulation, cancel while pending, then retry with the keyboard. Compare 21 styles and four button levels."
         },
         "checks": [
           {
@@ -2894,7 +2907,11 @@
         "neobrutalism",
         "neumorphism",
         "swiss-style",
-        "art-deco"
+        "art-deco",
+        "glassmorphism",
+        "claymorphism",
+        "hand-drawn",
+        "pixel-art"
       ],
       "related": [
         {
@@ -3341,7 +3358,11 @@
         "flat-design",
         "swiss-style",
         "organic",
-        "glassmorphism"
+        "glassmorphism",
+        "bauhaus",
+        "art-deco",
+        "cyberpunk",
+        "claymorphism"
       ],
       "applicable_components": [],
       "applicable_pages": [
@@ -5467,7 +5488,11 @@
         "cyberpunk",
         "neumorphism",
         "flat-design",
-        "organic"
+        "organic",
+        "skeuomorphism",
+        "glassmorphism",
+        "hand-drawn",
+        "claymorphism"
       ],
       "applicable_components": [],
       "applicable_pages": [
@@ -8224,7 +8249,11 @@
         "flat-design",
         "neobrutalism",
         "neumorphism",
-        "organic"
+        "organic",
+        "glassmorphism",
+        "cyberpunk",
+        "art-deco",
+        "pixel-art"
       ],
       "applicable_components": [],
       "applicable_pages": [
@@ -9297,7 +9326,11 @@
         "swiss-style",
         "neobrutalism",
         "neumorphism",
-        "organic"
+        "organic",
+        "glassmorphism",
+        "pixel-art",
+        "art-deco",
+        "cyberpunk"
       ],
       "applicable_components": [],
       "applicable_pages": [

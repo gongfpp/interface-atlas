@@ -150,7 +150,7 @@ export default styleVariants;
 - 状态与反馈：每个变体都应让 `hover / focus / active / disabled` 有可见差异，`selected` 与 `pressed` 语义要区分；focus 不能只靠 hover，且必须保留可见焦点环；动效尊重 `prefers-reduced-motion`。
 - Tooltip 的 hover、focus、点按与显式关闭各有独立的本地瞬态：一条输入通道离开不清掉另一条；Esc 的关闭意图保持到本轮 hover/focus 都结束，新的点按可以主动重开。触摸不记为悬停；点按固定可由再次点按、失焦或外部点按结束。切风格或重置时不恢复旧悬停/焦点。提示内容仍可悬停，且只悬停而未聚焦时 Esc 也能关闭。依据：[W3C 悬停与焦点内容的持续、可关闭要求](https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html)。
 - 文案：功能性操作文本（按钮、错误、可访问名）应随 `locale` 本地化；纯装饰性的样例品牌文字可保留英文。
-- `applicable_styles` 与本轮实际实现的覆盖同步；全部 46 个组件当前各 8 套，覆盖矩阵见 `component-style-coverage.md`。风格名称取已有双语定义，不为凑数量强行组合不适用风格。
+- `applicable_styles` 与本轮实际实现的覆盖同步；40 个组件各 8 套，按钮 21 套，输入框、卡片、选择框、复选框和开关各 12 套，覆盖矩阵见 `component-style-coverage.md`。风格名称取已有双语定义，不为凑数量强行组合不适用风格。
 - 未提供变体文件的条目只显示基础示例，不显示无效风格控件。
 - `demo.modes` 只声明真正改变渲染或交互的模式；仅换一句说明不算支持该模式。`dark` 允许通过外层主题变量生效。
 - `SolutionLab` 统一持有选择，`PromptBlock` 的「当前方案」从它派生；「通用概念说明」保留独立四层文本。不要另建一套预览风格状态。
