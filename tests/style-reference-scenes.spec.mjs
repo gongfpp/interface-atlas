@@ -88,6 +88,13 @@ async function readyScene(scene, locale) {
   await expect(scene.locator('a, button, input, textarea, select, [contenteditable="true"], [tabindex="0"]')).toHaveCount(0);
 }
 
+async function readyConceptActions(page) {
+  const island = page.locator('article > header astro-island[component-url*="ConceptActions"]');
+  await expect(island).toHaveCount(1);
+  await expect.poll(() => island.evaluate((element) => element.hasAttribute('ssr'))).toBe(false);
+  return island.locator('button[aria-pressed]');
+}
+
 async function capture(page, target, label, testInfo) {
   await page.evaluate(() => document.fonts.ready);
   const candidateCommit = testInfo.config.metadata.candidateCommit || process.env.QA_CANDIDATE_SHA || 'local';
@@ -304,13 +311,14 @@ for (const locale of LOCALES) {
       const homeCard = styleScene(page.locator('[data-home-styles]'), 'minimalism').locator('xpath=ancestor::a[1]');
       await homeCard.click();
       await expect(page).toHaveURL(new RegExp(`${pathFor(locale, '/styles/minimalism')}/?$`));
-      const save = page.locator('article > header').getByRole('button', { name: locale === 'zh' ? '☆ 收藏' : '☆ Save', exact: true });
+      const save = await readyConceptActions(page);
+      await expect(save).toHaveAttribute('aria-pressed', 'false');
       await save.click();
-      await expect(page.locator('article > header').getByRole('button', { name: locale === 'zh' ? '★ 已收藏' : '★ Saved', exact: true })).toHaveAttribute('aria-pressed', 'true');
+      await expect(save).toHaveAttribute('aria-pressed', 'true');
       await page.locator(`header a[lang="${otherLocale}"]`).click();
       await expect(page).toHaveURL(new RegExp(`${pathFor(otherLocale, '/styles/minimalism')}/?$`));
       await readyScene(styleScene(page.locator('[data-style-preview]'), 'minimalism'), otherLocale);
-      await expect(page.locator('article > header').getByRole('button', { name: otherLocale === 'zh' ? '★ 已收藏' : '★ Saved', exact: true })).toHaveAttribute('aria-pressed', 'true');
+      await expect(await readyConceptActions(page)).toHaveAttribute('aria-pressed', 'true');
       await page.goto(pathFor(otherLocale, '/saved'));
       const savedLink = page.locator(`a[href="${pathFor(otherLocale, '/styles/minimalism')}"]`).first();
       await expect(savedLink).toBeVisible();
