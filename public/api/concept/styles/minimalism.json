@@ -134,6 +134,26 @@
       "variants"
     ]
   },
+  "playground": {
+    "task": {
+      "zh": "立即体验进入专注设备系列，立即购买查看设备规格和款式；切换三条生活灵感，选择设备并查看本地购物结果，不创建订单。",
+      "en": "Explore Lumo opens the focus-device collection; Shop now shows device specifications and finishes. Cycle three daily rituals, select a device and inspect the local shopping result without placing an order."
+    },
+    "checks": [
+      {
+        "zh": "逐一操作 LUMO 原导航和主 CTA，检查对应内容与返回路径，不只是点击提示。",
+        "en": "Use LUMO’s original navigation and primary CTAs; inspect content and return paths, not just click notices."
+      },
+      {
+        "zh": "完成上述 LUMO 操作后修改输入或撤销，检查结果与状态同步。",
+        "en": "Complete the LUMO task, then change inputs or undo and inspect the matching result/state."
+      },
+      {
+        "zh": "用键盘和 390px / 320px 检查重排、焦点、校验；区分工具栏重载和内部清空，核对刷新后状态复位。",
+        "en": "Check reflow, focus and validation with keyboard and 390px / 320px viewports; distinguish toolbar reload from in-page clearing and inspect reset-on-reload boundaries."
+      }
+    ]
+  },
   "sources": [
     {
       "name": "Apple HIG — Visual Design",
@@ -167,12 +187,12 @@
       "en": "Minimalism design spec: pure white surface, near-black text (#111); at most three type sizes with tight heading tracking; palette limited to black, white, grey plus one accent; separate with 1px hairlines or whitespace — no shadows, gradients or textures; buttons are solid black or 1px outlined; whitespace at least half the content height. Dark mode: near-black surface, inverted text."
     },
     "implementation": {
-      "zh": "用 CSS 实现极简风格：定义 --space 留白阶梯（8 的倍数）与 3 档字号 token； 按钮 .btn-solid（黑底白字）与 .btn-outline（1px 描边），无圆角或 2px 微圆角； 卡片用 1px 边框或无边框 + 留白分区，box-shadow 一律为 none；输入框只保留下 边框线，focus 时变强调色。过渡只做颜色，150ms 内完成。",
-      "en": "Implement minimalism in CSS: a whitespace scale (multiples of 8) and three font-size tokens; .btn-solid (black on white) and .btn-outline (1px border) with no or 2px radius; cards separated by 1px borders or whitespace with box-shadow: none; inputs keep a bottom hairline that turns accent on focus. Transition colors only, under 150ms."
+      "zh": "用当前风格完成 LUMO 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。preview.brand 与共享 REFERENCE_BRANDS 保持一致；首屏结构、实际导航与素材以 ReferenceStyleScene 为准。\n\n按 ReferenceStyleScene 与 reference-scenes.css 延续 LUMO：#fdfdfc 页底，主视觉保留白到浅灰的横向渐变、白色设备/石材照片及其桌面遮罩裁切。Georgia 衬线主标题使用现有 6.45cqw / .94 行高与紧字距，正文为灰阶无衬线；黑色胶囊 CTA 保留细微内高光。窄屏将照片改为文案下方的正常内容流，不删照片、不把所有区域强改为无渐变直角卡片。\n\n立即体验进入专注设备系列，立即购买查看设备规格和款式；切换三条生活灵感，选择设备并查看本地购物结果，不创建订单。\n\n静态封面、详情演示与 /style-scenes/minimalism/（英文 /en/style-scenes/minimalism/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。\n\n操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。\n\n提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。",
+      "en": "Build a complete LUMO page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. Keep preview.brand aligned with shared REFERENCE_BRANDS; ReferenceStyleScene defines the hero structure, actual navigation and assets.\n\nContinue LUMO from ReferenceStyleScene and reference-scenes.css: #fdfdfc ground, the existing white-to-grey horizontal hero gradient, and the device/stone photograph with its desktop mask and crop. Keep the Georgia display at 6.45cqw/.94 with tight tracking, grey sans body and black pill CTAs with a faint inset highlight. On narrow screens move the photograph below the copy in normal flow; do not remove it or flatten every surface into gradient-free square cards.\n\nExplore Lumo opens the focus-device collection; Shop now shows device specifications and finishes. Cycle three daily rituals, select a device and inspect the local shopping result without placing an order.\n\nShare one renderer between static covers, the detail experience and /style-scenes/minimalism/ (English /en/style-scenes/minimalism/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.\n\nInteraction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.\n\nProvide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion."
     },
     "agent": {
-      "zh": "在当前项目中用极简主义风格（Minimalism）实现一个内容卡片区块。\n\n先检查现有 Design Token 与组件体系，复用既有的字号与间距变量。\n要求：\n- 大量留白，层级只靠字号 字重 空间建立\n- 配色收敛为黑 白 灰 + 至多一个强调色\n- 无投影 无渐变 无纹理，分隔用 1px 发丝线或留白\n- 支持深色模式\n- 若加入任何过渡动画，尊重 prefers-reduced-motion，时长 150ms 内\n- 不新增任何依赖\n完成后运行项目现有检查，并列出修改的文件。",
-      "en": "Implement a minimal content card section in Minimalism style in the current project.\n\nInspect the existing design tokens and component system first; reuse the current font and spacing variables.\nRequirements:\n- Generous whitespace; hierarchy from type scale, weight and space only\n- Palette restrained to black, white, grey plus at most one accent\n- No shadows, gradients or textures; separate with 1px hairlines or whitespace\n- Dark mode support\n- If any transitions are added, respect prefers-reduced-motion and keep them under 150ms\n- No new dependencies\nRun existing project checks when done and list the modified files."
+      "zh": "用当前风格完成 LUMO 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。preview.brand 与共享 REFERENCE_BRANDS 保持一致；首屏结构、实际导航与素材以 ReferenceStyleScene 为准。\n\n按 ReferenceStyleScene 与 reference-scenes.css 延续 LUMO：#fdfdfc 页底，主视觉保留白到浅灰的横向渐变、白色设备/石材照片及其桌面遮罩裁切。Georgia 衬线主标题使用现有 6.45cqw / .94 行高与紧字距，正文为灰阶无衬线；黑色胶囊 CTA 保留细微内高光。窄屏将照片改为文案下方的正常内容流，不删照片、不把所有区域强改为无渐变直角卡片。\n\n完整页面操作：\n立即体验进入专注设备系列，立即购买查看设备规格和款式；切换三条生活灵感，选择设备并查看本地购物结果，不创建订单。\n\n静态封面、详情演示与 /style-scenes/minimalism/（英文 /en/style-scenes/minimalism/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。\n\n操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。\n\n提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。\n\n不新增依赖。检查中英文、原导航与 CTA、具体结果、返回/重置和窄屏重排；报告实际运行的检查与待验项，不将实现要求写成已通过结论。",
+      "en": "Build a complete LUMO page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. Keep preview.brand aligned with shared REFERENCE_BRANDS; ReferenceStyleScene defines the hero structure, actual navigation and assets.\n\nContinue LUMO from ReferenceStyleScene and reference-scenes.css: #fdfdfc ground, the existing white-to-grey horizontal hero gradient, and the device/stone photograph with its desktop mask and crop. Keep the Georgia display at 6.45cqw/.94 with tight tracking, grey sans body and black pill CTAs with a faint inset highlight. On narrow screens move the photograph below the copy in normal flow; do not remove it or flatten every surface into gradient-free square cards.\n\nFull-page operations:\nExplore Lumo opens the focus-device collection; Shop now shows device specifications and finishes. Cycle three daily rituals, select a device and inspect the local shopping result without placing an order.\n\nShare one renderer between static covers, the detail experience and /style-scenes/minimalism/ (English /en/style-scenes/minimalism/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.\n\nInteraction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.\n\nProvide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion.\n\nAdd no dependencies. Check both languages, original navigation/CTAs, concrete results, return/reset and narrow reflow; report checks actually run and pending items, never requirements as passed results."
     }
   },
   "style_spec": {
@@ -213,7 +233,7 @@
     },
     "url": "https://lumo.space",
     "scene": "lumo",
-    "brand": "L U M O",
+    "brand": "LUMO",
     "nav": [
       {
         "zh": "产品",

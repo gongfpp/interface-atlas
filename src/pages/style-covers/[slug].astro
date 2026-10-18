@@ -1,0 +1,7 @@
+---
+import { getStylePreviews } from '@/lib/style-previews';
+import StyleCoverPage from '@/components/StyleCoverPage.astro';
+export async function getStaticPaths() { return (await getStylePreviews()).map(spec => ({params:{slug:spec.slug},props:{spec}})); }
+const {spec} = Astro.props;
+---
+<StyleCoverPage spec={spec} locale="zh" />

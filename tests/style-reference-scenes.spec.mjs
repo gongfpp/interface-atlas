@@ -1,4 +1,5 @@
 import { test, expect } from './helpers/private-browser.mjs';
+import { readyStyleFrame, reloadStyleFrame, exerciseStyleFlow } from './helpers/style-page-flows.mjs';
 
 const STYLES = [
   'minimalism', 'swiss-style', 'editorial', 'glassmorphism', 'bento-grid',
@@ -173,54 +174,6 @@ async function capture(page, target, label, testInfo) {
   });
 }
 
-async function exerciseOriginalDemo(interactive, slug, locale) {
-  const content = interactive.locator('.demo-content');
-  if (slug === 'minimalism') {
-    await content.getByRole('textbox').fill('scene@example.com');
-    await expect(content.getByRole('textbox')).toHaveValue('scene@example.com');
-    await content.getByRole('button', { name: /FOLLOW$/ }).click();
-    await expect(content.getByRole('button', { name: /FOLLOWING/ })).toBeVisible();
-  } else if (slug === 'swiss-style') {
-    await content.getByRole('textbox').fill('Typography');
-    await expect(content.getByRole('textbox')).toHaveValue('Typography');
-  } else if (slug === 'editorial') {
-    await content.getByRole('button', { name: /Continue/ }).click();
-    await expect(content.getByRole('button', { name: /Fold/ })).toBeVisible();
-    await expect(content).toContainText('A well-set column');
-  } else if (slug === 'glassmorphism') {
-    await content.locator('input').first().fill('scene@example.com');
-    await expect(content.locator('input').first()).toHaveValue('scene@example.com');
-  } else if (slug === 'bento-grid') {
-    const save = content.getByRole('button', { name: /收藏/ });
-    await save.click();
-    await expect(save).toContainText('♡ 收藏');
-    await save.click();
-    await expect(save).toContainText('♥ 已收藏');
-  } else if (slug === 'neumorphism') {
-    await content.getByRole('button', { name: locale === 'en' ? 'Play preview' : '播放预览' }).click();
-    await expect(content.getByRole('status')).toContainText(locale === 'en' ? 'playing' : '播放中');
-    await content.getByRole('button', { name: locale === 'en' ? 'Next track' : '下一首' }).click();
-    await expect(content).toContainText('A quiet place');
-  } else if (slug === 'skeuomorphism') {
-    await content.getByRole('button', { name: 'POWER ON' }).click();
-    await expect(content.getByRole('button', { name: 'POWER OFF' })).toBeVisible();
-    await content.getByRole('textbox', { name: 'volume' }).fill('42');
-    await expect(content).toContainText('CH-42');
-  } else if (slug === 'brutalism') {
-    await content.getByRole('button', { name: locale === 'en' ? 'HIT 0' : '拍一下 0', exact: true }).click();
-    await expect(content.getByRole('button', { name: locale === 'en' ? 'HIT 1' : '拍一下 1', exact: true })).toBeVisible();
-  } else if (slug === 'retro-web') {
-    await content.getByRole('button', { name: locale === 'en' ? /Sign the guestbook/ : /在留言簿写一句话/ }).click();
-    await content.getByRole('textbox', { name: locale === 'en' ? 'Your message' : '你的留言' }).fill('Hello, early web!');
-    await content.getByRole('button', { name: locale === 'en' ? 'Add message' : '添加留言', exact: true }).click();
-    await expect(content.getByRole('list', { name: locale === 'en' ? 'Demo messages' : '演示留言' })).toContainText('Hello, early web!');
-    await expect(content.getByRole('status')).toContainText(locale === 'en' ? 'Added to this preview only.' : '已加入当前预览。');
-  } else if (slug === 'neobrutalism') {
-    await content.getByRole('button', { name: /点赞 128/ }).click();
-    await expect(content.getByRole('button', { name: /点赞 129/ })).toBeVisible();
-  }
-}
-
 for (const locale of LOCALES) {
   for (const width of WIDTHS) {
     test(`参考缩景 首页 ${locale} ${width}px：十种场景完整且保持可点击详情入口`, async ({ page }, testInfo) => {
@@ -265,35 +218,19 @@ for (const locale of LOCALES) {
         const errors = observeFailures(page);
         await page.setViewportSize({ width, height: 900 });
         await page.goto(pathFor(locale, `/styles/${slug}`));
-        const preview = page.locator('[data-style-preview]');
-        const scene = styleScene(preview, slug);
-        await readyScene(scene, locale);
-        await capture(page, preview, `detail-${slug}-${locale}-${width}`, testInfo);
-        await assertNoOverflow(page, `${slug} 静态详情 ${locale} ${width}px`);
-        const interactive = page.locator('[data-style-interactive]');
-        await interactive.scrollIntoViewIfNeeded();
-        await expect(interactive.locator('.demo-workbench')).toBeVisible();
-        const previewBox = await preview.boundingBox();
-        const interactiveBox = await interactive.boundingBox();
-        expect(previewBox.y + previewBox.height).toBeLessThan(interactiveBox.y);
-        await expect(interactive.locator('.demo-content')).toBeVisible();
-        // 320px 负责极窄布局；390px 和桌面执行既有交互、模式切换及重置。
-        if (width >= 390) {
-          await exerciseOriginalDemo(interactive, slug, locale);
-          const dark = interactive.getByRole('button', { name: locale === 'en' ? 'Dark' : '深色', exact: true });
-          if (await dark.count()) {
-            await dark.click();
-            await expect(dark).toHaveAttribute('aria-pressed', 'true');
-            await interactive.getByRole('button', { name: locale === 'en' ? 'Default' : '默认', exact: true }).click();
-          }
-          const narrow = interactive.getByRole('button', { name: locale === 'en' ? 'Narrow container' : '窄容器', exact: true });
-          await narrow.click();
-          await expect(narrow).toHaveAttribute('aria-pressed', 'true');
-          await expect.poll(() => interactive.locator('.demo-viewport').evaluate((element) => element.getBoundingClientRect().width)).toBeLessThanOrEqual(360);
-          await interactive.getByRole('button', { name: locale === 'en' ? /Reset/ : /重置/ }).click();
-          await expect(interactive.locator('.demo-content')).toBeVisible();
+        const { experience, iframe, frame, scene } = await readyStyleFrame(page, slug, locale);
+        // 详情中的真控件来自同一品牌整页；原十套照片不可被无关组件demo替代。
+        if (['minimalism', 'editorial', 'glassmorphism', 'bento-grid', 'skeuomorphism', 'brutalism'].includes(slug)) {
+          expect(await scene.locator('.scene-page img').count(), slug).toBeGreaterThan(0);
         }
-        await assertNoOverflow(page, `${slug} 已加载交互 ${locale} ${width}px`);
+        await expect(scene.locator('iframe, canvas')).toHaveCount(0);
+        expect((await scene.innerText()).trim().length).toBeGreaterThan(30);
+        await capture(page, experience, `detail-${slug}-${locale}-${width}`, testInfo);
+        await exerciseStyleFlow(scene, slug, locale);
+        await reloadStyleFrame(experience, frame);
+        await expect(scene).toBeVisible();
+        await expect(iframe).toHaveAttribute('title', locale === 'en' ? 'Full-page interaction' : '完整页面交互');
+        await assertNoOverflow(page, `${slug} 已加载整页 ${locale} ${width}px`);
         expect(errors).toEqual([]);
       });
     }
@@ -317,17 +254,17 @@ for (const locale of LOCALES) {
       await expect(save).toHaveAttribute('aria-pressed', 'true');
       await page.locator(`header a[lang="${otherLocale}"]`).click();
       await expect(page).toHaveURL(new RegExp(`${pathFor(otherLocale, '/styles/minimalism')}/?$`));
-      await readyScene(styleScene(page.locator('[data-style-preview]'), 'minimalism'), otherLocale);
+      await readyStyleFrame(page, 'minimalism', otherLocale);
       await expect(await readyConceptActions(page)).toHaveAttribute('aria-pressed', 'true');
       await page.goto(pathFor(otherLocale, '/saved'));
       const savedLink = page.locator(`a[href="${pathFor(otherLocale, '/styles/minimalism')}"]`).first();
       await expect(savedLink).toBeVisible();
       await savedLink.click();
-      await expect(styleScene(page.locator('[data-style-preview]'), 'minimalism')).toBeVisible();
+      await readyStyleFrame(page, 'minimalism', otherLocale);
       await page.goto(pathFor(locale, '/styles'));
       await styleScene(page, 'retro-web').locator('xpath=ancestor::a[1]').click();
       await expect(page).toHaveURL(new RegExp(`${pathFor(locale, '/styles/retro-web')}/?$`));
-      await expect(styleScene(page.locator('[data-style-preview]'), 'retro-web')).toBeVisible();
+      await readyStyleFrame(page, 'retro-web', locale);
       await page.goBack();
       await expect(page).toHaveURL(new RegExp(`${pathFor(locale, '/styles')}/?$`));
       await assertNoOverflow(page, `入口往返 ${locale} ${width}px`);
@@ -342,50 +279,82 @@ for (const locale of LOCALES) {
     test(`参考缩景 Retro Web ${locale} ${width}px：留言校验、键盘、往返、重复提交和清空`, async ({ page }, testInfo) => {
       await page.setViewportSize({ width, height: 900 });
       await page.goto(pathFor(locale, '/styles/retro-web'));
-      const interactive = page.locator('[data-style-interactive]');
-      await interactive.scrollIntoViewIfNeeded();
-      const content = interactive.locator('.demo-content');
-      const openGuestbook = () => content.getByRole('button', { name: locale === 'en' ? /Sign the guestbook/ : /在留言簿写一句话/ }).click();
+      const { experience, frame, scene: content } = await readyStyleFrame(page, 'retro-web', locale);
+      const action = name => content.locator(`[data-scene-action="${name}"]`).first();
+      const openGuestbook = () => action('retro-page-4').click();
+      const form = content.locator('[data-other-form="guestbook"]');
       const entryList = content.getByRole('list', { name: locale === 'en' ? 'Demo messages' : '演示留言' });
-      await expect(content).toBeVisible();
-      const storedBefore = await page.evaluate(() => ({ ...localStorage }));
+      const snapshotStorage = () => frame.locator('body').evaluate(() => ({ local: { ...localStorage }, session: { ...sessionStorage } }));
+      const storedBefore = await snapshotStorage();
+      await frame.locator('body').evaluate(() => {
+        window.__retroStorageWrites = [];
+        for (const method of ['setItem', 'removeItem', 'clear']) {
+          const original = Storage.prototype[method];
+          Storage.prototype[method] = function (...args) { window.__retroStorageWrites.push({ method, key: args[0] }); return original.apply(this, args); };
+        }
+      });
       const outgoing = [];
       const recordRequest = request => {
-        if (request.method() !== 'GET' || !request.url().startsWith('http://127.0.0.1:4337/')) outgoing.push(`${request.method()} ${request.url()}`);
+        const url = new URL(request.url());
+        if (request.method() !== 'GET' || (url.protocol !== 'blob:' && url.origin !== 'http://127.0.0.1:4337')) outgoing.push(`${request.method()} ${request.url()}`);
       };
       page.on('request', recordRequest);
       await openGuestbook();
-      const submit = content.getByRole('button', { name: locale === 'en' ? 'Add message' : '添加留言', exact: true });
+      const baseline = await entryList.getByRole('listitem').allTextContents();
+      const submit = form.locator('[type="submit"]');
+      const name = form.locator('[name="name"]');
+      const message = form.getByRole('textbox', { name: locale === 'en' ? 'Your message' : '你的留言' });
+      // 真正空值由原生required阻止；空白字符串由应用trim守卫阻止。
       await submit.click();
-      await expect(content.getByRole('status')).toHaveText(locale === 'en' ? 'Write a message first.' : '请先写一句话。');
-      const message = content.getByRole('textbox', { name: locale === 'en' ? 'Your message' : '你的留言' });
+      expect(await form.evaluate(element => element.checkValidity())).toBe(false);
+      await expect(entryList.getByRole('listitem')).toHaveText(baseline);
+      await name.fill('Atlas visitor');
+      await message.fill('   ');
+      await submit.click();
+      await expect(form.getByRole('status')).toHaveText(locale === 'en' ? 'Enter a nickname and message, not just spaces.' : '请填写昵称和留言，不能仅为空格。');
+      await expect(entryList.getByRole('listitem')).toHaveText(baseline);
+      await name.fill('  Atlas visitor  ');
       await message.fill('  Hello, early web!  ');
       await message.focus();
       await page.keyboard.press('Tab');
       await expect(submit).toBeFocused();
       await page.keyboard.press('Enter');
-      await expect(entryList.getByRole('listitem')).toHaveText(['Hello, early web!']);
+      await expect(entryList.getByRole('listitem').first()).toHaveText('Atlas visitor: Hello, early web!');
+      await expect(entryList.getByRole('listitem')).toHaveCount(baseline.length + 1);
       await expect(message).toHaveValue('');
       await submit.click();
-      await expect(entryList.getByRole('listitem')).toHaveCount(1);
-      await content.getByRole('navigation', { name: locale === 'en' ? 'Demo pages' : '演示页面' }).getByRole('button', { name: locale === 'en' ? '▷ Projects' : '▷ 项目', exact: true }).click();
-      await expect(content.getByRole('heading', { level: 3 })).toHaveText(locale === 'en' ? 'Projects' : '项目');
-      await content.getByRole('navigation', { name: locale === 'en' ? 'Demo pages' : '演示页面' }).getByRole('button', { name: locale === 'en' ? '▷ Guestbook' : '▷ 留言簿', exact: true }).click();
-      await expect(entryList.getByRole('listitem')).toHaveText(['Hello, early web!']);
-      expect(await page.evaluate(() => ({ ...localStorage }))).toEqual(storedBefore);
+      await expect(entryList.getByRole('listitem')).toHaveCount(baseline.length + 1);
+      // 相同内容的两次明确提交应追加两条；空字段的重复click不能追加。
+      await name.fill('Atlas visitor');
+      await message.fill('Hello, early web!');
+      await submit.click();
+      await expect(entryList.getByRole('listitem')).toHaveCount(baseline.length + 2);
+      await expect(form.getByRole('status')).toContainText(locale === 'en' ? 'page only' : '仅当前页面');
+      await action('retro-page-2').click();
+      await expect(content.locator('[data-retro-heading]')).toHaveText('Projects');
+      await action('retro-back').click();
+      await expect(content.locator('[data-retro-heading]')).toHaveText('Guestbook');
+      await expect(entryList.getByRole('listitem')).toHaveCount(baseline.length + 2);
+      await action('retro-forward').click();
+      await expect(content.locator('[data-retro-heading]')).toHaveText('Projects');
+      await openGuestbook();
+      await expect(entryList.getByRole('listitem')).toHaveCount(baseline.length + 2);
+      expect(await snapshotStorage()).toEqual(storedBefore);
+      expect(await frame.locator('body').evaluate(() => window.__retroStorageWrites)).toEqual([]);
       expect(outgoing).toEqual([]);
       page.off('request', recordRequest);
-      await capture(page, interactive, `interactive-retro-web-${locale}-${width}`, testInfo);
-      await interactive.getByRole('button', { name: locale === 'en' ? /Reset/ : /重置/ }).click();
+      await capture(page, experience, `interactive-retro-web-${locale}-${width}`, testInfo);
+      await reloadStyleFrame(experience, frame);
       await openGuestbook();
-      await expect(entryList.getByRole('listitem')).toHaveCount(0);
+      await expect(entryList.getByRole('listitem')).toHaveText(baseline);
+      await name.fill('Atlas visitor');
       await message.fill('Refresh clears this preview.');
       await submit.click();
-      await expect(entryList.getByRole('listitem')).toHaveCount(1);
+      await expect(entryList.getByRole('listitem')).toHaveCount(baseline.length + 1);
       await page.reload();
-      await interactive.scrollIntoViewIfNeeded();
+      await readyStyleFrame(page, 'retro-web', locale);
       await openGuestbook();
-      await expect(entryList.getByRole('listitem')).toHaveCount(0);
+      await expect(entryList.getByRole('listitem')).toHaveText(baseline);
       await assertNoOverflow(page, `Retro Web 留言 ${locale} ${width}px`);
     });
   }

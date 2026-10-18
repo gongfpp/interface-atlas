@@ -394,11 +394,14 @@
   text-shadow: 0 1px 4px #0006;
 }
 .paper-stories {
+  height: 100%;
+  min-height: 0;
   display: flex;
   flex-direction: column;
 }
 .paper-story {
   display: grid;
+  grid-template-rows: minmax(0, 1fr);
   grid-template-columns: 41% 1fr;
   gap: 1.7cqw;
   padding: 0.5cqw 0 1.05cqw;
@@ -412,6 +415,7 @@
   margin: 0;
 }
 .story-photo {
+  min-height: 0;
   height: 100%;
   overflow: hidden;
 }
@@ -948,7 +952,7 @@
     inset 1px 1px 2px #fff;
   padding: 1.4cqw 1.25cqw;
 }
-.mellow-tools > div {
+.mellow-tools > :is(div, span) {
   font-size: 1.3cqw;
   display: flex;
   align-items: center;
@@ -957,10 +961,10 @@
   margin-bottom: 1.05cqw;
   color: #74787c;
 }
-.mellow-tools > div:last-child {
+.mellow-tools > :is(div, span):last-child {
   margin: 0;
 }
-.mellow-tools > div > span {
+.mellow-tools > :is(div, span) > span {
   font-size: 2cqw;
   line-height: 1;
 }
@@ -1055,9 +1059,10 @@
   padding: 0.9cqw 3.1cqw;
 }
 .goods-pagination {
-  display: block;
+  display: flex;
+  gap: 1.2cqw;
   font-size: 1cqw;
-  margin-top: 1.8cqw;
+  margin-top: 0.5cqw;
 }
 .goods-note {
   position: absolute;
@@ -1357,7 +1362,7 @@
   padding: 1cqw 0.9cqw 0;
   white-space: nowrap;
 }
-.play-window.checklist > p > span {
+.play-window.checklist > p > span:not(.play-check) {
   background: #397feb;
 }
 .play-window.checklist > small {

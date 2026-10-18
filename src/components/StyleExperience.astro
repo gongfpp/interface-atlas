@@ -1,0 +1,68 @@
+---
+import { localePath, type Locale } from '@/lib/i18n';
+interface Props { slug: string; locale: Locale; modes: string[]; }
+const { slug, locale, modes } = Astro.props;
+const l = (zh:string,en:string)=>locale==='zh'?zh:en;
+const url = localePath(`/style-scenes/${slug}/`,locale);
+const labels: Record<string,string> = {default:l('默认','Default'),dark:l('深色','Dark'),variants:l('形式','Variants'),loading:l('加载态','Loading')};
+---
+<div class="style-experience demo-workbench" data-style-experience data-url={url}>
+  <div class="demo-toolbar">
+    <div role="group" aria-label={l('演示模式','Demo mode')}>{modes.map((mode,i)=><button type="button" class="demo-tool" data-style-mode={mode} aria-pressed={i===0?'true':'false'}>{labels[mode]}</button>)}</div>
+    <div class="flex flex-wrap gap-1"><button class="demo-tool" type="button" data-scene-width="100%" aria-pressed="true">{l('自适应','Responsive')}</button><button class="demo-tool" type="button" data-scene-width="390px" aria-pressed="false">{l('手机','Phone')} · 390</button><button class="demo-tool" type="button" data-scene-width="320px" aria-pressed="false">{l('窄屏','Narrow')} · 320</button><button class="demo-tool" type="button" data-style-reset>{l('↺ 重置','↺ Reset')}</button><a class="demo-tool" href={url} target="_blank" rel="noopener" data-style-open>{l('独立打开','Open page')} ↗</a></div>
+  </div>
+  <div class="style-experience-frame"><iframe class="demo-viewport" title={l('完整页面交互','Full-page interaction')} src={url} loading="lazy" data-style-frame></iframe></div>
+</div>
+<style>
+/* 父文档的平滑滚动会让 Firefox 在按下表单控件时继续移动 iframe；风格宿主不继承站点吸顶留白。 */
+:global(html:has([data-style-experience])) { scroll-behavior:auto; scroll-padding-top:0; }
+.style-experience-frame { background:repeating-conic-gradient(#8881 0% 25%,transparent 0% 50%) 0 / 18px 18px; padding:0; }
+iframe { display:block; width:100%; max-width:100%; height:min(720px,calc(100dvh - 160px)); min-height:320px; border:0; margin:auto; background:white; scroll-margin-top:0; }
+@media(max-width:600px) { iframe {height:75dvh; min-height:360px;} }
+</style>
+<script>
+for (const experience of document.querySelectorAll<HTMLElement>('[data-style-experience]')) {
+ const frame = experience.querySelector<HTMLIFrameElement>('iframe')!;
+ let mode = 'default';
+ let dialogObserver: MutationObserver | undefined;
+ // 仅在 dialog 打开后调整外层视口；不能在按下控件、焦点改变时移动点击目标。
+ const revealDialogViewport = () => {
+  // 不叠加外层导航的 scroll-padding 与 iframe 的 scroll-margin。
+  const bounds = frame.getBoundingClientRect();
+  scrollBy({top:bounds.top-Math.max(0,(innerHeight-bounds.height)/2),behavior:'instant'});
+ };
+ const connectSceneDocument = () => {
+  dialogObserver?.disconnect();
+  try {
+   const current = new URL(frame.contentWindow!.location.href);
+   if (current.origin !== location.origin || !current.pathname.includes('/style-scenes/')) return;
+   experience.querySelector<HTMLAnchorElement>('[data-style-open]')!.href=current.href;
+   const doc = frame.contentDocument;
+   if (!doc) return;
+   dialogObserver = new MutationObserver(changes => {
+    if (changes.some(({target}) => (target as Element).matches('dialog[open]'))) revealDialogViewport();
+   });
+   dialogObserver.observe(doc.documentElement,{subtree:true,attributes:true,attributeFilter:['open']});
+  } catch { /* 非同源页面不能读取，保留安全的演示入口。 */ }
+ };
+ frame.addEventListener('load', connectSceneDocument);
+ connectSceneDocument();
+ experience.addEventListener('click', event => {
+  const button=(event.target as HTMLElement).closest<HTMLButtonElement>('button');
+  if (!button) return;
+   // 用户明确操作后不再延迟加载；Firefox 会暂缓离屏 lazy iframe 的模式/重置导航。
+   frame.loading='eager';
+  if(button.dataset.sceneWidth) {
+   frame.style.width=button.dataset.sceneWidth;
+   experience.querySelectorAll('[data-scene-width]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+  } else if(button.dataset.styleMode) {
+   mode=button.dataset.styleMode;
+   experience.querySelectorAll('[data-style-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+   frame.src=`${experience.dataset.url}?mode=${mode}`;
+   experience.querySelector<HTMLAnchorElement>('[data-style-open]')!.href=frame.src;
+  } else if(button.hasAttribute('data-style-reset')) {
+   frame.src=`${experience.dataset.url}?mode=${mode}`;
+  }
+ });
+}
+</script>

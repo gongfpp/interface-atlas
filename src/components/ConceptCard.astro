@@ -4,6 +4,8 @@ import { conceptPath } from '@/lib/content';
 import { TYPE_LABELS, RELATION_LABELS, type Locale } from '@/lib/i18n';
 import type { Relation } from '@/content.config';
 import { demos } from '@/islands/demos/registry';
+import StyleThumb from './StyleThumb.astro';
+import { getStylePreviews } from '@/lib/style-previews';
 
 interface Props {
   concept: Concept;
@@ -13,13 +15,15 @@ interface Props {
 }
 const { concept, locale, relation } = Astro.props;
 const href = conceptPath(concept, locale);
-const Demo = concept.data.demo ? demos[concept.data.demo.component] : undefined;
+const styleSpec = concept.conceptType === 'styles' ? (await getStylePreviews()).find(spec => spec.slug === concept.id) : undefined;
+const Demo = !styleSpec && concept.data.demo ? demos[concept.data.demo.component] : undefined;
 ---
 
 <a
   href={href}
   class="group flex flex-col overflow-hidden rounded-lg border border-line bg-raised transition-all hover:-translate-y-0.5 hover:border-line-strong hover:shadow-sm"
 >
+  {styleSpec && <div class="overflow-hidden border-b border-line" aria-hidden="true"><StyleThumb spec={styleSpec} locale={locale} compact /></div>}
   {Demo && (
     <div class="demo-stage-checker relative h-48 overflow-hidden border-b border-line p-4" aria-hidden="true" inert>
       <div class="pointer-events-none select-none origin-top-left w-[160%] scale-[.625]">

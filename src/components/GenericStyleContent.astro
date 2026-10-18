@@ -1,0 +1,163 @@
+---
+import { localizeStylePreview, type StyleThumbSpec } from '@/lib/style-previews';
+import type { Locale } from '@/lib/i18n';
+import { getTeamSceneData, TEAM_INITIAL_DATE } from '@/lib/team-scene-data';
+interface Props { spec: StyleThumbSpec; locale: Locale; }
+const { spec: source, locale } = Astro.props;
+const spec = localizeStylePreview(source, locale);
+const l = (zh: string, en: string) => locale === 'zh' ? zh : en;
+const slug = spec.slug;
+const t = spec.tokens;
+const team = getTeamSceneData(locale);
+// 保留上方原品牌构图；下方延续同一产品场景，状态只存在于当前页面。
+const titles: Record<string, string> = {
+  'flat-design': l('一个清楚的开始。', 'A clear place to start.'),
+  'bauhaus': l('形式，亲手组合。', 'Put form into practice.'),
+  'y2k': l('你的千禧身份。', 'Your millennium identity.'),
+  'cyberpunk': l('终端已就绪。', 'Your terminal is ready.'),
+  'memphis': l('给派对一点个性。', 'Give the party a personality.'),
+  'retro-futurism': l('下一站，日落。', 'Next stop, sunset.'),
+  'claymorphism': l('捏一个新朋友。', 'Make a squishy friend.'),
+  'aurora': l('调一束属于你的光。', 'Find your own light.'),
+  'organic': l('从一件自然好物开始。', 'Start with something natural.'),
+  'art-deco': l('为夜晚留席。', 'Make an evening of it.'),
+  'corporate-memphis': l('让团队轻松向前。', 'Move forward, together.'),
+  'hand-drawn': l('今天，想记下什么？', 'What will you remember today?'),
+  'liquid-glass': l('在光学台上，探索材质。', 'Explore the optical workbench.'),
+  'pixel-art': l('从一枚像素开始。', 'Start with one pixel.'),
+  'vaporwave': l('下一层，永恒的夏天。', 'Next floor, endless summer.'),
+};
+// 原导航各自承载品牌内容，条目可收入本页清单、行程或设计参考。
+const shelves: Record<string, { intro: string; items: string[]; verb: string }> = {
+  'flat-design': { intro:l('从个人清单到团队协作，按需要选择；所有计划在此仅作本地预览。','From personal lists to team projects. Plans here are local previews only.'),items:[l('个人 · 免费 · 1 个工作区','Personal · Free · 1 workspace'),l('团队 · $12 / 月 · 共享项目','Team · $12 / month · Shared projects'),l('周刊 · 更清楚地安排每一天','Journal · A clearer everyday workflow')],verb:l('加入方案对比','Compare this option') },
+  'bauhaus': { intro:l('让材料与形式服务于用途：工坊练习从三种基本形开始。','Let materials and form serve a purpose. Three shapes begin the workshop.'),items:[l('红圆 · 运动与平衡','Red circle · Movement and balance'),l('蓝方 · 空间与结构','Blue square · Space and structure'),l('黄角 · 方向与张力','Yellow triangle · Direction and tension')],verb:l('加入构图参考','Keep as a reference') },
+  'y2k': { intro:l('银色舞池、透明配件、星球社群：为你的会员卡寻找灵感。','Silver dance floors, translucent accessories and a small planet of friends.'),items:[l('午夜 Mixtape · 12 首电子舞曲','Midnight Mixtape · 12 electronic tracks'),l('Chrome Club · 镀铬套装','Chrome Club · Metallic outfit'),l('Planet Dream · 闪星会员','Planet Dream · Star membership')],verb:l('加入我的星球','Add to my planet') },
+  'cyberpunk': { intro:l('离线城市档案：挑选下一站，整理装备。不会连接任何真实网络。','An offline city archive. Plan your route and gear; no real network connection is made.'),items:[l('歌舞伎区 · 信号强度 92%','Kabuki · Signal strength 92%'),l('神经加速器 · +15% 反应速度','Neural accelerator · +15% response'),l('匿名信用芯片 · 300 credits','Anonymous credit chip · 300 credits')],verb:l('加入行动清单','Add to the mission') },
+  'memphis': { intro:l('不必规整。把喜欢的图案、家具与小物放进下一场聚会。','Mix patterns, objects and furniture for a gathering that refuses to be ordinary.'),items:[l('波点花瓶 · 粉与绿','Polka-dot vase · Pink and green'),l('折线桌布 · 黄与蓝','Zigzag tablecloth · Yellow and blue'),l('周五设计派对 · Milano 20:00','Friday design party · Milano 20:00')],verb:l('加入派对灵感','Add to party inspiration') },
+  'retro-futurism': { intro:l('来自一段想象中的公路旅程。电台使用本机合成音，不依赖外部音频。','A soundtrack for an imaginary road trip. The radio synthesizes sound locally, with no external audio.'),items:['01 · Midnight Drive / 84 BPM','02 · Neon Coast / 96 BPM',l('Sunset Tour · 洛杉矶 / 东京 / 柏林','Sunset Tour · Los Angeles / Tokyo / Berlin')],verb:l('加入旅行清单','Add to the road trip') },
+  'claymorphism': { intro:l('小屋里的每个朋友，都从一个软软的形状开始。','Every friend in the cabin begins with a soft little shape.'),items:[l('蓝莓团子 · 喜欢午睡','Blueberry blob · Loves a nap'),l('桃子小熊 · 喜欢拥抱','Peach bear · Loves a hug'),l('薄荷小屋 · 留一个空位','Mint cabin · Room for a friend')],verb:l('放进我的小屋','Keep in my cabin') },
+  'aurora': { intro:l('光、色、场，构成安静的数字夜空。选择一个观测地点，留作你的光场参考。','Light, color and space form a quiet digital sky. Keep an observation as a reference.'),items:[l('绿色帷幕 · 冷色与宁静','Green curtains · Cool and calm'),l('紫色脉冲 · 柔和的层次','Violet pulse · Soft depth'),l('午夜观测站 · 空旷的地平线','Midnight observatory · An open horizon')],verb:l('存入光场参考','Keep this light reference') },
+  'organic': { intro:l('少一点消耗，多一点相处。认识材料的来源，让一件物品用得更久。','Less consumption, more connection. Know the materials and keep objects for longer.'),items:[l('亚麻织物 · 自然透气','Linen textile · Naturally breathable'),l('手作陶器 · 小批次烧制','Hand-thrown ceramics · Small-batch firing'),l('FSC 木材 · 可追溯来源','FSC timber · Traceable origins')],verb:l('加入生活清单','Add to my living list') },
+  'art-deco': { intro:l('金色线条之下，是值得慢慢品味的夜晚。探索空间与餐饮，再预留一席。','Beyond the golden lines, an evening to savor. Explore the rooms and the menu, then save your seat.'),items:[l('The Salon · 香槟与爵士','The Salon · Champagne and jazz'),l('The Gallery · 五道式季节晚宴','The Gallery · Five-course seasonal dinner'),l('The Aurelia · 始于 1926 的待客艺术','The Aurelia · Hospitality since 1926')],verb:l('加入晚宴心愿单','Add to my evening wishlist') },
+  'corporate-memphis': { intro:l('人先于流程。看看团队故事、透明方案与正在寻找的新伙伴。','People before process. Team stories, clear plans and new people to meet.'),items:[l('Studio Lila · 6 人跨时区协作','Studio Lila · Six people, different time zones'),l('Starter · 免费 · 最多 5 位伙伴','Starter · Free · Up to five teammates'),l('招聘 · 产品设计师 / 远程','Careers · Product designer / Remote')],verb:l('加入团队资料夹','Keep in team resources') },
+  'hand-drawn': { intro:l('纸张、墨水与小小的观察。留下灵感，日记不必写得完美。','Paper, ink and little observations. Keep a spark; a journal need not be perfect.'),items:[l('横线纸 · 适合每天写一点','Ruled paper · A little writing each day'),l('暖橘色马克笔 · 留给重要的小事','Warm orange marker · For the little things that matter'),l('关于 scribble& · 为不完美留白','About scribble& · Space for imperfection')],verb:l('夹进灵感本','Keep in my notebook') },
+  'liquid-glass': { intro:l('用可读的内容检验材质，而不只是追逐光效。参数只作用于下方试样。','Test a material against readable content, not just highlights. Controls affect only the specimen below.'),items:[l('光学 · 透镜厚度与边缘高光','Optics · Lens depth and edge highlights'),l('材质 · Frost / Clear / Prism','Materials · Frost / Clear / Prism'),l('Studio · $24 / 月 · 材质库预览','Studio · $24 / month · Material library preview')],verb:l('放入材质样本夹','Keep in material samples') },
+  'pixel-art': { intro:l('硬边、有限色与明确的格子。打开图鉴，给下一位像素角色找点灵感。','Sharp edges, limited colors and a clear grid. Browse the atlas for your next sprite.'),items:[l('图鉴 #001 · 日落史莱姆','Atlas #001 · Sunset slime'),l('图鉴 #002 · 夜行机器人','Atlas #002 · Night robot'),l('商店 · 六色基础色板 / 免费','Shop · Six-color starter palette / Free')],verb:l('加入像素背包','Keep in pixel inventory') },
+  'vaporwave': { intro:l('一座不会打烊的想象商场。浏览音像店、美食广场与中庭的楼层导览。','An imaginary mall that never closes. Find records, the food court and the atrium.'),items:[l('1F · Sunset Records · 黑胶与磁带','1F · Sunset Records · Vinyl and tapes'),l('2F · Peach Soda · 美食广场','2F · Peach Soda · Food court'),l('3F · Sky Garden · 屋顶落日','3F · Sky Garden · Rooftop sunset')],verb:l('盖一枚商场印章','Stamp my mall passport') },
+};
+const shelf = shelves[slug];
+const workspaceLabels: Record<string,string> = { 'flat-design':l('工作区','Workspace'),bauhaus:l('构图台','Composition'),y2k:l('会员卡','Member card'),cyberpunk:l('终端','Terminal'),memphis:l('邀请卡','Invitation'),'retro-futurism':l('播放器','Player'),claymorphism:l('小团子','My blob'),aurora:l('光场台','Light field'),organic:l('生活清单','Living list'),'art-deco':l('晚宴计划','Evening plan'),'corporate-memphis':l('团队看板','Team board'),'hand-drawn':l('写一笔','Write a note'),'liquid-glass':l('材质台','Specimen'),'pixel-art':l('画板','Canvas'),vaporwave:l('商场护照','Mall passport') };
+// 每个导航目的地使用不同的场景内容；主 CTA 单独进入工作区。
+const destinations: Record<string,string[][]> = {
+ 'flat-design': [
+  [l('清单、共享任务和进度，在同一个地方。','Lists, shared tasks and progress in one place.'),l('清单 / 从想法到下一步','Lists / From idea to next step'),l('共享 / 每个任务都有负责人','Sharing / An owner for every task')],
+  [l('按规模选择，只比较方案，不会扣费。','Choose for your team size. Compare plans without any payment.'),...shelf.items.slice(0,2)],
+  [l('Flatly 周刊：减少噪音，留住注意力。','The Flatly journal: less noise, more attention.'),l('阅读 / 五分钟整理本周工作','Read / A five-minute weekly reset'),l('阅读 / 一项任务只设一个负责人','Read / One owner for each task')]
+ ],
+ 'bauhaus': [
+  [l('运动、稳定和方向，从三种基本形开始。','Movement, stability and direction begin with three forms.'),...shelf.items],
+  [l('三原色不是装饰，而是构图中的角色。','Primary colors play roles within a composition.'),'RED / Movement','BLUE / Structure','YELLOW / Direction'],
+  [l('工坊练习：用十二个形状，寻找秩序。','Workshop exercise: find order with twelve shapes.'),l('练习 01 / 对称与不对称','Exercise 01 / Symmetry and asymmetry'),l('练习 02 / 图形与负空间','Exercise 02 / Figure and negative space')]
+ ],
+ 'y2k': [
+  [l('午夜曲目档案，不会自动播放。','A midnight track archive, with no autoplay.'),'Digital Crush / 3:24','Silver Sky / 4:08','Dream.exe / 2:56'],
+  [l('透明配件与金属光泽，搭配你的会员身份。','Transparent accessories and metallic shine for your member identity.'),'Chrome Club / Silver jacket','Bubble Dream / Pink visor','Star Bear / Neon charm'],
+  [l('Planet Dream，为每一种个性留一个位置。','Planet Dream, a little space for every personality.'),l('轨道 01 / 深夜混音社群','Orbit 01 / Midnight mixtape community'),l('轨道 02 / 每周装扮挑战','Orbit 02 / Weekly outfit challenge')]
+ ],
+ 'cyberpunk': [
+  [l('离线侦察档案：先查看环境与信号。','Offline reconnaissance: check surroundings and signal.'),'KABUKI / 92% / Night market','PACIFICA / 76% / Coastline','CITY CENTER / 99% / Corporate zone'],
+  [l('在终端勾选模块，查看装备装载状态。','Select modules in the terminal to see the loadout status.'),...shelf.items.slice(1)],
+  [l('匿名交易档案，仅作展示，没有真实支付。','An anonymous trading archive, with no real payment.'),'Ghost key / 120 credits','Signal cloak / 180 credits','Memory shard / 60 credits']
+ ],
+ 'memphis': [
+  [l('让日常有一点不合常理的快乐。','A little unexpected joy for the everyday.'),'Dot vase / Pink + Green','Zigzag lamp / Yellow + Blue','Candy tray / Peach + Purple'],
+  [l('波点、格纹、折线，让图案自由碰撞。','Dots, checks and zigzags. Let the patterns collide.'),'Polka Party / 01','Offbeat Checks / 02','Electric Zigzag / 03'],
+  [l('下一场聚会，从一张属于你的邀请卡开始。','The next party begins with an invitation that is yours.'),'Friday 20:00 / Milano design party','Saturday 14:00 / Pattern swap']
+ ],
+ 'retro-futurism': [
+  [l('在播放器里试听三段本机合成频率。','Open the player for three locally synthesized frequencies.'),'Midnight Drive / 164.81 Hz','Neon Coast / 196 Hz','Last Sunset / 220 Hz'],
+  [l('想象中的 1984 巡演，收藏你想去的一站。','An imaginary 1984 tour. Keep a stop on your road trip.'),'Los Angeles / Sunset Hall','Tokyo / Neon Garage','Berlin / Radio Room'],
+  [l('为旧随身听留一面新的磁带，只收藏，不购买。','A new side for an old cassette player. Keep, without purchasing.'),'SIDE A / Midnight compilation','SIDE B / Coastal instrumentals']
+ ],
+ 'claymorphism': [
+  [l('每个小团子都值得一个温柔的拥抱。','Every little blob deserves a gentle hug.'),l('今日心情 / 软软的就很好','Today’s mood / Soft is enough')],
+  [l('在捏塑区，把新朋友带回小屋。','Bring a friend into your cabin from the sculpting space.'),...shelf.items.slice(0,2)],
+  [l('为小屋换个颜色，只收藏样品，不会支付。','A color mood for the cabin. Samples only, with no payment.'),'Blueberry / Color sample','Peach / Color sample','Mint / Color sample']
+ ],
+ 'aurora': [
+  [l('探索强弱，不必让整页一直运动。','Explore light intensity without moving the whole page.'),'Soft glow / 35%','Dawn / 65%','Aurora / 85%'],
+  [l('三段光谱，三种不同的夜晚。','Three spectra, three kinds of night.'),'Emerald / 150°','Violet / 255°','Rose / 320°'],
+  [l('为光留一些空白，从观测站到书房。','Leave space for light, from observatory to study.'),'Midnight observatory / Open horizon','Quiet study / A single desk light']
+ ],
+ 'organic': [
+  [l('天然材料，做成值得长久相处的物件。','Natural materials, made into objects worth keeping.'),...shelf.items],
+  [l('认识材料，少买一点，好好使用。','Know the material, buy less, and use it well.'),l('我们的承诺 / 小批次制作','Our promise / Small-batch production'),l('养护指南 / 亚麻、陶器与木材','Care guide / Linen, ceramics and timber')]
+ ],
+ 'art-deco': [
+  [l('从沙龙到画廊，找到今晚的节奏。','From salon to gallery, find the rhythm of your evening.'),...shelf.items.slice(0,2)],
+  [l('自 1926 年，为值得铭记的相聚留一席。','Since 1926, a place for gatherings worth remembering.'),l('待客之道 / 体贴而不打扰','Hospitality / Attentive, never intrusive'),l('空间故事 / 几何、金属与手工','Our rooms / Geometry, metal and craft')]
+ ],
+ 'corporate-memphis': [
+  [l('任务、伙伴、下一步，协作不必复杂。','Tasks, people, next steps. Collaboration need not be complicated.'),'Team board / Clear ownership','Task progress / Made together'],
+  [l('多一点沟通，少一点重复工作。','More conversation, less duplicated effort.'),'Studio Lila / 6 people / 3 time zones','Green Room / 12 people / One shared board'],
+  [l('免费开始，一起成长；此处不计费。','Start free and grow together. No billing happens here.'),'Starter / Free / 5 teammates','Team / $8 per person / Shared projects'],
+  [l('收藏岗位信息，不会发送申请。','Keep a role without submitting an application.'),l('产品设计师 / 远程','Product designer / Remote'),l('前端工程师 / 远程','Frontend engineer / Remote')]
+ ],
+ 'hand-drawn': [
+  [l('不完美的记录，也值得留下。','Imperfect notes deserve a place.'),l('日记提示 / 今天注意到的小事','Journal prompt / A small thing you noticed'),l('日记提示 / 一个想再见的人','Journal prompt / Someone to see again')],
+  [l('选纸、选笔，让素材为记录服务。','Pick paper, pick ink. Materials that serve your writing.'),...shelf.items.slice(0,2)],
+  [l('为画不圆的圆和没写完的句子而作。','For crooked circles and unfinished sentences.'),l('我们的信念 / 人手的温度','Our belief / The warmth of a human hand'),l('使用方式 / 写下、查找、再翻开','How to use / Write, find, revisit')]
+ ],
+ 'liquid-glass': [
+  [l('在试样上探索厚度与光线，不牺牲正文可读性。','Explore specimen depth and light while keeping body copy readable.'),'Depth / 0–24 px','Ambient light / 0–360°'],
+  [l('透明、磨砂、棱镜，三种表面性格。','Clear, frost and prism: three surface personalities.'),'Clear / Light transmission','Frost / Soft diffusion','Prism / Colored reflections'],
+  [l('价格为样张内容，不会生成订阅。','Prices are study content, not subscriptions.'),'Free / 3 material studies','Studio / $24 per month / Material library']
+ ],
+ 'pixel-art': [
+  [l('投一枚虚拟硬币，点亮第一格。','Insert a virtual coin, then light up the first cell.'),l('操作 / 方向键移动，空格涂色','Controls / Arrow keys move, Space paints'),l('规则 / 六色、八行、八列','Rules / Six colors, eight rows, eight columns')],
+  [l('像素角色图鉴，每个轮廓都从格子开始。','A sprite atlas. Every silhouette begins with cells.'),...shelf.items.slice(0,2)],
+  [l('免费基础色板，没有支付流程。','A free starter palette, with no payment flow.'),'Palette / Sunset 6','Palette / Arcade 6','Brush / Single pixel']
+ ],
+ 'vaporwave': [
+  [l('磁带、黑胶和慢半拍的下午。','Tapes, vinyl, and an afternoon in slow motion.'),'Sunset Records / 1F','After Hours Video / 1F'],
+  [l('永远明亮的美食广场，不赶时间。','A forever-sunny food court, with no hurry.'),'Peach Soda / 2F','Neon Noodles / 2F'],
+  [l('MALL★95 是想象中的商场，没有真实门店或订单。','MALL★95 is an imaginary mall, with no real stores or orders.'),'EST. 1995 / Open forever','Sky Garden / 3F / Endless sunset']
+ ]
+};
+---
+
+<div class="generic-style-content" data-generic-content style={`--gs-bg:${t.bg};--gs-fg:${t.fg};--gs-sub:${t.sub};--gs-accent:${t.accent};--gs-accent-fg:${t.accentFg};--gs-card:${t.card};--gs-border:${t.cardBorder};--gs-radius:${t.radius === '999px' ? '24px' : t.radius};--gs-shadow:${t.shadow ?? 'none'};font-family:${t.font}`}>
+  <header class="gs-heading"><p class="gs-eyebrow">{spec.brand} / {l('交互空间','INTERACTIVE SPACE')}</p><h2>{titles[slug]}</h2><p>{l('这是本地体验：不会注册账号、发出订单或传送你的内容。','A local experience: no account is created, no order is placed, and your content is not sent anywhere.')}</p></header>
+  <div class="gs-tabs" role="tablist" aria-label={l('浏览页面内容','Explore page content')}>
+    {[workspaceLabels[slug], ...spec.nav].map((name, i) => <button type="button" role="tab" id={`gs-${slug}-tab-${i}`} aria-selected={i === 0 ? 'true' : 'false'} aria-controls={`gs-${slug}-panel-${i}`} tabindex={i === 0 ? 0 : -1} data-generic-tab={i}>{name}</button>)}
+  </div>
+  <section class="gs-panel" role="tabpanel" id={`gs-${slug}-panel-0`} aria-labelledby={`gs-${slug}-tab-0`} data-generic-panel="0" tabindex="-1">
+    {slug === 'flat-design' && <div class="gs-two"><form data-generic-form="workspace"><h3>{l('创建工作区','Create a workspace')}</h3><label>{l('工作区名称','Workspace name')}<input name="name" required maxlength="48" placeholder={l('例如：产品发布','e.g. Product launch')} /></label><label>{l('起步方案','Starting plan')}<select name="plan" data-feature-select><option>{l('个人 · 免费','Personal · Free')}</option><option>{l('团队 · 协作','Team · Collaborative')}</option><option>{l('Studio · 多项目','Studio · Multi-project')}</option></select></label><button class="gs-primary" type="submit">{l('创建本地工作区','Create local workspace')} →</button></form><article class="gs-card"><h3>{l('我的工作区','My workspaces')}</h3><p data-empty>{l('名称、计划、下一步，井井有条。','A name, a plan, and a clear next step.')}</p><ul class="gs-results" data-workspaces></ul></article></div>}
+    {slug === 'bauhaus' && <div class="gs-two"><div><h3>{l('构图工坊','Composition workshop')}</h3><p>{l('选择基本形，再把它放入画面。最多放置 12 个形状。','Choose a form and place it on the canvas. Up to 12 shapes.')}</p><div class="gs-row">{['●','■','▲'].map((shape,i) => <button type="button" data-command="shape" data-value={i} aria-pressed={i===0?'true':'false'} aria-label={[l('红圆','Red circle'),l('蓝方','Blue square'),l('黄角','Yellow triangle')][i]}>{shape}</button>)}</div><div class="gs-row"><button type="button" class="gs-primary" data-command="place">{l('放置形状','Place shape')}</button><button type="button" data-command="clear-shapes">{l('清空构图','Clear canvas')}</button></div><p data-shape-count aria-live="polite">0 / 12</p></div><div class="gs-composition" data-composition role="img" aria-label={l('你的几何构图','Your geometric composition')}></div></div>}
+    {slug === 'y2k' && <div class="gs-two"><form data-generic-form="member"><h3>{l('生成会员卡','Make a member card')}</h3><label>{l('你的昵称','Your nickname')}<input name="name" required maxlength="24" placeholder="CyberDreamer" /></label><label>{l('选择装扮','Choose your look')}<select name="outfit" data-feature-select><option>Chrome Club</option><option>Bubble Dream</option><option>Star Bear</option></select></label><button type="submit" class="gs-primary">{l('保存我的身份','Save my identity')} ✦</button></form><article class="gs-member gs-card" data-member><span>✦ ☆ ✦</span><p>CYBERDREAM / MEMBER 2000</p><h3 data-member-name>CyberDreamer</h3><p data-member-outfit>Chrome Club</p><small data-member-status>{l('等待你的新身份','Waiting for your new identity')}</small></article></div>}
+    {slug === 'cyberpunk' && <div class="gs-two"><div><h3>NEON://TERMINAL</h3><label>{l('目标街区','Target district')}<select data-district data-feature-select><option>KABUKI / 92%</option><option>PACIFICA / 76%</option><option>CITY CENTER / 99%</option></select></label><button type="button" class="gs-primary" data-command="connect">{l('接入街区','Connect to district')}</button><fieldset><legend>{l('装载装备','Load your gear')}</legend>{['Neural accelerator','Ghost interface','Credit chip'].map((name,i)=><label class="gs-check"><input type="checkbox" data-gear={i} />{name}</label>)}</fieldset></div><article class="gs-terminal gs-card"><p>SYS / OFFLINE SIMULATION</p><h3 data-network-status>DISCONNECTED</h3><p data-network-route>—</p><div class="gs-signal" aria-hidden="true">▂ ▃ ▅ ▆ █</div><p data-gear-status>0 / 3 {l('装备已装载','modules loaded')}</p></article></div>}
+    {slug === 'memphis' && <div class="gs-two"><form data-generic-form="party"><h3>{l('派对邀请制作机','Party invitation maker')}</h3><label>{l('派对名称','Party name')}<input name="name" required maxlength="40" placeholder={l('周五的好主意','Friday, good ideas')} /></label><label>{l('邀请人数','Number of guests')}<input name="guests" type="number" min="1" max="99" value="8" required /></label><label>{l('配色','Color mix')}<select name="palette" data-feature-select><option>Pink / Mint</option><option>Yellow / Blue</option><option>Peach / Purple</option></select></label><button class="gs-primary" type="submit">{l('制作邀请卡','Make an invitation')} ↗</button></form><article class="gs-invitation" data-invitation><span>● ▨ ▲</span><h3 data-party-name>PLAY & REPEAT!</h3><p data-party-guests>{l('为朋友们留点位置','Make room for your friends')}</p><strong>Milano ’88</strong></article></div>}
+    {slug === 'retro-futurism' && <div class="gs-radio gs-card"><p>FM 84.0 / LOCAL SYNTH</p><h3 data-track>01 · Midnight Drive</h3><div class="gs-equalizer" data-equalizer aria-hidden="true">{[30,60,45,85,50,72,36,90,58,70,40,80].map(h=><i style={`height:${h}%`}></i>)}</div><div class="gs-row"><button type="button" data-command="previous" aria-label={l('上一首','Previous track')}>⏮</button><button type="button" class="gs-primary" data-command="play" aria-pressed="false">{l('播放电台','Play radio')} ▶</button><button type="button" data-command="next" aria-label={l('下一首','Next track')}>⏭</button></div><label>{l('音量','Volume')}<input type="range" min="0" max="100" value="20" data-volume /></label><p data-radio-status aria-live="polite">{l('点击播放，听见本机生成的合成器音色。','Press play to hear a locally generated synthesizer tone.')}</p></div>}
+    {slug === 'claymorphism' && <div class="gs-two"><div><h3>{l('你的小团子','Your little blob')}</h3><p>{l('选一个颜色，捏一下，收藏进小屋。','Choose a color, give it a squeeze, and keep it in your cabin.')}</p><label>{l('团子颜色','Blob color')}<select data-clay-color data-feature-select><option value="#9AA7FF">{l('蓝莓','Blueberry')}</option><option value="#FFB5A5">{l('蜜桃','Peach')}</option><option value="#97D9BD">{l('薄荷','Mint')}</option></select></label><div class="gs-row"><button type="button" class="gs-primary" data-command="squeeze">{l('捏一下','Squeeze')}</button><button type="button" data-command="adopt">{l('住进小屋','Move into cabin')}</button></div><p data-squeeze-count aria-live="polite">{l('还没被捏过的快乐团子','A happy, unsqueezed little blob')}</p><ul data-clay-cabin class="gs-results"></ul></div><div class="gs-clay-stage"><div class="gs-blob" data-blob role="img" aria-label={l('圆润微笑的黏土朋友','A smiling, rounded clay friend')}><span>•　•</span><b>⌣</b></div></div></div>}
+    {slug === 'aurora' && <div class="gs-two"><div><h3>{l('光场控制台','Light field controls')}</h3><label>{l('光谱','Spectrum')}<select data-spectrum data-feature-select><option value="150">Emerald</option><option value="255">Violet</option><option value="320">Rose</option></select></label><label>{l('光强','Intensity')}<input type="range" min="10" max="100" value="65" data-intensity /></label><button class="gs-primary" type="button" data-command="save-light">{l('保存这束光','Save this light')}</button><p data-light-values>Emerald / 65%</p><ul data-light-saves class="gs-results"></ul></div><div class="gs-light-field" data-light-field role="img" aria-label={l('可调节的极光光场','An adjustable aurora light field')}><span>BOREALIS<br/>LIGHT STUDY 01</span></div></div>}
+    {slug === 'organic' && <div><h3>{l('日常的自然收藏','A collection for everyday living')}</h3><div class="gs-product-grid">{[[l('亚麻靠垫','Linen cushion'),'linen','48'],[l('手作陶杯','Hand-thrown cup'),'ceramic','32'],[l('白蜡木托盘','Ashwood tray'),'wood','64']].map(([name,material,price],i)=><article class="gs-card"><div class:list={['gs-object',`gs-object-${material}`]} aria-hidden="true"></div><h4>{name}</h4><p>{l('小批次制作 · 自然材料','Small batch · Natural materials')}</p><p>${price}</p><button type="button" data-command="basket" data-value={i} data-name={name} data-price={price}>{l('加入生活清单','Add to living list')} +</button></article>)}</div><aside class="gs-basket gs-card"><h4>{l('我的生活清单','My living list')}</h4><ul data-basket class="gs-results"></ul><p data-basket-total>{l('尚未添加物品','Your list is empty')}</p><button type="button" data-command="clear-basket">{l('清空清单','Clear list')}</button></aside></div>}
+    {slug === 'art-deco' && <div class="gs-two"><form data-generic-form="reservation"><h3>{l('晚宴席位意向','Plan your evening')}</h3><label>{l('称呼','Guest name')}<input name="name" required maxlength="48" placeholder={l('如何称呼你','How shall we address you?')} /></label><label>{l('晚宴日期','Evening date')}<input name="date" type="date" required /></label><label>{l('用餐人数','Party size')}<select name="guests" data-feature-select><option value="2">2</option><option value="4">4</option><option value="6">6</option></select></label><button class="gs-primary" type="submit">{l('保存晚宴计划','Save evening plan')}</button></form><article class="gs-evening gs-card"><p>THE AURELIA / 1926</p><h3>{l('一个非凡的夜晚','An extraordinary evening')}</h3><p>{l('香槟 · 季节晚宴 · 现场爵士','Champagne · Seasonal dining · Live jazz')}</p><p data-reservation aria-live="polite">{l('选择一个日期，开始期待。此处不会实际订位。','Choose a date and look forward to it. This does not make a real reservation.')}</p></article></div>}
+    {slug === 'corporate-memphis' && <div class="gs-team-workspace">
+      <section data-team-task-workspace tabindex="-1" aria-label={l('团队任务看板','Team task board')}>
+        <div class="gs-team-date-banner"><strong data-team-selected-date>{TEAM_INITIAL_DATE}</strong><span data-team-date-summary aria-live="polite">{l(`所选日期有 ${team.tasks.length} 项待办任务`,`${team.tasks.length} pending tasks on the selected date`)}</span></div>
+        <div class="gs-two"><div><form data-generic-form="team"><h3>{l('团队的下一件小事','The team’s next small step')}</h3><label>{l('任务名称','Task name')}<input name="task" required maxlength="100" placeholder={l('例如：一起完成欢迎页','e.g. Build the welcome page together')} /></label><label>{l('负责人','Owner')}<select name="owner" data-feature-select><option>Alex</option><option>Jamie</option><option>Sam</option></select></label><p>{l('新任务会安排在上方所选的日历日期。','New tasks are scheduled for the selected calendar date above.')}</p><button class="gs-primary" type="submit">{l('加入团队看板','Add to team board')}</button></form><p data-team-progress aria-live="polite">0 / {team.tasks.length} {l('已完成','complete')}</p></div><article class="gs-card"><h3>{l('一起完成','Made together')}</h3><ul data-team-tasks class="gs-results">{team.tasks.map(task=><li><span>{task.text} · {task.detail} · {task.due}</span></li>)}</ul><p>{l('勾选任务，见证小小进展。仅保留在本页。','Tick off a task and see the progress. Kept in this page only.')}</p></article></div>
+      </section>
+      <section class="gs-team-notes" data-team-notes-workspace tabindex="-1" aria-label={l('团队笔记本','Team notebook')}>
+        <h3>{l('团队笔记本','Team notebook')} <span data-team-notes-total>{team.notes.length}</span></h3>
+        <div class="gs-two"><div><form data-generic-form="team-note"><label>{l('笔记标题','Note title')}<input name="title" required maxlength="100" placeholder={l('给这条想法起个名字','A name for this idea')} /></label><label>{l('笔记内容','Note content')}<textarea name="body" required maxlength="2000" rows="5" placeholder={l('记下背景、讨论与下一步……','Context, discussion and the next step…')}></textarea></label><button class="gs-primary" type="submit">{l('保存团队笔记','Save team note')}</button></form><ul class="gs-results gs-team-note-list" data-team-notes-list>{team.notes.map((note,i)=><li><button type="button" data-command="team-read-note" data-value={note.id} aria-pressed={i===0?'true':'false'}>{note.title}</button><button type="button" data-command="team-delete-note" data-value={note.id} aria-label={`${l('删除','Delete')} ${note.title}`}>{l('删除','Delete')}</button></li>)}</ul></div><article class="gs-card gs-team-note-detail" data-team-note-detail tabindex="-1" aria-label={l('笔记正文','Note details')}><h4 data-team-note-title>{team.notes[0].title}</h4><p data-team-note-body>{team.notes[0].body}</p></article></div>
+      </section>
+    </div>}
+    {slug === 'hand-drawn' && <div class="gs-two"><form data-generic-form="note"><h3>{l('随手记一笔','A quick little note')}</h3><label>{l('今天的小事','A little thing from today')}<textarea name="note" required maxlength="1000" rows="5" placeholder={l('今天的风，像刚翻开的一页纸……','The breeze today felt like a fresh page…')}></textarea></label><label>{l('纸张与笔触','Paper and ink')}<select name="paper" data-feature-select><option>{l('抖动描边','Wobbly outline')}</option><option>{l('横线纸张','Ruled paper')}</option><option>{l('马克笔高亮','Marker highlight')}</option></select></label><button type="submit" class="gs-primary">{l('夹进日记本','Keep in my journal')}</button></form><article class="gs-notebook gs-card"><h3>{l('日记本','My journal')}</h3><label>{l('查找记录','Search notes')}<input type="search" data-note-search placeholder={l('关键词','A word to remember')} /></label><ul data-notes class="gs-results"></ul><p data-note-empty>{l('第一笔，留给今天。','Your first page starts today.')}</p></article></div>}
+    {slug === 'liquid-glass' && <div class="gs-two"><div><h3>{l('折射材质试样','Refraction specimen')}</h3><label>{l('材质','Material')}<select data-glass-material data-feature-select><option>Clear</option><option>Frost</option><option>Prism</option></select></label><label>{l('玻璃厚度','Glass depth')}<input type="range" min="0" max="24" value="12" data-glass-depth /></label><label>{l('环境光角度','Ambient light angle')}<input type="range" min="0" max="360" value="145" data-glass-angle /></label><button class="gs-primary" type="button" data-command="save-glass">{l('保存材质配方','Save material recipe')}</button><p data-glass-values>Clear / 12px / 145°</p><ul data-glass-saves class="gs-results"></ul></div><div class="gs-glass-stage" data-glass-stage><div class="gs-glass-specimen" data-glass-specimen><span>LUMEN / OPTICS</span><h3>{l('看见光的形状','See the shape of light.')}</h3><p>{l('清楚的信息，也可以有厚度。','Clear information can have depth, too.')}</p></div></div></div>}
+    {slug === 'pixel-art' && <div class="gs-two"><div><h3>{l('8 × 8 像素工坊','8 × 8 pixel workshop')}</h3><p>{l('按 INSERT COIN 开始。点击或用方向键移动、空格涂色。','Press INSERT COIN to start. Click, or use arrow keys and Space to paint.')}</p><div class="gs-row gs-palette">{['#EF7D57','#FFCD75','#A7F070','#38B764','#41A6F6','#B13E53'].map((color,i)=><button type="button" data-command="pixel-color" data-value={color} style={`background:${color}`} aria-label={`${l('颜色','Color')} ${i+1}`} aria-pressed={i===0?'true':'false'}></button>)}</div><div class="gs-row"><button type="button" class="gs-primary" data-command="coin">INSERT COIN</button><button type="button" data-command="clear-pixels">{l('清空画布','Clear pixels')}</button></div><p data-pixel-status aria-live="polite">CREDIT 0 / READY?</p></div><div class="gs-pixels" role="group" aria-label={l('像素画布','Pixel canvas')}>{Array.from({length:64},(_,i)=><button type="button" data-pixel={i} tabindex={i===0?0:-1} aria-label={`${l('行','Row')} ${Math.floor(i/8)+1}, ${l('列','column')} ${i%8+1}`} aria-pressed="false"></button>)}</div></div>}
+    {slug === 'vaporwave' && <div class="gs-two"><div><h3>{l('商场楼层导览','Mall floor directory')}</h3><label>{l('选择楼层','Choose a floor')}<select data-floor data-feature-select><option>1F / SUNSET RECORDS</option><option>2F / PEACH SODA</option><option>3F / SKY GARDEN</option></select></label><p data-floor-description>{l('试听磁带，在慢拍里度过下午。','Browse tapes and spend an afternoon in slow motion.')}</p><button class="gs-primary" type="button" data-command="visit">{l('逛逛这一层','Visit this floor')} ↗</button><h4>{l('我的商场护照','My mall passport')}</h4><ul data-passport class="gs-results"></ul></div><div class="gs-mall-map" data-mall-map><span>MALL★95</span><strong data-floor-sign>1F</strong><p>OPEN FOREVER</p><div aria-hidden="true">▤　▥　▤</div></div></div>}
+  </section>
+  {spec.nav.map((name,i)=><section class="gs-panel" role="tabpanel" id={`gs-${slug}-panel-${i+1}`} aria-labelledby={`gs-${slug}-tab-${i+1}`} data-generic-panel={i+1} hidden tabindex="-1"><h3>{name}</h3><p>{destinations[slug][i][0]}</p><div class="gs-product-grid">{destinations[slug][i].slice(1).map((item,j)=><article class="gs-card"><span class="gs-eyebrow">0{j+1} / {spec.brand}</span><h4>{item}</h4><button type="button" data-command="keep" data-name={item} aria-pressed="false">{shelf.verb} +</button></article>)}</div><aside class="gs-card gs-shelf"><h4>{l('我的收藏','My collection')}</h4><ul class="gs-results" data-shelf-list></ul><p data-shelf-empty>{l('选择上方条目，保存到这个页面的收藏夹。','Choose an entry above to keep it in this page’s collection.')}</p></aside></section>)}
+  <p class="gs-status" data-generic-status role="status" aria-live="polite"></p>
+  <footer class="gs-footer"><span>© {spec.brand}</span><span>{l('本地交互样张 · 内容不会上传','Local interactive study · Nothing is uploaded')}</span><button type="button" data-command="reset">{l('重置本地体验','Reset local experience')}</button><button type="button" data-command="return">{l('返回工作区','Back to workspace')} ↑</button></footer>
+</div>

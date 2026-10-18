@@ -1,0 +1,31 @@
+---
+import '@/styles/global.css';
+import '@/styles/style-document.css';
+import '@/styles/style-pages.css';
+import StyleThumb from './StyleThumb.astro';
+import type { StyleThumbSpec } from '@/lib/style-previews';
+import type { Locale } from '@/lib/i18n';
+import { REFERENCE_BRANDS } from '@/lib/reference-style-data';
+interface Props { spec: StyleThumbSpec; locale: Locale; }
+const { spec, locale } = Astro.props;
+---
+<!doctype html>
+<html lang={locale === 'zh' ? 'zh-CN' : 'en'}>
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,follow"/><title>{REFERENCE_BRANDS[spec.slug] ?? spec.brand} · {locale === 'zh' ? '完整页面演示' : 'Full-page demo'}</title></head>
+<body class="style-document"><main><StyleThumb spec={spec} locale={locale} interactive /></main>
+<script>
+import { initReferenceStyle } from '@/lib/reference-style-runtime';
+import { initOtherReference } from '@/lib/other-reference-runtime';
+import { initGenericStyle } from '@/lib/generic-style-runtime';
+const params = new URLSearchParams(location.search);
+const requestedMode = params.get('mode');
+const mode = requestedMode === 'dark' || requestedMode === 'variants' ? requestedMode : 'default';
+document.body.dataset.mode = mode;
+const root = document.querySelector<HTMLElement>('[data-scene-interactive="true"]');
+if (root) {
+  initReferenceStyle(root);
+  initOtherReference(root);
+  initGenericStyle(root);
+}
+</script>
+</body></html>

@@ -146,6 +146,26 @@
       "variants"
     ]
   },
+  "playground": {
+    "task": {
+      "zh": "查看作品进入项目目录，打开项目内容并返回；WORK / ABOUT / NEWS / CONTACT 均有对应内容；联系表单校验后显示本地整理结果，不发送邮件。",
+      "en": "View our work opens the project index; inspect a project and return. WORK / ABOUT / NEWS / CONTACT reveal matching content; the contact form validates and shows a local summary without sending email."
+    },
+    "checks": [
+      {
+        "zh": "逐一操作 STUDIO VOID 原导航和主 CTA，检查对应内容与返回路径，不只是点击提示。",
+        "en": "Use STUDIO VOID’s original navigation and primary CTAs; inspect content and return paths, not just click notices."
+      },
+      {
+        "zh": "完成上述 STUDIO VOID 操作后修改输入或撤销，检查结果与状态同步。",
+        "en": "Complete the STUDIO VOID task, then change inputs or undo and inspect the matching result/state."
+      },
+      {
+        "zh": "用键盘和 390px / 320px 检查重排、焦点、校验；区分工具栏重载和内部清空，核对刷新后状态复位。",
+        "en": "Check reflow, focus and validation with keyboard and 390px / 320px viewports; distinguish toolbar reload from in-page clearing and inspect reset-on-reload boundaries."
+      }
+    ]
+  },
   "sources": [
     {
       "name": "Wikipedia — Brutalist architecture",
@@ -179,12 +199,12 @@
       "en": "\"Brutalism spec: paper white #F5F5F0 or near-black ground; pure black #0A0A0A body; exactly one harsh accent #FF3B00; zero radii everywhere; headings at clamp(2.5rem, 8vw, 6rem) in ultra-bold sans or mono; 1px visible grid rules; buttons as 2px outline or solid inverted blocks, hover just inverts colors; dark mode flips to near-black with paper-white type, accent unchanged.\""
     },
     "implementation": {
-      "zh": "用 CSS 实现粗野主义：全局 border-radius: 0；标题用 font-size clamp 与 font-weight 800+； 背景网格 background-image: repeating-linear-gradient(to right, #0A0A0A14 0 1px, transparent 1px 48px), repeating-linear-gradient(to bottom, ...); 按钮 border: 2px solid #0A0A0A，hover 时 background/color 对调； 不用 box-shadow，需要层级时用粗描边或反色块；字体栈 system-ui 或 ui-monospace。",
-      "en": "\"Implement Brutalism in CSS: global border-radius 0; headings with font-size clamp and weight 800+; grid via background-image: repeating-linear-gradient(to right, #0A0A0A14 0 1px, transparent 1px 48px) plus a vertical twin; buttons with border: 2px solid #0A0A0A that invert fill/text on hover; no box-shadow — hierarchy comes from thick strokes or inverted blocks; system-ui or ui-monospace stack.\""
+      "zh": "用当前风格完成 STUDIO VOID 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。preview.brand 与共享 REFERENCE_BRANDS 保持一致；首屏结构、实际导航与素材以 ReferenceStyleScene 为准。\n\n延续 STUDIO VOID 的 40% / 28% / 29% 三栏（1.5% 间隙）：Atlas Heavy（Anton）压缩大字、工作室说明、黑白混凝土照片；主标题使用原 8.9cqw/.95，导航保留 2px 黑色底线。默认画面是近白与黑的直接对比、直角黑 CTA，而不是橙红背景网格模板。作品案例使用现有黑底白字与粗显示字；600px 以下三栏改单列，照片与白字叠层保持。variants 可用现有 #c52f1b 标题色，dark 不反色照片。\n\n查看作品进入项目目录，打开项目内容并返回；WORK / ABOUT / NEWS / CONTACT 均有对应内容；联系表单校验后显示本地整理结果，不发送邮件。\n\n静态封面、详情演示与 /style-scenes/brutalism/（英文 /en/style-scenes/brutalism/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。\n\n操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。\n\n提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。",
+      "en": "Build a complete STUDIO VOID page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. Keep preview.brand aligned with shared REFERENCE_BRANDS; ReferenceStyleScene defines the hero structure, actual navigation and assets.\n\nContinue STUDIO VOID’s 40% / 28% / 29% columns with 1.5% gaps: Atlas Heavy (Anton) condensed display, studio copy and monochrome concrete photograph. Keep 8.9cqw/.95 display type and the navigation’s 2px black bottom rule. The default is direct near-white/black contrast with a square black CTA, not an orange-red background-grid template. Cases retain their black/white panels and heavy display; stack below 600px while preserving the photograph and overlaid white lettering. Variants may use the existing #c52f1b display accent; dark mode does not invert photographs.\n\nView our work opens the project index; inspect a project and return. WORK / ABOUT / NEWS / CONTACT reveal matching content; the contact form validates and shows a local summary without sending email.\n\nShare one renderer between static covers, the detail experience and /style-scenes/brutalism/ (English /en/style-scenes/brutalism/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.\n\nInteraction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.\n\nProvide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion."
     },
     "agent": {
-      "zh": "在当前项目中实现 Brutalism 粗野主义视觉风格。\n\n先检查现有组件体系和 Design Token，优先复用当前组件，只替换视觉层。\n要求：\n- 全部圆角 0，无渐变无柔和阴影，层级用粗描边或反色块表达\n- 标题超大字号（clamp），系统无衬线或等宽字体\n- 背景可见网格线，单一刺眼强调色（如 #FF3B00），其余黑白\n- 按钮 hover 反色，不做弹跳位移\n- 深色模式反转明度但保持硬切语汇\n- 文字对比度不低于 4.5:1，阅读顺序不被装饰打乱\n- 不新增任何依赖\n完成后运行项目现有检查，并列出修改的文件。",
-      "en": "Implement Brutalism visual style in the current project.\n\nInspect the existing component system and design tokens first; reuse components and swap only the visual layer.\nRequirements:\n- Zero radii, no gradients, no soft shadows; hierarchy via thick strokes or inverted blocks\n- Oversized clamp headings in system sans or monospace\n- Visible background grid, exactly one harsh accent (#FF3B00), rest monochrome\n- Buttons invert on hover; no bounce or lift\n- Dark mode inverts values while keeping the blunt vocabulary\n- Text contrast at 4.5:1 minimum; reading order never scrambled by decoration\n- No new dependencies\nRun existing project checks when done and list the modified files."
+      "zh": "用当前风格完成 STUDIO VOID 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。preview.brand 与共享 REFERENCE_BRANDS 保持一致；首屏结构、实际导航与素材以 ReferenceStyleScene 为准。\n\n延续 STUDIO VOID 的 40% / 28% / 29% 三栏（1.5% 间隙）：Atlas Heavy（Anton）压缩大字、工作室说明、黑白混凝土照片；主标题使用原 8.9cqw/.95，导航保留 2px 黑色底线。默认画面是近白与黑的直接对比、直角黑 CTA，而不是橙红背景网格模板。作品案例使用现有黑底白字与粗显示字；600px 以下三栏改单列，照片与白字叠层保持。variants 可用现有 #c52f1b 标题色，dark 不反色照片。\n\n完整页面操作：\n查看作品进入项目目录，打开项目内容并返回；WORK / ABOUT / NEWS / CONTACT 均有对应内容；联系表单校验后显示本地整理结果，不发送邮件。\n\n静态封面、详情演示与 /style-scenes/brutalism/（英文 /en/style-scenes/brutalism/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。\n\n操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。\n\n提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。\n\n不新增依赖。检查中英文、原导航与 CTA、具体结果、返回/重置和窄屏重排；报告实际运行的检查与待验项，不将实现要求写成已通过结论。",
+      "en": "Build a complete STUDIO VOID page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. Keep preview.brand aligned with shared REFERENCE_BRANDS; ReferenceStyleScene defines the hero structure, actual navigation and assets.\n\nContinue STUDIO VOID’s 40% / 28% / 29% columns with 1.5% gaps: Atlas Heavy (Anton) condensed display, studio copy and monochrome concrete photograph. Keep 8.9cqw/.95 display type and the navigation’s 2px black bottom rule. The default is direct near-white/black contrast with a square black CTA, not an orange-red background-grid template. Cases retain their black/white panels and heavy display; stack below 600px while preserving the photograph and overlaid white lettering. Variants may use the existing #c52f1b display accent; dark mode does not invert photographs.\n\nFull-page operations:\nView our work opens the project index; inspect a project and return. WORK / ABOUT / NEWS / CONTACT reveal matching content; the contact form validates and shows a local summary without sending email.\n\nShare one renderer between static covers, the detail experience and /style-scenes/brutalism/ (English /en/style-scenes/brutalism/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.\n\nInteraction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.\n\nProvide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion.\n\nAdd no dependencies. Check both languages, original navigation/CTAs, concrete results, return/reset and narrow reflow; report checks actually run and pending items, never requirements as passed results."
     }
   },
   "style_spec": {
@@ -225,7 +245,7 @@
     },
     "url": "raw.studio",
     "scene": "generic",
-    "brand": "RAW",
+    "brand": "STUDIO VOID",
     "nav": [
       {
         "zh": "作品",

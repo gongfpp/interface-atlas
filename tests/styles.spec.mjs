@@ -12,7 +12,7 @@ test("homepage shows '先看风格' above the components row", async ({ page }) 
 });
 
 for (const slug of ["editorial", "organic", "art-deco"]) {
-  test(`style page ${slug}: full-page preview appears above the interactive scene`, async ({
+  test(`style page ${slug}: one full-page interactive preview owns the scene`, async ({
     page,
   }) => {
     await page.goto(`/styles/${slug}`);
@@ -20,11 +20,13 @@ for (const slug of ["editorial", "organic", "art-deco"]) {
     await section.scrollIntoViewIfNeeded();
     const preview = section.locator("[data-style-preview]");
     const interactive = section.locator("[data-style-interactive]");
-    await expect(preview).toBeVisible();
-    await interactive.scrollIntoViewIfNeeded();
-    await expect(interactive.locator(".demo-workbench")).toBeVisible();
-    const previewBox = await preview.boundingBox();
-    const interactiveBox = await interactive.boundingBox();
-    expect(previewBox.y + previewBox.height).toBeLessThan(interactiveBox.y);
+    await expect(preview).toHaveCount(1);
+    await expect(interactive).toHaveCount(1);
+    await expect(section.locator('[data-style-preview][data-style-interactive]')).toHaveCount(1);
+    await expect(interactive.locator('[data-style-experience]')).toBeVisible();
+    await expect(interactive.locator('[data-style-frame]')).toHaveAttribute('src', `/style-scenes/${slug}/`);
+    await expect(page.frameLocator('[data-style-frame]').locator(`[data-style-scene="${slug}"][data-scene-interactive="true"]`)).toBeVisible();
+    // 不再上下叠放“封面 + 无关组件demo”；iframe本身就是唯一完整页面。
+    await expect(section.locator('.demo-content')).toHaveCount(0);
   });
 }

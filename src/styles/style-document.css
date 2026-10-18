@@ -1,0 +1,7 @@
+/* 封面对照与完整页面共享文档边界：不继承图谱的吸顶留白和异步根滚动。 */
+html:has(> body:is(.style-document, .style-cover-document)) {
+  scroll-behavior: auto;
+  scroll-padding-top: 0;
+  /* 经典滚动条下，短封面与长页也必须保留相同的布局宽度。 */
+  scrollbar-gutter: stable;
+}

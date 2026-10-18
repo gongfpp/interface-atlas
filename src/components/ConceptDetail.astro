@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ConceptCard from '@/components/ConceptCard.astro';
 import CompareTable from '@/components/CompareTable.astro';
-import StyleThumb from '@/components/StyleThumb.astro';
+import StyleExperience from '@/components/StyleExperience.astro';
 import DemoMount from '@/islands/demos/DemoMount';
 import PromptBlock from '@/islands/PromptBlock';
 import SolutionLab from '@/islands/SolutionLab';
@@ -50,6 +50,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
   description={d.description[locale].slice(0, 150)}
   locale={locale}
   enPath={`/${concept.conceptType}/${concept.id}`}
+  stickyHeader={!styleSpec}
 >
   <article class="pt-10 min-w-0">
     <header class="border-b border-line pb-8">
@@ -77,7 +78,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
       </div>
     </header>
 
-    <nav class="detail-nav" aria-label={locale === 'zh' ? '本页目录' : 'On this page'}>
+    <nav class="detail-nav" style={styleSpec ? 'position:static' : undefined} aria-label={locale === 'zh' ? '本页目录' : 'On this page'}>
       <a href="#overview">{locale === 'zh' ? '概览' : 'Overview'}</a>
       {d.demo && <a href="#playground">{styleSpec ? (locale === 'zh' ? '风格演示' : 'Style lab') : locale === 'zh' ? '交互实验室' : 'Playground'}</a>}
       <a href="#variants">{locale === 'zh' ? '形式与用法' : 'Variants'}</a>
@@ -124,7 +125,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
       <section id="playground" class="pb-10">
         <div class="mb-5 flex flex-wrap items-baseline justify-between gap-2">
           <h2 class="detail-section-title font-serif text-2xl font-semibold" data-number="01">{styleSpec ? (locale === 'zh' ? '风格演示' : 'Style in action') : locale === 'zh' ? '交互实验室' : 'Interactive playground'}</h2>
-          <span class="text-xs text-ink-3">{styleSpec ? (locale === 'zh' ? '先看整页效果，再试交互场景' : 'See the full page, then try the interactive scene') : locale === 'zh' ? '试一试，再决定怎么用' : 'Try it. Make an informed choice.'}</span>
+          <span class="text-xs text-ink-3">{styleSpec ? (locale === 'zh' ? '同一张页面，直接操作' : 'The same page, ready to use') : locale === 'zh' ? '试一试，再决定怎么用' : 'Try it. Make an informed choice.'}</span>
         </div>
         {d.playground && <p class="mb-4 max-w-3xl text-sm leading-relaxed text-ink-2">{d.playground.task[locale]}</p>}
         {unifiedLab && d.demo ? (
@@ -134,23 +135,9 @@ const card = 'rounded-xl border border-line bg-raised p-5';
             forms={d.variants.map(v => ({ id: v.id, name: v.name[locale], note: v.note?.[locale] ?? '' }))}
             checks={d.playground?.checks.map(c => c[locale]) ?? d.use_when.map(c => c[locale])} />
         ) : styleSpec ? (
-          <div class="space-y-8">
-            <div data-style-preview>
-              <h3 class="mb-3 text-sm font-semibold">{locale === 'zh' ? '整页预览' : 'Full-page preview'}</h3>
-              <StyleThumb spec={styleSpec} locale={locale} />
-            </div>
-            <div data-style-interactive>
-              <h3 class="mb-3 text-sm font-semibold">{locale === 'zh' ? '交互场景' : 'Interactive scene'}</h3>
-              <DemoMount
-                client:visible
-                component={d.demo.component}
-                modes={d.demo.modes}
-                locale={locale}
-                anatomy={d.anatomy}
-                motion={concept.conceptType === 'motion'}
-                motionControls={d.demo.motionControls}
-              />
-            </div>
+          <div data-style-preview data-style-interactive>
+            <h3 class="mb-3 text-sm font-semibold">{locale === 'zh' ? '整页预览 · 直接交互' : 'Full-page preview · interact directly'}</h3>
+            <StyleExperience slug={concept.id} modes={d.demo.modes} locale={locale} />
           </div>
         ) : (
           <DemoMount

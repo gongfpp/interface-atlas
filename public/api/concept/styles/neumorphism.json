@@ -102,6 +102,26 @@
       "dark"
     ]
   },
+  "playground": {
+    "task": {
+      "zh": "立即体验与开始使用进入专注工具；计时器可开始/暂停/重置，专注、任务、统计、设置分别展示对应工具；分页切换提示，登录只说明本地体验身份。",
+      "en": "Explore Mellow and Get started open focus tools. Start/pause/reset the timer; Focus, Tasks, Stats and Settings reveal matching tools. Cycle focus tips; login explains local demo identity only."
+    },
+    "checks": [
+      {
+        "zh": "逐一操作 Mellow 原导航和主 CTA，检查对应内容与返回路径，不只是点击提示。",
+        "en": "Use Mellow’s original navigation and primary CTAs; inspect content and return paths, not just click notices."
+      },
+      {
+        "zh": "完成上述 Mellow 操作后修改输入或撤销，检查结果与状态同步。",
+        "en": "Complete the Mellow task, then change inputs or undo and inspect the matching result/state."
+      },
+      {
+        "zh": "用键盘和 390px / 320px 检查重排、焦点、校验；区分工具栏重载和内部清空，核对刷新后状态复位。",
+        "en": "Check reflow, focus and validation with keyboard and 390px / 320px viewports; distinguish toolbar reload from in-page clearing and inspect reset-on-reload boundaries."
+      }
+    ]
+  },
   "sources": [
     {
       "name": "MDN — box-shadow",
@@ -158,7 +178,7 @@
     },
     "url": "https://neumorphism.example",
     "scene": "generic",
-    "brand": "STILL",
+    "brand": "Mellow",
     "nav": [
       {
         "zh": "Collection",
@@ -209,12 +229,12 @@
       "en": "Clear sans-serif type; avoid overly light weights. Light blue-grey surfaces, dark text and blue accents. Medium to large radii with a visible focus outline. Paired outer shadows for elevation; inset shadows for pressing. Space controls so shadows do not collide."
     },
     "implementation": {
-      "zh": "阴影颜色从统一背景派生，凸起使用正负偏移的两层阴影，按下切换 inset。焦点与选中状态同时使用文字或图标反馈。不要在每次交互中大范围动画阴影，保留 reduced-motion 支持。",
-      "en": "Derive shadows from the shared surface; use positive and negative offsets for raised controls and inset for pressed states. Reinforce focus and selection with labels or icons. Avoid large animated shadows and support reduced motion."
+      "zh": "用当前风格完成 Mellow 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。preview.brand 与共享 REFERENCE_BRANDS 保持一致；首屏结构、实际导航与素材以 ReferenceStyleScene 为准。\n\n保留 Mellow 的浅灰同色材质：页面 #f4f5f6→#eeeff0，Georgia 衬线品牌与主标题、灰色无衬线说明；左文案、天气卡、倾斜软形时钟、右侧工具列仍是原构图。时钟外侧双向阴影与内部圆形 inset 凹面分开，深灰渐变 CTA 和浮起登录按钮沿用原样，不能替换成蓝色无衬线通用卡。600px 以下将绝对定位元素放回单列内容流，工具改两列；dark 与高对比度设置复用现有样式，不用阴影作为唯一状态信号。\n\n立即体验与开始使用进入专注工具；计时器可开始/暂停/重置，专注、任务、统计、设置分别展示对应工具；分页切换提示，登录只说明本地体验身份。\n\n静态封面、详情演示与 /style-scenes/neumorphism/（英文 /en/style-scenes/neumorphism/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。\n\n操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。\n\n提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。",
+      "en": "Build a complete Mellow page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. Keep preview.brand aligned with shared REFERENCE_BRANDS; ReferenceStyleScene defines the hero structure, actual navigation and assets.\n\nKeep Mellow’s same-material pale greys, #f4f5f6→#eeeff0, Georgia brand/display and grey sans copy, with the original copy/weather/tilted soft clock/tool-column composition. Preserve outer paired shadows and the separate circular inset clock face, dark-gradient CTA and raised login button rather than replacing them with generic blue sans cards. Below 600px return positioned elements to a single content flow and pair the tools; reuse existing dark/high-contrast styles and never make shadows the only state signal.\n\nExplore Mellow and Get started open focus tools. Start/pause/reset the timer; Focus, Tasks, Stats and Settings reveal matching tools. Cycle focus tips; login explains local demo identity only.\n\nShare one renderer between static covers, the detail experience and /style-scenes/neumorphism/ (English /en/style-scenes/neumorphism/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.\n\nInteraction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.\n\nProvide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion."
     },
     "agent": {
-      "zh": "先检查项目的布局、字体和主题变量，以新拟态风格完成一个可交互品牌场景。\n清晰无衬线字体，避免过细字重。浅灰蓝同色底，深色文字和蓝色强调。中大圆角；焦点保留可见外轮廓。双向外阴影表现凸起，内阴影表现按下。控件间距充足，避免阴影彼此挤压。\n阴影颜色从统一背景派生，凸起使用正负偏移的两层阴影，按下切换 inset。焦点与选中状态同时使用文字或图标反馈。不要在每次交互中大范围动画阴影，保留 reduced-motion 支持。\n按钮必须有明确反馈，窄屏可用，保留焦点和 reduced-motion 支持，不新增依赖。完成后运行检查并列出修改文件。",
-      "en": "Inspect existing layouts, typography and theme tokens, then build an interactive Neumorphism brand scene.\nClear sans-serif type; avoid overly light weights. Light blue-grey surfaces, dark text and blue accents. Medium to large radii with a visible focus outline. Paired outer shadows for elevation; inset shadows for pressing. Space controls so shadows do not collide.\nDerive shadows from the shared surface; use positive and negative offsets for raised controls and inset for pressed states. Reinforce focus and selection with labels or icons. Avoid large animated shadows and support reduced motion.\nMake controls give clear feedback, support narrow screens, focus and reduced motion, and add no dependencies. Run checks and list modified files."
+      "zh": "用当前风格完成 Mellow 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。preview.brand 与共享 REFERENCE_BRANDS 保持一致；首屏结构、实际导航与素材以 ReferenceStyleScene 为准。\n\n保留 Mellow 的浅灰同色材质：页面 #f4f5f6→#eeeff0，Georgia 衬线品牌与主标题、灰色无衬线说明；左文案、天气卡、倾斜软形时钟、右侧工具列仍是原构图。时钟外侧双向阴影与内部圆形 inset 凹面分开，深灰渐变 CTA 和浮起登录按钮沿用原样，不能替换成蓝色无衬线通用卡。600px 以下将绝对定位元素放回单列内容流，工具改两列；dark 与高对比度设置复用现有样式，不用阴影作为唯一状态信号。\n\n完整页面操作：\n立即体验与开始使用进入专注工具；计时器可开始/暂停/重置，专注、任务、统计、设置分别展示对应工具；分页切换提示，登录只说明本地体验身份。\n\n静态封面、详情演示与 /style-scenes/neumorphism/（英文 /en/style-scenes/neumorphism/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。\n\n操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。\n\n提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。\n\n不新增依赖。检查中英文、原导航与 CTA、具体结果、返回/重置和窄屏重排；报告实际运行的检查与待验项，不将实现要求写成已通过结论。",
+      "en": "Build a complete Mellow page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. Keep preview.brand aligned with shared REFERENCE_BRANDS; ReferenceStyleScene defines the hero structure, actual navigation and assets.\n\nKeep Mellow’s same-material pale greys, #f4f5f6→#eeeff0, Georgia brand/display and grey sans copy, with the original copy/weather/tilted soft clock/tool-column composition. Preserve outer paired shadows and the separate circular inset clock face, dark-gradient CTA and raised login button rather than replacing them with generic blue sans cards. Below 600px return positioned elements to a single content flow and pair the tools; reuse existing dark/high-contrast styles and never make shadows the only state signal.\n\nFull-page operations:\nExplore Mellow and Get started open focus tools. Start/pause/reset the timer; Focus, Tasks, Stats and Settings reveal matching tools. Cycle focus tips; login explains local demo identity only.\n\nShare one renderer between static covers, the detail experience and /style-scenes/neumorphism/ (English /en/style-scenes/neumorphism/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.\n\nInteraction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.\n\nProvide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion.\n\nAdd no dependencies. Check both languages, original navigation/CTAs, concrete results, return/reset and narrow reflow; report checks actually run and pending items, never requirements as passed results."
     }
   }
 }

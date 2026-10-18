@@ -4,8 +4,9 @@ import SearchButton from '@/islands/SearchButton.astro';
 
 interface Props {
   locale: Locale;
+  sticky?: boolean;
 }
-const { locale } = Astro.props;
+const { locale, sticky = true } = Astro.props;
 const types = Object.keys(TYPE_LABELS);
 const otherLocale: Locale = locale === 'zh' ? 'en' : 'zh';
 const switchTo = localePath(stripBase(Astro.url.pathname).replace(/^\/en(?=\/|$)/, '') || '/', otherLocale);
@@ -13,7 +14,7 @@ const current = stripBase(Astro.url.pathname).replace(/^\/en(?=\/|$)/, '') || '/
 const isActive = (path: string) => current === path || current.startsWith(`${path}/`);
 ---
 
-<header class="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur" data-track-region="header">
+<header class:list={['z-40 border-b border-line bg-paper/90 backdrop-blur', sticky ? 'sticky top-0' : 'relative']} data-track-region="header">
   <div class="mx-auto flex h-14 w-full max-w-6xl items-center gap-6 px-5 md:px-8">
     <a href={localePath('/', locale)} class="font-serif text-lg font-semibold tracking-tight">
       界面图谱<span class="mx-2 text-ink-3 font-sans text-xs font-normal">Interface Atlas</span>

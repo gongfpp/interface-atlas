@@ -16,7 +16,7 @@ export default function ViewportPreview({
   concepts,
 }: {
   locale: "zh" | "en";
-  concepts: { id: string; component: string; modes: DemoMode[] }[];
+  concepts: { id: string; component: string; modes: DemoMode[]; sceneUrl?: string }[];
 }) {
   const [session] = useState(createSession);
   const [content, setContent] = useState<React.ReactNode>(null);
@@ -25,6 +25,12 @@ export default function ViewportPreview({
     let alive = true;
     const params = new URLSearchParams(location.search);
     const concept = concepts.find((c) => c.id === params.get("concept"));
+    // 风格的旧设备链接也进入与封面同源的完整页面，不再加载局部旧 Demo。
+    if (concept?.sceneUrl) {
+      const mode = concept.modes.includes(params.get('mode') as DemoMode) ? params.get('mode') : 'default';
+      location.replace(`${concept.sceneUrl}?mode=${mode}`);
+      return;
+    }
     const loader = concept && demos[`./demos/${concept.component}.tsx`];
     Promise.resolve()
       .then(async () => {

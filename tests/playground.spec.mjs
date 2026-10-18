@@ -1,5 +1,6 @@
 import { test, expect } from "./helpers/private-browser.mjs";
 import { readdirSync } from "node:fs";
+import { readyStyleFrame, exerciseStyleFlow } from './helpers/style-page-flows.mjs';
 
 async function openDemo(page, slug, locale = "") {
   await page.goto(`${locale}/components/${slug}`);
@@ -214,23 +215,9 @@ test("all component pages render on mobile, switch modes and reset without error
 for (const slug of ["organic", "art-deco", "neumorphism"])
   test(`${slug} style has a working interactive scene`, async ({ page }) => {
     await page.goto(`/styles/${slug}`);
-    const demo = page.locator("#playground");
-    await demo.scrollIntoViewIfNeeded();
-    await expect(demo.locator("astro-island[ssr]")).toHaveCount(0);
-    if (slug === "organic") {
-      await demo.getByRole("button", { name: "收藏这个系列" }).click();
-      await expect(
-        demo.getByRole("button", { name: "已收藏系列" }),
-      ).toBeVisible();
-    }
-    if (slug === "art-deco") {
-      await demo.getByRole("button", { name: "预留席位" }).click();
-      await expect(demo.getByRole("status")).toContainText("演示预约");
-    }
-    if (slug === "neumorphism") {
-      await demo.getByRole("button", { name: "播放预览" }).click();
-      await expect(demo.getByRole("status")).toContainText("播放中");
-    }
+    const { scene } = await readyStyleFrame(page, slug, 'zh');
+    // 保留收藏、晚宴计划、专注状态这些用户结果，迁移到各品牌真正的业务流程。
+    await exerciseStyleFlow(scene, slug, 'zh');
   });
 
 test("context menu supports right-click and keyboard dismissal", async ({

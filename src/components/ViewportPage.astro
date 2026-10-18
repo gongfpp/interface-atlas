@@ -2,10 +2,10 @@
 import '@/styles/global.css';
 import ViewportPreview from '@/islands/ViewportPreview';
 import { getAllConcepts } from '@/lib/content';
-import type { Locale } from '@/lib/i18n';
+import { localePath, type Locale } from '@/lib/i18n';
 interface Props { locale: Locale }
 const { locale } = Astro.props;
-const concepts = (await getAllConcepts()).filter(c => c.data.demo).map(c => ({ id: c.id, component: c.data.demo!.component, modes: c.data.demo!.modes }));
+const concepts = (await getAllConcepts()).filter(c => c.data.demo).map(c => ({ id: c.id, component: c.data.demo!.component, modes: c.data.demo!.modes, sceneUrl: c.conceptType === 'styles' && c.data.preview ? localePath(`/style-scenes/${c.id}/`, locale) : undefined }));
 ---
 <!doctype html>
 <html lang={locale === 'zh' ? 'zh-CN' : 'en'}>

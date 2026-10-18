@@ -1,0 +1,28 @@
+---
+import type { Locale } from '@/lib/i18n';
+import { getEditorialStories, SWISS_PROJECTS } from '@/lib/reference-style-data';
+import ReferenceOtherContent from './ReferenceOtherContent.astro';
+import '@/styles/other-reference-pages.css';
+interface Props {slug: string; locale: Locale; nav: string[]; brand: string;}
+const {slug, locale, nav, brand} = Astro.props;
+const l = (zh:string,en:string) => locale === 'zh' ? zh : en;
+const stories = getEditorialStories(locale).map(story => story.title);
+const categoryStories = [[0,1,2,3], [2], [0,1], [3]];
+---
+<div class="scene-continuation">
+  {slug === 'swiss-style' && <>
+    <section id="scene-section-0" class="vertex-section" tabindex="-1"><header><small>01 / WORK</small><h2>{l('精选项目','Selected work')}</h2></header><div class="vertex-projects">{SWISS_PROJECTS.map((project,i)=><button type="button" data-scene-action={`project-${i}`}><span class={`vertex-project-art art-${i}`}>{project.mark}</span><strong>{project.title}</strong><span>2024　↗</span></button>)}</div></section>
+    <section id="scene-section-1" class="vertex-section" tabindex="-1"><small>02 / STUDIO</small><h2>{l('独立思考，共同创造。','Independent minds. Shared ambition.')}</h2><p>{l('VERTEX 连接策略、视觉与数字体验。来自品牌、设计和技术的三位伙伴，共同把清晰的想法变成有用的作品。','VERTEX connects strategy, visual identity and digital experiences. Three partners in brand, design and technology turn clear ideas into useful work.')}</p></section>
+    <section id="scene-section-2" class="vertex-section" tabindex="-1"><small>03 / APPROACH</small><h2>{l('从问题到有意义的结果','From questions to meaningful outcomes')}</h2><ol>{[l('发现：理解真实问题与使用者','Discover: understand the problem and people'),l('定义：建立清晰的品牌方向','Define: find a clear brand direction'),l('构建：设计、原型与共同测试','Build: design, prototype and test together')].map(s=><li>{s}</li>)}</ol></section>
+    <section id="scene-section-3" class="vertex-section" tabindex="-1"><small>04 / CONTACT</small><h2>{l('下一件作品，与你一起。','Let’s build what comes next.')}</h2><form data-scene-form="contact"><label>{l('你的名字','Your name')}<input name="name" required autocomplete="name" /></label><label>{l('电子邮箱','Email')}<input name="email" type="email" required autocomplete="email" /></label><label>{l('项目简介','Project brief')}<textarea name="brief" required rows="3"></textarea></label><button type="submit">{l('发送项目简介','Send project brief')} →</button><p role="status"></p><small>{l('本地演示，不会发送邮件。','Local demo. No email is sent.')}</small></form></section>
+    <dialog class="scene-dialog" data-scene-dialog="menu" aria-label={l('VERTEX 导航','VERTEX navigation')}><button type="button" data-close-dialog>{l('关闭','Close')} ×</button><nav>{nav.map((n,i)=><button type="button" data-scene-action={`nav-${i}`}>{n} ↗</button>)}</nav></dialog>
+    <dialog class="scene-dialog" data-scene-dialog="project" aria-labelledby="project-title"><button type="button" data-close-dialog>{l('返回项目','Back to work')} ×</button><small>VERTEX / CASE STUDY</small><h2 id="project-title" data-project-title></h2><div class="vertex-case-art" data-project-art>N↗</div><p data-project-copy></p><button type="button" data-scene-action="nav-3">{l('讨论类似项目','Discuss a similar project')} →</button></dialog>
+  </>}
+  {slug === 'editorial' && <>
+    {nav.map((n,i)=><section id={`scene-section-${i}`} class="paper-section" tabindex="-1"><small>The Paper Room / {n}</small><h2>{i===0?l('值得慢慢读的故事','Stories worth slowing down for'):n}</h2>{i===4?<p>{l('我们是一份关于日常生活、人与地方的独立刊物。每周一篇，慢慢阅读。','An independent journal of people, places and everyday rituals. One story each week. Read slowly.')}</p>:<div class="paper-article-list">{categoryStories[i].map(j=><button type="button" data-scene-action={`story-${j}`}><span>0{j+1}</span><strong>{stories[j]}</strong><span>→</span></button>)}</div>}</section>)}
+    <dialog class="scene-dialog paper-dialog" data-scene-dialog="story" aria-labelledby="story-title"><button type="button" data-close-dialog>{l('返回杂志','Back to the journal')} ×</button><small>The Paper Room / Journal / 2024</small><h2 id="story-title"></h2><p class="paper-lede">{l('生活不在别处，就在此刻。','Life is here, in the little things.')}</p><p data-story-body></p><p>{l('放下匆忙的计划，留一点时间给窗外的光、街角的小店和一次没有目的地的散步。那些微不足道的细节，最终成为我们记得最久的时刻。','Leave a little time for the light outside, the shop on the corner and a walk without a destination. Small details often become the moments we remember longest.')}</p><button type="button" data-scene-action="save-story" aria-pressed="false">{l('收藏文章','Save story')}</button></dialog>
+    <dialog class="scene-dialog paper-dialog" data-scene-dialog="search" aria-label={l('搜索文章','Search stories')}><button type="button" data-close-dialog>{l('关闭','Close')} ×</button><label>{l('搜索文章','Search stories')}<input type="search" data-story-search /></label><div data-search-results>{stories.map((s,i)=><button type="button" data-scene-action={`story-${i}`}>{s}</button>)}</div><p role="status" data-search-status></p></dialog>
+  </>}
+  {!['swiss-style','editorial'].includes(slug) && <ReferenceOtherContent slug={slug} locale={locale} nav={nav} brand={brand} />}
+  <footer class="scene-footer">© 2024 {brand}<button type="button" data-scene-action="home">{l('返回页首','Back to top')} ↑</button></footer>
+</div>

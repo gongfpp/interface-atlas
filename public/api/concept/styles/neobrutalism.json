@@ -132,6 +132,26 @@
       "variants"
     ]
   },
+  "playground": {
+    "task": {
+      "zh": "一起创造与开始项目打开简报，填写后整理可继续修改的本地需求；Design / Develop / Create 清单可独立勾选/取消；项目、服务、关于到达作品、服务、团队内容。",
+      "en": "Let’s make it and Start a project open a brief with an editable local summary. Toggle Design / Develop / Create independently; Work, Services and About reach portfolio, services and team content."
+    },
+    "checks": [
+      {
+        "zh": "逐一操作 PlayLab 原导航和主 CTA，检查对应内容与返回路径，不只是点击提示。",
+        "en": "Use PlayLab’s original navigation and primary CTAs; inspect content and return paths, not just click notices."
+      },
+      {
+        "zh": "完成上述 PlayLab 操作后修改输入或撤销，检查结果与状态同步。",
+        "en": "Complete the PlayLab task, then change inputs or undo and inspect the matching result/state."
+      },
+      {
+        "zh": "用键盘和 390px / 320px 检查重排、焦点、校验；区分工具栏重载和内部清空，核对刷新后状态复位。",
+        "en": "Check reflow, focus and validation with keyboard and 390px / 320px viewports; distinguish toolbar reload from in-page clearing and inspect reset-on-reload boundaries."
+      }
+    ]
+  },
   "sources": [
     {
       "name": "Gumroad — Neobrutalism 代表案例",
@@ -165,12 +185,12 @@
       "en": "\"Neobrutalism design spec: cream background (#FDF2D8); every element gets a 2–3px pure black border; shadows are solid offsets only (4px 4px 0 #000), never blurred; ~10px radii; saturated primary colors (#FF5D5D / #FFC900 / #4D9FFF) that clash boldly; heavy uppercase headings; buttons swallow their shadow when pressed. Dark mode keeps a near-black base with the bright colors intact.\""
     },
     "implementation": {
-      "zh": "用 CSS 实现新粗野主义：封装 .nb 基类（border: 3px solid #000; box-shadow: 4px 4px 0 #000; border-radius: 10px），色板用 CSS 变量管理糖果色；hover 用 transform translate(-2px,-2px) 并把阴影加深到 6px，active 归零阴影模拟按压； 徽章用纯色块 + 黑边 + 全大写小字号；所有过渡 120ms 内完成并乘以速度变量。",
-      "en": "\"Implement Neobrutalism in CSS: a .nb base class (border: 3px solid #000; box-shadow: 4px 4px 0 #000; border-radius: 10px), candy palette as CSS variables; hover lifts via translate(-2px,-2px) with a deeper 6px shadow, active resets it like a physical press; badges are solid color chips with black borders and uppercase labels; keep transitions under 120ms.\""
+      "zh": "用当前风格完成 PlayLab 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。preview.brand 与共享 REFERENCE_BRANDS 保持一致；首屏结构、实际导航与素材以 ReferenceStyleScene 为准。\n\n保留 PlayLab 的 47% / 53% 文案与叠窗构图：#ffff13 标题高亮、#f4a1d1 方角 CTA、黄色导航 CTA、#4e96f9 蓝块与 #3bbc8b 绿块。沿用 2px 黑边、无模糊硬投影、倾斜创意窗、笑脸和可勾选清单，不改成 10px 圆角或橙色 BRUTAL* 模板。延续区用现有粉/蓝/绿案例按钮与粗分隔；600px 以下文案和 360px 高叠窗分别入流，保持清单可操作。\n\n一起创造与开始项目打开简报，填写后整理可继续修改的本地需求；Design / Develop / Create 清单可独立勾选/取消；项目、服务、关于到达作品、服务、团队内容。\n\n静态封面、详情演示与 /style-scenes/neobrutalism/（英文 /en/style-scenes/neobrutalism/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。\n\n操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。\n\n提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。",
+      "en": "Build a complete PlayLab page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. Keep preview.brand aligned with shared REFERENCE_BRANDS; ReferenceStyleScene defines the hero structure, actual navigation and assets.\n\nPreserve PlayLab’s 47% / 53% copy/stacked-window composition, #ffff13 title highlights, square #f4a1d1 CTA, yellow navigation CTA, #4e96f9 blue and #3bbc8b green blocks. Retain 2px black rims, unblurred hard shadows, tilted idea windows, smile and actionable checklist rather than a 10px-rounded orange BRUTAL* template. The continuation keeps pink/blue/green case buttons and heavy rules; below 600px flow the copy and 360px-high window artwork separately with usable checklist controls.\n\nLet’s make it and Start a project open a brief with an editable local summary. Toggle Design / Develop / Create independently; Work, Services and About reach portfolio, services and team content.\n\nShare one renderer between static covers, the detail experience and /style-scenes/neobrutalism/ (English /en/style-scenes/neobrutalism/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.\n\nInteraction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.\n\nProvide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion."
     },
     "agent": {
-      "zh": "在当前项目中用新粗野主义风格（Neobrutalism）实现一个卡片 + 按钮区块。\n\n先检查现有组件与 Design Token，确定是否已有可复用的边框/阴影变量。\n要求：\n- 粗黑描边（2～3px）+ 偏移实心阴影（无模糊）\n- 高饱和撞色，底色用奶油色系\n- 按钮 hover 上浮、active 阴影归零的物理按压感\n- 支持深色模式（近黑底，彩色保持高亮）\n- 过渡动画尊重 prefers-reduced-motion，时长 120ms 内\n- 不新增任何依赖\n完成后运行项目现有检查，并列出修改的文件。",
-      "en": "Implement a card + button section in Neobrutalism style in the current project.\n\nInspect the existing components and design tokens first; check for reusable border/shadow variables.\nRequirements:\n- Thick black borders (2–3px) + hard offset shadows (no blur)\n- Saturated clashing colors on a cream base\n- Buttons that lift on hover and swallow their shadow on active\n- Dark mode support (near-black base, colors stay bright)\n- Transitions respect prefers-reduced-motion, under 120ms\n- No new dependencies\nRun existing project checks when done and list the modified files."
+      "zh": "用当前风格完成 PlayLab 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。preview.brand 与共享 REFERENCE_BRANDS 保持一致；首屏结构、实际导航与素材以 ReferenceStyleScene 为准。\n\n保留 PlayLab 的 47% / 53% 文案与叠窗构图：#ffff13 标题高亮、#f4a1d1 方角 CTA、黄色导航 CTA、#4e96f9 蓝块与 #3bbc8b 绿块。沿用 2px 黑边、无模糊硬投影、倾斜创意窗、笑脸和可勾选清单，不改成 10px 圆角或橙色 BRUTAL* 模板。延续区用现有粉/蓝/绿案例按钮与粗分隔；600px 以下文案和 360px 高叠窗分别入流，保持清单可操作。\n\n完整页面操作：\n一起创造与开始项目打开简报，填写后整理可继续修改的本地需求；Design / Develop / Create 清单可独立勾选/取消；项目、服务、关于到达作品、服务、团队内容。\n\n静态封面、详情演示与 /style-scenes/neobrutalism/（英文 /en/style-scenes/neobrutalism/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。\n\n操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。\n\n提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。\n\n不新增依赖。检查中英文、原导航与 CTA、具体结果、返回/重置和窄屏重排；报告实际运行的检查与待验项，不将实现要求写成已通过结论。",
+      "en": "Build a complete PlayLab page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. Keep preview.brand aligned with shared REFERENCE_BRANDS; ReferenceStyleScene defines the hero structure, actual navigation and assets.\n\nPreserve PlayLab’s 47% / 53% copy/stacked-window composition, #ffff13 title highlights, square #f4a1d1 CTA, yellow navigation CTA, #4e96f9 blue and #3bbc8b green blocks. Retain 2px black rims, unblurred hard shadows, tilted idea windows, smile and actionable checklist rather than a 10px-rounded orange BRUTAL* template. The continuation keeps pink/blue/green case buttons and heavy rules; below 600px flow the copy and 360px-high window artwork separately with usable checklist controls.\n\nFull-page operations:\nLet’s make it and Start a project open a brief with an editable local summary. Toggle Design / Develop / Create independently; Work, Services and About reach portfolio, services and team content.\n\nShare one renderer between static covers, the detail experience and /style-scenes/neobrutalism/ (English /en/style-scenes/neobrutalism/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.\n\nInteraction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.\n\nProvide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion.\n\nAdd no dependencies. Check both languages, original navigation/CTAs, concrete results, return/reset and narrow reflow; report checks actually run and pending items, never requirements as passed results."
     }
   },
   "style_spec": {
@@ -211,7 +231,7 @@
     },
     "url": "https://brutal.wtf",
     "scene": "generic",
-    "brand": "BRUTAL*",
+    "brand": "PlayLab",
     "nav": [
       {
         "zh": "WORK",

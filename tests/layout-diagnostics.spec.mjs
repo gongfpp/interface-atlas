@@ -17,7 +17,11 @@ for (const { locale, width, route } of cases) {
       await expect(pill).toHaveAttribute('aria-pressed', 'true');
     } else {
       await page.locator('[data-style-interactive]').scrollIntoViewIfNeeded();
-      await expect(page.locator('[data-style-interactive] .demo-content')).toBeVisible();
+      const frame = page.frameLocator('[data-style-frame]');
+      await expect(frame.locator('[data-style-scene="brutalism"]')).toBeVisible();
+      const frameGeometry = await frame.locator('body').evaluate(() => ({ viewport: innerWidth, document: document.documentElement.scrollWidth }));
+      expect(frameGeometry.document, '整页iframe文档不得横向溢出').toBeLessThanOrEqual(frameGeometry.viewport + 1);
+      await testInfo.attach('style-frame-geometry.json', { body: JSON.stringify(frameGeometry), contentType: 'application/json' });
     }
     await page.evaluate(() => document.fonts.ready);
     const geometry = await page.evaluate(() => {

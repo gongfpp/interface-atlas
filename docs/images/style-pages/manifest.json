@@ -1,0 +1,471 @@
+{
+  "baselineCommit": "9e652dc8fb1c64b2abf7109b3f3e0bd15111871c",
+  "locale": "zh",
+  "mode": "default",
+  "rendererWidth": 1088,
+  "baselineDetailViewport": {
+    "width": 1280,
+    "height": 900
+  },
+  "currentStandaloneViewport": {
+    "width": 1103,
+    "height": 900
+  },
+  "browser": {
+    "name": "chromium",
+    "version": "153.0.8010.12"
+  },
+  "notes": "Historical baseline PNG bytes are unchanged. The current window is calibrated for its scrollbar gutter so the real shared scene remains exactly 1088px wide. Both before/after crops retain their actual heights without resizing. Current cover/live parity tests separately use exactly identical document viewports.",
+  "records": [
+    {
+      "slug": "art-deco",
+      "before": "baseline/art-deco.png",
+      "after": "current/art-deco.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 266
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 526
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "aurora",
+      "before": "baseline/aurora.png",
+      "after": "current/aurora.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 344
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 680
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "bauhaus",
+      "before": "baseline/bauhaus.png",
+      "after": "current/bauhaus.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 344
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 680
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "bento-grid",
+      "before": "baseline/bento-grid.png",
+      "after": "current/bento-grid.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "brutalism",
+      "before": "baseline/brutalism.png",
+      "after": "current/brutalism.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "claymorphism",
+      "before": "baseline/claymorphism.png",
+      "after": "current/claymorphism.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 344
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 680
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "corporate-memphis",
+      "before": "baseline/corporate-memphis.png",
+      "after": "current/corporate-memphis.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 262
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 506
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "cyberpunk",
+      "before": "baseline/cyberpunk.png",
+      "after": "current/cyberpunk.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 344
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 680
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "editorial",
+      "before": "baseline/editorial.png",
+      "after": "current/editorial.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "flat-design",
+      "before": "baseline/flat-design.png",
+      "after": "current/flat-design.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 344
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 680
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "glassmorphism",
+      "before": "baseline/glassmorphism.png",
+      "after": "current/glassmorphism.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "hand-drawn",
+      "before": "baseline/hand-drawn.png",
+      "after": "current/hand-drawn.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 237
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 489
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "liquid-glass",
+      "before": "baseline/liquid-glass.png",
+      "after": "current/liquid-glass.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 306
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 430
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "memphis",
+      "before": "baseline/memphis.png",
+      "after": "current/memphis.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 344
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 680
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "minimalism",
+      "before": "baseline/minimalism.png",
+      "after": "current/minimalism.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "neobrutalism",
+      "before": "baseline/neobrutalism.png",
+      "after": "current/neobrutalism.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "neumorphism",
+      "before": "baseline/neumorphism.png",
+      "after": "current/neumorphism.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "organic",
+      "before": "baseline/organic.png",
+      "after": "current/organic.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 266
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 526
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "pixel-art",
+      "before": "baseline/pixel-art.png",
+      "after": "current/pixel-art.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 344
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 680
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "retro-futurism",
+      "before": "baseline/retro-futurism.png",
+      "after": "current/retro-futurism.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 344
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 680
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "retro-web",
+      "before": "baseline/retro-web.png",
+      "after": "current/retro-web.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "skeuomorphism",
+      "before": "baseline/skeuomorphism.png",
+      "after": "current/skeuomorphism.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "swiss-style",
+      "before": "baseline/swiss-style.png",
+      "after": "current/swiss-style.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 383
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "vaporwave",
+      "before": "baseline/vaporwave.png",
+      "after": "current/vaporwave.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 344
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 740
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    },
+    {
+      "slug": "y2k",
+      "before": "baseline/y2k.png",
+      "after": "current/y2k.png",
+      "beforeSize": {
+        "width": 1088,
+        "height": 344
+      },
+      "afterSize": {
+        "width": 1088,
+        "height": 680
+      },
+      "currentViewport": {
+        "width": 1103,
+        "height": 900
+      },
+      "actualRendererWidth": 1088
+    }
+  ]
+}

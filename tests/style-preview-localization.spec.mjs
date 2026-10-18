@@ -47,7 +47,7 @@ for (const { slug, data } of styles) {
     await page.goto(`/en/styles/${slug}/`);
     const preview = page.locator('[data-style-preview]');
     await preview.scrollIntoViewIfNeeded();
-    const scene = preview.locator(`[data-style-scene="${slug}"]`);
+    const scene = page.frameLocator('[data-style-frame]').locator(`[data-style-scene="${slug}"]`);
     await expect(scene).toBeVisible();
     await assertEnglishScene(scene, slug);
     if (!referenceSlugs.has(slug)) {

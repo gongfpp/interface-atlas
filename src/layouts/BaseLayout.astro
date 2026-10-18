@@ -13,9 +13,11 @@ interface Props {
   enPath?: string;
   /** 落地即打开命令面板（/search 页用；避免依赖事件派发时机） */
   autoOpenSearch?: boolean;
+  /** 完整交互视口不应被外层吸顶导航覆盖；其它页面保持默认。 */
+  stickyHeader?: boolean;
 }
 
-const { title, description, locale, enPath, autoOpenSearch = false } = Astro.props;
+const { title, description, locale, enPath, autoOpenSearch = false, stickyHeader = true } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
 const themeScript = `
@@ -68,7 +70,7 @@ const themeScript = `
   </head>
   <body class="min-h-screen bg-paper text-ink">
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-raised focus:px-3 focus:py-2">{locale === 'zh' ? '跳到主要内容' : 'Skip to content'}</a>
-    <Header locale={locale} />
+    <Header locale={locale} sticky={stickyHeader} />
     <main id="main" tabindex="-1" class="mx-auto w-full max-w-6xl px-5 md:px-8">
       <slot />
     </main>

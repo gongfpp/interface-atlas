@@ -1,0 +1,6 @@
+---
+interface Props { interactive?: boolean; action: string; class?: string; label?: string; [key: string]: unknown; }
+const { interactive = false, action, label, ...attrs } = Astro.props;
+const Tag = interactive ? 'button' : 'span';
+---
+<Tag {...attrs} {...(interactive ? { type: 'button', 'data-scene-action': action, 'aria-label': label } : {})}><slot /></Tag>

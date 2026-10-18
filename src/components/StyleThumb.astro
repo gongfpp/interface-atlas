@@ -1,30 +1,45 @@
 ---
 import { localizeStylePreview, REFERENCE_STYLE_SLUGS, type StyleThumbSpec } from '@/lib/style-previews';
 import ReferenceStyleScene from '@/components/ReferenceStyleScene.astro';
+import SceneAction from '@/components/SceneAction.astro';
+import GenericStyleContent from '@/components/GenericStyleContent.astro';
+import '@/styles/generic-style-pages.css';
 import type { Locale } from '@/lib/i18n';
+import { getTeamSceneData, getTeamCalendarDays, teamDate, teamMonthLabel, TEAM_INITIAL_DATE, TEAM_INITIAL_YEAR, TEAM_INITIAL_MONTH } from '@/lib/team-scene-data';
 
 interface Props {
   spec: StyleThumbSpec;
   /** 缩略模式更紧凑（首页墙） */
   compact?: boolean;
   locale?: Locale;
+  interactive?: boolean;
 }
-const { spec: sourceSpec, compact = false, locale = 'zh' } = Astro.props;
+const { spec: sourceSpec, compact = false, locale = 'zh', interactive = false } = Astro.props;
 const spec = localizeStylePreview(sourceSpec, locale);
 const referenceScene = REFERENCE_STYLE_SLUGS.includes(spec.slug);
 const text = (zh: string, en: string) => locale === 'zh' ? zh : en;
 const t = spec.tokens;
 const titleStyle = `${t.upper ? 'text-transform:uppercase;' : ''}${t.italic ? 'font-style:italic;' : ''}letter-spacing:.01em;`;
 const scale = compact ? 0.94 : 1;
-const fs = (px: number) => `${(px * scale).toFixed(1)}px`;
+const fs = (px: number) => `clamp(${(px * scale).toFixed(1)}px,${(px / 5.8).toFixed(2)}cqw,${(px * 2.2).toFixed(1)}px)`;
 const pill = `background:${t.accent};color:${t.accentFg};border-radius:${t.radius === '0px' ? '2px' : '999px'};box-shadow:${t.shadow ?? 'none'};`;
 const cardCss = `background:${t.card};border:1px solid ${t.cardBorder};border-radius:${t.radius};backdrop-filter:${t.blur ?? 'none'};`;
 const ICONS = ['◆', '▲', '●'];
+const team = getTeamSceneData(locale);
+const teamDays = getTeamCalendarDays(TEAM_INITIAL_YEAR, TEAM_INITIAL_MONTH);
+// 三色卡片有白、黄等浅色底，不能一律使用白字。
+const inkOn = (background: string) => {
+  let hex = background.replace('#', '');
+  if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+  const rgb = [0,2,4].map(offset => parseInt(hex.slice(offset,offset+2),16) / 255).map(c => c <= 0.04045 ? c / 12.92 : ((c+0.055)/1.055) ** 2.4);
+  const luminance = 0.2126*rgb[0]+0.7152*rgb[1]+0.0722*rgb[2];
+  return luminance > 0.179 ? '#000000' : '#ffffff';
+};
 ---
 
-{referenceScene ? <ReferenceStyleScene slug={spec.slug} locale={locale} /> : (
+{referenceScene ? <ReferenceStyleScene slug={spec.slug} locale={locale} interactive={interactive} /> : (
 
-<div data-style-scene={spec.slug} data-scene-locale={locale} class="overflow-hidden border" style={`background:#fff;border-color:${t.cardBorder};border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.09)`}>
+<div data-style-scene={spec.slug} data-scene-locale={locale} data-generic-style data-scene-interactive={interactive ? 'true' : undefined} class="overflow-hidden border" style={`background:#fff;border-color:${t.cardBorder};border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.09)`}>
   <!-- 浏览器 chrome -->
   <div class="flex items-center gap-1.5 border-b px-3 py-2" style={`background:${t.bg};border-color:${t.cardBorder}`}>
     <span class="h-2.5 w-2.5 rounded-full" style="background:#FF5F57"></span>
@@ -34,22 +49,22 @@ const ICONS = ['◆', '▲', '●'];
     <span class="w-10 text-right text-[10px]" style={`color:${t.sub}`}>⋮</span>
   </div>
 
-  <div class="relative overflow-hidden" style={`background:${t.bg};color:${t.fg};font-family:${t.font}`}>
+  <div class="generic-style-hero relative overflow-hidden" style={`background:${t.bg};color:${t.fg};font-family:${t.font}`}>
 
     {spec.scene === 'paper' && (
       <div class={`p-4 ${compact ? '' : 'md:p-5'}`}>
         <div class="flex items-center gap-2">
           <span class="text-[11.5px] font-bold" style={titleStyle}>{spec.brand}</span>
           <span class="mx-auto flex gap-3.5">
-            {spec.nav.map((n) => <span class="hidden text-[9px] sm:inline" style={`color:${t.sub}`}>{n}</span>)}
+            {spec.nav.map((n, i) => <SceneAction interactive={interactive} action={`nav-${i}`} data-generic-action={`nav-${i}`} class="hidden text-[9px] sm:inline" style={`color:${t.sub}`}>{n}</SceneAction>)}
           </span>
-          <span class="text-[10px]" style={`color:${t.sub}`}>⌕</span>
+          <SceneAction interactive={interactive} action="search" data-generic-action="search" label={text('搜索笔记', 'Search notes')} class="text-[10px]" style={`color:${t.sub}`}>⌕</SceneAction>
         </div>
         <div class="mt-4 grid grid-cols-5 gap-4">
           <div class="col-span-2 flex flex-col justify-center">
-            <p class="font-bold leading-[1.18]" style={`font-size:${fs(20)}px;${titleStyle}`}>{spec.heroTitle}<br/>{spec.heroTitle2}</p>
+            <p data-generic-title class="font-bold leading-[1.18]" style={`font-size:${fs(20)};${titleStyle}`}>{spec.heroTitle}<br/>{spec.heroTitle2}</p>
             <p class="mt-2.5 whitespace-pre-line text-[8.5px] leading-[1.8]" style={`color:${t.sub}`}>{spec.heroSub}</p>
-            <span class="mt-2.5 text-[9.5px] font-semibold" style={`color:${t.accent}`}>{spec.cta}</span>
+            <SceneAction interactive={interactive} action="primary" data-generic-action="primary" class="mt-2.5 text-[9.5px] font-semibold" style={`color:${t.accent}`}>{spec.cta}</SceneAction>
           </div>
           <div class="col-span-2 overflow-hidden rounded-lg" style="box-shadow:0 6px 14px rgba(0,0,0,.12)">
             <div class="relative h-full min-h-[120px] w-full" style="background:linear-gradient(180deg,#B7CBDD 0%,#D9CBB2 48%,#9C8A67 100%)">
@@ -61,14 +76,14 @@ const ICONS = ['◆', '▲', '●'];
             </div>
           </div>
           <div class="col-span-1 flex flex-col justify-between gap-2">
-            {spec.features!.map((f) => (
-              <div class="flex flex-1 items-start gap-1.5 border-b pb-1.5" style={`border-color:${t.cardBorder}`}>
+            {spec.features!.map((f, i) => (
+              <SceneAction interactive={false} action={`feature-${i}`} data-generic-action={`feature-${i}`} class="flex flex-1 items-start gap-1.5 border-b pb-1.5" style={`border-color:${t.cardBorder}`}>
                 <span class="mt-0.5 h-6 w-7 shrink-0 rounded-sm" style="background:linear-gradient(150deg,#C9D5C2,#8FA487)"></span>
                 <span>
                   <p class="text-[8px] font-semibold leading-tight">{f.t}</p>
                   <p class="text-[7px]" style={`color:${t.sub}`}>{f.s}</p>
                 </span>
-              </div>
+              </SceneAction>
             ))}
           </div>
         </div>
@@ -84,23 +99,23 @@ const ICONS = ['◆', '▲', '●'];
           <div class="flex items-center gap-3">
             <span class="text-[11.5px] font-bold">{spec.brand}</span>
             <span class="mx-auto flex gap-3">
-              {spec.nav.map((n) => <span class="hidden text-[9px] sm:inline" style="color:rgba(255,255,255,.8)">{n}</span>)}
+              {spec.nav.map((n, i) => <SceneAction interactive={interactive} action={`nav-${i}`} data-generic-action={`nav-${i}`} class="hidden text-[9px] sm:inline" style="color:rgba(255,255,255,.8)">{n}</SceneAction>)}
             </span>
-            <span class="rounded-full px-3 py-1.5 text-[8.5px] font-semibold" style="background:rgba(255,255,255,.28);color:#fff;backdrop-filter:blur(8px)">{spec.cta.replace(/\s*→$/, '')}</span>
+            <SceneAction interactive={interactive} action="primary" data-generic-action="primary" class="rounded-full px-3 py-1.5 text-[8.5px] font-semibold" style="background:rgba(255,255,255,.28);color:#fff;backdrop-filter:blur(8px)">{spec.cta.replace(/\s*→$/, '')}</SceneAction>
           </div>
           <div class="mt-4 grid grid-cols-2 items-center gap-4">
             <div>
-              <p class="font-bold leading-[1.2] text-white" style={`font-size:${fs(25)}px;${titleStyle}text-shadow:0 2px 12px rgba(30,27,75,.35)`}>{spec.heroTitle}<br/>{spec.heroTitle2}</p>
+              <p data-generic-title class="font-bold leading-[1.2] text-white" style={`font-size:${fs(25)};${titleStyle}text-shadow:0 2px 12px rgba(30,27,75,.35)`}>{spec.heroTitle}<br/>{spec.heroTitle2}</p>
               <p class="mt-2 whitespace-pre-line text-[9px] leading-[1.8]" style="color:rgba(255,255,255,.8)">{spec.heroSub}</p>
-              <span class="mt-3 inline-block rounded-full bg-white px-4 py-2 text-[9.5px] font-bold" style="color:#3B2E6E;box-shadow:0 6px 18px rgba(30,27,75,.35)">{spec.cta}</span>
+              <SceneAction interactive={interactive} action="primary" data-generic-action="primary" class="mt-3 inline-block rounded-full bg-white px-4 py-2 text-[9.5px] font-bold" style="color:#3B2E6E;box-shadow:0 6px 18px rgba(30,27,75,.35)">{spec.cta}</SceneAction>
             </div>
             <div class="grid grid-cols-2 gap-2.5">
-              {spec.features!.slice(0, 3).map((f) => (
-                <div class="rounded-2xl p-2.5" style={`background:${t.card};border:1px solid ${t.cardBorder};backdrop-filter:${t.blur};box-shadow:0 8px 20px rgba(30,27,75,.18)`}>
+              {spec.features!.slice(0, 3).map((f, i) => (
+                <SceneAction interactive={false} action={`feature-${i}`} data-generic-action={`feature-${i}`} class="rounded-2xl p-2.5" style={`background:${t.card};border:1px solid ${t.cardBorder};backdrop-filter:${t.blur};box-shadow:0 8px 20px rgba(30,27,75,.18)`}>
                   <span class="mb-1.5 flex h-4 w-4 items-center justify-center rounded-lg text-[8px]" style="background:rgba(255,255,255,.5);color:#3B2E6E">✦</span>
                   <p class="text-[8.5px] font-semibold text-white">{f.t}</p>
                   <p class="text-[6.5px]" style="color:rgba(255,255,255,.75)">{f.s}</p>
-                </div>
+                </SceneAction>
               ))}
               <div class="rounded-2xl p-2.5" style={`background:${t.card};border:1px solid ${t.cardBorder};backdrop-filter:${t.blur};box-shadow:0 8px 20px rgba(30,27,75,.18)`}>
                 <p class="text-[7.5px] font-semibold leading-snug text-white">{spec.heroCaption ?? text('好的创意值得被看见。', 'Great ideas deserve to be seen.')}</p>
@@ -117,16 +132,16 @@ const ICONS = ['◆', '▲', '●'];
         <div class="flex items-center gap-2">
           <span class="text-[10px] font-bold">{spec.brand}</span>
           <span class="mx-auto flex gap-2.5">
-            {spec.nav.map((n) => <span class="hidden text-[8px] sm:inline" style={`color:${t.sub}`}>{n}</span>)}
+            {spec.nav.map((n, i) => <SceneAction interactive={interactive} action={`nav-${i}`} data-generic-action={`nav-${i}`} class="hidden text-[8px] sm:inline" style={`color:${t.sub}`}>{n}</SceneAction>)}
           </span>
-          <span class="text-[8px]" style={`color:${t.sub}`}>{text('登录', 'Log in')}</span>
-          <span class="rounded-full px-2.5 py-1 text-[8px] font-semibold" style={`background:${t.fg};color:${t.bg}`}>{text('免费注册', 'Sign up free')}</span>
+          <SceneAction interactive={interactive} action="login" data-generic-action="login" class="text-[8px]" style={`color:${t.sub}`}>{text('登录', 'Log in')}</SceneAction>
+          <SceneAction interactive={interactive} action="primary" data-generic-action="primary" class="rounded-full px-2.5 py-1 text-[8px] font-semibold" style={`background:${t.fg};color:${t.bg}`}>{text('免费注册', 'Sign up free')}</SceneAction>
         </div>
-        <div class="mt-3 grid grid-cols-4 gap-2.5" style={`min-height:${compact ? 130 : 150}px`}>
+        <div class="gs-tasko-grid mt-3 grid grid-cols-4 gap-2.5" style={`min-height:${compact ? 130 : 150}px`}>
           <div class="col-span-1 rounded-2xl p-3" style={cardCss}>
-            <p class="text-[12px] font-bold leading-snug">{spec.heroTitle}<br/>{spec.heroTitle2}</p>
+            <p data-generic-title class="text-[12px] font-bold leading-snug">{spec.heroTitle}<br/>{spec.heroTitle2}</p>
             <p class="mt-1.5 text-[7px] leading-relaxed" style={`color:${t.sub}`}>{spec.heroSub}</p>
-            <span class="mt-2 inline-block rounded-full px-2.5 py-1 text-[7.5px] font-semibold" style={`background:${t.accent};color:${t.accentFg}`}>{spec.cta}</span>
+            <SceneAction interactive={interactive} action="primary" data-generic-action="primary" class="mt-2 inline-block rounded-full px-2.5 py-1 text-[7.5px] font-semibold" style={`background:${t.accent};color:${t.accentFg}`}>{spec.cta}</SceneAction>
             <div class="mt-2.5 flex items-center">
               <span class="-mr-1 h-4 w-4 rounded-full border-2 border-white" style="background:#F59E0B"></span>
               <span class="-mr-1 h-4 w-4 rounded-full border-2 border-white" style="background:#34D399"></span>
@@ -134,17 +149,19 @@ const ICONS = ['◆', '▲', '●'];
               <span class="ml-1.5 text-[6.5px] font-semibold" style={`color:${t.sub}`}>+12K {text('全世界用户的选择', 'users worldwide')}</span>
             </div>
           </div>
-          <div class="col-span-1 flex flex-col rounded-2xl p-3" style={cardCss}>
-            <p class="text-[7.5px] font-bold" style={`color:${t.sub}`}>◀ {text('一月', 'Jan')} 2024 ▶</p>
-            <div class="mt-1 grid grid-cols-7 gap-x-1 gap-y-0.5 text-center">
-              {Array.from({ length: 28 }).map((_, i) => (
-                <span class={`text-[5px] leading-[1.6] ${i === 16 ? 'font-bold' : ''}`} style={`color:${i === 16 ? '#fff' : t.sub};${i === 16 ? `background:${t.accent};border-radius:999px;` : ''}`}>{i + 1}</span>
-              ))}
+          <div data-team-calendar-date={TEAM_INITIAL_DATE} class="gs-team-calendar col-span-1 flex flex-col rounded-2xl p-3" style={`${cardCss}--team-accent:${t.accent};--team-sub:${t.sub};`}>
+            <div class="gs-team-calendar-head text-[7.5px] font-bold" style={`color:${t.sub}`}>
+              <SceneAction interactive={interactive} action="calendar-previous" class="gs-team-month-arrow" label={text('上个月', 'Previous month')}>◀</SceneAction>
+              <span data-team-month aria-live="polite">{teamMonthLabel(TEAM_INITIAL_YEAR, TEAM_INITIAL_MONTH, locale)}</span>
+              <SceneAction interactive={interactive} action="calendar-next" class="gs-team-month-arrow" label={text('下个月', 'Next month')}>▶</SceneAction>
             </div>
-            <div class="mt-auto rounded-xl p-1.5" style={`background:${t.bg}`}>
-              <p class="text-[7.5px] font-bold">{text('任务', 'Tasks')} <span style={`color:${t.accent}`}>5</span></p>
-              <p class="text-[6px]" style={`color:${t.sub}`}>{text('今日待完成', 'Due today')} ✓</p>
+            <div class="gs-team-calendar-grid mt-1 grid grid-cols-7 gap-x-1 gap-y-0.5 text-center" role={interactive ? 'group' : undefined} aria-label={interactive ? text('选择团队日程日期', 'Choose a team calendar date') : undefined}>
+              {teamDays.map((day, i) => <SceneAction interactive={interactive} action="calendar-day" class="gs-team-day text-[5px] leading-[1.6]" data-team-cell={i} data-team-day={day ?? undefined} data-team-selected={day === 17 ? 'true' : 'false'} disabled={interactive && day === null ? true : undefined} aria-hidden={day === null ? 'true' : undefined} aria-pressed={interactive && day !== null ? String(day === 17) : undefined} label={day === null ? undefined : `${text('选择', 'Select')} ${teamDate(TEAM_INITIAL_YEAR, TEAM_INITIAL_MONTH, day)}`}>{day ?? ''}</SceneAction>)}
             </div>
+            <SceneAction interactive={interactive} action="team-tasks" data-generic-action="team-tasks" class="gs-team-entry mt-auto block w-full rounded-xl p-1.5" style={`background:${t.bg}`} label={text('查看团队待办任务', 'View pending team tasks')}>
+              <span class="block text-[7.5px] font-bold">{text('任务', 'Tasks')} <span data-team-task-count style={`color:${t.accent}`}>{team.tasks.length}</span></span>
+              <span data-team-task-caption class="block text-[6px]" style={`color:${t.sub}`}>{text('今日待完成', 'Due today')} ✓</span>
+            </SceneAction>
           </div>
           <div class="col-span-1 flex flex-col rounded-2xl p-3" style="background:#E2F4E8;border-radius:16px">
             <p class="text-[7.5px] font-semibold" style="color:#3E7C5B">⏱ {text('专注时段', 'Focus time')}</p>
@@ -157,15 +174,15 @@ const ICONS = ['◆', '▲', '●'];
             </div>
           </div>
           <div class="col-span-1 grid grid-rows-2 gap-2.5">
-            <div class="rounded-2xl p-2.5" style={cardCss}>
-              <p class="text-[8.5px] font-bold">{text('笔记', 'Notes')} <span style={`color:${t.accent}`}>12</span></p>
-              <div class="mt-1.5 h-1.5 w-full rounded" style={`background:${t.sub};opacity:.2`}></div>
-              <div class="mt-1 h-1.5 w-2/3 rounded" style={`background:${t.sub};opacity:.2`}></div>
-              <div class="mt-1.5 flex gap-1"><span class="h-2.5 w-2.5 rounded" style={`background:${t.accent};opacity:.35`}></span><span class="h-2.5 w-2.5 rounded" style={`background:${t.accent};opacity:.2`}></span></div>
-            </div>
+            <SceneAction interactive={interactive} action="team-notes" data-generic-action="team-notes" class="gs-team-entry block w-full rounded-2xl p-2.5" style={cardCss} label={text('打开团队笔记', 'Open team notes')}>
+              <span class="block text-[8.5px] font-bold">{text('笔记', 'Notes')} <span data-team-note-count style={`color:${t.accent}`}>{team.notes.length}</span></span>
+              <span class="mt-1.5 block h-1.5 w-full rounded" style={`background:${t.sub};opacity:.2`}></span>
+              <span class="mt-1 block h-1.5 w-2/3 rounded" style={`background:${t.sub};opacity:.2`}></span>
+              <span class="mt-1.5 flex gap-1"><span class="h-2.5 w-2.5 rounded" style={`background:${t.accent};opacity:.35`}></span><span class="h-2.5 w-2.5 rounded" style={`background:${t.accent};opacity:.2`}></span></span>
+            </SceneAction>
             <div class="relative overflow-hidden rounded-2xl p-2.5" style="background:linear-gradient(160deg,#B7CBE0,#7E9BB8 55%,#46648A)">
               <p class="text-[8.5px] font-bold leading-snug text-white">{text('小小的进步', 'Small steps')}<br/>{text('也是一种伟大', 'are great too')}</p>
-              <p class="mt-0.5 text-[6.5px] text-white/85">Keep going →</p>
+              <p class="mt-0.5 text-[6.5px] text-white/85"><SceneAction interactive={interactive} action="team-tasks" data-generic-action="team-tasks" class="gs-team-keep">Keep going →</SceneAction></p>
               <span class="absolute -right-2 -top-2 h-8 w-8 rounded-full" style="background:rgba(255,255,255,.22)"></span>
             </div>
           </div>
@@ -178,22 +195,24 @@ const ICONS = ['◆', '▲', '●'];
         <div class="flex items-center gap-2.5">
           <span class="text-[10.5px] font-bold" style={titleStyle}>{spec.brand}</span>
           <span class="mx-auto flex gap-3">
-            {spec.nav.map((n) => <span class="hidden text-[9px] sm:inline" style={`color:${t.sub}`}>{n}</span>)}
+            {spec.nav.map((n, i) => <SceneAction interactive={interactive} action={`nav-${i}`} data-generic-action={`nav-${i}`} class="hidden text-[9px] sm:inline" style={`color:${t.sub}`}>{n}</SceneAction>)}
           </span>
-          {spec.navExt?.map((n) => <span class="hidden text-[8px] md:inline" style={`color:${t.sub}`}>{n}</span>)}
-          <span class="rounded-full px-3 py-1.5 text-[8.5px] font-semibold" style={pill}>{spec.cta.replace(' →', '')}</span>
+          {spec.navExt?.map((n, i) => ['flat-design', 'y2k'].includes(spec.slug)
+            ? <SceneAction interactive={interactive} action={`extra-${i}`} data-generic-action={`extra-${i}`} class="hidden text-[8px] md:inline" style={`color:${t.sub}`}>{n}</SceneAction>
+            : <span class="hidden text-[8px] md:inline" style={`color:${t.sub}`}>{n}</span>)}
+          <SceneAction interactive={interactive} action="primary" data-generic-action="primary" class="rounded-full px-3 py-1.5 text-[8.5px] font-semibold" style={pill}>{spec.cta.replace(' →', '')}</SceneAction>
         </div>
 
         <div class="mt-4 grid grid-cols-5 items-center gap-4">
           <div class="col-span-2">
-            <p class="font-bold leading-[1.1]" style={`font-size:${fs(Number((t.heroSize ?? '22px').replace('px', '')) + 4)}px;${titleStyle}`}>{spec.heroTitle}<br/>{spec.heroTitle2}</p>
+            <p data-generic-title class="font-bold leading-[1.1]" style={`font-size:${spec.slug === 'art-deco' ? 'clamp(0px,3.3cqw,42px)' : fs(Number((t.heroSize ?? '22px').replace('px', '')) + 4)};${titleStyle}`}>{spec.heroTitle}<br/>{spec.heroTitle2}</p>
             <p class="mt-2 text-[9.5px] leading-relaxed" style={`color:${t.sub}`}>{spec.heroSub}</p>
             {spec.heroCaption && <p class="mt-1.5 text-[7.5px] uppercase tracking-widest" style={`color:${t.sub};opacity:.85`}>{spec.heroCaption}</p>}
-            <span class="mt-3 inline-block rounded-full px-4 py-2 text-[9.5px] font-semibold" style={pill}>{spec.cta.replace(/\s*→$/, '')} →</span>
+            <SceneAction interactive={interactive} action="primary" data-generic-action="primary" class="mt-3 inline-block rounded-full px-4 py-2 text-[9.5px] font-semibold" style={pill}>{spec.cta.replace(/\s*→$/, '')} →</SceneAction>
           </div>
 
           <!-- 右侧视觉面板 -->
-          <div class="col-span-3 relative flex h-[120px] items-center justify-center overflow-hidden" style={`background:${t.card};border:1px solid ${t.cardBorder};border-radius:${t.radius};backdrop-filter:${t.blur ?? 'none'};box-shadow:${t.shadow ?? 'none'}`}>
+          <div data-generic-art data-art-panel={spec.panel} class="col-span-3 relative flex h-[120px] items-center justify-center overflow-hidden" style={`background:${t.card};border:1px solid ${t.cardBorder};border-radius:${t.radius};backdrop-filter:${t.blur ?? 'none'};box-shadow:${t.shadow ?? 'none'}`}>
             {spec.panel === 'shapes' && (() => {
               const c = t.triCards ?? [t.accent, t.accent, t.accent];
               return (
@@ -262,13 +281,13 @@ const ICONS = ['◆', '▲', '●'];
         {spec.features && (
           <div class="mt-4 grid grid-cols-3 gap-3">
             {spec.features.map((f, i) => (
-              <div class="p-3" style={`background:${t.triCards ? t.triCards[i] : t.card};border:1px solid ${t.triCards ? 'transparent' : t.cardBorder};border-radius:${t.radius};backdrop-filter:${t.blur ?? 'none'};box-shadow:${t.shadow ?? 'none'};color:${t.triCards ? '#fff' : 'inherit'}`}>
+              <SceneAction interactive={false} action={`feature-${i}`} data-generic-action={`feature-${i}`} class="block w-full p-3" style={`background:${t.triCards ? t.triCards[i] : t.card};border:1px solid ${t.triCards ? 'transparent' : t.cardBorder};border-radius:${t.radius};backdrop-filter:${t.blur ?? 'none'};box-shadow:${t.shadow ?? 'none'};color:${t.triCards ? inkOn(t.triCards[i]) : 'inherit'}`}>
                 <span class="mb-2 flex items-center gap-1.5">
-                  <span class="flex h-4 w-4 items-center justify-center rounded-md text-[7px]" style={`background:${t.triCards ? 'rgba(255,255,255,.85)' : t.accent};color:${t.triCards ? t.fg : t.accentFg}`}>{ICONS[i]}</span>
+                  <span class="flex h-4 w-4 items-center justify-center rounded-md text-[7px]" style={`background:${t.triCards ? 'rgba(255,255,255,.85)' : t.accent};color:${t.triCards ? '#111111' : t.accentFg}`}>{ICONS[i]}</span>
                   <span class="text-[9.5px] font-bold" style={titleStyle}>{f.t}</span>
                 </span>
-                <p class="text-[8px]" style={`color:${t.triCards ? 'rgba(255,255,255,.9)' : t.sub}`}>{f.s}</p>
-              </div>
+                <p class="text-[8px]" style={`color:${t.triCards ? inkOn(t.triCards[i]) : t.sub}`}>{f.s}</p>
+              </SceneAction>
             ))}
           </div>
         )}
@@ -280,6 +299,7 @@ const ICONS = ['◆', '▲', '●'];
       </div>
     )}
   </div>
+  {interactive && <GenericStyleContent spec={sourceSpec} locale={locale} />}
 </div>
 
 )}

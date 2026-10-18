@@ -1,0 +1,11 @@
+---
+import '@/styles/global.css';
+import '@/styles/style-document.css';
+import StyleThumb from './StyleThumb.astro';
+import type { StyleThumbSpec } from '@/lib/style-previews';
+import type { Locale } from '@/lib/i18n';
+import { REFERENCE_BRANDS } from '@/lib/reference-style-data';
+interface Props { spec: StyleThumbSpec; locale: Locale; }
+const { spec, locale } = Astro.props;
+---
+<!doctype html><html lang={locale === 'zh' ? 'zh-CN' : 'en'}><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,follow"/><title>{REFERENCE_BRANDS[spec.slug] ?? spec.brand} · {locale === 'zh' ? '封面对照' : 'Cover reference'}</title></head><body class="style-cover-document" style="margin:0;background:white"><main><StyleThumb spec={spec} locale={locale} /></main></body></html>

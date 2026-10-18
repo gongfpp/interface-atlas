@@ -68,5 +68,10 @@ test('三引擎配置与目标测试保留本地请求隔离', () => {
   for (const engine of ['chromium', 'firefox', 'webkit']) assert.ok(config.includes(`name: '${engine}'`));
   assert.match(config, /QA_CANDIDATE_SHA !== candidateCommit/);
   assert.match(read('tests/style-reference-scenes.spec.mjs'), /from '\.\/helpers\/private-browser\.mjs'/);
-  assert.match(read('tests/helpers/private-browser.mjs'), /url\.origin === 'http:\/\/127\.0\.0\.1:4337'/);
+  const isolation = read('tests/helpers/private-browser.mjs');
+  assert.match(isolation, /new URL\(baseURL \?\? 'http:\/\/127\.0\.0\.1:4337'\)/);
+  assert.match(isolation, /preview\.protocol !== 'http:' \|\| preview\.hostname !== '127\.0\.0\.1'/);
+  assert.match(isolation, /const origin = preview\.origin/);
+  assert.match(isolation, /if \(url\.origin === origin\) await route\.continue\(\)/);
+  assert.match(isolation, /else await route\.abort\('blockedbyclient'\)/);
 });
