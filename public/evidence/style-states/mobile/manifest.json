@@ -1,0 +1,2062 @@
+{
+  "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+  "initialSource": {
+    "commit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+    "sourceDiff": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runnerHash": "a85fdf2aaf51494a17349d36e589d10d3f485962ab1efb6ae9d9cd2c5fac1fb1"
+  },
+  "server": "http://127.0.0.1:4337",
+  "engine": "chromium",
+  "execution": "one browser, one context, one page; strictly serial",
+  "started": "2026-10-19T06:17:16.131Z",
+  "visualReview": "pending; capture is not manual approval",
+  "cases": [
+    {
+      "slug": "flat-design",
+      "width": 390,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "flat-design",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "flat-design",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "flat-design-en-390-brand-result.png",
+          "sha256": "ef1d7b7bc7b238f52bbd9d8c46c5ea625fcab701dcca38b012436d93392b6693",
+          "computed": "flat-design-en-390-brand-result.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "flat-design",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "flat-design",
+      "width": 320,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "flat-design",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "flat-design",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "flat-design-en-320-brand-result.png",
+          "sha256": "3ec59ba979da533d0d7e28bdd6a06abe11d9fdd8a3cd586af99e2ef8d9b1f979",
+          "computed": "flat-design-en-320-brand-result.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "flat-design",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "bauhaus",
+      "width": 390,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "bauhaus",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "bauhaus-en-390-brand-result.png",
+          "sha256": "c9a63d0b8ac52f899d296cd6605e2e3a09ad2c4e2fe1007485c3dca06cde1559",
+          "computed": "bauhaus-en-390-brand-result.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "bauhaus",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "bauhaus",
+      "width": 320,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "bauhaus",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "bauhaus-en-320-brand-result.png",
+          "sha256": "350c1a18a24615928bfae555f9216f711a6e487d4bf7ec2cafa1d49f89249117",
+          "computed": "bauhaus-en-320-brand-result.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "bauhaus",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "y2k",
+      "width": 390,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "y2k",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "y2k",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "y2k-en-390-brand-result.png",
+          "sha256": "66d63b5e5492dc3cfe9d2ea8c0d7f6bfc9b1d38458b90399ec6cb14cb96e96b4",
+          "computed": "y2k-en-390-brand-result.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "y2k",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "y2k",
+      "width": 320,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "y2k",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "y2k",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "y2k-en-320-brand-result.png",
+          "sha256": "bc7e0e411228a1045b7cc7301c2432acab32d23f55a5365de67f47a58f041879",
+          "computed": "y2k-en-320-brand-result.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "y2k",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "cyberpunk",
+      "width": 390,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "cyberpunk",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "cyberpunk",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "cyberpunk-en-390-brand-result.png",
+          "sha256": "b33154a0be38e23d5680f6e8cc50198d74c37ac5d16a2dbe66f72b9b5c69fc99",
+          "computed": "cyberpunk-en-390-brand-result.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "cyberpunk",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "cyberpunk",
+      "width": 320,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "cyberpunk",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "cyberpunk",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "cyberpunk-en-320-brand-result.png",
+          "sha256": "04e1094f13dd89fab962ad10942b2b38526ff29f7d26d5f6d37ca64aeccf8b88",
+          "computed": "cyberpunk-en-320-brand-result.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "cyberpunk",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "memphis",
+      "width": 390,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "memphis",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "memphis",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "memphis-en-390-brand-result.png",
+          "sha256": "e46f4c33a07239e39f05cf1d4334070a0a2377256aa12d8b3226d1e649e04da2",
+          "computed": "memphis-en-390-brand-result.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "memphis",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "memphis",
+      "width": 320,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "memphis",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "memphis",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "memphis-en-320-brand-result.png",
+          "sha256": "aa36514bbd20bc4c686dd424f100d8de2fc5c2cfa0968c7a375ecbd90f59f157",
+          "computed": "memphis-en-320-brand-result.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "memphis",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "retro-futurism",
+      "width": 390,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "radio-playing",
+          "metadata": {
+            "slug": "retro-futurism",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              "[data-radio-status]",
+              "[data-equalizer]"
+            ]
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "retro-futurism",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "retro-futurism-en-390-brand-result.png",
+          "sha256": "f1b901584f0eaa5783f956756744688f03e4708812458ca89bcd2c3b4c04896d",
+          "computed": "retro-futurism-en-390-brand-result.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "retro-futurism",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "retro-futurism",
+      "width": 320,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "radio-playing",
+          "metadata": {
+            "slug": "retro-futurism",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              "[data-radio-status]",
+              "[data-equalizer]"
+            ]
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "retro-futurism",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "retro-futurism-en-320-brand-result.png",
+          "sha256": "64d83bd0040a33618733f76fd22725f674c4723c3fd1e732185ed82c99af141c",
+          "computed": "retro-futurism-en-320-brand-result.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "retro-futurism",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "claymorphism",
+      "width": 390,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "claymorphism",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "claymorphism",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "claymorphism-en-390-brand-result.png",
+          "sha256": "8f248b11a4ed6a18ab000f90817ac709641d5b0c7b8afb9d87e2147b98663963",
+          "computed": "claymorphism-en-390-brand-result.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "claymorphism",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "claymorphism",
+      "width": 320,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "claymorphism",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "claymorphism",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "claymorphism-en-320-brand-result.png",
+          "sha256": "2642f4922c6342bb98150690d0ce4c5080309a6f93ae4d0ae4e93fd0c59e273e",
+          "computed": "claymorphism-en-320-brand-result.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "claymorphism",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "aurora",
+      "width": 390,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "aurora",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "aurora",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "aurora-en-390-brand-result.png",
+          "sha256": "ed966b7e0b9005dfcd7eb072e3a80d64cd29344463c82ab5db95ebe84406ae51",
+          "computed": "aurora-en-390-brand-result.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "aurora",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "aurora",
+      "width": 320,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "aurora",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "aurora",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "aurora-en-320-brand-result.png",
+          "sha256": "3dc7b8fd29e71cf5c389aa1d45c71fd0dc6b9a2650f8e450996e0062f768f942",
+          "computed": "aurora-en-320-brand-result.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "aurora",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "organic",
+      "width": 390,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "organic",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "organic-en-390-brand-result.png",
+          "sha256": "5406e893c6d41bb5795f95547119fc3e193894a49dd1c3b2c76d77b76b121346",
+          "computed": "organic-en-390-brand-result.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "organic",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "organic",
+      "width": 320,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "organic",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "organic-en-320-brand-result.png",
+          "sha256": "e61cc3169b1b5d0406d9ac577686935365ed9c2c7376a4ed2f3dc180860547ce",
+          "computed": "organic-en-320-brand-result.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "organic",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "art-deco",
+      "width": 390,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "art-deco",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "art-deco",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "art-deco-en-390-brand-result.png",
+          "sha256": "e3e726424f113a3b028003545d6dedfec2dc117c1364746d9196d49455f15bef",
+          "computed": "art-deco-en-390-brand-result.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "art-deco",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "art-deco",
+      "width": 320,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "art-deco",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "art-deco",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "art-deco-en-320-brand-result.png",
+          "sha256": "2b911c7903154c9ede8963c9a13a29ade728fb2902b0f3e6a2f39ab51057830a",
+          "computed": "art-deco-en-320-brand-result.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "art-deco",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "corporate-memphis",
+      "width": 390,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "corporate-memphis",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "corporate-memphis",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "corporate-memphis-en-390-brand-result.png",
+          "sha256": "3c846b751ba14ef35d27fe60a5d797a1b4d2e29402e26b76728557d16420f587",
+          "computed": "corporate-memphis-en-390-brand-result.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "corporate-memphis",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "corporate-memphis",
+      "width": 320,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "corporate-memphis",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "corporate-memphis",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "corporate-memphis-en-320-brand-result.png",
+          "sha256": "f49b3e7576b247e4300dfaab1be0a5a56f8ae5645a5182bb9500ced5598548b4",
+          "computed": "corporate-memphis-en-320-brand-result.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "corporate-memphis",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "hand-drawn",
+      "width": 390,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "hand-drawn",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "hand-drawn",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "hand-drawn-en-390-brand-result.png",
+          "sha256": "a2d54fc814e5c18d1bae525bb7954aa70e18c1b9f48ba8c837d659756c3f6267",
+          "computed": "hand-drawn-en-390-brand-result.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "hand-drawn",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "hand-drawn",
+      "width": 320,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "hand-drawn",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "hand-drawn",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "hand-drawn-en-320-brand-result.png",
+          "sha256": "3a4e65fc8934ddd30899023fd57a8c64c2b5c570beade7507bfd277b96529be9",
+          "computed": "hand-drawn-en-320-brand-result.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "hand-drawn",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "liquid-glass",
+      "width": 390,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "liquid-glass",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "lumen-material-clear",
+          "metadata": {
+            "slug": "liquid-glass",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              "[data-glass-specimen]",
+              "[data-glass-stage]"
+            ]
+          },
+          "captured": true
+        },
+        {
+          "state": "lumen-material-frost",
+          "metadata": {
+            "slug": "liquid-glass",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              "[data-glass-specimen]",
+              "[data-glass-stage]"
+            ]
+          },
+          "captured": true
+        },
+        {
+          "state": "lumen-material-prism",
+          "metadata": {
+            "slug": "liquid-glass",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              "[data-glass-specimen]",
+              "[data-glass-stage]"
+            ]
+          },
+          "captured": true
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "liquid-glass",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "lumen-material-clear",
+          "path": "liquid-glass-en-390-lumen-material-clear.png",
+          "sha256": "6f536cbcff8011904abb0af7b3440636504adf710f6fe4907b1fab1b058beff6",
+          "computed": "liquid-glass-en-390-lumen-material-clear.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        },
+        {
+          "state": "lumen-material-frost",
+          "path": "liquid-glass-en-390-lumen-material-frost.png",
+          "sha256": "8da2b78b5026085a95cda0df844cf4b412dc908ab801680fcb187d7c27b95935",
+          "computed": "liquid-glass-en-390-lumen-material-frost.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        },
+        {
+          "state": "lumen-material-prism",
+          "path": "liquid-glass-en-390-lumen-material-prism.png",
+          "sha256": "d4fc9b8e5a23e2cc8bc0f95e3a6f1f7701e657f82df768352e5d162049f40ee7",
+          "computed": "liquid-glass-en-390-lumen-material-prism.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        },
+        {
+          "state": "brand-result",
+          "path": "liquid-glass-en-390-brand-result.png",
+          "sha256": "b594fb703dd22ac208f3b94d6d3939934f9c4c94b4face45f201237a4312a3fa",
+          "computed": "liquid-glass-en-390-brand-result.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "liquid-glass",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "liquid-glass",
+      "width": 320,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "liquid-glass",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "lumen-material-clear",
+          "metadata": {
+            "slug": "liquid-glass",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              "[data-glass-specimen]",
+              "[data-glass-stage]"
+            ]
+          },
+          "captured": true
+        },
+        {
+          "state": "lumen-material-frost",
+          "metadata": {
+            "slug": "liquid-glass",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              "[data-glass-specimen]",
+              "[data-glass-stage]"
+            ]
+          },
+          "captured": true
+        },
+        {
+          "state": "lumen-material-prism",
+          "metadata": {
+            "slug": "liquid-glass",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              "[data-glass-specimen]",
+              "[data-glass-stage]"
+            ]
+          },
+          "captured": true
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "liquid-glass",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "lumen-material-clear",
+          "path": "liquid-glass-en-320-lumen-material-clear.png",
+          "sha256": "2a6cd06e6ef87e47c28f1079cfe7a7138fd2ac1efc45e6b2bc59837cef23d683",
+          "computed": "liquid-glass-en-320-lumen-material-clear.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        },
+        {
+          "state": "lumen-material-frost",
+          "path": "liquid-glass-en-320-lumen-material-frost.png",
+          "sha256": "37c84eed4dbed88e6ac7afdb6aec964654ccaad5cbdab87e4636865fc17536b7",
+          "computed": "liquid-glass-en-320-lumen-material-frost.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        },
+        {
+          "state": "lumen-material-prism",
+          "path": "liquid-glass-en-320-lumen-material-prism.png",
+          "sha256": "a0f1bd9e7d7dc484a837435ac1b2140ceffb5595a295728341fd00a71bcf3260",
+          "computed": "liquid-glass-en-320-lumen-material-prism.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        },
+        {
+          "state": "brand-result",
+          "path": "liquid-glass-en-320-brand-result.png",
+          "sha256": "32ed91b6d92c0fdeec27eec0e2fc16be1640cb9a086d6121c23c1489a6c6af14",
+          "computed": "liquid-glass-en-320-brand-result.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "liquid-glass",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "pixel-art",
+      "width": 390,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "pixel-art",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "pixel-art-en-390-brand-result.png",
+          "sha256": "70ece74383a54929c8c5c18385f16357a75edf15d15a07beec0a5a49d94fe774",
+          "computed": "pixel-art-en-390-brand-result.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "pixel-art",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "pixel-art",
+      "width": 320,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "pixel-art",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "pixel-art-en-320-brand-result.png",
+          "sha256": "e9b30dd4c1c1d3961ec62dea64b03211593214a27ae324ded5b8f2871ffc5d33",
+          "computed": "pixel-art-en-320-brand-result.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "pixel-art",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "vaporwave",
+      "width": 390,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "vaporwave",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "vaporwave",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "vaporwave-en-390-brand-result.png",
+          "sha256": "95587bb03e14810dad4c31af3bcba4358365d0fd87b5928d6f9813e741fbabb0",
+          "computed": "vaporwave-en-390-brand-result.json",
+          "geometry": {
+            "viewport": 390,
+            "documentScrollWidth": 375,
+            "documentClientWidth": 390,
+            "sceneScrollWidth": 373,
+            "sceneClientWidth": 373,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "vaporwave",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    },
+    {
+      "slug": "vaporwave",
+      "width": 320,
+      "locale": "en",
+      "captureStatus": "captured-not-visually-approved",
+      "manualReview": "pending",
+      "pageErrors": [],
+      "requestFailures": [],
+      "steps": [
+        {
+          "state": "select-expanded",
+          "metadata": {
+            "slug": "vaporwave",
+            "locale": "en",
+            "dialogApplicable": false,
+            "stateIntent": "select-expanded",
+            "kind": "dom-listbox-expanded",
+            "targets": [
+              "[role=\"combobox\"]",
+              "[role=\"listbox\"]"
+            ],
+            "expandedVerified": true
+          },
+          "captured": false
+        },
+        {
+          "state": "brand-result",
+          "metadata": {
+            "slug": "vaporwave",
+            "locale": "en",
+            "dialogApplicable": false,
+            "targets": [
+              ".gs-card",
+              "[data-blob]",
+              "[data-glass-specimen]",
+              "[data-composition]",
+              "[data-invitation]",
+              "[data-member]"
+            ]
+          },
+          "captured": true
+        }
+      ],
+      "images": [
+        {
+          "state": "brand-result",
+          "path": "vaporwave-en-320-brand-result.png",
+          "sha256": "04093b02ef91a588c3b5e24174b1b46bdeb1285079e84905f4f6e6f751889a9f",
+          "computed": "vaporwave-en-320-brand-result.json",
+          "geometry": {
+            "viewport": 320,
+            "documentScrollWidth": 305,
+            "documentClientWidth": 320,
+            "sceneScrollWidth": 303,
+            "sceneClientWidth": 303,
+            "overflowControls": []
+          }
+        }
+      ],
+      "summary": {
+        "slug": "vaporwave",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      }
+    }
+  ],
+  "closed": "2026-10-19T06:17:35.410Z",
+  "finalSource": {
+    "commit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+    "sourceDiff": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runnerHash": "a85fdf2aaf51494a17349d36e589d10d3f485962ab1efb6ae9d9cd2c5fac1fb1"
+  },
+  "sourceChanged": false
+}

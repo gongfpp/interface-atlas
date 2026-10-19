@@ -1,0 +1,811 @@
+{
+  "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+  "source": "frozen production C",
+  "server": "http://127.0.0.1:4337",
+  "engine": "chromium",
+  "locale": "zh",
+  "mode": "default",
+  "startedAt": "2026-10-19T06:15:31.787Z",
+  "contextCount": 1,
+  "cases": [
+    {
+      "slug": "bento-grid",
+      "width": 1280,
+      "locale": "zh",
+      "mode": "default",
+      "kind": "profile",
+      "actions": [
+        {
+          "action": "open",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "nickname-save",
+          "nickname": "Atlas 1280",
+          "openerText": "Atlas 1280",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 451,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen",
+          "nicknameRetained": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "manual-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "tasko-profile",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "bento-grid-zh-1280-profile-open.png",
+          "sha256": "9021d62f29e0f83a0e0bc0f8faeb45afedb3b128ad1c5da0aa6d5a904e4c817d",
+          "state": "profile-open"
+        },
+        {
+          "path": "bento-grid-zh-1280-profile-reopened.png",
+          "sha256": "7f474197c7bc6ebb3854877b185c0f71d53b93e7f46f6d5c6b875b22276631ba",
+          "state": "profile-reopened"
+        }
+      ],
+      "route": "/style-scenes/bento-grid/?mode=default",
+      "status": "passed",
+      "pageErrors": []
+    },
+    {
+      "slug": "bento-grid",
+      "width": 390,
+      "locale": "zh",
+      "mode": "default",
+      "kind": "profile",
+      "actions": [
+        {
+          "action": "open",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "nickname-save",
+          "nickname": "Atlas 390",
+          "openerText": "Atlas 390",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 1456,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen",
+          "nicknameRetained": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "manual-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "tasko-profile",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "bento-grid-zh-390-profile-open.png",
+          "sha256": "b21ea6b441baf258e0e6250a39052fc715012d45c54b7c5b8fe5f2a54429d98a",
+          "state": "profile-open"
+        },
+        {
+          "path": "bento-grid-zh-390-profile-reopened.png",
+          "sha256": "92eb5623c810ed8df756f5ddb228293d631ce8b2c7fc83ab27a0302f9d98747e",
+          "state": "profile-reopened"
+        }
+      ],
+      "route": "/style-scenes/bento-grid/?mode=default",
+      "status": "passed",
+      "pageErrors": []
+    },
+    {
+      "slug": "bento-grid",
+      "width": 320,
+      "locale": "zh",
+      "mode": "default",
+      "kind": "profile",
+      "actions": [
+        {
+          "action": "open",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "nickname-save",
+          "nickname": "Atlas 320",
+          "openerText": "Atlas 320",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 1596,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen",
+          "nicknameRetained": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "manual-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "tasko-profile",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "bento-grid-zh-320-profile-open.png",
+          "sha256": "8178a2332a6af67ad4a32cf9861b246ea465122aeeea7cb5645cc3bf82ef8466",
+          "state": "profile-open"
+        },
+        {
+          "path": "bento-grid-zh-320-profile-reopened.png",
+          "sha256": "becaf450886819ee4deb4fae65da8e161b4c14ab01c22d4d4971e36eea870340",
+          "state": "profile-reopened"
+        }
+      ],
+      "route": "/style-scenes/bento-grid/?mode=default",
+      "status": "passed",
+      "pageErrors": []
+    },
+    {
+      "slug": "neumorphism",
+      "width": 1280,
+      "locale": "zh",
+      "mode": "default",
+      "kind": "profile",
+      "actions": [
+        {
+          "action": "open",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "nickname-save",
+          "nickname": "Atlas 1280",
+          "openerText": "Atlas 1280",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 427,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen",
+          "nicknameRetained": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "manual-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "mellow-profile",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "neumorphism-zh-1280-profile-open.png",
+          "sha256": "c1a1ba3b197fc69860ba3a02b0b30f1856b82dac8beff5c5d99dfcf2ab459336",
+          "state": "profile-open"
+        },
+        {
+          "path": "neumorphism-zh-1280-profile-reopened.png",
+          "sha256": "c6bbb957ea1c7d8832564f863b30148ed1fb8ac43308547e092d3acda4eb82a3",
+          "state": "profile-reopened"
+        }
+      ],
+      "route": "/style-scenes/neumorphism/?mode=default",
+      "status": "passed",
+      "pageErrors": []
+    },
+    {
+      "slug": "neumorphism",
+      "width": 390,
+      "locale": "zh",
+      "mode": "default",
+      "kind": "profile",
+      "actions": [
+        {
+          "action": "open",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "nickname-save",
+          "nickname": "Atlas 390",
+          "openerText": "Atlas 390",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 1259,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen",
+          "nicknameRetained": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "manual-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "mellow-profile",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "neumorphism-zh-390-profile-open.png",
+          "sha256": "c3288b143bd3732e5d864fa495dddaf86231f0833842fd11cc27985287ba28e1",
+          "state": "profile-open"
+        },
+        {
+          "path": "neumorphism-zh-390-profile-reopened.png",
+          "sha256": "3534ae3be52576bb9e05e6787096837ba5a66ee23f77f99a3742b449e53a5986",
+          "state": "profile-reopened"
+        }
+      ],
+      "route": "/style-scenes/neumorphism/?mode=default",
+      "status": "passed",
+      "pageErrors": []
+    },
+    {
+      "slug": "neumorphism",
+      "width": 320,
+      "locale": "zh",
+      "mode": "default",
+      "kind": "profile",
+      "actions": [
+        {
+          "action": "open",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "nickname-save",
+          "nickname": "Atlas 320",
+          "openerText": "Atlas 320",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 1319,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen",
+          "nicknameRetained": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "manual-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "mellow-profile",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "neumorphism-zh-320-profile-open.png",
+          "sha256": "af9dd5c6e6a27f12143d38ae9af235f7cadc134a0d1ca69c9a7cd18287491e24",
+          "state": "profile-open"
+        },
+        {
+          "path": "neumorphism-zh-320-profile-reopened.png",
+          "sha256": "8f23a636290d510438f32780c4ccfc01a5818823e7ca8b3a1455057f2c09d62f",
+          "state": "profile-reopened"
+        }
+      ],
+      "route": "/style-scenes/neumorphism/?mode=default",
+      "status": "passed",
+      "pageErrors": []
+    },
+    {
+      "slug": "swiss-style",
+      "width": 1280,
+      "locale": "zh",
+      "mode": "default",
+      "kind": "menu-work-project",
+      "actions": [
+        {
+          "action": "open-menu",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "menu",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "menu-WORK",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 427,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "open-project",
+          "title": "NORTH / Brand identity",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 427,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "project",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "back-to-work",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "project-0",
+            "id": ""
+          },
+          "scrollY": 427,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen-menu-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "menu",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "swiss-style-zh-1280-menu-open.png",
+          "sha256": "5e7b44130b16fd926ff3c2c0c1cdac13e0421b0ef7be3ddb8474dad5f28f1345",
+          "state": "menu-open"
+        },
+        {
+          "path": "swiss-style-zh-1280-project-open.png",
+          "sha256": "5e3b8eb3f82f0a9057389e239d646169642ada2ebba7e77d20ca9fc1c6ad9b8c",
+          "state": "project-open"
+        }
+      ],
+      "route": "/style-scenes/swiss-style/?mode=default",
+      "status": "passed",
+      "pageErrors": []
+    },
+    {
+      "slug": "swiss-style",
+      "width": 390,
+      "locale": "zh",
+      "mode": "default",
+      "kind": "menu-work-project",
+      "actions": [
+        {
+          "action": "open-menu",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "menu",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "menu-WORK",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 1015,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "open-project",
+          "title": "NORTH / Brand identity",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 1015,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "project",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "back-to-work",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "project-0",
+            "id": ""
+          },
+          "scrollY": 1015,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen-menu-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "menu",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "swiss-style-zh-390-menu-open.png",
+          "sha256": "3e23c995c2b6203748c846c160c6594369783bd47ada1fc243b84b2a31392fa3",
+          "state": "menu-open"
+        },
+        {
+          "path": "swiss-style-zh-390-project-open.png",
+          "sha256": "aa4a2376adffcdaea56b86741fb02d81fc13e93044f62c21fd2d61e1c3f6e672",
+          "state": "project-open"
+        }
+      ],
+      "route": "/style-scenes/swiss-style/?mode=default",
+      "status": "passed",
+      "pageErrors": []
+    },
+    {
+      "slug": "swiss-style",
+      "width": 320,
+      "locale": "zh",
+      "mode": "default",
+      "kind": "menu-work-project",
+      "actions": [
+        {
+          "action": "open-menu",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "menu",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "menu-WORK",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 1008,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "open-project",
+          "title": "NORTH / Brand identity",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 1008,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "project",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "back-to-work",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "project-0",
+            "id": ""
+          },
+          "scrollY": 1008,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen-menu-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "menu",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "swiss-style-zh-320-menu-open.png",
+          "sha256": "740da90d3b7c9605196a32c8b47123611b3d943fbe3d459b1920500126681e62",
+          "state": "menu-open"
+        },
+        {
+          "path": "swiss-style-zh-320-project-open.png",
+          "sha256": "1e1eafe3cf2f8b77c39bf6c18b59b2bd012eb618586ce6343dc3775904ae6a38",
+          "state": "project-open"
+        }
+      ],
+      "route": "/style-scenes/swiss-style/?mode=default",
+      "status": "passed",
+      "pageErrors": []
+    }
+  ],
+  "browserClosed": true,
+  "sourceCommitAfter": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+  "finishedAt": "2026-10-19T06:15:41.760Z",
+  "visualReview": "Recorded separately in review.json; operation success is not automatic visual approval"
+}

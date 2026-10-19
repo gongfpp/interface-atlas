@@ -1,0 +1,770 @@
+{
+  "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+  "server": "http://127.0.0.1:4337",
+  "engine": "chromium",
+  "mode": "default",
+  "contextCount": 1,
+  "startedAt": "2026-10-19T06:15:42.031Z",
+  "cases": [
+    {
+      "slug": "neobrutalism",
+      "width": 1280,
+      "locale": "zh",
+      "mode": "default",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "actions": [
+        {
+          "state": "playlab-continuation",
+          "kind": null,
+          "at": "2026-10-19T06:15:42.279Z"
+        },
+        {
+          "state": "playlab-brief-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:42.300Z"
+        },
+        {
+          "state": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "at": "2026-10-19T06:15:42.402Z"
+        },
+        {
+          "state": "playlab-brief-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:42.477Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "neobrutalism-zh-1280-summary-readable.png",
+          "sha256": "f6d10e1e7747372646c0e389ded1c016809f65f06b0046350ddb15936cc692c6",
+          "state": "playlab-brief-status",
+          "target": "[data-play-summary]",
+          "geometry": {
+            "text": "项目：Atlas playground\n目标：Make a local collection.\n服务：Design / Develop / Create\n时间：2–3 个月\n简报已整理，可继续修改。未发送到服务器。",
+            "rect": {
+              "x": 287.5,
+              "y": 614.125,
+              "width": 690,
+              "height": 184
+            },
+            "viewport": {
+              "width": 1280,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 223,
+              "clientHeight": 862,
+              "scrollHeight": 1085
+            },
+            "pressed": null
+          }
+        }
+      ],
+      "pageErrors": [],
+      "status": "passed",
+      "route": "/style-scenes/neobrutalism/?mode=default"
+    },
+    {
+      "slug": "neobrutalism",
+      "width": 390,
+      "locale": "en",
+      "mode": "default",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "actions": [
+        {
+          "state": "playlab-continuation",
+          "kind": null,
+          "at": "2026-10-19T06:15:42.755Z"
+        },
+        {
+          "state": "playlab-brief-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:42.848Z"
+        },
+        {
+          "state": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "at": "2026-10-19T06:15:42.978Z"
+        },
+        {
+          "state": "playlab-brief-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:43.065Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "neobrutalism-en-390-summary-readable.png",
+          "sha256": "a6de3cada28a3989d1c883717f6e8f950f766af58ebc92f07b7a3a823fcdb21c",
+          "state": "playlab-brief-status",
+          "target": "[data-play-summary]",
+          "geometry": {
+            "text": "Project: Atlas playground\nGoal: Make a local collection.\nServices: Design / Develop / Create\nTimeline: 2–3 months\nBrief prepared. You can keep editing. Nothing was sent.",
+            "rect": {
+              "x": 42,
+              "y": 571.046875,
+              "width": 291,
+              "height": 240
+            },
+            "viewport": {
+              "width": 390,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 260,
+              "clientHeight": 862,
+              "scrollHeight": 1122
+            },
+            "pressed": null
+          }
+        }
+      ],
+      "pageErrors": [],
+      "status": "passed",
+      "route": "/en/style-scenes/neobrutalism/?mode=default"
+    },
+    {
+      "slug": "neobrutalism",
+      "width": 320,
+      "locale": "en",
+      "mode": "default",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "actions": [
+        {
+          "state": "playlab-continuation",
+          "kind": null,
+          "at": "2026-10-19T06:15:43.331Z"
+        },
+        {
+          "state": "playlab-brief-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:43.396Z"
+        },
+        {
+          "state": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "at": "2026-10-19T06:15:43.498Z"
+        },
+        {
+          "state": "playlab-brief-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:43.627Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "neobrutalism-en-320-summary-readable.png",
+          "sha256": "b8151e22a4396846a6d1d3d8becd6bfe484d5137b65b65065bdcf950edc664e1",
+          "state": "playlab-brief-status",
+          "target": "[data-play-summary]",
+          "geometry": {
+            "text": "Project: Atlas playground\nGoal: Make a local collection.\nServices: Design / Develop / Create\nTimeline: 2–3 months\nBrief prepared. You can keep editing. Nothing was sent.",
+            "rect": {
+              "x": 42,
+              "y": 464.296875,
+              "width": 221,
+              "height": 324
+            },
+            "viewport": {
+              "width": 320,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 414,
+              "clientHeight": 862,
+              "scrollHeight": 1276
+            },
+            "pressed": null
+          }
+        }
+      ],
+      "pageErrors": [],
+      "status": "passed",
+      "route": "/en/style-scenes/neobrutalism/?mode=default"
+    },
+    {
+      "slug": "minimalism",
+      "width": 390,
+      "locale": "en",
+      "mode": "default",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "actions": [
+        {
+          "state": "product-dialog-open",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:43.981Z"
+        },
+        {
+          "state": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "at": "2026-10-19T06:15:44.093Z"
+        },
+        {
+          "state": "product-added-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:44.234Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "minimalism-en-390-product-added-status.png",
+          "sha256": "977e8c525b8a99dde20b363e2c3f7616be0abf9c18fd149a3da2c89b6d91d35d",
+          "state": "product-added-status",
+          "target": "[data-product-status]",
+          "geometry": {
+            "text": "Added Lumo Focus · Charcoal to your bag.",
+            "rect": {
+              "x": 44,
+              "y": 639.59375,
+              "width": 287,
+              "height": 96
+            },
+            "viewport": {
+              "width": 390,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 0,
+              "clientHeight": 771,
+              "scrollHeight": 771
+            },
+            "pressed": null
+          }
+        }
+      ],
+      "pageErrors": [],
+      "status": "passed",
+      "route": "/en/style-scenes/minimalism/?mode=default"
+    },
+    {
+      "slug": "minimalism",
+      "width": 320,
+      "locale": "en",
+      "mode": "default",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "actions": [
+        {
+          "state": "product-dialog-open",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:44.445Z"
+        },
+        {
+          "state": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "at": "2026-10-19T06:15:44.608Z"
+        },
+        {
+          "state": "product-added-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:44.729Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "minimalism-en-320-product-added-status.png",
+          "sha256": "57c0111d7bcfca2aaa29b26c0780b6292dd854654674ca44a59158c1bf23f2bb",
+          "state": "product-added-status",
+          "target": "[data-product-status]",
+          "geometry": {
+            "text": "Added Lumo Focus · Charcoal to your bag.",
+            "rect": {
+              "x": 44,
+              "y": 653.59375,
+              "width": 217,
+              "height": 96
+            },
+            "viewport": {
+              "width": 320,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 0,
+              "clientHeight": 799,
+              "scrollHeight": 799
+            },
+            "pressed": null
+          }
+        }
+      ],
+      "pageErrors": [],
+      "status": "passed",
+      "route": "/en/style-scenes/minimalism/?mode=default"
+    },
+    {
+      "slug": "bento-grid",
+      "width": 390,
+      "locale": "en",
+      "mode": "default",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "actions": [
+        {
+          "state": "task-added-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:45.052Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "bento-grid-en-390-task-added-status.png",
+          "sha256": "ba8ed33e34893e2e75db0a986b83b16b56dbfd1e00b53d61fc58b1655c0f9b2d",
+          "state": "task-added-status",
+          "target": "[data-task-status]",
+          "geometry": {
+            "text": "Completed 0 / 6 tasks",
+            "rect": {
+              "x": 37,
+              "y": 422.09375,
+              "width": 301,
+              "height": 56
+            },
+            "viewport": {
+              "width": 390,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": null,
+            "pressed": null
+          }
+        }
+      ],
+      "pageErrors": [],
+      "status": "passed",
+      "route": "/en/style-scenes/bento-grid/?mode=default"
+    },
+    {
+      "slug": "bento-grid",
+      "width": 320,
+      "locale": "en",
+      "mode": "default",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "actions": [
+        {
+          "state": "task-added-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:45.465Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "bento-grid-en-320-task-added-status.png",
+          "sha256": "7a2ecb145e2c8309fea492eb0645e903ca6dce1d065cb9f01271230d4ce7c749",
+          "state": "task-added-status",
+          "target": "[data-task-status]",
+          "geometry": {
+            "text": "Completed 0 / 6 tasks",
+            "rect": {
+              "x": 37,
+              "y": 421.953125,
+              "width": 231,
+              "height": 56
+            },
+            "viewport": {
+              "width": 320,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": null,
+            "pressed": null
+          }
+        }
+      ],
+      "pageErrors": [],
+      "status": "passed",
+      "route": "/en/style-scenes/bento-grid/?mode=default"
+    },
+    {
+      "slug": "skeuomorphism",
+      "width": 390,
+      "locale": "en",
+      "mode": "default",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "actions": [
+        {
+          "state": "product-dialog-open",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:45.906Z"
+        },
+        {
+          "state": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "at": "2026-10-19T06:15:46.054Z"
+        },
+        {
+          "state": "product-added-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:46.155Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "skeuomorphism-en-390-product-added-status.png",
+          "sha256": "0c6f0a6b6ef88e3b64f0fff0e8ede4cb661548d7b1e528d485a4ef8cb6a47bc5",
+          "state": "product-added-status",
+          "target": "[data-product-status]",
+          "geometry": {
+            "text": "Added Classic film camera · Charcoal to your bag.",
+            "rect": {
+              "x": 42,
+              "y": 625.09375,
+              "width": 291,
+              "height": 90
+            },
+            "viewport": {
+              "width": 390,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 0,
+              "clientHeight": 738,
+              "scrollHeight": 738
+            },
+            "pressed": null
+          }
+        }
+      ],
+      "pageErrors": [],
+      "status": "passed",
+      "route": "/en/style-scenes/skeuomorphism/?mode=default"
+    },
+    {
+      "slug": "skeuomorphism",
+      "width": 320,
+      "locale": "en",
+      "mode": "default",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "actions": [
+        {
+          "state": "product-dialog-open",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:46.586Z"
+        },
+        {
+          "state": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "at": "2026-10-19T06:15:46.692Z"
+        },
+        {
+          "state": "product-added-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:46.775Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "skeuomorphism-en-320-product-added-status.png",
+          "sha256": "b1606ba2d0e9e6d2c330d747d36ed8814dae3339754d3846c82bc587d3d5ab71",
+          "state": "product-added-status",
+          "target": "[data-product-status]",
+          "geometry": {
+            "text": "Added Classic film camera · Charcoal to your bag.",
+            "rect": {
+              "x": 42,
+              "y": 625.09375,
+              "width": 221,
+              "height": 118
+            },
+            "viewport": {
+              "width": 320,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 0,
+              "clientHeight": 794,
+              "scrollHeight": 794
+            },
+            "pressed": null
+          }
+        }
+      ],
+      "pageErrors": [],
+      "status": "passed",
+      "route": "/en/style-scenes/skeuomorphism/?mode=default"
+    },
+    {
+      "slug": "brutalism",
+      "width": 390,
+      "locale": "en",
+      "mode": "default",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "actions": [
+        {
+          "state": "void-case-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:47.274Z"
+        },
+        {
+          "state": "inquiry-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:47.528Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "brutalism-en-390-inquiry-status.png",
+          "sha256": "597f9905438de61c0d8711b47ec1fb938ad2a71af9481741b9b4507e351cfdc4",
+          "state": "inquiry-status",
+          "target": "[data-contact-summary]",
+          "geometry": {
+            "text": "Inquiry · Atlas · state@example.com\nA public map.\nLocal preview prepared. No email sent. Edit and generate again.",
+            "rect": {
+              "x": 21,
+              "y": 554.96875,
+              "width": 333,
+              "height": 161
+            },
+            "viewport": {
+              "width": 390,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": null,
+            "pressed": null
+          }
+        }
+      ],
+      "pageErrors": [],
+      "status": "passed",
+      "route": "/en/style-scenes/brutalism/?mode=default"
+    },
+    {
+      "slug": "brutalism",
+      "width": 320,
+      "locale": "en",
+      "mode": "default",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "actions": [
+        {
+          "state": "void-case-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:47.893Z"
+        },
+        {
+          "state": "inquiry-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:48.173Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "brutalism-en-320-inquiry-status.png",
+          "sha256": "ccddbeb2541503e4ed6bd27a255b8973ff72997149beb38edd49996860b0e68c",
+          "state": "inquiry-status",
+          "target": "[data-contact-summary]",
+          "geometry": {
+            "text": "Inquiry · Atlas · state@example.com\nA public map.\nLocal preview prepared. No email sent. Edit and generate again.",
+            "rect": {
+              "x": 21,
+              "y": 500.28125,
+              "width": 263,
+              "height": 215
+            },
+            "viewport": {
+              "width": 320,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": null,
+            "pressed": null
+          }
+        }
+      ],
+      "pageErrors": [],
+      "status": "passed",
+      "route": "/en/style-scenes/brutalism/?mode=default"
+    },
+    {
+      "slug": "retro-web",
+      "width": 390,
+      "locale": "en",
+      "mode": "default",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "actions": [
+        {
+          "state": "guestbook-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:48.580Z"
+        },
+        {
+          "state": "retro-search-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:48.904Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "retro-web-en-390-guestbook-status.png",
+          "sha256": "b52efa7d91eb9b28bfddb1f857f8d529bd9b62146853836c26f4f0563598ffb9",
+          "state": "guestbook-status",
+          "target": "[data-guest-messages]",
+          "geometry": {
+            "text": "Atlas: Hello, quiet web.",
+            "rect": {
+              "x": 31,
+              "y": 700.953125,
+              "width": 313,
+              "height": 61
+            },
+            "viewport": {
+              "width": 390,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": null,
+            "pressed": null
+          }
+        }
+      ],
+      "pageErrors": [],
+      "status": "passed",
+      "route": "/en/style-scenes/retro-web/?mode=default"
+    },
+    {
+      "slug": "retro-web",
+      "width": 320,
+      "locale": "en",
+      "mode": "default",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "actions": [
+        {
+          "state": "guestbook-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:49.266Z"
+        },
+        {
+          "state": "retro-search-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:49.531Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "retro-web-en-320-guestbook-status.png",
+          "sha256": "ea289277d9a1d0163ebeafba933aeac24ddf51ac68a71e341997e156d32266b2",
+          "state": "guestbook-status",
+          "target": "[data-guest-messages]",
+          "geometry": {
+            "text": "Atlas: Hello, quiet web.",
+            "rect": {
+              "x": 31,
+              "y": 701.015625,
+              "width": 243,
+              "height": 61
+            },
+            "viewport": {
+              "width": 320,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": null,
+            "pressed": null
+          }
+        }
+      ],
+      "pageErrors": [],
+      "status": "passed",
+      "route": "/en/style-scenes/retro-web/?mode=default"
+    },
+    {
+      "slug": "editorial",
+      "width": 390,
+      "locale": "en",
+      "mode": "default",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "actions": [
+        {
+          "state": "saved-story-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:49.916Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "editorial-en-390-saved-story-dialog.png",
+          "sha256": "4864da1db617ee9ecdb3de7239586f843865f62206de417e91bcad014e322948",
+          "state": "saved-story-dialog",
+          "target": "[data-scene-action=\"save-story\"]",
+          "geometry": {
+            "text": "Saved · Remove",
+            "rect": {
+              "x": 46,
+              "y": 765.234375,
+              "width": 142.28125,
+              "height": 44
+            },
+            "viewport": {
+              "width": 390,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 0,
+              "clientHeight": 766,
+              "scrollHeight": 766
+            },
+            "pressed": "true"
+          }
+        }
+      ],
+      "pageErrors": [],
+      "status": "passed",
+      "route": "/en/style-scenes/editorial/?mode=default"
+    },
+    {
+      "slug": "editorial",
+      "width": 320,
+      "locale": "en",
+      "mode": "default",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "actions": [
+        {
+          "state": "saved-story-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:50.215Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "editorial-en-320-saved-story-dialog.png",
+          "sha256": "83a27b99e6bd414b7f0f373bf6dcba4aa284176e26b7c50cb0f00411cd3eeaca",
+          "state": "saved-story-dialog",
+          "target": "[data-scene-action=\"save-story\"]",
+          "geometry": {
+            "text": "Saved · Remove",
+            "rect": {
+              "x": 46,
+              "y": 815.03125,
+              "width": 142.28125,
+              "height": 44
+            },
+            "viewport": {
+              "width": 320,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 21,
+              "clientHeight": 866,
+              "scrollHeight": 887
+            },
+            "pressed": "true"
+          }
+        }
+      ],
+      "pageErrors": [],
+      "status": "passed",
+      "route": "/en/style-scenes/editorial/?mode=default"
+    }
+  ],
+  "visualReview": "Not yet reviewed; operation success never implies visual approval",
+  "completedAt": "2026-10-19T06:15:50.371Z",
+  "sourceCommitAfter": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+  "browserClosed": true
+}

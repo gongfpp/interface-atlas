@@ -1,0 +1,3165 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-19T06:30:16.472Z",
+  "implementationCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+  "implementationUrl": "https://github.com/gongfpp/interface-atlas/commit/60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+  "parentImplementation": "bb47233b3cecbb2137bd0785184a8ee2d90a7cdc",
+  "baselineCommit": "2bae6cd51a630bb6fa04869c50142b72b7df8608",
+  "provenancePolicy": "Raw capture pending statuses are preserved. Explicit visual review is separately bound to PNG bytes. Identical-byte prior reviews may be reused only with an explicit hash binding; changed images must be viewed again. Evidence-only release commit does not change implementation source.",
+  "browsers": {
+    "chromium": "153.0.8010.12",
+    "firefox": "155.0",
+    "webkit": "26.6",
+    "kind": "Playwright desktop engines and touch/viewport simulation; not physical iOS/Android"
+  },
+  "captures": [
+    {
+      "phase": "before",
+      "paths": 37,
+      "png": 95,
+      "manifests": [
+        "before/all25-desktop-zh/manifest.json",
+        "before/focus-390-en/manifest.json",
+        "before/focus-320-en/manifest.json"
+      ]
+    },
+    {
+      "phase": "after",
+      "paths": 37,
+      "png": 95,
+      "manifests": [
+        "after/all25-desktop-zh/manifest.json",
+        "after/focus-390-en/manifest.json",
+        "after/focus-320-en/manifest.json"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "chromium-current-targeted",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "scope": "旧参考场景80 + 品牌状态67 + 控件生命周期39；不是默认1100全量",
+      "passed": 186,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "durationMs": 144767.81800000003,
+      "reportFile": "atlas-round2-c-reference-state-lifecycle-chromium-report.json"
+    },
+    {
+      "id": "webkit-original-pause-repeat",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "scope": "原始Mellow详情完整用例30次，原click/5s谓词，trace与事件监听",
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "durationMs": 109016.348,
+      "reportFile": "atlas-round2-c-pause-confirmation-report.json"
+    },
+    {
+      "id": "cross-current-lifecycle",
+      "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+      "scope": "Firefox/WebKit生命周期39×2，含真实350ms按住跨tick",
+      "passed": 78,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "durationMs": 21018.071,
+      "reportFile": "atlas-round2-c-lifecycle-cross-report.json"
+    }
+  ],
+  "historicalChecks": [
+    {
+      "id": "chromium-parent-full",
+      "sourceCommit": "bb47233b3cecbb2137bd0785184a8ee2d90a7cdc",
+      "scope": "修正同值文本写入之前的A默认完整测试；不能称为当前C全量",
+      "passed": 1098,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "durationMs": 1782028.413,
+      "reportFile": "atlas-round2-v6-chromium-full-report.json"
+    }
+  ],
+  "deferredChecks": [
+    {
+      "id": "firefox-webkit-current-full",
+      "total": 980,
+      "status": "not-run-on-C",
+      "reason": "User explicitly requested a release checkpoint and pause; continue the full current cross-browser matrix next session. C lifecycle78 and original failing WebKit full-case30 passed; prior A full matrices each had one failure and are not relabeled as current green."
+    }
+  ],
+  "staticChecks": {
+    "sourceCommit": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+    "astro": {
+      "files": 322,
+      "errors": 0,
+      "warnings": 0,
+      "existingHints": 103
+    },
+    "eslint": "passed",
+    "unit": {
+      "passed": 357,
+      "failed": 0
+    },
+    "build": {
+      "pages": 500
+    },
+    "searchGolden": {
+      "top3": "30/30",
+      "top1": "86.7%"
+    }
+  },
+  "styles": [
+    {
+      "slug": "art-deco",
+      "scene": "../../style-scenes/art-deco/",
+      "detail": "../../styles/art-deco/#playground",
+      "capturedStates": [
+        "select-expanded",
+        "brand-result"
+      ],
+      "dialog": "not-applicable",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "art-deco",
+        "result": "approved",
+        "reviewScope": "Only the listed actual-viewed images and visible state portions; full continuation mobile results at390/320 supplement clipped900px existing evidence.",
+        "notes": [
+          "Axial gold double rules, square controls and dinner ticket; submitted guest/date/party and no-real-booking result visible.",
+          "Actual reviewed captures show no blocking overlap, clipped controls, unreadable selected text or brand-material loss."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/art-deco-zh-1280-01-select-expanded.png",
+            "sha256": "554a71366ca429650e50d957be340de10b42cfc49a79873be3cbe678e03353c6",
+            "priorSha256": "554a71366ca429650e50d957be340de10b42cfc49a79873be3cbe678e03353c6",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/art-deco-zh-1280-02-brand-result.png",
+            "sha256": "11c30759a75ed8f016f116269d5e21087797454add821e2e7d08101ab15037d1",
+            "priorSha256": "11c30759a75ed8f016f116269d5e21087797454add821e2e7d08101ab15037d1",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/art-deco-en-320-brand-result.png",
+            "sha256": "2b911c7903154c9ede8963c9a13a29ade728fb2902b0f3e6a2f39ab51057830a",
+            "priorSha256": "2b911c7903154c9ede8963c9a13a29ade728fb2902b0f3e6a2f39ab51057830a",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/art-deco-en-390-brand-result.png",
+            "sha256": "e3e726424f113a3b028003545d6dedfec2dc117c1364746d9196d49455f15bef",
+            "priorSha256": "e3e726424f113a3b028003545d6dedfec2dc117c1364746d9196d49455f15bef",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "aurora",
+      "scene": "../../style-scenes/aurora/",
+      "detail": "../../styles/aurora/#playground",
+      "capturedStates": [
+        "select-expanded",
+        "brand-result"
+      ],
+      "dialog": "not-applicable",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "aurora",
+        "result": "approved",
+        "reviewScope": "Only the listed actual-viewed images and visible state portions; full continuation mobile results at390/320 supplement clipped900px existing evidence.",
+        "notes": [
+          "Deep multicolor glass field, violet control selection and saved spectrum; full mobile field and status remain readable.",
+          "Actual reviewed captures show no blocking overlap, clipped controls, unreadable selected text or brand-material loss."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/aurora-zh-1280-01-select-expanded.png",
+            "sha256": "e554fcc3bf495bf73b600f4b5820cc05db3869adb3331d879bf3d09c5e0f0ca8",
+            "priorSha256": "e554fcc3bf495bf73b600f4b5820cc05db3869adb3331d879bf3d09c5e0f0ca8",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/aurora-zh-1280-02-brand-result.png",
+            "sha256": "24e5bc0ab2bad800ce1dd4b8404ea751cac0862f09ca546a7248420c5b9ef8de",
+            "priorSha256": "24e5bc0ab2bad800ce1dd4b8404ea751cac0862f09ca546a7248420c5b9ef8de",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/aurora-en-320-brand-result.png",
+            "sha256": "3dc7b8fd29e71cf5c389aa1d45c71fd0dc6b9a2650f8e450996e0062f768f942",
+            "priorSha256": "3dc7b8fd29e71cf5c389aa1d45c71fd0dc6b9a2650f8e450996e0062f768f942",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/aurora-en-390-brand-result.png",
+            "sha256": "ed966b7e0b9005dfcd7eb072e3a80d64cd29344463c82ab5db95ebe84406ae51",
+            "priorSha256": "ed966b7e0b9005dfcd7eb072e3a80d64cd29344463c82ab5db95ebe84406ae51",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "bauhaus",
+      "scene": "../../style-scenes/bauhaus/",
+      "detail": "../../styles/bauhaus/#playground",
+      "capturedStates": [
+        "brand-result"
+      ],
+      "dialog": "not-applicable",
+      "select": "not-applicable",
+      "visualReview": {
+        "slug": "bauhaus",
+        "result": "approved",
+        "reviewScope": "Only the listed actual-viewed images and visible state portions; full continuation mobile results at390/320 supplement clipped900px existing evidence.",
+        "notes": [
+          "Primary geometry, square outlined controls and one placed triangle remain distinct at both narrow widths.",
+          "Actual reviewed captures show no blocking overlap, clipped controls, unreadable selected text or brand-material loss."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/bauhaus-zh-1280-01-brand-result.png",
+            "sha256": "cf41a1b1ba5d8c0932b1169f5af0159d42c55572847b7107bbcb6c84f473b5a1",
+            "priorSha256": "cf41a1b1ba5d8c0932b1169f5af0159d42c55572847b7107bbcb6c84f473b5a1",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/bauhaus-en-320-brand-result.png",
+            "sha256": "350c1a18a24615928bfae555f9216f711a6e487d4bf7ec2cafa1d49f89249117",
+            "priorSha256": "350c1a18a24615928bfae555f9216f711a6e487d4bf7ec2cafa1d49f89249117",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/bauhaus-en-390-brand-result.png",
+            "sha256": "c9a63d0b8ac52f899d296cd6605e2e3a09ad2c4e2fe1007485c3dca06cde1559",
+            "priorSha256": "c9a63d0b8ac52f899d296cd6605e2e3a09ad2c4e2fe1007485c3dca06cde1559",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "bento-grid",
+      "scene": "../../style-scenes/bento-grid/",
+      "detail": "../../styles/bento-grid/#playground",
+      "capturedStates": [
+        "task-added-status"
+      ],
+      "dialog": "available-not-visited",
+      "select": "not-applicable",
+      "visualReview": {
+        "slug": "bento-grid",
+        "result": "approved",
+        "reviewScope": "Chinese 1280 task-added feedback; Chinese 1280/390/320 profile open/reopen in supplementary; English 390/320 task-added state in supplementary.",
+        "notes": [
+          "Tasko retains pastel, rounded modular cards instead of a generic shared dialog skin.",
+          "Profile input and close/submit controls are readable at both mobile widths; saving a nickname may naturally wrap the narrow header, without horizontal clipping."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/bento-grid-zh-1280-01-task-added-status.png",
+            "sha256": "8440b0d05a533bb0a9bb7a33df689eccf87387d3c1cdb5eca8b846415551623f",
+            "priorApprovedSha256": "8440b0d05a533bb0a9bb7a33df689eccf87387d3c1cdb5eca8b846415551623f",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "brutalism",
+      "scene": "../../style-scenes/brutalism/",
+      "detail": "../../styles/brutalism/#playground",
+      "capturedStates": [
+        "void-case-dialog",
+        "inquiry-status"
+      ],
+      "dialog": "open-state-captured",
+      "select": "not-applicable",
+      "visualReview": {
+        "slug": "brutalism",
+        "result": "approved",
+        "reviewScope": "Chinese 1280 case-study dialog and inquiry result; supplementary English 390/320 readable inquiry result.",
+        "notes": [
+          "VOID retains stark monochrome, hard rectangular boundaries and direct high-contrast typography across the case/contact states.",
+          "No off-viewport text is counted as visually approved."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/brutalism-zh-1280-01-void-case-dialog.png",
+            "sha256": "ab7865ba7cb34166f021722012db4ff89df0ce16574344d0c2c722bf09c8ef25",
+            "priorApprovedSha256": "ab7865ba7cb34166f021722012db4ff89df0ce16574344d0c2c722bf09c8ef25",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/brutalism-zh-1280-02-inquiry-status.png",
+            "sha256": "c818cf35d550fd844be0cf9aa77137c8a58dfd4b1899e10626f075ebdb20ed90",
+            "priorApprovedSha256": "c818cf35d550fd844be0cf9aa77137c8a58dfd4b1899e10626f075ebdb20ed90",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "claymorphism",
+      "scene": "../../style-scenes/claymorphism/",
+      "detail": "../../styles/claymorphism/#playground",
+      "capturedStates": [
+        "select-expanded",
+        "brand-result"
+      ],
+      "dialog": "not-applicable",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "claymorphism",
+        "result": "approved",
+        "reviewScope": "Only the listed actual-viewed images and visible state portions; full continuation mobile results at390/320 supplement clipped900px existing evidence.",
+        "notes": [
+          "Convex white controls and three genuinely modeled color swatches; Peach blob, squeeze count, cabin entry and result retain clay depth.",
+          "Actual reviewed captures show no blocking overlap, clipped controls, unreadable selected text or brand-material loss."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/claymorphism-zh-1280-01-select-expanded.png",
+            "sha256": "ad015647021b554e23bb62b681ff080425aad53d732e1251795dbc0e06b31077",
+            "priorSha256": "ad015647021b554e23bb62b681ff080425aad53d732e1251795dbc0e06b31077",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/claymorphism-zh-1280-02-brand-result.png",
+            "sha256": "dc7ec774c40ebf0b775a946b95f5ca4f810dddfc1091d1fa25a6983c948c2b14",
+            "priorSha256": "dc7ec774c40ebf0b775a946b95f5ca4f810dddfc1091d1fa25a6983c948c2b14",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/focus-390-en/claymorphism-en-390-01-select-expanded.png",
+            "sha256": "a500175196e2d7b0f47e6b1407ebd791381c20c4872a15a48a3bab608b96c7ac",
+            "priorSha256": "a500175196e2d7b0f47e6b1407ebd791381c20c4872a15a48a3bab608b96c7ac",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/focus-390-en/claymorphism-en-390-02-brand-result.png",
+            "sha256": "13df027410ae8cd4a0d12c2e0c6a11ab0b9ac6214452fba6717a061b80dfb8e4",
+            "priorSha256": "13df027410ae8cd4a0d12c2e0c6a11ab0b9ac6214452fba6717a061b80dfb8e4",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/focus-320-en/claymorphism-en-320-01-select-expanded.png",
+            "sha256": "04689cdfc641dae8906a13fe645f36953044a262012ed1ba84b4c407736107b2",
+            "priorSha256": "04689cdfc641dae8906a13fe645f36953044a262012ed1ba84b4c407736107b2",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/focus-320-en/claymorphism-en-320-02-brand-result.png",
+            "sha256": "cbd0dd58f0194e713dfdb5abc8b11c9920652dfbc9503ea55bf2c2b33a79a84b",
+            "priorSha256": "cbd0dd58f0194e713dfdb5abc8b11c9920652dfbc9503ea55bf2c2b33a79a84b",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/claymorphism-en-320-brand-result.png",
+            "sha256": "2642f4922c6342bb98150690d0ce4c5080309a6f93ae4d0ae4e93fd0c59e273e",
+            "priorSha256": "2642f4922c6342bb98150690d0ce4c5080309a6f93ae4d0ae4e93fd0c59e273e",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/claymorphism-en-390-brand-result.png",
+            "sha256": "8f248b11a4ed6a18ab000f90817ac709641d5b0c7b8afb9d87e2147b98663963",
+            "priorSha256": "8f248b11a4ed6a18ab000f90817ac709641d5b0c7b8afb9d87e2147b98663963",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "corporate-memphis",
+      "scene": "../../style-scenes/corporate-memphis/",
+      "detail": "../../styles/corporate-memphis/#playground",
+      "capturedStates": [
+        "select-expanded",
+        "brand-result"
+      ],
+      "dialog": "not-applicable",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "corporate-memphis",
+        "result": "approved",
+        "reviewScope": "Only the listed actual-viewed images and visible state portions; full continuation mobile results at390/320 supplement clipped900px existing evidence.",
+        "notes": [
+          "Flat purple/cream team board and rounded cards; new sixth task and success form state preserve distinct material.",
+          "Actual reviewed captures show no blocking overlap, clipped controls, unreadable selected text or brand-material loss.",
+          "Full mobile screenshots are tall; the preview supports overall composition/state review, not fine pixel-level typography measurement."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/corporate-memphis-zh-1280-01-select-expanded.png",
+            "sha256": "6c847f3df746fd73d2aacece0944cfbd0294eef593ada2e592ff1ca97dc2ab01",
+            "priorSha256": "6c847f3df746fd73d2aacece0944cfbd0294eef593ada2e592ff1ca97dc2ab01",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/corporate-memphis-zh-1280-02-brand-result.png",
+            "sha256": "b887d649c19cd85c9ebf54ed57b25ba5f13c7baba51ab1ab7937fe0c70f273f9",
+            "priorSha256": "b887d649c19cd85c9ebf54ed57b25ba5f13c7baba51ab1ab7937fe0c70f273f9",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/corporate-memphis-en-320-brand-result.png",
+            "sha256": "f49b3e7576b247e4300dfaab1be0a5a56f8ae5645a5182bb9500ced5598548b4",
+            "priorSha256": "f49b3e7576b247e4300dfaab1be0a5a56f8ae5645a5182bb9500ced5598548b4",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/corporate-memphis-en-390-brand-result.png",
+            "sha256": "3c846b751ba14ef35d27fe60a5d797a1b4d2e29402e26b76728557d16420f587",
+            "priorSha256": "3c846b751ba14ef35d27fe60a5d797a1b4d2e29402e26b76728557d16420f587",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cyberpunk",
+      "scene": "../../style-scenes/cyberpunk/",
+      "detail": "../../styles/cyberpunk/#playground",
+      "capturedStates": [
+        "select-expanded",
+        "brand-result"
+      ],
+      "dialog": "not-applicable",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "cyberpunk",
+        "result": "approved",
+        "reviewScope": "Only the listed actual-viewed images and visible state portions; full continuation mobile results at390/320 supplement clipped900px existing evidence.",
+        "notes": [
+          "Dense cyan terminal, outlined popup and selected district; mobile terminal readout remains contained.",
+          "Actual reviewed captures show no blocking overlap, clipped controls, unreadable selected text or brand-material loss."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/cyberpunk-zh-1280-01-select-expanded.png",
+            "sha256": "3258a3e95d287021a0182fb914631fcfde03675ccb49ed0ae406e96294e08617",
+            "priorSha256": "3258a3e95d287021a0182fb914631fcfde03675ccb49ed0ae406e96294e08617",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/cyberpunk-zh-1280-02-brand-result.png",
+            "sha256": "a6dee6969a565efee07fc838f9ab53da42dcbcd264590c1298e8f749a825c546",
+            "priorSha256": "a6dee6969a565efee07fc838f9ab53da42dcbcd264590c1298e8f749a825c546",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/cyberpunk-en-320-brand-result.png",
+            "sha256": "04e1094f13dd89fab962ad10942b2b38526ff29f7d26d5f6d37ca64aeccf8b88",
+            "priorSha256": "04e1094f13dd89fab962ad10942b2b38526ff29f7d26d5f6d37ca64aeccf8b88",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/cyberpunk-en-390-brand-result.png",
+            "sha256": "b33154a0be38e23d5680f6e8cc50198d74c37ac5d16a2dbe66f72b9b5c69fc99",
+            "priorSha256": "b33154a0be38e23d5680f6e8cc50198d74c37ac5d16a2dbe66f72b9b5c69fc99",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "editorial",
+      "scene": "../../style-scenes/editorial/",
+      "detail": "../../styles/editorial/#playground",
+      "capturedStates": [
+        "saved-story-dialog"
+      ],
+      "dialog": "open-state-captured",
+      "select": "not-applicable",
+      "visualReview": {
+        "slug": "editorial",
+        "reviewScope": "实际逐图：1280中文已收藏文章弹窗",
+        "notes": [
+          "暖纸衬线、文章行距、克制书签按下态与主页一致；未见正文遮挡或关闭按钮裁切"
+        ],
+        "result": "approved",
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/editorial-zh-1280-01-saved-story-dialog.png",
+            "sha256": "aa780c80eec072107c86fdf3a05df9189ca1e705cc4fd3a9f2353a1b642fd8c1"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "flat-design",
+      "scene": "../../style-scenes/flat-design/",
+      "detail": "../../styles/flat-design/#playground",
+      "capturedStates": [
+        "select-expanded",
+        "brand-result"
+      ],
+      "dialog": "not-applicable",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "flat-design",
+        "result": "approved",
+        "reviewScope": "Only the listed actual-viewed images and visible state portions; full continuation mobile results at390/320 supplement clipped900px existing evidence.",
+        "notes": [
+          "Flat blue/yellow blocks, readable placeholder and completed workspace list; no inherited hard shadow.",
+          "Actual reviewed captures show no blocking overlap, clipped controls, unreadable selected text or brand-material loss."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/flat-design-zh-1280-01-select-expanded.png",
+            "sha256": "aa3844252d52028cdc4ba92d790c545bca50b14b11776d645ceabbefd73600bf",
+            "priorSha256": "aa3844252d52028cdc4ba92d790c545bca50b14b11776d645ceabbefd73600bf",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/flat-design-zh-1280-02-brand-result.png",
+            "sha256": "2e97d263039ceb3e25d2d9df5c0430303e710825edcdbe58dd1ecea1028b2fc8",
+            "priorSha256": "2e97d263039ceb3e25d2d9df5c0430303e710825edcdbe58dd1ecea1028b2fc8",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/flat-design-en-320-brand-result.png",
+            "sha256": "3ec59ba979da533d0d7e28bdd6a06abe11d9fdd8a3cd586af99e2ef8d9b1f979",
+            "priorSha256": "3ec59ba979da533d0d7e28bdd6a06abe11d9fdd8a3cd586af99e2ef8d9b1f979",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/flat-design-en-390-brand-result.png",
+            "sha256": "ef1d7b7bc7b238f52bbd9d8c46c5ea625fcab701dcca38b012436d93392b6693",
+            "priorSha256": "ef1d7b7bc7b238f52bbd9d8c46c5ea625fcab701dcca38b012436d93392b6693",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "glassmorphism",
+      "scene": "../../style-scenes/glassmorphism/",
+      "detail": "../../styles/glassmorphism/#playground",
+      "capturedStates": [
+        "aurora-feature-dialog",
+        "select-expanded",
+        "aurora-saved-status"
+      ],
+      "dialog": "open-state-captured",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "glassmorphism",
+        "result": "approved",
+        "reviewScope": "Chinese 1280 and English 390/320 feature dialog, expanded tone selector and saved-draft feedback.",
+        "notes": [
+          "Aurora keeps translucent cool material, rounded glass surfaces and readable text in its feature/create/saved states.",
+          "The open menu is a DOM listbox with a visible selected row and focus treatment; mobile text remains within the viewport."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/glassmorphism-zh-1280-01-aurora-feature-dialog.png",
+            "sha256": "f0d1e7f4f9963b823127448dc4f9309e6b354ee0478da177e56f751bd6bfde2a",
+            "priorApprovedSha256": "7680b2287d24604a5fbcdbd84f8ece7fbb3b6774c73694134dad3dfda94fb654",
+            "reviewBasis": "manually-approved-C-read_image"
+          },
+          {
+            "path": "after/all25-desktop-zh/glassmorphism-zh-1280-02-select-expanded.png",
+            "sha256": "2afc0753c40435a82ae5e1fb83724aed44c0098b6875c19602f2a5075e83bda2",
+            "priorApprovedSha256": "6da631fbec636f459fca1f5289f90c4989e8b4f0eaee4397d1e78dccb2228292",
+            "reviewBasis": "manually-approved-C-read_image"
+          },
+          {
+            "path": "after/all25-desktop-zh/glassmorphism-zh-1280-03-aurora-saved-status.png",
+            "sha256": "679db522ca091d850c8071b57fb7b96197950a16d7ad33a89673b9a53beb3f7f",
+            "priorApprovedSha256": "679db522ca091d850c8071b57fb7b96197950a16d7ad33a89673b9a53beb3f7f",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-390-en/glassmorphism-en-390-01-aurora-feature-dialog.png",
+            "sha256": "5d5ad89c0a45b5db3bb8124232e0ec41eb91268a3342b591317a7a97e1b6cc0d",
+            "priorApprovedSha256": "5d5ad89c0a45b5db3bb8124232e0ec41eb91268a3342b591317a7a97e1b6cc0d",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-390-en/glassmorphism-en-390-02-select-expanded.png",
+            "sha256": "f7c9a24a77017590c2916c26a731b86ffe3239e5d1d5aeb949d6751f0c064022",
+            "priorApprovedSha256": "f7c9a24a77017590c2916c26a731b86ffe3239e5d1d5aeb949d6751f0c064022",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-390-en/glassmorphism-en-390-03-aurora-saved-status.png",
+            "sha256": "a18369085a5685a0f7de5ddae0cbd62fd81fd14e798f197c954e731b4693d7e4",
+            "priorApprovedSha256": "a18369085a5685a0f7de5ddae0cbd62fd81fd14e798f197c954e731b4693d7e4",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-320-en/glassmorphism-en-320-01-aurora-feature-dialog.png",
+            "sha256": "b31010bbda706b2456edb84975346d31ebd31ccb02f901acc093c36a07f167f9",
+            "priorApprovedSha256": "b31010bbda706b2456edb84975346d31ebd31ccb02f901acc093c36a07f167f9",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-320-en/glassmorphism-en-320-02-select-expanded.png",
+            "sha256": "e3fcd77b7abce8538a857a049ba45436adc8c314002b856fe7ce666014df486a",
+            "priorApprovedSha256": "e3fcd77b7abce8538a857a049ba45436adc8c314002b856fe7ce666014df486a",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-320-en/glassmorphism-en-320-03-aurora-saved-status.png",
+            "sha256": "43d813568e3a8d3cd6be9ebb82c178f6bae94590c029ddac8c1f580fd0c4b130",
+            "priorApprovedSha256": "43d813568e3a8d3cd6be9ebb82c178f6bae94590c029ddac8c1f580fd0c4b130",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "hand-drawn",
+      "scene": "../../style-scenes/hand-drawn/",
+      "detail": "../../styles/hand-drawn/#playground",
+      "capturedStates": [
+        "select-expanded",
+        "brand-result"
+      ],
+      "dialog": "not-applicable",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "hand-drawn",
+        "result": "approved",
+        "reviewScope": "Only the listed actual-viewed images and visible state portions; full continuation mobile results at390/320 supplement clipped900px existing evidence.",
+        "notes": [
+          "Marker highlight, irregular paper outlines and ruled journal; saved entry and feedback wrap without overlap.",
+          "Actual reviewed captures show no blocking overlap, clipped controls, unreadable selected text or brand-material loss."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/hand-drawn-zh-1280-01-select-expanded.png",
+            "sha256": "4099450ca74321a158c3e4d637158894ab94327fd39be4e5d8b8b34d4d04fdb3",
+            "priorSha256": "4099450ca74321a158c3e4d637158894ab94327fd39be4e5d8b8b34d4d04fdb3",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/hand-drawn-zh-1280-02-brand-result.png",
+            "sha256": "578353882471b1517f3c8616e9970cb9cc38883473477926df9d8f70fc423443",
+            "priorSha256": "578353882471b1517f3c8616e9970cb9cc38883473477926df9d8f70fc423443",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/hand-drawn-en-320-brand-result.png",
+            "sha256": "3a4e65fc8934ddd30899023fd57a8c64c2b5c570beade7507bfd277b96529be9",
+            "priorSha256": "3a4e65fc8934ddd30899023fd57a8c64c2b5c570beade7507bfd277b96529be9",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/hand-drawn-en-390-brand-result.png",
+            "sha256": "a2d54fc814e5c18d1bae525bb7954aa70e18c1b9f48ba8c837d659756c3f6267",
+            "priorSha256": "a2d54fc814e5c18d1bae525bb7954aa70e18c1b9f48ba8c837d659756c3f6267",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "liquid-glass",
+      "scene": "../../style-scenes/liquid-glass/",
+      "detail": "../../styles/liquid-glass/#playground",
+      "capturedStates": [
+        "select-expanded",
+        "lumen-material-clear",
+        "lumen-material-frost",
+        "lumen-material-prism",
+        "brand-result"
+      ],
+      "dialog": "not-applicable",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "liquid-glass",
+        "result": "approved",
+        "reviewScope": "Only the listed actual-viewed images and visible state portions; full continuation mobile results at390/320 supplement clipped900px existing evidence.",
+        "notes": [
+          "Clear transmission, opaque milky Frost and rainbow-edge Prism visibly differ in desktop and full mobile specimen captures; saved recipe retained.",
+          "Actual reviewed captures show no blocking overlap, clipped controls, unreadable selected text or brand-material loss.",
+          "Existing focus900px mobile shots show controls/popup but omit lower specimen; visual differentiation is approved from supplementary full-continuation material images, not inferred from the cropped focus shots. This remains a CSS optical approximation."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/liquid-glass-zh-1280-01-select-expanded.png",
+            "sha256": "59997f40adce7434ecb3aaf254784529de9efc5ef0ee7beeaa2473f65d52e6ad",
+            "priorSha256": "59997f40adce7434ecb3aaf254784529de9efc5ef0ee7beeaa2473f65d52e6ad",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/liquid-glass-zh-1280-02-lumen-material-clear.png",
+            "sha256": "b8aa368c0bbdaa42c026a9f7806ede6a57d315f1376a8af607d62aafaa91950a",
+            "priorSha256": "b8aa368c0bbdaa42c026a9f7806ede6a57d315f1376a8af607d62aafaa91950a",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/liquid-glass-zh-1280-03-lumen-material-frost.png",
+            "sha256": "c1c59baffb21a6142ed21cdf0b2a3e1e03921d47cf1d9590f6755a9e9c84d84a",
+            "priorSha256": "c1c59baffb21a6142ed21cdf0b2a3e1e03921d47cf1d9590f6755a9e9c84d84a",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/liquid-glass-zh-1280-04-lumen-material-prism.png",
+            "sha256": "65934bb52b051d5ca93eb478436b7d6d1df4e619d82944ed31b00505ef314190",
+            "priorSha256": "65934bb52b051d5ca93eb478436b7d6d1df4e619d82944ed31b00505ef314190",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/liquid-glass-zh-1280-05-brand-result.png",
+            "sha256": "81867303ac76fb7755d88f49dd21331db27747c6e9f1494c8dece02b2e33c477",
+            "priorSha256": "81867303ac76fb7755d88f49dd21331db27747c6e9f1494c8dece02b2e33c477",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/focus-390-en/liquid-glass-en-390-01-select-expanded.png",
+            "sha256": "943d194e4447ac3d94962e4d0fd590b91323b7f40126c226514251f8c20bb0a7",
+            "priorSha256": "943d194e4447ac3d94962e4d0fd590b91323b7f40126c226514251f8c20bb0a7",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/focus-390-en/liquid-glass-en-390-02-lumen-material-clear.png",
+            "sha256": "fd17052b87cac241eb12dc9f41990a9531f9ef476dc006c6246ccb718b304d38",
+            "priorSha256": "fd17052b87cac241eb12dc9f41990a9531f9ef476dc006c6246ccb718b304d38",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/focus-390-en/liquid-glass-en-390-03-lumen-material-frost.png",
+            "sha256": "e8897139b6bc3049d3590d52675eaf89a61170a84f069aedace3314d8c5c5aab",
+            "priorSha256": "e8897139b6bc3049d3590d52675eaf89a61170a84f069aedace3314d8c5c5aab",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/focus-390-en/liquid-glass-en-390-04-lumen-material-prism.png",
+            "sha256": "4dd07b6a2a1f95997c00d0fb9e9317772980c0c3b1db418353e9714a15ad4a68",
+            "priorSha256": "4dd07b6a2a1f95997c00d0fb9e9317772980c0c3b1db418353e9714a15ad4a68",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/focus-390-en/liquid-glass-en-390-05-brand-result.png",
+            "sha256": "37b7d3f6f94fe26080f8305130b895951300b4c0a25256514016af2d98842b72",
+            "priorSha256": "37b7d3f6f94fe26080f8305130b895951300b4c0a25256514016af2d98842b72",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/focus-320-en/liquid-glass-en-320-01-select-expanded.png",
+            "sha256": "08343f579e84534a8e69f04cc8a691d0f19716e7a079398bd54439415fa4cb7f",
+            "priorSha256": "e00f55ebbf874a3f990ab76f86c07bee11484e86d25d30b51d5329cd2e794483",
+            "approvalBasis": "fresh-C-read_image",
+            "reviewNotes": "Freshly viewed C320px popup/controls/readout have no blocking overlap, clipped text or material loss in visible viewport; lower specimen remains covered by hash-identical full continuation mobile captures."
+          },
+          {
+            "path": "after/focus-320-en/liquid-glass-en-320-02-lumen-material-clear.png",
+            "sha256": "7f7d14a9867442739ccc916799f5e69b3b7f88f114eb2d5a0923944d75cbf7c4",
+            "priorSha256": "563380d4e5a38777ba3a4d5967959d52b549120ca48880aed742f3e7f9914cf9",
+            "approvalBasis": "fresh-C-read_image",
+            "reviewNotes": "Freshly viewed C320px popup/controls/readout have no blocking overlap, clipped text or material loss in visible viewport; lower specimen remains covered by hash-identical full continuation mobile captures."
+          },
+          {
+            "path": "after/focus-320-en/liquid-glass-en-320-03-lumen-material-frost.png",
+            "sha256": "e8bf8255ec910b9575b619dfe09f48e1083d5b67fa78cc7143abcd17ff346942",
+            "priorSha256": "fe64d200899b189af5dcd377b96f9dcfd7a65455feb9aeaa13dd3ff34f105176",
+            "approvalBasis": "fresh-C-read_image",
+            "reviewNotes": "Freshly viewed C320px popup/controls/readout have no blocking overlap, clipped text or material loss in visible viewport; lower specimen remains covered by hash-identical full continuation mobile captures."
+          },
+          {
+            "path": "after/focus-320-en/liquid-glass-en-320-04-lumen-material-prism.png",
+            "sha256": "64b87657c0bb70e150ebae15d5f1b1869adee27b22b4d6a87881a7a9183b4a8f",
+            "priorSha256": "0a3a191de60e9aaeead80a6fc09c26ca804f0b47954fd92a79bc742fd16d3fdd",
+            "approvalBasis": "fresh-C-read_image",
+            "reviewNotes": "Freshly viewed C320px popup/controls/readout have no blocking overlap, clipped text or material loss in visible viewport; lower specimen remains covered by hash-identical full continuation mobile captures."
+          },
+          {
+            "path": "after/focus-320-en/liquid-glass-en-320-05-brand-result.png",
+            "sha256": "504e7dde94b9bac081d6e606ed404897b05ffef04951bd41a6c562776c912d4c",
+            "priorSha256": "e7ad93b213ab6113ab5cbb65a0d2f185fde10199157e9bbbe9cba67108e0e952",
+            "approvalBasis": "fresh-C-read_image",
+            "reviewNotes": "Freshly viewed C320px popup/controls/readout have no blocking overlap, clipped text or material loss in visible viewport; lower specimen remains covered by hash-identical full continuation mobile captures."
+          },
+          {
+            "path": "mobile/liquid-glass-en-320-brand-result.png",
+            "sha256": "32ed91b6d92c0fdeec27eec0e2fc16be1640cb9a086d6121c23c1489a6c6af14",
+            "priorSha256": "32ed91b6d92c0fdeec27eec0e2fc16be1640cb9a086d6121c23c1489a6c6af14",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/liquid-glass-en-320-lumen-material-clear.png",
+            "sha256": "2a6cd06e6ef87e47c28f1079cfe7a7138fd2ac1efc45e6b2bc59837cef23d683",
+            "priorSha256": "2a6cd06e6ef87e47c28f1079cfe7a7138fd2ac1efc45e6b2bc59837cef23d683",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/liquid-glass-en-320-lumen-material-frost.png",
+            "sha256": "37c84eed4dbed88e6ac7afdb6aec964654ccaad5cbdab87e4636865fc17536b7",
+            "priorSha256": "37c84eed4dbed88e6ac7afdb6aec964654ccaad5cbdab87e4636865fc17536b7",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/liquid-glass-en-320-lumen-material-prism.png",
+            "sha256": "a0f1bd9e7d7dc484a837435ac1b2140ceffb5595a295728341fd00a71bcf3260",
+            "priorSha256": "a0f1bd9e7d7dc484a837435ac1b2140ceffb5595a295728341fd00a71bcf3260",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/liquid-glass-en-390-brand-result.png",
+            "sha256": "b594fb703dd22ac208f3b94d6d3939934f9c4c94b4face45f201237a4312a3fa",
+            "priorSha256": "b594fb703dd22ac208f3b94d6d3939934f9c4c94b4face45f201237a4312a3fa",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/liquid-glass-en-390-lumen-material-clear.png",
+            "sha256": "6f536cbcff8011904abb0af7b3440636504adf710f6fe4907b1fab1b058beff6",
+            "priorSha256": "6f536cbcff8011904abb0af7b3440636504adf710f6fe4907b1fab1b058beff6",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/liquid-glass-en-390-lumen-material-frost.png",
+            "sha256": "8da2b78b5026085a95cda0df844cf4b412dc908ab801680fcb187d7c27b95935",
+            "priorSha256": "8da2b78b5026085a95cda0df844cf4b412dc908ab801680fcb187d7c27b95935",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/liquid-glass-en-390-lumen-material-prism.png",
+            "sha256": "d4fc9b8e5a23e2cc8bc0f95e3a6f1f7701e657f82df768352e5d162049f40ee7",
+            "priorSha256": "d4fc9b8e5a23e2cc8bc0f95e3a6f1f7701e657f82df768352e5d162049f40ee7",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "memphis",
+      "scene": "../../style-scenes/memphis/",
+      "detail": "../../styles/memphis/#playground",
+      "capturedStates": [
+        "select-expanded",
+        "brand-result"
+      ],
+      "dialog": "not-applicable",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "memphis",
+        "result": "approved",
+        "reviewScope": "Only the listed actual-viewed images and visible state portions; full continuation mobile results at390/320 supplement clipped900px existing evidence.",
+        "notes": [
+          "Hard outlined offset buttons, popup and yellow party invitation; narrow decorative symbols wrap without clipping.",
+          "Actual reviewed captures show no blocking overlap, clipped controls, unreadable selected text or brand-material loss."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/memphis-zh-1280-01-select-expanded.png",
+            "sha256": "05d2aae9f357bee435e7c10035fc034e993c7e6684acb35eec7ed82c200ed383",
+            "priorSha256": "05d2aae9f357bee435e7c10035fc034e993c7e6684acb35eec7ed82c200ed383",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/memphis-zh-1280-02-brand-result.png",
+            "sha256": "200773640399c9fc20d3ba1d1b54bf46a90bf1739c670a08a81844714fd35d1a",
+            "priorSha256": "200773640399c9fc20d3ba1d1b54bf46a90bf1739c670a08a81844714fd35d1a",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/memphis-en-320-brand-result.png",
+            "sha256": "aa36514bbd20bc4c686dd424f100d8de2fc5c2cfa0968c7a375ecbd90f59f157",
+            "priorSha256": "aa36514bbd20bc4c686dd424f100d8de2fc5c2cfa0968c7a375ecbd90f59f157",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/memphis-en-390-brand-result.png",
+            "sha256": "e46f4c33a07239e39f05cf1d4334070a0a2377256aa12d8b3226d1e649e04da2",
+            "priorSha256": "e46f4c33a07239e39f05cf1d4334070a0a2377256aa12d8b3226d1e649e04da2",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "minimalism",
+      "scene": "../../style-scenes/minimalism/",
+      "detail": "../../styles/minimalism/#playground",
+      "capturedStates": [
+        "product-dialog-open",
+        "select-expanded",
+        "product-added-status"
+      ],
+      "dialog": "open-state-captured",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "minimalism",
+        "result": "approved",
+        "reviewScope": "Chinese 1280 product dialog, expanded finish selector and added-item feedback; supplementary English 390/320 readable product-added state.",
+        "notes": [
+          "LUMO keeps warm off-white, restrained fine borders and quiet typography across dialog/selector/feedback.",
+          "Only the listed states were visually reviewed; not an approval of every mode or hidden state."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/minimalism-zh-1280-01-product-dialog-open.png",
+            "sha256": "b43c7e2702310e6a3d8aab4a7c5f36052fee7d71ff5c687fdb1e1793f3265f97",
+            "priorApprovedSha256": "b43c7e2702310e6a3d8aab4a7c5f36052fee7d71ff5c687fdb1e1793f3265f97",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/minimalism-zh-1280-02-select-expanded.png",
+            "sha256": "eaa44f1077cb078b240809ab58313fffba1ccb6eaf57c4edf42631bccd848e15",
+            "priorApprovedSha256": "eaa44f1077cb078b240809ab58313fffba1ccb6eaf57c4edf42631bccd848e15",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/minimalism-zh-1280-03-product-added-status.png",
+            "sha256": "2c9a78363b5c8b8df478b3d09bd6b897f2c4858eebd782b773e7f78d0e2a1249",
+            "priorApprovedSha256": "2c9a78363b5c8b8df478b3d09bd6b897f2c4858eebd782b773e7f78d0e2a1249",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "neobrutalism",
+      "scene": "../../style-scenes/neobrutalism/",
+      "detail": "../../styles/neobrutalism/#playground",
+      "capturedStates": [
+        "playlab-continuation",
+        "playlab-brief-dialog",
+        "select-expanded",
+        "playlab-brief-status"
+      ],
+      "dialog": "open-state-captured",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "neobrutalism",
+        "result": "approved",
+        "reviewScope": "Chinese 1280 and English 390/320 work continuation, brief form and expanded timeline; supplementary complete readable brief summary at all three widths.",
+        "notes": [
+          "PlayLab retains yellow/pink/blue/green slabs, hard black borders and offset shadows across continuation, form and menu states.",
+          "Original brief-status images are preserved: desktop/390 show only the summary start and 320 only its upper edge. Those images do NOT independently approve full summary text.",
+          "Full summary approval is restricted to the separately read supplementary summary-readable images, whose complete target bounds and text are recorded."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/neobrutalism-zh-1280-01-playlab-continuation.png",
+            "sha256": "635a2383d0d88188bd0a2802f9f9a5314db621ed644f7b1e6701a1baadd713b4",
+            "priorApprovedSha256": "635a2383d0d88188bd0a2802f9f9a5314db621ed644f7b1e6701a1baadd713b4",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/neobrutalism-zh-1280-02-playlab-brief-dialog.png",
+            "sha256": "17f544a7dc03e82baeff90636402d13d845258c5f7a2d9ef99bf9ec7e047478b",
+            "priorApprovedSha256": "aecf165f33b205b7bf374f394044f6d2f1ff33b62b132ca708e660ef71be3c02",
+            "reviewBasis": "manually-approved-C-read_image"
+          },
+          {
+            "path": "after/all25-desktop-zh/neobrutalism-zh-1280-03-select-expanded.png",
+            "sha256": "f1efc8fe0cd2f506692ca315ab994d77648473769c597d08aec85e55fa64ef16",
+            "priorApprovedSha256": "09dfd89d194cb3041470610cc0a83b303b6ff1aa6cd9fab797ff47d9ec753458",
+            "reviewBasis": "manually-approved-C-read_image"
+          },
+          {
+            "path": "after/all25-desktop-zh/neobrutalism-zh-1280-04-playlab-brief-status.png",
+            "sha256": "70e0d30a4a1643329246a0144f568478a311e3c4bd22a12901404bd60b1ada57",
+            "priorApprovedSha256": "04ff46a9c0f19eb226ba61c7e85d7e793fb99504291f851e25588e11e15a1eb9",
+            "reviewBasis": "manually-approved-C-read_image"
+          },
+          {
+            "path": "after/focus-390-en/neobrutalism-en-390-01-playlab-continuation.png",
+            "sha256": "7fa570274aa8cd1ce6ee9e6d8f8c0d2ae9d6fb9dfee8bc838769ebde60f7611a",
+            "priorApprovedSha256": "7fa570274aa8cd1ce6ee9e6d8f8c0d2ae9d6fb9dfee8bc838769ebde60f7611a",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-390-en/neobrutalism-en-390-02-playlab-brief-dialog.png",
+            "sha256": "ca2211584c8e8bc31f9519f60be266c8bf76ee1c77bb0921b0eadb5a10b92e3d",
+            "priorApprovedSha256": "ca2211584c8e8bc31f9519f60be266c8bf76ee1c77bb0921b0eadb5a10b92e3d",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-390-en/neobrutalism-en-390-03-select-expanded.png",
+            "sha256": "ed405566feea418d9f2418bb11992e89c54ab23f0e45be747a402932489bfed5",
+            "priorApprovedSha256": "ed405566feea418d9f2418bb11992e89c54ab23f0e45be747a402932489bfed5",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-390-en/neobrutalism-en-390-04-playlab-brief-status.png",
+            "sha256": "7f43c00f3b93f3e4442295c88525a9f4629d2b857b1ff438e4489b3bfdbf5fde",
+            "priorApprovedSha256": "7f43c00f3b93f3e4442295c88525a9f4629d2b857b1ff438e4489b3bfdbf5fde",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-320-en/neobrutalism-en-320-01-playlab-continuation.png",
+            "sha256": "8b65af424d0d26ba64e4c219e6b787d4d2916de4165cc703b0cad5d61e8250e2",
+            "priorApprovedSha256": "8b65af424d0d26ba64e4c219e6b787d4d2916de4165cc703b0cad5d61e8250e2",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-320-en/neobrutalism-en-320-02-playlab-brief-dialog.png",
+            "sha256": "4caf6f836015447cafd9ee5a98b0e300d4ad4a389c7d3cf5d7b8347f1dce82e7",
+            "priorApprovedSha256": "4caf6f836015447cafd9ee5a98b0e300d4ad4a389c7d3cf5d7b8347f1dce82e7",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-320-en/neobrutalism-en-320-03-select-expanded.png",
+            "sha256": "8eea60f2d8c54dc8f49e0df33df0c6036ab491e7642bc3ac302df20bbabd2e62",
+            "priorApprovedSha256": "8eea60f2d8c54dc8f49e0df33df0c6036ab491e7642bc3ac302df20bbabd2e62",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-320-en/neobrutalism-en-320-04-playlab-brief-status.png",
+            "sha256": "3a9e93662c1b57c44ab6979128f36b583006f1293666b4a90b0607728169c6f2",
+            "priorApprovedSha256": "3a9e93662c1b57c44ab6979128f36b583006f1293666b4a90b0607728169c6f2",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "neumorphism",
+      "scene": "../../style-scenes/neumorphism/",
+      "detail": "../../styles/neumorphism/#playground",
+      "capturedStates": [
+        "select-expanded",
+        "mellow-active-press",
+        "mellow-running",
+        "mellow-paused"
+      ],
+      "dialog": "available-not-visited",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "neumorphism",
+        "result": "approved",
+        "reviewScope": "Chinese 1280 and English 390/320 expanded duration menu, pointer-held start control, running and paused timer feedback; Chinese three-width profile open/reopen in supplementary.",
+        "notes": [
+          "Mellow preserves soft raised controls, inset inputs, the sculpted timer face and matching low-chroma surfaces.",
+          "Expanded selected option and keyboard outline remain discernible; running/paused copy wraps cleanly at 320.",
+          "Screenshots visually support held/control/result appearance, not elapsed-time accuracy."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/neumorphism-zh-1280-01-select-expanded.png",
+            "sha256": "821939e75d2ac1683d381fe8c24dab5be2e8c9d05241ca944d98c0eca77b9195",
+            "priorApprovedSha256": "821939e75d2ac1683d381fe8c24dab5be2e8c9d05241ca944d98c0eca77b9195",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/neumorphism-zh-1280-02-mellow-active-press.png",
+            "sha256": "e30eedab31bbccaf92b7a759d84543e19af849b3b95d77c7190e9b2455dd5e09",
+            "priorApprovedSha256": "e30eedab31bbccaf92b7a759d84543e19af849b3b95d77c7190e9b2455dd5e09",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/neumorphism-zh-1280-03-mellow-running.png",
+            "sha256": "bca7ef4c34e232e7b27fbffa587acea579afcf5ed86dac8861eb3fb20c25d681",
+            "priorApprovedSha256": "aab457d03c041dc324eb436b0bb886201f4c14780bc42c5817b70c7507e9a798",
+            "reviewBasis": "manually-approved-C-read_image"
+          },
+          {
+            "path": "after/all25-desktop-zh/neumorphism-zh-1280-04-mellow-paused.png",
+            "sha256": "54a8b4e2b0a4810f47fd38607812695da666dad16e4cfadf1f4bef859d60f6eb",
+            "priorApprovedSha256": "54a8b4e2b0a4810f47fd38607812695da666dad16e4cfadf1f4bef859d60f6eb",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-390-en/neumorphism-en-390-01-select-expanded.png",
+            "sha256": "8a9ae814c784129f7bcca79c70a182c0d99f3537b2a7250ecd85748ebeba9f41",
+            "priorApprovedSha256": "8a9ae814c784129f7bcca79c70a182c0d99f3537b2a7250ecd85748ebeba9f41",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-390-en/neumorphism-en-390-02-mellow-active-press.png",
+            "sha256": "a311faaf3119cc33d2d2199eecea443930b0eb0280a7d2868d6b47cb74e88cfe",
+            "priorApprovedSha256": "a311faaf3119cc33d2d2199eecea443930b0eb0280a7d2868d6b47cb74e88cfe",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-390-en/neumorphism-en-390-03-mellow-running.png",
+            "sha256": "288ee41ad15eae863313bd77d78f46fe51f249d39b1dce1b71964d8073f6b305",
+            "priorApprovedSha256": "74c266b8a519edff435345621ec640a29701a19d9335a78a27e30232a4996589",
+            "reviewBasis": "manually-approved-C-read_image"
+          },
+          {
+            "path": "after/focus-390-en/neumorphism-en-390-04-mellow-paused.png",
+            "sha256": "a2f2a2df73d0c3f53431090835a18140a08dc150f317dfcaad4842296bd3e1cb",
+            "priorApprovedSha256": "a2f2a2df73d0c3f53431090835a18140a08dc150f317dfcaad4842296bd3e1cb",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-320-en/neumorphism-en-320-01-select-expanded.png",
+            "sha256": "bb9922dbb0daea07dfd8f6745b113d45cdbb13492ff90b91d5302d6bf8b74adb",
+            "priorApprovedSha256": "bb9922dbb0daea07dfd8f6745b113d45cdbb13492ff90b91d5302d6bf8b74adb",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-320-en/neumorphism-en-320-02-mellow-active-press.png",
+            "sha256": "96f6576211aa360759017b6dd6ed4bf4ec3dfcf6126896329d71e64917929d76",
+            "priorApprovedSha256": "96f6576211aa360759017b6dd6ed4bf4ec3dfcf6126896329d71e64917929d76",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-320-en/neumorphism-en-320-03-mellow-running.png",
+            "sha256": "9baa3f03708b368398bd72d6e97bbe79e9d176c69e92ee56ec1bf9e0f03aca86",
+            "priorApprovedSha256": "9baa3f03708b368398bd72d6e97bbe79e9d176c69e92ee56ec1bf9e0f03aca86",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/focus-320-en/neumorphism-en-320-04-mellow-paused.png",
+            "sha256": "9a6be1911902925ee771bde1a540bebd85461057ca6e8561b167db77aa238119",
+            "priorApprovedSha256": "9a6be1911902925ee771bde1a540bebd85461057ca6e8561b167db77aa238119",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "organic",
+      "scene": "../../style-scenes/organic/",
+      "detail": "../../styles/organic/#playground",
+      "capturedStates": [
+        "brand-result"
+      ],
+      "dialog": "not-applicable",
+      "select": "not-applicable",
+      "visualReview": {
+        "slug": "organic",
+        "result": "approved",
+        "reviewScope": "Only the listed actual-viewed images and visible state portions; full continuation mobile results at390/320 supplement clipped900px existing evidence.",
+        "notes": [
+          "Muted natural arches and tactile product samples; full mobile capture exposes wishlist item, total48 and no-order clarification.",
+          "Actual reviewed captures show no blocking overlap, clipped controls, unreadable selected text or brand-material loss.",
+          "Desktop900px viewport shows catalog only, not lower wishlist; wishlist visual approval is based on the supplementary full-continuation mobile images."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/organic-zh-1280-01-brand-result.png",
+            "sha256": "72ab41175ec9e221693afa195f6f268814f3a83078efb7f178107d09a90043d4",
+            "priorSha256": "72ab41175ec9e221693afa195f6f268814f3a83078efb7f178107d09a90043d4",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/organic-en-320-brand-result.png",
+            "sha256": "e61cc3169b1b5d0406d9ac577686935365ed9c2c7376a4ed2f3dc180860547ce",
+            "priorSha256": "e61cc3169b1b5d0406d9ac577686935365ed9c2c7376a4ed2f3dc180860547ce",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/organic-en-390-brand-result.png",
+            "sha256": "5406e893c6d41bb5795f95547119fc3e193894a49dd1c3b2c76d77b76b121346",
+            "priorSha256": "5406e893c6d41bb5795f95547119fc3e193894a49dd1c3b2c76d77b76b121346",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "pixel-art",
+      "scene": "../../style-scenes/pixel-art/",
+      "detail": "../../styles/pixel-art/#playground",
+      "capturedStates": [
+        "brand-result"
+      ],
+      "dialog": "not-applicable",
+      "select": "not-applicable",
+      "visualReview": {
+        "slug": "pixel-art",
+        "result": "approved",
+        "reviewScope": "Only the listed actual-viewed images and visible state portions; full continuation mobile results at390/320 supplement clipped900px existing evidence.",
+        "notes": [
+          "Hard stepped canvas/buttons, one painted pixel and credit count; six-color palette wraps at320 without smoothing.",
+          "Actual reviewed captures show no blocking overlap, clipped controls, unreadable selected text or brand-material loss."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/pixel-art-zh-1280-01-brand-result.png",
+            "sha256": "b9560b4ceb6628530afae6c65de1b5b3e123bb40a1728496a8faeae79745f0e4",
+            "priorSha256": "b9560b4ceb6628530afae6c65de1b5b3e123bb40a1728496a8faeae79745f0e4",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/pixel-art-en-320-brand-result.png",
+            "sha256": "e9b30dd4c1c1d3961ec62dea64b03211593214a27ae324ded5b8f2871ffc5d33",
+            "priorSha256": "e9b30dd4c1c1d3961ec62dea64b03211593214a27ae324ded5b8f2871ffc5d33",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/pixel-art-en-390-brand-result.png",
+            "sha256": "70ece74383a54929c8c5c18385f16357a75edf15d15a07beec0a5a49d94fe774",
+            "priorSha256": "70ece74383a54929c8c5c18385f16357a75edf15d15a07beec0a5a49d94fe774",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "retro-futurism",
+      "scene": "../../style-scenes/retro-futurism/",
+      "detail": "../../styles/retro-futurism/#playground",
+      "capturedStates": [
+        "radio-playing",
+        "brand-result"
+      ],
+      "dialog": "not-applicable",
+      "select": "not-applicable",
+      "visualReview": {
+        "slug": "retro-futurism",
+        "result": "approved",
+        "reviewScope": "Only the listed actual-viewed images and visible state portions; full continuation mobile results at390/320 supplement clipped900px existing evidence.",
+        "notes": [
+          "Neon hardware radio; desktop playing and paused states differ in button/status, mobile paused readout is legible.",
+          "Actual reviewed captures show no blocking overlap, clipped controls, unreadable selected text or brand-material loss."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/retro-futurism-zh-1280-01-radio-playing.png",
+            "sha256": "af927091995ed51b9e4fd60e7e966bc18245b2988525b59c83fe5c3dc55e9832",
+            "priorSha256": "af927091995ed51b9e4fd60e7e966bc18245b2988525b59c83fe5c3dc55e9832",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/retro-futurism-zh-1280-02-brand-result.png",
+            "sha256": "22f55f12749b6179f238c73c1d90806ff3236f5f941e86176a2a550d9a7759aa",
+            "priorSha256": "22f55f12749b6179f238c73c1d90806ff3236f5f941e86176a2a550d9a7759aa",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/retro-futurism-en-320-brand-result.png",
+            "sha256": "64d83bd0040a33618733f76fd22725f674c4723c3fd1e732185ed82c99af141c",
+            "priorSha256": "64d83bd0040a33618733f76fd22725f674c4723c3fd1e732185ed82c99af141c",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/retro-futurism-en-390-brand-result.png",
+            "sha256": "f1b901584f0eaa5783f956756744688f03e4708812458ca89bcd2c3b4c04896d",
+            "priorSha256": "f1b901584f0eaa5783f956756744688f03e4708812458ca89bcd2c3b4c04896d",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "retro-web",
+      "scene": "../../style-scenes/retro-web/",
+      "detail": "../../styles/retro-web/#playground",
+      "capturedStates": [
+        "guestbook-status",
+        "retro-search-dialog"
+      ],
+      "dialog": "open-state-captured",
+      "select": "not-applicable",
+      "visualReview": {
+        "slug": "retro-web",
+        "result": "approved",
+        "reviewScope": "Chinese 1280 guestbook feedback and search dialog; supplementary English 390/320 readable guestbook result.",
+        "notes": [
+          "Retro keeps the period window/bevel vocabulary and compact high-contrast status styling.",
+          "The approval covers the actual visible guestbook/search states only, not unseen address or search error states."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/retro-web-zh-1280-01-guestbook-status.png",
+            "sha256": "a962d71fdb934ac2d4d49ce3d739350a182859b684e677172c418733da8d820d",
+            "priorApprovedSha256": "a962d71fdb934ac2d4d49ce3d739350a182859b684e677172c418733da8d820d",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/retro-web-zh-1280-02-retro-search-dialog.png",
+            "sha256": "e28e22d08063fd9d4f20cb42bab149a83f333c14c52e92de3961ec425cf2bee0",
+            "priorApprovedSha256": "e28e22d08063fd9d4f20cb42bab149a83f333c14c52e92de3961ec425cf2bee0",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "skeuomorphism",
+      "scene": "../../style-scenes/skeuomorphism/",
+      "detail": "../../styles/skeuomorphism/#playground",
+      "capturedStates": [
+        "product-dialog-open",
+        "select-expanded",
+        "product-added-status"
+      ],
+      "dialog": "open-state-captured",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "skeuomorphism",
+        "result": "approved",
+        "reviewScope": "Chinese 1280 product dialog, expanded finish selector and added-item feedback; supplementary English 390/320 readable product-added state.",
+        "notes": [
+          "Goods preserves its tactile product/detail material, dimensional controls and product-specific feedback.",
+          "Listed mobile result images supplement, rather than replace, the frozen original 95-image set."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/skeuomorphism-zh-1280-01-product-dialog-open.png",
+            "sha256": "32d06dbef2350f9a7be455a3061da78f04fd837af6bb8dff169d0f31aa6a7169",
+            "priorApprovedSha256": "32d06dbef2350f9a7be455a3061da78f04fd837af6bb8dff169d0f31aa6a7169",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/skeuomorphism-zh-1280-02-select-expanded.png",
+            "sha256": "d55359cebbc0c86e40fa1ef80d1b2be07c3754d864f0d47930a20959848e12f8",
+            "priorApprovedSha256": "d55359cebbc0c86e40fa1ef80d1b2be07c3754d864f0d47930a20959848e12f8",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/skeuomorphism-zh-1280-03-product-added-status.png",
+            "sha256": "d6d7d8809e4543d500b5668c4fe98647ddfe8dbf19c1877d86c99a37c84aa61c",
+            "priorApprovedSha256": "d6d7d8809e4543d500b5668c4fe98647ddfe8dbf19c1877d86c99a37c84aa61c",
+            "reviewBasis": "identical-sha256-to-manually-approved-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "swiss-style",
+      "scene": "../../style-scenes/swiss-style/",
+      "detail": "../../styles/swiss-style/#playground",
+      "capturedStates": [
+        "project-dialog-open",
+        "contact-status"
+      ],
+      "dialog": "open-state-captured",
+      "select": "not-applicable",
+      "visualReview": {
+        "slug": "swiss-style",
+        "reviewScope": "实际逐图：1280中文项目/反馈，390英文项目，320英文项目/反馈；不据此宣称其他未读状态逐图通过",
+        "notes": [
+          "VERTEX红黑直角、编号、海报和大字延续；320标题正常换行，字段与反馈单列可读，未见裁切",
+          "菜单真实操作另见独立A补证"
+        ],
+        "result": "approved",
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/swiss-style-zh-1280-01-project-dialog-open.png",
+            "sha256": "5e3b8eb3f82f0a9057389e239d646169642ada2ebba7e77d20ca9fc1c6ad9b8c"
+          },
+          {
+            "path": "after/all25-desktop-zh/swiss-style-zh-1280-02-contact-status.png",
+            "sha256": "68011a9ec4415b15b5af82e5eb5050c74ca33c0d2e738a8b95d3f225bb558a3c"
+          },
+          {
+            "path": "after/focus-390-en/swiss-style-en-390-01-project-dialog-open.png",
+            "sha256": "84a2844845040c8c1f029407ba7cf38a95bcaaf62a3e3ff1ef94b97f28424023"
+          },
+          {
+            "path": "after/focus-320-en/swiss-style-en-320-01-project-dialog-open.png",
+            "sha256": "f157e4ce09126a3d2055f1ef4c8090d48bdc5795777ec64f9490866dd93a039c"
+          },
+          {
+            "path": "after/focus-320-en/swiss-style-en-320-02-contact-status.png",
+            "sha256": "9fa18b8d9cbed2238bcb7c5f451029c0a322df7e232645c56a6ceebea9958632"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "vaporwave",
+      "scene": "../../style-scenes/vaporwave/",
+      "detail": "../../styles/vaporwave/#playground",
+      "capturedStates": [
+        "select-expanded",
+        "brand-result"
+      ],
+      "dialog": "not-applicable",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "vaporwave",
+        "result": "approved",
+        "reviewScope": "Only the listed actual-viewed images and visible state portions; full continuation mobile results at390/320 supplement clipped900px existing evidence.",
+        "notes": [
+          "Cyan pill controls, neon floor signage and floor3 passport result; atmospheric material remains distinct in narrow layout.",
+          "Actual reviewed captures show no blocking overlap, clipped controls, unreadable selected text or brand-material loss."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/vaporwave-zh-1280-01-select-expanded.png",
+            "sha256": "535210cca07ba50d0c158b4b590efd3b6e45935ef12dd14ae6fa81f517769c0a",
+            "priorSha256": "535210cca07ba50d0c158b4b590efd3b6e45935ef12dd14ae6fa81f517769c0a",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/vaporwave-zh-1280-02-brand-result.png",
+            "sha256": "842ad789869b67ecdfcff5de88003c20d90dd7e5eaadf3a11cdd98bcb8965b7e",
+            "priorSha256": "842ad789869b67ecdfcff5de88003c20d90dd7e5eaadf3a11cdd98bcb8965b7e",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/vaporwave-en-320-brand-result.png",
+            "sha256": "04093b02ef91a588c3b5e24174b1b46bdeb1285079e84905f4f6e6f751889a9f",
+            "priorSha256": "04093b02ef91a588c3b5e24174b1b46bdeb1285079e84905f4f6e6f751889a9f",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/vaporwave-en-390-brand-result.png",
+            "sha256": "95587bb03e14810dad4c31af3bcba4358365d0fd87b5928d6f9813e741fbabb0",
+            "priorSha256": "95587bb03e14810dad4c31af3bcba4358365d0fd87b5928d6f9813e741fbabb0",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "y2k",
+      "scene": "../../style-scenes/y2k/",
+      "detail": "../../styles/y2k/#playground",
+      "capturedStates": [
+        "select-expanded",
+        "brand-result"
+      ],
+      "dialog": "not-applicable",
+      "select": "DOM-expanded",
+      "visualReview": {
+        "slug": "y2k",
+        "result": "approved",
+        "reviewScope": "Only the listed actual-viewed images and visible state portions; full continuation mobile results at390/320 supplement clipped900px existing evidence.",
+        "notes": [
+          "Chrome/pastel rounded controls and tilted identity card; submitted name/outfit and status are legible.",
+          "Actual reviewed captures show no blocking overlap, clipped controls, unreadable selected text or brand-material loss."
+        ],
+        "images": [
+          {
+            "path": "after/all25-desktop-zh/y2k-zh-1280-01-select-expanded.png",
+            "sha256": "0c6ce9a185c943ab2cbc907ad45c60701df14b7c774e96876fc0dd13e2bcf531",
+            "priorSha256": "0c6ce9a185c943ab2cbc907ad45c60701df14b7c774e96876fc0dd13e2bcf531",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "after/all25-desktop-zh/y2k-zh-1280-02-brand-result.png",
+            "sha256": "e08fc6498e362e4b8efee8000324ce9d54eaec57293400d72173d1d5cdc6ebba",
+            "priorSha256": "e08fc6498e362e4b8efee8000324ce9d54eaec57293400d72173d1d5cdc6ebba",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/y2k-en-320-brand-result.png",
+            "sha256": "bc7e0e411228a1045b7cc7301c2432acab32d23f55a5365de67f47a58f041879",
+            "priorSha256": "bc7e0e411228a1045b7cc7301c2432acab32d23f55a5365de67f47a58f041879",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          },
+          {
+            "path": "mobile/y2k-en-390-brand-result.png",
+            "sha256": "66d63b5e5492dc3cfe9d2ea8c0d7f6bfc9b1d38458b90399ec6cb14cb96e96b4",
+            "priorSha256": "66d63b5e5492dc3cfe9d2ea8c0d7f6bfc9b1d38458b90399ec6cb14cb96e96b4",
+            "approvalBasis": "byte-identical-to-manually-reviewed-A"
+          }
+        ]
+      }
+    }
+  ],
+  "supplementaryReview": [
+    {
+      "slug": "bento-grid",
+      "width": 1280,
+      "locale": "zh",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "profile-navigation",
+      "reviewScope": "Actual profile-open and profile-reopened pixels; separately recorded nickname-save/destination-focus and manual-close/opener-focus operations.",
+      "notes": [
+        "Tasko profile keeps lavender modular-card material and rounded dark controls.",
+        "Close/input/submit remain readable at this width."
+      ],
+      "actions": [
+        {
+          "action": "open",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "nickname-save",
+          "nickname": "Atlas 1280",
+          "openerText": "Atlas 1280",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 451,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen",
+          "nicknameRetained": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "manual-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "tasko-profile",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "extra/bento-grid-zh-1280-profile-open.png",
+          "sha256": "9021d62f29e0f83a0e0bc0f8faeb45afedb3b128ad1c5da0aa6d5a904e4c817d",
+          "state": "profile-open",
+          "priorApprovedSha256": "9021d62f29e0f83a0e0bc0f8faeb45afedb3b128ad1c5da0aa6d5a904e4c817d",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        },
+        {
+          "path": "extra/bento-grid-zh-1280-profile-reopened.png",
+          "sha256": "7f474197c7bc6ebb3854877b185c0f71d53b93e7f46f6d5c6b875b22276631ba",
+          "state": "profile-reopened",
+          "priorApprovedSha256": "cd3ec7a7202a76d878968bab0f72957587dd559d73ed812fbf9ad5f217589bbc",
+          "reviewBasis": "manually-approved-C-read_image"
+        }
+      ]
+    },
+    {
+      "slug": "bento-grid",
+      "width": 390,
+      "locale": "zh",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "profile-navigation",
+      "reviewScope": "Actual profile-open and profile-reopened pixels; separately recorded nickname-save/destination-focus and manual-close/opener-focus operations.",
+      "notes": [
+        "Tasko profile keeps lavender modular-card material and rounded dark controls.",
+        "Close/input/submit remain readable at this width."
+      ],
+      "actions": [
+        {
+          "action": "open",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "nickname-save",
+          "nickname": "Atlas 390",
+          "openerText": "Atlas 390",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 1456,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen",
+          "nicknameRetained": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "manual-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "tasko-profile",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "extra/bento-grid-zh-390-profile-open.png",
+          "sha256": "b21ea6b441baf258e0e6250a39052fc715012d45c54b7c5b8fe5f2a54429d98a",
+          "state": "profile-open",
+          "priorApprovedSha256": "b21ea6b441baf258e0e6250a39052fc715012d45c54b7c5b8fe5f2a54429d98a",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        },
+        {
+          "path": "extra/bento-grid-zh-390-profile-reopened.png",
+          "sha256": "92eb5623c810ed8df756f5ddb228293d631ce8b2c7fc83ab27a0302f9d98747e",
+          "state": "profile-reopened",
+          "priorApprovedSha256": "92eb5623c810ed8df756f5ddb228293d631ce8b2c7fc83ab27a0302f9d98747e",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "bento-grid",
+      "width": 320,
+      "locale": "zh",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "profile-navigation",
+      "reviewScope": "Actual profile-open and profile-reopened pixels; separately recorded nickname-save/destination-focus and manual-close/opener-focus operations.",
+      "notes": [
+        "Tasko profile keeps lavender modular-card material and rounded dark controls.",
+        "Close/input/submit remain readable at this width."
+      ],
+      "actions": [
+        {
+          "action": "open",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "nickname-save",
+          "nickname": "Atlas 320",
+          "openerText": "Atlas 320",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 1596,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen",
+          "nicknameRetained": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "manual-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "tasko-profile",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "extra/bento-grid-zh-320-profile-open.png",
+          "sha256": "8178a2332a6af67ad4a32cf9861b246ea465122aeeea7cb5645cc3bf82ef8466",
+          "state": "profile-open",
+          "priorApprovedSha256": "8178a2332a6af67ad4a32cf9861b246ea465122aeeea7cb5645cc3bf82ef8466",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        },
+        {
+          "path": "extra/bento-grid-zh-320-profile-reopened.png",
+          "sha256": "becaf450886819ee4deb4fae65da8e161b4c14ab01c22d4d4971e36eea870340",
+          "state": "profile-reopened",
+          "priorApprovedSha256": "becaf450886819ee4deb4fae65da8e161b4c14ab01c22d4d4971e36eea870340",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "neumorphism",
+      "width": 1280,
+      "locale": "zh",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "profile-navigation",
+      "reviewScope": "Actual profile-open and profile-reopened pixels; separately recorded nickname-save/destination-focus and manual-close/opener-focus operations.",
+      "notes": [
+        "Mellow profile keeps raised buttons/inset input and soft matching modal material.",
+        "Close/input/submit remain readable at this width."
+      ],
+      "actions": [
+        {
+          "action": "open",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "nickname-save",
+          "nickname": "Atlas 1280",
+          "openerText": "Atlas 1280",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 427,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen",
+          "nicknameRetained": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "manual-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "mellow-profile",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "extra/neumorphism-zh-1280-profile-open.png",
+          "sha256": "c1a1ba3b197fc69860ba3a02b0b30f1856b82dac8beff5c5d99dfcf2ab459336",
+          "state": "profile-open",
+          "priorApprovedSha256": "c1a1ba3b197fc69860ba3a02b0b30f1856b82dac8beff5c5d99dfcf2ab459336",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        },
+        {
+          "path": "extra/neumorphism-zh-1280-profile-reopened.png",
+          "sha256": "c6bbb957ea1c7d8832564f863b30148ed1fb8ac43308547e092d3acda4eb82a3",
+          "state": "profile-reopened",
+          "priorApprovedSha256": "c6bbb957ea1c7d8832564f863b30148ed1fb8ac43308547e092d3acda4eb82a3",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "neumorphism",
+      "width": 390,
+      "locale": "zh",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "profile-navigation",
+      "reviewScope": "Actual profile-open and profile-reopened pixels; separately recorded nickname-save/destination-focus and manual-close/opener-focus operations.",
+      "notes": [
+        "Mellow profile keeps raised buttons/inset input and soft matching modal material.",
+        "Close/input/submit remain readable at this width."
+      ],
+      "actions": [
+        {
+          "action": "open",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "nickname-save",
+          "nickname": "Atlas 390",
+          "openerText": "Atlas 390",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 1259,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen",
+          "nicknameRetained": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "manual-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "mellow-profile",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "extra/neumorphism-zh-390-profile-open.png",
+          "sha256": "c3288b143bd3732e5d864fa495dddaf86231f0833842fd11cc27985287ba28e1",
+          "state": "profile-open",
+          "priorApprovedSha256": "c3288b143bd3732e5d864fa495dddaf86231f0833842fd11cc27985287ba28e1",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        },
+        {
+          "path": "extra/neumorphism-zh-390-profile-reopened.png",
+          "sha256": "3534ae3be52576bb9e05e6787096837ba5a66ee23f77f99a3742b449e53a5986",
+          "state": "profile-reopened",
+          "priorApprovedSha256": "3534ae3be52576bb9e05e6787096837ba5a66ee23f77f99a3742b449e53a5986",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "neumorphism",
+      "width": 320,
+      "locale": "zh",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "profile-navigation",
+      "reviewScope": "Actual profile-open and profile-reopened pixels; separately recorded nickname-save/destination-focus and manual-close/opener-focus operations.",
+      "notes": [
+        "Mellow profile keeps raised buttons/inset input and soft matching modal material.",
+        "Close/input/submit remain readable at this width."
+      ],
+      "actions": [
+        {
+          "action": "open",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "nickname-save",
+          "nickname": "Atlas 320",
+          "openerText": "Atlas 320",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 1319,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen",
+          "nicknameRetained": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "profile",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "manual-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "mellow-profile",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "extra/neumorphism-zh-320-profile-open.png",
+          "sha256": "af9dd5c6e6a27f12143d38ae9af235f7cadc134a0d1ca69c9a7cd18287491e24",
+          "state": "profile-open",
+          "priorApprovedSha256": "af9dd5c6e6a27f12143d38ae9af235f7cadc134a0d1ca69c9a7cd18287491e24",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        },
+        {
+          "path": "extra/neumorphism-zh-320-profile-reopened.png",
+          "sha256": "8f23a636290d510438f32780c4ccfc01a5818823e7ca8b3a1455057f2c09d62f",
+          "state": "profile-reopened",
+          "priorApprovedSha256": "8f23a636290d510438f32780c4ccfc01a5818823e7ca8b3a1455057f2c09d62f",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "swiss-style",
+      "width": 1280,
+      "locale": "zh",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "profile-navigation",
+      "reviewScope": "Actual Swiss menu-open and project-open pixels; separately recorded menu WORK navigation and project/menu return focus.",
+      "notes": [
+        "Swiss red top rule, sharp corners, index rhythm and black/white typography remain consistent in menu and project detail."
+      ],
+      "actions": [
+        {
+          "action": "open-menu",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "menu",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "menu-WORK",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 427,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "open-project",
+          "title": "NORTH / Brand identity",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 427,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "project",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "back-to-work",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "project-0",
+            "id": ""
+          },
+          "scrollY": 427,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen-menu-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "menu",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "extra/swiss-style-zh-1280-menu-open.png",
+          "sha256": "5e7b44130b16fd926ff3c2c0c1cdac13e0421b0ef7be3ddb8474dad5f28f1345",
+          "state": "menu-open",
+          "priorApprovedSha256": "5e7b44130b16fd926ff3c2c0c1cdac13e0421b0ef7be3ddb8474dad5f28f1345",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        },
+        {
+          "path": "extra/swiss-style-zh-1280-project-open.png",
+          "sha256": "5e3b8eb3f82f0a9057389e239d646169642ada2ebba7e77d20ca9fc1c6ad9b8c",
+          "state": "project-open",
+          "priorApprovedSha256": "5e3b8eb3f82f0a9057389e239d646169642ada2ebba7e77d20ca9fc1c6ad9b8c",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "swiss-style",
+      "width": 390,
+      "locale": "zh",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "profile-navigation",
+      "reviewScope": "Actual Swiss menu-open and project-open pixels; separately recorded menu WORK navigation and project/menu return focus.",
+      "notes": [
+        "Swiss red top rule, sharp corners, index rhythm and black/white typography remain consistent in menu and project detail."
+      ],
+      "actions": [
+        {
+          "action": "open-menu",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "menu",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "menu-WORK",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 1015,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "open-project",
+          "title": "NORTH / Brand identity",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 1015,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "project",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "back-to-work",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "project-0",
+            "id": ""
+          },
+          "scrollY": 1015,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen-menu-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "menu",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "extra/swiss-style-zh-390-menu-open.png",
+          "sha256": "3e23c995c2b6203748c846c160c6594369783bd47ada1fc243b84b2a31392fa3",
+          "state": "menu-open",
+          "priorApprovedSha256": "3e23c995c2b6203748c846c160c6594369783bd47ada1fc243b84b2a31392fa3",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        },
+        {
+          "path": "extra/swiss-style-zh-390-project-open.png",
+          "sha256": "aa4a2376adffcdaea56b86741fb02d81fc13e93044f62c21fd2d61e1c3f6e672",
+          "state": "project-open",
+          "priorApprovedSha256": "aa4a2376adffcdaea56b86741fb02d81fc13e93044f62c21fd2d61e1c3f6e672",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "swiss-style",
+      "width": 320,
+      "locale": "zh",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "profile-navigation",
+      "reviewScope": "Actual Swiss menu-open and project-open pixels; separately recorded menu WORK navigation and project/menu return focus.",
+      "notes": [
+        "Swiss red top rule, sharp corners, index rhythm and black/white typography remain consistent in menu and project detail."
+      ],
+      "actions": [
+        {
+          "action": "open-menu",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "menu",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "menu-WORK",
+          "destinationFocused": true,
+          "active": {
+            "tag": "SECTION",
+            "action": null,
+            "id": "scene-section-0"
+          },
+          "scrollY": 1008,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "open-project",
+          "title": "NORTH / Brand identity",
+          "active": {
+            "tag": "BUTTON",
+            "action": null,
+            "id": ""
+          },
+          "scrollY": 1008,
+          "documentOverflow": false,
+          "dialogs": [
+            {
+              "name": "project",
+              "horizontalOverflow": false,
+              "closeVisible": true
+            }
+          ]
+        },
+        {
+          "action": "back-to-work",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "project-0",
+            "id": ""
+          },
+          "scrollY": 1008,
+          "documentOverflow": false,
+          "dialogs": []
+        },
+        {
+          "action": "reopen-menu-close",
+          "openerFocused": true,
+          "active": {
+            "tag": "BUTTON",
+            "action": "menu",
+            "id": ""
+          },
+          "scrollY": 0,
+          "documentOverflow": false,
+          "dialogs": []
+        }
+      ],
+      "images": [
+        {
+          "path": "extra/swiss-style-zh-320-menu-open.png",
+          "sha256": "740da90d3b7c9605196a32c8b47123611b3d943fbe3d459b1920500126681e62",
+          "state": "menu-open",
+          "priorApprovedSha256": "740da90d3b7c9605196a32c8b47123611b3d943fbe3d459b1920500126681e62",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        },
+        {
+          "path": "extra/swiss-style-zh-320-project-open.png",
+          "sha256": "1e1eafe3cf2f8b77c39bf6c18b59b2bd012eb618586ce6343dc3775904ae6a38",
+          "state": "project-open",
+          "priorApprovedSha256": "1e1eafe3cf2f8b77c39bf6c18b59b2bd012eb618586ce6343dc3775904ae6a38",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "neobrutalism",
+      "width": 1280,
+      "locale": "zh",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "readable-reference-result",
+      "reviewScope": "Complete brief-summary text and target upper/lower bounds visible after scrolling inside the open dialog.",
+      "notes": [
+        "Individually opened the listed screenshot; approval is limited to visible content and material."
+      ],
+      "actions": [
+        {
+          "state": "playlab-continuation",
+          "kind": null,
+          "at": "2026-10-19T06:15:42.279Z"
+        },
+        {
+          "state": "playlab-brief-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:42.300Z"
+        },
+        {
+          "state": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "at": "2026-10-19T06:15:42.402Z"
+        },
+        {
+          "state": "playlab-brief-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:42.477Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "extra-states/neobrutalism-zh-1280-summary-readable.png",
+          "sha256": "f6d10e1e7747372646c0e389ded1c016809f65f06b0046350ddb15936cc692c6",
+          "state": "playlab-brief-status",
+          "target": "[data-play-summary]",
+          "geometry": {
+            "text": "项目：Atlas playground\n目标：Make a local collection.\n服务：Design / Develop / Create\n时间：2–3 个月\n简报已整理，可继续修改。未发送到服务器。",
+            "rect": {
+              "x": 287.5,
+              "y": 614.125,
+              "width": 690,
+              "height": 184
+            },
+            "viewport": {
+              "width": 1280,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 223,
+              "clientHeight": 862,
+              "scrollHeight": 1085
+            },
+            "pressed": null
+          },
+          "priorApprovedSha256": "f6d10e1e7747372646c0e389ded1c016809f65f06b0046350ddb15936cc692c6",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "neobrutalism",
+      "width": 390,
+      "locale": "en",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "readable-reference-result",
+      "reviewScope": "Complete brief-summary text and target upper/lower bounds visible after scrolling inside the open dialog.",
+      "notes": [
+        "Individually opened the listed screenshot; approval is limited to visible content and material."
+      ],
+      "actions": [
+        {
+          "state": "playlab-continuation",
+          "kind": null,
+          "at": "2026-10-19T06:15:42.755Z"
+        },
+        {
+          "state": "playlab-brief-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:42.848Z"
+        },
+        {
+          "state": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "at": "2026-10-19T06:15:42.978Z"
+        },
+        {
+          "state": "playlab-brief-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:43.065Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "extra-states/neobrutalism-en-390-summary-readable.png",
+          "sha256": "a6de3cada28a3989d1c883717f6e8f950f766af58ebc92f07b7a3a823fcdb21c",
+          "state": "playlab-brief-status",
+          "target": "[data-play-summary]",
+          "geometry": {
+            "text": "Project: Atlas playground\nGoal: Make a local collection.\nServices: Design / Develop / Create\nTimeline: 2–3 months\nBrief prepared. You can keep editing. Nothing was sent.",
+            "rect": {
+              "x": 42,
+              "y": 571.046875,
+              "width": 291,
+              "height": 240
+            },
+            "viewport": {
+              "width": 390,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 260,
+              "clientHeight": 862,
+              "scrollHeight": 1122
+            },
+            "pressed": null
+          },
+          "priorApprovedSha256": "a6de3cada28a3989d1c883717f6e8f950f766af58ebc92f07b7a3a823fcdb21c",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "neobrutalism",
+      "width": 320,
+      "locale": "en",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "readable-reference-result",
+      "reviewScope": "Complete brief-summary text and target upper/lower bounds visible after scrolling inside the open dialog.",
+      "notes": [
+        "Individually opened the listed screenshot; approval is limited to visible content and material."
+      ],
+      "actions": [
+        {
+          "state": "playlab-continuation",
+          "kind": null,
+          "at": "2026-10-19T06:15:43.331Z"
+        },
+        {
+          "state": "playlab-brief-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:43.396Z"
+        },
+        {
+          "state": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "at": "2026-10-19T06:15:43.498Z"
+        },
+        {
+          "state": "playlab-brief-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:43.627Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "extra-states/neobrutalism-en-320-summary-readable.png",
+          "sha256": "b8151e22a4396846a6d1d3d8becd6bfe484d5137b65b65065bdcf950edc664e1",
+          "state": "playlab-brief-status",
+          "target": "[data-play-summary]",
+          "geometry": {
+            "text": "Project: Atlas playground\nGoal: Make a local collection.\nServices: Design / Develop / Create\nTimeline: 2–3 months\nBrief prepared. You can keep editing. Nothing was sent.",
+            "rect": {
+              "x": 42,
+              "y": 464.296875,
+              "width": 221,
+              "height": 324
+            },
+            "viewport": {
+              "width": 320,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 414,
+              "clientHeight": 862,
+              "scrollHeight": 1276
+            },
+            "pressed": null
+          },
+          "priorApprovedSha256": "b8151e22a4396846a6d1d3d8becd6bfe484d5137b65b65065bdcf950edc664e1",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "minimalism",
+      "width": 390,
+      "locale": "en",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "readable-reference-result",
+      "reviewScope": "Readable final business feedback state at the recorded mobile width.",
+      "notes": [
+        "Individually opened the listed screenshot; approval is limited to visible content and material."
+      ],
+      "actions": [
+        {
+          "state": "product-dialog-open",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:43.981Z"
+        },
+        {
+          "state": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "at": "2026-10-19T06:15:44.093Z"
+        },
+        {
+          "state": "product-added-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:44.234Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "extra-states/minimalism-en-390-product-added-status.png",
+          "sha256": "977e8c525b8a99dde20b363e2c3f7616be0abf9c18fd149a3da2c89b6d91d35d",
+          "state": "product-added-status",
+          "target": "[data-product-status]",
+          "geometry": {
+            "text": "Added Lumo Focus · Charcoal to your bag.",
+            "rect": {
+              "x": 44,
+              "y": 639.59375,
+              "width": 287,
+              "height": 96
+            },
+            "viewport": {
+              "width": 390,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 0,
+              "clientHeight": 771,
+              "scrollHeight": 771
+            },
+            "pressed": null
+          },
+          "priorApprovedSha256": "977e8c525b8a99dde20b363e2c3f7616be0abf9c18fd149a3da2c89b6d91d35d",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "minimalism",
+      "width": 320,
+      "locale": "en",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "readable-reference-result",
+      "reviewScope": "Readable final business feedback state at the recorded mobile width.",
+      "notes": [
+        "Individually opened the listed screenshot; approval is limited to visible content and material."
+      ],
+      "actions": [
+        {
+          "state": "product-dialog-open",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:44.445Z"
+        },
+        {
+          "state": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "at": "2026-10-19T06:15:44.608Z"
+        },
+        {
+          "state": "product-added-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:44.729Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "extra-states/minimalism-en-320-product-added-status.png",
+          "sha256": "57c0111d7bcfca2aaa29b26c0780b6292dd854654674ca44a59158c1bf23f2bb",
+          "state": "product-added-status",
+          "target": "[data-product-status]",
+          "geometry": {
+            "text": "Added Lumo Focus · Charcoal to your bag.",
+            "rect": {
+              "x": 44,
+              "y": 653.59375,
+              "width": 217,
+              "height": 96
+            },
+            "viewport": {
+              "width": 320,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 0,
+              "clientHeight": 799,
+              "scrollHeight": 799
+            },
+            "pressed": null
+          },
+          "priorApprovedSha256": "57c0111d7bcfca2aaa29b26c0780b6292dd854654674ca44a59158c1bf23f2bb",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "bento-grid",
+      "width": 390,
+      "locale": "en",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "readable-reference-result",
+      "reviewScope": "Readable final business feedback state at the recorded mobile width.",
+      "notes": [
+        "Individually opened the listed screenshot; approval is limited to visible content and material."
+      ],
+      "actions": [
+        {
+          "state": "task-added-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:45.052Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "extra-states/bento-grid-en-390-task-added-status.png",
+          "sha256": "ba8ed33e34893e2e75db0a986b83b16b56dbfd1e00b53d61fc58b1655c0f9b2d",
+          "state": "task-added-status",
+          "target": "[data-task-status]",
+          "geometry": {
+            "text": "Completed 0 / 6 tasks",
+            "rect": {
+              "x": 37,
+              "y": 422.09375,
+              "width": 301,
+              "height": 56
+            },
+            "viewport": {
+              "width": 390,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": null,
+            "pressed": null
+          },
+          "priorApprovedSha256": "ba8ed33e34893e2e75db0a986b83b16b56dbfd1e00b53d61fc58b1655c0f9b2d",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "bento-grid",
+      "width": 320,
+      "locale": "en",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "readable-reference-result",
+      "reviewScope": "Readable final business feedback state at the recorded mobile width.",
+      "notes": [
+        "Individually opened the listed screenshot; approval is limited to visible content and material."
+      ],
+      "actions": [
+        {
+          "state": "task-added-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:45.465Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "extra-states/bento-grid-en-320-task-added-status.png",
+          "sha256": "7a2ecb145e2c8309fea492eb0645e903ca6dce1d065cb9f01271230d4ce7c749",
+          "state": "task-added-status",
+          "target": "[data-task-status]",
+          "geometry": {
+            "text": "Completed 0 / 6 tasks",
+            "rect": {
+              "x": 37,
+              "y": 421.953125,
+              "width": 231,
+              "height": 56
+            },
+            "viewport": {
+              "width": 320,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": null,
+            "pressed": null
+          },
+          "priorApprovedSha256": "7a2ecb145e2c8309fea492eb0645e903ca6dce1d065cb9f01271230d4ce7c749",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "skeuomorphism",
+      "width": 390,
+      "locale": "en",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "readable-reference-result",
+      "reviewScope": "Readable final business feedback state at the recorded mobile width.",
+      "notes": [
+        "Individually opened the listed screenshot; approval is limited to visible content and material."
+      ],
+      "actions": [
+        {
+          "state": "product-dialog-open",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:45.906Z"
+        },
+        {
+          "state": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "at": "2026-10-19T06:15:46.054Z"
+        },
+        {
+          "state": "product-added-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:46.155Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "extra-states/skeuomorphism-en-390-product-added-status.png",
+          "sha256": "0c6f0a6b6ef88e3b64f0fff0e8ede4cb661548d7b1e528d485a4ef8cb6a47bc5",
+          "state": "product-added-status",
+          "target": "[data-product-status]",
+          "geometry": {
+            "text": "Added Classic film camera · Charcoal to your bag.",
+            "rect": {
+              "x": 42,
+              "y": 625.09375,
+              "width": 291,
+              "height": 90
+            },
+            "viewport": {
+              "width": 390,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 0,
+              "clientHeight": 738,
+              "scrollHeight": 738
+            },
+            "pressed": null
+          },
+          "priorApprovedSha256": "0c6f0a6b6ef88e3b64f0fff0e8ede4cb661548d7b1e528d485a4ef8cb6a47bc5",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "skeuomorphism",
+      "width": 320,
+      "locale": "en",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "readable-reference-result",
+      "reviewScope": "Readable final business feedback state at the recorded mobile width.",
+      "notes": [
+        "Individually opened the listed screenshot; approval is limited to visible content and material."
+      ],
+      "actions": [
+        {
+          "state": "product-dialog-open",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:46.586Z"
+        },
+        {
+          "state": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "at": "2026-10-19T06:15:46.692Z"
+        },
+        {
+          "state": "product-added-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:46.775Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "extra-states/skeuomorphism-en-320-product-added-status.png",
+          "sha256": "b1606ba2d0e9e6d2c330d747d36ed8814dae3339754d3846c82bc587d3d5ab71",
+          "state": "product-added-status",
+          "target": "[data-product-status]",
+          "geometry": {
+            "text": "Added Classic film camera · Charcoal to your bag.",
+            "rect": {
+              "x": 42,
+              "y": 625.09375,
+              "width": 221,
+              "height": 118
+            },
+            "viewport": {
+              "width": 320,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 0,
+              "clientHeight": 794,
+              "scrollHeight": 794
+            },
+            "pressed": null
+          },
+          "priorApprovedSha256": "b1606ba2d0e9e6d2c330d747d36ed8814dae3339754d3846c82bc587d3d5ab71",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "brutalism",
+      "width": 390,
+      "locale": "en",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "readable-reference-result",
+      "reviewScope": "Readable final business feedback state at the recorded mobile width.",
+      "notes": [
+        "Individually opened the listed screenshot; approval is limited to visible content and material."
+      ],
+      "actions": [
+        {
+          "state": "void-case-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:47.274Z"
+        },
+        {
+          "state": "inquiry-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:47.528Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "extra-states/brutalism-en-390-inquiry-status.png",
+          "sha256": "597f9905438de61c0d8711b47ec1fb938ad2a71af9481741b9b4507e351cfdc4",
+          "state": "inquiry-status",
+          "target": "[data-contact-summary]",
+          "geometry": {
+            "text": "Inquiry · Atlas · state@example.com\nA public map.\nLocal preview prepared. No email sent. Edit and generate again.",
+            "rect": {
+              "x": 21,
+              "y": 554.96875,
+              "width": 333,
+              "height": 161
+            },
+            "viewport": {
+              "width": 390,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": null,
+            "pressed": null
+          },
+          "priorApprovedSha256": "597f9905438de61c0d8711b47ec1fb938ad2a71af9481741b9b4507e351cfdc4",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "brutalism",
+      "width": 320,
+      "locale": "en",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "readable-reference-result",
+      "reviewScope": "Readable final business feedback state at the recorded mobile width.",
+      "notes": [
+        "Individually opened the listed screenshot; approval is limited to visible content and material."
+      ],
+      "actions": [
+        {
+          "state": "void-case-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:47.893Z"
+        },
+        {
+          "state": "inquiry-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:48.173Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "extra-states/brutalism-en-320-inquiry-status.png",
+          "sha256": "ccddbeb2541503e4ed6bd27a255b8973ff72997149beb38edd49996860b0e68c",
+          "state": "inquiry-status",
+          "target": "[data-contact-summary]",
+          "geometry": {
+            "text": "Inquiry · Atlas · state@example.com\nA public map.\nLocal preview prepared. No email sent. Edit and generate again.",
+            "rect": {
+              "x": 21,
+              "y": 500.28125,
+              "width": 263,
+              "height": 215
+            },
+            "viewport": {
+              "width": 320,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": null,
+            "pressed": null
+          },
+          "priorApprovedSha256": "ccddbeb2541503e4ed6bd27a255b8973ff72997149beb38edd49996860b0e68c",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "retro-web",
+      "width": 390,
+      "locale": "en",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "readable-reference-result",
+      "reviewScope": "Readable final business feedback state at the recorded mobile width.",
+      "notes": [
+        "Individually opened the listed screenshot; approval is limited to visible content and material."
+      ],
+      "actions": [
+        {
+          "state": "guestbook-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:48.580Z"
+        },
+        {
+          "state": "retro-search-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:48.904Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "extra-states/retro-web-en-390-guestbook-status.png",
+          "sha256": "b52efa7d91eb9b28bfddb1f857f8d529bd9b62146853836c26f4f0563598ffb9",
+          "state": "guestbook-status",
+          "target": "[data-guest-messages]",
+          "geometry": {
+            "text": "Atlas: Hello, quiet web.",
+            "rect": {
+              "x": 31,
+              "y": 700.953125,
+              "width": 313,
+              "height": 61
+            },
+            "viewport": {
+              "width": 390,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": null,
+            "pressed": null
+          },
+          "priorApprovedSha256": "b52efa7d91eb9b28bfddb1f857f8d529bd9b62146853836c26f4f0563598ffb9",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "retro-web",
+      "width": 320,
+      "locale": "en",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "readable-reference-result",
+      "reviewScope": "Readable final business feedback state at the recorded mobile width.",
+      "notes": [
+        "Individually opened the listed screenshot; approval is limited to visible content and material."
+      ],
+      "actions": [
+        {
+          "state": "guestbook-status",
+          "kind": null,
+          "at": "2026-10-19T06:15:49.266Z"
+        },
+        {
+          "state": "retro-search-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:49.531Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "extra-states/retro-web-en-320-guestbook-status.png",
+          "sha256": "ea289277d9a1d0163ebeafba933aeac24ddf51ac68a71e341997e156d32266b2",
+          "state": "guestbook-status",
+          "target": "[data-guest-messages]",
+          "geometry": {
+            "text": "Atlas: Hello, quiet web.",
+            "rect": {
+              "x": 31,
+              "y": 701.015625,
+              "width": 243,
+              "height": 61
+            },
+            "viewport": {
+              "width": 320,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": null,
+            "pressed": null
+          },
+          "priorApprovedSha256": "ea289277d9a1d0163ebeafba933aeac24ddf51ac68a71e341997e156d32266b2",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "editorial",
+      "width": 390,
+      "locale": "en",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "readable-reference-result",
+      "reviewScope": "Saved article state with saved control and readable journal body at the recorded mobile width.",
+      "notes": [
+        "Individually opened the listed screenshot; approval is limited to visible content and material."
+      ],
+      "actions": [
+        {
+          "state": "saved-story-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:49.916Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "extra-states/editorial-en-390-saved-story-dialog.png",
+          "sha256": "4864da1db617ee9ecdb3de7239586f843865f62206de417e91bcad014e322948",
+          "state": "saved-story-dialog",
+          "target": "[data-scene-action=\"save-story\"]",
+          "geometry": {
+            "text": "Saved · Remove",
+            "rect": {
+              "x": 46,
+              "y": 765.234375,
+              "width": 142.28125,
+              "height": 44
+            },
+            "viewport": {
+              "width": 390,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 0,
+              "clientHeight": 766,
+              "scrollHeight": 766
+            },
+            "pressed": "true"
+          },
+          "priorApprovedSha256": "4864da1db617ee9ecdb3de7239586f843865f62206de417e91bcad014e322948",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    },
+    {
+      "slug": "editorial",
+      "width": 320,
+      "locale": "en",
+      "mode": "default",
+      "result": "approved",
+      "reviewKind": "readable-reference-result",
+      "reviewScope": "Saved article state with saved control and readable journal body at the recorded mobile width.",
+      "notes": [
+        "Individually opened the listed screenshot; approval is limited to visible content and material."
+      ],
+      "actions": [
+        {
+          "state": "saved-story-dialog",
+          "kind": "dialog-open",
+          "at": "2026-10-19T06:15:50.215Z"
+        }
+      ],
+      "images": [
+        {
+          "path": "extra-states/editorial-en-320-saved-story-dialog.png",
+          "sha256": "83a27b99e6bd414b7f0f373bf6dcba4aa284176e26b7c50cb0f00411cd3eeaca",
+          "state": "saved-story-dialog",
+          "target": "[data-scene-action=\"save-story\"]",
+          "geometry": {
+            "text": "Saved · Remove",
+            "rect": {
+              "x": 46,
+              "y": 815.03125,
+              "width": 142.28125,
+              "height": 44
+            },
+            "viewport": {
+              "width": 320,
+              "height": 900
+            },
+            "documentOverflow": false,
+            "dialog": {
+              "scrollTop": 21,
+              "clientHeight": 866,
+              "scrollHeight": 887
+            },
+            "pressed": "true"
+          },
+          "priorApprovedSha256": "83a27b99e6bd414b7f0f373bf6dcba4aa284176e26b7c50cb0f00411cd3eeaca",
+          "reviewBasis": "identical-sha256-to-manually-approved-A"
+        }
+      ]
+    }
+  ],
+  "notClaimed": [
+    "physical iOS/Android testing",
+    "older engines without Popover support",
+    "full assistive-technology/WCAG audit",
+    "real login/payment/cloud/AI backend"
+  ],
+  "ciPolicy": {
+    "workflow": ".github/workflows/deploy-web.yml",
+    "requiredFullChromiumTests": 1100,
+    "publication": "The release commit must pass formal verify (including default full Chromium suite) before generated-site publication via needs:verify. Consult the matching public Actions run and generated deploy commit; no future CI success is invented in this capture metadata."
+  },
+  "priorDiagnostics": [
+    {
+      "candidate": "v5",
+      "chromium": {
+        "passed": 1091,
+        "failed": 5
+      },
+      "notes": "Four guestbook feedback regressions were fixed and verified by unchanged legacy tests. One unrelated desktop button matrix exceeded original 30s budget and was reproduced on unchanged baseline; budgets/assertions were not relaxed."
+    },
+    {
+      "candidate": "A-first-cross",
+      "passed": 975,
+      "failed": 1,
+      "durationMs": 855054.096,
+      "notes": "Firefox corporate-memphis zh reset document-readiness timeout; original has no trace/final predicate value. Twelve instrumented fresh original-case repetitions passed. Initial cause remains unattributed; do not conflate it with WebKit text-node suppression."
+    },
+    {
+      "candidate": "A-second-cross",
+      "passed": 975,
+      "failed": 1,
+      "rawEvidence": "diagnostics/mellow-held-click-ab.json",
+      "method": "diagnostics/mellow-held-click-method.json",
+      "notes": "WebKit Mellow pause native click suppressed. Original full-case repeat reproduced 29/30. Held350ms A/B: WebKit original0/5 clicks, skip-same-text5/5; Chrome/Firefox both groups5/5. C preserves unchanged Text nodes; unchanged original-case30/30 and new real held-click tests pass.",
+      "references": [
+        "https://bugs.webkit.org/show_bug.cgi?id=252810",
+        "https://bugs.webkit.org/show_bug.cgi?id=278150"
+      ]
+    },
+    {
+      "command": "npm run golden:check",
+      "result": "Missing script; separately corrected npm run search:test passed30/30; original wrapper failure is preserved."
+    }
+  ]
+}

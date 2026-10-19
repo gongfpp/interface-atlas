@@ -1,0 +1,1326 @@
+{
+  "versionLabel": "2bae6cd51a630bb6fa04869c50142b72b7df8608",
+  "server": "http://127.0.0.1:4342",
+  "repositoryLabel": "interface-atlas-states-before-2bae6cd",
+  "engine": "chromium",
+  "started": "2026-10-19T03:05:02.273Z",
+  "source": {
+    "commit": "2bae6cd51a630bb6fa04869c50142b72b7df8608",
+    "dirtyPaths": [
+      "M public/api/terms.json",
+      "?? node_modules"
+    ],
+    "trackedSourceDiffHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "untrackedSources": [],
+    "runnerHashes": [
+      {
+        "file": "capture-style-states.mjs",
+        "hash": "f4aed25b1758a82fa0b80703324a990d18d1265a98a773990047f7cbb8dd9573"
+      },
+      {
+        "file": "style-state-paths.mjs",
+        "hash": "a85fdf2aaf51494a17349d36e589d10d3f485962ab1efb6ae9d9cd2c5fac1fb1"
+      }
+    ]
+  },
+  "screenshotScale": "css",
+  "visualReview": "pending; screenshot existence is not a visual pass",
+  "cases": [
+    {
+      "id": "art-deco-zh-1280",
+      "slug": "art-deco",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "art-deco",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "art-deco-zh-1280-01-select-expanded-native-attempt.png",
+          "computed": "art-deco-zh-1280-01-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "brand-result",
+          "slug": "art-deco",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "art-deco-zh-1280-02-brand-result.png",
+          "computed": "art-deco-zh-1280-02-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/art-deco/?mode=default",
+      "summary": {
+        "slug": "art-deco",
+        "locale": "zh",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "aurora-zh-1280",
+      "slug": "aurora",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "aurora",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "aurora-zh-1280-01-select-expanded-native-attempt.png",
+          "computed": "aurora-zh-1280-01-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "brand-result",
+          "slug": "aurora",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "aurora-zh-1280-02-brand-result.png",
+          "computed": "aurora-zh-1280-02-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/aurora/?mode=default",
+      "summary": {
+        "slug": "aurora",
+        "locale": "zh",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "bauhaus-zh-1280",
+      "slug": "bauhaus",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "brand-result",
+          "slug": "bauhaus",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "bauhaus-zh-1280-01-brand-result.png",
+          "computed": "bauhaus-zh-1280-01-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/bauhaus/?mode=default",
+      "summary": {
+        "slug": "bauhaus",
+        "locale": "zh",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "bento-grid-zh-1280",
+      "slug": "bento-grid",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "task-added-status",
+          "slug": "bento-grid",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "targets": [
+            "[data-task-status]",
+            ".task-list"
+          ],
+          "screenshot": "bento-grid-zh-1280-01-task-added-status.png",
+          "computed": "bento-grid-zh-1280-01-task-added-status.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/bento-grid/?mode=default",
+      "summary": {
+        "slug": "bento-grid",
+        "locale": "zh",
+        "dialog": "available-not-visited",
+        "generic": false
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "brutalism-zh-1280",
+      "slug": "brutalism",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "void-case-dialog",
+          "slug": "brutalism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "kind": "dialog-open",
+          "targets": [
+            "[data-other-dialog=\"void-case\"]"
+          ],
+          "screenshot": "brutalism-zh-1280-01-void-case-dialog.png",
+          "computed": "brutalism-zh-1280-01-void-case-dialog.json"
+        },
+        {
+          "state": "inquiry-status",
+          "slug": "brutalism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "screenshot": "brutalism-zh-1280-02-inquiry-status.png",
+          "computed": "brutalism-zh-1280-02-inquiry-status.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/brutalism/?mode=default",
+      "summary": {
+        "slug": "brutalism",
+        "locale": "zh",
+        "dialog": "open-state-captured",
+        "generic": false
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "claymorphism-zh-1280",
+      "slug": "claymorphism",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "claymorphism",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "claymorphism-zh-1280-01-select-expanded-native-attempt.png",
+          "computed": "claymorphism-zh-1280-01-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "brand-result",
+          "slug": "claymorphism",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "claymorphism-zh-1280-02-brand-result.png",
+          "computed": "claymorphism-zh-1280-02-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/claymorphism/?mode=default",
+      "summary": {
+        "slug": "claymorphism",
+        "locale": "zh",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "corporate-memphis-zh-1280",
+      "slug": "corporate-memphis",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "corporate-memphis",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "corporate-memphis-zh-1280-01-select-expanded-native-attempt.png",
+          "computed": "corporate-memphis-zh-1280-01-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "brand-result",
+          "slug": "corporate-memphis",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "corporate-memphis-zh-1280-02-brand-result.png",
+          "computed": "corporate-memphis-zh-1280-02-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/corporate-memphis/?mode=default",
+      "summary": {
+        "slug": "corporate-memphis",
+        "locale": "zh",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "cyberpunk-zh-1280",
+      "slug": "cyberpunk",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "cyberpunk",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "cyberpunk-zh-1280-01-select-expanded-native-attempt.png",
+          "computed": "cyberpunk-zh-1280-01-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "brand-result",
+          "slug": "cyberpunk",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "cyberpunk-zh-1280-02-brand-result.png",
+          "computed": "cyberpunk-zh-1280-02-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/cyberpunk/?mode=default",
+      "summary": {
+        "slug": "cyberpunk",
+        "locale": "zh",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "editorial-zh-1280",
+      "slug": "editorial",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "saved-story-dialog",
+          "slug": "editorial",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "kind": "dialog-open",
+          "targets": [
+            "[data-scene-dialog=\"story\"]",
+            "[data-story-body]"
+          ],
+          "screenshot": "editorial-zh-1280-01-saved-story-dialog.png",
+          "computed": "editorial-zh-1280-01-saved-story-dialog.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/editorial/?mode=default",
+      "summary": {
+        "slug": "editorial",
+        "locale": "zh",
+        "dialog": "open-state-captured",
+        "generic": false
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "flat-design-zh-1280",
+      "slug": "flat-design",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "flat-design",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "flat-design-zh-1280-01-select-expanded-native-attempt.png",
+          "computed": "flat-design-zh-1280-01-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "brand-result",
+          "slug": "flat-design",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "flat-design-zh-1280-02-brand-result.png",
+          "computed": "flat-design-zh-1280-02-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/flat-design/?mode=default",
+      "summary": {
+        "slug": "flat-design",
+        "locale": "zh",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "glassmorphism-zh-1280",
+      "slug": "glassmorphism",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "aurora-feature-dialog",
+          "slug": "glassmorphism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "kind": "dialog-open",
+          "targets": [
+            "[data-other-dialog=\"aurora-feature\"]",
+            "[data-feature-copy]"
+          ],
+          "screenshot": "glassmorphism-zh-1280-01-aurora-feature-dialog.png",
+          "computed": "glassmorphism-zh-1280-01-aurora-feature-dialog.json"
+        },
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "glassmorphism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "glassmorphism-zh-1280-02-select-expanded-native-attempt.png",
+          "computed": "glassmorphism-zh-1280-02-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "aurora-saved-status",
+          "slug": "glassmorphism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "targets": [
+            "[data-aurora-status]",
+            "[data-aurora-draft]"
+          ],
+          "screenshot": "glassmorphism-zh-1280-03-aurora-saved-status.png",
+          "computed": "glassmorphism-zh-1280-03-aurora-saved-status.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/glassmorphism/?mode=default",
+      "summary": {
+        "slug": "glassmorphism",
+        "locale": "zh",
+        "dialog": "open-state-captured",
+        "generic": false
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "hand-drawn-zh-1280",
+      "slug": "hand-drawn",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "hand-drawn",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "hand-drawn-zh-1280-01-select-expanded-native-attempt.png",
+          "computed": "hand-drawn-zh-1280-01-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "brand-result",
+          "slug": "hand-drawn",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "hand-drawn-zh-1280-02-brand-result.png",
+          "computed": "hand-drawn-zh-1280-02-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/hand-drawn/?mode=default",
+      "summary": {
+        "slug": "hand-drawn",
+        "locale": "zh",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "liquid-glass-zh-1280",
+      "slug": "liquid-glass",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "liquid-glass",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "liquid-glass-zh-1280-01-select-expanded-native-attempt.png",
+          "computed": "liquid-glass-zh-1280-01-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "lumen-material-clear",
+          "slug": "liquid-glass",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            "[data-glass-specimen]",
+            "[data-glass-stage]"
+          ],
+          "screenshot": "liquid-glass-zh-1280-02-lumen-material-clear.png",
+          "computed": "liquid-glass-zh-1280-02-lumen-material-clear.json"
+        },
+        {
+          "state": "lumen-material-frost",
+          "slug": "liquid-glass",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            "[data-glass-specimen]",
+            "[data-glass-stage]"
+          ],
+          "screenshot": "liquid-glass-zh-1280-03-lumen-material-frost.png",
+          "computed": "liquid-glass-zh-1280-03-lumen-material-frost.json"
+        },
+        {
+          "state": "lumen-material-prism",
+          "slug": "liquid-glass",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            "[data-glass-specimen]",
+            "[data-glass-stage]"
+          ],
+          "screenshot": "liquid-glass-zh-1280-04-lumen-material-prism.png",
+          "computed": "liquid-glass-zh-1280-04-lumen-material-prism.json"
+        },
+        {
+          "state": "brand-result",
+          "slug": "liquid-glass",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "liquid-glass-zh-1280-05-brand-result.png",
+          "computed": "liquid-glass-zh-1280-05-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/liquid-glass/?mode=default",
+      "summary": {
+        "slug": "liquid-glass",
+        "locale": "zh",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "memphis-zh-1280",
+      "slug": "memphis",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "memphis",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "memphis-zh-1280-01-select-expanded-native-attempt.png",
+          "computed": "memphis-zh-1280-01-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "brand-result",
+          "slug": "memphis",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "memphis-zh-1280-02-brand-result.png",
+          "computed": "memphis-zh-1280-02-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/memphis/?mode=default",
+      "summary": {
+        "slug": "memphis",
+        "locale": "zh",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "minimalism-zh-1280",
+      "slug": "minimalism",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "product-dialog-open",
+          "slug": "minimalism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "kind": "dialog-open",
+          "targets": [
+            "[data-other-dialog=\"product\"]",
+            "[data-product-title]"
+          ],
+          "screenshot": "minimalism-zh-1280-01-product-dialog-open.png",
+          "computed": "minimalism-zh-1280-01-product-dialog-open.json"
+        },
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "minimalism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "minimalism-zh-1280-02-select-expanded-native-attempt.png",
+          "computed": "minimalism-zh-1280-02-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "product-added-status",
+          "slug": "minimalism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "targets": [
+            "[data-product-status]"
+          ],
+          "screenshot": "minimalism-zh-1280-03-product-added-status.png",
+          "computed": "minimalism-zh-1280-03-product-added-status.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/minimalism/?mode=default",
+      "summary": {
+        "slug": "minimalism",
+        "locale": "zh",
+        "dialog": "open-state-captured",
+        "generic": false
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "neobrutalism-zh-1280",
+      "slug": "neobrutalism",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "playlab-continuation",
+          "slug": "neobrutalism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "targets": [
+            ".other-neobrutalism .other-cards button"
+          ],
+          "screenshot": "neobrutalism-zh-1280-01-playlab-continuation.png",
+          "computed": "neobrutalism-zh-1280-01-playlab-continuation.json"
+        },
+        {
+          "state": "playlab-brief-dialog",
+          "slug": "neobrutalism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "kind": "dialog-open",
+          "targets": [
+            "[data-other-dialog=\"play-brief\"]",
+            "[data-other-form=\"play-brief\"] button"
+          ],
+          "screenshot": "neobrutalism-zh-1280-02-playlab-brief-dialog.png",
+          "computed": "neobrutalism-zh-1280-02-playlab-brief-dialog.json"
+        },
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "neobrutalism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "neobrutalism-zh-1280-03-select-expanded-native-attempt.png",
+          "computed": "neobrutalism-zh-1280-03-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "playlab-brief-status",
+          "slug": "neobrutalism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "screenshot": "neobrutalism-zh-1280-04-playlab-brief-status.png",
+          "computed": "neobrutalism-zh-1280-04-playlab-brief-status.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/neobrutalism/?mode=default",
+      "summary": {
+        "slug": "neobrutalism",
+        "locale": "zh",
+        "dialog": "open-state-captured",
+        "generic": false
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "neumorphism-zh-1280",
+      "slug": "neumorphism",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "neumorphism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "neumorphism-zh-1280-01-select-expanded-native-attempt.png",
+          "computed": "neumorphism-zh-1280-01-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "mellow-active-press",
+          "slug": "neumorphism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "kind": "pointerdown-held",
+          "targets": [
+            "[data-scene-action=\"mellow-toggle\"]"
+          ],
+          "screenshot": "neumorphism-zh-1280-02-mellow-active-press.png",
+          "computed": "neumorphism-zh-1280-02-mellow-active-press.json"
+        },
+        {
+          "state": "mellow-running",
+          "slug": "neumorphism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "targets": [
+            "[data-focus-time]",
+            "[data-scene-action=\"mellow-toggle\"]",
+            "[data-focus-status]"
+          ],
+          "screenshot": "neumorphism-zh-1280-03-mellow-running.png",
+          "computed": "neumorphism-zh-1280-03-mellow-running.json"
+        },
+        {
+          "state": "mellow-paused",
+          "slug": "neumorphism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "targets": [
+            "[data-focus-status]",
+            "[data-scene-action=\"mellow-toggle\"]"
+          ],
+          "screenshot": "neumorphism-zh-1280-04-mellow-paused.png",
+          "computed": "neumorphism-zh-1280-04-mellow-paused.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/neumorphism/?mode=default",
+      "summary": {
+        "slug": "neumorphism",
+        "locale": "zh",
+        "dialog": "available-not-visited",
+        "generic": false
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "organic-zh-1280",
+      "slug": "organic",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "brand-result",
+          "slug": "organic",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "organic-zh-1280-01-brand-result.png",
+          "computed": "organic-zh-1280-01-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/organic/?mode=default",
+      "summary": {
+        "slug": "organic",
+        "locale": "zh",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "pixel-art-zh-1280",
+      "slug": "pixel-art",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "brand-result",
+          "slug": "pixel-art",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "pixel-art-zh-1280-01-brand-result.png",
+          "computed": "pixel-art-zh-1280-01-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/pixel-art/?mode=default",
+      "summary": {
+        "slug": "pixel-art",
+        "locale": "zh",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "retro-futurism-zh-1280",
+      "slug": "retro-futurism",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "radio-playing",
+          "slug": "retro-futurism",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            "[data-radio-status]",
+            "[data-equalizer]"
+          ],
+          "screenshot": "retro-futurism-zh-1280-01-radio-playing.png",
+          "computed": "retro-futurism-zh-1280-01-radio-playing.json"
+        },
+        {
+          "state": "brand-result",
+          "slug": "retro-futurism",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "retro-futurism-zh-1280-02-brand-result.png",
+          "computed": "retro-futurism-zh-1280-02-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/retro-futurism/?mode=default",
+      "summary": {
+        "slug": "retro-futurism",
+        "locale": "zh",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "retro-web-zh-1280",
+      "slug": "retro-web",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "guestbook-status",
+          "slug": "retro-web",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "screenshot": "retro-web-zh-1280-01-guestbook-status.png",
+          "computed": "retro-web-zh-1280-01-guestbook-status.json"
+        },
+        {
+          "state": "retro-search-dialog",
+          "slug": "retro-web",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "kind": "dialog-open",
+          "targets": [
+            "[data-other-dialog=\"retro-search\"]"
+          ],
+          "screenshot": "retro-web-zh-1280-02-retro-search-dialog.png",
+          "computed": "retro-web-zh-1280-02-retro-search-dialog.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/retro-web/?mode=default",
+      "summary": {
+        "slug": "retro-web",
+        "locale": "zh",
+        "dialog": "open-state-captured",
+        "generic": false
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "skeuomorphism-zh-1280",
+      "slug": "skeuomorphism",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "product-dialog-open",
+          "slug": "skeuomorphism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "kind": "dialog-open",
+          "targets": [
+            "[data-other-dialog=\"product\"]",
+            "[data-product-title]"
+          ],
+          "screenshot": "skeuomorphism-zh-1280-01-product-dialog-open.png",
+          "computed": "skeuomorphism-zh-1280-01-product-dialog-open.json"
+        },
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "skeuomorphism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "skeuomorphism-zh-1280-02-select-expanded-native-attempt.png",
+          "computed": "skeuomorphism-zh-1280-02-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "product-added-status",
+          "slug": "skeuomorphism",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "targets": [
+            "[data-product-status]"
+          ],
+          "screenshot": "skeuomorphism-zh-1280-03-product-added-status.png",
+          "computed": "skeuomorphism-zh-1280-03-product-added-status.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/skeuomorphism/?mode=default",
+      "summary": {
+        "slug": "skeuomorphism",
+        "locale": "zh",
+        "dialog": "open-state-captured",
+        "generic": false
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "swiss-style-zh-1280",
+      "slug": "swiss-style",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "project-dialog-open",
+          "slug": "swiss-style",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "kind": "dialog-open",
+          "targets": [
+            "[data-scene-dialog=\"project\"]",
+            "[data-project-copy]"
+          ],
+          "screenshot": "swiss-style-zh-1280-01-project-dialog-open.png",
+          "computed": "swiss-style-zh-1280-01-project-dialog-open.json"
+        },
+        {
+          "state": "contact-status",
+          "slug": "swiss-style",
+          "locale": "zh",
+          "dialogApplicable": true,
+          "targets": [
+            "[data-scene-form=\"contact\"]"
+          ],
+          "screenshot": "swiss-style-zh-1280-02-contact-status.png",
+          "computed": "swiss-style-zh-1280-02-contact-status.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/swiss-style/?mode=default",
+      "summary": {
+        "slug": "swiss-style",
+        "locale": "zh",
+        "dialog": "open-state-captured",
+        "generic": false
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "vaporwave-zh-1280",
+      "slug": "vaporwave",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "vaporwave",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "vaporwave-zh-1280-01-select-expanded-native-attempt.png",
+          "computed": "vaporwave-zh-1280-01-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "brand-result",
+          "slug": "vaporwave",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "vaporwave-zh-1280-02-brand-result.png",
+          "computed": "vaporwave-zh-1280-02-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/vaporwave/?mode=default",
+      "summary": {
+        "slug": "vaporwave",
+        "locale": "zh",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "y2k-zh-1280",
+      "slug": "y2k",
+      "locale": "zh",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "select-expanded-native-attempt",
+          "slug": "y2k",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "stateIntent": "select-expanded",
+          "kind": "native-popup-attempt",
+          "targets": [
+            "select"
+          ],
+          "expandedVerified": false,
+          "nativeOpenPseudo": true,
+          "note": "Native browser popup pixels are not guaranteed in a page screenshot; this is not DOM-expanded visual evidence.",
+          "screenshot": "y2k-zh-1280-01-select-expanded-native-attempt.png",
+          "computed": "y2k-zh-1280-01-select-expanded-native-attempt.json"
+        },
+        {
+          "state": "brand-result",
+          "slug": "y2k",
+          "locale": "zh",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "y2k-zh-1280-02-brand-result.png",
+          "computed": "y2k-zh-1280-02-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4342/style-scenes/y2k/?mode=default",
+      "summary": {
+        "slug": "y2k",
+        "locale": "zh",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    }
+  ],
+  "finished": "2026-10-19T03:05:20.808Z",
+  "finalSource": {
+    "commit": "2bae6cd51a630bb6fa04869c50142b72b7df8608",
+    "dirtyPaths": [
+      "M public/api/terms.json",
+      "?? node_modules"
+    ],
+    "trackedSourceDiffHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "untrackedSources": [],
+    "runnerHashes": [
+      {
+        "file": "capture-style-states.mjs",
+        "hash": "f4aed25b1758a82fa0b80703324a990d18d1265a98a773990047f7cbb8dd9573"
+      },
+      {
+        "file": "style-state-paths.mjs",
+        "hash": "a85fdf2aaf51494a17349d36e589d10d3f485962ab1efb6ae9d9cd2c5fac1fb1"
+      }
+    ]
+  },
+  "sourceChangedDuringCapture": false
+}

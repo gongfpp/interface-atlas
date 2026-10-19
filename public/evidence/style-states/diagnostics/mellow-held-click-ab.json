@@ -1,0 +1,447 @@
+[
+  {
+    "engine": "webkit",
+    "patched": false,
+    "iteration": 0,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup"
+    ],
+    "sameTextNode": false,
+    "status": "专注中。一次只做一件事。"
+  },
+  {
+    "engine": "webkit",
+    "patched": false,
+    "iteration": 1,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup"
+    ],
+    "sameTextNode": false,
+    "status": "专注中。一次只做一件事。"
+  },
+  {
+    "engine": "webkit",
+    "patched": false,
+    "iteration": 2,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup"
+    ],
+    "sameTextNode": false,
+    "status": "专注中。一次只做一件事。"
+  },
+  {
+    "engine": "webkit",
+    "patched": false,
+    "iteration": 3,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup"
+    ],
+    "sameTextNode": false,
+    "status": "专注中。一次只做一件事。"
+  },
+  {
+    "engine": "webkit",
+    "patched": false,
+    "iteration": 4,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup"
+    ],
+    "sameTextNode": false,
+    "status": "专注中。一次只做一件事。"
+  },
+  {
+    "engine": "webkit",
+    "patched": true,
+    "iteration": 0,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "webkit",
+    "patched": true,
+    "iteration": 1,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "webkit",
+    "patched": true,
+    "iteration": 2,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "webkit",
+    "patched": true,
+    "iteration": 3,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "webkit",
+    "patched": true,
+    "iteration": 4,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "chromium",
+    "patched": false,
+    "iteration": 0,
+    "mutations": 3,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "chromium",
+    "patched": false,
+    "iteration": 1,
+    "mutations": 3,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "chromium",
+    "patched": false,
+    "iteration": 2,
+    "mutations": 3,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "chromium",
+    "patched": false,
+    "iteration": 3,
+    "mutations": 3,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "chromium",
+    "patched": false,
+    "iteration": 4,
+    "mutations": 3,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "chromium",
+    "patched": true,
+    "iteration": 0,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "chromium",
+    "patched": true,
+    "iteration": 1,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "chromium",
+    "patched": true,
+    "iteration": 2,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "chromium",
+    "patched": true,
+    "iteration": 3,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "chromium",
+    "patched": true,
+    "iteration": 4,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "firefox",
+    "patched": false,
+    "iteration": 0,
+    "mutations": 3,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "firefox",
+    "patched": false,
+    "iteration": 1,
+    "mutations": 2,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "firefox",
+    "patched": false,
+    "iteration": 2,
+    "mutations": 2,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "firefox",
+    "patched": false,
+    "iteration": 3,
+    "mutations": 2,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "firefox",
+    "patched": false,
+    "iteration": 4,
+    "mutations": 2,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "firefox",
+    "patched": true,
+    "iteration": 0,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "firefox",
+    "patched": true,
+    "iteration": 1,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "firefox",
+    "patched": true,
+    "iteration": 2,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "firefox",
+    "patched": true,
+    "iteration": 3,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  },
+  {
+    "engine": "firefox",
+    "patched": true,
+    "iteration": 4,
+    "mutations": 1,
+    "events": [
+      "pointerdown",
+      "mousedown",
+      "pointerup",
+      "mouseup",
+      "click"
+    ],
+    "sameTextNode": false,
+    "status": "已暂停，剩余时间已保留。"
+  }
+]

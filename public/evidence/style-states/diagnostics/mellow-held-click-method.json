@@ -1,0 +1,51 @@
+{
+  "beforeImplementation": "bb47233b3cecbb2137bd0785184a8ee2d90a7cdc",
+  "fixedImplementation": "60b4b01bf6b5d4693382bbc248ad39a092a493fa",
+  "holdMilliseconds": 350,
+  "intervention": "Only the button instance textContent setter skips identical values. Original timer interval and all other events remain unchanged. This is controlled browser evidence, not a whole-build switch.",
+  "textNodeObservation": "sameTextNode is sampled AFTER mouseup. False in the patched group is expected because a valid Pause click changes the label to Start. The regression test separately checks identity BEFORE mouseup, across a real timer tick.",
+  "summary": [
+    {
+      "engine": "webkit",
+      "patched": false,
+      "cases": 5,
+      "nativeClicks": 0,
+      "paused": 0
+    },
+    {
+      "engine": "webkit",
+      "patched": true,
+      "cases": 5,
+      "nativeClicks": 5,
+      "paused": 5
+    },
+    {
+      "engine": "chromium",
+      "patched": false,
+      "cases": 5,
+      "nativeClicks": 5,
+      "paused": 5
+    },
+    {
+      "engine": "chromium",
+      "patched": true,
+      "cases": 5,
+      "nativeClicks": 5,
+      "paused": 5
+    },
+    {
+      "engine": "firefox",
+      "patched": false,
+      "cases": 5,
+      "nativeClicks": 5,
+      "paused": 5
+    },
+    {
+      "engine": "firefox",
+      "patched": true,
+      "cases": 5,
+      "nativeClicks": 5,
+      "paused": 5
+    }
+  ]
+}
