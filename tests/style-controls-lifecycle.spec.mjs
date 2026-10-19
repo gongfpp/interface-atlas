@@ -1,4 +1,5 @@
 import { test, expect } from './helpers/private-browser.mjs';
+import { readyStyleFrame } from './helpers/style-page-flows.mjs';
 
 // 回归真实业务复位与 label 默认激活；不能只验证首次展开/生成成功。
 for (const slug of ['minimalism', 'skeuomorphism']) {
@@ -231,5 +232,37 @@ for (const slug of genericStyles) {
     expect(focus.actual).toBe(focus.expected);
     expect(focus.width).toBeGreaterThanOrEqual(2);
     expect(focus.style).toBe('solid');
+  });
+}
+
+for (const embedded of [false, true]) {
+  test(`Mellow: ${embedded ? '详情 iframe' : '独立页面'}按住暂停跨计时 tick 不丢失点击`, async ({ page }) => {
+    let root;
+    if (embedded) {
+      await page.goto('/styles/neumorphism/');
+      root = (await readyStyleFrame(page, 'neumorphism', 'zh')).scene;
+    } else {
+      await page.goto('/style-scenes/neumorphism/');
+      root = page.locator('[data-style-scene]');
+    }
+    await root.locator('[data-scene-action="primary"]').first().click();
+    const toggle = root.locator('[data-scene-action="mellow-toggle"]');
+    await toggle.click();
+    await expect(root.locator('[data-focus-status]')).toContainText('专注中');
+    await toggle.scrollIntoViewIfNeeded();
+    await toggle.evaluate(button => { button.__heldTextNode = button.firstChild; });
+    const bounds = await toggle.boundingBox();
+    await page.mouse.move(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
+    await page.mouse.down();
+    try {
+      // 真实按住超过原有 250ms tick；不替换 click 为 pointerdown，也不模拟计时器。
+      await page.waitForTimeout(350);
+      expect(await toggle.evaluate(button => button.firstChild === button.__heldTextNode)).toBe(true);
+    } finally {
+      await page.mouse.up();
+    }
+    await expect(root.locator('[data-focus-status]')).toContainText('已暂停');
+    await toggle.click();
+    await expect(root.locator('[data-focus-status]')).toContainText('专注中');
   });
 }

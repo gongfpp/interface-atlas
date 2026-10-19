@@ -6,7 +6,8 @@ export function initOtherReference(root: HTMLElement) {
   const en = root.dataset.sceneLocale === 'en';
   const l = (zh:string, english:string) => en ? english : zh;
   const q = <T extends HTMLElement = HTMLElement>(selector:string) => root.querySelector<T>(selector);
-  const text = (selector:string, value:string) => { const el=q(selector); if(el) el.textContent=value; };
+  // 相同文案保留 Text 节点；WebKit 在按下/放开之间替换它会吞掉原生 click。
+  const text = (selector:string, value:string) => { const el=q(selector); if(el && el.textContent!==value) el.textContent=value; };
   const button = (label:string, action:string) => { const b=document.createElement('button'); b.type='button'; b.textContent=label; b.dataset.sceneAction=action; return b; };
   let opener:HTMLElement|null=null;
   const close = () => root.querySelectorAll<HTMLDialogElement>('dialog[open]').forEach(d=>d.close());
