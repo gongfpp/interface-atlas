@@ -175,7 +175,8 @@ export function initOtherReference(root: HTMLElement) {
       text('[data-feature-copy]',[l('输入主题，选择诗意或简洁风格，使用本地固定模板获得第一稿，再自由修改。这是模板演示，并非真实 AI 调用。','Enter a topic and choose poetic or clear. A fixed local template gives you an editable first draft. This is not a real AI call.'),l('真实产品可跨设备同步。本样张不连接云端；保存按钮仅记录当前页面快照，刷新后重置。','A full product could sync across devices. This study is offline; Save stores a page-local snapshot that resets on reload.'),l('把当前编辑稿导出为 UTF-8 文本文件，可在常见编辑器中继续创作。只有点击导出才会下载文件。','Export the current draft as UTF-8 text and continue in your editor. A file downloads only when you click Export.')][i]);open('aurora-feature',target);
     }
     else if(action.startsWith('aurora-prompt-')){
-      const i=Number(action.slice(14));const input=q<HTMLInputElement>('[name="topic"]');if(input)input.value=[l('清晨的第一束光','First light of the morning'),l('一座城市的声音','The sounds of a city'),l('给未来自己的信','A letter to your future self')][i];section(0);input?.focus();
+      // 程序化预填与手工输入走同一校验生命周期，清除旧的空白 customError。
+      const i=Number(action.slice(14));const input=q<HTMLInputElement>('[name="topic"]');if(input){input.value=[l('清晨的第一束光','First light of the morning'),l('一座城市的声音','The sounds of a city'),l('给未来自己的信','A letter to your future self')][i];input.dispatchEvent(new Event('input',{bubbles:true}));}section(0);input?.focus();
     }
     else if(action==='aurora-save'||action==='aurora-export'||action==='aurora-restore'){
       const draft=q<HTMLTextAreaElement>('[data-aurora-draft]');if(!draft)return;
@@ -218,7 +219,7 @@ export function initOtherReference(root: HTMLElement) {
     else if(action==='retro-favorites'){renderBookmarks();open('retro-favorites',target);}
     else if(action==='retro-save'){bookmarks.add(retroCurrent);renderBookmarks();text('[data-retro-favorite-status]',l(`已收藏 ${retroNames[retroCurrent]}。`,`Bookmarked ${retroNames[retroCurrent]}.`));}
     else if(action==='retro-go'){
-      const input=q<HTMLInputElement>('[data-retro-route]');if(input)input.value=`goodoldnet/${retroNames[retroCurrent].toLowerCase()}`;
+      const input=q<HTMLInputElement>('[data-retro-route]');if(input){input.value=`goodoldnet/${retroNames[retroCurrent].toLowerCase()}`;input.dispatchEvent(new Event('input',{bubbles:true}));}
       text('[data-retro-route-status]','');open('retro-address',target);
     }
     else if(action==='retro-minimize'){const content=q('.retro-content');if(content){content.hidden=!content.hidden;target.setAttribute('aria-expanded',String(!content.hidden));}}
@@ -252,6 +253,9 @@ export function initOtherReference(root: HTMLElement) {
   }
   filter('[data-goods-query]','[data-goods-results] button','[data-goods-search-status]');
   filter('[data-retro-query]','[data-retro-results] button','[data-retro-search-status]');
+  const guestbookInvalid = () => text('[data-guest-status]',l('请填写昵称和留言，不能仅为空格。','Enter a nickname and message, not just spaces.'));
+  // 原生 required / 共享空白校验都会发出 invalid；保留留言簿自己的具体反馈。
+  q<HTMLFormElement>('[data-other-form="guestbook"]')?.addEventListener('invalid',guestbookInvalid,true);
   root.querySelectorAll<HTMLFormElement>('[data-other-form]').forEach(form=>form.addEventListener('submit',event=>{
     event.preventDefault();const data=new FormData(form);const value=(key:string)=>String(data.get(key)||'').trim();
     const name=form.dataset.otherForm;
@@ -273,17 +277,17 @@ export function initOtherReference(root: HTMLElement) {
       text('[data-contact-summary]',l(`项目提案 · ${value('name')} · ${value('email')}\n${value('brief')}\n已整理成本地预览。未发送邮件，可修改后重新生成。`,`Inquiry · ${value('name')} · ${value('email')}\n${value('brief')}\nLocal preview prepared. No email sent. Edit and generate again.`));
     }
     else if(name==='play-brief'){
-      if(!value('name')||!value('goal')||!selectedServices.size){text('[data-play-summary]',l('请填写项目名称和目标，并至少选择一项服务（首屏清单）。','Enter a project name and goal, and select at least one service in the hero checklist.'));return;}
+      if(!value('name')||!value('goal')||!selectedServices.size){form.dataset.state='invalid';text('[data-play-summary]',l('请填写项目名称和目标，并至少选择一项服务（首屏清单）。','Enter a project name and goal, and select at least one service in the hero checklist.'));return;}
       text('[data-play-summary]',l(`项目：${value('name')}\n目标：${value('goal')}\n服务：${['Design','Develop','Create'].filter((_,i)=>selectedServices.has(i)).join(' / ')}\n时间：${value('timeline')}\n简报已整理，可继续修改。未发送到服务器。`,`Project: ${value('name')}\nGoal: ${value('goal')}\nServices: ${['Design','Develop','Create'].filter((_,i)=>selectedServices.has(i)).join(' / ')}\nTimeline: ${value('timeline')}\nBrief prepared. You can keep editing. Nothing was sent.`));
     }
     else if(name==='retro-address'){
       const route=value('address').toLowerCase().replace(/^goodoldnet\s*\//,'').replace(/^\/+|\/+$/g,'');
       const index=retroNames.findIndex(name=>name.toLowerCase()===route);
-      if(index<0){text('[data-retro-route-status]',l('未找到站内页面。请选择 home、about、projects、links 或 guestbook；不会跳往外部地址。','Page not found. Choose home, about, projects, links or guestbook. External addresses are not opened.'));return;}
+      if(index<0){form.dataset.state='invalid';text('[data-retro-route-status]',l('未找到站内页面。请选择 home、about、projects、links 或 guestbook；不会跳往外部地址。','Page not found. Choose home, about, projects, links or guestbook. External addresses are not opened.'));return;}
       visit(index);
     }
     else if(name==='guestbook'){
-      if(!value('name')||!value('message')){text('[data-guest-status]',l('请填写昵称和留言，不能仅为空格。','Enter a nickname and message, not just spaces.'));return;}
+      if(!value('name')||!value('message')){guestbookInvalid();return;}
       const li=document.createElement('li'),strong=document.createElement('strong');strong.textContent=`${value('name')}: `;li.append(strong,document.createTextNode(value('message')));q('[data-guest-messages]')?.prepend(li);form.reset();text('[data-guest-status]',l('留言已加入。仅当前页面保留，刷新后重置。','Entry added. Kept on this page only; reload resets it.'));
     }
     else if(name==='profile'){

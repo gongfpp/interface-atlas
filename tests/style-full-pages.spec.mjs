@@ -94,7 +94,9 @@ for (const locale of locales) for (const slug of STYLE_SLUGS) {
     // 模式不是只改toolbar高亮，独立document必须收到mode，并可继续完成业务流程。
     const modes = await experience.locator('[data-style-mode]').evaluateAll(buttons => buttons.map(button => button.dataset.styleMode));
     expect(modes).toEqual(specs[slug].demo.modes);
-    const visualSignature = () => scene.evaluate(root => [root, ...root.querySelectorAll('.scene-page,.scene-continuation,.other-content,.other-section,.generic-style-content,.gs-card,.vertex-body,.paper-section')].map(element => {
+    // 形式模式也会改变真实标题、按钮与可打开的弹窗；只采 section 会漏掉这些有效变化。
+    // 仍仅比较 iframe 内页面，外层工具栏高亮不能让断言通过。
+    const visualSignature = () => scene.evaluate(root => [root, ...root.querySelectorAll('*')].map(element => {
       const styles = getComputedStyle(element);
       return Object.fromEntries(['backgroundColor', 'backgroundImage', 'color', 'borderTopWidth', 'borderTopStyle', 'borderTopColor', 'borderRadius', 'boxShadow'].map(key => [key, styles[key]]));
     }));

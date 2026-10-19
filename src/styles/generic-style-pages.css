@@ -5,7 +5,7 @@
 [data-generic-style][data-scene-interactive="true"] button:focus-visible,
 [data-generic-style][data-scene-interactive="true"] input:focus-visible,
 [data-generic-style][data-scene-interactive="true"] select:focus-visible,
-[data-generic-style][data-scene-interactive="true"] textarea:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+[data-generic-style][data-scene-interactive="true"] textarea:focus-visible { outline: 3px solid var(--scene-focus,currentColor); outline-offset: 4px; }
 @container (min-width: 600px) {
 [data-generic-style] .generic-style-hero [data-generic-action] { text-align: left; }
 [data-generic-style] .generic-style-hero > div { padding: clamp(20px, 4cqw, 54px); }
@@ -49,7 +49,7 @@
 .gs-two > *, .gs-product-grid > * { min-width: 0; }
 .generic-style-content label { display: grid; gap: 7px; font-size: 14px; font-weight: 600; margin: 16px 0; }
 .generic-style-content input:not([type="checkbox"]):not([type="range"]), .generic-style-content select, .generic-style-content textarea { width: 100%; min-width: 0; color: var(--gs-fg); background: var(--gs-card); border: 1px solid var(--gs-border); border-radius: min(10px, var(--gs-radius)); padding: 12px; min-height:44px; font: inherit; font-size: 16px; line-height: 1.5; }
-.generic-style-content input::placeholder, .generic-style-content textarea::placeholder { color: var(--gs-fg); opacity: .65; }
+.generic-style-content input::placeholder, .generic-style-content textarea::placeholder { color: var(--gs-muted, var(--gs-sub)); opacity: 1; }
 .generic-style-content select { appearance: none; -webkit-appearance: none; padding-right: 36px; background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%; background-size: 6px 6px; background-repeat: no-repeat; }
 .generic-style-content select option { color: #20202c; background: #fff; }
 .generic-style-content input[type="range"] { width: 100%; accent-color: var(--gs-accent); min-height: 32px; }
@@ -176,10 +176,344 @@
 .gs-team-note-detail [data-team-note-body] { white-space: pre-wrap; }
 .style-document[data-mode="variants"] [data-generic-style] .generic-style-hero .gs-team-day { outline-offset: -1px; }
 @container (max-width: 700px) { .gs-team-note-detail { position: static; } }
-/* 暗色仅调整工作区的成对文字/表面；主视觉与各品牌强调色保持原样。 */
-.style-document[data-mode="dark"] .generic-style-content { --gs-bg: #141719 !important; --gs-fg: #f3f0e8 !important; --gs-card: #252c2e !important; --gs-border: #777c7d !important; }
-.style-document[data-mode="variants"] .generic-style-content { --gs-radius: 0px !important; --gs-shadow: 5px 5px 0 color-mix(in srgb,var(--gs-fg) 40%,transparent) !important; }
-.style-document[data-mode="variants"] [data-generic-style] .generic-style-hero [data-scene-action] { border-radius: 0 !important; outline: 1px solid currentColor; outline-offset: 3px; }
+/* 完整续页材质与公共弹层接口；原始 --gs-* 保留，派生值可随品牌/模式改变。 */
+.generic-style-content[data-generic-design] {
+  --gs-page:var(--gs-bg); --gs-ink:var(--gs-fg); --gs-muted:var(--gs-sub); --gs-panel:var(--gs-card); --gs-rule:var(--gs-border); --gs-rule-width:1px;
+  --gs-panel-radius:var(--gs-radius); --gs-control-radius:var(--gs-radius); --gs-field-radius:var(--gs-control-radius); --gs-popup-radius:var(--gs-control-radius);
+  --gs-body-font:var(--gs-font); --gs-display-font:var(--gs-font); --gs-material-shadow:var(--gs-shadow); --gs-material-blur:var(--gs-blur); --gs-control-shadow:none;
+  --gs-field:var(--gs-panel); --gs-button:var(--gs-panel); --gs-cta:var(--gs-accent); --gs-cta-ink:var(--gs-accent-fg); --gs-hover:color-mix(in srgb,var(--gs-accent) 16%,var(--gs-panel));
+  --gs-selected:var(--gs-cta); --gs-selected-ink:var(--gs-cta-ink); --gs-focus:var(--gs-accent); --gs-error:#b83939; --gs-success:#26734a; --gs-duration:160ms;
+  --scene-surface:var(--gs-popup,var(--gs-panel)); --scene-fg:var(--gs-ink); --scene-border:var(--gs-rule); --scene-radius:var(--gs-popup-radius); --scene-shadow:var(--gs-popup-shadow,var(--gs-material-shadow)); --scene-blur:var(--gs-material-blur);
+  --scene-font:var(--gs-body-font); --scene-muted:var(--gs-muted); --scene-accent:var(--gs-cta); --scene-field:var(--gs-field); --scene-button-bg:var(--gs-button); --scene-button-fg:var(--gs-ink); --scene-button-border:var(--gs-rule-width) solid var(--gs-rule); --scene-button-shadow:var(--gs-control-shadow);
+  --scene-focus:var(--gs-focus); --scene-hover:var(--gs-hover); --scene-selected:var(--gs-selected); --scene-invalid:var(--gs-error); --scene-success:var(--gs-success);
+  background:var(--gs-page); color:var(--gs-ink); font-family:var(--gs-body-font); border-color:var(--gs-rule);
+}
+.generic-style-content[data-generic-design] :is(h2,h3,h4) { font-family:var(--gs-display-font); }
+.generic-style-content[data-generic-design] .gs-heading h2 { font-style:var(--gs-title-style); letter-spacing:-.025em; }
+.generic-style-content[data-generic-design] :is(.gs-eyebrow,.gs-destination-heading>h3) { text-transform:var(--gs-title-transform); }
+.generic-style-content[data-generic-design] .gs-heading { margin-bottom:36px; }
+.generic-style-content[data-generic-design] .gs-heading>p:last-child { opacity:1; color:var(--gs-muted); max-width:68ch; }
+.generic-style-content[data-generic-design] :is(.gs-card,.gs-team-date-banner) { background:var(--gs-panel); color:var(--gs-ink); border:var(--gs-rule-width) solid var(--gs-rule); border-radius:var(--gs-panel-radius); box-shadow:var(--gs-material-shadow); backdrop-filter:var(--gs-material-blur); }
+.generic-style-content[data-generic-design] .gs-tabs { border-color:var(--gs-rule); }
+.generic-style-content[data-generic-design] button { background:var(--gs-button); color:var(--gs-ink); border:var(--gs-rule-width) solid var(--gs-rule); border-radius:var(--gs-control-radius); box-shadow:var(--gs-control-shadow); font-family:var(--gs-body-font); transition:background var(--gs-duration),border-color var(--gs-duration),box-shadow var(--gs-duration),transform var(--gs-duration); }
+.generic-style-content[data-generic-design] button:hover:not(:disabled) { background:var(--gs-hover); box-shadow:var(--gs-control-shadow); }
+.generic-style-content[data-generic-design] :is(button[aria-selected=true],button[aria-pressed=true],.gs-primary) { background:var(--gs-selected); color:var(--gs-selected-ink); }
+.generic-style-content[data-generic-design] .gs-primary:hover:not(:disabled) { background:var(--gs-cta); filter:brightness(.94); }
+.generic-style-content[data-generic-design] button:active:not(:disabled) { filter:brightness(.88); }
+.generic-style-content[data-generic-design] :is(button:disabled,[aria-disabled=true]) { opacity:.48; filter:saturate(.2); box-shadow:none; cursor:not-allowed; }
+.generic-style-content[data-generic-design] :is(input:not([type=checkbox]):not([type=range]),select,textarea) { background-color:var(--gs-field); color:var(--gs-ink); border:var(--gs-rule-width) solid var(--gs-rule); border-radius:var(--gs-field-radius); box-shadow:var(--gs-field-shadow,none); }
+.generic-style-content[data-generic-design] .scene-select-trigger { background:var(--gs-field); border-radius:var(--gs-field-radius); min-height:48px; }
+.generic-style-content[data-generic-design] .scene-select-panel { border-radius:var(--gs-popup-radius); isolation:isolate; }
+.generic-style-content[data-generic-design] .scene-select-option { border-radius:var(--gs-option-radius,8px); }
+.generic-style-content[data-generic-design] .scene-select-option[aria-selected=true] { color:var(--gs-selected-ink); }
+.generic-style-content[data-generic-design] .scene-select-option:is(:hover,[data-active=true]) { color:var(--gs-ink); }
+.generic-style-content[data-generic-design] .scene-select-option[aria-selected=true]:is(:hover,[data-active=true]) { background:var(--gs-selected); color:var(--gs-selected-ink); }
+[data-generic-style][data-scene-interactive=true] .generic-style-content[data-generic-design] :is(button,input,select,textarea):focus-visible { outline:2px solid var(--gs-focus); outline-offset:4px; }
+.generic-style-content[data-generic-design] form { border-radius:var(--gs-panel-radius); }
+.generic-style-content[data-generic-design] form[data-state=invalid] { --gs-form-accent:var(--gs-error); }
+.generic-style-content[data-generic-design] form[data-state=success] { --gs-form-accent:var(--gs-success); }
+.generic-style-content[data-generic-design] form:is([data-state=invalid],[data-state=success]) { outline:2px solid var(--gs-form-accent); outline-offset:10px; }
+.generic-style-content[data-generic-design] :is(input,textarea,.scene-select-trigger)[aria-invalid=true] { border-color:var(--gs-error); outline:2px solid var(--gs-error); outline-offset:2px; }
+.generic-style-content[data-generic-design] .scene-validation { color:var(--gs-error); border-color:var(--gs-error); }
+.generic-style-content[data-generic-design] [role=status][data-feedback] { background:var(--gs-field); border-color:var(--gs-success); border-radius:var(--gs-field-radius); }
+.generic-style-content[data-generic-design] :is(.gs-results li,.gs-team-notes,.gs-footer) { border-color:var(--gs-rule); }
+.gs-destination-heading { display:grid; grid-template-columns:minmax(140px,.7fr) minmax(0,1.3fr); gap:24px; align-items:baseline; margin-bottom:28px; }
+.gs-destination-heading>h3,.gs-destination-heading>p { margin:0; }
+.gs-destination-grid { grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr)); }
+.gs-destination-card { position:relative; min-width:0; }
+.gs-destination-card>.gs-eyebrow { display:block; color:var(--gs-muted); margin-bottom:18px; }
+.gs-destination-card>h4 { overflow-wrap:anywhere; margin:20px 0; }
+.gs-destination-card>button { align-self:start; }
+.gs-destination-art { position:relative; min-height:180px; overflow:hidden; margin:0 0 12px; border-radius:var(--gs-panel-radius); pointer-events:none; }
+.gs-destination-art>i { position:absolute; display:block; }
+/* Claymates：凸起的黏土，而非白色平卡。 */
+.generic-style-content[data-generic-design=claymorphism] { --gs-display-font:ui-rounded,'Arial Rounded MT Bold',var(--gs-font); --gs-muted:#596080; --gs-panel:#f7f8ff; --gs-panel-radius:32px; --gs-control-radius:20px; --gs-field-radius:16px; --gs-popup-radius:24px; --gs-field:#e7ebff; --gs-popup:#eef1ff; --gs-material-shadow:10px 14px 28px #8998d733,inset 3px 4px 7px #fff,inset -4px -6px 12px #c2caf455; --gs-control-shadow:4px 6px 12px #a7b3df55,inset 2px 3px 4px #ffffffc4,inset -3px -4px 7px #8b9bd344; --gs-field-shadow:inset 3px 3px 7px #8c9bce3b,inset -3px -3px 7px #fff; --gs-hover:#e3e8ff; --gs-focus:#4e55bb; --gs-error:#b74d54; --gs-success:#34725b; --gs-duration:220ms; }
+.generic-style-content[data-generic-design=claymorphism] .gs-heading h2 { font-weight:850; letter-spacing:-.04em; }
+.generic-style-content[data-generic-design=claymorphism] :is(button,.scene-select-option):hover:not(:disabled) { transform:translateY(-2px); box-shadow:6px 10px 18px #8190cc55,inset 2px 3px 4px #ffffffa8; }
+.generic-style-content[data-generic-design=claymorphism] button:active:not(:disabled),.generic-style-content[data-generic-design=claymorphism] .scene-select-option[aria-selected=true] { transform:translateY(1px); box-shadow:inset 4px 4px 9px #6876b066,inset -3px -3px 7px #ffffffb0; }
+.generic-style-content[data-generic-design=claymorphism] .scene-select-panel { padding:12px; }
+.generic-style-content[data-generic-design=claymorphism] .scene-select-option { margin:4px 0; padding:12px; border-radius:16px; box-shadow:var(--gs-control-shadow); }
+.generic-style-content[data-generic-design=claymorphism] .gs-destination-card { --sample-color:#9aa7ff; padding:28px; border:0; }
+.generic-style-content[data-generic-design=claymorphism] .gs-destination-card[data-gs-index="1"] { --sample-color:#ffb5a5; }
+.generic-style-content[data-generic-design=claymorphism] .gs-destination-card[data-gs-index="2"] { --sample-color:#97d9bd; }
+.generic-style-content[data-generic-design=claymorphism] .gs-destination-art { background:color-mix(in srgb,var(--sample-color) 18%,var(--gs-panel)); border-radius:24px; }
+.generic-style-content[data-generic-design=claymorphism] .gs-destination-art i:first-child { width:112px; height:116px; left:calc(50% - 56px); top:28px; border-radius:43% 48% 38% 43%; background:var(--sample-color); box-shadow:inset 9px 10px 12px #ffffffbd,inset -9px -12px 13px #5361a333,0 18px 15px #6977b329; }
+.generic-style-content[data-generic-design=claymorphism] .gs-destination-art i:nth-child(2) { width:6px; height:6px; background:#3a3f5c; border-radius:50%; left:calc(50% - 17px); top:78px; box-shadow:28px 0 #3a3f5c; }
+.generic-style-content[data-generic-design=claymorphism] .gs-destination-art i:nth-child(3) { width:20px; height:14px; border-bottom:2px solid #3a3f5c; border-radius:0 0 50% 50%; left:calc(50% - 10px); top:89px; }
+.generic-style-content[data-generic-design=claymorphism] [data-gs-section=home] .gs-destination-grid { grid-template-columns:1fr; max-width:760px; }
+.generic-style-content[data-generic-design=claymorphism] [data-gs-section=cabin] .gs-destination-grid { grid-template-columns:1fr 1fr; }
+.generic-style-content[data-generic-design=claymorphism] select[data-clay-color]~.scene-select-panel .scene-select-option::before { content:''; flex:0 0 28px; height:28px; border-radius:45% 50% 42% 46%; background:#9aa7ff; box-shadow:inset 4px 4px 5px #fffc,inset -3px -4px 5px #5361a344,2px 4px 5px #6977b344; }
+.generic-style-content[data-generic-design=claymorphism] select[data-clay-color]~.scene-select-panel .scene-select-option:nth-child(2)::before { background:#ffb5a5; }
+.generic-style-content[data-generic-design=claymorphism] select[data-clay-color]~.scene-select-panel .scene-select-option:nth-child(3)::before { background:#97d9bd; }
+.generic-style-content[data-generic-design=claymorphism] :is(input,textarea,.scene-select-trigger)[aria-invalid=true] { box-shadow:inset 3px 3px 8px #c36d6d40,inset -3px -3px 7px #fff8; }
+/* Lumen：控制层、透明样本、磨砂漫射与棱镜彩边具有不同材质。 */
+.generic-style-content[data-generic-design=liquid-glass] { --gs-ink:#29203f; --gs-muted:#392b51; --gs-panel:rgba(255,255,255,.26); --gs-field:rgba(255,255,255,.34); --gs-button:rgba(255,255,255,.3); --gs-popup:rgba(243,240,255,.84); --gs-hover:rgba(255,255,255,.58); --gs-selected:rgba(255,255,255,.92); --gs-selected-ink:#24183c; --gs-panel-radius:28px; --gs-control-radius:20px; --gs-field-radius:18px; --gs-popup-radius:24px; --gs-control-shadow:inset 0 2px 2px #fffc,inset 0 -1px 3px #30204424,0 8px 16px #34224d1f; --gs-focus:#3e2765; --gs-error:#9d304c; --gs-success:#285b57; --gs-duration:320ms; }
+.generic-style-content[data-generic-design=liquid-glass] [data-gs-section=workspace]>.gs-two { grid-template-columns:.85fr 1.15fr; }
+.generic-style-content[data-generic-design=liquid-glass] [data-gs-section=workspace]>.gs-two>div:first-child { background:var(--gs-panel); border:1px solid #fff9; border-radius:28px; padding:28px; box-shadow:var(--gs-material-shadow); backdrop-filter:var(--gs-material-blur); }
+.generic-style-content[data-generic-design=liquid-glass] :is(button,.scene-select-trigger) { backdrop-filter:var(--gs-material-blur); background-image:linear-gradient(150deg,#ffffff42,transparent 55%); }
+.generic-style-content[data-generic-design=liquid-glass] button:hover:not(:disabled) { box-shadow:inset 0 3px 3px #fff,0 12px 24px #30204433; transform:translateY(-1px); }
+.generic-style-content[data-generic-design=liquid-glass] button:active:not(:disabled) { transform:translateY(1px); box-shadow:inset 0 2px 8px #2e1c4633; }
+.generic-style-content[data-generic-design=liquid-glass] .gs-destination-card { overflow:hidden; min-height:270px; }
+.generic-style-content[data-generic-design=liquid-glass] .gs-destination-card::after { content:''; position:absolute; inset:2px; border-radius:inherit; border-top:2px solid #ffffffb8; pointer-events:none; }
+.generic-style-content[data-generic-design=liquid-glass] [data-gs-section=optics] .gs-destination-grid { grid-template-columns:1.15fr .85fr; }
+.generic-style-content[data-generic-design=liquid-glass] .gs-destination-art { min-height:180px; background:linear-gradient(135deg,#f6c5b7,#9b7bd1 45%,#4ec9eb); border-radius:20px; }
+.generic-style-content[data-generic-design=liquid-glass] .gs-destination-art i:first-child { width:110px; height:110px; border-radius:50%; background:#ffb9a9; top:12px; left:12px; }
+.generic-style-content[data-generic-design=liquid-glass] .gs-destination-art i:nth-child(2) { inset:30px -15px; background:repeating-linear-gradient(45deg,#354a7e55 0 10px,#fff6 10px 20px); transform:rotate(-12deg); }
+.generic-style-content[data-generic-design=liquid-glass] .gs-destination-art i:nth-child(3) { inset:25px 24px; border:1px solid #fffc; border-radius:24px; background:#ffffff18; box-shadow:inset 0 3px 3px #fffe,inset 0 -2px 3px #30204444,0 12px 20px #30204433; backdrop-filter:blur(2px) saturate(150%); }
+.generic-style-content[data-generic-design=liquid-glass] [data-gs-section=materials] .gs-destination-card[data-gs-index="0"] { background:#ffffff1c; backdrop-filter:blur(2px) saturate(150%); }
+.generic-style-content[data-generic-design=liquid-glass] [data-gs-section=materials] .gs-destination-card[data-gs-index="1"] { background:#f4f2ffb8; backdrop-filter:blur(24px) saturate(110%); }
+.generic-style-content[data-generic-design=liquid-glass] [data-gs-section=materials] .gs-destination-card[data-gs-index="1"] .gs-destination-art i:nth-child(3) { background:#f3efffc9; backdrop-filter:blur(20px) saturate(100%); box-shadow:inset 0 2px 5px #fffd,0 12px 22px #30204426; }
+.generic-style-content[data-generic-design=liquid-glass] [data-gs-section=materials] .gs-destination-card[data-gs-index="2"] { background:linear-gradient(140deg,#ffc4e74d,#c4efff5e,#d0ffd44a); backdrop-filter:blur(8px) saturate(210%); box-shadow:inset 2px 0 2px #ffbbeb,inset -2px 0 2px #a2f7ff,var(--gs-material-shadow); }
+.generic-style-content[data-generic-design=liquid-glass] [data-gs-section=materials] .gs-destination-card[data-gs-index="2"] .gs-destination-art i:nth-child(3),.generic-style-content[data-generic-design=liquid-glass] .gs-glass-specimen[data-material=Prism] { background:linear-gradient(135deg,#ffd1ef70,#b8e9ff66,#c4ffd580); backdrop-filter:blur(calc(var(--glass-depth,12px) * .5)) saturate(220%); box-shadow:inset 3px 0 3px #ffc1f5,inset -3px 0 3px #8cf4ff,0 12px 24px #45306b33; }
+.generic-style-content[data-generic-design=liquid-glass] .gs-glass-specimen[data-material=Clear] { background:#ffffff1f; backdrop-filter:blur(var(--glass-depth)) saturate(160%); }
+.generic-style-content[data-generic-design=liquid-glass] .gs-glass-specimen[data-material=Frost] { background:#f3efffc9; backdrop-filter:blur(calc(var(--glass-depth) + 8px)) saturate(110%); }
+.generic-style-content[data-generic-design=liquid-glass] select[data-glass-material]~.scene-select-panel .scene-select-option::before { content:''; flex:0 0 34px; height:26px; border-radius:9px; border:1px solid #fff; background:#ffffff24; box-shadow:inset 0 2px 2px #fff,0 4px 8px #30204433; backdrop-filter:blur(2px) saturate(150%); }
+.generic-style-content[data-generic-design=liquid-glass] select[data-glass-material]~.scene-select-panel .scene-select-option:nth-child(2)::before { background:#f3efffca; backdrop-filter:blur(20px) saturate(100%); }
+.generic-style-content[data-generic-design=liquid-glass] select[data-glass-material]~.scene-select-panel .scene-select-option:nth-child(3)::before { background:linear-gradient(135deg,#ff9fd290,#a8eaff88,#aaffbb88); backdrop-filter:blur(6px) saturate(220%); box-shadow:inset 2px 0 #ffbae9,inset -2px 0 #96f3ff,0 4px 8px #30204433; }
+/* Flatly：纯平涂、清楚的计划对比与正文目录。 */
+.generic-style-content[data-generic-design=flat-design] { --gs-ink:#073553; --gs-muted:#103f61; --gs-panel:#e5f5ff; --gs-field:#f8fcff; --gs-button:#d8f0ff; --gs-rule-width:0px; --gs-panel-radius:6px; --gs-control-radius:6px; --gs-field-radius:6px; --gs-popup-radius:6px; --gs-material-shadow:none; --gs-control-shadow:none; --gs-popup:#eff9ff; --gs-hover:#b8e6ff; --gs-focus:#073553; --gs-error:#922b27; --gs-success:#104c35; --gs-duration:120ms; }
+.generic-style-content[data-generic-design=flat-design] .gs-tabs { border:0; gap:4px; }
+.generic-style-content[data-generic-design=flat-design] [data-gs-section=features] .gs-destination-card:nth-child(3n+1) { background:#ffdf76; }
+.generic-style-content[data-generic-design=flat-design] [data-gs-section=features] .gs-destination-card:nth-child(3n+2) { background:#f8fcff; }
+.generic-style-content[data-generic-design=flat-design] [data-gs-section=pricing] .gs-destination-grid { grid-template-columns:1fr 1fr; }
+.generic-style-content[data-generic-design=flat-design] [data-gs-section=pricing] .gs-destination-card { min-height:240px; border-top:8px solid #ffd54f; }
+.generic-style-content[data-generic-design=flat-design] [data-gs-section=pricing] h4 { font-size:28px; }
+.generic-style-content[data-generic-design=flat-design] [data-gs-section=journal] .gs-destination-grid { grid-template-columns:1fr; }
+.generic-style-content[data-generic-design=flat-design] [data-gs-section=journal] .gs-destination-card { padding:24px 0; background:transparent; border-bottom:2px solid #07355366; border-radius:0; }
+.generic-style-content[data-generic-design=flat-design] .gs-shelf { border-left:8px solid #ffd54f; }
+/* BAUHAUS：原色是构图元素，不是柔化的装饰卡。 */
+.generic-style-content[data-generic-design=bauhaus] { --gs-panel-radius:0px; --gs-control-radius:0px; --gs-field-radius:0px; --gs-popup-radius:0px; --gs-option-radius:0px; --gs-muted:#4b4742; --gs-material-shadow:none; --gs-control-shadow:none; --gs-focus:#141414; --gs-hover:#f2b705; --gs-error:#c3261c; --gs-success:#21409a; --gs-duration:90ms; }
+.generic-style-content[data-generic-design=bauhaus] .gs-heading { border-left:14px solid #21409a; padding-left:24px; }
+.generic-style-content[data-generic-design=bauhaus] .gs-heading h2 { text-transform:uppercase; font-weight:900; letter-spacing:-.06em; }
+.generic-style-content[data-generic-design=bauhaus] .gs-destination-art { background:#eee5d7; border-radius:0; }
+.generic-style-content[data-generic-design=bauhaus] .gs-destination-art i:first-child { width:100px; height:100px; top:40px; left:calc(50% - 50px); border-radius:50%; background:var(--gs-tri-0); }
+.generic-style-content[data-generic-design=bauhaus] [data-gs-index="1"] .gs-destination-art i:first-child { border-radius:0; background:var(--gs-tri-1); }
+.generic-style-content[data-generic-design=bauhaus] [data-gs-index="2"] .gs-destination-art i:first-child { border-radius:0; clip-path:polygon(50% 0,100% 100%,0 100%); background:var(--gs-tri-2); }
+.generic-style-content[data-generic-design=bauhaus] [data-gs-section=colors] .gs-destination-card { background:#e23b2e; }
+.generic-style-content[data-generic-design=bauhaus] [data-gs-section=colors] [data-gs-index="1"] { --gs-ink:#fff; --gs-muted:#fff; --gs-rule:#fff; --scene-focus:#fff; background:#21409a; }
+.generic-style-content[data-generic-design=bauhaus] [data-gs-section=colors] [data-gs-index="2"] { background:#f2b705; }
+.generic-style-content[data-generic-design=bauhaus] [data-gs-section=colors] .gs-destination-art { min-height:90px; background:transparent; }
+.generic-style-content[data-generic-design=bauhaus] [data-gs-section=colors] .gs-destination-art i:first-child { top:5px; width:70px; height:70px; left:calc(50% - 35px); background:currentColor; }
+.generic-style-content[data-generic-design=bauhaus] [data-gs-section=workshop] .gs-destination-grid { grid-template-columns:1fr; }
+.generic-style-content[data-generic-design=bauhaus] [data-gs-section=workshop] .gs-destination-card { border-left:12px solid #e23b2e; min-height:180px; }
+.generic-style-content[data-generic-design=bauhaus] button:active:not(:disabled) { background:#21409a; color:#fff; filter:none; }
+/* CyberDream：镭射唱片、气泡装扮和轨道，而非普通白色清单。 */
+.generic-style-content[data-generic-design=y2k] { --gs-muted:#55516f; --gs-panel:rgba(255,255,255,.7); --gs-field:#f9f3ff; --gs-popup:#f0e5ff; --gs-panel-radius:28px; --gs-control-radius:999px; --gs-field-radius:20px; --gs-popup-radius:24px; --gs-hover:#e4d0ff; --gs-control-shadow:inset 0 2px 2px #fff,0 5px 12px #7b61ff29; --gs-focus:#6347cc; --gs-error:#ad3c71; --gs-success:#6250a6; --gs-duration:200ms; }
+.generic-style-content[data-generic-design=y2k] .gs-heading h2 { font-weight:900; text-shadow:0 2px #fff9,0 5px 14px #8464e82e; }
+.generic-style-content[data-generic-design=y2k] button:hover:not(:disabled) { transform:translateY(-2px); box-shadow:inset 0 3px 3px #fff,0 8px 20px #7b61ff55; }
+.generic-style-content[data-generic-design=y2k] button:active:not(:disabled) { transform:scale(.97); }
+.generic-style-content[data-generic-design=y2k] .gs-destination-art { background:linear-gradient(135deg,#eeefff,#f4d6ed,#bcccf5); }
+.generic-style-content[data-generic-design=y2k] .gs-destination-art i:first-child { width:110px; height:110px; left:calc(50% - 55px); top:30px; background:linear-gradient(120deg,#fff,#b4b4da 30%,#fce5ff 48%,#898ab5 64%,#e2f7ff); border-radius:50%; box-shadow:0 10px 18px #6657a04d,inset 0 2px #fff; }
+.generic-style-content[data-generic-design=y2k] .gs-destination-art i:nth-child(2) { width:150px; height:45px; border:2px solid #fff; border-radius:50%; left:calc(50% - 75px); top:65px; transform:rotate(-25deg); }
+.generic-style-content[data-generic-design=y2k] [data-gs-section=music] .gs-destination-grid { grid-template-columns:1fr; }
+.generic-style-content[data-generic-design=y2k] [data-gs-section=music] .gs-destination-card { display:grid; grid-template-columns:140px 1fr auto; gap:8px 24px; align-items:center; }
+.generic-style-content[data-generic-design=y2k] [data-gs-section=music] .gs-destination-art { grid-column:1; grid-row:1/4; min-height:130px; margin:0; border-radius:50%; background:#7460a6; }
+.generic-style-content[data-generic-design=y2k] [data-gs-section=music] .gs-destination-art i:first-child { inset:12px; width:auto; height:auto; border:12px solid #383054; background:repeating-radial-gradient(#51446f 0 3px,#30263f 4px 6px); }
+.generic-style-content[data-generic-design=y2k] [data-gs-section=music] .gs-destination-art i:nth-child(2) { width:28px; height:28px; border:7px solid #e5c4ff; background:#7b61ff; top:51px; left:calc(50% - 14px); transform:none; }
+.generic-style-content[data-generic-design=y2k] [data-gs-section=planet] .gs-destination-grid { grid-template-columns:1fr 1fr; }
+/* NEON://CITY：紧凑的任务终端与货单。 */
+.generic-style-content[data-generic-design=cyberpunk] { --gs-muted:#9db6cb; --gs-panel:#081c28; --gs-popup:#071724; --gs-field:#061522; --gs-control-shadow:0 0 10px #00e5ff20; --gs-hover:#123a49; --gs-focus:#00e5ff; --gs-error:#ff76c7; --gs-success:#7ef1ce; --gs-duration:100ms; --gs-option-radius:2px; }
+.generic-style-content[data-generic-design=cyberpunk] .gs-heading h2 { text-transform:uppercase; letter-spacing:-.045em; text-shadow:0 0 18px #00e5ff50; }
+.generic-style-content[data-generic-design=cyberpunk] .gs-destination-grid { grid-template-columns:1fr; gap:0; border-top:2px solid #00e5ff; }
+.generic-style-content[data-generic-design=cyberpunk] .gs-destination-card { display:grid; grid-template-columns:130px minmax(0,1fr) auto; align-items:center; gap:16px; padding:24px 16px; border:0; border-bottom:1px solid #00e5ff60; border-radius:0; box-shadow:none; }
+.generic-style-content[data-generic-design=cyberpunk] .gs-destination-card :is(.gs-eyebrow,h4) { margin:0; }
+.generic-style-content[data-generic-design=cyberpunk] [data-gs-section=gear] .gs-destination-card { border-left:4px solid #00e5ff; }
+.generic-style-content[data-generic-design=cyberpunk] button:hover:not(:disabled) { box-shadow:0 0 16px #00e5ff55; border-color:#00e5ff; }
+.generic-style-content[data-generic-design=cyberpunk] button:active:not(:disabled) { background:#00e5ff; color:#050810; filter:none; }
+/* Milano ’88：家居摆件、图案样张与派对海报拼贴。 */
+.generic-style-content[data-generic-design=memphis] { --gs-rule-width:2px; --gs-muted:#5d5044; --gs-control-shadow:3px 3px 0 #232323; --gs-field-radius:2px; --gs-popup-radius:2px; --gs-option-radius:0px; --gs-popup:#fff4e3; --gs-hover:#ffd23f; --gs-focus:#232323; --gs-error:#b62258; --gs-success:#18715c; --gs-duration:150ms; }
+.generic-style-content[data-generic-design=memphis] .gs-heading h2 { font-weight:900; letter-spacing:-.05em; }
+.generic-style-content[data-generic-design=memphis] .gs-destination-card:nth-child(2n) { transform:rotate(1deg); }
+.generic-style-content[data-generic-design=memphis] .gs-destination-art { border-radius:0; background:radial-gradient(circle,#232323 2px,transparent 3px) 0 0/18px 18px,#ffbfce; }
+.generic-style-content[data-generic-design=memphis] [data-gs-index="1"] .gs-destination-art { background:repeating-conic-gradient(#ffd23f 0 25%,#e9f4ff 0 50%) 0 0/32px 32px; }
+.generic-style-content[data-generic-design=memphis] [data-gs-index="2"] .gs-destination-art { background:repeating-linear-gradient(45deg,#3ec6a8 0 14px,#232323 14px 17px,#fff4e3 17px 31px); }
+.generic-style-content[data-generic-design=memphis] [data-gs-section=homeware] .gs-destination-art i:first-child { width:80px; height:120px; top:30px; left:calc(50% - 40px); border:2px solid #232323; border-radius:18px 18px 28px 28px; background:#ffd23f; transform:rotate(-7deg); box-shadow:6px 7px 0 #232323; }
+.generic-style-content[data-generic-design=memphis] [data-gs-section=party] .gs-destination-grid { grid-template-columns:1fr 1fr; }
+.generic-style-content[data-generic-design=memphis] [data-gs-section=party] .gs-destination-card { background:#ffbdd1; }
+.generic-style-content[data-generic-design=memphis] button:hover:not(:disabled) { transform:translate(-1px,-1px); box-shadow:5px 5px 0 #232323; }
+.generic-style-content[data-generic-design=memphis] button:active:not(:disabled) { transform:translate(3px,3px); box-shadow:0 0 0 #232323; filter:none; }
+/* SYNTH-84：收音机面板、巡演路线与磁带侧标。 */
+.generic-style-content[data-generic-design=retro-futurism] { --gs-panel:#26103c; --gs-popup:#251038; --gs-field:#180e2e; --gs-muted:#dab7dc; --gs-material-shadow:0 0 20px #ff71ce25; --gs-control-shadow:inset 0 1px #ffb4e750,0 0 9px #ff71ce20; --gs-hover:#4f245e; --gs-focus:#ff9bdd; --gs-error:#ff89c3; --gs-success:#8fdfd8; --gs-duration:240ms; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-heading h2 { text-transform:uppercase; letter-spacing:-.04em; text-shadow:0 2px #5b2c75,0 0 14px #ff71ce50; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-radio { border-top:3px solid #ff71ce; background:linear-gradient(180deg,#35204d,#190e2e); }
+.generic-style-content[data-generic-design=retro-futurism] [data-gs-section=radio] .gs-destination-grid,.generic-style-content[data-generic-design=retro-futurism] [data-gs-section=tour] .gs-destination-grid { grid-template-columns:1fr; gap:0; }
+.generic-style-content[data-generic-design=retro-futurism] :is([data-gs-section=radio],[data-gs-section=tour]) .gs-destination-card { border:0; border-bottom:1px solid #ff71ce80; border-radius:0; box-shadow:none; padding:22px 16px; }
+.generic-style-content[data-generic-design=retro-futurism] [data-gs-section=tapes] .gs-destination-grid { grid-template-columns:1fr 1fr; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-destination-art { background:#121020; border:3px solid #654375; border-radius:12px; min-height:150px; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-destination-art i:first-child { inset:25px 20px; border-radius:50px; background:#d9a6d7; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-destination-art i:nth-child(2) { width:48px; height:48px; border:13px solid #382340; border-radius:50%; top:51px; left:calc(50% - 75px); box-shadow:100px 0 0 -1px #382340; }
+.generic-style-content[data-generic-design=retro-futurism] button:hover:not(:disabled) { box-shadow:0 0 18px #ff71ce66,inset 0 1px #fff5; }
+/* Borealis：观测窗、光谱带与错落的玻璃层。 */
+.generic-style-content[data-generic-design=aurora] { --gs-panel:rgba(20,23,50,.5); --gs-popup:rgba(23,22,49,.94); --gs-field:rgba(11,15,34,.6); --gs-muted:#c8c6e5; --gs-material-blur:blur(16px) saturate(150%); --gs-material-shadow:0 18px 38px #05051255,inset 0 1px #d5d8ff30; --gs-control-shadow:inset 0 1px #fff2,0 5px 14px #05051233; --gs-hover:#4d4c79; --gs-focus:#ddd0ff; --gs-error:#ffa0c8; --gs-success:#8de1bf; --gs-duration:400ms; }
+.generic-style-content[data-generic-design=aurora] .gs-destination-art { background:radial-gradient(ellipse at 30% 20%,#43d8a666,transparent 60%),radial-gradient(ellipse at 80% 70%,#b176e477,transparent 65%),#0d102a; min-height:200px; }
+.generic-style-content[data-generic-design=aurora] .gs-destination-art i:first-child { inset:35px -15px; background:linear-gradient(140deg,transparent,#8c7eff80,transparent); border-radius:50%; filter:blur(18px); transform:rotate(-20deg); }
+.generic-style-content[data-generic-design=aurora] .gs-destination-art i:nth-child(2) { height:1px; left:10%; right:10%; bottom:36px; background:#d7eaff88; box-shadow:0 0 24px #a0f5df; }
+.generic-style-content[data-generic-design=aurora] [data-gs-section=color] .gs-destination-grid { grid-template-columns:1fr; }
+.generic-style-content[data-generic-design=aurora] [data-gs-section=color] .gs-destination-card { display:grid; grid-template-columns:120px 1fr auto; gap:12px 24px; align-items:center; }
+.generic-style-content[data-generic-design=aurora] [data-gs-section=color] .gs-destination-art { grid-column:1; grid-row:1/4; min-height:110px; margin:0; background:radial-gradient(ellipse,#35ce8baa,transparent),#0d102a; }
+.generic-style-content[data-generic-design=aurora] [data-gs-section=color] [data-gs-index="1"] .gs-destination-art { background:radial-gradient(ellipse,#8f6dffbb,transparent),#0d102a; }
+.generic-style-content[data-generic-design=aurora] [data-gs-section=color] [data-gs-index="2"] .gs-destination-art { background:radial-gradient(ellipse,#ff6cafaa,transparent),#0d102a; }
+.generic-style-content[data-generic-design=aurora] [data-gs-section=space] .gs-destination-grid { grid-template-columns:1.35fr .65fr; align-items:start; }
+.generic-style-content[data-generic-design=aurora] [data-gs-section=space] [data-gs-index="1"] { margin-top:48px; }
+.generic-style-content[data-generic-design=aurora] button:hover:not(:disabled) { box-shadow:0 0 22px #a5b4fc55,inset 0 1px #fff5; }
+/* mori：材料目录与养护读本，留白比描边更重要。 */
+.generic-style-content[data-generic-design=organic] { --gs-body-font:'Helvetica Neue','PingFang SC',sans-serif; --gs-display-font:Georgia,'Songti SC',serif; --gs-muted:#526445; --gs-panel-radius:24px; --gs-control-radius:14px; --gs-field-radius:10px; --gs-popup-radius:18px; --gs-material-shadow:0 5px 10px #29392b0f; --gs-control-shadow:none; --gs-popup:#f1efe5; --gs-field:#f9f8f1; --gs-hover:#d2dbc3; --gs-focus:#365635; --gs-error:#9e4937; --gs-success:#3d653c; --gs-duration:300ms; }
+.generic-style-content[data-generic-design=organic] .gs-heading h2 { font-weight:500; letter-spacing:-.035em; }
+.generic-style-content[data-generic-design=organic] .gs-destination-art { border-radius:46% 46% 12px 12px; background:#d5d9c6; }
+.generic-style-content[data-generic-design=organic] .gs-destination-art i:first-child { width:82px; height:70px; top:64px; left:calc(50% - 41px); border-radius:16px; background:#ded5bf; box-shadow:inset 3px 4px 7px #fff8,4px 8px 12px #29392b24; }
+.generic-style-content[data-generic-design=organic] [data-gs-index="1"] .gs-destination-art i:first-child { width:65px; border-radius:5px 5px 28px 28px; background:#bc8e73; }
+.generic-style-content[data-generic-design=organic] [data-gs-index="2"] .gs-destination-art i:first-child { width:116px; height:36px; top:85px; left:calc(50% - 58px); border-radius:50%; background:repeating-linear-gradient(3deg,#b99064,#c6a078 3px,#b99064 5px); }
+.generic-style-content[data-generic-design=organic] [data-gs-section=about] .gs-destination-grid { grid-template-columns:1fr; max-width:760px; }
+.generic-style-content[data-generic-design=organic] [data-gs-section=about] .gs-destination-card { background:transparent; border:0; border-bottom:1px solid var(--gs-rule); border-radius:0; box-shadow:none; padding:28px 0; }
+.generic-style-content[data-generic-design=organic] button:hover:not(:disabled) { background:#d2dbc3; transform:translateY(-1px); }
+.generic-style-content[data-generic-design=organic] button:active:not(:disabled) { transform:translateY(1px); }
+/* The Aurelia：晚宴票、轴对称与双层金线。 */
+.generic-style-content[data-generic-design=art-deco] { --gs-body-font:'Helvetica Neue','PingFang SC',sans-serif; --gs-display-font:Georgia,'Songti SC',serif; --gs-muted:#d0c5ae; --gs-panel-radius:0px; --gs-control-radius:0px; --gs-field-radius:0px; --gs-popup-radius:0px; --gs-option-radius:0px; --gs-material-shadow:none; --gs-control-shadow:none; --gs-popup:#1c2829; --gs-field:#1d2929; --gs-hover:#394234; --gs-focus:#f5d995; --gs-error:#ed9b7f; --gs-success:#c8d4a6; --gs-duration:250ms; }
+.generic-style-content[data-generic-design=art-deco] .gs-heading { text-align:center; max-width:none; border-block:1px solid var(--gs-rule); padding:32px 20px; position:relative; }
+.generic-style-content[data-generic-design=art-deco] .gs-heading::before { content:''; position:absolute; inset:6px 0; border-block:1px solid var(--gs-rule); pointer-events:none; }
+.generic-style-content[data-generic-design=art-deco] .gs-heading>p:last-child { margin-inline:auto; }
+.generic-style-content[data-generic-design=art-deco] .gs-tabs { justify-content:center; }
+.generic-style-content[data-generic-design=art-deco] .gs-destination-grid { grid-template-columns:1fr 1fr; }
+.generic-style-content[data-generic-design=art-deco] .gs-destination-card { outline:1px solid var(--gs-rule); outline-offset:-8px; padding:36px; text-align:center; min-height:250px; }
+.generic-style-content[data-generic-design=art-deco] .gs-destination-card>button { align-self:center; }
+.generic-style-content[data-generic-design=art-deco] .gs-destination-heading { text-align:center; grid-template-columns:1fr; gap:12px; }
+.generic-style-content[data-generic-design=art-deco] button:hover:not(:disabled) { border-color:#f5d995; box-shadow:inset 0 0 0 1px #f5d995; }
+[data-generic-style] .generic-style-content[data-generic-design=art-deco] button:focus-visible { outline-style:double; outline-width:4px; }
+/* alegria：无阴影协作看板、客户案例与岗位列表。 */
+.generic-style-content[data-generic-design=corporate-memphis] { --gs-muted:#655474; --gs-rule-width:0px; --gs-field:#fff; --gs-popup:#fff8f0; --gs-panel-radius:28px; --gs-control-radius:999px; --gs-field-radius:16px; --gs-popup-radius:24px; --gs-material-shadow:none; --gs-control-shadow:none; --gs-hover:#ece5ff; --gs-focus:#6550c7; --gs-error:#ab3555; --gs-success:#286e51; --gs-duration:170ms; }
+.generic-style-content[data-generic-design=corporate-memphis] .gs-destination-card { border-top:10px solid #7b61ff; }
+.generic-style-content[data-generic-design=corporate-memphis] .gs-destination-card:nth-child(2n) { border-top-color:#fad141; }
+.generic-style-content[data-generic-design=corporate-memphis] [data-gs-section=customers] .gs-destination-grid,.generic-style-content[data-generic-design=corporate-memphis] [data-gs-section=pricing] .gs-destination-grid { grid-template-columns:1fr 1fr; }
+.generic-style-content[data-generic-design=corporate-memphis] .gs-destination-art { background:#f2e9ff; min-height:160px; border-radius:60px 24px 60px 24px; }
+.generic-style-content[data-generic-design=corporate-memphis] .gs-destination-art i:first-child { width:44px; height:44px; border-radius:50%; background:#fad141; top:25px; left:calc(50% - 22px); }
+.generic-style-content[data-generic-design=corporate-memphis] .gs-destination-art i:nth-child(2) { width:120px; height:70px; border-radius:70px 70px 12px 12px; background:#7b61ff; top:76px; left:calc(50% - 60px); }
+.generic-style-content[data-generic-design=corporate-memphis] .gs-destination-art i:nth-child(3) { width:150px; height:18px; border-radius:12px; background:#f48196; top:102px; left:calc(50% - 75px); transform:rotate(-12deg); }
+.generic-style-content[data-generic-design=corporate-memphis] [data-gs-section=careers] .gs-destination-grid { grid-template-columns:1fr; gap:0; }
+.generic-style-content[data-generic-design=corporate-memphis] [data-gs-section=careers] .gs-destination-card { background:transparent; border:0; border-bottom:2px solid #e8dff5; border-radius:0; padding:24px 0; }
+.generic-style-content[data-generic-design=corporate-memphis] :is(.gs-team-date-banner,.gs-team-note-detail) { background:#f4e9ff; }
+.generic-style-content[data-generic-design=corporate-memphis] button:active:not(:disabled) { background:#5d46d2; color:#fff; filter:none; }
+/* scribble&：纸页、横线、马克笔与不规则描边。 */
+.generic-style-content[data-generic-design=hand-drawn] { --gs-rule-width:2px; --gs-panel-radius:14px 6px 18px 8px; --gs-control-radius:13px 5px 16px 7px; --gs-field-radius:6px 12px 5px 10px; --gs-popup-radius:12px; --gs-option-radius:7px; --gs-popup:#fffdf7; --gs-muted:#6b6357; --gs-hover:#ffedaf; --gs-focus:#745627; --gs-error:#aa3636; --gs-success:#426c44; --gs-duration:180ms; }
+.generic-style-content[data-generic-design=hand-drawn] .gs-heading h2 { display:inline; background:linear-gradient(transparent 68%,#ffe566 68% 94%,transparent 94%); line-height:1.5; }
+.generic-style-content[data-generic-design=hand-drawn] .gs-heading>p:last-child { margin-top:20px; }
+.generic-style-content[data-generic-design=hand-drawn] .gs-destination-grid { grid-template-columns:1fr 1fr; }
+.generic-style-content[data-generic-design=hand-drawn] .gs-destination-card { background:repeating-linear-gradient(transparent 0 31px,#cbbd9d44 31px 32px),var(--gs-panel); }
+.generic-style-content[data-generic-design=hand-drawn] .gs-destination-card:nth-child(2n) { transform:rotate(.7deg); }
+.generic-style-content[data-generic-design=hand-drawn] [data-gs-section=about] .gs-destination-grid { grid-template-columns:1fr; }
+.generic-style-content[data-generic-design=hand-drawn] .gs-destination-art { min-height:130px; border:1px solid #cbbd9d; background:repeating-linear-gradient(transparent 0 25px,#a7b8ce66 25px 26px),#fffdf7; border-radius:3px; }
+.generic-style-content[data-generic-design=hand-drawn] .gs-destination-art i:first-child { width:110px; height:18px; left:25px; top:55px; transform:rotate(-5deg); background:#ffe566bb; border-radius:4px 7px 3px 9px; }
+.generic-style-content[data-generic-design=hand-drawn] [data-gs-index="1"] .gs-destination-art i:first-child { background:#ffad87bb; }
+.generic-style-content[data-generic-design=hand-drawn] button:hover:not(:disabled) { transform:rotate(-1deg); box-shadow:2px 3px 0 #2b2b2b18; }
+.generic-style-content[data-generic-design=hand-drawn] button:active:not(:disabled) { transform:none; box-shadow:none; filter:none; }
+/* BITMAP：硬像素图鉴与色板背包，不使用模糊或补间。 */
+.generic-style-content[data-generic-design=pixel-art] { --gs-panel-radius:0px; --gs-control-radius:0px; --gs-field-radius:0px; --gs-popup-radius:0px; --gs-option-radius:0px; --gs-rule-width:2px; --gs-muted:#cec5e9; --gs-control-shadow:3px 3px 0 #000; --gs-popup:#29366f; --gs-hover:#3f4f8f; --gs-focus:#ffcd75; --gs-error:#ff778b; --gs-success:#a7f070; --gs-duration:0ms; }
+.generic-style-content[data-generic-design=pixel-art] h2 { font-size:32px; line-height:1.25; text-transform:uppercase; }
+.generic-style-content[data-generic-design=pixel-art] h3 { font-size:24px; }.generic-style-content[data-generic-design=pixel-art] h4 { font-size:18px; }
+.generic-style-content[data-generic-design=pixel-art] [data-gs-section=start] .gs-destination-grid { grid-template-columns:1fr; }
+.generic-style-content[data-generic-design=pixel-art] [data-gs-section=atlas] .gs-destination-grid { grid-template-columns:1fr 1fr; }
+.generic-style-content[data-generic-design=pixel-art] .gs-destination-art { background:repeating-conic-gradient(#1a1c2c 0 25%,#242a46 0 50%) 0 0/16px 16px; border:2px solid #000; border-radius:0; }
+.generic-style-content[data-generic-design=pixel-art] .gs-destination-art i:first-child { width:16px; height:16px; top:56px; left:calc(50% - 40px); background:#ef7d57; box-shadow:16px -16px #ef7d57,32px -16px #ef7d57,48px 0 #ef7d57,-16px 16px #ef7d57,0 16px #ffcd75,16px 16px #1a1c2c,32px 16px #ffcd75,48px 16px #1a1c2c,64px 16px #ef7d57,-16px 32px #ef7d57,0 32px #ef7d57,16px 32px #ef7d57,32px 32px #ef7d57,48px 32px #ef7d57,64px 32px #ef7d57,0 48px #ef7d57,16px 48px #ef7d57,32px 48px #ef7d57,48px 48px #ef7d57; }
+.generic-style-content[data-generic-design=pixel-art] [data-gs-index="1"] .gs-destination-art { filter:hue-rotate(120deg); }
+.generic-style-content[data-generic-design=pixel-art] [data-gs-section=shop] .gs-destination-art { min-height:100px; }
+.generic-style-content[data-generic-design=pixel-art] [data-gs-section=shop] .gs-destination-art i:first-child { top:32px; left:calc(50% - 48px); width:16px; height:32px; background:#ef7d57; box-shadow:16px 0 #ffcd75,32px 0 #a7f070,48px 0 #38b764,64px 0 #41a6f6,80px 0 #b13e53; }
+.generic-style-content[data-generic-design=pixel-art] button:active:not(:disabled) { transform:translate(2px,2px); box-shadow:none; filter:none; }
+/* MALL★95：店招、唱片橱窗、食阁和地平线。 */
+.generic-style-content[data-generic-design=vaporwave] { --gs-muted:#f1d2ff; --gs-panel:#361758; --gs-field:#251044; --gs-popup:#2b104c; --gs-panel-radius:18px; --gs-control-radius:999px; --gs-field-radius:14px; --gs-popup-radius:22px; --gs-hover:#552375; --gs-control-shadow:0 0 12px #01cdfe44; --gs-focus:#6ce5ff; --gs-error:#ff9cda; --gs-success:#9ef5e6; --gs-duration:350ms; }
+.generic-style-content[data-generic-design=vaporwave] .gs-heading { text-align:center; max-width:none; }
+.generic-style-content[data-generic-design=vaporwave] .gs-heading h2 { text-transform:uppercase; letter-spacing:.02em; text-shadow:0 2px #7f3ca5,0 0 20px #01cdfe66; }
+.generic-style-content[data-generic-design=vaporwave] .gs-heading>p:last-child { margin-inline:auto; }.generic-style-content[data-generic-design=vaporwave] .gs-tabs { justify-content:center; }
+.generic-style-content[data-generic-design=vaporwave] .gs-destination-grid { grid-template-columns:1fr 1fr; }
+.generic-style-content[data-generic-design=vaporwave] .gs-destination-card { border-radius:0; border-top:6px solid #01cdfe; box-shadow:0 0 20px #01cdfe44,inset 0 0 14px #ff71ce22; }
+.generic-style-content[data-generic-design=vaporwave] .gs-destination-art { background:repeating-linear-gradient(0deg,transparent 0 19px,#01cdfe33 20px),repeating-linear-gradient(90deg,transparent 0 19px,#01cdfe33 20px),linear-gradient(#2b0f54,#b83fa1); border-radius:0; }
+.generic-style-content[data-generic-design=vaporwave] .gs-destination-art i:first-child { width:110px; height:110px; top:30px; left:calc(50% - 55px); border:28px solid #1c1435; border-radius:50%; background:#ff71ce; box-shadow:0 0 20px #01cdfe66; }
+.generic-style-content[data-generic-design=vaporwave] [data-gs-section=food-court] .gs-destination-art i:first-child { width:70px; height:100px; top:35px; left:calc(50% - 35px); border:3px solid #01cdfe; border-radius:8px 8px 24px 24px; background:linear-gradient(#fca3d788,#ff71cebb); box-shadow:0 0 18px #ff71ce77; }
+.generic-style-content[data-generic-design=vaporwave] [data-gs-section=food-court] .gs-destination-art i:nth-child(2) { width:5px; height:70px; background:#aff3ff; top:15px; left:calc(50% + 10px); transform:rotate(12deg); }
+.generic-style-content[data-generic-design=vaporwave] [data-gs-section=about] .gs-destination-grid { grid-template-columns:1fr; max-width:800px; margin-inline:auto; }
+.generic-style-content[data-generic-design=vaporwave] button:hover:not(:disabled) { box-shadow:0 0 22px #01cdfe99,0 0 30px #ff71ce44; }
+/* 暗色仍保留各自材料；彩色样本本身不被统一涂黑。 */
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=flat-design] { --gs-page:#082c45; --gs-ink:#e8f6ff; --gs-muted:#b9d7e8; --gs-panel:#123d58; --gs-field:#0a253a; --gs-button:#194967; --gs-hover:#255e7b; --gs-focus:#ffd54f; --gs-error:#ffb7ac; --gs-success:#9de3c7; --gs-popup:#103750; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=flat-design] [data-gs-section=features] .gs-destination-card { --gs-ink:#073553; --gs-muted:#103f61; --gs-button:#ffffff70; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=bauhaus] { --gs-page:#1c1b18; --gs-ink:#f4efe6; --gs-muted:#d4c9b9; --gs-panel:#2c2b26; --gs-field:#181916; --gs-button:#36352e; --gs-rule:#c4b8a2; --gs-hover:#625a35; --gs-focus:#f2b705; --gs-error:#ff8e80; --gs-success:#a6c4ff; --gs-popup:#292923; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=bauhaus] [data-gs-section=colors] .gs-destination-card { --gs-ink:#111; --gs-muted:#111; --gs-button:#ffffff70; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=bauhaus] [data-gs-section=colors] [data-gs-index="1"] { --gs-ink:#fff; --gs-muted:#fff; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=y2k] { --gs-page:linear-gradient(140deg,#21182e,#392547,#241c42); --gs-ink:#f7eaff; --gs-muted:#ddc8f1; --gs-panel:#392a50; --gs-field:#291e3d; --gs-button:#4c3666; --gs-popup:#30203f; --gs-rule:#9e80b4; --gs-hover:#6a4a89; --gs-focus:#dbc1ff; --gs-error:#ffacd1; --gs-success:#a9e3d2; }
+.generic-style-content[data-generic-design=y2k] .gs-member { background:linear-gradient(145deg,#e3e7ff,#ffcfed,#b3c5ff); color:#3a3a55; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=y2k] .gs-member { background:linear-gradient(140deg,#3a375a,#694568,#3b4d6a); color:#fff0ff; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=cyberpunk] { --gs-page:#040914; --gs-panel:#071722; --gs-popup:#07131c; --gs-field:#020c15; --gs-ink:#dcfaff; --gs-muted:#aacbd6; --gs-focus:#9ef7ff; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=memphis] { --gs-page:#242036; --gs-panel:#353149; --gs-field:#1e1a2b; --gs-button:#46405b; --gs-ink:#fff4e3; --gs-muted:#ded1bc; --gs-rule:#e3d9c5; --gs-popup:#302b42; --gs-hover:#5a4669; --gs-focus:#ffd23f; --gs-error:#ff9dc6; --gs-success:#a2e5cb; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=memphis] [data-gs-section=party] .gs-destination-card { --gs-ink:#232323; --gs-muted:#58414b; --gs-button:#ffffff80; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=retro-futurism] { --gs-page:linear-gradient(#100720,#271037,#472047); --gs-panel:#1c102c; --gs-popup:#190d27; --gs-field:#0c0717; --gs-ink:#fff1fb; --gs-muted:#e0c1df; --gs-focus:#ffc1ed; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=claymorphism] { --gs-page:#282c46; --gs-panel:#3c4265; --gs-field:#303752; --gs-button:#414969; --gs-ink:#f4f3ff; --gs-muted:#c8cee9; --gs-popup:#363c5c; --gs-rule:#8991bf; --gs-hover:#596389; --gs-focus:#d2d5ff; --gs-error:#ffb8b2; --gs-success:#a1e1c4; --gs-material-shadow:10px 14px 25px #11162e55,inset 3px 4px 7px #8996ca44,inset -4px -6px 12px #151d3c66; --gs-control-shadow:4px 6px 12px #11172d66,inset 2px 3px 4px #a0abdb55,inset -3px -4px 7px #18223b77; --gs-field-shadow:inset 3px 3px 7px #11193066,inset -2px -3px 6px #8291bf33; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=aurora] { --gs-page:radial-gradient(ellipse at 20% 15%,#164f414d,transparent 60%),radial-gradient(ellipse at 80% 70%,#57376555,transparent 60%),#080916; --gs-panel:rgba(15,17,35,.72); --gs-field:#090e21; --gs-popup:#10142a; --gs-focus:#d3c8ff; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=organic] { --gs-page:#17291e; --gs-ink:#edf0df; --gs-muted:#c3cfb3; --gs-panel:#293e2b; --gs-field:#1d3022; --gs-button:#354a32; --gs-popup:#243a29; --gs-rule:#8d9f77; --gs-hover:#475e3c; --gs-focus:#d1dfb5; --gs-error:#f0b19b; --gs-success:#b9d58f; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=art-deco] { --gs-page:#0b151b; --gs-panel:#172723; --gs-field:#0f201f; --gs-popup:#152522; --gs-ink:#f0dba7; --gs-muted:#d6ccb6; --gs-rule:#b59c63; --gs-focus:#ffe2a0; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=corporate-memphis] { --gs-page:#221b30; --gs-ink:#f6ecff; --gs-muted:#d6c7e5; --gs-panel:#352b46; --gs-field:#2a213a; --gs-button:#45365d; --gs-popup:#30263e; --gs-rule:#937db1; --gs-hover:#564570; --gs-focus:#dac6ff; --gs-error:#ffabc4; --gs-success:#b0e4c9; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=corporate-memphis] :is(.gs-team-date-banner,.gs-team-note-detail) { background:#3b2e50; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=hand-drawn] { --gs-page:#29261f; --gs-ink:#f2eddb; --gs-muted:#d8ccb0; --gs-panel:#343027; --gs-field:#25231d; --gs-button:#3f392d; --gs-rule:#c4b895; --gs-popup:#342f26; --gs-hover:#5e5035; --gs-focus:#ffe566; --gs-error:#ffaaa2; --gs-success:#c3df9e; }
+.generic-style-content[data-generic-design=hand-drawn] .gs-notebook { background:repeating-linear-gradient(transparent,transparent 31px,#a79a7c44 32px),var(--gs-panel); }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=liquid-glass] { --gs-page:linear-gradient(145deg,#493044,#302749 45%,#17475b); --gs-ink:#f8f1ff; --gs-muted:#e5d9f3; --gs-panel:rgba(30,29,53,.5); --gs-field:rgba(12,20,40,.58); --gs-button:rgba(90,93,130,.45); --gs-popup:rgba(27,30,53,.94); --gs-hover:rgba(133,144,177,.46); --gs-focus:#e4e2ff; --gs-error:#ffb5d0; --gs-success:#b1efdf; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=liquid-glass] [data-gs-section=materials] [data-gs-index="1"] { --gs-ink:#2b2340; --gs-muted:#4c3c62; --gs-button:#ffffff55; }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=pixel-art] { --gs-page:#0e111f; --gs-panel:#1c2857; --gs-field:#10152d; --gs-button:#263564; --gs-popup:#18234b; --gs-muted:#ded5ef; --gs-focus:#ffe4a6; }
+.generic-style-content[data-generic-design=vaporwave] { --gs-page:linear-gradient(180deg,#2b0f54,#4f176d 55%,#76235c); }
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=vaporwave] { --gs-page:linear-gradient(#16072e,#30114b 60%,#52183f); --gs-panel:#28113f; --gs-field:#190b2e; --gs-popup:#211039; --gs-ink:#fff0ff; --gs-muted:#ead2ff; --gs-focus:#a4f0ff; }
+/* 同族变体：银色、暖陶、暮光、棱镜等，而不是统一方角硬影。 */
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=flat-design] { --gs-page:#e5f5ff; --gs-ink:#073553; --gs-muted:#103f61; --gs-panel:#fff; --gs-field:#d9f0ff; --gs-button:#d9f0ff; --gs-popup:#eff9ff; --gs-selected:#83d0ff; --gs-selected-ink:#073553; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=bauhaus] { --gs-cta:#21409a; --gs-selected:#21409a; --gs-selected-ink:#fff; --gs-rule-width:2px; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=y2k] { --gs-page:linear-gradient(145deg,#e5ecf2,#e8ddfa 45%,#c0cfdf); --gs-panel:#f6f2ffbf; --gs-control-shadow:inset 0 3px #fff,0 6px 16px #8275b640; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=cyberpunk] { --gs-cta:#ff75d2; --gs-selected:#ff75d2; --gs-rule:#dc58b380; --gs-hover:#44233f; --gs-focus:#ffb7e3; --gs-material-shadow:0 0 14px #ff75d244; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=cyberpunk] .gs-destination-grid { border-top-color:#ff75d2; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=memphis] { --gs-page:#efebff; --gs-hover:#93dfcc; --gs-material-shadow:6px 6px 0 #232323; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=retro-futurism] { --gs-page:linear-gradient(#0d1029,#242048 65%,#59305d); --gs-cta:#ffc786; --gs-selected:#ffc786; --gs-focus:#ffdda8; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=claymorphism] { --gs-page:#fff0e9; --gs-ink:#503e51; --gs-muted:#705465; --gs-panel:#fff8f3; --gs-field:#f5e4e0; --gs-button:#ffe7dd; --gs-popup:#fff1e9; --gs-cta:#b85c58; --gs-selected:#b85c58; --gs-focus:#9f4e59; --gs-hover:#f7d7c9; --gs-material-shadow:10px 14px 24px #b9877630,inset 3px 4px 7px #fff,inset -4px -6px 12px #e2bbaa55; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=aurora] { --gs-page:radial-gradient(ellipse at 25% 20%,#14544b88,transparent 65%),radial-gradient(ellipse at 70% 80%,#425a8988,transparent 60%),#0c1023; --gs-cta:#9ae3cc; --gs-selected:#9ae3cc; --gs-focus:#c3f4e4; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=organic] { --gs-page:#ece6dc; --gs-panel:#dfd3c3; --gs-field:#f8f2e7; --gs-button:#e4d6c4; --gs-popup:#f2e8d8; --gs-cta:#6d543f; --gs-selected:#6d543f; --gs-focus:#76523a; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=art-deco] { --gs-page:#eee7d8; --gs-ink:#342f25; --gs-muted:#62563d; --gs-panel:#f7efdf; --gs-field:#e8decb; --gs-button:#f7efdf; --gs-popup:#f6edda; --gs-rule:#9d803f; --gs-cta:#78602d; --gs-selected:#78602d; --gs-selected-ink:#fff8df; --gs-focus:#785a1c; --gs-hover:#e6d9b9; --gs-error:#923b2f; --gs-success:#4f6331; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=corporate-memphis] { --gs-page:#fff0ea; --gs-panel:#fff9ed; --gs-field:#fff; --gs-cta:#f6d65b; --gs-selected:#f6d65b; --gs-selected-ink:#2b2140; --gs-popup:#fff2e6; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=hand-drawn] { --gs-page:#f2eedf; --gs-panel:#fffbee; --gs-field:#fffdf4; --gs-popup:#fffbea; --gs-selected:#ffe566; --gs-selected-ink:#2b2b2b; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=liquid-glass] { --gs-page:linear-gradient(140deg,#9dd9ce,#c0c3ec 50%,#e8b8d8); --gs-panel:rgba(255,255,255,.3); --gs-material-shadow:inset 0 2px 3px #fff,inset 2px 0 2px #ffbff350,inset -2px 0 2px #a8f5ff88,0 14px 30px #46617033; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=pixel-art] { --gs-page:#241b35; --gs-panel:#3e2b65; --gs-field:#21192f; --gs-button:#493576; --gs-popup:#32234e; --gs-cta:#ffcd75; --gs-selected:#ffcd75; --gs-focus:#ffedbd; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=vaporwave] { --gs-page:linear-gradient(#141442,#393079 55%,#742765); --gs-material-shadow:0 0 18px #01cdfe55,0 0 26px #ff71ce33; }
+/* 所有新布局在窄容器真实堆叠；艺术样本不成为溢出或挡住控件的装饰层。 */
+@container (max-width:700px) {
+  [data-generic-style] .generic-style-content[data-generic-design] :is(.gs-two,.gs-destination-grid,.gs-destination-heading) { grid-template-columns:minmax(0,1fr); }
+  [data-generic-style] .generic-style-content[data-generic-design] .gs-destination-card { display:flex; flex-direction:column; gap:0; transform:none; margin-top:0; }
+  [data-generic-style] .generic-style-content[data-generic-design] .gs-destination-art { grid-column:auto; grid-row:auto; width:100%; }
+  [data-generic-style] .generic-style-content[data-generic-design=y2k] [data-gs-section=music] .gs-destination-art { width:130px; align-self:center; }
+  [data-generic-style] .generic-style-content[data-generic-design=liquid-glass] [data-gs-section=workspace]>.gs-two>div:first-child { padding:20px; }
+  .gs-destination-heading { gap:12px; }
+}
+/* 首页控件在续页外，也必须使用品牌焦点。暗色不重涂原首页，亮度按原材质保留。 */
+[data-generic-style][data-style-scene=flat-design] { --scene-focus:#073553; }
+[data-generic-style][data-style-scene=bauhaus] { --scene-focus:#141414; }
+[data-generic-style][data-style-scene=y2k] { --scene-focus:#6347cc; }
+[data-generic-style][data-style-scene=cyberpunk] { --scene-focus:#00e5ff; }
+[data-generic-style][data-style-scene=memphis] { --scene-focus:#232323; }
+[data-generic-style][data-style-scene=retro-futurism] { --scene-focus:#ff9bdd; }
+[data-generic-style][data-style-scene=claymorphism] { --scene-focus:#4e55bb; }
+[data-generic-style][data-style-scene=aurora] { --scene-focus:#ddd0ff; }
+[data-generic-style][data-style-scene=organic] { --scene-focus:#365635; }
+[data-generic-style][data-style-scene=art-deco] { --scene-focus:#f5d995; }
+[data-generic-style][data-style-scene=corporate-memphis] { --scene-focus:#6550c7; }
+[data-generic-style][data-style-scene=hand-drawn] { --scene-focus:#745627; }
+[data-generic-style][data-style-scene=liquid-glass] { --scene-focus:#3e2765; }
+[data-generic-style][data-style-scene=pixel-art] { --scene-focus:#ffcd75; }
+[data-generic-style][data-style-scene=vaporwave] { --scene-focus:#6ce5ff; }
+.style-document [data-generic-style][data-style-scene=pixel-art] .gs-pixels button:focus-visible { outline:3px solid #fff!important; outline-offset:-4px!important; }
+/* hover 不得用浅色底覆盖选中态却仍留下白字。 */
+.generic-style-content[data-generic-design] button:is([aria-selected=true],[aria-pressed=true]):hover:not(:disabled) { background:var(--gs-selected); color:var(--gs-selected-ink); }
+/* 装扮目录用夹克、透明面罩和熊形挂件，而不重复三颗行星。 */
+.generic-style-content[data-generic-design=y2k] [data-gs-section=outfits] [data-gs-index="0"] .gs-destination-art i:first-child { width:124px; height:110px; top:38px; left:calc(50% - 62px); border-radius:0; clip-path:polygon(27% 0,40% 0,50% 12%,60% 0,73% 0,100% 25%,84% 50%,72% 38%,72% 100%,28% 100%,28% 38%,16% 50%,0 25%); }
+.generic-style-content[data-generic-design=y2k] [data-gs-section=outfits] [data-gs-index="0"] .gs-destination-art i:nth-child(2) { display:none; }
+.generic-style-content[data-generic-design=y2k] [data-gs-section=outfits] [data-gs-index="1"] .gs-destination-art i:first-child { width:136px; height:62px; top:64px; left:calc(50% - 68px); border-radius:50% 50% 38% 38%; background:linear-gradient(150deg,#fff9,#edb3eebb,#8f91d1b8); border:2px solid #fff; }
+.generic-style-content[data-generic-design=y2k] [data-gs-section=outfits] [data-gs-index="1"] .gs-destination-art i:nth-child(2) { top:58px; height:76px; transform:none; }
+.generic-style-content[data-generic-design=y2k] [data-gs-section=outfits] [data-gs-index="2"] .gs-destination-art i:first-child { width:82px; height:94px; top:52px; left:calc(50% - 41px); border-radius:44% 44% 40% 40%; background:linear-gradient(145deg,#eefff2,#a9e1c1,#a4bbed); }
+.generic-style-content[data-generic-design=y2k] [data-gs-section=outfits] [data-gs-index="2"] .gs-destination-art i:nth-child(2) { width:30px; height:30px; top:37px; left:calc(50% - 38px); transform:none; border:0; background:#c1e8d6; box-shadow:46px 0 #c1e8d6; }
+.generic-style-content[data-generic-design=y2k] [data-gs-section=outfits] [data-gs-index="2"] .gs-destination-art i:nth-child(3) { width:5px; height:5px; top:82px; left:calc(50% - 16px); border-radius:50%; background:#4d4162; box-shadow:27px 0 #4d4162; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-destination-art i:nth-child(2) { box-shadow:none; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-destination-art i:nth-child(3) { width:48px; height:48px; border:13px solid #382340; border-radius:50%; top:51px; left:calc(50% + 25px); background:#d9a6d7; }
+@media (prefers-reduced-motion:reduce) {
+  .generic-style-content[data-generic-design] :is(button,.scene-select-option):is(:hover,:active) { transform:none!important; transition:none!important; }
+}
 @keyframes gs-bounce { to { transform: scaleY(.45); transform-origin: bottom; } }
 @keyframes gs-squish { 50% { transform: scale(1.14,.82); } }
 @media (prefers-reduced-motion: reduce) { .generic-style-content *, .generic-style-content *::before, .generic-style-content *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }

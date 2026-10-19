@@ -12,6 +12,8 @@ export default defineConfig({
     '**/style-keyboard-removal.spec.mjs',
     '**/style-scroll-isolation.spec.mjs',
     '**/style-generic-parity.spec.mjs',
+    '**/style-state-design.spec.mjs',
+    '**/style-controls-lifecycle.spec.mjs',
   ],
   use: { ...base.use, baseURL: 'http://127.0.0.1:4339' },
   projects: [

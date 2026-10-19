@@ -54,7 +54,24 @@ export async function assertUsableGeometry(root, width, testInfo, label) {
       return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, width: r.width, height: r.height };
     };
     const identify = element => ({ tag: element.tagName, action: element.dataset.sceneAction || element.dataset.command || '', text: (element.getAttribute('aria-label') || element.textContent || '').trim().slice(0, 100) });
-    const controls = [...scene.querySelectorAll('button,input,textarea,select,a[href]')].filter(visible).map(element => {
+    // 增强选择器保留 1px 原生表单 Owner；先验证适配关系，再测真实可交互触发器。
+    // 不泛排 aria-hidden / opacity:0，也不降低任何用户目标的 24px 门槛。
+    const isNativeOwner = element => element.matches('select[data-scene-native-select][aria-hidden="true"]');
+    const nativeOwners = [...scene.querySelectorAll('select[data-scene-native-select][aria-hidden="true"]')].filter(select => visible(select.closest('.scene-select') || select)).map(select => {
+      const wrapper = select.closest('.scene-select');
+      const triggers = [...(wrapper?.querySelectorAll(':scope > button[role="combobox"]') || [])].filter(visible);
+      const trigger = triggers[0];
+      const panelId = trigger?.getAttribute('aria-controls');
+      return {
+        tabIndex:select.tabIndex, ownerRendered:Boolean(visible(select)), ownerCount:wrapper?.querySelectorAll(':scope > select[data-scene-native-select]').length || 0, triggerCount:triggers.length,
+        selectedLabel:select.selectedOptions[0]?.label || '', triggerLabel:trigger?.textContent?.trim(),
+        panelLinked:Boolean(panelId && wrapper?.querySelector('[role="listbox"]')?.id === panelId),
+        disabledSynced:trigger?.disabled === select.disabled,
+        requiredSynced:trigger?.getAttribute('aria-required') === String(select.required),
+        invalidSynced:trigger?.getAttribute('aria-invalid') === (select.getAttribute('aria-invalid') || 'false'),
+      };
+    });
+    const controls = [...scene.querySelectorAll('button,input,textarea,select,a[href]')].filter(element => visible(element) && !isNativeOwner(element)).map(element => {
       const r = rect(element);
       const labelElement = element.matches('input[type=checkbox],input[type=radio]') ? element.closest('label') : null;
       const hit = labelElement ? rect(labelElement) : r;
@@ -80,9 +97,15 @@ export async function assertUsableGeometry(root, width, testInfo, label) {
     const fills = [...scene.querySelectorAll('[data-generic-art][data-art-panel="photo"],[data-generic-art][data-art-panel="mountain"]')].map(panel => ({
       panel:rect(panel), fill:panel.firstElementChild ? rect(panel.firstElementChild) : null,
     }));
-    return { viewport: innerWidth, mobile, controls, copy, titles, fills, slug:scene.dataset.styleScene, generic:scene.hasAttribute('data-generic-style') };
+    return { viewport: innerWidth, mobile, nativeOwners, controls, copy, titles, fills, slug:scene.dataset.styleScene, generic:scene.hasAttribute('data-generic-style') };
   }, width <= 390);
   await testInfo.attach(`${label}-usable-geometry.json`, { body: JSON.stringify(geometry, null, 2), contentType: 'application/json' });
+  for (const owner of geometry.nativeOwners) {
+    expect(owner, `${label} enhanced select form owner`).toEqual({
+      tabIndex:-1, ownerRendered:true, ownerCount:1, triggerCount:1, selectedLabel:owner.selectedLabel, triggerLabel:owner.selectedLabel,
+      panelLinked:true, disabledSynced:true, requiredSynced:true, invalidSynced:true,
+    });
+  }
   for (const control of geometry.controls) {
     const context = `${label} control ${JSON.stringify(control)}`;
     expect(control.clientWidth, context).toBeGreaterThan(0);

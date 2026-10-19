@@ -17,15 +17,31 @@ const { spec, locale } = Astro.props;
 import { initReferenceStyle } from '@/lib/reference-style-runtime';
 import { initOtherReference } from '@/lib/other-reference-runtime';
 import { initGenericStyle } from '@/lib/generic-style-runtime';
+import { initStyleControls } from '@/lib/style-controls';
 const params = new URLSearchParams(location.search);
 const requestedMode = params.get('mode');
 const mode = requestedMode === 'dark' || requestedMode === 'variants' ? requestedMode : 'default';
 document.body.dataset.mode = mode;
 const root = document.querySelector<HTMLElement>('[data-scene-interactive="true"]');
 if (root) {
+  // Firefox 会在 reload 时恢复表单值；演示须先回到声明的初态，再初始化业务与可见选择器。
+  // 也处理计时/材质等不位于 form 内的原页面控件，避免标签、预览与本地状态脱节。
+  for (const input of root.querySelectorAll<HTMLInputElement>('input')) {
+    input.value = input.defaultValue;
+    input.checked = input.defaultChecked;
+  }
+  for (const textarea of root.querySelectorAll<HTMLTextAreaElement>('textarea')) textarea.value = textarea.defaultValue;
+  for (const select of root.querySelectorAll<HTMLSelectElement>('select')) {
+    if (select.multiple) {
+      for (const option of select.options) option.selected = option.defaultSelected;
+    } else {
+      select.selectedIndex = Math.max(0, [...select.options].findIndex(option => option.defaultSelected));
+    }
+  }
   initReferenceStyle(root);
   initOtherReference(root);
   initGenericStyle(root);
+  initStyleControls(root);
 }
 </script>
 </body></html>

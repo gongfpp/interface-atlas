@@ -103,8 +103,8 @@ html {
 
 /* Shared specimen workbench: generous surfaces, restrained technical labels. */
 html { scroll-behavior: smooth; scroll-padding-top: 130px; }
-/* 焦点环是硬性无障碍要求：用 !important 压过各 Demo 里的行内 outline:none（行内非 important 会被作者 important 覆盖） */
-:focus-visible { outline: 2px solid var(--color-accent) !important; outline-offset: 4px !important; }
+/* 图谱及旧 Demo 强制保留焦点环；独立风格文档在自己的边界内提供品牌焦点，不继承图谱强调色。 */
+:focus-visible:not(:where(.style-document *)) { outline: 2px solid var(--color-accent) !important; outline-offset: 4px !important; }
 /* 跳过链接落到主内容时不需要外框（程序化聚焦，非用户操作目标） */
 #main:focus, #main:focus-visible { outline: none !important; }
 button:not(:disabled), summary { cursor: pointer; }

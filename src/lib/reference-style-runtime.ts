@@ -55,7 +55,9 @@ export function initReferenceStyle(root: HTMLElement) {
     } else if (action.startsWith('project-')) {
       const i = Number(action.slice(8));
       root.querySelector('[data-project-title]')!.textContent = SWISS_PROJECTS[i].title;
-      root.querySelector('[data-project-art]')!.textContent = SWISS_PROJECTS[i].mark;
+      const art = root.querySelector<HTMLElement>('[data-project-art]')!;
+      art.textContent = SWISS_PROJECTS[i].mark;
+      art.dataset.projectIndex = String(i);
       root.querySelector('[data-project-copy]')!.textContent = SWISS_PROJECTS[i].description[en ? 'en' : 'zh'];
       openDialog('project', target);
     } else if (action.startsWith('story-')) {

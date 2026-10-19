@@ -79,9 +79,13 @@ Design annotations such as “Clean edges and space” remain static description
 - 以上均不创建真实账号、订单、订位、邮件或云同步，不接入真实 AI。SYNTH-84 是本机合成音，不是外部广播；NEON://CITY 是离线城市模拟；Lumen 是网页光学近似。不能用成功文案暗示后台已完成真实服务。
   / No real account, order, booking, email, cloud sync or AI request occurs. SYNTH-84 synthesizes sound locally, NEON://CITY simulates offline connections, and Lumen approximates optics on the web. Success copy must not imply backend services ran.
 
-下拉框保留原生 `select` 的键盘、触屏与辅助技术语义。WebKit 在系统菜单外观下会限制实际高度；因此交互页采用 `appearance: none`、可见箭头和至少 44px 的控件高度，而不是把它改成不带语义的自制菜单。`none` 仅移除原生外观、不移除控件功能的说明见 [MDN appearance](<https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/appearance>)。此修复须在真实 WebKit 中复测，不能只看 CSS 声明中的 `min-height`。
+下拉框由共享的 [style-controls](<../src/lib/style-controls.ts>) 增强：原生 `select` 仍是表单值与既有 `selectOption` 接口的 Owner，但从辅助技术树和 Tab 顺序中移除；用户操作真实 `button[role=combobox]` 与顶层 Popover 的 `listbox` / `option`。展开面板继承品牌材质，支持方向键、Home/End、Enter/Space、Esc、Tab 和触屏；关闭后焦点回到可见触发器，不落到 1px 原生 Owner。不能用系统菜单截图冒充已捕获的 DOM 展开态，也不能只声明 `min-height` 而不测 WebKit 实际目标与触屏点击。
 
-Native selects retain keyboard, touch and assistive semantics. The interactive page removes only OS-native appearance, draws a visible caret and enforces a 44px target. Validate the actual WebKit control rather than trusting a declared CSS minimum.
+The shared controller keeps native selects as form-value owners while exposing an accessible combobox and a real, brand-styled listbox in the top layer. Validate keyboard navigation, touch selection, visible focus, value synchronization and popup bounds in actual Chromium/Firefox/WebKit. Native popup screenshot attempts are not proof of captured expanded content.
+
+独立页面在业务初始化之前按 HTML 的 `defaultValue` / `defaultChecked` / `defaultSelected` 还原声明初态，避免 Firefox 在刷新时恢复旧款式、时长或输入而与本地业务状态脱节。业务预填必需字段时应发出冒泡 `input` 事件，以清理旧空白校验；`form.reset()`、换商品及内容重置之后，增强标签与原生值必须再次一致。
+
+Independent pages restore declarative defaults before business initialization, including controls outside forms. This prevents browser-restored values from contradicting the fixed initial state. Programmatic prefill must dispatch input, and resets/reopened views must keep visible labels and native values synchronized.
 
 ## 图像与字体来源 / Image and font provenance
 
@@ -131,6 +135,10 @@ npm run build
 npx playwright install firefox webkit
 npx playwright test --config=playwright.styles.config.mjs --grep '完整风格语义流|嵌入浮层|1088px|键盘移除|风格滚动边界|非风格滚动策略|离屏模式'
 ```
+
+交互态的品牌规则、25 种路径与不适用项见[完整交互态验收](<style-state-design.md>)。修改页面时同时验证菜单、表单、下拉真实展开、弹窗、续页与反馈，而不只检查首屏。使用[状态采集脚本](<../scripts/capture-style-states.mjs>)从已构建、冻结源码的独立预览采集相同视口/语言/主题/业务状态下的 PNG、计算样式与来源指纹；不以 HMR 页面或截图文件存在代替肉眼审核。原始 manifest 的 pending 保留原值，实际视觉结论另记，不能事后改写成自动通过。新增状态回归见[设计测试](<../tests/style-state-design.spec.mjs>)与[控件生命周期测试](<../tests/style-controls-lifecycle.spec.mjs>)。
+
+For state changes, capture the matching full DOM page from a frozen production preview, not a separate demo or HMR session. Preserve raw provenance, review actual images and computed styles, and record keyboard/touch/reset coverage separately from screenshot capture.
 
 功能分支在验收完成前不推送发布。完成后按 [项目 Git 约定](<../AGENTS.md>) 提交并推送源码 main，再执行正式部署流程；该流程在同一提交上先完成 verify，才构建并增量发布到生成仓库。不要手工修改 interface-atlas-web。历史私有仓库截图工作流不作为当前公开仓库的验收依据。
 
