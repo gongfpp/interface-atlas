@@ -1,0 +1,813 @@
+{
+  "scope": "Only the named 27 images per phase. Other 20 images are captured, not individually visually approved. Raw capture pending flags remain unchanged.",
+  "before": {
+    "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+    "directlyInspected": 27,
+    "approved": 26,
+    "rejected": 1,
+    "capturedOnly": 20,
+    "images": [
+      {
+        "path": "dark-390-en/glassmorphism-en-390-01-aurora-feature-dialog.png",
+        "sha256": "9c1d141183c66ad52163c65826a73d6955875ff3f25c9a908c4d6fece24e941a",
+        "slug": "glassmorphism",
+        "state": "aurora-feature-dialog",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "dark-390-en/glassmorphism-en-390-02-select-expanded.png",
+        "sha256": "be28e29bb1125d584affbe2173272fc03d66a1b0513b76a0568ec52338600e10",
+        "slug": "glassmorphism",
+        "state": "select-expanded",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "dark-390-en/neobrutalism-en-390-02-playlab-brief-dialog.png",
+        "sha256": "727ab3e69ec97cb947d42007031546cb7a90d9ca6658d7f8934a6c22e2ed30d9",
+        "slug": "neobrutalism",
+        "state": "playlab-brief-dialog",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "dark-390-en/neobrutalism-en-390-03-select-expanded.png",
+        "sha256": "bff63e0a3df654d97b3430ad0aa0095c31ea6fc587be81b392c94db577d0aa32",
+        "slug": "neobrutalism",
+        "state": "select-expanded",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "dark-390-en/neumorphism-en-390-02-mellow-active-press.png",
+        "sha256": "56744eab98ea21059868cc87ab8a47f6eb52ca7e85409581bd0f68483a87bc30",
+        "slug": "neumorphism",
+        "state": "mellow-active-press",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "dark-390-en/neumorphism-en-390-04-mellow-paused.png",
+        "sha256": "f9fe293402c2ae6e4f3f24f6b42df1d8cba831b62616d07a2fd36672ed50ed60",
+        "slug": "neumorphism",
+        "state": "mellow-paused",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "dark-390-en/swiss-style-en-390-01-project-dialog-open.png",
+        "sha256": "2d9fb55869b326005464193606eff297ff40791350646e499e75e76adda6ee5a",
+        "slug": "swiss-style",
+        "state": "project-dialog-open",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "dark-390-en/claymorphism-en-390-01-select-expanded.png",
+        "sha256": "03055a8c1035d3df4b98efa20290c4daac8101feb25a826515cbeb78db15bfa2",
+        "slug": "claymorphism",
+        "state": "select-expanded",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "dark-390-en/claymorphism-en-390-02-brand-result.png",
+        "sha256": "23aa756bd229ecc77af531fb603a5ba6a8f3ea260152b417940d79a29de6b4cb",
+        "slug": "claymorphism",
+        "state": "brand-result",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "dark-390-en/liquid-glass-en-390-01-select-expanded.png",
+        "sha256": "af72a1dca458714fc1526b80b63d01b169be0d49cd7414d0a3ee9c2e6332b94e",
+        "slug": "liquid-glass",
+        "state": "select-expanded",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "variants-320-en/glassmorphism-en-320-01-aurora-feature-dialog.png",
+        "sha256": "ee2c4cf3c32879f65024d08c640fbdec24cea2f0574ea276a936e4c271c0f8c6",
+        "slug": "glassmorphism",
+        "state": "aurora-feature-dialog",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "variants-320-en/glassmorphism-en-320-02-select-expanded.png",
+        "sha256": "37bd1d37127aa6e1f57912a41f23abab1045ea83d5c0593a41525aa9ceab21bd",
+        "slug": "glassmorphism",
+        "state": "select-expanded",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "variants-320-en/neobrutalism-en-320-02-playlab-brief-dialog.png",
+        "sha256": "d83edf9c37e53e0b7b015617a6b1da4de94888c3ac68582cdde985eafb5b2165",
+        "slug": "neobrutalism",
+        "state": "playlab-brief-dialog",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "variants-320-en/neobrutalism-en-320-03-select-expanded.png",
+        "sha256": "6ed8920d0a6de3a82fecd0bb0ae09464c57666e402088377ea56b2037657c979",
+        "slug": "neobrutalism",
+        "state": "select-expanded",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "variants-320-en/neumorphism-en-320-02-mellow-active-press.png",
+        "sha256": "fecb4183ee64791c80bbddf1e72a4119bfb9ee63516374433162df14d834576c",
+        "slug": "neumorphism",
+        "state": "mellow-active-press",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "variants-320-en/neumorphism-en-320-04-mellow-paused.png",
+        "sha256": "2821ff440acd5d3676240f1f22b0fae3be9af33e35219719a35207bfd6a5f828",
+        "slug": "neumorphism",
+        "state": "mellow-paused",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "variants-320-en/swiss-style-en-320-01-project-dialog-open.png",
+        "sha256": "89691b3695dccec6bec5dcfb255692aedfdd0efa9acb56d5d0c5cc44e49bb0b3",
+        "slug": "swiss-style",
+        "state": "project-dialog-open",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "variants-320-en/claymorphism-en-320-01-select-expanded.png",
+        "sha256": "2fa886b12913201417b3e56eb5e211496ef611a4b4851feea97f370b095b48be",
+        "slug": "claymorphism",
+        "state": "select-expanded",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "variants-320-en/claymorphism-en-320-02-brand-result.png",
+        "sha256": "636d77ee24a9b1abcbd8f1de75f5b75e52399f9c8691253c58395865ce40a67b",
+        "slug": "claymorphism",
+        "state": "brand-result",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "variants-320-en/liquid-glass-en-320-01-select-expanded.png",
+        "sha256": "dd53d31fab567dbd0a9c267f8203416eea76b51902c148fdec56e76f498db916",
+        "slug": "liquid-glass",
+        "state": "select-expanded",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of this PNG; not inherited from an earlier mode",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state."
+      },
+      {
+        "path": "extras/swiss-style-dark-390-en/01-menu-open.png",
+        "sha256": "250ecf6f4cd6012f86745226d3b8330994b4452a5bcfd7fc59e2331b6e1a45b7",
+        "decision": "approved-with-recorded-scope",
+        "method": "Direct read_image of B supplemental PNG before the correction; rejected image retained."
+      },
+      {
+        "path": "extras/swiss-style-dark-390-en/02-contact-invalid.png",
+        "sha256": "9799144b73009075db4c0bb526e61c776f4271202bd62c4067571ca07d4886a6",
+        "decision": "rejected: insufficient 2.8663:1 contrast",
+        "method": "Direct read_image of B supplemental PNG before the correction; rejected image retained."
+      },
+      {
+        "path": "extras/swiss-style-dark-390-en/03-contact-corrected-success.png",
+        "sha256": "9391652d509603a8f53533081ea68dab4fbf6f61129195c0299f39d6bd323646",
+        "decision": "approved-with-recorded-scope",
+        "method": "Direct read_image of B supplemental PNG before the correction; rejected image retained."
+      },
+      {
+        "path": "extras/neobrutalism-variants-320-en/01-brief-invalid.png",
+        "sha256": "3cae0b6963288ff61005a46ccfadc46aaa1d2ffc268614cd61d6a6701121970f",
+        "decision": "approved-with-recorded-scope",
+        "method": "Direct read_image of B supplemental PNG before the correction; rejected image retained."
+      },
+      {
+        "path": "extras/neobrutalism-variants-320-en/02-brief-corrected-full-summary.png",
+        "sha256": "8199419875bdae3a07242962da14999795f3793b49601603d93cb1ff749089be",
+        "decision": "approved-with-recorded-scope",
+        "method": "Direct read_image of B supplemental PNG before the correction; rejected image retained."
+      },
+      {
+        "path": "extras/liquid-glass-dark-390-en/01-prism-body-visible.png",
+        "sha256": "13975f8b8c6f6d3df0abc0207c6f2660bafcd7e2ad365528c3c36f031b735236",
+        "decision": "approved-with-recorded-scope",
+        "method": "Direct read_image of B supplemental PNG before the correction; rejected image retained."
+      },
+      {
+        "path": "extras/liquid-glass-variants-320-en/01-prism-body-visible.png",
+        "sha256": "f4b18c43b3880a682ba83f285bd3f6fbcbe7eef30228d6cd11a87581e190b1df",
+        "decision": "approved-with-recorded-scope",
+        "method": "Direct read_image of B supplemental PNG before the correction; rejected image retained."
+      }
+    ]
+  },
+  "after": {
+    "sourceCommit": "a2d1ddfe0881c57f4b4d40d7a03005680b062878",
+    "directlyInspected": 1,
+    "inheritedByExactPngSha256": 26,
+    "approved": 27,
+    "capturedOnly": 20,
+    "images": [
+      {
+        "path": "dark-390-en/glassmorphism-en-390-01-aurora-feature-dialog.png",
+        "sha256": "9c1d141183c66ad52163c65826a73d6955875ff3f25c9a908c4d6fece24e941a",
+        "slug": "glassmorphism",
+        "state": "aurora-feature-dialog",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "9c1d141183c66ad52163c65826a73d6955875ff3f25c9a908c4d6fece24e941a"
+        }
+      },
+      {
+        "path": "dark-390-en/glassmorphism-en-390-02-select-expanded.png",
+        "sha256": "be28e29bb1125d584affbe2173272fc03d66a1b0513b76a0568ec52338600e10",
+        "slug": "glassmorphism",
+        "state": "select-expanded",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "be28e29bb1125d584affbe2173272fc03d66a1b0513b76a0568ec52338600e10"
+        }
+      },
+      {
+        "path": "dark-390-en/neobrutalism-en-390-02-playlab-brief-dialog.png",
+        "sha256": "727ab3e69ec97cb947d42007031546cb7a90d9ca6658d7f8934a6c22e2ed30d9",
+        "slug": "neobrutalism",
+        "state": "playlab-brief-dialog",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "727ab3e69ec97cb947d42007031546cb7a90d9ca6658d7f8934a6c22e2ed30d9"
+        }
+      },
+      {
+        "path": "dark-390-en/neobrutalism-en-390-03-select-expanded.png",
+        "sha256": "bff63e0a3df654d97b3430ad0aa0095c31ea6fc587be81b392c94db577d0aa32",
+        "slug": "neobrutalism",
+        "state": "select-expanded",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "bff63e0a3df654d97b3430ad0aa0095c31ea6fc587be81b392c94db577d0aa32"
+        }
+      },
+      {
+        "path": "dark-390-en/neumorphism-en-390-02-mellow-active-press.png",
+        "sha256": "56744eab98ea21059868cc87ab8a47f6eb52ca7e85409581bd0f68483a87bc30",
+        "slug": "neumorphism",
+        "state": "mellow-active-press",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "56744eab98ea21059868cc87ab8a47f6eb52ca7e85409581bd0f68483a87bc30"
+        }
+      },
+      {
+        "path": "dark-390-en/neumorphism-en-390-04-mellow-paused.png",
+        "sha256": "f9fe293402c2ae6e4f3f24f6b42df1d8cba831b62616d07a2fd36672ed50ed60",
+        "slug": "neumorphism",
+        "state": "mellow-paused",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "f9fe293402c2ae6e4f3f24f6b42df1d8cba831b62616d07a2fd36672ed50ed60"
+        }
+      },
+      {
+        "path": "dark-390-en/swiss-style-en-390-01-project-dialog-open.png",
+        "sha256": "2d9fb55869b326005464193606eff297ff40791350646e499e75e76adda6ee5a",
+        "slug": "swiss-style",
+        "state": "project-dialog-open",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "2d9fb55869b326005464193606eff297ff40791350646e499e75e76adda6ee5a"
+        }
+      },
+      {
+        "path": "dark-390-en/claymorphism-en-390-01-select-expanded.png",
+        "sha256": "03055a8c1035d3df4b98efa20290c4daac8101feb25a826515cbeb78db15bfa2",
+        "slug": "claymorphism",
+        "state": "select-expanded",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "03055a8c1035d3df4b98efa20290c4daac8101feb25a826515cbeb78db15bfa2"
+        }
+      },
+      {
+        "path": "dark-390-en/claymorphism-en-390-02-brand-result.png",
+        "sha256": "23aa756bd229ecc77af531fb603a5ba6a8f3ea260152b417940d79a29de6b4cb",
+        "slug": "claymorphism",
+        "state": "brand-result",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "23aa756bd229ecc77af531fb603a5ba6a8f3ea260152b417940d79a29de6b4cb"
+        }
+      },
+      {
+        "path": "dark-390-en/liquid-glass-en-390-01-select-expanded.png",
+        "sha256": "af72a1dca458714fc1526b80b63d01b169be0d49cd7414d0a3ee9c2e6332b94e",
+        "slug": "liquid-glass",
+        "state": "select-expanded",
+        "mode": "dark",
+        "viewport": {
+          "width": 390,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "af72a1dca458714fc1526b80b63d01b169be0d49cd7414d0a3ee9c2e6332b94e"
+        }
+      },
+      {
+        "path": "variants-320-en/glassmorphism-en-320-01-aurora-feature-dialog.png",
+        "sha256": "ee2c4cf3c32879f65024d08c640fbdec24cea2f0574ea276a936e4c271c0f8c6",
+        "slug": "glassmorphism",
+        "state": "aurora-feature-dialog",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "ee2c4cf3c32879f65024d08c640fbdec24cea2f0574ea276a936e4c271c0f8c6"
+        }
+      },
+      {
+        "path": "variants-320-en/glassmorphism-en-320-02-select-expanded.png",
+        "sha256": "37bd1d37127aa6e1f57912a41f23abab1045ea83d5c0593a41525aa9ceab21bd",
+        "slug": "glassmorphism",
+        "state": "select-expanded",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "37bd1d37127aa6e1f57912a41f23abab1045ea83d5c0593a41525aa9ceab21bd"
+        }
+      },
+      {
+        "path": "variants-320-en/neobrutalism-en-320-02-playlab-brief-dialog.png",
+        "sha256": "d83edf9c37e53e0b7b015617a6b1da4de94888c3ac68582cdde985eafb5b2165",
+        "slug": "neobrutalism",
+        "state": "playlab-brief-dialog",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "d83edf9c37e53e0b7b015617a6b1da4de94888c3ac68582cdde985eafb5b2165"
+        }
+      },
+      {
+        "path": "variants-320-en/neobrutalism-en-320-03-select-expanded.png",
+        "sha256": "6ed8920d0a6de3a82fecd0bb0ae09464c57666e402088377ea56b2037657c979",
+        "slug": "neobrutalism",
+        "state": "select-expanded",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "6ed8920d0a6de3a82fecd0bb0ae09464c57666e402088377ea56b2037657c979"
+        }
+      },
+      {
+        "path": "variants-320-en/neumorphism-en-320-02-mellow-active-press.png",
+        "sha256": "fecb4183ee64791c80bbddf1e72a4119bfb9ee63516374433162df14d834576c",
+        "slug": "neumorphism",
+        "state": "mellow-active-press",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "fecb4183ee64791c80bbddf1e72a4119bfb9ee63516374433162df14d834576c"
+        }
+      },
+      {
+        "path": "variants-320-en/neumorphism-en-320-04-mellow-paused.png",
+        "sha256": "2821ff440acd5d3676240f1f22b0fae3be9af33e35219719a35207bfd6a5f828",
+        "slug": "neumorphism",
+        "state": "mellow-paused",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "2821ff440acd5d3676240f1f22b0fae3be9af33e35219719a35207bfd6a5f828"
+        }
+      },
+      {
+        "path": "variants-320-en/swiss-style-en-320-01-project-dialog-open.png",
+        "sha256": "89691b3695dccec6bec5dcfb255692aedfdd0efa9acb56d5d0c5cc44e49bb0b3",
+        "slug": "swiss-style",
+        "state": "project-dialog-open",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "89691b3695dccec6bec5dcfb255692aedfdd0efa9acb56d5d0c5cc44e49bb0b3"
+        }
+      },
+      {
+        "path": "variants-320-en/claymorphism-en-320-01-select-expanded.png",
+        "sha256": "2fa886b12913201417b3e56eb5e211496ef611a4b4851feea97f370b095b48be",
+        "slug": "claymorphism",
+        "state": "select-expanded",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "2fa886b12913201417b3e56eb5e211496ef611a4b4851feea97f370b095b48be"
+        }
+      },
+      {
+        "path": "variants-320-en/claymorphism-en-320-02-brand-result.png",
+        "sha256": "636d77ee24a9b1abcbd8f1de75f5b75e52399f9c8691253c58395865ce40a67b",
+        "slug": "claymorphism",
+        "state": "brand-result",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "636d77ee24a9b1abcbd8f1de75f5b75e52399f9c8691253c58395865ce40a67b"
+        }
+      },
+      {
+        "path": "variants-320-en/liquid-glass-en-320-01-select-expanded.png",
+        "sha256": "dd53d31fab567dbd0a9c267f8203416eea76b51902c148fdec56e76f498db916",
+        "slug": "liquid-glass",
+        "state": "select-expanded",
+        "mode": "variants",
+        "viewport": {
+          "width": 320,
+          "height": 900
+        },
+        "engine": "webkit",
+        "decision": "approved-with-recorded-scope",
+        "method": "new PNG SHA256 exactly matches the directly inspected B PNG",
+        "scope": "Visible brand material, readable foreground, real expanded state or reported result; not every hidden/deeper state.",
+        "inheritedFrom": {
+          "sourceCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+          "sha256": "dd53d31fab567dbd0a9c267f8203416eea76b51902c148fdec56e76f498db916"
+        }
+      },
+      {
+        "path": "extras/swiss-style-dark-390-en/01-menu-open.png",
+        "sha256": "250ecf6f4cd6012f86745226d3b8330994b4452a5bcfd7fc59e2331b6e1a45b7",
+        "decision": "approved-with-recorded-scope",
+        "method": "exact PNG SHA256 match to the directly read B supplemental image",
+        "previousSource": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+        "previousSha256": "250ecf6f4cd6012f86745226d3b8330994b4452a5bcfd7fc59e2331b6e1a45b7",
+        "previousDecision": "approved-with-recorded-scope",
+        "scope": "Named visible state plus separately recorded behavior/geometry; not all hidden content."
+      },
+      {
+        "path": "extras/swiss-style-dark-390-en/02-contact-invalid.png",
+        "sha256": "5050edbb123caf7816c476152f8652970a273369aac171f6a176438634b5304b",
+        "decision": "approved-with-recorded-scope",
+        "method": "direct read_image of new S PNG; corrected warm-red error readable",
+        "previousSource": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+        "previousSha256": "9799144b73009075db4c0bb526e61c776f4271202bd62c4067571ca07d4886a6",
+        "previousDecision": "rejected: insufficient 2.8663:1 contrast",
+        "scope": "Named visible state plus separately recorded behavior/geometry; not all hidden content."
+      },
+      {
+        "path": "extras/swiss-style-dark-390-en/03-contact-corrected-success.png",
+        "sha256": "9391652d509603a8f53533081ea68dab4fbf6f61129195c0299f39d6bd323646",
+        "decision": "approved-with-recorded-scope",
+        "method": "exact PNG SHA256 match to the directly read B supplemental image",
+        "previousSource": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+        "previousSha256": "9391652d509603a8f53533081ea68dab4fbf6f61129195c0299f39d6bd323646",
+        "previousDecision": "approved-with-recorded-scope",
+        "scope": "Named visible state plus separately recorded behavior/geometry; not all hidden content."
+      },
+      {
+        "path": "extras/neobrutalism-variants-320-en/01-brief-invalid.png",
+        "sha256": "3cae0b6963288ff61005a46ccfadc46aaa1d2ffc268614cd61d6a6701121970f",
+        "decision": "approved-with-recorded-scope",
+        "method": "exact PNG SHA256 match to the directly read B supplemental image",
+        "previousSource": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+        "previousSha256": "3cae0b6963288ff61005a46ccfadc46aaa1d2ffc268614cd61d6a6701121970f",
+        "previousDecision": "approved-with-recorded-scope",
+        "scope": "Named visible state plus separately recorded behavior/geometry; not all hidden content."
+      },
+      {
+        "path": "extras/neobrutalism-variants-320-en/02-brief-corrected-full-summary.png",
+        "sha256": "8199419875bdae3a07242962da14999795f3793b49601603d93cb1ff749089be",
+        "decision": "approved-with-recorded-scope",
+        "method": "exact PNG SHA256 match to the directly read B supplemental image",
+        "previousSource": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+        "previousSha256": "8199419875bdae3a07242962da14999795f3793b49601603d93cb1ff749089be",
+        "previousDecision": "approved-with-recorded-scope",
+        "scope": "Named visible state plus separately recorded behavior/geometry; not all hidden content."
+      },
+      {
+        "path": "extras/liquid-glass-dark-390-en/01-prism-body-visible.png",
+        "sha256": "13975f8b8c6f6d3df0abc0207c6f2660bafcd7e2ad365528c3c36f031b735236",
+        "decision": "approved-with-recorded-scope",
+        "method": "exact PNG SHA256 match to the directly read B supplemental image",
+        "previousSource": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+        "previousSha256": "13975f8b8c6f6d3df0abc0207c6f2660bafcd7e2ad365528c3c36f031b735236",
+        "previousDecision": "approved-with-recorded-scope",
+        "scope": "Named visible state plus separately recorded behavior/geometry; not all hidden content."
+      },
+      {
+        "path": "extras/liquid-glass-variants-320-en/01-prism-body-visible.png",
+        "sha256": "f4b18c43b3880a682ba83f285bd3f6fbcbe7eef30228d6cd11a87581e190b1df",
+        "decision": "approved-with-recorded-scope",
+        "method": "exact PNG SHA256 match to the directly read B supplemental image",
+        "previousSource": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+        "previousSha256": "f4b18c43b3880a682ba83f285bd3f6fbcbe7eef30228d6cd11a87581e190b1df",
+        "previousDecision": "approved-with-recorded-scope",
+        "scope": "Named visible state plus separately recorded behavior/geometry; not all hidden content."
+      }
+    ]
+  }
+}

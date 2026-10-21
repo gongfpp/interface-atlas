@@ -1,0 +1,65 @@
+{
+  "implementationBefore": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+  "implementationAfter": "a2d1ddfe0881c57f4b4d40d7a03005680b062878",
+  "actualEngines": {
+    "chromium": "153.0.8010.12",
+    "firefox": "155.0",
+    "webkit": "26.6"
+  },
+  "fullMatrixBefore": {
+    "source": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+    "startTime": "2026-10-21T01:25:17.288Z",
+    "duration": 866283.4249999999,
+    "expected": 980,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "fullMatrixAfter": {
+    "source": "a2d1ddfe0881c57f4b4d40d7a03005680b062878",
+    "startTime": "2026-10-21T02:02:24.931Z",
+    "duration": 845896.383,
+    "expected": 984,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "capture": {
+    "engine": "webkit",
+    "version": "26.6",
+    "locale": "en",
+    "uniqueCombinations": 12,
+    "modes": [
+      {
+        "mode": "dark",
+        "width": 390,
+        "height": 900
+      },
+      {
+        "mode": "variants",
+        "width": 320,
+        "height": 900
+      }
+    ],
+    "mainPngPerPhase": 40,
+    "supplementalRevisitsPerPhase": 4,
+    "supplementalPngPerPhase": 7,
+    "sourceStable": true
+  },
+  "contrast": {
+    "before": 2.866328626415719,
+    "after": 6.716127125530603,
+    "foregroundBefore": "#bc2611",
+    "foregroundAfter": "#ff7755",
+    "background": "#191919",
+    "minimum": 4.5
+  },
+  "limitations": [
+    "Supplementary four cases revisit existing combinations, not four new dimensions.",
+    "20 main images per phase remain capture-only, not individually visually approved.",
+    "Six prior supplemental approvals and 20 main approvals carry only after exact original PNG SHA256 match.",
+    "No physical iOS/Android, old Popover-unsupported engine, screen-reader or exhaustive state certification.",
+    "Earlier Firefox reset timeout root cause remains unknown; subsequent whole runs passing does not establish its cause.",
+    "Final release SHA and platform verification are determined by actual Actions, not predicted here."
+  ]
+}

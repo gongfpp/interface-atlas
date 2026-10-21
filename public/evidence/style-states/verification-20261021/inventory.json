@@ -1,0 +1,1003 @@
+{
+  "files": [
+    {
+      "path": "before/dark-390-en/manifest.json",
+      "bytes": 13466,
+      "sha256": "d51d1fcf885d8c78368d685387a2f1e695f1c5a79c91f8eb2772e88d2cb625d9"
+    },
+    {
+      "path": "before/dark-390-en/glassmorphism-en-390-01-aurora-feature-dialog.png",
+      "bytes": 470309,
+      "sha256": "9c1d141183c66ad52163c65826a73d6955875ff3f25c9a908c4d6fece24e941a"
+    },
+    {
+      "path": "before/dark-390-en/glassmorphism-en-390-01-aurora-feature-dialog.json",
+      "bytes": 46265,
+      "sha256": "9200e45d069c2624723ed62e38f391ba18ddc6a7c36ad243e2c1eff0f206b972"
+    },
+    {
+      "path": "before/dark-390-en/glassmorphism-en-390-02-select-expanded.png",
+      "bytes": 378666,
+      "sha256": "be28e29bb1125d584affbe2173272fc03d66a1b0513b76a0568ec52338600e10"
+    },
+    {
+      "path": "before/dark-390-en/glassmorphism-en-390-02-select-expanded.json",
+      "bytes": 44700,
+      "sha256": "9413b3b99c374c72cea6a3fb50503d217a6910a7a8b8c81742f18bf4ae4e8519"
+    },
+    {
+      "path": "before/dark-390-en/glassmorphism-en-390-03-aurora-saved-status.png",
+      "bytes": 409552,
+      "sha256": "fd97aa7b01c232bd5b4bf4fcdfdf293b1051bd1bd338f80ebbabf7c2bb85e784"
+    },
+    {
+      "path": "before/dark-390-en/glassmorphism-en-390-03-aurora-saved-status.json",
+      "bytes": 40882,
+      "sha256": "b48cfc4d5f2cbdae57c185616665082b6eb6ea11445c196b4ecfa0b5eefc1dcc"
+    },
+    {
+      "path": "before/dark-390-en/neobrutalism-en-390-01-playlab-continuation.png",
+      "bytes": 47231,
+      "sha256": "9069e28699466edcdf128ceaad9261365fc5d2ab4d2129fe47b540b8309b65e9"
+    },
+    {
+      "path": "before/dark-390-en/neobrutalism-en-390-01-playlab-continuation.json",
+      "bytes": 24843,
+      "sha256": "340549254b793923ed4e21526f2fc0fd85956f995e8fac39c86d44a5f18361f5"
+    },
+    {
+      "path": "before/dark-390-en/neobrutalism-en-390-02-playlab-brief-dialog.png",
+      "bytes": 48195,
+      "sha256": "727ab3e69ec97cb947d42007031546cb7a90d9ca6658d7f8934a6c22e2ed30d9"
+    },
+    {
+      "path": "before/dark-390-en/neobrutalism-en-390-02-playlab-brief-dialog.json",
+      "bytes": 36682,
+      "sha256": "a5e3f5ef948cb4aa1bf8eaa0c1a28f0a53c68f1f6a33c26e44123b82c5ef732f"
+    },
+    {
+      "path": "before/dark-390-en/neobrutalism-en-390-03-select-expanded.png",
+      "bytes": 44765,
+      "sha256": "bff63e0a3df654d97b3430ad0aa0095c31ea6fc587be81b392c94db577d0aa32"
+    },
+    {
+      "path": "before/dark-390-en/neobrutalism-en-390-03-select-expanded.json",
+      "bytes": 44110,
+      "sha256": "a5d08b473a8d66d0a4fc8bda915caeb678bed32d9a0c67fe6f54050ddc7b210e"
+    },
+    {
+      "path": "before/dark-390-en/neobrutalism-en-390-04-playlab-brief-status.png",
+      "bytes": 52722,
+      "sha256": "b0b657dc1988bcd8d8f0dc9dd3797a060b372ca709759f127d1ddb435fc9d721"
+    },
+    {
+      "path": "before/dark-390-en/neobrutalism-en-390-04-playlab-brief-status.json",
+      "bytes": 38377,
+      "sha256": "99dba2bc58d023ef6a8c9563932beb518a1862ef3bf50e587af2549d2c7b57b3"
+    },
+    {
+      "path": "before/dark-390-en/neumorphism-en-390-01-select-expanded.png",
+      "bytes": 91777,
+      "sha256": "cc9c890edbae6b1c56391a9c010767aaffca2c34e1809c97294b0ebafcef3313"
+    },
+    {
+      "path": "before/dark-390-en/neumorphism-en-390-01-select-expanded.json",
+      "bytes": 50757,
+      "sha256": "9ecbabe2b15c93b2ad4587350b305e4d9873c86f1ed51721d3cfd5efddbc598a"
+    },
+    {
+      "path": "before/dark-390-en/neumorphism-en-390-02-mellow-active-press.png",
+      "bytes": 81005,
+      "sha256": "56744eab98ea21059868cc87ab8a47f6eb52ca7e85409581bd0f68483a87bc30"
+    },
+    {
+      "path": "before/dark-390-en/neumorphism-en-390-02-mellow-active-press.json",
+      "bytes": 43127,
+      "sha256": "c1db1b0839ad0d9f24c4e984521009927e0793e70ad066d33bf1362a2da875aa"
+    },
+    {
+      "path": "before/dark-390-en/neumorphism-en-390-03-mellow-running.png",
+      "bytes": 79230,
+      "sha256": "0eb8ae26558e2ed65434e964370800c6af959ed8a0cdb6c6d423944a41517e88"
+    },
+    {
+      "path": "before/dark-390-en/neumorphism-en-390-03-mellow-running.json",
+      "bytes": 44797,
+      "sha256": "62e0cde0a09bb1296bf07de39b43301fda9d1256839934a8d2bea62d6ad13c9c"
+    },
+    {
+      "path": "before/dark-390-en/neumorphism-en-390-04-mellow-paused.png",
+      "bytes": 81521,
+      "sha256": "f9fe293402c2ae6e4f3f24f6b42df1d8cba831b62616d07a2fd36672ed50ed60"
+    },
+    {
+      "path": "before/dark-390-en/neumorphism-en-390-04-mellow-paused.json",
+      "bytes": 43107,
+      "sha256": "ad86bd3da1f4adce2f8f85acefa919831e038d2924be3e88ef67dc99dddf3d8a"
+    },
+    {
+      "path": "before/dark-390-en/swiss-style-en-390-01-project-dialog-open.png",
+      "bytes": 49847,
+      "sha256": "2d9fb55869b326005464193606eff297ff40791350646e499e75e76adda6ee5a"
+    },
+    {
+      "path": "before/dark-390-en/swiss-style-en-390-01-project-dialog-open.json",
+      "bytes": 36145,
+      "sha256": "7392a3b2b9c766b5ecf34fb07d62af753cf3a6addbfa72ca403aedffc16446bc"
+    },
+    {
+      "path": "before/dark-390-en/swiss-style-en-390-02-contact-status.png",
+      "bytes": 47042,
+      "sha256": "63c2f5a05a85eddc1f9ab879f36b8dbd6fbf4b7a000e967f668ea76720e82f53"
+    },
+    {
+      "path": "before/dark-390-en/swiss-style-en-390-02-contact-status.json",
+      "bytes": 31106,
+      "sha256": "f4abfbf63b08500c452daccdcdd9305280d62a76df07656a3c03a0be54f162e0"
+    },
+    {
+      "path": "before/dark-390-en/claymorphism-en-390-01-select-expanded.png",
+      "bytes": 111361,
+      "sha256": "03055a8c1035d3df4b98efa20290c4daac8101feb25a826515cbeb78db15bfa2"
+    },
+    {
+      "path": "before/dark-390-en/claymorphism-en-390-01-select-expanded.json",
+      "bytes": 39977,
+      "sha256": "d48b9f063f06d4644efb860ec39c599cd83006639d10d2ba3bde0b779374035b"
+    },
+    {
+      "path": "before/dark-390-en/claymorphism-en-390-02-brand-result.png",
+      "bytes": 95186,
+      "sha256": "23aa756bd229ecc77af531fb603a5ba6a8f3ea260152b417940d79a29de6b4cb"
+    },
+    {
+      "path": "before/dark-390-en/claymorphism-en-390-02-brand-result.json",
+      "bytes": 33369,
+      "sha256": "9df45383d04aa37c39b5668f788271b1e7b85273181d442290939d0c664ddc36"
+    },
+    {
+      "path": "before/dark-390-en/liquid-glass-en-390-01-select-expanded.png",
+      "bytes": 371367,
+      "sha256": "af72a1dca458714fc1526b80b63d01b169be0d49cd7414d0a3ee9c2e6332b94e"
+    },
+    {
+      "path": "before/dark-390-en/liquid-glass-en-390-01-select-expanded.json",
+      "bytes": 41662,
+      "sha256": "a026ed83646721b7071a088d3da4f03e07bca1790a2d30d41ef7d9dd42b81713"
+    },
+    {
+      "path": "before/dark-390-en/liquid-glass-en-390-02-lumen-material-clear.png",
+      "bytes": 395016,
+      "sha256": "84e23b01641e9f8993b51ce57614b9f46555248cc1aafca814e4343806c333db"
+    },
+    {
+      "path": "before/dark-390-en/liquid-glass-en-390-02-lumen-material-clear.json",
+      "bytes": 37168,
+      "sha256": "5d4c183b8f0b5224dc96f039b7a3e50bc531a0a2a5e3cec620d58e2ffce22d8d"
+    },
+    {
+      "path": "before/dark-390-en/liquid-glass-en-390-03-lumen-material-frost.png",
+      "bytes": 394749,
+      "sha256": "231ba075ca178cb26f72c50efd5c758eb8bd3ba6ab24a16dd4392536cf532370"
+    },
+    {
+      "path": "before/dark-390-en/liquid-glass-en-390-03-lumen-material-frost.json",
+      "bytes": 37168,
+      "sha256": "33e462cf78501a39baec6556139eb53beb9d5adeea38a50ddb018fcaca63dd0d"
+    },
+    {
+      "path": "before/dark-390-en/liquid-glass-en-390-04-lumen-material-prism.png",
+      "bytes": 394707,
+      "sha256": "5cb2ac5015030f3f301c4ffed15f61cea44d126fed0bff3be9e599dcb482a066"
+    },
+    {
+      "path": "before/dark-390-en/liquid-glass-en-390-04-lumen-material-prism.json",
+      "bytes": 37242,
+      "sha256": "b8fc76adab4a067db5dbd33cba472be5399b0367507d35ec86093b9a4a253e86"
+    },
+    {
+      "path": "before/dark-390-en/liquid-glass-en-390-05-brand-result.png",
+      "bytes": 396903,
+      "sha256": "6774f2f143f6a62041bfe28d288189bc9dccf309c249121523749512677f4650"
+    },
+    {
+      "path": "before/dark-390-en/liquid-glass-en-390-05-brand-result.json",
+      "bytes": 35632,
+      "sha256": "655f9446f93e22889fb8e3c05c1c19f7cf9d504a4240dcbb95d38f9a4ab340d1"
+    },
+    {
+      "path": "before/variants-320-en/manifest.json",
+      "bytes": 13490,
+      "sha256": "fea417ddeba85431243f1f0c9bcbb915200f8c2e96f41e38da00a28e4df76576"
+    },
+    {
+      "path": "before/variants-320-en/glassmorphism-en-320-01-aurora-feature-dialog.png",
+      "bytes": 392634,
+      "sha256": "ee2c4cf3c32879f65024d08c640fbdec24cea2f0574ea276a936e4c271c0f8c6"
+    },
+    {
+      "path": "before/variants-320-en/glassmorphism-en-320-01-aurora-feature-dialog.json",
+      "bytes": 46252,
+      "sha256": "e1d36d8445962de162b8b34c158ef97d665c782b298d439ed54d28f9315fe826"
+    },
+    {
+      "path": "before/variants-320-en/glassmorphism-en-320-02-select-expanded.png",
+      "bytes": 331480,
+      "sha256": "37bd1d37127aa6e1f57912a41f23abab1045ea83d5c0593a41525aa9ceab21bd"
+    },
+    {
+      "path": "before/variants-320-en/glassmorphism-en-320-02-select-expanded.json",
+      "bytes": 44695,
+      "sha256": "d5e7b9a7d194393505a785b503b3f8497a06792857fdf7f492c2bf89b29f264e"
+    },
+    {
+      "path": "before/variants-320-en/glassmorphism-en-320-03-aurora-saved-status.png",
+      "bytes": 348960,
+      "sha256": "1b506164861c7baf549c39d9e5a9c70b1c1411f975980844bf99aa41488926fe"
+    },
+    {
+      "path": "before/variants-320-en/glassmorphism-en-320-03-aurora-saved-status.json",
+      "bytes": 40884,
+      "sha256": "1abb6e00aa4edd03bb16d4acb2f7670c6f4df46a6bb843a365670c9c52010b3a"
+    },
+    {
+      "path": "before/variants-320-en/neobrutalism-en-320-01-playlab-continuation.png",
+      "bytes": 46455,
+      "sha256": "f85d6b96522b5ed9aa0f4f4845539c943d97f437c5d0a382c77beb44fddb9707"
+    },
+    {
+      "path": "before/variants-320-en/neobrutalism-en-320-01-playlab-continuation.json",
+      "bytes": 24819,
+      "sha256": "b1a9d81ce3819f10f17136d45e88c559d7f55d3e32d09cab6bce5287673e4514"
+    },
+    {
+      "path": "before/variants-320-en/neobrutalism-en-320-02-playlab-brief-dialog.png",
+      "bytes": 44768,
+      "sha256": "d83edf9c37e53e0b7b015617a6b1da4de94888c3ac68582cdde985eafb5b2165"
+    },
+    {
+      "path": "before/variants-320-en/neobrutalism-en-320-02-playlab-brief-dialog.json",
+      "bytes": 36652,
+      "sha256": "4a6a70c02622e48361732385ea853d3fbbbe38dca71a7116782311d201aca74c"
+    },
+    {
+      "path": "before/variants-320-en/neobrutalism-en-320-03-select-expanded.png",
+      "bytes": 41399,
+      "sha256": "6ed8920d0a6de3a82fecd0bb0ae09464c57666e402088377ea56b2037657c979"
+    },
+    {
+      "path": "before/variants-320-en/neobrutalism-en-320-03-select-expanded.json",
+      "bytes": 44095,
+      "sha256": "220921d1fbf978d663eaeec8e820e9429611d4cf90c5f52b74e441f28a12f8e6"
+    },
+    {
+      "path": "before/variants-320-en/neobrutalism-en-320-04-playlab-brief-status.png",
+      "bytes": 47232,
+      "sha256": "ee82b083c03bf0cbf9d4ff2f12bd7c8b21531d4a2f0a7ee1031866fb802d7218"
+    },
+    {
+      "path": "before/variants-320-en/neobrutalism-en-320-04-playlab-brief-status.json",
+      "bytes": 38356,
+      "sha256": "a5a6468d6a1603ce68a6bee94978dfc27b874fdf494c305b1069f85cea4728dc"
+    },
+    {
+      "path": "before/variants-320-en/neumorphism-en-320-01-select-expanded.png",
+      "bytes": 81719,
+      "sha256": "34f48bf5cb4eb16a0813ce81c553f6959e694e31d856ffaf1c76a810bf9db9bd"
+    },
+    {
+      "path": "before/variants-320-en/neumorphism-en-320-01-select-expanded.json",
+      "bytes": 50675,
+      "sha256": "299827f4816d37b52bb3a2bc1f88ec0a91ac3ceb3d8e49d8cc4a4339a3659f36"
+    },
+    {
+      "path": "before/variants-320-en/neumorphism-en-320-02-mellow-active-press.png",
+      "bytes": 75940,
+      "sha256": "fecb4183ee64791c80bbddf1e72a4119bfb9ee63516374433162df14d834576c"
+    },
+    {
+      "path": "before/variants-320-en/neumorphism-en-320-02-mellow-active-press.json",
+      "bytes": 43053,
+      "sha256": "364fcb94a5efc7f961c91b45a1b714edc93e45c508707ff1a17fdcb394ff0906"
+    },
+    {
+      "path": "before/variants-320-en/neumorphism-en-320-03-mellow-running.png",
+      "bytes": 73691,
+      "sha256": "7654a8228e5e5f3de1ce2eaf4fab12a91fdc8b302449f38b97b5916239e4e6d7"
+    },
+    {
+      "path": "before/variants-320-en/neumorphism-en-320-03-mellow-running.json",
+      "bytes": 44730,
+      "sha256": "f6ae8e8fa136d59c4e980354940b988aa46d90caf408e7cff97dffdaf49c244d"
+    },
+    {
+      "path": "before/variants-320-en/neumorphism-en-320-04-mellow-paused.png",
+      "bytes": 77031,
+      "sha256": "2821ff440acd5d3676240f1f22b0fae3be9af33e35219719a35207bfd6a5f828"
+    },
+    {
+      "path": "before/variants-320-en/neumorphism-en-320-04-mellow-paused.json",
+      "bytes": 43034,
+      "sha256": "0982e3c3415baa529093413ac10c1a783d6d0fccf45b7650b7ed855562ed0821"
+    },
+    {
+      "path": "before/variants-320-en/swiss-style-en-320-01-project-dialog-open.png",
+      "bytes": 47882,
+      "sha256": "89691b3695dccec6bec5dcfb255692aedfdd0efa9acb56d5d0c5cc44e49bb0b3"
+    },
+    {
+      "path": "before/variants-320-en/swiss-style-en-320-01-project-dialog-open.json",
+      "bytes": 36007,
+      "sha256": "12ce26110954d9e40f26267ed2b0ad03f4e57c8d22768df6b2261ff42307da4a"
+    },
+    {
+      "path": "before/variants-320-en/swiss-style-en-320-02-contact-status.png",
+      "bytes": 43412,
+      "sha256": "3c85295a9a6d61c9ed2bfe7b1a1e6f9c6a3d14b3da4d0a16c263d4275d97b706"
+    },
+    {
+      "path": "before/variants-320-en/swiss-style-en-320-02-contact-status.json",
+      "bytes": 30987,
+      "sha256": "63d61a727da05d0327690a83ef0e0cb17f1b4ee8cb3038995a29ddf2427575b2"
+    },
+    {
+      "path": "before/variants-320-en/claymorphism-en-320-01-select-expanded.png",
+      "bytes": 101145,
+      "sha256": "2fa886b12913201417b3e56eb5e211496ef611a4b4851feea97f370b095b48be"
+    },
+    {
+      "path": "before/variants-320-en/claymorphism-en-320-01-select-expanded.json",
+      "bytes": 40031,
+      "sha256": "535ce681161df2db974c60753109c1e29186e0a5f4208c93916d82e5e6143042"
+    },
+    {
+      "path": "before/variants-320-en/claymorphism-en-320-02-brand-result.png",
+      "bytes": 86164,
+      "sha256": "636d77ee24a9b1abcbd8f1de75f5b75e52399f9c8691253c58395865ce40a67b"
+    },
+    {
+      "path": "before/variants-320-en/claymorphism-en-320-02-brand-result.json",
+      "bytes": 33444,
+      "sha256": "98238518b4673d92a4e3f1f0fb963e29985e7fce4eabe1352afb598b9d68996c"
+    },
+    {
+      "path": "before/variants-320-en/liquid-glass-en-320-01-select-expanded.png",
+      "bytes": 338675,
+      "sha256": "dd53d31fab567dbd0a9c267f8203416eea76b51902c148fdec56e76f498db916"
+    },
+    {
+      "path": "before/variants-320-en/liquid-glass-en-320-01-select-expanded.json",
+      "bytes": 41634,
+      "sha256": "cfe590545215fe5965d6ab6f1056eead2ab2e96c5f37ba331364e0a4028db4ed"
+    },
+    {
+      "path": "before/variants-320-en/liquid-glass-en-320-02-lumen-material-clear.png",
+      "bytes": 349810,
+      "sha256": "e72c514e7b89552fa2ea6dbdde86f61ff8f7950eec16aa5f7433ecd91f61d237"
+    },
+    {
+      "path": "before/variants-320-en/liquid-glass-en-320-02-lumen-material-clear.json",
+      "bytes": 37101,
+      "sha256": "723b708749fb1e36c1cd0c447d930539eaae41edc4718c4c2a72d07b1a027cb1"
+    },
+    {
+      "path": "before/variants-320-en/liquid-glass-en-320-03-lumen-material-frost.png",
+      "bytes": 349527,
+      "sha256": "b6948acf9be1835c823fd21d57623525e455bb35ee493b7757a91a99b6ccd37f"
+    },
+    {
+      "path": "before/variants-320-en/liquid-glass-en-320-03-lumen-material-frost.json",
+      "bytes": 37101,
+      "sha256": "262fedac4b4b1afea436c0dca398ec6db4b353dedf2e12aaac667541a69ca823"
+    },
+    {
+      "path": "before/variants-320-en/liquid-glass-en-320-04-lumen-material-prism.png",
+      "bytes": 349432,
+      "sha256": "447f9e5e31083e22eb9c6f2ca3682fb50b6d030f26ab69bd5c4c656345fb7f16"
+    },
+    {
+      "path": "before/variants-320-en/liquid-glass-en-320-04-lumen-material-prism.json",
+      "bytes": 37175,
+      "sha256": "bf91c396c07aaeafa756727afa76eeb73cdc275537d34906d8a2dbc0c360168d"
+    },
+    {
+      "path": "before/variants-320-en/liquid-glass-en-320-05-brand-result.png",
+      "bytes": 350459,
+      "sha256": "26ebe562c4fd324a03904083981ac94733ccd4aca6fd4d232c1710f4fdc22f20"
+    },
+    {
+      "path": "before/variants-320-en/liquid-glass-en-320-05-brand-result.json",
+      "bytes": 35591,
+      "sha256": "0cad505a06ef691aa626a1c36f936ccd27f76b9805f462fc807980de9d4ff936"
+    },
+    {
+      "path": "before/extras/manifest.json",
+      "bytes": 9682,
+      "sha256": "56af13aca7a1f89155e19562720491ba09cefd9333393848f6d1460c7fb51fe3"
+    },
+    {
+      "path": "before/extras/swiss-style-dark-390-en/01-menu-open.png",
+      "bytes": 45226,
+      "sha256": "250ecf6f4cd6012f86745226d3b8330994b4452a5bcfd7fc59e2331b6e1a45b7"
+    },
+    {
+      "path": "before/extras/swiss-style-dark-390-en/01-menu-open.json",
+      "bytes": 39038,
+      "sha256": "b57a93ef19e073bf516be2ee7a75a3708b55f0a61ca23cb566292e08f7df4574"
+    },
+    {
+      "path": "before/extras/swiss-style-dark-390-en/02-contact-invalid.png",
+      "bytes": 32316,
+      "sha256": "9799144b73009075db4c0bb526e61c776f4271202bd62c4067571ca07d4886a6"
+    },
+    {
+      "path": "before/extras/swiss-style-dark-390-en/02-contact-invalid.json",
+      "bytes": 33055,
+      "sha256": "e5c74e6a5b7ff6676bc3b7bfec7fb8690b77d917812a678b8658e383f42746ed"
+    },
+    {
+      "path": "before/extras/swiss-style-dark-390-en/03-contact-corrected-success.png",
+      "bytes": 51499,
+      "sha256": "9391652d509603a8f53533081ea68dab4fbf6f61129195c0299f39d6bd323646"
+    },
+    {
+      "path": "before/extras/swiss-style-dark-390-en/03-contact-corrected-success.json",
+      "bytes": 31738,
+      "sha256": "77433be549e0a3fdf4259943632331792fc79abe23a73bdac5013fa2a36bdf9f"
+    },
+    {
+      "path": "before/extras/neobrutalism-variants-320-en/01-brief-invalid.png",
+      "bytes": 44249,
+      "sha256": "3cae0b6963288ff61005a46ccfadc46aaa1d2ffc268614cd61d6a6701121970f"
+    },
+    {
+      "path": "before/extras/neobrutalism-variants-320-en/01-brief-invalid.json",
+      "bytes": 40544,
+      "sha256": "1c99ad597bd39e2c6f9887d224df3594fa8c2dc3385dcb150b7b6d81ff425c24"
+    },
+    {
+      "path": "before/extras/neobrutalism-variants-320-en/02-brief-corrected-full-summary.png",
+      "bytes": 61962,
+      "sha256": "8199419875bdae3a07242962da14999795f3793b49601603d93cb1ff749089be"
+    },
+    {
+      "path": "before/extras/neobrutalism-variants-320-en/02-brief-corrected-full-summary.json",
+      "bytes": 39247,
+      "sha256": "e34d85870d9b5795a662b2ba5f21b2784a933d48329f401af955c06a7a17b255"
+    },
+    {
+      "path": "before/extras/liquid-glass-dark-390-en/01-prism-body-visible.png",
+      "bytes": 391352,
+      "sha256": "13975f8b8c6f6d3df0abc0207c6f2660bafcd7e2ad365528c3c36f031b735236"
+    },
+    {
+      "path": "before/extras/liquid-glass-dark-390-en/01-prism-body-visible.json",
+      "bytes": 37938,
+      "sha256": "72b2150e424db3097ec7318386da4227010a47f7233fd22f4abae0a7a7c2c38b"
+    },
+    {
+      "path": "before/extras/liquid-glass-variants-320-en/01-prism-body-visible.png",
+      "bytes": 350753,
+      "sha256": "f4b18c43b3880a682ba83f285bd3f6fbcbe7eef30228d6cd11a87581e190b1df"
+    },
+    {
+      "path": "before/extras/liquid-glass-variants-320-en/01-prism-body-visible.json",
+      "bytes": 37881,
+      "sha256": "b9fc29cee19aca8d814f0f372bcfa19552b073b57943a784a97cf4cb4a7ac4c1"
+    },
+    {
+      "path": "after/dark-390-en/manifest.json",
+      "bytes": 13466,
+      "sha256": "3f56492780937ec915c9e5f73d141bc889214c114d9695b488593a5b328e5392"
+    },
+    {
+      "path": "after/dark-390-en/glassmorphism-en-390-01-aurora-feature-dialog.png",
+      "bytes": 470309,
+      "sha256": "9c1d141183c66ad52163c65826a73d6955875ff3f25c9a908c4d6fece24e941a"
+    },
+    {
+      "path": "after/dark-390-en/glassmorphism-en-390-01-aurora-feature-dialog.json",
+      "bytes": 46265,
+      "sha256": "d940a6ce3e514696c3415f6c6e25ec82e113d5bd1a49af825a64e01ba7f173de"
+    },
+    {
+      "path": "after/dark-390-en/glassmorphism-en-390-02-select-expanded.png",
+      "bytes": 378666,
+      "sha256": "be28e29bb1125d584affbe2173272fc03d66a1b0513b76a0568ec52338600e10"
+    },
+    {
+      "path": "after/dark-390-en/glassmorphism-en-390-02-select-expanded.json",
+      "bytes": 44712,
+      "sha256": "76071819f6d6e9918db8a1dcef2fed49438f0b944d7743e5dec4152ad2d546f5"
+    },
+    {
+      "path": "after/dark-390-en/glassmorphism-en-390-03-aurora-saved-status.png",
+      "bytes": 409552,
+      "sha256": "fd97aa7b01c232bd5b4bf4fcdfdf293b1051bd1bd338f80ebbabf7c2bb85e784"
+    },
+    {
+      "path": "after/dark-390-en/glassmorphism-en-390-03-aurora-saved-status.json",
+      "bytes": 40882,
+      "sha256": "11e44e2465937dc00e705786f6c9bb43ebbd8ca94ceb7b1a687c2e1b24d0fae9"
+    },
+    {
+      "path": "after/dark-390-en/neobrutalism-en-390-01-playlab-continuation.png",
+      "bytes": 47231,
+      "sha256": "9069e28699466edcdf128ceaad9261365fc5d2ab4d2129fe47b540b8309b65e9"
+    },
+    {
+      "path": "after/dark-390-en/neobrutalism-en-390-01-playlab-continuation.json",
+      "bytes": 24843,
+      "sha256": "472f671d6177fbbcbae04dea892958fc5165a7fd125a1a5ffeacd58a2039d89b"
+    },
+    {
+      "path": "after/dark-390-en/neobrutalism-en-390-02-playlab-brief-dialog.png",
+      "bytes": 48195,
+      "sha256": "727ab3e69ec97cb947d42007031546cb7a90d9ca6658d7f8934a6c22e2ed30d9"
+    },
+    {
+      "path": "after/dark-390-en/neobrutalism-en-390-02-playlab-brief-dialog.json",
+      "bytes": 36682,
+      "sha256": "3ae6b209954e90a64d248efe9dfb8f610060e82c1b0cf4594d02bc37e6bf8d3a"
+    },
+    {
+      "path": "after/dark-390-en/neobrutalism-en-390-03-select-expanded.png",
+      "bytes": 44765,
+      "sha256": "bff63e0a3df654d97b3430ad0aa0095c31ea6fc587be81b392c94db577d0aa32"
+    },
+    {
+      "path": "after/dark-390-en/neobrutalism-en-390-03-select-expanded.json",
+      "bytes": 44110,
+      "sha256": "8dfb28fc2ea70ab7fa03d2602ff7aae70975cf5fae535a4af09eeb41e896763a"
+    },
+    {
+      "path": "after/dark-390-en/neobrutalism-en-390-04-playlab-brief-status.png",
+      "bytes": 52722,
+      "sha256": "b0b657dc1988bcd8d8f0dc9dd3797a060b372ca709759f127d1ddb435fc9d721"
+    },
+    {
+      "path": "after/dark-390-en/neobrutalism-en-390-04-playlab-brief-status.json",
+      "bytes": 38377,
+      "sha256": "fe5906cdf60afabe4a9fa8073958b619124f740895aad63f8fbcee838101672e"
+    },
+    {
+      "path": "after/dark-390-en/neumorphism-en-390-01-select-expanded.png",
+      "bytes": 91777,
+      "sha256": "cc9c890edbae6b1c56391a9c010767aaffca2c34e1809c97294b0ebafcef3313"
+    },
+    {
+      "path": "after/dark-390-en/neumorphism-en-390-01-select-expanded.json",
+      "bytes": 50757,
+      "sha256": "8f753b57aee1ab95ac87c6411bad11da23ce82dd4e3ff8a4b4c7651ddf9b1640"
+    },
+    {
+      "path": "after/dark-390-en/neumorphism-en-390-02-mellow-active-press.png",
+      "bytes": 81005,
+      "sha256": "56744eab98ea21059868cc87ab8a47f6eb52ca7e85409581bd0f68483a87bc30"
+    },
+    {
+      "path": "after/dark-390-en/neumorphism-en-390-02-mellow-active-press.json",
+      "bytes": 43127,
+      "sha256": "037bb28e2b142464ae6deb0579b6105193720ecae1c5184a36ad0e8c47340aa5"
+    },
+    {
+      "path": "after/dark-390-en/neumorphism-en-390-03-mellow-running.png",
+      "bytes": 79230,
+      "sha256": "0eb8ae26558e2ed65434e964370800c6af959ed8a0cdb6c6d423944a41517e88"
+    },
+    {
+      "path": "after/dark-390-en/neumorphism-en-390-03-mellow-running.json",
+      "bytes": 44797,
+      "sha256": "67dbe5ee78c7cb8d043746719e243377658b467b4e1e1fe98a8a1b03a7a037b1"
+    },
+    {
+      "path": "after/dark-390-en/neumorphism-en-390-04-mellow-paused.png",
+      "bytes": 81521,
+      "sha256": "f9fe293402c2ae6e4f3f24f6b42df1d8cba831b62616d07a2fd36672ed50ed60"
+    },
+    {
+      "path": "after/dark-390-en/neumorphism-en-390-04-mellow-paused.json",
+      "bytes": 43107,
+      "sha256": "2afdfad7b88f1fbc0d0db06f968652f1cea04e80257e6d9e927bcae5bce8d194"
+    },
+    {
+      "path": "after/dark-390-en/swiss-style-en-390-01-project-dialog-open.png",
+      "bytes": 49847,
+      "sha256": "2d9fb55869b326005464193606eff297ff40791350646e499e75e76adda6ee5a"
+    },
+    {
+      "path": "after/dark-390-en/swiss-style-en-390-01-project-dialog-open.json",
+      "bytes": 36152,
+      "sha256": "1f990255cbbc0e8314e5db7f9483a86363fd54892d15f60075799dfb078defd6"
+    },
+    {
+      "path": "after/dark-390-en/swiss-style-en-390-02-contact-status.png",
+      "bytes": 47042,
+      "sha256": "63c2f5a05a85eddc1f9ab879f36b8dbd6fbf4b7a000e967f668ea76720e82f53"
+    },
+    {
+      "path": "after/dark-390-en/swiss-style-en-390-02-contact-status.json",
+      "bytes": 31106,
+      "sha256": "989bf5d801149bcc07dbc4c164454ceb5ea2d9f05fb8154b0b0a10d4ebee53c3"
+    },
+    {
+      "path": "after/dark-390-en/claymorphism-en-390-01-select-expanded.png",
+      "bytes": 111361,
+      "sha256": "03055a8c1035d3df4b98efa20290c4daac8101feb25a826515cbeb78db15bfa2"
+    },
+    {
+      "path": "after/dark-390-en/claymorphism-en-390-01-select-expanded.json",
+      "bytes": 39977,
+      "sha256": "8a648c71d5a9105ffca8144b86eaefc3d9daf4f03716ac1833eeaa6eeb9edded"
+    },
+    {
+      "path": "after/dark-390-en/claymorphism-en-390-02-brand-result.png",
+      "bytes": 95186,
+      "sha256": "23aa756bd229ecc77af531fb603a5ba6a8f3ea260152b417940d79a29de6b4cb"
+    },
+    {
+      "path": "after/dark-390-en/claymorphism-en-390-02-brand-result.json",
+      "bytes": 33369,
+      "sha256": "f5d3f1cad08a85fa0b1632ac004fa70dca79c23a04a3824cac66500872caedaa"
+    },
+    {
+      "path": "after/dark-390-en/liquid-glass-en-390-01-select-expanded.png",
+      "bytes": 371367,
+      "sha256": "af72a1dca458714fc1526b80b63d01b169be0d49cd7414d0a3ee9c2e6332b94e"
+    },
+    {
+      "path": "after/dark-390-en/liquid-glass-en-390-01-select-expanded.json",
+      "bytes": 41662,
+      "sha256": "4f954136bd359d5d06030f07c4dfc61c7107c2471d89505a6eba6485433ab894"
+    },
+    {
+      "path": "after/dark-390-en/liquid-glass-en-390-02-lumen-material-clear.png",
+      "bytes": 395016,
+      "sha256": "84e23b01641e9f8993b51ce57614b9f46555248cc1aafca814e4343806c333db"
+    },
+    {
+      "path": "after/dark-390-en/liquid-glass-en-390-02-lumen-material-clear.json",
+      "bytes": 37168,
+      "sha256": "221c8efc1673ba181471c0b60870dc282ee8355d27bdaa99aaecafde9c4d0a66"
+    },
+    {
+      "path": "after/dark-390-en/liquid-glass-en-390-03-lumen-material-frost.png",
+      "bytes": 394749,
+      "sha256": "231ba075ca178cb26f72c50efd5c758eb8bd3ba6ab24a16dd4392536cf532370"
+    },
+    {
+      "path": "after/dark-390-en/liquid-glass-en-390-03-lumen-material-frost.json",
+      "bytes": 37168,
+      "sha256": "9c84908d82383ab57c9bd25d837d10f79cffbee6217a9f224c013866267b368a"
+    },
+    {
+      "path": "after/dark-390-en/liquid-glass-en-390-04-lumen-material-prism.png",
+      "bytes": 394707,
+      "sha256": "5cb2ac5015030f3f301c4ffed15f61cea44d126fed0bff3be9e599dcb482a066"
+    },
+    {
+      "path": "after/dark-390-en/liquid-glass-en-390-04-lumen-material-prism.json",
+      "bytes": 37242,
+      "sha256": "9de11ca645cc6e694326b55f8b27e04ed186df43f74713d1c48469043ffa4157"
+    },
+    {
+      "path": "after/dark-390-en/liquid-glass-en-390-05-brand-result.png",
+      "bytes": 396903,
+      "sha256": "6774f2f143f6a62041bfe28d288189bc9dccf309c249121523749512677f4650"
+    },
+    {
+      "path": "after/dark-390-en/liquid-glass-en-390-05-brand-result.json",
+      "bytes": 35632,
+      "sha256": "473607f8fe633e031dd00e40c346d6ccacd4fc2dc317d3e88b2c0315eb9c9842"
+    },
+    {
+      "path": "after/variants-320-en/manifest.json",
+      "bytes": 13490,
+      "sha256": "d0d0764df9d06e93abebcaffde1425ead358ae1b8a22d9c6b7081fa9cc39486f"
+    },
+    {
+      "path": "after/variants-320-en/glassmorphism-en-320-01-aurora-feature-dialog.png",
+      "bytes": 392634,
+      "sha256": "ee2c4cf3c32879f65024d08c640fbdec24cea2f0574ea276a936e4c271c0f8c6"
+    },
+    {
+      "path": "after/variants-320-en/glassmorphism-en-320-01-aurora-feature-dialog.json",
+      "bytes": 46252,
+      "sha256": "18d360c82ccd3a6d10e3ee229800152e26c1cabf2628f8aa3d7d87d0fc925009"
+    },
+    {
+      "path": "after/variants-320-en/glassmorphism-en-320-02-select-expanded.png",
+      "bytes": 331480,
+      "sha256": "37bd1d37127aa6e1f57912a41f23abab1045ea83d5c0593a41525aa9ceab21bd"
+    },
+    {
+      "path": "after/variants-320-en/glassmorphism-en-320-02-select-expanded.json",
+      "bytes": 44695,
+      "sha256": "df3d81ec69e9c4c0701ee116f224e36fb017d45ae2ea5d630ffe140e1b389180"
+    },
+    {
+      "path": "after/variants-320-en/glassmorphism-en-320-03-aurora-saved-status.png",
+      "bytes": 348960,
+      "sha256": "1b506164861c7baf549c39d9e5a9c70b1c1411f975980844bf99aa41488926fe"
+    },
+    {
+      "path": "after/variants-320-en/glassmorphism-en-320-03-aurora-saved-status.json",
+      "bytes": 40884,
+      "sha256": "7e4f5ff4b2511014ed10aa34d64fb2678cdbf4924ba94e3156d52826ed36bb25"
+    },
+    {
+      "path": "after/variants-320-en/neobrutalism-en-320-01-playlab-continuation.png",
+      "bytes": 46455,
+      "sha256": "f85d6b96522b5ed9aa0f4f4845539c943d97f437c5d0a382c77beb44fddb9707"
+    },
+    {
+      "path": "after/variants-320-en/neobrutalism-en-320-01-playlab-continuation.json",
+      "bytes": 24819,
+      "sha256": "43030d2001056e2948b7b7983ca2288e67fcf50312a2c61f32b5c89424812fb5"
+    },
+    {
+      "path": "after/variants-320-en/neobrutalism-en-320-02-playlab-brief-dialog.png",
+      "bytes": 44768,
+      "sha256": "d83edf9c37e53e0b7b015617a6b1da4de94888c3ac68582cdde985eafb5b2165"
+    },
+    {
+      "path": "after/variants-320-en/neobrutalism-en-320-02-playlab-brief-dialog.json",
+      "bytes": 36652,
+      "sha256": "cbc1c16b76db19beb10d1e048f58d1e271d4601259a932b0657592bbf74b69a0"
+    },
+    {
+      "path": "after/variants-320-en/neobrutalism-en-320-03-select-expanded.png",
+      "bytes": 41399,
+      "sha256": "6ed8920d0a6de3a82fecd0bb0ae09464c57666e402088377ea56b2037657c979"
+    },
+    {
+      "path": "after/variants-320-en/neobrutalism-en-320-03-select-expanded.json",
+      "bytes": 44095,
+      "sha256": "1d1bc264ccb4f8e3e35c89190812559cb909932e22cd55e707fc2d04c19871db"
+    },
+    {
+      "path": "after/variants-320-en/neobrutalism-en-320-04-playlab-brief-status.png",
+      "bytes": 47232,
+      "sha256": "ee82b083c03bf0cbf9d4ff2f12bd7c8b21531d4a2f0a7ee1031866fb802d7218"
+    },
+    {
+      "path": "after/variants-320-en/neobrutalism-en-320-04-playlab-brief-status.json",
+      "bytes": 38357,
+      "sha256": "9fa03efa912a2374acc5199f87fce2e8c78b4cbe81da5853d503a158208328ff"
+    },
+    {
+      "path": "after/variants-320-en/neumorphism-en-320-01-select-expanded.png",
+      "bytes": 81719,
+      "sha256": "34f48bf5cb4eb16a0813ce81c553f6959e694e31d856ffaf1c76a810bf9db9bd"
+    },
+    {
+      "path": "after/variants-320-en/neumorphism-en-320-01-select-expanded.json",
+      "bytes": 50675,
+      "sha256": "b341a9767baf3dd662a9fe1fafca32dd3ec7c3976bbba682ac35f4e11a413000"
+    },
+    {
+      "path": "after/variants-320-en/neumorphism-en-320-02-mellow-active-press.png",
+      "bytes": 75940,
+      "sha256": "fecb4183ee64791c80bbddf1e72a4119bfb9ee63516374433162df14d834576c"
+    },
+    {
+      "path": "after/variants-320-en/neumorphism-en-320-02-mellow-active-press.json",
+      "bytes": 43053,
+      "sha256": "f5849f28b472160242add1d4916c44acdaf8033b2bc74857e9d006f8045e7027"
+    },
+    {
+      "path": "after/variants-320-en/neumorphism-en-320-03-mellow-running.png",
+      "bytes": 73691,
+      "sha256": "7654a8228e5e5f3de1ce2eaf4fab12a91fdc8b302449f38b97b5916239e4e6d7"
+    },
+    {
+      "path": "after/variants-320-en/neumorphism-en-320-03-mellow-running.json",
+      "bytes": 44730,
+      "sha256": "791c3e424f9a01688f3a44a234cc071c1cdae2f90e40f0f4cd2a88b28aaf967a"
+    },
+    {
+      "path": "after/variants-320-en/neumorphism-en-320-04-mellow-paused.png",
+      "bytes": 77031,
+      "sha256": "2821ff440acd5d3676240f1f22b0fae3be9af33e35219719a35207bfd6a5f828"
+    },
+    {
+      "path": "after/variants-320-en/neumorphism-en-320-04-mellow-paused.json",
+      "bytes": 43034,
+      "sha256": "7bd4f85e33470c6903c5be4fe01505a2fef86777c4f64c5497fb577934af69ae"
+    },
+    {
+      "path": "after/variants-320-en/swiss-style-en-320-01-project-dialog-open.png",
+      "bytes": 47882,
+      "sha256": "89691b3695dccec6bec5dcfb255692aedfdd0efa9acb56d5d0c5cc44e49bb0b3"
+    },
+    {
+      "path": "after/variants-320-en/swiss-style-en-320-01-project-dialog-open.json",
+      "bytes": 36007,
+      "sha256": "42880b1ebf6336e7757c92d44ec9209ac102e2b4fcd2447e86379ffd013ccf61"
+    },
+    {
+      "path": "after/variants-320-en/swiss-style-en-320-02-contact-status.png",
+      "bytes": 43412,
+      "sha256": "3c85295a9a6d61c9ed2bfe7b1a1e6f9c6a3d14b3da4d0a16c263d4275d97b706"
+    },
+    {
+      "path": "after/variants-320-en/swiss-style-en-320-02-contact-status.json",
+      "bytes": 30987,
+      "sha256": "176f6ef0ee472578419490cf8dfa0e7b0084766fd597894aae86bbd79f4376b7"
+    },
+    {
+      "path": "after/variants-320-en/claymorphism-en-320-01-select-expanded.png",
+      "bytes": 101145,
+      "sha256": "2fa886b12913201417b3e56eb5e211496ef611a4b4851feea97f370b095b48be"
+    },
+    {
+      "path": "after/variants-320-en/claymorphism-en-320-01-select-expanded.json",
+      "bytes": 40031,
+      "sha256": "b4d34ffb30aef3bc73eddd94b1f2442ae9e1f06cc2ed4775282ad69bac703c67"
+    },
+    {
+      "path": "after/variants-320-en/claymorphism-en-320-02-brand-result.png",
+      "bytes": 86164,
+      "sha256": "636d77ee24a9b1abcbd8f1de75f5b75e52399f9c8691253c58395865ce40a67b"
+    },
+    {
+      "path": "after/variants-320-en/claymorphism-en-320-02-brand-result.json",
+      "bytes": 33444,
+      "sha256": "d6f35cbb9aa69bf82f0cf8635323f4974dc8cbb551d9cd7aa1d6541c4004be22"
+    },
+    {
+      "path": "after/variants-320-en/liquid-glass-en-320-01-select-expanded.png",
+      "bytes": 338675,
+      "sha256": "dd53d31fab567dbd0a9c267f8203416eea76b51902c148fdec56e76f498db916"
+    },
+    {
+      "path": "after/variants-320-en/liquid-glass-en-320-01-select-expanded.json",
+      "bytes": 41634,
+      "sha256": "489ddc9a1dcb6501711ddb9d51c7903b4b2ba3921826c248f95fffa07a23a4d3"
+    },
+    {
+      "path": "after/variants-320-en/liquid-glass-en-320-02-lumen-material-clear.png",
+      "bytes": 349810,
+      "sha256": "e72c514e7b89552fa2ea6dbdde86f61ff8f7950eec16aa5f7433ecd91f61d237"
+    },
+    {
+      "path": "after/variants-320-en/liquid-glass-en-320-02-lumen-material-clear.json",
+      "bytes": 37101,
+      "sha256": "0bdf093de490aad6b27019615ee5126dfc50a47b6b9e9c09f9161111bbdff6db"
+    },
+    {
+      "path": "after/variants-320-en/liquid-glass-en-320-03-lumen-material-frost.png",
+      "bytes": 349527,
+      "sha256": "b6948acf9be1835c823fd21d57623525e455bb35ee493b7757a91a99b6ccd37f"
+    },
+    {
+      "path": "after/variants-320-en/liquid-glass-en-320-03-lumen-material-frost.json",
+      "bytes": 37101,
+      "sha256": "4cc5f478c09e5f57bc3c4d40c5da86b9e549b642dd29069dff5aa824f129338a"
+    },
+    {
+      "path": "after/variants-320-en/liquid-glass-en-320-04-lumen-material-prism.png",
+      "bytes": 349432,
+      "sha256": "447f9e5e31083e22eb9c6f2ca3682fb50b6d030f26ab69bd5c4c656345fb7f16"
+    },
+    {
+      "path": "after/variants-320-en/liquid-glass-en-320-04-lumen-material-prism.json",
+      "bytes": 37175,
+      "sha256": "a55c62cf25dd90d7637ffd4d0119543c231b1f454a9a36e6aa7527f756c34d59"
+    },
+    {
+      "path": "after/variants-320-en/liquid-glass-en-320-05-brand-result.png",
+      "bytes": 350459,
+      "sha256": "26ebe562c4fd324a03904083981ac94733ccd4aca6fd4d232c1710f4fdc22f20"
+    },
+    {
+      "path": "after/variants-320-en/liquid-glass-en-320-05-brand-result.json",
+      "bytes": 35591,
+      "sha256": "495847c5661f7da928f667b21e3535b4e2cc825797760bd7751451bafeca90d4"
+    },
+    {
+      "path": "after/extras/manifest.json",
+      "bytes": 15144,
+      "sha256": "e7ed0089e3ff471e53a7758c5e8b983a93b593ac7fafbf210fa4d23d16602758"
+    },
+    {
+      "path": "after/extras/swiss-style-dark-390-en/01-menu-open.png",
+      "bytes": 45226,
+      "sha256": "250ecf6f4cd6012f86745226d3b8330994b4452a5bcfd7fc59e2331b6e1a45b7"
+    },
+    {
+      "path": "after/extras/swiss-style-dark-390-en/01-menu-open.json",
+      "bytes": 39038,
+      "sha256": "858c03c7a1a096f50a01e06266cfe7e8ca7b888d3ea5b38ee50da23a6c7596a3"
+    },
+    {
+      "path": "after/extras/swiss-style-dark-390-en/02-contact-invalid.png",
+      "bytes": 32821,
+      "sha256": "5050edbb123caf7816c476152f8652970a273369aac171f6a176438634b5304b"
+    },
+    {
+      "path": "after/extras/swiss-style-dark-390-en/02-contact-invalid.json",
+      "bytes": 35012,
+      "sha256": "ba8d22dfbd37048b7e44ca21c666de6609e6dc141d4235f1fc1f26f7106c2e3b"
+    },
+    {
+      "path": "after/extras/swiss-style-dark-390-en/03-contact-corrected-success.png",
+      "bytes": 51499,
+      "sha256": "9391652d509603a8f53533081ea68dab4fbf6f61129195c0299f39d6bd323646"
+    },
+    {
+      "path": "after/extras/swiss-style-dark-390-en/03-contact-corrected-success.json",
+      "bytes": 31738,
+      "sha256": "b399052120b7d1ea570014300b00ca4e2297e773f98d32f887cf6e9b903281c6"
+    },
+    {
+      "path": "after/extras/neobrutalism-variants-320-en/01-brief-invalid.png",
+      "bytes": 44249,
+      "sha256": "3cae0b6963288ff61005a46ccfadc46aaa1d2ffc268614cd61d6a6701121970f"
+    },
+    {
+      "path": "after/extras/neobrutalism-variants-320-en/01-brief-invalid.json",
+      "bytes": 42726,
+      "sha256": "ee74dfce49c41cf993baf44f308a0c38a7394039e028804c9249dbf2f6787ba5"
+    },
+    {
+      "path": "after/extras/neobrutalism-variants-320-en/02-brief-corrected-full-summary.png",
+      "bytes": 61962,
+      "sha256": "8199419875bdae3a07242962da14999795f3793b49601603d93cb1ff749089be"
+    },
+    {
+      "path": "after/extras/neobrutalism-variants-320-en/02-brief-corrected-full-summary.json",
+      "bytes": 39247,
+      "sha256": "7a3c0d26f67aa04d68e427e9e91e66d4ea2f697361fc7fb30843772b0c94cf53"
+    },
+    {
+      "path": "after/extras/liquid-glass-dark-390-en/01-prism-body-visible.png",
+      "bytes": 391352,
+      "sha256": "13975f8b8c6f6d3df0abc0207c6f2660bafcd7e2ad365528c3c36f031b735236"
+    },
+    {
+      "path": "after/extras/liquid-glass-dark-390-en/01-prism-body-visible.json",
+      "bytes": 37938,
+      "sha256": "d5555fd2245c6351deda1a18bbfe4d7564253b4c5f1f78f2ec5d084a4f22f3be"
+    },
+    {
+      "path": "after/extras/liquid-glass-variants-320-en/01-prism-body-visible.png",
+      "bytes": 350753,
+      "sha256": "f4b18c43b3880a682ba83f285bd3f6fbcbe7eef30228d6cd11a87581e190b1df"
+    },
+    {
+      "path": "after/extras/liquid-glass-variants-320-en/01-prism-body-visible.json",
+      "bytes": 37881,
+      "sha256": "71a01ae5fa3ea5f4ed65a34bcf08a8dfcc459f96830578495e45ac74105958fb"
+    },
+    {
+      "path": "after/extras/comparison-to-b.json",
+      "bytes": 3655,
+      "sha256": "1feb8b22156b5c2b828b487096f2c006f74709f5930f82be4400f1bb9284888e"
+    },
+    {
+      "path": "review.json",
+      "bytes": 37661,
+      "sha256": "63d1a547b736a7e9c6a97528c89edfa5d91eca6dc699092ec72f1948ae8b2389"
+    },
+    {
+      "path": "regressions.json",
+      "bytes": 4649,
+      "sha256": "33485772ede0b3a806d5953ca9f0cd112bbc273cac124f62cab59067ed59ba65"
+    },
+    {
+      "path": "results-summary.json",
+      "bytes": 2017,
+      "sha256": "3ec6a8b25aee037dba9553908e0a86eb71bb8135b116479ac1af83cba3b06cab"
+    },
+    {
+      "path": "index.html",
+      "bytes": 46613,
+      "sha256": "8cb0700aebd253fa18f0c74d82b1821d6f8d7d9e2877aec1ba05d6e2bfc85eab"
+    }
+  ],
+  "totalFilesExcludingInventory": 199,
+  "totalBytesExcludingInventory": 21036389,
+  "pngFiles": 94,
+  "rule": "All raw capture files are copied byte-for-byte; inventory excludes itself."
+}

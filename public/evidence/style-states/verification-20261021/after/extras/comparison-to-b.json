@@ -1,0 +1,73 @@
+{
+  "bCommit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+  "sCommit": "a2d1ddfe0881c57f4b4d40d7a03005680b062878",
+  "compared": 7,
+  "identical": 6,
+  "changed": 1,
+  "review": "pending; byte equality does not upgrade an unapproved B image",
+  "rows": [
+    {
+      "case": "swiss-style-dark-390-en",
+      "state": "menu-open",
+      "bImage": "/tmp/atlas-state-final-extras/swiss-style-dark-390-en/01-menu-open.png",
+      "sImage": "/tmp/atlas-state-fixed-extras/swiss-style-dark-390-en/01-menu-open.png",
+      "bSha256": "250ecf6f4cd6012f86745226d3b8330994b4452a5bcfd7fc59e2331b6e1a45b7",
+      "sSha256": "250ecf6f4cd6012f86745226d3b8330994b4452a5bcfd7fc59e2331b6e1a45b7",
+      "same": true
+    },
+    {
+      "case": "swiss-style-dark-390-en",
+      "state": "contact-invalid",
+      "bImage": "/tmp/atlas-state-final-extras/swiss-style-dark-390-en/02-contact-invalid.png",
+      "sImage": "/tmp/atlas-state-fixed-extras/swiss-style-dark-390-en/02-contact-invalid.png",
+      "bSha256": "9799144b73009075db4c0bb526e61c776f4271202bd62c4067571ca07d4886a6",
+      "sSha256": "5050edbb123caf7816c476152f8652970a273369aac171f6a176438634b5304b",
+      "same": false
+    },
+    {
+      "case": "swiss-style-dark-390-en",
+      "state": "contact-corrected-success",
+      "bImage": "/tmp/atlas-state-final-extras/swiss-style-dark-390-en/03-contact-corrected-success.png",
+      "sImage": "/tmp/atlas-state-fixed-extras/swiss-style-dark-390-en/03-contact-corrected-success.png",
+      "bSha256": "9391652d509603a8f53533081ea68dab4fbf6f61129195c0299f39d6bd323646",
+      "sSha256": "9391652d509603a8f53533081ea68dab4fbf6f61129195c0299f39d6bd323646",
+      "same": true
+    },
+    {
+      "case": "neobrutalism-variants-320-en",
+      "state": "brief-invalid",
+      "bImage": "/tmp/atlas-state-final-extras/neobrutalism-variants-320-en/01-brief-invalid.png",
+      "sImage": "/tmp/atlas-state-fixed-extras/neobrutalism-variants-320-en/01-brief-invalid.png",
+      "bSha256": "3cae0b6963288ff61005a46ccfadc46aaa1d2ffc268614cd61d6a6701121970f",
+      "sSha256": "3cae0b6963288ff61005a46ccfadc46aaa1d2ffc268614cd61d6a6701121970f",
+      "same": true
+    },
+    {
+      "case": "neobrutalism-variants-320-en",
+      "state": "brief-corrected-full-summary",
+      "bImage": "/tmp/atlas-state-final-extras/neobrutalism-variants-320-en/02-brief-corrected-full-summary.png",
+      "sImage": "/tmp/atlas-state-fixed-extras/neobrutalism-variants-320-en/02-brief-corrected-full-summary.png",
+      "bSha256": "8199419875bdae3a07242962da14999795f3793b49601603d93cb1ff749089be",
+      "sSha256": "8199419875bdae3a07242962da14999795f3793b49601603d93cb1ff749089be",
+      "same": true
+    },
+    {
+      "case": "liquid-glass-dark-390-en",
+      "state": "prism-body-visible",
+      "bImage": "/tmp/atlas-state-final-extras/liquid-glass-dark-390-en/01-prism-body-visible.png",
+      "sImage": "/tmp/atlas-state-fixed-extras/liquid-glass-dark-390-en/01-prism-body-visible.png",
+      "bSha256": "13975f8b8c6f6d3df0abc0207c6f2660bafcd7e2ad365528c3c36f031b735236",
+      "sSha256": "13975f8b8c6f6d3df0abc0207c6f2660bafcd7e2ad365528c3c36f031b735236",
+      "same": true
+    },
+    {
+      "case": "liquid-glass-variants-320-en",
+      "state": "prism-body-visible",
+      "bImage": "/tmp/atlas-state-final-extras/liquid-glass-variants-320-en/01-prism-body-visible.png",
+      "sImage": "/tmp/atlas-state-fixed-extras/liquid-glass-variants-320-en/01-prism-body-visible.png",
+      "bSha256": "f4b18c43b3880a682ba83f285bd3f6fbcbe7eef30228d6cd11a87581e190b1df",
+      "sSha256": "f4b18c43b3880a682ba83f285bd3f6fbcbe7eef30228d6cd11a87581e190b1df",
+      "same": true
+    }
+  ]
+}

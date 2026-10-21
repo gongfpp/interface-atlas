@@ -122,7 +122,9 @@ Lumen390/320的既有900px高控制图里主试样在下方，只证明控制区
 
 **仍未知**：A第一次跨引擎完整为975/976，FF corporate详情reset5s predicate超时，无trace/poll实际值；纯监听trace12/12、55–131ms及后一完整run原例pass，不证明首次根因已解决。后一run的WK Mellow是真实不同缺陷，已定位修复，不能拿它解释FF未知问题。旧v4/v5及取消run不标通过；旧button墙30s预算在未改2bae/2workers亦复现，未改其他栏目源码/预算换绿。
 
-## 7. 下次继续 / Next session
+## 7. 上轮暂停时的待办（历史） / Previous checkpoint
+
+以下保留上轮暂停时的真实状态，不表示当前仍未执行；2026-10-21 的续验、发现与版本见第 8 节。
 
 1. **C完整Firefox/WebKit980**：本次明确未跑；冻结C/独占资源、原2workers/retry0/原5s与原断言重跑，保留首次FF reset未知与旧失败记录，不用单例重复洗整套绿。
 2. 实体iOS/Android、旧Popover API不支持引擎降级、辅助技术组合；目前支持边界是已测现代三引擎，不是全设备认证。
@@ -140,3 +142,23 @@ node scripts/capture-style-states.mjs --base-url=http://127.0.0.1:4337 \
   --slugs=all --widths=1280 --locales=zh
 # 六重点两窄宽分别输出focus-390-en/focus-320-en；--engine按实际浏览器选择
 ```
+
+## 8. 本轮续验（2026-10-21） / Remaining verification
+
+经人类确认继续，先核实已发布 B=`cbc6acb6e973dd4efbd2099a984b212e94d90c03`，保留其实现与旧证据；未重写风格页面。本轮唯一实现修复是 [Swiss dark invalid token](<../src/styles/style-pages.css>)：`#bc2611` → `#ff7755`。修复提交 S=`a2d1ddfe0881c57f4b4d40d7a03005680b062878`，同时新增两条 [实际背景合成对比度回归](<../tests/style-state-design.spec.mjs>)；default、其他品牌、布局、业务均未改变。
+
+| 本轮实际执行 | 结果与版本 | 边界 |
+| --- | --- | --- |
+| 原完整 Firefox/WebKit | B **980/980，14.4m**；S **984/984，14.1m** | 各自原配置、2 workers、retry0、0 skip/unexpected/flaky；不把 B 结果转标 S。S 每引擎492例。 |
+| 新增错误对比度红/绿 | 旧 B 构建＋新工作树测试 **4例红**；修复实现 **三引擎6/6绿，4.7s** | 390px/en 与320px/zh；实测祖先纯色背景合成，非只检查 CSS 声明。 |
+| 静态与构建 | unit **357**、check、lint、build、search:test **30/30** 通过 | 新实现检查；最终发布提交的平台完整 Chromium 仍由精确 SHA 的 verify 裁定，不在这里预判。 |
+| 六重点模式主图 | B、S 各 **12唯一组合／40 PNG＋40 computed JSON** | 两批均真实 WebKit26.6、英文，dark390×900、variants320×900；不是Firefox图，不将截图存在视为逐图批准。 |
+| 同组合补段 | B、S 各 **4次重访／7图** | Swiss菜单、错误→修正→成功、项目关闭精确焦点；PlayLab错误→完整摘要→关闭焦点；Lumen两模式真实Prism本体。4次不是新增4维组合。 |
+
+**构建及完整测试通过后，真实截图仍发现了问题。** B 的 VERTEX 错误正文为14px/400、`rgb(188,38,17)`，背景实测合成为`rgb(25,25,25)`，对比度仅 **2.8663:1**；该图明确拒绝。S 保留暖红语义，实测`rgb(255,119,85)`，同背景 **6.7161:1**，满足本次普通正文4.5:1门槛。新图实际重新查看；字段错误边界、具体反馈与修正成功均保留，没有通过删掉错误状态过关。
+
+完整 [47对原图与逐状态JSON](<../public/evidence/style-states/verification-20261021/index.html>)、[版本/执行范围](<../public/evidence/style-states/verification-20261021/results-summary.json>)、[独立逐图批准与拒绝](<../public/evidence/style-states/verification-20261021/review.json>)、[实测红绿对比度](<../public/evidence/style-states/verification-20261021/regressions.json>)及 [文件字节清单](<../public/evidence/style-states/verification-20261021/inventory.json>) 已归档。旧 C、B 的 raw pending 与失败图均未改写。B 27张确实看过：26通过、1拒绝；S 27张指定图中26张与已看B图**原始PNG SHA256完全相同**才继承，1张变化错误图新看。每套其余20张仍仅采集，不自动升级为人工通过。
+
+补段还验证：Swiss无效字段清除后成功且不再有alert；PlayLab长摘要实际在dialog内可滚动、完整可达；关闭回到精确原入口；Lumen stage完整在视口内、选中Prism且expanded popup关闭、焦点回trigger。所有新采集源码前后稳定、单context串行、0 page/request/HTTP错误、无横溢出、所有context/browser关闭；对应断言与几何见原JSON。
+
+**剩余支持边界**：实体iOS/Android、旧Popover不支持引擎、辅助技术组合及所有深层状态穷举不在本轮认证内。第6节的首次Firefox reset根因仍未知；B980与S984整套自然通过不证明其首次根因已被定位。发布SHA、正式CI及线上核对由实际平台结果给出，不能用截图版本猜发布结果。

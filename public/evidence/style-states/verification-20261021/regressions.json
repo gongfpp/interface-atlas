@@ -1,0 +1,201 @@
+{
+  "method": "Actual computed foreground and alpha-composited solid ancestor backgrounds; no images ignored. Opaque normal-weight 14px feedback must reach 4.5:1 and retain warm red.",
+  "red": {
+    "label": "Old B build, newly added working-tree regression; expected red",
+    "applicationSource": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+    "statistics": {
+      "startTime": "2026-10-21T01:56:53.249Z",
+      "duration": 6654.827,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 4,
+      "flaky": 0
+    },
+    "measurements": [
+      {
+        "engine": "firefox",
+        "title": "VERTEX深色错误对比度 en 390px：真实反馈保持暖红且可读",
+        "status": "failed",
+        "foreground": [
+          188,
+          38,
+          17,
+          1
+        ],
+        "background": [
+          25,
+          25,
+          25
+        ],
+        "contrast": 2.866328626415719
+      },
+      {
+        "engine": "firefox",
+        "title": "VERTEX深色错误对比度 zh 320px：真实反馈保持暖红且可读",
+        "status": "failed",
+        "foreground": [
+          188,
+          38,
+          17,
+          1
+        ],
+        "background": [
+          25,
+          25,
+          25
+        ],
+        "contrast": 2.866328626415719
+      },
+      {
+        "engine": "webkit",
+        "title": "VERTEX深色错误对比度 en 390px：真实反馈保持暖红且可读",
+        "status": "failed",
+        "foreground": [
+          188,
+          38,
+          17,
+          1
+        ],
+        "background": [
+          25,
+          25,
+          25
+        ],
+        "contrast": 2.866328626415719
+      },
+      {
+        "engine": "webkit",
+        "title": "VERTEX深色错误对比度 zh 320px：真实反馈保持暖红且可读",
+        "status": "failed",
+        "foreground": [
+          188,
+          38,
+          17,
+          1
+        ],
+        "background": [
+          25,
+          25,
+          25
+        ],
+        "contrast": 2.866328626415719
+      }
+    ]
+  },
+  "green": {
+    "label": "Fixed implementation, pre-commit six-engine-case verification",
+    "applicationSource": "a2d1ddfe0881c57f4b4d40d7a03005680b062878",
+    "statistics": {
+      "startTime": "2026-10-21T02:00:41.274Z",
+      "duration": 4733.049,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "measurements": [
+      {
+        "engine": "chromium",
+        "title": "VERTEX深色错误对比度 en 390px：真实反馈保持暖红且可读",
+        "status": "passed",
+        "foreground": [
+          255,
+          119,
+          85,
+          1
+        ],
+        "background": [
+          25,
+          25,
+          25
+        ],
+        "contrast": 6.716127125530603
+      },
+      {
+        "engine": "chromium",
+        "title": "VERTEX深色错误对比度 zh 320px：真实反馈保持暖红且可读",
+        "status": "passed",
+        "foreground": [
+          255,
+          119,
+          85,
+          1
+        ],
+        "background": [
+          25,
+          25,
+          25
+        ],
+        "contrast": 6.716127125530603
+      },
+      {
+        "engine": "firefox",
+        "title": "VERTEX深色错误对比度 en 390px：真实反馈保持暖红且可读",
+        "status": "passed",
+        "foreground": [
+          255,
+          119,
+          85,
+          1
+        ],
+        "background": [
+          25,
+          25,
+          25
+        ],
+        "contrast": 6.716127125530603
+      },
+      {
+        "engine": "firefox",
+        "title": "VERTEX深色错误对比度 zh 320px：真实反馈保持暖红且可读",
+        "status": "passed",
+        "foreground": [
+          255,
+          119,
+          85,
+          1
+        ],
+        "background": [
+          25,
+          25,
+          25
+        ],
+        "contrast": 6.716127125530603
+      },
+      {
+        "engine": "webkit",
+        "title": "VERTEX深色错误对比度 en 390px：真实反馈保持暖红且可读",
+        "status": "passed",
+        "foreground": [
+          255,
+          119,
+          85,
+          1
+        ],
+        "background": [
+          25,
+          25,
+          25
+        ],
+        "contrast": 6.716127125530603
+      },
+      {
+        "engine": "webkit",
+        "title": "VERTEX深色错误对比度 zh 320px：真实反馈保持暖红且可读",
+        "status": "passed",
+        "foreground": [
+          255,
+          119,
+          85,
+          1
+        ],
+        "background": [
+          25,
+          25,
+          25
+        ],
+        "contrast": 6.716127125530603
+      }
+    ]
+  }
+}

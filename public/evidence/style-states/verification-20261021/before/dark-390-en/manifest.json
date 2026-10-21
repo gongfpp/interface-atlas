@@ -1,0 +1,426 @@
+{
+  "versionLabel": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+  "server": "http://127.0.0.1:4337",
+  "repositoryLabel": "interface-atlas",
+  "engine": "webkit",
+  "started": "2026-10-21T01:41:40.771Z",
+  "source": {
+    "commit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+    "dirtyPaths": [],
+    "trackedSourceDiffHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "untrackedSources": [],
+    "runnerHashes": [
+      {
+        "file": "capture-style-states.mjs",
+        "hash": "f4aed25b1758a82fa0b80703324a990d18d1265a98a773990047f7cbb8dd9573"
+      },
+      {
+        "file": "style-state-paths.mjs",
+        "hash": "a85fdf2aaf51494a17349d36e589d10d3f485962ab1efb6ae9d9cd2c5fac1fb1"
+      }
+    ]
+  },
+  "screenshotScale": "css",
+  "visualReview": "pending; screenshot existence is not a visual pass",
+  "cases": [
+    {
+      "id": "glassmorphism-en-390",
+      "slug": "glassmorphism",
+      "locale": "en",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "aurora-feature-dialog",
+          "slug": "glassmorphism",
+          "locale": "en",
+          "dialogApplicable": true,
+          "kind": "dialog-open",
+          "targets": [
+            "[data-other-dialog=\"aurora-feature\"]",
+            "[data-feature-copy]"
+          ],
+          "screenshot": "glassmorphism-en-390-01-aurora-feature-dialog.png",
+          "computed": "glassmorphism-en-390-01-aurora-feature-dialog.json"
+        },
+        {
+          "state": "select-expanded",
+          "slug": "glassmorphism",
+          "locale": "en",
+          "dialogApplicable": true,
+          "stateIntent": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "targets": [
+            "[role=\"combobox\"]",
+            "[role=\"listbox\"]"
+          ],
+          "expandedVerified": true,
+          "screenshot": "glassmorphism-en-390-02-select-expanded.png",
+          "computed": "glassmorphism-en-390-02-select-expanded.json"
+        },
+        {
+          "state": "aurora-saved-status",
+          "slug": "glassmorphism",
+          "locale": "en",
+          "dialogApplicable": true,
+          "targets": [
+            "[data-aurora-status]",
+            "[data-aurora-draft]"
+          ],
+          "screenshot": "glassmorphism-en-390-03-aurora-saved-status.png",
+          "computed": "glassmorphism-en-390-03-aurora-saved-status.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4337/en/style-scenes/glassmorphism/?mode=dark",
+      "summary": {
+        "slug": "glassmorphism",
+        "locale": "en",
+        "dialog": "open-state-captured",
+        "generic": false
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "neobrutalism-en-390",
+      "slug": "neobrutalism",
+      "locale": "en",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "playlab-continuation",
+          "slug": "neobrutalism",
+          "locale": "en",
+          "dialogApplicable": true,
+          "targets": [
+            ".other-neobrutalism .other-cards button"
+          ],
+          "screenshot": "neobrutalism-en-390-01-playlab-continuation.png",
+          "computed": "neobrutalism-en-390-01-playlab-continuation.json"
+        },
+        {
+          "state": "playlab-brief-dialog",
+          "slug": "neobrutalism",
+          "locale": "en",
+          "dialogApplicable": true,
+          "kind": "dialog-open",
+          "targets": [
+            "[data-other-dialog=\"play-brief\"]",
+            "[data-other-form=\"play-brief\"] button"
+          ],
+          "screenshot": "neobrutalism-en-390-02-playlab-brief-dialog.png",
+          "computed": "neobrutalism-en-390-02-playlab-brief-dialog.json"
+        },
+        {
+          "state": "select-expanded",
+          "slug": "neobrutalism",
+          "locale": "en",
+          "dialogApplicable": true,
+          "stateIntent": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "targets": [
+            "[role=\"combobox\"]",
+            "[role=\"listbox\"]"
+          ],
+          "expandedVerified": true,
+          "screenshot": "neobrutalism-en-390-03-select-expanded.png",
+          "computed": "neobrutalism-en-390-03-select-expanded.json"
+        },
+        {
+          "state": "playlab-brief-status",
+          "slug": "neobrutalism",
+          "locale": "en",
+          "dialogApplicable": true,
+          "screenshot": "neobrutalism-en-390-04-playlab-brief-status.png",
+          "computed": "neobrutalism-en-390-04-playlab-brief-status.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4337/en/style-scenes/neobrutalism/?mode=dark",
+      "summary": {
+        "slug": "neobrutalism",
+        "locale": "en",
+        "dialog": "open-state-captured",
+        "generic": false
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "neumorphism-en-390",
+      "slug": "neumorphism",
+      "locale": "en",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "select-expanded",
+          "slug": "neumorphism",
+          "locale": "en",
+          "dialogApplicable": true,
+          "stateIntent": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "targets": [
+            "[role=\"combobox\"]",
+            "[role=\"listbox\"]"
+          ],
+          "expandedVerified": true,
+          "screenshot": "neumorphism-en-390-01-select-expanded.png",
+          "computed": "neumorphism-en-390-01-select-expanded.json"
+        },
+        {
+          "state": "mellow-active-press",
+          "slug": "neumorphism",
+          "locale": "en",
+          "dialogApplicable": true,
+          "kind": "pointerdown-held",
+          "targets": [
+            "[data-scene-action=\"mellow-toggle\"]"
+          ],
+          "screenshot": "neumorphism-en-390-02-mellow-active-press.png",
+          "computed": "neumorphism-en-390-02-mellow-active-press.json"
+        },
+        {
+          "state": "mellow-running",
+          "slug": "neumorphism",
+          "locale": "en",
+          "dialogApplicable": true,
+          "targets": [
+            "[data-focus-time]",
+            "[data-scene-action=\"mellow-toggle\"]",
+            "[data-focus-status]"
+          ],
+          "screenshot": "neumorphism-en-390-03-mellow-running.png",
+          "computed": "neumorphism-en-390-03-mellow-running.json"
+        },
+        {
+          "state": "mellow-paused",
+          "slug": "neumorphism",
+          "locale": "en",
+          "dialogApplicable": true,
+          "targets": [
+            "[data-focus-status]",
+            "[data-scene-action=\"mellow-toggle\"]"
+          ],
+          "screenshot": "neumorphism-en-390-04-mellow-paused.png",
+          "computed": "neumorphism-en-390-04-mellow-paused.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4337/en/style-scenes/neumorphism/?mode=dark",
+      "summary": {
+        "slug": "neumorphism",
+        "locale": "en",
+        "dialog": "available-not-visited",
+        "generic": false
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "swiss-style-en-390",
+      "slug": "swiss-style",
+      "locale": "en",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "project-dialog-open",
+          "slug": "swiss-style",
+          "locale": "en",
+          "dialogApplicable": true,
+          "kind": "dialog-open",
+          "targets": [
+            "[data-scene-dialog=\"project\"]",
+            "[data-project-copy]"
+          ],
+          "screenshot": "swiss-style-en-390-01-project-dialog-open.png",
+          "computed": "swiss-style-en-390-01-project-dialog-open.json"
+        },
+        {
+          "state": "contact-status",
+          "slug": "swiss-style",
+          "locale": "en",
+          "dialogApplicable": true,
+          "targets": [
+            "[data-scene-form=\"contact\"]"
+          ],
+          "screenshot": "swiss-style-en-390-02-contact-status.png",
+          "computed": "swiss-style-en-390-02-contact-status.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4337/en/style-scenes/swiss-style/?mode=dark",
+      "summary": {
+        "slug": "swiss-style",
+        "locale": "en",
+        "dialog": "open-state-captured",
+        "generic": false
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "claymorphism-en-390",
+      "slug": "claymorphism",
+      "locale": "en",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "select-expanded",
+          "slug": "claymorphism",
+          "locale": "en",
+          "dialogApplicable": false,
+          "stateIntent": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "targets": [
+            "[role=\"combobox\"]",
+            "[role=\"listbox\"]"
+          ],
+          "expandedVerified": true,
+          "screenshot": "claymorphism-en-390-01-select-expanded.png",
+          "computed": "claymorphism-en-390-01-select-expanded.json"
+        },
+        {
+          "state": "brand-result",
+          "slug": "claymorphism",
+          "locale": "en",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "claymorphism-en-390-02-brand-result.png",
+          "computed": "claymorphism-en-390-02-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4337/en/style-scenes/claymorphism/?mode=dark",
+      "summary": {
+        "slug": "claymorphism",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    },
+    {
+      "id": "liquid-glass-en-390",
+      "slug": "liquid-glass",
+      "locale": "en",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "steps": [
+        {
+          "state": "select-expanded",
+          "slug": "liquid-glass",
+          "locale": "en",
+          "dialogApplicable": false,
+          "stateIntent": "select-expanded",
+          "kind": "dom-listbox-expanded",
+          "targets": [
+            "[role=\"combobox\"]",
+            "[role=\"listbox\"]"
+          ],
+          "expandedVerified": true,
+          "screenshot": "liquid-glass-en-390-01-select-expanded.png",
+          "computed": "liquid-glass-en-390-01-select-expanded.json"
+        },
+        {
+          "state": "lumen-material-clear",
+          "slug": "liquid-glass",
+          "locale": "en",
+          "dialogApplicable": false,
+          "targets": [
+            "[data-glass-specimen]",
+            "[data-glass-stage]"
+          ],
+          "screenshot": "liquid-glass-en-390-02-lumen-material-clear.png",
+          "computed": "liquid-glass-en-390-02-lumen-material-clear.json"
+        },
+        {
+          "state": "lumen-material-frost",
+          "slug": "liquid-glass",
+          "locale": "en",
+          "dialogApplicable": false,
+          "targets": [
+            "[data-glass-specimen]",
+            "[data-glass-stage]"
+          ],
+          "screenshot": "liquid-glass-en-390-03-lumen-material-frost.png",
+          "computed": "liquid-glass-en-390-03-lumen-material-frost.json"
+        },
+        {
+          "state": "lumen-material-prism",
+          "slug": "liquid-glass",
+          "locale": "en",
+          "dialogApplicable": false,
+          "targets": [
+            "[data-glass-specimen]",
+            "[data-glass-stage]"
+          ],
+          "screenshot": "liquid-glass-en-390-04-lumen-material-prism.png",
+          "computed": "liquid-glass-en-390-04-lumen-material-prism.json"
+        },
+        {
+          "state": "brand-result",
+          "slug": "liquid-glass",
+          "locale": "en",
+          "dialogApplicable": false,
+          "targets": [
+            ".gs-card",
+            "[data-blob]",
+            "[data-glass-specimen]",
+            "[data-composition]",
+            "[data-invitation]",
+            "[data-member]"
+          ],
+          "screenshot": "liquid-glass-en-390-05-brand-result.png",
+          "computed": "liquid-glass-en-390-05-brand-result.json"
+        }
+      ],
+      "errors": [],
+      "route": "http://127.0.0.1:4337/en/style-scenes/liquid-glass/?mode=dark",
+      "summary": {
+        "slug": "liquid-glass",
+        "locale": "en",
+        "dialog": "not-applicable",
+        "generic": true
+      },
+      "status": "captured-not-visually-approved"
+    }
+  ],
+  "finished": "2026-10-21T01:41:44.974Z",
+  "finalSource": {
+    "commit": "cbc6acb6e973dd4efbd2099a984b212e94d90c03",
+    "dirtyPaths": [],
+    "trackedSourceDiffHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "untrackedSources": [],
+    "runnerHashes": [
+      {
+        "file": "capture-style-states.mjs",
+        "hash": "f4aed25b1758a82fa0b80703324a990d18d1265a98a773990047f7cbb8dd9573"
+      },
+      {
+        "file": "style-state-paths.mjs",
+        "hash": "a85fdf2aaf51494a17349d36e589d10d3f485962ab1efb6ae9d9cd2c5fac1fb1"
+      }
+    ]
+  },
+  "sourceChangedDuringCapture": false
+}
