@@ -326,3 +326,39 @@ for (const [slug, width, locale] of [['swiss-style',1280,'zh'],['neobrutalism',3
     }
   });
 }
+
+for (const [width, locale] of [[390, 'en'], [320, 'zh']]) {
+  test(`VERTEX深色错误对比度 ${locale} ${width}px：真实反馈保持暖红且可读`, async ({ page }, testInfo) => {
+    await page.setViewportSize({ width, height: 900 });
+    const root = await openStyleStatePage(page, 'swiss-style', locale, 'dark');
+    await action(root, 'nav-3').click();
+    const form = root.locator('[data-scene-form="contact"]');
+    await form.locator('[type="submit"]').click();
+    await expect(form).toHaveAttribute('data-state', 'invalid');
+    const alert = form.getByRole('alert');
+    await expect(alert).toContainText(/检查|check/i);
+    const material = await alert.evaluate(element => {
+      const rgba = value => { const numbers = value.match(/[\d.]+/g).map(Number); return [...numbers.slice(0, 3), numbers[3] ?? 1]; };
+      const layers = [];
+      for (let current = element; current; current = current.parentElement) {
+        const style = getComputedStyle(current);
+        if (style.backgroundImage !== 'none') throw new Error('VERTEX反馈必须按真实纯色背景计算，不能忽略背景图。');
+        layers.unshift(rgba(style.backgroundColor));
+      }
+      const background = layers.reduce((under, layer) => layer.slice(0, 3).map((channel, index) => channel * layer[3] + under[index] * (1 - layer[3])), [255, 255, 255]);
+      const foreground = rgba(getComputedStyle(element).color);
+      const luminance = color => color.slice(0, 3).map(channel => channel / 255).map(channel => channel <= .04045 ? channel / 12.92 : ((channel + .055) / 1.055) ** 2.4).reduce((sum, channel, index) => sum + channel * [.2126, .7152, .0722][index], 0);
+      const levels = [luminance(foreground), luminance(background)].sort((a, b) => b - a);
+      return { foreground, background, contrast: (levels[0] + .05) / (levels[1] + .05) };
+    });
+    await testInfo.attach('actual-invalid-contrast', { body: JSON.stringify(material), contentType: 'application/json' });
+    expect(material.foreground[3]).toBe(1);
+    expect(material.foreground[0]).toBeGreaterThan(material.foreground[1]);
+    expect(material.foreground[0]).toBeGreaterThan(material.foreground[2]);
+    expect(material.contrast, '14px错误正文需要至少4.5:1；不能只检查声明了红色token').toBeGreaterThanOrEqual(4.5);
+    for (const [name, value] of Object.entries({ name: 'Contrast Atlas', email: 'contrast@example.com', brief: 'Readable feedback.' })) await form.locator(`[name="${name}"]`).fill(value);
+    await form.locator('[type="submit"]').click();
+    await expect(form).toHaveAttribute('data-state', 'success');
+    await expect(form.getByRole('alert')).toHaveCount(0);
+  });
+}

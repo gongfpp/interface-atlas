@@ -131,7 +131,7 @@
 .scene-editorial :is(.paper-article-list button,[data-search-results] button):hover { background:#eee9dc; color:#433b2a; }
 .scene-editorial button:active { opacity:.65; }
 .style-document[data-mode=dark] .scene-editorial { --scene-focus:#e8c79e; --scene-muted:#c3bca8; }
-.style-document[data-mode=dark] .scene-swiss-style { --scene-muted:#ccc; }
+.style-document[data-mode=dark] .scene-swiss-style { --scene-muted:#ccc; --scene-invalid:#ff7755; }
 .style-document[data-mode=dark] .scene-editorial .paper-dialog small { color:#c3bca8; }
 @container (max-width:600px) { .scene-swiss-style form { grid-template-columns:1fr; } .scene-swiss-style .scene-dialog { padding:24px 20px; } .scene-swiss-style .vertex-case-art { min-height:200px; } .scene-editorial .paper-dialog { padding:24px; } }
 /* APG select-only combobox. Original select remains the form/state owner. */
