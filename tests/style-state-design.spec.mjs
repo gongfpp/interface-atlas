@@ -8,6 +8,10 @@ const rgbaAlpha = color => color.startsWith('rgba(') ? Number(color.match(/[\d.]
 function captureIntoTest(page, root, testInfo) {
   const states = [];
   const capture = async (name, metadata = {}) => {
+    // Sample the settled material, not the first frame of its crossfade.
+    if (name.startsWith('lumen-material-')) await root.locator('[data-glass-specimen]').evaluate(async element => {
+      await Promise.all(element.getAnimations().map(animation => animation.finished.catch(() => {})));
+    });
     const data = await computedState(root, metadata.targets || []);
     const prefix = `${String(states.length + 1).padStart(2,'0')}-${name}`;
     const screenshot = testInfo.outputPath(`${prefix}.png`);
@@ -362,3 +366,29 @@ for (const [width, locale] of [[390, 'en'], [320, 'zh']]) {
     await expect(form.getByRole('alert')).toHaveCount(0);
   });
 }
+
+// Reading must remain legible after switching the outer preview to dark mode.
+for (const mode of ['default', 'dark']) test(`杂志阅读 editorial ${mode}：正文与纸张对比度、配图随文章切换`, async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  const root = await openStyleStatePage(page, 'editorial', 'zh', mode);
+  await action(root, 'story-0').click();
+  const dialog = root.locator('[data-scene-dialog="story"]');
+  const contrast = await dialog.evaluate(element => {
+    const luminance = color => {
+      const rgb = color.match(/[\d.]+/g).slice(0, 3).map(Number).map(value => {
+        const channel = value / 255;
+        return channel <= .04045 ? channel / 12.92 : ((channel + .055) / 1.055) ** 2.4;
+      });
+      return rgb[0] * .2126 + rgb[1] * .7152 + rgb[2] * .0722;
+    };
+    const paper = luminance(getComputedStyle(element).backgroundColor);
+    const ink = luminance(getComputedStyle(element.querySelector('[data-story-body]')).color);
+    return (Math.max(paper, ink) + .05) / (Math.min(paper, ink) + .05);
+  });
+  expect(contrast).toBeGreaterThanOrEqual(4.5);
+  await expect(dialog.locator('[data-story-photo="0"]')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await action(root, 'story-1').click();
+  await expect(dialog.locator('[data-story-photo="1"]')).toBeVisible();
+  await expect(dialog.locator('[data-story-photo="0"]')).toBeHidden();
+});

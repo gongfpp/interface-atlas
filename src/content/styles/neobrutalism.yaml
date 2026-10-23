@@ -119,7 +119,7 @@ prompts:
     zh: |-
       用当前风格完成 PlayLab 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。preview.brand 与共享 REFERENCE_BRANDS 保持一致；首屏结构、实际导航与素材以 ReferenceStyleScene 为准。
 
-      保留 PlayLab 的 47% / 53% 文案与叠窗构图：#ffff13 标题高亮、#f4a1d1 方角 CTA、黄色导航 CTA、#4e96f9 蓝块与 #3bbc8b 绿块。沿用 2px 黑边、无模糊硬投影、倾斜创意窗、笑脸和可勾选清单，不改成 10px 圆角或橙色 BRUTAL* 模板。延续区用现有粉/蓝/绿案例按钮与粗分隔；600px 以下文案和 360px 高叠窗分别入流，保持清单可操作。
+      保留 PlayLab 的 47% / 53% 文案与叠窗构图：#ffff13 标题高亮、#f4a1d1 方角 CTA、黄色导航 CTA、#4e96f9 蓝块与 #3bbc8b 绿块。沿用 2px 黑边、无模糊硬投影、倾斜创意窗、笑脸和可勾选清单，不改成 10px 圆角或橙色 BRUTAL* 模板。延续区用现有粉/蓝/绿案例按钮与粗分隔，三个案例加入圆轮、星球和餐盘的 CSS 网点海报，详情复用对应海报；控件采用 100ms 阶梯式按压，弹窗和简报结果采用 180ms 印章式入场；600px 以下文案和 360px 高叠窗分别入流，保持清单可操作。
 
       一起创造与开始项目打开简报，填写后整理可继续修改的本地需求；Design / Develop / Create 清单可独立勾选/取消；项目、服务、关于到达作品、服务、团队内容。
 
@@ -131,7 +131,7 @@ prompts:
     en: |-
       Build a complete PlayLab page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. Keep preview.brand aligned with shared REFERENCE_BRANDS; ReferenceStyleScene defines the hero structure, actual navigation and assets.
 
-      Preserve PlayLab’s 47% / 53% copy/stacked-window composition, #ffff13 title highlights, square #f4a1d1 CTA, yellow navigation CTA, #4e96f9 blue and #3bbc8b green blocks. Retain 2px black rims, unblurred hard shadows, tilted idea windows, smile and actionable checklist rather than a 10px-rounded orange BRUTAL* template. The continuation keeps pink/blue/green case buttons and heavy rules; below 600px flow the copy and 360px-high window artwork separately with usable checklist controls.
+      Preserve PlayLab’s 47% / 53% copy/stacked-window composition, #ffff13 title highlights, square #f4a1d1 CTA, yellow navigation CTA, #4e96f9 blue and #3bbc8b green blocks. Retain 2px black rims, unblurred hard shadows, tilted idea windows, smile and actionable checklist rather than a 10px-rounded orange BRUTAL* template. The continuation keeps pink/blue/green case buttons and heavy rules, adding CSS halftone wheel, planet and plate posters reused by their detail sheets. Controls use 100ms stepped presses and dialogs/results use a 180ms stamp entrance; below 600px flow the copy and 360px-high window artwork separately with usable checklist controls.
 
       Let’s make it and Start a project open a brief with an editable local summary. Toggle Design / Develop / Create independently; Work, Services and About reach portfolio, services and team content.
 
@@ -144,7 +144,7 @@ prompts:
     zh: |-
       用当前风格完成 PlayLab 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。preview.brand 与共享 REFERENCE_BRANDS 保持一致；首屏结构、实际导航与素材以 ReferenceStyleScene 为准。
 
-      保留 PlayLab 的 47% / 53% 文案与叠窗构图：#ffff13 标题高亮、#f4a1d1 方角 CTA、黄色导航 CTA、#4e96f9 蓝块与 #3bbc8b 绿块。沿用 2px 黑边、无模糊硬投影、倾斜创意窗、笑脸和可勾选清单，不改成 10px 圆角或橙色 BRUTAL* 模板。延续区用现有粉/蓝/绿案例按钮与粗分隔；600px 以下文案和 360px 高叠窗分别入流，保持清单可操作。
+      保留 PlayLab 的 47% / 53% 文案与叠窗构图：#ffff13 标题高亮、#f4a1d1 方角 CTA、黄色导航 CTA、#4e96f9 蓝块与 #3bbc8b 绿块。沿用 2px 黑边、无模糊硬投影、倾斜创意窗、笑脸和可勾选清单，不改成 10px 圆角或橙色 BRUTAL* 模板。延续区用现有粉/蓝/绿案例按钮与粗分隔，三个案例加入圆轮、星球和餐盘的 CSS 网点海报，详情复用对应海报；控件采用 100ms 阶梯式按压，弹窗和简报结果采用 180ms 印章式入场；600px 以下文案和 360px 高叠窗分别入流，保持清单可操作。
 
       完整页面操作：
       一起创造与开始项目打开简报，填写后整理可继续修改的本地需求；Design / Develop / Create 清单可独立勾选/取消；项目、服务、关于到达作品、服务、团队内容。
@@ -159,7 +159,7 @@ prompts:
     en: |-
       Build a complete PlayLab page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. Keep preview.brand aligned with shared REFERENCE_BRANDS; ReferenceStyleScene defines the hero structure, actual navigation and assets.
 
-      Preserve PlayLab’s 47% / 53% copy/stacked-window composition, #ffff13 title highlights, square #f4a1d1 CTA, yellow navigation CTA, #4e96f9 blue and #3bbc8b green blocks. Retain 2px black rims, unblurred hard shadows, tilted idea windows, smile and actionable checklist rather than a 10px-rounded orange BRUTAL* template. The continuation keeps pink/blue/green case buttons and heavy rules; below 600px flow the copy and 360px-high window artwork separately with usable checklist controls.
+      Preserve PlayLab’s 47% / 53% copy/stacked-window composition, #ffff13 title highlights, square #f4a1d1 CTA, yellow navigation CTA, #4e96f9 blue and #3bbc8b green blocks. Retain 2px black rims, unblurred hard shadows, tilted idea windows, smile and actionable checklist rather than a 10px-rounded orange BRUTAL* template. The continuation keeps pink/blue/green case buttons and heavy rules, adding CSS halftone wheel, planet and plate posters reused by their detail sheets. Controls use 100ms stepped presses and dialogs/results use a 180ms stamp entrance; below 600px flow the copy and 360px-high window artwork separately with usable checklist controls.
 
       Full-page operations:
       Let’s make it and Start a project open a brief with an editable local summary. Toggle Design / Develop / Create independently; Work, Services and About reach portfolio, services and team content.

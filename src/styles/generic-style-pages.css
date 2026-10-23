@@ -517,3 +517,32 @@
 @keyframes gs-bounce { to { transform: scaleY(.45); transform-origin: bottom; } }
 @keyframes gs-squish { 50% { transform: scale(1.14,.82); } }
 @media (prefers-reduced-motion: reduce) { .generic-style-content *, .generic-style-content *::before, .generic-style-content *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
+/* Lumen: a detailed optical background makes thickness and diffusion observable. */
+.generic-style-content[data-generic-design=liquid-glass] .gs-glass-stage { position:relative; isolation:isolate; min-height:450px; padding:40px; background:linear-gradient(var(--glass-angle),#efb8a9,#ad9ecf 48%,#8cd6e6); }
+.gs-optical-field { position:absolute; inset:0; z-index:-1; overflow:hidden; background:repeating-linear-gradient(90deg,transparent 0 39px,#fff5 40px 41px),repeating-linear-gradient(0deg,transparent 0 39px,#fff5 40px 41px); }
+.gs-optical-field i:first-child { position:absolute; width:270px; height:270px; border:48px solid #fb765d; border-radius:50%; top:-45px; right:-50px; box-shadow:0 24px 44px #77307738; }
+.gs-optical-field i:nth-child(2) { position:absolute; width:160px; height:380px; left:20px; top:130px; background:repeating-linear-gradient(90deg,#293c71 0 9px,#a1cbdc 10px 20px); transform:rotate(-35deg); border-radius:80px; }
+.gs-optical-field>span { position:absolute; bottom:24px; right:24px; text-align:right; color:#263b65; font:700 11px/1.6 Arial,sans-serif; letter-spacing:.2em; }
+.generic-style-content[data-generic-design=liquid-glass] .gs-glass-specimen { position:relative; padding:40px 32px; width:100%; min-height:245px; border-radius:36px; transform:translateY(calc(var(--glass-depth) * -.3)); box-shadow:inset 0 2px 2px #fff,inset 0 -2px 5px #34295166,0 calc(8px + var(--glass-depth)) calc(16px + var(--glass-depth)) #38295744; transition:background 350ms ease,backdrop-filter 350ms ease,transform 200ms ease,box-shadow 200ms ease; }
+.generic-style-content[data-generic-design=liquid-glass] .gs-glass-specimen::after { content:''; position:absolute; inset:4px; border-radius:32px; border:1px solid #ffffff70; border-bottom-color:#ffffff20; pointer-events:none; background:linear-gradient(var(--glass-angle),transparent 35%,#fff4 49%,transparent 62%); }
+.generic-style-content[data-generic-design=liquid-glass] .gs-glass-specimen h3 { font-size:clamp(28px,3vw,40px); line-height:1.2; letter-spacing:-.04em; margin-block:24px 16px; text-shadow:0 1px 6px #fffa; }
+.generic-style-content[data-generic-design=liquid-glass] .gs-glass-specimen p { text-shadow:0 1px 5px #fff; }
+.generic-style-content[data-generic-design=liquid-glass] .gs-glass-specimen[data-material=Clear] { background:#ffffff4a; backdrop-filter:blur(calc(var(--glass-depth) * .22)) saturate(130%); }
+.generic-style-content[data-generic-design=liquid-glass] .gs-glass-specimen[data-material=Frost] { background:#f4efffc9; backdrop-filter:blur(calc(12px + var(--glass-depth))) saturate(80%); }
+.generic-style-content[data-generic-design=liquid-glass] .gs-glass-specimen[data-material=Prism] { background:linear-gradient(var(--glass-angle),#ffc2e980,#e2e4ff88,#a6f8f57a); backdrop-filter:blur(calc(var(--glass-depth) * .5)) saturate(220%); box-shadow:inset 3px 0 3px #ffe3fa,inset -3px 0 3px #a6fbff,inset 0 2px 3px #fff,0 calc(10px + var(--glass-depth)) 35px #40326355; }
+.generic-style-content[data-generic-design=liquid-glass] input[type=range] { appearance:none; height:36px; background:transparent; padding:0; cursor:ew-resize; }
+.generic-style-content[data-generic-design=liquid-glass] input[type=range]::-webkit-slider-runnable-track { height:7px; background:linear-gradient(90deg,#6d5c9b88,#ffffffb8); border-radius:10px; box-shadow:inset 0 1px 3px #43305b55,0 1px #fff9; }
+.generic-style-content[data-generic-design=liquid-glass] input[type=range]::-webkit-slider-thumb { appearance:none; margin-top:-10px; width:27px; height:27px; border:1px solid #fff; border-radius:50%; background:radial-gradient(circle at 35% 25%,#fff,#ede9fb99 45%,#b7b7dccc); box-shadow:inset 0 2px 3px white,0 4px 8px #352b5344; }
+.generic-style-content[data-generic-design=liquid-glass] input[type=range]::-moz-range-track { height:7px; background:#9b8abc77; border-radius:10px; }
+.generic-style-content[data-generic-design=liquid-glass] input[type=range]::-moz-range-thumb { width:25px; height:25px; border:1px solid white; border-radius:50%; background:#eeeafa; box-shadow:0 4px 8px #352b5344; }
+.generic-style-content[data-generic-design=liquid-glass] .gs-results li { animation:lumen-settle 420ms ease-out both; }
+@keyframes lumen-settle { from { opacity:0; transform:translateY(8px); filter:blur(3px); } to { opacity:1; transform:translateY(0); filter:blur(0); } }
+@container (max-width:600px) { .generic-style-content[data-generic-design=liquid-glass] .gs-glass-stage { padding:24px; min-height:360px; } .generic-style-content[data-generic-design=liquid-glass] .gs-glass-specimen { padding:28px 24px; } }
+
+[data-style-scene=liquid-glass] .lumen-hero-cards { position:relative; isolation:isolate; }
+[data-style-scene=liquid-glass] .lumen-hero-cards::before { content:''; position:absolute; inset:-18% 8%; z-index:-1; border:14px solid #fce3d688; border-radius:50%; transform:rotate(-22deg); box-shadow:0 0 0 18px #e3d8ff20; }
+[data-style-scene=liquid-glass] .lumen-hero-cards> * { position:relative; border-radius:22px!important; background:linear-gradient(145deg,#fff4,#ffffff12 60%,#ffffff30)!important; box-shadow:inset 0 2px 2px #fffe,inset 0 -2px 4px #352b5c66,0 14px 24px #32284a33!important; }
+[data-style-scene=liquid-glass] .lumen-hero-cards> *::after { content:''; position:absolute; inset:3px; border:1px solid #ffffff45; border-radius:19px; pointer-events:none; }
+[data-style-scene=liquid-glass] .lumen-hero-cards> :nth-child(2) { transform:translateY(-6px); }
+[data-style-scene=liquid-glass] .lumen-hero-cards> :nth-child(3) { transform:translateY(4px); }

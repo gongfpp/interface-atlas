@@ -109,7 +109,7 @@ const inkOn = (background: string) => {
               <p class="mt-2 whitespace-pre-line text-[9px] leading-[1.8]" style="color:rgba(255,255,255,.8)">{spec.heroSub}</p>
               <SceneAction interactive={interactive} action="primary" data-generic-action="primary" class="mt-3 inline-block rounded-full bg-white px-4 py-2 text-[9.5px] font-bold" style="color:#3B2E6E;box-shadow:0 6px 18px rgba(30,27,75,.35)">{spec.cta}</SceneAction>
             </div>
-            <div class="grid grid-cols-2 gap-2.5">
+            <div class:list={["grid grid-cols-2 gap-2.5", {"lumen-hero-cards":spec.slug==='liquid-glass'}]}>
               {spec.features!.slice(0, 3).map((f, i) => (
                 <SceneAction interactive={false} action={`feature-${i}`} data-generic-action={`feature-${i}`} class="rounded-2xl p-2.5" style={`background:${t.card};border:1px solid ${t.cardBorder};backdrop-filter:${t.blur};box-shadow:0 8px 20px rgba(30,27,75,.18)`}>
                   <span class="mb-1.5 flex h-4 w-4 items-center justify-center rounded-lg text-[8px]" style="background:rgba(255,255,255,.5);color:#3B2E6E">✦</span>

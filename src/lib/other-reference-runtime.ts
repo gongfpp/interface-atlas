@@ -210,7 +210,9 @@ export function initOtherReference(root: HTMLElement) {
     }
     else if(action==='play-brief'){updateServices();open('play-brief',target);}
     else if(action.startsWith('play-work-')){
-      const i=Number(action.slice(10));text('[data-play-title]',[l('MOMO · 城市骑行','MOMO · City cycling'),l('Little Planet · 探索实验室','Little Planet · Exploration lab'),l('Good Food · 社区餐桌','Good Food · Community table')][i]);
+      const i=Number(action.slice(10));
+      const poster=root.querySelector<HTMLElement>('.play-case-poster');if(poster)poster.dataset.playPoster=String(i);
+      text('[data-play-mark]',['MOMO','LITTLE PLANET','GOOD FOOD'][i]);text('[data-play-title]',[l('MOMO · 城市骑行','MOMO · City cycling'),l('Little Planet · 探索实验室','Little Planet · Exploration lab'),l('Good Food · 社区餐桌','Good Food · Community table')][i]);
       text('[data-play-copy]',[l('把租车流程变成三个简单步骤。高对比路线卡、清晰取车提示与轻快的品牌语言，让通勤不再紧张。','A three-step bike rental flow. High-contrast route cards, clear pickup instructions and a playful voice make commuting easier.'),l('为孩子与家长设计一起探索的活动网站。用图形化课程卡、年龄筛选与简单报名，鼓励每一次提问。','An activity website for children and parents. Illustrated cards, age filters and simple booking encourage every curious question.'),l('让邻里共享一张餐桌。食材故事、开放日程与清晰参与方式，把线上介绍变成真实连接。','A shared neighborhood table. Ingredient stories, open schedules and clear participation turn an introduction into connection.')][i]);open('play-work',target);
     }
     else if(action.startsWith('retro-page-'))visit(Number(action.slice(11)));

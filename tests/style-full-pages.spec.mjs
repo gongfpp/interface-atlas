@@ -133,7 +133,8 @@ const heroParts = {
 
 async function heroSnapshot(scene, slug) {
   await scene.evaluate(() => document.fonts.ready);
-  await expect.poll(() => scene.locator('img').evaluateAll(images => images.every(image => image.complete && image.naturalWidth > 0))).toBe(true);
+  // This comparison covers the hero only; below-fold and closed-dialog images load lazily.
+  await expect.poll(() => scene.locator('.scene-page img').evaluateAll(images => images.every(image => image.complete && image.naturalWidth > 0))).toBe(true);
   return scene.evaluate((root, heroSelector) => {
     const hero = root.querySelector('.scene-page');
     const box = hero.getBoundingClientRect();

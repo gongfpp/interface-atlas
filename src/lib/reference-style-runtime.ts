@@ -64,6 +64,7 @@ export function initReferenceStyle(root: HTMLElement) {
       currentStory = Number(action.slice(6));
       root.querySelector('#story-title')!.textContent = stories[currentStory].title;
       root.querySelector('[data-story-body]')!.textContent = stories[currentStory].body;
+      root.querySelectorAll<HTMLElement>('[data-story-photo]').forEach(image => { image.hidden = image.dataset.storyPhoto !== String(currentStory); });
       updateSaved(); openDialog('story', target);
     } else if (action === 'save-story') {
       if (saved.has(currentStory)) saved.delete(currentStory); else saved.add(currentStory);
