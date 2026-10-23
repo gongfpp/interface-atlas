@@ -33,7 +33,8 @@ export async function readyStyleFrame(page, slug, locale) {
   await expect(scene).toBeVisible();
   await expect(scene).toHaveAttribute('data-scene-locale', locale);
   await scene.evaluate(() => document.fonts.ready);
-  await expect.poll(() => scene.locator('img').evaluateAll(images => images.every(image => !image.getClientRects().length || (image.complete && image.naturalWidth > 0)))).toBe(true);
+  // 首屏不预取屏外懒加载图片；续页图片随下面的实际滚动与阅读流程验证。
+  await expect.poll(() => scene.locator('.scene-page img').evaluateAll(images => images.every(image => !image.getClientRects().length || (image.complete && image.naturalWidth > 0)))).toBe(true);
   return { experience, iframe, frame, scene };
 }
 
@@ -206,11 +207,18 @@ async function editorialFlow(root, locale) {
   const en = locale === 'en';
   await sceneAction(root, 'primary').click();
   await expect(root.locator('#scene-section-0')).toBeFocused();
+  for (const photo of await root.locator('.paper-list-photo').all()) {
+    await photo.scrollIntoViewIfNeeded();
+    await expect.poll(() => photo.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
+  }
   const story = sceneAction(root, 'story-0');
   await story.click();
   const dialog = root.locator('[data-scene-dialog="story"]');
   await expect(dialog.locator('#story-title')).toHaveText(en ? 'Morning in the mountains' : '群山间的清晨');
   await expect(dialog.locator('[data-story-body]')).toContainText(en ? 'valley breeze' : '山谷里的风');
+  const photo = dialog.locator('[data-story-photo]:not([hidden])');
+  await photo.scrollIntoViewIfNeeded();
+  await expect.poll(() => photo.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
   const save = sceneAction(dialog, 'save-story');
   await save.click();
   await expect(save).toHaveAttribute('aria-pressed', 'true');
@@ -231,6 +239,8 @@ async function editorialFlow(root, locale) {
   await expect(search.locator('[data-search-results] button:visible')).toHaveCount(1);
   await search.locator('[data-search-results] button:visible').click();
   await expect(dialog.locator('#story-title')).toHaveText(en ? 'The art of wandering' : '城市漫游指南');
+  await photo.scrollIntoViewIfNeeded();
+  await expect.poll(() => photo.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
   await expect(save).toHaveAttribute('aria-pressed', 'false');
   await closeDialog(root, dialog);
 }

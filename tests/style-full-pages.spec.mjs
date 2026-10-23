@@ -7,11 +7,12 @@ const locales = ['zh', 'en'];
 const widths = [1280, 390, 320];
 const specs = Object.fromEntries(STYLE_SLUGS.map(slug => [slug, load(readFileSync(new URL(`../src/content/styles/${slug}.yaml`, import.meta.url), 'utf8'))]));
 
-function observeFailures(page) {
+function observeFailures(page, baseURL) {
+  const origin = new URL(baseURL).origin;
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   page.on('response', response => {
-    if (new URL(response.url()).origin === 'http://127.0.0.1:4337' && response.status() >= 400) errors.push(`${response.status()} ${response.url()}`);
+    if (new URL(response.url()).origin === origin && response.status() >= 400) errors.push(`${response.status()} ${response.url()}`);
   });
   return errors;
 }
@@ -27,9 +28,9 @@ async function attachEvidence(page, testInfo, label, extra = {}) {
 }
 
 for (const locale of locales) for (const width of widths) for (const slug of STYLE_SLUGS) {
-  test(`完整风格语义流 ${slug} ${locale} ${width}px：品牌操作、返回、重置和真实视口`, async ({ page }, testInfo) => {
+  test(`完整风格语义流 ${slug} ${locale} ${width}px：品牌操作、返回、重置和真实视口`, async ({ page, baseURL }, testInfo) => {
     test.setTimeout(60_000);
-    const errors = observeFailures(page);
+    const errors = observeFailures(page, baseURL);
     await page.setViewportSize({ width, height: 900 });
     await page.addInitScript(() => {
       window.__styleStorageWrites = [];
@@ -45,13 +46,13 @@ for (const locale of locales) for (const width of widths) for (const slug of STY
     // 这里是真实document viewport，而不是把1088px画布transform缩小。
     expect(await page.evaluate(() => innerWidth)).toBe(width);
     await expect(scene.locator('iframe, canvas')).toHaveCount(0);
-    await expect.poll(() => scene.locator('img').evaluateAll(images => images.every(image => !image.getClientRects().length || (image.complete && image.naturalWidth > 0)))).toBe(true);
+    await expect.poll(() => scene.locator('.scene-page img').evaluateAll(images => images.every(image => !image.getClientRects().length || (image.complete && image.naturalWidth > 0)))).toBe(true);
     const initial = await scene.textContent();
     const storedBefore = await page.evaluate(() => ({ local: { ...localStorage }, session: { ...sessionStorage } }));
     const businessRequests = [];
     const recordRequest = request => {
       const url = new URL(request.url());
-      if (request.method() !== 'GET' || (url.protocol !== 'blob:' && url.origin !== 'http://127.0.0.1:4337')) businessRequests.push(`${request.method()} ${request.url()}`);
+      if (request.method() !== 'GET' || (url.protocol !== 'blob:' && url.origin !== new URL(baseURL).origin)) businessRequests.push(`${request.method()} ${request.url()}`);
     };
     page.on('request', recordRequest);
     await assertNoOverflow(page, `${slug} ${locale} ${width} 初始`);
@@ -74,9 +75,9 @@ for (const locale of locales) for (const width of widths) for (const slug of STY
 }
 
 for (const locale of locales) for (const slug of STYLE_SLUGS) {
-  test(`完整风格详情接口 ${slug} ${locale}：单预览、390/320真实iframe、模式与重置`, async ({ page }, testInfo) => {
+  test(`完整风格详情接口 ${slug} ${locale}：单预览、390/320真实iframe、模式与重置`, async ({ page, baseURL }, testInfo) => {
     test.setTimeout(60_000);
-    const errors = observeFailures(page);
+    const errors = observeFailures(page, baseURL);
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto(pathFor(locale, `/styles/${slug}/`));
     const { experience, iframe, frame, scene } = await readyStyleFrame(page, slug, locale);
@@ -205,9 +206,9 @@ for (const locale of locales) {
 const genericSlugs = STYLE_SLUGS.filter(slug => !REFERENCE_STYLES.includes(slug));
 
 for (const locale of locales) for (const slug of genericSlugs) {
-  test(`品牌标注与内部重置 ${slug} ${locale}：标注无副作用、Enter重置保留焦点`, async ({ page }, testInfo) => {
+  test(`品牌标注与内部重置 ${slug} ${locale}：标注无副作用、Enter重置保留焦点`, async ({ page, baseURL }, testInfo) => {
     test.setTimeout(60_000);
-    const errors = observeFailures(page);
+    const errors = observeFailures(page, baseURL);
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto(pathFor(locale, `/style-scenes/${slug}/`));
     const scene = page.locator(`[data-style-scene="${slug}"]`);
