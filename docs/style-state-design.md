@@ -177,6 +177,8 @@ node scripts/capture-style-states.mjs --base-url=http://127.0.0.1:4337 \
 
 人工查看了桌面列表/详情、三种玻璃材质和 390px 深色详情。以下为本轮真实浏览器截图；全站 Chromium 完整回归由发布提交的 Actions 门禁运行，部署结论以平台结果和线上复查为准，不由截图代替。
 
+首次完整 CI 执行 1104 项，1102 通过、2 失败：生命周期回归仍使用本轮调整前的 Clear / Frost 模糊公式。现已将预期同步为 Clear `depth × 0.22`、Frost `depth + 12`，保留真实键盘调节、标签和最终计算样式的断言；发布仍须等待修正提交的完整门禁通过。
+
 ![PlayLab 作品详情的硬阴影、网点海报与编号步骤](images/style-polish/neobrutalism-detail.png)
 ![Lumen 透明试样透出条纹与圆环背景，边缘具有双层高光](images/style-polish/liquid-glass-specimen.png)
 ![The Paper Room 阅读页的照片、衬线层级与首字下沉](images/style-polish/editorial-reading.png)

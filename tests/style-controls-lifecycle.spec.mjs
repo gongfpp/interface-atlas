@@ -170,7 +170,7 @@ test('PlayLab 没有选择服务时为业务 invalid，而非 native valid 即 s
 });
 
 // 材质的静态样本不能覆盖主工作区厚度；用真实 range 键盘操作验证最终计算样式。
-for (const [material, scale, offset] of [['Clear', 1, 0], ['Frost', 1, 8], ['Prism', .5, 0]]) {
+for (const [material, scale, offset] of [['Clear', .22, 0], ['Frost', 1, 12], ['Prism', .5, 0]]) {
   test(`Lumen ${material}: 厚度滑杆改变可见材质，不只是更新标签`, async ({ page }) => {
     await page.goto('/style-scenes/liquid-glass/');
     await page.locator('[data-generic-action="primary"]').first().click();
