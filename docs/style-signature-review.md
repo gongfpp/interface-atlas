@@ -6,7 +6,7 @@
 
 [Awwwards — Moooi Digital flagship store](https://www.awwwards.com/sites/moooi-digital-flagship-store) 是 2020-12-01 Site of the Day；本轮实际查看官方留存首屏截图，对照其单一视觉焦点、轻字重标题、建筑纵深与克制的动作入口。这里借鉴构图原则，不复制素材、布局或品牌。
 
-[Webby Best Visual Design – Aesthetic](https://winners.webbyawards.com/winners/websites-and-mobile-sites/features-design/best-visual-design-aesthetic) 用于核对视觉评审范围，当前页面列出 Igloo Inc；[FWA Igloo Inc](https://thefwa.com/cases/igloo-inc) 动态案例页未能取得可读正文，浏览器参考页连接也超时，因此没有把其动态效果写成已经对照验证的结论。
+[Webby Best Visual Design – Aesthetic](https://winners.webbyawards.com/winners/websites-and-mobile-sites/features-design/best-visual-design-aesthetic) 用于核对视觉评审范围，当前页面列出 Igloo Inc；[FWA Igloo Inc](https://thefwa.com/cases/igloo-inc) 的官方静态预览随后取得并实看，对照其单一场景焦点、低饱和材质层次与极少的界面元素。动态页面的浏览器连接超时，因此没有把其动态效果写成已经对照验证的结论。
 
 获奖是外部评审结果，“没有任何可见改进空间”也不是可客观证明的完成条件。本轮记录实际观察、修正和验证，不宣称获奖或输出无差距认证。
 
@@ -21,7 +21,7 @@
 | Responsive | 主视觉和宽屏装饰容易被裁切 | SVG 完整缩放，装饰与语义文字分离；390/320px 单栏重排，原返回、清空、模式与重置路径可操作 |
 | Originality | 三套样板仍共享通用占位图形 | 原创拱廊和信号图代码、为 MORI 单独生成统一光线的四张静物，未引用第三方获奖网站资产 |
 
-第一轮实际画面复查发现城市图使用 slice 会裁掉上下标注，已改为完整展示；截图需要等待真实图像解码而不是把底色占位当作图片验收。开发服务器注入的工具条会挡住 320px 页尾按钮，也会使静态封面出现脚本；正式回归改为使用生产构建，不更改断言规避问题。
+第一轮实际画面复查发现城市图使用 slice 会裁掉上下标注，已改为完整展示；截图需要等待真实图像解码而不是把底色占位当作图片验收。开发服务器注入的工具条会挡住 320px 页尾按钮，也会使静态封面出现脚本；正式回归改为使用生产构建，不更改断言规避问题。第二轮深色复查发现 AURELIA 原生日历图标仍为黑色，给日期输入设置了匹配模式的 color-scheme，并检查深浅模式结果。静态文字对比度探针在三品牌三模式的稳定状态下未发现低于阈值的正文和控件文字；图片上的装饰字不计入该探针结论。
 
 ## 素材来源
 

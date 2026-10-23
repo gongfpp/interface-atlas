@@ -23,6 +23,8 @@
 
 /* AURELIA: a dinner invitation, framed by the same architectural rhythm. */
 .generic-style-content[data-generic-design=art-deco] { --gs-panel:#1a2c28; --gs-control-radius:0; --gs-duration:280ms; }
+.generic-style-content[data-generic-design=art-deco] input[type=date] { color-scheme:dark; }
+.style-document[data-mode=variants] .generic-style-content[data-generic-design=art-deco] input[type=date] { color-scheme:light; }
 .generic-style-content[data-generic-design=art-deco] .gs-heading { padding-block:44px; }
 .generic-style-content[data-generic-design=art-deco] .gs-heading h2 { font-weight:400; }
 .generic-style-content[data-generic-design=art-deco] .gs-two { gap:clamp(40px,7cqw,88px); }
