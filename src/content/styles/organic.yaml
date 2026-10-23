@@ -85,10 +85,9 @@ implementation:
     - linear-gradient()
     - grid
   notes:
-    zh: 用主题变量统一米白与深绿；曲线只用于展示区，保留按钮的稳定矩形点击范围。用 CSS 形状即可构建植物和陶器意象，装饰节点设 aria-hidden。文字对比度优先于低饱和观感。
+    zh: mori / 森 保留米白、深绿和苔绿色层次，使用轻衬线标题与无衬线正文。拱形主图与三张独立商品静物来自本项目生成素材，亚麻、陶器、木纹均可辨认；提供替代文字并注明 AI 生成。商品采用开放式图片排版、细分隔线、稳定矩形操作区，320ms 清单入场与轻微图片缩放，尊重减少动态偏好。
     en: >-
-      Unify cream and deep green with tokens. Use curves in display areas while keeping predictable button targets. CSS shapes can evoke
-      plants and ceramics; mark decoration aria-hidden. Prioritize text contrast over a muted aesthetic.
+      mori / 森 retains cream, deep green and moss with light serif headlines and sans-serif body text. The arched hero and three individual product still lifes are project-generated assets, with distinguishable linen, clay and wood, descriptive alt text and AI provenance. Use open image-led plates, hairline separators, stable rectangular targets, 320ms list entry and restrained image scale, respecting reduced motion.
 style_spec:
   typography:
     zh: 衬线标题与清楚的无衬线正文。
@@ -196,11 +195,11 @@ prompts:
     zh: |-
       用当前风格完成 mori / 森 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。以当前 YAML preview 为品牌、原导航与 CTA 的事实来源，不替换成通用营销模板。
 
-      保留 mori / 森 的米色、深绿和苔绿色层次、Georgia 衬线字体、24px 圆角及右侧现有 CSS 生活景观，不另外换成植物照片或无衬线正文。产品区延续三张拱形底上的亚麻/陶器/木托盘 CSS 物件，木纹只用于托盘；清单与合计是正常可读内容，不让有机轮廓扭曲控件。
+      mori / 森 保留米白、深绿和苔绿色层次，使用轻衬线标题与无衬线正文。拱形主图与三张独立商品静物来自本项目生成素材，亚麻、陶器、木纹均可辨认；提供替代文字并注明 AI 生成。商品采用开放式图片排版、细分隔线、稳定矩形操作区，320ms 清单入场与轻微图片缩放，尊重减少动态偏好。
 
       复用当前 preview.tokens：背景 #f1efe5；前景 #29392b；强调 #526445 / #fff；卡面 #e3e5d6；边框 #b7bd9f；圆角 24px；字体 Georgia, serif；卡影 none。
 
-      dark 与 variants 复用 generic-style-pages.css 已有工作区选择器，不据通用历史变体重画首屏；保留 renderer 内各视觉面板的局部高光、渐变和投影。
+      dark 与 variants 延续已有工作区模式；style-signatures.css 负责本品牌主视觉、续页和微交互，封面与整页共用同一 renderer。
 
       完整页面操作：
       Explore 进入自然物件系列，查看三个产品、加入/移除选物清单并同步合计；Collection 与 About 到达系列和品牌理念，不提交订单。
@@ -215,11 +214,11 @@ prompts:
     en: |-
       Build a complete mori / 森 page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. The current YAML preview is authoritative for the brand, original navigation and CTAs; never substitute a generic marketing template.
 
-      Keep mori / 森’s cream/deep-green/moss hierarchy, Georgia serif, 24px radii and existing CSS life-scene panel rather than replacing it with plant photography or sans body type. Products retain CSS linen/ceramic/wood-tray objects on arched grounds, with woodgrain only on the tray. Selection and totals remain readable content with predictable control targets.
+      mori / 森 retains cream, deep green and moss with light serif headlines and sans-serif body text. The arched hero and three individual product still lifes are project-generated assets, with distinguishable linen, clay and wood, descriptive alt text and AI provenance. Use open image-led plates, hairline separators, stable rectangular targets, 320ms list entry and restrained image scale, respecting reduced motion.
 
       Reuse current preview.tokens: background #f1efe5; foreground #29392b; accent #526445 / #fff; card #e3e5d6; border #b7bd9f; radius 24px; font Georgia, serif; card shadow none.
 
-      Use generic-style-pages.css’s existing workspace dark/variants selectors rather than redrawing the hero from generic historical variants; retain each rendered visual panel’s local highlights, gradients and shadows.
+      Retain the existing workspace dark and variant modes. style-signatures.css owns this brand’s hero, continuation and microinteractions; covers and full pages share one renderer.
 
       Full-page operations:
       Explore opens the natural-object collection. Inspect three products, add/remove selections and update the total. Collection and About reach objects and brand philosophy without submitting orders.

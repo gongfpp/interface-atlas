@@ -4,6 +4,12 @@ import { STYLE_SLUGS, REFERENCE_STYLES, pathFor, assertStyleDocumentBoundary } f
 async function snapshot(page) {
   const hero = page.locator('.generic-style-hero');
   await hero.evaluate(() => document.fonts.ready);
+  // Compare the settled cover and live hero, not a transient initial CSS crossfade.
+  await hero.evaluate(async root => {
+    await Promise.all(root.getAnimations({ subtree: true })
+      .filter(animation => animation.effect?.getTiming().iterations !== Infinity)
+      .map(animation => animation.finished.catch(() => {})));
+  });
   return hero.evaluate(root => {
     const origin = root.getBoundingClientRect();
     return {

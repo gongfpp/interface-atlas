@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import stillLife from '@/assets/style-scenes/organic-still-life.webp';
+interface Props { slug: string; locale: 'zh' | 'en'; }
+const { slug, locale } = Astro.props;
+---
+
+{slug === 'art-deco' && <div class="signature-art signature-deco" aria-hidden="true">
+  <svg viewBox="0 0 640 420" fill="none" preserveAspectRatio="xMidYMid meet">
+    <path class="deco-shadow" d="M0 420V0h640v420H0Z" />
+    <g class="deco-architecture" stroke="currentColor">
+      {[0,1,2,3,4,5].map(i => <path d={`M${76+i*27} 420V${208+i*4}a${244-i*27} ${190-i*23} 0 0 1 ${488-i*54} 0V420`} />)}
+      <path d="M0 344h640M0 355h640M0 370h640M0 390h640M0 418h640M18 0v420M30 0v420M610 0v420M622 0v420" opacity=".35" />
+      {[76,130,184,238,402,456,510,564].map(x=><path d={`M320 335L${x} 420`} opacity=".35" />)}
+      <path d="M320 28v65M287 38l12 55M353 38l-12 55M260 54l22 43M380 54l-22 43" />
+    </g>
+    <path d="m320 107 67 103-67 103-67-103z" fill="#152924" stroke="currentColor" />
+    <path d="m320 122 57 88-57 88-57-88z" stroke="currentColor" opacity=".45" />
+    <text x="320" y="233" text-anchor="middle" fill="currentColor" font-family="Georgia,serif" font-size="72">A</text>
+    <path d="M285 253h70M300 263h40" stroke="currentColor" />
+    <text x="320" y="366" text-anchor="middle" fill="currentColor" font-family="Georgia,serif" font-size="10" letter-spacing="6">EST. 1926</text>
+  </svg>
+</div>}
+{slug === 'cyberpunk' && <div class="signature-art signature-neon" aria-hidden="true">
+  <svg viewBox="0 0 640 420" fill="none" preserveAspectRatio="xMidYMid meet">
+    <g stroke="currentColor" opacity=".12">
+      {Array.from({length:17},(_,i)=><path d={`M${i*40} 0v420`} />)}
+      {Array.from({length:12},(_,i)=><path d={`M0 ${i*40}h640`} />)}
+    </g>
+    <g class="neon-blocks" fill="currentColor" opacity=".09">
+      <path d="M55 90h100v62H55zM178 90h73v126h-73zM55 179h100v110H55zM278 80h80v82h-80zM386 80h190v67H386zM386 172h90v80h-90zM499 172h77v160h-77zM278 277h198v55H278zM55 318h196v36H55z" />
+    </g>
+    <g stroke="currentColor" opacity=".4"><path d="M20 230h300l98-97h202M164 40v245l87 88v47M20 306h210l70-70h300M370 0v180l-50 50v190" /><circle cx="320" cy="230" r="98" stroke-dasharray="2 8" /><circle cx="320" cy="230" r="125" opacity=".4" /></g>
+    <path class="neon-route" d="M88 230h232l98-97h134" stroke="currentColor" stroke-width="3" />
+    <g fill="#07141d" stroke="currentColor" stroke-width="2"><circle cx="88" cy="230" r="7" /><circle cx="320" cy="230" r="10" /><circle cx="552" cy="133" r="7" /></g>
+    <circle class="neon-beacon" cx="320" cy="230" r="19" stroke="currentColor" />
+    <g fill="currentColor" font-family="monospace" font-size="11" letter-spacing="1.5"><text x="26" y="32">NC / SECTOR ARCHIVE</text><text x="26" y="398">2077 — LOCAL ONLY</text><text x="84" y="211">PACIFICA</text><text x="335" y="255">KABUKI</text><text x="460" y="111">CITY CENTER</text><text x="514" y="398">92.00 MHz</text></g>
+    <path d="M12 50V12h38M590 12h38v38M12 370v38h38M590 408h38v-38" stroke="currentColor" stroke-width="2" />
+  </svg>
+</div>}
+{slug === 'organic' && <div class="signature-art signature-organic">
+  <Image src={stillLife} alt={locale==='zh'?'暖阳下的亚麻靠垫、手作陶杯与木托盘，AI 生成静物':'AI-generated still life of a linen cushion, clay cup and wooden tray in warm sunlight'} widths={[480,960,1536]} sizes="(max-width: 600px) 100vw, 55vw" width={1536} height={1024} loading="eager" />
+  <span aria-hidden="true">LINEN · CLAY · WOOD</span>
+</div>}

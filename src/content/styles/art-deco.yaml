@@ -87,10 +87,9 @@ implementation:
     - SVG path
     - grid
   notes:
-    zh: 用 SVG 绘制放射线和阶梯形装饰，语义内容独立于装饰层。金色只作为强调，正文需有足够对比。窄屏保持标题和表单的完整宽度，减少外围装饰。
+    zh: THE AURELIA 以午夜蓝黑、暖金与深绿构成晚宴空间。右侧使用独立于文字的金线拱廊 SVG、菱形 A 字章与透视地面；晚宴结果卡延续拱形双线轮廓。标题减轻字重，短标签加字距；280ms 淡入和保存描边反馈，表单保留完整矩形输入范围。
     en: >-
-      Draw radiating and stepped ornament with SVG, independent of semantic content. Use gold as an accent while keeping body contrast
-      strong. Preserve title and form width on narrow screens by reducing surrounding ornament.
+      THE AURELIA pairs midnight blue-black, warm gold and deep green. Its right-hand SVG uses nested architectural arches, a diamond A monogram and a perspective floor, separate from semantic text. The evening result echoes the arched double frame. Use lighter serif headlines, tracked labels, 280ms entry and saved-plan border feedback, with full rectangular form targets.
 style_spec:
   typography:
     zh: 展示性衬线标题，短标签增加字距。
@@ -199,11 +198,11 @@ prompts:
     zh: |-
       用当前风格完成 THE AURELIA 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。以当前 YAML preview 为品牌、原导航与 CTA 的事实来源，不替换成通用营销模板。
 
-      保留 THE AURELIA 午夜蓝黑、暖金展示字、深绿卡面、直角金边与右侧几何面板，不新增放射线/阶梯 SVG 来改写原构图。晚宴结果卡沿用居中排版、1px 金色内侧轮廓与宽字距短标签，表单维持原完整矩形输入范围。
+      THE AURELIA 以午夜蓝黑、暖金与深绿构成晚宴空间。右侧使用独立于文字的金线拱廊 SVG、菱形 A 字章与透视地面；晚宴结果卡延续拱形双线轮廓。标题减轻字重，短标签加字距；280ms 淡入和保存描边反馈，表单保留完整矩形输入范围。
 
       复用当前 preview.tokens：背景 #151c24；前景 #e8ce92；强调 #d7b571 / #151c24；卡面 #25312e；边框 #a88b51；圆角 0px；字体 Georgia, serif；卡影 none。
 
-      dark 与 variants 复用 generic-style-pages.css 已有工作区选择器，不据通用历史变体重画首屏；保留 renderer 内各视觉面板的局部高光、渐变和投影。
+      dark 与 variants 延续已有工作区模式；style-signatures.css 负责本品牌主视觉、续页和微交互，封面与整页共用同一 renderer。
 
       完整页面操作：
       Explore 打开晚宴意向表，填写称呼、日期、人数并保存对应结果，可返回修改；Collection 与 About 展示夜晚体验和品牌信息，明确仅本地意向并非实际订位。
@@ -218,11 +217,11 @@ prompts:
     en: |-
       Build a complete THE AURELIA page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. The current YAML preview is authoritative for the brand, original navigation and CTAs; never substitute a generic marketing template.
 
-      Keep THE AURELIA’s midnight blue-black, warm-gold display, deep-green cards, square gold rims and right-side geometry; do not add radiating/stepped SVG ornament that rewrites the composition. The evening result card retains centered text, a 1px inset gold outline and tracked short labels; forms keep full rectangular input targets.
+      THE AURELIA pairs midnight blue-black, warm gold and deep green. Its right-hand SVG uses nested architectural arches, a diamond A monogram and a perspective floor, separate from semantic text. The evening result echoes the arched double frame. Use lighter serif headlines, tracked labels, 280ms entry and saved-plan border feedback, with full rectangular form targets.
 
       Reuse current preview.tokens: background #151c24; foreground #e8ce92; accent #d7b571 / #151c24; card #25312e; border #a88b51; radius 0px; font Georgia, serif; card shadow none.
 
-      Use generic-style-pages.css’s existing workspace dark/variants selectors rather than redrawing the hero from generic historical variants; retain each rendered visual panel’s local highlights, gradients and shadows.
+      Retain the existing workspace dark and variant modes. style-signatures.css owns this brand’s hero, continuation and microinteractions; covers and full pages share one renderer.
 
       Full-page operations:
       Explore opens dinner interest. Enter a name, date and party size, save the matching result and return to edit. Collection and About show evening experiences and brand information; local interest is not a table reservation.

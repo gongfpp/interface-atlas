@@ -539,6 +539,10 @@ async function genericFlow(root, slug, locale) {
     await expect(root.locator('[data-light-saves] li')).toHaveCount(1);
     await expect(root.locator('[data-light-saves]')).toContainText('Violet / 85%');
   } else if (slug === 'organic') {
+    for (const photo of await root.locator('.gs-panel:not([hidden]) .gs-product-photo img').all()) {
+      await photo.scrollIntoViewIfNeeded();
+      await expect.poll(() => photo.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
+    }
     const add = root.locator('[data-command="basket"][data-value="0"]');
     await add.click();
     await add.click();
