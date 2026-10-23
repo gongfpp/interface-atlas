@@ -60,12 +60,25 @@ jobs:
 
       # 用完整 build：prebuild 会重建 public/api 与关键词搜索索引，
       # 只用 build:fast 会把仓库里提交的旧索引直接发布出去
-      - name: Build
+      - name: Build GitHub Pages
         run: npm run build
         env:
           PUBLIC_SITE_URL: https://gongfpp.github.io
           PUBLIC_BASE_PATH: /interface-atlas-web
           # GitHub Pages 无 Functions/KV 后端，关闭查询落库，避免 404
+          PUBLIC_LOG_API: 'off'
+          PUBLIC_UMAMI_SRC: ${{ vars.PUBLIC_UMAMI_SRC }}
+          PUBLIC_UMAMI_ID: ${{ vars.PUBLIC_UMAMI_ID }}
+          PUBLIC_CF_BEACON_TOKEN: ${{ vars.PUBLIC_CF_BEACON_TOKEN }}
+
+      # EdgeOne 从同一公开成品仓库读取专用目录，避免把 GitHub 的子路径用于根域名。
+      - name: Build EdgeOne root site
+        run: |
+          npm run build -- --outDir dist-edgeone
+          mv dist-edgeone dist/_edgeone
+        env:
+          PUBLIC_SITE_URL: https://atlas.gongfpp.icu
+          PUBLIC_BASE_PATH: /
           PUBLIC_LOG_API: 'off'
           PUBLIC_UMAMI_SRC: ${{ vars.PUBLIC_UMAMI_SRC }}
           PUBLIC_UMAMI_ID: ${{ vars.PUBLIC_UMAMI_ID }}
@@ -88,6 +101,7 @@ jobs:
           # 缓存里的 HTML 会引用到已不存在的 CSS/JS 而导致页面无样式。
           if git clone --depth 1 "$WEB_REPOSITORY" web 2>/dev/null; then
             if [ -d web/_astro ]; then cp -a web/_astro /tmp/prev-astro; fi
+            if [ -d web/_edgeone/_astro ]; then cp -a web/_edgeone/_astro /tmp/prev-edgeone-astro; fi
           else
             mkdir web && git -C web init -q
             git -C web remote add origin "$WEB_REPOSITORY"
@@ -96,6 +110,7 @@ jobs:
           rsync -a --delete --exclude=.git --exclude=preview dist/ web/
           # 把本轮构建不再产出、但仍可能被缓存 HTML 引用的旧 _astro 资源放回去
           if [ -d /tmp/prev-astro ]; then cp -an /tmp/prev-astro/. web/_astro/ 2>/dev/null || true; fi
+          if [ -d /tmp/prev-edgeone-astro ]; then cp -an /tmp/prev-edgeone-astro/. web/_edgeone/_astro/ 2>/dev/null || true; fi
 
           cd web
           git config user.name "interface-atlas-deploy"
@@ -107,3 +122,31 @@ jobs:
           fi
           git commit -qm "deploy ${GITHUB_SHA}"
           git push origin HEAD:main
+
+  deploy-cloudflare:
+    if: ${{ github.ref != 'refs/heads/dot/atlas-reference-style-scenes' }}
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build Cloudflare root site
+        run: npm run build
+        env:
+          PUBLIC_SITE_URL: https://interface-atlas-9po.pages.dev
+          PUBLIC_BASE_PATH: /
+          PUBLIC_LOG_API: 'off'
+          PUBLIC_UMAMI_SRC: ${{ vars.PUBLIC_UMAMI_SRC }}
+          PUBLIC_UMAMI_ID: ${{ vars.PUBLIC_UMAMI_ID }}
+          PUBLIC_CF_BEACON_TOKEN: ${{ vars.PUBLIC_CF_BEACON_TOKEN }}
+      - name: Deploy Cloudflare Pages
+        working-directory: dist
+        run: npx --yes wrangler@4.152.0 pages deploy . --project-name interface-atlas --branch main --commit-hash "$GITHUB_SHA" --commit-dirty=false
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}

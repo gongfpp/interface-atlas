@@ -31,6 +31,7 @@ Project profile: `project`
 - 源仓库：`github.com/gongfpp/interface-atlas`（**public**），`main` 为默认分支。源码与 CI 可公开，凭据只放 GitHub Secrets；公开检查见 `docs/public-source-audit.md`。
 - 发布走公开构建仓库 `github.com/gongfpp/interface-atlas-web`：源仓库 `.github/workflows/deploy-web.yml` 先跑完整检查（`verify` job），通过后再构建并**增量提交** `dist/` 到公开仓库 `main`（clone → rsync → 保留旧 `_astro` hash 资源 → commit → push，不再 force-push；旧资源继续可用可避免 Pages HTML 缓存造成的无样式窗口），由该仓库 GitHub Pages 发布（<https://gongfpp.github.io/interface-atlas-web/>）。不要在该公开仓库手工改文件，产物由源仓库覆盖。
 - 发布与检查是同一提交上的依赖关系：检查不通过就不会发布。手动触发 `Deploy site to interface-atlas-web` 等同于正式发布，不要用它做未经验证的预览。
+- 三站同步发布：同一工作流在 `verify` 通过后，另构建根路径版到成品仓库 `_edgeone/`，由腾讯云项目 `interface-atlas-web`（`makers-w9abmxhbpnln`，RootDir=`_edgeone`，OutputDir=`./`）自动发布到 <https://atlas.gongfpp.icu/>；独立 job 用 GitHub Secret `CLOUDFLARE_API_TOKEN` 与 Variable `CLOUDFLARE_ACCOUNT_ID` 发布 Cloudflare 项目 `interface-atlas` 到 <https://interface-atlas-9po.pages.dev/>。三个构建分别使用各自 site/base，不能直接复用 GitHub 子路径成品给根域名。配置与复查见 `docs/deploy.md`。
 - 任务边界区分：只读审阅/解释不写文件；修改类任务在本地提交；是否 push 到 `main` 由本约定决定——**任务完成并验证通过后，提交并 push 到 `origin/main`**（用户已授权持续 push，无需逐次询问）。未完成或未验证的改动不要 push。
 - 提交遵循 Conventional Commits；一个逻辑完整的阶段一个 commit。
 - **每次迭代完成并发布后，在给用户的回复末尾附上线上地址**：<https://gongfpp.github.io/interface-atlas-web/>（方便直接点开查看）。

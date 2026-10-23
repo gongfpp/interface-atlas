@@ -12,7 +12,7 @@
 
 ### 发布门槛
 
-`deploy-web.yml` 增加了一个 `verify` job（`npm run check` / `lint` / `build` / `test:smoke` / `search:test`），`build-and-deploy` 通过 `needs: verify` 依赖它：**同一提交的检查不通过就不会发布**。手动触发等同于正式发布。
+`deploy-web.yml` 的 `verify` job 执行 unit / check / lint / build / test:smoke / search:test。`build-and-deploy` 与 `deploy-cloudflare` 都通过 `needs: verify` 依赖它：**同一提交的检查不通过就不会发布**。腾讯云只消费前者生成的成品，因此同样受门禁约束。手动触发等同于三站正式发布。
 
 ### 预览部署（feature 分支）
 
@@ -44,20 +44,30 @@ analytics 变量要配在**源仓库** **Settings → Secrets and variables → 
 配好后重新运行 “Deploy site to interface-atlas-web” 工作流即可生效；未配置则自动跳过。访问/时长/退出、全局点击、首页去向、区块曝光、搜索结果与复制事件，以及后台查看方式、指标口径和漏报边界见 [访问与行为统计](./analytics.md)。预览不采集，自动 pageview 排除查询参数与 hash。
 命令行设置：`gh variable set PUBLIC_UMAMI_SRC --body '…'`、`gh variable set PUBLIC_UMAMI_ID --body '…'`。
 
-## Cloudflare Pages（可选）
+## 腾讯云 EdgeOne Makers
+
+正式域名：**https://atlas.gongfpp.icu/**。项目 `interface-atlas-web`，ID `makers-w9abmxhbpnln`，绑定成品仓库 `gongfpp/interface-atlas-web` 的 `main`。
+
+- Root directory：`_edgeone`；Output directory：`./`；框架 Other；安装与构建命令留空。
+- 源仓库发布工作流分别构建 GitHub 子路径版与腾讯云根路径版，后者保存在成品仓库 `_edgeone/`，不是手工修改成品。腾讯云沿用现有 Git 自动发布。
+- 根路径构建使用 `PUBLIC_SITE_URL=https://atlas.gongfpp.icu`、`PUBLIC_BASE_PATH=/`、`PUBLIC_LOG_API=off`；canonical、API 链接和 sitemap 跟随正式域名。
+- `_edgeone/_astro` 与 GitHub 根目录 `_astro` 分别保留旧 hash 资源，以兼容 HTML 缓存。
+- 不能把成品仓库根目录直接挂到此域名，否则 HTML 会请求 `/interface-atlas-web/_astro/...` 并返回 404。
+
+## Cloudflare Pages
+
+正式站点：**https://interface-atlas-9po.pages.dev/**。项目名为 `interface-atlas`（项目名与平台分配的子域名不同），production branch 为 `main`，采用直接上传。
 
 ### 构建配置
 
-- Framework preset: **Astro**
-- Build command: `npm run build:fast`
-  （= api:build + astro build。关键词搜索索引 public/data/search-docs.json 已提交入库，
-  内容更新时由本地/CI 的完整管线刷新）
-- Build output: `dist`
-- Node version: 22（环境变量 `NODE_VERSION=22`）
-- `PUBLIC_BASE_PATH` 留空（根部署，base 为空）；`PUBLIC_SITE_URL` 设为 CF 分配/自定义域名
-- `PUBLIC_LOG_API` 保持默认（启用 `/api/log-*`，需 KV 绑定）
+- 在源仓库配置 GitHub Secret `CLOUDFLARE_API_TOKEN`（需本账号 Pages 编辑权限），以及 Variable `CLOUDFLARE_ACCOUNT_ID`。凭据值不入库。
+- `deploy-cloudflare` 在完整检查通过后使用 Node 22、`npm ci`、`npm run build`，然后用固定版本 Wrangler 上传 `dist/`。
+- 构建设置 `PUBLIC_BASE_PATH=/`、`PUBLIC_SITE_URL=https://interface-atlas-9po.pages.dev`、`PUBLIC_LOG_API=off`。
+- 从 `dist/` 内执行上传，仅部署静态成品，不自动启用源码目录中的 Functions 或 KV。三站沿用同一组 Umami / Web Analytics 构建变量。
 
-### KV 绑定（搜索查询日志，PRD §9.3）
+### 可选 KV 后端（当前镜像未启用）
+
+以下为未来单独启用查询日志时的配置，需要同时部署 `functions/` 并将 `PUBLIC_LOG_API` 设为启用；仅创建 KV 不会改变当前静态发布。
 
 1. Dashboard → Workers & Pages → KV → Create namespace：`SEARCH_LOG`
 2. Pages 项目 → Settings → Functions → KV namespace bindings：
@@ -67,7 +77,7 @@ analytics 变量要配在**源仓库** **Settings → Secrets and variables → 
 
 ### Umami 埋点（PRD §27a）
 
-环境变量（Settings → Environment variables）：
+当前静态发布在源仓库 GitHub Actions → Variables 配置以下构建变量；Cloudflare 控制台的运行时环境变量不会重新编译已上传的 HTML：
 
 - `PUBLIC_UMAMI_SRC`: 如 `https://analytics.example.com/script.js`
 - `PUBLIC_UMAMI_ID`: Umami 网站 ID
@@ -80,7 +90,7 @@ analytics 变量要配在**源仓库** **Settings → Secrets and variables → 
 
 1. Cloudflare Dashboard → Analytics & Logs → Web Analytics → Add a site（选择 Pages 项目域名）。
 2. 复制得到的 **Beacon token**。
-3. Pages 项目 → Settings → Environment variables 增加：
+3. 源仓库 GitHub Actions → Variables 增加：
    - `PUBLIC_CF_BEACON_TOKEN`: 上一步的 token
 4. 重新部署后，BaseLayout 注入无 cookie 的 `beacon.min.js`；访客数/浏览量在 CF Web Analytics 面板查看。
 
@@ -104,8 +114,11 @@ analytics 变量要配在**源仓库** **Settings → Secrets and variables → 
 - `PUBLIC_SITE_URL`（如 `https://your-domain.com`）决定 canonical / sitemap / hreflang；不设置时回落到 `https://interface-atlas.dev`。
 - `PUBLIC_BASE_PATH`（如 `/interface-atlas-web`）决定部署子路径；根部署留空。所有站内链接、资源、robots、sitemap、`/api/*.json`、`llms.txt` 都会自动带上该前缀。
 
-### 自定义命令行部署（Cloudflare Pages，可选）
+### 手动补发（Cloudflare Pages）
+
+仅对已通过门禁的提交构建，使用本节站点变量；Token 通过环境变量注入，不写入命令参数。正式发布优先运行同一工作流。
 
 ```bash
-npx wrangler pages deploy dist --project-name=interface-atlas
+cd dist
+npx --yes wrangler@4.152.0 pages deploy . --project-name interface-atlas --branch main
 ```
