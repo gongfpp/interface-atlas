@@ -4,6 +4,8 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import SearchDialog from '@/islands/SearchDialog';
 import { type Locale, localePath, withBase } from '@/lib/i18n';
+import { analyticsIdentityScript } from '@/lib/analytics-identity';
+import { analyticsScriptConfig } from '@/lib/analytics-config';
 
 interface Props {
   title: string;
@@ -19,6 +21,13 @@ interface Props {
 
 const { title, description, locale, enPath, autoOpenSearch = false, stickyHeader = true } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const analyticsConfig = analyticsScriptConfig({
+  origin: Astro.site?.origin || Astro.url.origin,
+  legacySrc: import.meta.env.PUBLIC_UMAMI_SRC,
+  legacyId: import.meta.env.PUBLIC_UMAMI_ID,
+  edgeOneSrc: import.meta.env.PUBLIC_EDGEONE_UMAMI_SRC,
+  edgeOneId: import.meta.env.PUBLIC_EDGEONE_UMAMI_ID,
+});
 
 const themeScript = `
 (function(){
@@ -32,7 +41,7 @@ const themeScript = `
 ---
 
 <!doctype html>
-<html lang={locale === 'zh' ? 'zh-CN' : 'en'} data-analytics-preview={import.meta.env.PUBLIC_PREVIEW === 'true' ? 'true' : undefined}>
+<html lang={locale === 'zh' ? 'zh-CN' : 'en'} data-analytics-preview={import.meta.env.PUBLIC_PREVIEW === 'true' ? 'true' : undefined} data-analytics-upgrade={analyticsConfig.upgraded ? 'true' : undefined}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -45,8 +54,36 @@ const themeScript = `
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
     <script is:inline set:html={themeScript} />
     {/* Umami 埋点（PRD §27a）：PUBLIC_UMAMI_SRC + PUBLIC_UMAMI_ID 配置后启用 */}
-    {import.meta.env.PUBLIC_PREVIEW !== 'true' && import.meta.env.PUBLIC_UMAMI_SRC && import.meta.env.PUBLIC_UMAMI_ID && (
-      <script is:inline defer src={import.meta.env.PUBLIC_UMAMI_SRC} data-website-id={import.meta.env.PUBLIC_UMAMI_ID}
+    {import.meta.env.PUBLIC_PREVIEW !== 'true' && analyticsConfig.upgraded && <script is:inline set:html={analyticsIdentityScript} />}
+    {import.meta.env.PUBLIC_PREVIEW !== 'true' && analyticsConfig.upgraded && (
+      <script is:inline>
+        // 此钩子同时过滤自动 pageview、性能事件和自定义事件，不创建第二个 tracker。
+        window.iaAnalyticsBeforeSend = function (_type, payload) {
+          try { if (document.documentElement.dataset.analyticsPreview === 'true'
+            || navigator.globalPrivacyControl === true
+            || [navigator.doNotTrack, window.doNotTrack, navigator.msDoNotTrack].some(value => value === '1' || value === 'yes' || value === 1)) { window.iaAnalyticsResetVisitor?.(); return null; } } catch { window.iaAnalyticsResetVisitor?.(); return null; }
+          try { if (localStorage.getItem('umami.disabled') === '1') { window.iaAnalyticsResetVisitor?.(); return null; } } catch { /* 存储受限不影响页面 */ }
+          const visitor = window.iaAnalyticsVisitor?.();
+          const next = { ...payload };
+          delete next.id;
+          if (visitor) next.id = visitor.id;
+          if (payload?.data?.schema === 2) {
+            next.data = { ...payload.data };
+            delete next.data.visitor_id;
+            delete next.data.visitor_born_at;
+            // 到期边界的晚加载旧事件仍可匿名送达，不把旧事件挂到后来出生的新身份。
+            if (visitor && next.data.event_time >= visitor.bornAt && next.data.event_time - visitor.bornAt < 90 * 86400000) {
+              next.data.visitor_id = visitor.id;
+              next.data.visitor_born_at = visitor.bornAt;
+            } else delete next.id;
+          }
+          return next;
+        };
+      </script>
+    )}
+    {import.meta.env.PUBLIC_PREVIEW !== 'true' && analyticsConfig.src && analyticsConfig.id && (
+      <script is:inline defer src={analyticsConfig.src} data-website-id={analyticsConfig.id}
+        data-before-send={analyticsConfig.upgraded ? 'iaAnalyticsBeforeSend' : undefined} data-domains={analyticsConfig.domains}
         data-exclude-search="true" data-exclude-hash="true" data-do-not-track="true" data-performance="true"
         onload="window.dispatchEvent(new Event('ia:analytics-ready'))"></script>
     )}
