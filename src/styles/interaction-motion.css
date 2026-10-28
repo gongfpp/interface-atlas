@@ -1,0 +1,11 @@
+/* Dialog dismissal keeps the modal open through its JS exit; popovers use discrete CSS where supported. */
+dialog { opacity:0; translate:0 8px; transition:opacity 200ms ease,translate 240ms ease; }
+.scene-select-panel[popover] { opacity:0; translate:0 8px; transition:opacity 200ms ease,translate 240ms ease,display 240ms allow-discrete,overlay 240ms allow-discrete; }
+dialog[open],.scene-select-panel[popover]:popover-open { opacity:1; translate:0 0; }
+dialog::backdrop { background-color:#0000; transition:background-color 200ms ease,display 240ms allow-discrete,overlay 240ms allow-discrete; }
+dialog[open]::backdrop { background-color:#0006; }
+@starting-style { dialog[open],.scene-select-panel[popover]:popover-open { opacity:0; translate:0 8px; } dialog[open]::backdrop { background-color:#0000; } }
+.style-experience iframe { transition:width 300ms cubic-bezier(.2,.7,.2,1),opacity 200ms; }
+@media(prefers-reduced-motion:reduce) {
+  dialog,.scene-select-panel[popover],dialog::backdrop,.style-experience iframe { transition:none!important; }
+}

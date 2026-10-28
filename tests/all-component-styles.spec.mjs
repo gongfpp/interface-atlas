@@ -11,8 +11,9 @@ test.describe.configure({ mode: 'parallel' });
 for (const [id, { styles }] of Object.entries(matrix)) {
   for (const [locale, width] of [['zh', 390], ['zh', 1280], ['en', 390], ['en', 1280]]) {
     test(`${id} ${locale} ${width}px: 已注册风格可切换，控件可聚焦且不溢出`, async ({ page }) => {
-      // 两条窄屏按钮矩阵在未改动基线也超过 30s；保留全部风格、稳定等待和截图，仅增加总预算。
-      if (id === 'button' && width === 390) test.setTimeout(60000);
+      // 25 种按钮风格逐项聚焦、滚动和截图；桌面实测也可超过 30s。
+      // 保留全部风格、稳定等待与断言，给完整矩阵相同的时间预算。
+      if (id === 'button') test.setTimeout(60000);
       const errors = []; page.on('pageerror', (error) => errors.push(error.message));
       await page.setViewportSize({ width, height: 900 });
       await page.goto(`${locale === 'en' ? '/en' : ''}/components/${id}`);

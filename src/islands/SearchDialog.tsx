@@ -16,12 +16,22 @@ export default function SearchDialog({ locale, autoOpen = false }: { locale: 'zh
   const { query, setQuery, results, active, setActive, loadingIndex, loadError, ensureIndex } = useSearch(initialQuery ?? '');
   const inputRef = useRef<HTMLInputElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
+  const closingRef = useRef<Animation | null>(null);
 
   const en = locale === 'en';
   const close = useCallback(() => {
-    setOpen(false);
-    const trigger = document.getElementById('search-open');
-    if (trigger instanceof HTMLElement) trigger.focus();
+    const finish = () => {
+      setOpen(false);
+      const trigger = document.getElementById('search-open');
+      if (trigger instanceof HTMLElement) trigger.focus();
+    };
+    if (closingRef.current) return;
+    if (!dialogRef.current || matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
+    const animation = dialogRef.current.animate([{ opacity: getComputedStyle(dialogRef.current).opacity }, { opacity: 0 }], { duration: 140, easing: 'ease-in', fill: 'forwards' });
+    closingRef.current = animation;
+    void animation.finished.then(() => {
+      if (closingRef.current === animation) { closingRef.current = null; finish(); }
+    }).catch(() => {});
   }, []);
 
   // 首次打开时懒加载索引
@@ -31,6 +41,8 @@ export default function SearchDialog({ locale, autoOpen = false }: { locale: 'zh
 
   useEffect(() => {
     const onOpen = () => {
+      closingRef.current?.cancel();
+      closingRef.current = null;
       delete document.documentElement.dataset.searchRequested;
       ensureIndex();
       setOpen(true);
@@ -39,9 +51,7 @@ export default function SearchDialog({ locale, autoOpen = false }: { locale: 'zh
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
-        ensureIndex();
-        setOpen((v) => !v);
-        requestAnimationFrame(() => inputRef.current?.focus());
+        if (open) close(); else onOpen();
       }
       if (e.key === 'Escape' && open) close();
     };

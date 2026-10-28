@@ -68,14 +68,9 @@ const inkOn = (background: string) => {
             <p class="mt-2.5 whitespace-pre-line text-[8.5px] leading-[1.8]" style={`color:${t.sub}`}>{spec.heroSub}</p>
             <SceneAction interactive={interactive} action="primary" data-generic-action="primary" class="mt-2.5 text-[9.5px] font-semibold" style={`color:${t.accent}`}>{spec.cta}</SceneAction>
           </div>
-          <div class="col-span-2 overflow-hidden rounded-lg" style="box-shadow:0 6px 14px rgba(0,0,0,.12)">
-            <div class="relative h-full min-h-[120px] w-full" style="background:linear-gradient(180deg,#B7CBDD 0%,#D9CBB2 48%,#9C8A67 100%)">
-              <span class="absolute left-3 top-2.5 h-6 w-6 rounded-full" style="background:radial-gradient(circle,#FFF9E8 30%,#F0D9A0 100%);box-shadow:0 0 12px rgba(255,240,190,.9)"></span>
-              <span class="absolute bottom-6 left-0 h-8 w-full" style="background:linear-gradient(180deg,transparent,#7E6D50)"></span>
-              <span class="absolute bottom-2 left-3 h-5 w-9 rounded-sm" style="background:linear-gradient(160deg,#8A6B4F,#5E4632)"></span>
-              <span class="absolute bottom-2 left-14 h-4 w-4 rounded-full" style="background:#E8E2D4"></span>
-              <p class="absolute right-2 top-2 text-[7.5px] leading-relaxed" style="color:#6E5C3F;font-family:serif;font-style:italic;transform:rotate(-2deg)">{spec.heroCaption ?? text('生活不在别处，就在此刻。', 'Life is here, in this moment.')}</p>
-            </div>
+          <div data-generic-art class="col-span-2 relative overflow-hidden rounded-lg scribble-hero-art">
+            <StyleSignatureArt slug="hand-drawn" locale={locale} />
+            <p class="scribble-art-caption">{spec.heroCaption ?? text('生活不在别处，就在此刻。', 'Life is here, in this moment.')}</p>
           </div>
           <div class="col-span-1 flex flex-col justify-between gap-2">
             {spec.features!.map((f, i) => (
@@ -215,8 +210,8 @@ const inkOn = (background: string) => {
 
           <!-- 右侧视觉面板 -->
           <div data-generic-art data-art-panel={spec.panel} class="col-span-3 relative flex h-[120px] items-center justify-center overflow-hidden" style={`background:${t.card};border:1px solid ${t.cardBorder};border-radius:${t.radius};backdrop-filter:${t.blur ?? 'none'};box-shadow:${t.shadow ?? 'none'}`}>
-            {['art-deco','cyberpunk','organic'].includes(spec.slug) && <StyleSignatureArt slug={spec.slug} locale={locale} />}
-            {spec.panel === 'shapes' && spec.slug !== 'art-deco' && (() => {
+            {['art-deco','cyberpunk','organic','bauhaus','retro-futurism'].includes(spec.slug) && <StyleSignatureArt slug={spec.slug} locale={locale} />}
+            {spec.panel === 'shapes' && !['art-deco','bauhaus'].includes(spec.slug) && (() => {
               const c = t.triCards ?? [t.accent, t.accent, t.accent];
               return (
                 <div class="relative flex items-center gap-4">
@@ -249,7 +244,7 @@ const inkOn = (background: string) => {
                 <span class="h-8 w-8 rounded-full border-[3px]" style={`border-color:#5B6B7A;background:conic-gradient(${t.accent} 30%, #94A3B8 30% 100%);box-shadow:0 2px 6px rgba(0,0,0,.4)`}></span>
               </div>
             )}
-            {spec.panel === 'chart' && spec.slug !== 'cyberpunk' && (() => {
+            {spec.panel === 'chart' && !['cyberpunk','retro-futurism'].includes(spec.slug) && (() => {
               const bars = [35, 60, 45, 85, 55, 95, 70];
               return (
                 <div class="w-5/6">
@@ -286,7 +281,7 @@ const inkOn = (background: string) => {
             {spec.features.map((f, i) => (
               <SceneAction interactive={false} action={`feature-${i}`} data-generic-action={`feature-${i}`} class="block w-full p-3" style={`background:${t.triCards ? t.triCards[i] : t.card};border:1px solid ${t.triCards ? 'transparent' : t.cardBorder};border-radius:${t.radius};backdrop-filter:${t.blur ?? 'none'};box-shadow:${t.shadow ?? 'none'};color:${t.triCards ? inkOn(t.triCards[i]) : 'inherit'}`}>
                 <span class="mb-2 flex items-center gap-1.5">
-                  <span class="flex h-4 w-4 items-center justify-center rounded-md text-[7px]" style={`background:${t.triCards ? 'rgba(255,255,255,.85)' : t.accent};color:${t.triCards ? '#111111' : t.accentFg}`}>{ICONS[i]}</span>
+                  <span class="flex h-4 w-4 items-center justify-center rounded-md text-[7px]" style={`background:${t.triCards ? 'rgba(255,255,255,.85)' : t.accent};color:${t.triCards ? '#111111' : t.accentFg}`}>{spec.slug === 'bauhaus' ? ['●','■','▲'][i] : ICONS[i]}</span>
                   <span class="text-[9.5px] font-bold" style={titleStyle}>{f.t}</span>
                 </span>
                 <p class="text-[8px]" style={`color:${t.triCards ? inkOn(t.triCards[i]) : t.sub}`}>{f.s}</p>

@@ -1,3 +1,4 @@
+import { scrollToScene } from './interaction-motion';
 import { getTeamSceneData, getTeamCalendarDays, teamDate, teamMonthLabel, TEAM_INITIAL_DATE, TEAM_INITIAL_YEAR, TEAM_INITIAL_MONTH } from './team-scene-data';
 
 /** 十五种配置驱动品牌场景：无服务端、真实账户或网络副作用。 */
@@ -23,7 +24,7 @@ export function initGenericStyle(root: HTMLElement): void {
   let saved: SavedEntry[] = initialSaved();
   let teamNotes = initialNotes(), noteSequence = teamNotes.length, openTeamNote = teamNotes[0]?.id ?? '';
   let calendarYear = TEAM_INITIAL_YEAR, calendarMonth = TEAM_INITIAL_MONTH, selectedDate = TEAM_INITIAL_DATE;
-  const scrollToContent = () => content.scrollIntoView({ behavior: 'instant', block: 'start' });
+  const scrollToContent = () => scrollToScene(content);
   function showPanel(index: number, focus = false) {
     const tabs = all<HTMLButtonElement>('[data-generic-tab]');
     index = Math.max(0, Math.min(tabs.length - 1, index));
@@ -138,7 +139,7 @@ export function initGenericStyle(root: HTMLElement): void {
   function openTeamWorkspace(kind: 'tasks' | 'notes') {
     showPanel(0);
     const target = q(`[data-team-${kind === 'tasks' ? 'task' : 'notes'}-workspace]`);
-    target?.scrollIntoView({ behavior: 'instant', block: 'start' }); target?.focus({ preventScroll: true });
+    scrollToScene(target);
   }
   renderSaved(); renderTeamCalendar(); renderTeamNotes();
 

@@ -3979,11 +3979,11 @@ dark 与 variants 复用 generic-style-pages.css 已有工作区选择器，不�
 ```text
 用当前风格完成 BAUHAUS 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。以当前 YAML preview 为品牌、原导航与 CTA 的事实来源，不替换成通用营销模板。
 
-保留 BAUHAUS 米色首屏、红色主操作及红/蓝/黄三卡；右侧圆/三角/方形面板与原有轻投影继续使用，标题仍为原大写无衬线，不额外强制图文负 margin 穿插。构图工坊使用 #eee5d7 画布、2px 黑边以及 #e23b2e 圆/#21409a 方/#f2b705 三角，形状由 CSS 生成。
+保留 BAUHAUS 米色首屏、红色主操作及红/蓝/黄三卡。主视觉使用 StyleSignatureArt 中原创 SVG：大红圆、蓝色矩形、黄色三角、黑色轴线与细测量框互相接触，取消漂浮小图形和阴影；标题收紧字距。工坊以四等分网格、空画布十字、明确选中描边与 0 / 12 计数延续构成秩序。
 
-复用当前 preview.tokens：背景 #F4EFE6；前景 #141414；强调 #E23B2E / #fff；卡面 #FFFFFF；边框 #141414；圆角 0px；字体 'Helvetica Neue', 'PingFang SC', 'Noto Sans CJK SC', sans-serif；卡影 none。
+复用当前 preview.tokens：背景 #F4EFE6；前景 #141414；强调 #E23B2E / #000；卡面 #FFFFFF；边框 #141414；圆角 0px；字体 'Helvetica Neue', 'PingFang SC', 'Noto Sans CJK SC', sans-serif；卡影 none。
 
-dark 与 variants 复用 generic-style-pages.css 已有工作区选择器，不据通用历史变体重画首屏；保留 renderer 内各视觉面板的局部高光、渐变和投影。
+dark 与 variants 复用已有工作区 token；主视觉与页面共用 StyleSignatureArt 和 style-signatures.css，保留各自纸张、几何或电台材质。窄屏按内容重排。
 
 完整页面操作：
 进入工坊后选择红圆、蓝方或黄角并放置到画布，最多 12 个图形，可清空重做；形式、色彩、工坊导航各有对应内容。
@@ -4287,11 +4287,11 @@ dark 与 variants 复用 generic-style-pages.css 已有工作区选择器，不�
 ```text
 用当前风格完成 scribble& 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。以当前 YAML preview 为品牌、原导航与 CTA 的事实来源，不替换成通用营销模板。
 
-保留 scribble& 原 paper 分支的 2/5 文案、2/5 CSS 生活景观、1/5 侧栏；字体沿用 Comic Sans MS/Chalkboard SE/Marker Felt 回退与轻斜体，容器保留 14px 6px 18px 8px 非对称圆角和轻纸影。橘色 CTA 与纸白底不替换成全页黄色马克笔装饰。日记卡只使用已有 32px 横线背景，命中范围仍规则，不新增抖动滤镜或旋转交互区。
+保留 scribble& 的纸白底、原文案与手写字体回退；首屏文字 CTA 使用深赭色 #A24A26，确保纸白底上的对比度。用原创 SVG 手绘花枝、横线便签、纸胶带和铅笔替换通用 CSS 风景；桌面以 1.1 / 1.5 / .65 三栏扩大插画，手机依内容顺序叠放，三条素材说明纵向排列。日记本沿用 32px 横线，加入双线书脊与胶带，编辑控件保持规则命中区。
 
 复用当前 preview.tokens：背景 #FAF6EE；前景 #2B2B2B；强调 #FF8A65 / #2B2B2B；卡面 #FFFDF7；边框 #2B2B2B；圆角 14px 6px 18px 8px；字体 Comic Sans MS, Chalkboard SE, Marker Felt, PingFang SC, sans-serif；卡影 2px 3px 0 rgba(43,43,43,0.08)。
 
-dark 与 variants 复用 generic-style-pages.css 已有工作区选择器，不据通用历史变体重画首屏；保留 renderer 内各视觉面板的局部高光、渐变和投影。
+dark 与 variants 复用已有工作区 token；主视觉与页面共用 StyleSignatureArt 和 style-signatures.css，保留各自纸张、几何或电台材质。窄屏按内容重排。
 
 完整页面操作：
 随手记一笔打开编辑，保存笔记到列表，按关键词过滤并可删除；日记、素材、关于、搜索均有对应内容，显示空白校验、无匹配、删除结果。
@@ -4563,11 +4563,11 @@ INSERT COIN 启动 8×8 六色像素画板；方向键移动绘制焦点、空�
 ```text
 用当前风格完成 SYNTH-84 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。以当前 YAML preview 为品牌、原导航与 CTA 的事实来源，不替换成通用营销模板。
 
-当前页面是 SYNTH-84 合成器电台：保留 #140A33→#3D1170→#7A1F63 深紫渐变、#FF71CE 粉色强调、等宽大写 DRIVE INTO / THE SUNSET、右侧柱形图及三张半透明卡。播放器沿用 FM 84.0、本地三曲和粉到橙的均衡器，不引入原子火箭、1968、奶油塑料机身或 CRT 琥珀配色，也不新增透视地平线。只有实际播放时均衡器按现有 .8s 动画，暂停和 reduced-motion 均停止。
+当前页面是 SYNTH-84 合成器电台：保留深紫渐变、粉色强调、等宽大写 DRIVE INTO / THE SUNSET 与原功能。主视觉由原创 SVG 条纹落日、山线、透视公路与 SIDE A 磁带构成，替换无业务含义的柱形图。播放器使用深色仪器面板与凹入刻度窗，FM 84.0、本地三曲、音量和播放逻辑不变；均衡器暂停时低亮，只有实际播放才按 .8s 动画，reduced-motion 停止。
 
 复用当前 preview.tokens：背景 linear-gradient(180deg,#140A33 0%,#3D1170 62%,#7A1F63 100%)；前景 #FFE8F6；强调 #FF71CE / #2A0A2E；卡面 rgba(255,113,206,.12)；边框 rgba(255,113,206,.45)；圆角 6px；字体 'SF Mono', Menlo, monospace；卡影 none。
 
-dark 与 variants 复用 generic-style-pages.css 已有工作区选择器，不据通用历史变体重画首屏；保留 renderer 内各视觉面板的局部高光、渐变和投影。
+dark 与 variants 复用已有工作区 token；主视觉与页面共用 StyleSignatureArt 和 style-signatures.css，保留各自纸张、几何或电台材质。窄屏按内容重排。
 
 完整页面操作：
 播放电台由用户手势启动 WebAudio 合成单音；可播放/暂停、选择三曲、调节音量。电台、巡演、磁带、REC 有对应内容，明确本地合成并非真实广播或录音上传。

@@ -100,3 +100,91 @@
 @media (prefers-reduced-motion:reduce) {
   [data-style-scene]:is([data-style-scene=organic],[data-style-scene=art-deco],[data-style-scene=cyberpunk]) *, [data-style-scene]:is([data-style-scene=organic],[data-style-scene=art-deco],[data-style-scene=cyberpunk]) *::before { animation:none!important; transition:none!important; }
 }
+
+/* BAUHAUS: a measured composition, using primary planes instead of floating icons. */
+.signature-bauhaus { color:#161616; background:#f0eadf; }
+[data-style-scene=bauhaus] [data-generic-art] { border:0!important; box-shadow:none!important; }
+[data-style-scene=bauhaus] [data-generic-title] { font-weight:900; letter-spacing:-.065em!important; line-height:1.02; }
+[data-style-scene=bauhaus] .generic-style-hero [data-generic-action=primary] { border-radius:0!important; box-shadow:none!important; }
+[data-style-scene=bauhaus] .generic-style-hero [data-generic-action^=feature-] { position:relative; border:0!important; }
+[data-style-scene=bauhaus] .generic-style-hero [data-generic-action^=feature-]>span>span:first-child { background:transparent!important; color:inherit!important; border-radius:0; font-size:18px; width:22px; height:22px; }
+.generic-style-content[data-generic-design=bauhaus] .gs-heading { border-left:0; padding:0 0 28px; border-bottom:3px solid var(--gs-ink); max-width:none; }
+.generic-style-content[data-generic-design=bauhaus] .gs-heading h2 { max-width:900px; font-size:clamp(32px,5.4cqw,64px); }
+.generic-style-content[data-generic-design=bauhaus] .gs-two { grid-template-columns:.8fr 1.2fr; align-items:center; }
+.generic-style-content[data-generic-design=bauhaus] .gs-composition { border:1px solid var(--gs-rule); background:linear-gradient(var(--gs-rule) 1px,transparent 1px),linear-gradient(90deg,var(--gs-rule) 1px,transparent 1px),var(--gs-panel); background-size:25% 25%; }
+.generic-style-content[data-generic-design=bauhaus] .gs-composition:empty::after { content:'+'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font:36px/1 ui-monospace,monospace; color:var(--gs-muted); }
+.generic-style-content[data-generic-design=bauhaus] [data-command=shape] { width:64px; height:64px; text-align:center; font-size:30px; border:2px solid var(--gs-rule); color:var(--gs-ink); background:var(--gs-panel); }
+.generic-style-content[data-generic-design=bauhaus] [data-command=shape][aria-pressed=true] { background:var(--gs-panel); border-color:var(--gs-ink); box-shadow:4px 4px 0 var(--gs-ink); }
+.generic-style-content[data-generic-design=bauhaus] [data-command=shape][data-value="0"] { --shape-ink:#e23b2e; color:var(--shape-ink); }
+.generic-style-content[data-generic-design=bauhaus] [data-command=shape][data-value="1"] { --shape-ink:#4165c4; color:var(--shape-ink); }
+.generic-style-content[data-generic-design=bauhaus] [data-command=shape][data-value="2"] { --shape-ink:#bd8900; color:var(--shape-ink); }
+.generic-style-content[data-generic-design=bauhaus] [data-shape-count] { font:700 34px/1.3 ui-monospace,monospace; letter-spacing:-.06em; border-top:1px solid var(--gs-rule); padding-top:20px; }
+.generic-style-content[data-generic-design=bauhaus] .gs-destination-card { box-shadow:none; }
+
+/* scribble&: a hand-drawn specimen keeps the writing area calm and regular. */
+.signature-scribble { background:#ece6d7; }
+[data-style-scene=hand-drawn] .scribble-hero-art { height:clamp(160px,34cqw,450px); border-radius:2px!important; box-shadow:4px 6px 0 #2b2b2b0c; }
+[data-style-scene=hand-drawn] .signature-scribble { height:calc(100% - 32px); }
+.scribble-art-caption { position:absolute; inset:auto 5% 10px; text-align:center; font:italic 10px/1.4 Georgia,serif; color:#635b49; }
+[data-style-scene=hand-drawn] [data-generic-title] { letter-spacing:-.045em!important; line-height:1.25; }
+[data-style-scene=hand-drawn] .generic-style-hero [data-generic-action=primary] { color:#a24a26!important; padding:10px 0; border-bottom:2px solid currentColor; border-radius:0; width:max-content; max-width:100%; }
+[data-style-scene=hand-drawn] .generic-style-hero [data-generic-action^=feature-] { gap:12px; }
+[data-style-scene=hand-drawn] .generic-style-hero [data-generic-action^=feature-]>span:first-child { background:transparent!important; border:2px solid currentColor; width:24px; height:24px; border-radius:46% 53% 38% 48%; transform:rotate(-8deg); }
+[data-style-scene=hand-drawn] .generic-style-hero [data-generic-action=feature-1]>span:first-child { border-radius:2px; background:repeating-linear-gradient(transparent 0 5px,#9d977e 5px 6px)!important; }
+[data-style-scene=hand-drawn] .generic-style-hero [data-generic-action=feature-2]>span:first-child { height:12px; background:#f5bf77!important; border:0; border-radius:3px; }
+.generic-style-content[data-generic-design=hand-drawn] .gs-heading { max-width:820px; margin-bottom:42px; }
+.generic-style-content[data-generic-design=hand-drawn] .gs-two { align-items:stretch; gap:clamp(32px,6cqw,80px); }
+.generic-style-content[data-generic-design=hand-drawn] .gs-notebook { position:relative; border:1px solid var(--gs-rule); border-radius:2px 8px 3px 4px; border-left:7px double var(--gs-rule); box-shadow:5px 6px 0 color-mix(in srgb,var(--gs-rule) 14%,transparent); min-height:420px; padding-top:40px; }
+.generic-style-content[data-generic-design=hand-drawn] .gs-notebook::before { content:''; position:absolute; top:-12px; right:30px; width:76px; height:26px; transform:rotate(6deg); background:#ddb67599; }
+.generic-style-content[data-generic-design=hand-drawn] textarea { background:repeating-linear-gradient(transparent 0 31px,#a79a7c33 31px 32px),var(--gs-field); line-height:32px; padding-top:8px; }
+.generic-style-content[data-generic-design=hand-drawn] .gs-notebook h3 { font-weight:500; }
+.generic-style-content[data-generic-design=hand-drawn] .gs-results li { background:var(--gs-panel); padding:18px 0; }
+.generic-style-content[data-generic-design=hand-drawn] .gs-destination-card { transform:none!important; border:0; border-top:2px solid var(--gs-rule); border-radius:0; background:transparent; padding-inline:0; }
+
+/* SYNTH-84: the landscape belongs to the cover; playback lives in the instrument. */
+.signature-synth { background:radial-gradient(ellipse at 54% 52%,#75325a,#25103e 64%,#160d2b); }
+[data-style-scene=retro-futurism] [data-generic-art] { border:1px solid #bd6aa070!important; border-radius:2px!important; box-shadow:none!important; }
+[data-style-scene=retro-futurism] [data-generic-title] { letter-spacing:-.07em!important; line-height:1.06; text-shadow:0 3px 0 #6a346c; }
+[data-style-scene=retro-futurism] .generic-style-hero [data-generic-title]+p { color:#dfbadd!important; }
+[data-style-scene=retro-futurism] .generic-style-hero [data-generic-action^=feature-] { border-radius:0!important; border-width:1px 0 0!important; background:transparent!important; }
+[data-style-scene=retro-futurism] .generic-style-hero [data-generic-action^=feature-]>p { color:#dfbadd!important; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-heading { max-width:880px; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-heading h2 { text-shadow:none; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-radio { max-width:840px; padding:clamp(24px,5cqw,56px); border-radius:12px; border:1px solid #b77caa; border-top:4px solid #d2a6c3; background:linear-gradient(145deg,#403049,#21172e 65%); box-shadow:0 18px 45px #07041555,inset 0 0 0 6px #ffffff06; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-radio>p:first-child { font-size:11px; letter-spacing:.2em; color:#e9b9dc; border-bottom:1px solid #8c5b81; padding-bottom:18px; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-radio h3 { font-size:clamp(23px,3.5cqw,38px); font-weight:400; letter-spacing:-.045em; color:#ffdfec; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-equalizer { height:140px; padding:24px 22px 0; border:1px solid #805877; border-radius:4px; background:repeating-linear-gradient(transparent 0 19px,#bb88aa15 19px 20px),#120d20; box-shadow:inset 0 3px 12px #0009; gap:4%; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-equalizer i { opacity:.3; transition:opacity 180ms; background:linear-gradient(#ffb86b,#ff71ce); }
+.generic-style-content[data-generic-design=retro-futurism] .gs-equalizer[data-playing=true] i { opacity:1; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-radio [data-command=play] { flex:1; justify-content:center; text-align:center; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-radio [data-radio-status] { color:#dec9df; font-size:13px; }
+.generic-style-content[data-generic-design=retro-futurism] .gs-tabs button { border-radius:3px; }
+@container (min-width:600px) {
+  [data-style-scene=bauhaus] .generic-style-hero [data-generic-art], [data-style-scene=retro-futurism] .generic-style-hero [data-generic-art] { min-height:clamp(260px,34cqw,440px); height:clamp(260px,34cqw,440px); }
+  [data-style-scene=bauhaus] .generic-style-hero [data-generic-title] { font-size:clamp(36px,5.5cqw,72px)!important; }
+  [data-style-scene=hand-drawn] .scribble-art-caption { font-size:clamp(10px,1.1cqw,14px); }
+  [data-style-scene=hand-drawn] .generic-style-hero .grid-cols-5 { grid-template-columns:1.1fr 1.5fr .65fr; gap:clamp(20px,3cqw,38px); }
+  [data-style-scene=hand-drawn] .generic-style-hero .grid-cols-5>* { grid-column:auto; }
+  [data-style-scene=hand-drawn] .generic-style-hero [data-generic-title] { font-size:clamp(28px,4.1cqw,52px)!important; }
+}
+@container (max-width:700px) {
+  [data-scene-interactive=true][data-style-scene=hand-drawn] .generic-style-hero .grid-cols-5 { grid-template-columns:1fr; }
+  [data-scene-interactive=true][data-style-scene=hand-drawn] .generic-style-hero .grid-cols-5>* { grid-column:1/-1; }
+  [data-scene-interactive=true][data-style-scene=hand-drawn] .scribble-hero-art { height:330px; }
+  [data-scene-interactive=true][data-style-scene=hand-drawn] .generic-style-hero .grid-cols-5>.col-span-1 { display:flex; flex-direction:column; gap:18px; }
+  [data-scene-interactive=true][data-style-scene=hand-drawn] .generic-style-hero [data-generic-action^=feature-] { align-items:center; padding-bottom:14px; }
+  [data-scene-interactive=true][data-style-scene=bauhaus] .generic-style-hero [data-generic-art], [data-scene-interactive=true][data-style-scene=retro-futurism] .generic-style-hero [data-generic-art] { height:230px; min-height:230px; }
+  .generic-style-content[data-generic-design=bauhaus] .gs-two { grid-template-columns:1fr; }
+  .generic-style-content[data-generic-design=retro-futurism] .gs-radio { padding:22px; }
+}
+
+@container (max-width:700px) {
+  [data-scene-interactive=true][data-style-scene=hand-drawn] .generic-style-hero>div>.flex:first-child { display:grid; grid-template-columns:1fr 44px; gap:4px 12px; }
+  [data-scene-interactive=true][data-style-scene=hand-drawn] .generic-style-hero>div>.flex:first-child>span:nth-child(2) { grid-column:1/-1; grid-row:2; margin:0; justify-content:flex-start; }
+  [data-scene-interactive=true][data-style-scene=hand-drawn] .generic-style-hero [data-generic-action=search] { grid-column:2; grid-row:1; }
+  .generic-style-content[data-generic-design=retro-futurism] .gs-radio .gs-row { display:grid; grid-template-columns:44px minmax(0,1fr) 44px; gap:8px; }
+  .generic-style-content[data-generic-design=retro-futurism] .gs-radio .gs-row button { padding:10px 5px; text-align:center; font-size:14px; }
+}
+.style-document[data-mode=dark] .generic-style-content[data-generic-design=hand-drawn] .gs-heading h2 { background:linear-gradient(transparent 68%,#8a671f 68% 94%,transparent 94%); }
+
+.generic-style-content[data-generic-design=bauhaus] button[data-command=shape][data-value]:is([aria-pressed=true],:hover,:active) { background:var(--gs-panel); color:var(--shape-ink); }

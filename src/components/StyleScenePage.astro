@@ -1,5 +1,6 @@
 ---
 import '@/styles/global.css';
+import '@/styles/interaction-motion.css';
 import '@/styles/style-document.css';
 import '@/styles/style-pages.css';
 import StyleThumb from './StyleThumb.astro';
@@ -18,6 +19,7 @@ import { initReferenceStyle } from '@/lib/reference-style-runtime';
 import { initOtherReference } from '@/lib/other-reference-runtime';
 import { initGenericStyle } from '@/lib/generic-style-runtime';
 import { initStyleControls } from '@/lib/style-controls';
+import { initInteractionMotion } from '@/lib/interaction-motion';
 const params = new URLSearchParams(location.search);
 const requestedMode = params.get('mode');
 const mode = requestedMode === 'dark' || requestedMode === 'variants' ? requestedMode : 'default';
@@ -42,6 +44,7 @@ if (root) {
   initOtherReference(root);
   initGenericStyle(root);
   initStyleControls(root);
+  initInteractionMotion();
 }
 </script>
 </body></html>

@@ -1,0 +1,26 @@
+/* A stable masthead, moving section marker and a quiet page hand-off. */
+@view-transition { navigation:auto; }
+html[data-atlas-page] { view-transition-name:none; }
+[data-atlas-page] body>header { view-transition-name:atlas-header; }
+[data-atlas-page] #main { view-transition-name:atlas-content; }
+[data-atlas-page] body>footer { view-transition-name:atlas-footer; }
+[data-atlas-page] header nav a { position:relative; }
+[data-atlas-page] header nav a[aria-current=page] { color:var(--color-accent); }
+[data-atlas-page] header nav a[aria-current=page]::after { content:''; position:absolute; left:0; right:0; bottom:-9px; height:2px; background:var(--color-accent); view-transition-name:atlas-section-marker; }
+@media(max-width:767px) { [data-atlas-page] header nav a[aria-current=page]::after { left:3px; right:auto; top:10px; bottom:10px; width:2px; height:auto; } }
+::view-transition-group(*) { animation-duration:340ms; animation-timing-function:cubic-bezier(.2,.7,.2,1); }
+::view-transition-group(atlas-content),::view-transition-group(atlas-footer) { animation:none; }
+::view-transition-old(atlas-content),::view-transition-new(atlas-content) { mix-blend-mode:normal; }
+::view-transition-old(atlas-content) { animation:atlas-page-out 140ms ease-in both; }
+::view-transition-new(atlas-content) { animation:atlas-page-in 280ms 90ms cubic-bezier(.2,.7,.2,1) both; }
+::view-transition-old(atlas-header),::view-transition-new(atlas-header) { animation:none; mix-blend-mode:normal; }
+::view-transition-old(atlas-footer) { animation:atlas-page-out 160ms ease-in both; }
+::view-transition-new(atlas-footer) { animation:atlas-page-in 320ms ease-out both; }
+@keyframes atlas-page-out { to { opacity:0; transform:translateY(-8px); } }
+@keyframes atlas-page-in { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+
+
+@media(prefers-reduced-motion:reduce) {
+  @view-transition { navigation:none; }
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*) { animation:none!important; }
+}

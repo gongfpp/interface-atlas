@@ -1,5 +1,7 @@
 ---
 import '@/styles/global.css';
+import '@/styles/interaction-motion.css';
+import '@/styles/page-motion.css';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import SearchDialog from '@/islands/SearchDialog';
@@ -32,7 +34,7 @@ const themeScript = `
 ---
 
 <!doctype html>
-<html lang={locale === 'zh' ? 'zh-CN' : 'en'} data-analytics-preview={import.meta.env.PUBLIC_PREVIEW === 'true' ? 'true' : undefined}>
+<html lang={locale === 'zh' ? 'zh-CN' : 'en'} data-atlas-page data-analytics-preview={import.meta.env.PUBLIC_PREVIEW === 'true' ? 'true' : undefined}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,6 +46,12 @@ const themeScript = `
     {enPath && <link rel="alternate" hreflang="en" href={new URL(localePath(enPath, 'en'), Astro.site)} />}
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
     <script is:inline set:html={themeScript} />
+    <script is:inline>
+      // Resizing or quickly navigating again may legitimately skip a native transition.
+      for (const name of ['pagereveal', 'pageswap']) addEventListener(name, event => {
+        event.viewTransition?.ready.catch(() => {});
+      });
+    </script>
     {/* Umami 埋点（PRD §27a）：PUBLIC_UMAMI_SRC + PUBLIC_UMAMI_ID 配置后启用 */}
     {import.meta.env.PUBLIC_PREVIEW !== 'true' && import.meta.env.PUBLIC_UMAMI_SRC && import.meta.env.PUBLIC_UMAMI_ID && (
       <script is:inline defer src={import.meta.env.PUBLIC_UMAMI_SRC} data-website-id={import.meta.env.PUBLIC_UMAMI_ID}
@@ -78,7 +86,10 @@ const themeScript = `
     <SearchDialog client:idle locale={locale} autoOpen={autoOpenSearch} />
     <script>
       import { startAnalytics } from '@/lib/analytics';
+      import { initInteractionMotion, initPageMotion } from '@/lib/interaction-motion';
       startAnalytics();
+      initInteractionMotion();
+      initPageMotion();
     </script>
   </body>
 </html>

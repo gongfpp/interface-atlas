@@ -21,6 +21,7 @@ iframe { display:block; width:100%; max-width:100%; height:min(720px,calc(100dvh
 @media(max-width:600px) { iframe {height:75dvh; min-height:360px;} }
 </style>
 <script>
+import { revealMotion } from '@/lib/interaction-motion';
 for (const experience of document.querySelectorAll<HTMLElement>('[data-style-experience]')) {
  const frame = experience.querySelector<HTMLIFrameElement>('iframe')!;
  let mode = 'default';
@@ -45,7 +46,7 @@ for (const experience of document.querySelectorAll<HTMLElement>('[data-style-exp
    dialogObserver.observe(doc.documentElement,{subtree:true,attributes:true,attributeFilter:['open']});
   } catch { /* 非同源页面不能读取，保留安全的演示入口。 */ }
  };
- frame.addEventListener('load', connectSceneDocument);
+ frame.addEventListener('load', () => { connectSceneDocument(); revealMotion(frame); });
  connectSceneDocument();
  experience.addEventListener('click', event => {
   const button=(event.target as HTMLElement).closest<HTMLButtonElement>('button');

@@ -1,3 +1,4 @@
+import { scrollToScene, showSceneDialog, dismissSceneDialog } from './interaction-motion';
 import { localePath } from './i18n';
 import { getEditorialStories, SWISS_PROJECTS } from './reference-style-data';
 
@@ -20,10 +21,10 @@ export function initReferenceStyle(root: HTMLElement) {
     if (!target.closest('dialog')) opener = target;
     navigationTarget = null;
     closeDialogs();
-    root.querySelector<HTMLDialogElement>(`[data-scene-dialog="${name}"]`)?.showModal();
+    showSceneDialog(root.querySelector<HTMLDialogElement>(`[data-scene-dialog="${name}"]`));
   }
   root.querySelectorAll<HTMLDialogElement>('dialog').forEach(dialog => {
-    dialog.addEventListener('keydown', event => { if (event.key === 'Escape') { event.preventDefault(); dialog.close(); } });
+    dialog.addEventListener('keydown', event => { if (event.key === 'Escape') { event.preventDefault(); dismissSceneDialog(dialog); } });
     dialog.addEventListener('close', () => {
       if (root.querySelector('dialog[open]')) return;
       // Firefox 嵌入文档需等原生关闭完成、解除 inert 后才能将焦点送往导航目的地。
@@ -32,7 +33,7 @@ export function initReferenceStyle(root: HTMLElement) {
       if (destination) destination.focus({preventScroll:true});
       else opener?.focus();
     });
-    dialog.addEventListener('click', event => { if ((event.target as HTMLElement).closest('[data-close-dialog]')) dialog.close(); });
+    dialog.addEventListener('click', event => { if ((event.target as HTMLElement).closest('[data-close-dialog]')) dismissSceneDialog(dialog); });
   });
   root.addEventListener('click', event => {
     const target = (event.target as HTMLElement).closest<HTMLElement>('[data-scene-action]');
@@ -42,7 +43,7 @@ export function initReferenceStyle(root: HTMLElement) {
       const mode = document.body.dataset.mode || 'default';
       location.href = `${localePath(`/style-scenes/${slug}/`, en ? 'zh' : 'en')}?mode=${mode}`;
     } else if (action === 'home') {
-      window.scrollTo({top:0});
+      scrollToScene(root);
     } else if (action === 'menu' || action === 'search') {
       openDialog(action, target);
     } else if (action.startsWith('nav-') || action === 'primary') {
@@ -51,7 +52,7 @@ export function initReferenceStyle(root: HTMLElement) {
       const section = root.querySelector<HTMLElement>(`#scene-section-${index}`);
       navigationTarget = root.querySelector('dialog[open]') ? section : null;
       closeDialogs();
-      section?.scrollIntoView({block:'start'}); section?.focus({preventScroll:true});
+      scrollToScene(section);
     } else if (action.startsWith('project-')) {
       const i = Number(action.slice(8));
       root.querySelector('[data-project-title]')!.textContent = SWISS_PROJECTS[i].title;

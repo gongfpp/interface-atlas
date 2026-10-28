@@ -42,3 +42,59 @@ const { slug, locale } = Astro.props;
   <Image src={stillLife} alt={locale==='zh'?'暖阳下的亚麻靠垫、手作陶杯与木托盘，AI 生成静物':'AI-generated still life of a linen cushion, clay cup and wooden tray in warm sunlight'} widths={[480,960,1536]} sizes="(max-width: 600px) 100vw, 55vw" width={1536} height={1024} loading="eager" />
   <span aria-hidden="true">LINEN · CLAY · WOOD</span>
 </div>}
+
+{slug === 'bauhaus' && <div class="signature-art signature-bauhaus" aria-hidden="true">
+  <svg viewBox="0 0 640 420" fill="none">
+    <path d="M28 28h584v364H28zM28 330h584M467 28v364" stroke="currentColor" stroke-width="1" opacity=".32" />
+    <circle cx="245" cy="181" r="137" fill="#e23b2e" />
+    <path d="M65 273h225v109H65z" fill="#21409a" />
+    <path d="m389 70 140 239H249z" fill="#f2b705" />
+    <path d="M393 136v246h-19V136z" fill="currentColor" />
+    <circle cx="470" cy="330" r="54" stroke="currentColor" stroke-width="3" />
+    <path d="M470 276v108M416 330h108M65 350h225" stroke="currentColor" stroke-width="1" />
+    <path d="M560 110v122m-10-12 10 12 10-12" stroke="currentColor" stroke-width="2" />
+  </svg>
+</div>}
+{slug === 'hand-drawn' && <div class="signature-art signature-scribble" aria-hidden="true">
+  <svg viewBox="0 0 640 500" fill="none">
+    <path d="m80 64 427-17 31 383-425 24z" fill="#e8dfc7" />
+    <path d="m67 51 432-15 30 387-430 21z" fill="#fffdf3" stroke="#51483b" stroke-width="2" />
+    <g stroke="#cec6b0" opacity=".7">{Array.from({length:10},(_,i)=><path d={`M${85+i*1.6} ${111+i*29}l415-15`} />)}</g>
+    <path d="m147 25 90-4 5 53-91 6zM390 402l91-4 5 51-91 6z" fill="#e9c16f" opacity=".75" />
+    <g stroke="#413e35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M273 354c-1-63 20-116 38-164M285 290c-30-1-57-19-58-43 30-2 54 9 60 32M298 253c39 6 70-10 81-36-34-5-66 5-77 25" fill="#c5cfaa" />
+      <path d="M306 188c-41 14-56-3-44-24-34-4-27-39-1-39-16-26 9-47 29-30 5-35 38-34 43-7 26-20 46 4 31 26 33 4 31 38 4 43 21 26-8 48-29 29-6 27-31 26-33 2Z" fill="#f6a16d" />
+      <path d="M299 141c-2-25 36-29 44-6 11 26-31 41-42 15" fill="#f5d571" />
+      <path d="m244 355 94-8-9 58-66 4z" fill="#b7c7d0" />
+      <path d="M227 412c26-3 87-8 129-6M121 185c9-12 18-12 28 0m-23 12c7 8 16 8 24-1M433 271l17-12-3 22 19 9-23 4-7 23-6-21-23-8 22-5z" />
+      <path d="M423 151c24 0 37 9 43 28m-11-10 11 10 5-15M158 338c-17-12-21-25-12-39m-7 13 7-13 11 6" />
+    </g>
+    <g fill="#635b49" font-family="'Comic Sans MS','Chalkboard SE',cursive" font-size="16"><text x="370" y="118" transform="rotate(-5 370 118)">a little</text><text x="390" y="140" transform="rotate(-5 390 140)">wonder.</text><text x="122" y="379" transform="rotate(-5 122 379)">today</text></g>
+    <path d="m532 348 29-141 11 2-25 143-11 16z" fill="#ec9363" stroke="#51483b" stroke-width="2" />
+    <path d="m536 368 5-14 6-2z" fill="#51483b" />
+  </svg>
+</div>}
+{slug === 'retro-futurism' && <div class="signature-art signature-synth" aria-hidden="true">
+  <svg viewBox="0 0 640 420" fill="none">
+    <g fill="#f4e4ff" opacity=".7">{[[53,60],[112,107],[202,36],[447,58],[572,111],[523,29],[80,164],[380,24]].map(([x,y])=><circle cx={x} cy={y} r="1.5" />)}</g>
+    <circle cx="337" cy="174" r="113" fill="#ffb86b" />
+    {[0,1,2,3,4,5,6].map(i=><path d={`M225 ${168+i*16}h225`} stroke="#25103e" stroke-width={3+i*1.6} />)}
+    <path d="M0 244 77 218 120 237 192 202 237 240 280 217 320 250 369 222 420 235 475 207 526 235 571 220 640 241V420H0z" fill="#170e30" />
+    <g stroke="#a453a7" stroke-width="1" opacity=".65">
+      {[0,1,2,3,4,5,6,7,8].map(i=><path d={`M320 250L${-600+i*230} 420`} />)}
+      {[263,281,310,352,409].map(y=><path d={`M0 ${y}h640`} />)}
+    </g>
+    <path d="m304 250-117 170h267L335 250" fill="#1d1436" stroke="#ff71ce" stroke-width="1.5" />
+    <path d="m320 274-1 11m1 15-1 21m0 24-2 47" stroke="#ffd2e9" stroke-width="3" />
+    <g transform="translate(41 289) rotate(-9 97 42)">
+      <rect width="194" height="101" rx="8" fill="#322542" stroke="#ca8eb7" stroke-width="1.5" />
+      <path d="M13 13h168v49H13z" fill="#d994a0" /><path d="M13 45h168v17H13z" fill="#f7b98a" />
+      <rect x="46" y="34" width="101" height="28" rx="14" fill="#20162e" />
+      <circle cx="61" cy="48" r="10" fill="#9b8095" /><circle cx="132" cy="48" r="10" fill="#9b8095" />
+      <circle cx="61" cy="48" r="4" fill="#20162e" /><circle cx="132" cy="48" r="4" fill="#20162e" />
+      <path d="m48 100 9-25h81l9 25z" stroke="#ca8eb7" /><text x="23" y="29" fill="#302134" font-family="monospace" font-size="11">SYNTH—84 / SIDE A</text>
+      <g fill="#ca8eb7">{[[8,8],[186,8],[8,93],[186,93]].map(([x,y])=><circle cx={x} cy={y} r="2" />)}</g>
+    </g>
+    <g fill="#f5c4e8" font-family="monospace" font-size="10" letter-spacing="2"><text x="25" y="27">FM 84.0 / STEREO</text><text x="454" y="395">MIDNIGHT DRIVE</text></g>
+  </svg>
+</div>}

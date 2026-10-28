@@ -1,3 +1,4 @@
+import { scrollToScene, showSceneDialog, dismissSceneDialog } from './interaction-motion';
 /** 八种非杂志参考页的交互；状态仅属于当前独立文档。 */
 export function initOtherReference(root: HTMLElement) {
   const slug = root.dataset.styleScene;
@@ -15,15 +16,15 @@ export function initOtherReference(root: HTMLElement) {
     const dialog=q<HTMLDialogElement>(`[data-other-dialog="${name}"]`);
     if (!dialog) return;
     if(!source.closest('dialog')) opener=source;
-    close(); dialog.showModal();
+    close(); showSceneDialog(dialog);
   };
   const section = (index:number) => {
     close(); opener=null; const el=q(`#scene-section-${index}`);
-    el?.scrollIntoView({block:'start'}); el?.focus({preventScroll:true});
+    scrollToScene(el);
   };
   root.querySelectorAll<HTMLDialogElement>('[data-other-dialog]').forEach(d=>{
-    d.addEventListener('keydown', event=>{if(event.key==='Escape'){event.preventDefault();d.close();}});
-    d.addEventListener('click', e=> { if((e.target as HTMLElement).closest('[data-other-close]')) d.close(); });
+    d.addEventListener('keydown', event=>{if(event.key==='Escape'){event.preventDefault();dismissSceneDialog(d);}});
+    d.addEventListener('click', e=> { if((e.target as HTMLElement).closest('[data-other-close]')) dismissSceneDialog(d); });
     d.addEventListener('close', ()=> { if(!root.querySelector('dialog[open]') && opener?.isConnected) opener.focus({preventScroll:true}); });
   });
 
@@ -129,7 +130,7 @@ export function initOtherReference(root: HTMLElement) {
     root.querySelectorAll<HTMLElement>('.retro-sidebar [data-scene-action]').forEach((el,i)=>el.setAttribute('aria-current',i===index?'page':'false'));
     const back=q<HTMLButtonElement>('[data-scene-action="retro-back"]');if(back){back.disabled=historyIndex===0;back.setAttribute('aria-disabled',String(back.disabled));}
     const forward=q<HTMLButtonElement>('[data-scene-action="retro-forward"]');if(forward){forward.disabled=historyIndex===history.length-1;forward.setAttribute('aria-disabled',String(forward.disabled));}
-    if(scroll){ if(index===0)window.scrollTo({top:0});else{reading.scrollIntoView({block:'start'});reading.focus({preventScroll:true});} }
+    if(scroll) scrollToScene(index===0 ? root : reading);
   }
   function visit(index:number){
     if(index!==retroCurrent){history=history.slice(0,historyIndex+1);history.push(index);historyIndex=history.length-1;}
