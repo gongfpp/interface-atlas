@@ -82,6 +82,9 @@ jobs:
           PUBLIC_LOG_API: 'off'
           PUBLIC_UMAMI_SRC: ${{ vars.PUBLIC_UMAMI_SRC }}
           PUBLIC_UMAMI_ID: ${{ vars.PUBLIC_UMAMI_ID }}
+          # 本轮只切正式 EdgeOne；GH/CF 保留上面的原 PUBLIC_UMAMI_* 配置。
+          PUBLIC_EDGEONE_UMAMI_SRC: ${{ vars.PUBLIC_EDGEONE_UMAMI_SRC }}
+          PUBLIC_EDGEONE_UMAMI_ID: ${{ vars.PUBLIC_EDGEONE_UMAMI_ID }}
           PUBLIC_CF_BEACON_TOKEN: ${{ vars.PUBLIC_CF_BEACON_TOKEN }}
 
       - name: Publish to gongfpp/interface-atlas-web

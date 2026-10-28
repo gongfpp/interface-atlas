@@ -1,4 +1,5 @@
 import { stripBase, withBase } from '@/lib/i18n';
+import { analyticsVisitor, analyticsUpgradeEnabled, resetAnalyticsVisitor } from '@/lib/analytics-identity';
 
 export type TrackProps = Record<string, string | number | boolean>;
 
@@ -47,10 +48,15 @@ function saveSession() {
 }
 
 /** 匿名会话跨页面保留；无操作 30 分钟后轮换，不记录跨会话身份。 */
-function ensureSession() {
+function ensureSession(activity = false, beforeRotate?: () => void) {
   const now = Date.now();
   const stored = readSession();
   if (!session && stored && now - stored.last < SESSION_IDLE && now >= stored.last) session = stored;
+  // 心跳和隐藏快照不能续期；长期开着的页面在下一次真实操作时换会话。
+  if (session && activity && analyticsUpgradeEnabled() && (now < session.last || now - session.last >= SESSION_IDLE)) {
+    beforeRotate?.();
+    session = undefined;
+  }
   if (!session) {
     let source = 'direct';
     try { source = new URL(document.referrer).hostname; } catch { /* 直接访问 */ }
@@ -66,19 +72,23 @@ function ensureSession() {
     pageStep = ++session.pages;
     visitSequence = 0;
   }
-  session.last = now;
+  if (activity || !analyticsUpgradeEnabled()) session.last = now;
   saveSession();
   return session;
 }
 
 /** BFCache 恢复算一次新的页面访问，会话仍连续。 */
-export function beginAnalyticsVisit(reset = false) {
+export function beginAnalyticsVisit(reset = false, beforeRotate?: () => void) {
+  if (analyticsUpgradeEnabled() && !analyticsAllowed()) return '';
   if (reset) visitId = '';
+  ensureSession(true, beforeRotate);
   return analyticsContext(false).visit_id as string;
 }
 
 export function analyticsContext(advance = true): TrackProps {
+  if (analyticsUpgradeEnabled() && !analyticsAllowed()) return {};
   const current = ensureSession();
+  const visitor = analyticsVisitor();
   if (advance) current.events += 1;
   saveSession();
   return {
@@ -92,6 +102,8 @@ export function analyticsContext(advance = true): TrackProps {
     entry_page: current.entry,
     entry_source: current.source,
     embedded: window.self !== window.top,
+    ...(analyticsUpgradeEnabled() ? { project: 'interface-atlas', hostname: window.location.hostname, channel: analyticsChannel() } : {}),
+    ...(visitor ? { visitor_id: visitor.id, visitor_born_at: visitor.bornAt } : {}),
   };
 }
 
@@ -101,9 +113,27 @@ export function analyticsPath(pathname = window.location.pathname) {
 }
 
 export function analyticsAllowed() {
-  return document.documentElement.dataset.analyticsPreview !== 'true'
-    && navigator.doNotTrack !== '1'
-    && localStorageOptOut() !== '1';
+  try {
+    if (!analyticsUpgradeEnabled()) return document.documentElement.dataset.analyticsPreview !== 'true'
+      && navigator.doNotTrack !== '1' && localStorageOptOut() !== '1';
+    const privacyNavigator = navigator as Navigator & { globalPrivacyControl?: boolean; msDoNotTrack?: string | number };
+    const privacyWindow = window as Window & { doNotTrack?: string | number };
+    const allowed = document.documentElement.dataset.analyticsPreview !== 'true'
+      && privacyNavigator.globalPrivacyControl !== true
+      && ![navigator.doNotTrack, privacyWindow.doNotTrack, privacyNavigator.msDoNotTrack].some(value => value === '1' || value === 'yes' || value === 1)
+      && localStorageOptOut() !== '1';
+    if (!allowed) resetAnalyticsVisitor();
+    return allowed;
+  } catch { resetAnalyticsVisitor(); return false; }
+}
+
+/** 渠道只按已核实的部署来源识别，不使用查询参数或 referrer 猜测。 */
+export function analyticsChannel() {
+  const { origin, pathname } = window.location;
+  if (origin === 'https://gongfpp.github.io' && /^\/interface-atlas-web(?:\/|$)/.test(pathname)) return 'github-pages';
+  if (origin === 'https://atlas.gongfpp.icu') return 'edgeone-pages';
+  if (origin === 'https://interface-atlas-9po.pages.dev') return 'cloudflare-pages';
+  return 'unknown';
 }
 
 function localStorageOptOut() {
@@ -119,7 +149,15 @@ function send(event: string, data: TrackProps) {
 
 /** 脚本晚加载时保留最早的访问与操作；队列和等待都有上限。 */
 export function flushTracking() {
-  if (!window.umami || !analyticsAllowed()) return;
+  if (!analyticsAllowed()) {
+    if (analyticsUpgradeEnabled()) {
+      pending.length = 0;
+      if (retry) clearTimeout(retry);
+      retry = undefined;
+    }
+    return;
+  }
+  if (!window.umami) return;
   if (retry) clearTimeout(retry);
   retry = undefined;
   while (pending.length) {
@@ -133,7 +171,8 @@ export function flushTracking() {
  * 约定：不要上报查询原文等可能含 PII 的字段；查询原文只走 /api/log-search（双端清洗 + TTL）。
  */
 export function track(event: string, data?: TrackProps) {
-  if (typeof window === 'undefined' || !analyticsAllowed()) return;
+  if (typeof window === 'undefined') return;
+  if (!analyticsAllowed()) { flushTracking(); return; }
   const page = analyticsPath();
   const payload = {
     ...data,

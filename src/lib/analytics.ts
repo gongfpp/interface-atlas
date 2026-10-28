@@ -1,4 +1,5 @@
 import { analyticsAllowed, analyticsPath, beginAnalyticsVisit, flushTracking, track, type TrackProps } from '@/lib/track';
+import { analyticsUpgradeEnabled } from '@/lib/analytics-identity';
 
 const ACTIVE_WINDOW = 30_000;
 const HEARTBEAT = 30_000;
@@ -50,7 +51,8 @@ export function startAnalytics() {
   let sentActive = 0;
   let visible = document.visibilityState === 'visible';
   let ended = false;
-  beginAnalyticsVisit();
+  let privacyPaused = false;
+  let visit = beginAnalyticsVisit();
   let clicks = 0;
   let maxScroll = 0;
   const milestones = new Set<number>();
@@ -75,7 +77,23 @@ export function startAnalytics() {
   }
 
   function emit(event: string, data: TrackProps = {}) {
-    if (!ended) track(event, data);
+    if (!ended && canObserve()) track(event, data);
+  }
+
+  function canObserve() {
+    if (!analyticsUpgradeEnabled()) return true;
+    if (!analyticsAllowed()) {
+      privacyPaused = true;
+      flushTracking();
+      return false;
+    }
+    if (privacyPaused) {
+      privacyPaused = false;
+      visit = beginAnalyticsVisit(true);
+      resetMetrics();
+      arrival();
+    }
+    return true;
   }
 
   function summary(): TrackProps {
@@ -92,8 +110,16 @@ export function startAnalytics() {
   }
 
   function activity() {
-    if (ended || !visible) return;
+    if (ended || !visible || !canObserve()) return;
     tick();
+    if (analyticsUpgradeEnabled()) {
+      const nextVisit = beginAnalyticsVisit(false, heartbeat);
+      if (nextVisit !== visit) {
+        visit = nextVisit;
+        resetMetrics();
+        arrival();
+      }
+    }
     lastActivity = performance.now();
   }
 
@@ -116,7 +142,7 @@ export function startAnalytics() {
   }
 
   function heartbeat() {
-    if (ended || !visible) return;
+    if (ended || !visible || !canObserve()) return;
     const data = summary();
     emit('page-engagement', {
       ...data,
@@ -129,10 +155,11 @@ export function startAnalytics() {
 
   function onVisibility() {
     if (ended) return;
+    if (!canObserve()) { visible = document.visibilityState === 'visible'; return; }
     const data = summary(); // 先按切换前的可见状态结算。
     visible = document.visibilityState === 'visible';
     if (visible) {
-      lastActivity = performance.now();
+      activity();
       emit('page-resume');
     } else {
       emit('page-hidden', data);
@@ -142,8 +169,10 @@ export function startAnalytics() {
 
   function onLeave(event: PageTransitionEvent) {
     if (ended) return;
-    scrollDepth();
-    emit('page-leave', { ...summary(), persisted: event.persisted });
+    if (canObserve()) {
+      scrollDepth();
+      emit('page-leave', { ...summary(), persisted: event.persisted });
+    }
     ended = true;
     if (timer) clearInterval(timer);
     flushTracking();
@@ -159,19 +188,26 @@ export function startAnalytics() {
     } catch { /* 无 referrer 的直接访问 */ }
     emit('page-arrival', { from, referrer_host: referrerHost, restored, viewport_width: innerWidth, viewport_height: innerHeight });
     scrollDepth();
+    if (timer) clearInterval(timer);
     timer = setInterval(heartbeat, HEARTBEAT);
   }
 
-  function onRestore(event: PageTransitionEvent) {
-    if (!event.persisted || !ended) return;
+  function resetMetrics() {
     started = lastTick = lastActivity = performance.now();
     visibleMs = activeMs = sentVisible = sentActive = clicks = maxScroll = 0;
     visible = document.visibilityState === 'visible';
-    beginAnalyticsVisit(true);
     milestones.clear();
     fields = new WeakSet<Element>();
     viewed.clear();
     ended = false;
+  }
+
+  function onRestore(event: PageTransitionEvent) {
+    if (!event.persisted || !ended) return;
+    if (analyticsUpgradeEnabled() && !analyticsAllowed()) { privacyPaused = true; ended = false; visible = document.visibilityState === 'visible'; return; }
+    privacyPaused = false;
+    visit = beginAnalyticsVisit(true);
+    resetMetrics();
     arrival(true);
   }
 
