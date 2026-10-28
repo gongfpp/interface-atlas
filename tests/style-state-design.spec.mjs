@@ -1,4 +1,5 @@
 import { test, expect } from './helpers/private-browser.mjs';
+import { observeSettledGeometry } from './helpers/settled-geometry.mjs';
 import { STYLE_SLUGS, FOCUS_STYLES, SELECT_STYLES, DIALOG_STYLES, openStyleStatePage, runStyleStatePath, computedState, representativeSelect } from './helpers/style-state-paths.mjs';
 
 const widths = [1280, 390, 320];
@@ -197,9 +198,14 @@ for (const [slug, width, locale] of [['claymorphism',390,'en'],['liquid-glass',3
     const root = await openStyleStatePage(page, slug, locale);
     const select = await representativeSelect(root, slug);
     const evidence = captureIntoTest(page, root, testInfo);
+    const workspace = root.locator('[data-generic-panel="0"] .gs-two').first();
+    await observeSettledGeometry(workspace);
     await evidence.capture('workspace-mobile-layout', { targets:['[data-generic-panel="0"] .gs-two'] });
-    const columns = root.locator('[data-generic-panel="0"] .gs-two').first().locator(':scope > *');
-    const first = await columns.nth(0).boundingBox(), second = await columns.nth(1).boundingBox();
+    // Read both columns in one frame; sequential boundingBox calls can straddle smooth-scroll frames.
+    const [first, second] = await workspace.locator(':scope > *').evaluateAll(elements => elements.map(element => {
+      const { x, y, width, height } = element.getBoundingClientRect();
+      return { x, y, width, height };
+    }));
     expect(Math.abs(first.x - second.x), '手机工作区应单列，不能把控制器挤成逐词换行的窄列').toBeLessThanOrEqual(1.5);
     expect(second.y).toBeGreaterThanOrEqual(first.y + first.height - 1);
     const trigger = select.locator('xpath=ancestor::label[1]').locator('[role="combobox"]');
