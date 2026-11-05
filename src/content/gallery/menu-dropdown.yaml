@@ -11,19 +11,19 @@ description:
   en: 'Eight AI-generated menu/dropdown reference posters. Each sheet explores five cases around "component structure + interaction logic": from plain action menus to grouped, nested, context and command menus — the full spectrum of triggers and hierarchy.'
 related_component: dropdown
 images:
-  - file: /images/gallery/menu-dropdown/1.webp
+  - file: /images/gallery/menu-dropdown/0.webp
     title:
       zh: 结构案例 0
       en: Sheet 0
-  - file: /images/gallery/menu-dropdown/2.webp
+  - file: /images/gallery/menu-dropdown/1.webp
     title:
       zh: 结构案例 1
       en: Sheet 1
-  - file: /images/gallery/menu-dropdown/3.webp
+  - file: /images/gallery/menu-dropdown/2.webp
     title:
       zh: 结构案例 2
       en: Sheet 2
-  - file: /images/gallery/menu-dropdown/4.webp
+  - file: /images/gallery/menu-dropdown/3.webp
     title:
       zh: 结构案例 3
       en: Sheet 3

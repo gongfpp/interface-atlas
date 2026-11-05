@@ -7,11 +7,13 @@
  * 5. compare.group 至少 2 个成员（CI 环境为硬失败，本地为警告；成员补齐后自然转绿）
  * 6. 同 compare 组成员的 dimensions 键必须完全一致（Compare 浏览页按统一维度渲染）
  * 7. 全量 null 值/键扫描（flow mapping 静默拆键会留下 null 键或截断的 null 值）
+ * 8. 图库 images[].file 必须指向 public 内实际存在的文件
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { load as yamlLoad } from 'js-yaml';
+import { validateGalleryImages } from './validate-gallery-images.mjs';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const TYPES = ['components', 'patterns', 'styles', 'pages', 'motion', 'foundation', 'a11y'];
@@ -157,6 +159,20 @@ for (const [group, members] of compareGroups) {
         .map((m) => `${m.id}(${m.dims.join(', ')})`)
         .join(' / ')}`,
     );
+  }
+}
+
+// 图库使用独立 schema，不参与概念条目的必填字段与 compare 组校验。
+const galleryDir = join(root, 'src', 'content', 'gallery');
+for (const file of readdirSync(galleryDir).filter((file) => file.endsWith('.yaml'))) {
+  const rel = `gallery/${file}`;
+  try {
+    const data = yamlLoad(readFileSync(join(galleryDir, file), 'utf8'));
+    for (const error of validateGalleryImages(data, join(root, 'public'))) {
+      errors.push(`${rel}: ${error}`);
+    }
+  } catch (error) {
+    errors.push(`${rel}: YAML 解析或资源校验失败 — ${error.message}`);
   }
 }
 
