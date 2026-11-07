@@ -1,5 +1,4 @@
 import { test, expect } from './helpers/private-browser.mjs';
-import { readyStyleFrame, reloadStyleFrame, exerciseStyleFlow } from './helpers/style-page-flows.mjs';
 
 const STYLES = [
   'minimalism', 'swiss-style', 'editorial', 'glassmorphism', 'bento-grid',
@@ -10,11 +9,11 @@ const WIDTHS = [1280, 390, 320];
 const pathFor = (locale, route = '') => `${locale === 'en' ? '/en' : ''}${route || '/'}`;
 const styleScene = (root, slug) => root.locator(`[data-style-scene="${slug}"]`);
 
-function observeFailures(page) {
+function observeFailures(page, baseURL) {
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('response', (response) => {
-    if (response.url().startsWith('http://127.0.0.1:4337/') && response.status() >= 400) {
+    if (response.url().startsWith(new URL(baseURL).origin + '/') && response.status() >= 400) {
       errors.push(`${response.status()} ${response.url()}`);
     }
   });
@@ -90,7 +89,7 @@ async function readyScene(scene, locale) {
 }
 
 async function readyConceptActions(page) {
-  const island = page.locator('article > header astro-island[component-url*="ConceptActions"]');
+  const island = page.locator('header astro-island[component-url*="ConceptActions"]');
   await expect(island).toHaveCount(1);
   await expect.poll(() => island.evaluate((element) => element.hasAttribute('ssr'))).toBe(false);
   return island.locator('button[aria-pressed]');
@@ -176,9 +175,9 @@ async function capture(page, target, label, testInfo) {
 
 for (const locale of LOCALES) {
   for (const width of WIDTHS) {
-    test(`参考缩景 首页 ${locale} ${width}px：十种场景完整且保持可点击详情入口`, async ({ page }, testInfo) => {
+    test(`参考缩景 首页 ${locale} ${width}px：十种场景完整且保持可点击详情入口`, async ({ page, baseURL }, testInfo) => {
       test.setTimeout(60_000);
-      const errors = observeFailures(page);
+      const errors = observeFailures(page, baseURL);
       await page.setViewportSize({ width, height: 900 });
       await page.goto(pathFor(locale));
       const home = page.locator('[data-home-styles]');
@@ -194,9 +193,9 @@ for (const locale of LOCALES) {
       expect(errors).toEqual([]);
     });
 
-    test(`参考缩景 风格列表 ${locale} ${width}px：十种参考保持对应列表入口`, async ({ page }, testInfo) => {
+    test(`参考缩景 风格列表 ${locale} ${width}px：十种参考保持对应列表入口`, async ({ page, baseURL }, testInfo) => {
       test.setTimeout(60_000);
-      const errors = observeFailures(page);
+      const errors = observeFailures(page, baseURL);
       await page.setViewportSize({ width, height: 900 });
       await page.goto(pathFor(locale, '/styles'));
       for (const slug of STYLES) {
@@ -212,36 +211,15 @@ for (const locale of LOCALES) {
       expect(errors).toEqual([]);
     });
 
-    for (const slug of STYLES) {
-      test(`参考缩景 ${slug} ${locale} ${width}px：详情预览、图片与原交互`, async ({ page }, testInfo) => {
-        test.setTimeout(45_000);
-        const errors = observeFailures(page);
-        await page.setViewportSize({ width, height: 900 });
-        await page.goto(pathFor(locale, `/styles/${slug}`));
-        const { experience, iframe, frame, scene } = await readyStyleFrame(page, slug, locale);
-        // 详情中的真控件来自同一品牌整页；原十套照片不可被无关组件demo替代。
-        if (['minimalism', 'editorial', 'glassmorphism', 'bento-grid', 'skeuomorphism', 'brutalism'].includes(slug)) {
-          expect(await scene.locator('.scene-page img').count(), slug).toBeGreaterThan(0);
-        }
-        await expect(scene.locator('iframe, canvas')).toHaveCount(0);
-        expect((await scene.innerText()).trim().length).toBeGreaterThan(30);
-        await capture(page, experience, `detail-${slug}-${locale}-${width}`, testInfo);
-        await exerciseStyleFlow(scene, slug, locale);
-        await reloadStyleFrame(experience, frame);
-        await expect(scene).toBeVisible();
-        await expect(iframe).toHaveAttribute('title', locale === 'en' ? 'Full-page interaction' : '完整页面交互');
-        await assertNoOverflow(page, `${slug} 已加载整页 ${locale} ${width}px`);
-        expect(errors).toEqual([]);
-      });
-    }
+    // /styles full-page semantics and artwork are covered in atlas-pages.spec.mjs.
   }
 }
 
 for (const locale of LOCALES) {
   for (const width of [1280, 390]) {
-    test(`参考缩景 ${locale} ${width}px：首页进入、语言切换、收藏恢复与列表进入`, async ({ page }) => {
+    test(`参考缩景 ${locale} ${width}px：首页进入、语言切换、收藏恢复与列表进入`, async ({ page, baseURL }) => {
       test.setTimeout(60_000);
-      const errors = observeFailures(page);
+      const errors = observeFailures(page, baseURL);
       const otherLocale = locale === 'zh' ? 'en' : 'zh';
       await page.setViewportSize({ width, height: 900 });
       await page.goto(pathFor(locale));
@@ -254,17 +232,17 @@ for (const locale of LOCALES) {
       await expect(save).toHaveAttribute('aria-pressed', 'true');
       await page.locator(`header a[lang="${otherLocale}"]`).click();
       await expect(page).toHaveURL(new RegExp(`${pathFor(otherLocale, '/styles/minimalism')}/?$`));
-      await readyStyleFrame(page, 'minimalism', otherLocale);
+      await expect(page.locator('[data-atlas-root][data-ready]')).toBeVisible();
       await expect(await readyConceptActions(page)).toHaveAttribute('aria-pressed', 'true');
       await page.goto(pathFor(otherLocale, '/saved'));
       const savedLink = page.locator(`a[href="${pathFor(otherLocale, '/styles/minimalism')}"]`).first();
       await expect(savedLink).toBeVisible();
       await savedLink.click();
-      await readyStyleFrame(page, 'minimalism', otherLocale);
+      await expect(page.locator('[data-atlas-root][data-ready]')).toBeVisible();
       await page.goto(pathFor(locale, '/styles'));
       await styleScene(page, 'retro-web').locator('xpath=ancestor::a[1]').click();
       await expect(page).toHaveURL(new RegExp(`${pathFor(locale, '/styles/retro-web')}/?$`));
-      await readyStyleFrame(page, 'retro-web', locale);
+      await expect(page.locator('[data-atlas-root]')).toBeVisible();
       await page.goBack();
       await expect(page).toHaveURL(new RegExp(`${pathFor(locale, '/styles')}/?$`));
       await assertNoOverflow(page, `入口往返 ${locale} ${width}px`);
@@ -276,10 +254,12 @@ for (const locale of LOCALES) {
 
 for (const locale of LOCALES) {
   for (const width of [1280, 390]) {
-    test(`参考缩景 Retro Web ${locale} ${width}px：留言校验、键盘、往返、重复提交和清空`, async ({ page }, testInfo) => {
+    test(`参考缩景 Retro Web ${locale} ${width}px：留言校验、键盘、往返、重复提交和清空`, async ({ page, baseURL }, testInfo) => {
       await page.setViewportSize({ width, height: 900 });
-      await page.goto(pathFor(locale, '/styles/retro-web'));
-      const { experience, frame, scene: content } = await readyStyleFrame(page, 'retro-web', locale);
+      await page.goto(pathFor(locale, '/style-scenes/retro-web/'));
+      const frame=page;
+      const content=page.locator('[data-style-scene]');
+      const experience=content;
       const action = name => content.locator(`[data-scene-action="${name}"]`).first();
       const openGuestbook = () => action('retro-page-4').click();
       const form = content.locator('[data-other-form="guestbook"]');
@@ -296,7 +276,7 @@ for (const locale of LOCALES) {
       const outgoing = [];
       const recordRequest = request => {
         const url = new URL(request.url());
-        if (request.method() !== 'GET' || (url.protocol !== 'blob:' && url.origin !== 'http://127.0.0.1:4337')) outgoing.push(`${request.method()} ${request.url()}`);
+        if (request.method() !== 'GET' || (url.protocol !== 'blob:' && url.origin !== new URL(baseURL).origin)) outgoing.push(`${request.method()} ${request.url()}`);
       };
       page.on('request', recordRequest);
       await openGuestbook();
@@ -344,7 +324,7 @@ for (const locale of LOCALES) {
       expect(outgoing).toEqual([]);
       page.off('request', recordRequest);
       await capture(page, experience, `interactive-retro-web-${locale}-${width}`, testInfo);
-      await reloadStyleFrame(experience, frame);
+      await page.reload();
       await openGuestbook();
       await expect(entryList.getByRole('listitem')).toHaveText(baseline);
       await name.fill('Atlas visitor');
@@ -352,7 +332,7 @@ for (const locale of LOCALES) {
       await submit.click();
       await expect(entryList.getByRole('listitem')).toHaveCount(baseline.length + 1);
       await page.reload();
-      await readyStyleFrame(page, 'retro-web', locale);
+      await expect(page.locator('[data-style-scene]')).toBeVisible();
       await openGuestbook();
       await expect(entryList.getByRole('listitem')).toHaveText(baseline);
       await assertNoOverflow(page, `Retro Web 留言 ${locale} ${width}px`);

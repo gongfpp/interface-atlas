@@ -43,11 +43,10 @@ for (const width of [1280, 390]) {
 }
 
 for (const { slug, data } of styles) {
-  test(`英文整页预览 ${slug}：动态文案与完整预览均本地化`, async ({ page }) => {
-    await page.goto(`/en/styles/${slug}/`);
-    const preview = page.locator('[data-style-preview]');
-    await preview.scrollIntoViewIfNeeded();
-    const scene = page.frameLocator('[data-style-frame]').locator(`[data-style-scene="${slug}"]`);
+  test(`英文独立场景 ${slug}：动态文案与完整预览均本地化`, async ({ page }) => {
+    // 旧场景仍独立保留；/styles/ 详情现在是 Atlas 整页，没有预览 iframe。
+    await page.goto(`/en/style-scenes/${slug}/`);
+    const scene = page.locator(`[data-style-scene="${slug}"]`);
     await expect(scene).toBeVisible();
     await assertEnglishScene(scene, slug);
     if (!referenceSlugs.has(slug)) {

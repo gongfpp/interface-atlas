@@ -1,0 +1,55 @@
+---
+interface Props { slug:string; locale:'zh'|'en'; }
+const {slug,locale}=Astro.props;
+const l=(zh:string,en:string)=>locale==='zh'?zh:en;
+const pixelRows=['00000000000000000000','00000000000111000000','00000000001111100000','00000000011111110000','00000000001222100000','00000000001202100000','00110000001222100000','01111000001222100000','00110000011222110000','00330000112222211000','33333333333333333333'];
+const tiles=[{x:80,y:100,h:22},{x:120,y:80,h:42},{x:160,y:100,h:28},{x:200,y:80,h:62},{x:240,y:100,h:20},{x:120,y:120,h:16},{x:160,y:140,h:34},{x:200,y:120,h:18}];
+---
+<div class={`atlas-semantic-art semantic-${slug}`}>
+{slug==='retro-futurism' ? <>
+  <div data-variant-art="atompunk"><svg viewBox="0 0 640 340" role="img" aria-label={l('原子时代：轨道、火箭与模拟仪表','Atompunk: orbital paths, rocket and analog instrument')}>
+    <rect width="640" height="340" rx="12" fill="#e8ddc3"/><path d="M0 245Q170 180 340 270T640 250V340H0Z" fill="#c1c7ad"/>
+    <g fill="none" stroke="#38685c" stroke-width="2"><ellipse cx="240" cy="170" rx="215" ry="65" transform="rotate(-28 240 170)"/><ellipse cx="240" cy="170" rx="165" ry="100" transform="rotate(34 240 170)"/><circle cx="240" cy="170" r="114"/></g>
+    <circle cx="95" cy="234" r="13" fill="#d16d39"/><circle cx="379" cy="103" r="19" fill="#d16d39"/>
+    <path d="M240 37Q196 113 212 247H268Q284 113 240 37Z" fill="#fcf3da" stroke="#38685c" stroke-width="3"/><path d="m212 183-32 65 33-14m55-51 32 65-33-14" fill="#38685c"/><path d="m222 249 18 57 18-57" fill="#d16d39"/><circle cx="240" cy="137" r="18" fill="#38685c"/>
+    <g transform="translate(440 65)"><rect width="162" height="200" rx="22" fill="#38685c"/><path d="M18 112a63 63 0 0 1 126 0" fill="#f7ebcd"/><path d="m81 112 35-48" stroke="#c8572f" stroke-width="4"/><circle cx="81" cy="112" r="7" fill="#273f36"/><text x="81" y="158" text-anchor="middle" fill="#f7ebcd" font-size="15" font-family="monospace">ORBIT / 1962</text><circle cx="41" cy="180" r="7" fill="#eab04d"/><path d="M65 180h64" stroke="#e8ddc3" stroke-width="4"/></g>
+  </svg></div>
+  <div data-variant-art="cassette" hidden><svg viewBox="0 0 640 340" role="img" aria-label={l('卡带未来：米色机壳、磁带和绿色 CRT','Cassette futurism: beige housing, tape reels and a green CRT')}>
+    <rect x="8" y="8" width="624" height="324" rx="18" fill="#c7bda9" stroke="#786e5a" stroke-width="6"/><rect x="30" y="37" width="274" height="202" rx="10" fill="#4d4c44"/><rect x="49" y="58" width="236" height="155" rx="9" fill="#c1b594"/>
+    <rect x="61" y="75" width="212" height="38" fill="#ecdfbe"/><text x="75" y="100" font-family="monospace" font-size="17" fill="#3e4033">ATLAS / SIDE A</text><g fill="#e9dfc5" stroke="#645e4d" stroke-width="11"><circle cx="108" cy="155" r="25"/><circle cx="226" cy="155" r="25"/></g><path d="M108 155h118" stroke="#746d59" stroke-width="9"/>
+    <rect x="326" y="37" width="282" height="202" rx="17" fill="#393d30"/><rect x="344" y="55" width="246" height="164" rx="20" fill="#142b1d"/><g fill="#bce39a" font-family="monospace" font-size="18"><text x="365" y="95">SYSTEM / 1984</text><text x="365" y="133">01  INTERFACE.IA</text><text x="365" y="163">02  MATERIALS.DAT</text><text x="365" y="194">&gt; READY _</text></g>
+    {[0,1,2,3,4,5].map(i=><g><rect x={40+i*94} y="263" width="76" height="43" rx="4" fill={i===2?'#e2a554':'#e2dac8'} stroke="#7a705c" stroke-width="2"/><path d={`M${61+i*94} 277h34v15h-34z`} fill={i===2?'#764324':'#545a4b'}/></g>)}
+  </svg></div>
+  <div data-variant-art="synth" hidden><svg viewBox="0 0 640 340" role="img" aria-label={l('合成器落日：条纹太阳与透视网格','Synth sunset: striped sun and perspective grid')}>
+    <rect width="640" height="340" fill="#21102f"/>
+    {[0,1,2,3,4,5].map(i=><path d={`M${245+i*3} ${68+i*23}h${150-i*6}`} stroke={i<3?'#ffb15d':'#ed598f'} stroke-width={20-i*2}/>)}
+    <path d="M0 220h640v120H0Z" fill="#371341"/>
+    {[0,1,2,3,4,5,6,7,8].map(i=><path d={`M320 216 ${i*80} 340`} stroke="#b84abf"/>) }
+    {[225,240,265,300,339].map(y=><path d={`M0 ${y}h640`} stroke="#b84abf"/>)}
+    <text x="320" y="42" text-anchor="middle" font-size="22" font-family="monospace" fill="#ffe3c5">SYNTH / TOMORROW</text>
+  </svg></div>
+</> : slug==='pixel-art' ? <>
+  <div data-variant-art="eight-bit"><svg viewBox="0 0 320 192" shape-rendering="crispEdges" role="img" aria-label={l('8位复古：四色色板的硬边像素场景','8-bit: a hard-edged scene with four colours')}>
+    <rect width="320" height="192" fill="#09261c"/>
+    {pixelRows.flatMap((row,y)=>[...row].map((v,x)=>v!=='0'&&<rect x={x*16} y={y*16} width="16" height="16" fill={v==='1'?'#ffe1a1':v==='2'?'#79c88c':'#387149'}/>))}
+    <path d="M32 32h16v16H32zm16-16h16v16H48zm16 16h16v16H64zm-16 16h16v16H48z" fill="#ffe1a1"/>
+  </svg></div>
+  <div data-variant-art="modern-pixel" hidden><svg viewBox="0 0 320 192" shape-rendering="crispEdges" role="img" aria-label={l('现代像素：更细网格、阶梯圆角与多色色板','Modern pixel: finer grid, stepped corners and a broader palette')}>
+    <rect width="320" height="192" fill="#131e31"/><path d="M24 20h272v8h8v140h-8v8H24v-8h-8V28h8Z" fill="#27364b"/>
+    {[0,1,2,3,4,5,6,7].map(i=><g><rect x={32+i*32} y="36" width="24" height="8" fill={['#91d9f0','#69b9d9','#8a9ade','#c2a0e8','#f0add5','#efa9a1','#f1d0a4','#c1e2ae'][i]}/><rect x={32+i*32} y={140-i*8} width="24" height={i*8+16} fill={i%2?'#c2a0e8':'#91d9f0'}/></g>)}
+    <path d="M32 62h120v8H32zm0 16h88v8H32z" fill="#e1f4ff"/>
+  </svg></div>
+  <div data-variant-art="isometric" hidden><svg viewBox="0 0 320 192" shape-rendering="crispEdges" role="img" aria-label={l('等距像素：2比1投影的立体街区','Isometric pixel: a neighbourhood in 2:1 projection')}>
+    <rect width="320" height="192" fill="#221b33"/><path d="m160 22 150 75-150 75L10 97Z" fill="#50425e"/>
+    {tiles.map(({x,y,h},i)=><g><path d={`m${x-20} ${y-h} 20-10 20 10-20 10Z`} fill={i%2?'#f2d1a4':'#dfb5fa'}/><path d={`m${x-20} ${y-h} 20 10v${h}l-20-10Z`} fill="#9879b5"/><path d={`m${x} ${y-h+10} 20-10v${h}l-20 10Z`} fill="#695080"/></g>)}
+  </svg></div>
+</> : ['editorial','minimalism','swiss-style','brutalism','hand-drawn'].includes(slug) ? <div class="specimen-page" aria-hidden="true"><span>01 / ATLAS</span><strong>Aa</strong><div class="specimen-lines"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+ : slug==='retro-web' ? <div class="specimen-files" aria-hidden="true"><b>▣ ATLAS.EXE</b><span>▰　README.TXT</span><span>▰　STYLES.DAT</span><span>▰　INDEX.HTML</span></div>
+ : ['skeuomorphism','neumorphism','art-deco'].includes(slug) ? <div class="specimen-instrument" aria-hidden="true"><div class="specimen-gauge"><i></i><span>0　50　100</span></div><div class="specimen-instrument-rule"></div></div>
+ : ['glassmorphism','liquid-glass','aurora','y2k'].includes(slug) ? <div class="specimen-optics" aria-hidden="true"><i></i><i></i><b></b></div>
+ : slug==='organic' ? <svg viewBox="0 0 240 160" aria-hidden="true"><path d="M120 146V25M120 85C34 88 37 14 120 66M120 115C200 110 207 36 120 95" fill="var(--ui-primary)" stroke="currentColor" stroke-width="2"/><path d="M86 140h68l-8 18H94Z" fill="var(--ui-primary)"/></svg>
+ : slug==='claymorphism' ? <div class="specimen-clay" aria-hidden="true"><i></i><i></i><b></b></div>
+ : slug==='cyberpunk' ? <div class="specimen-terminal" aria-hidden="true"><span>SYS://ATLAS</span><strong>ACCESS_01</strong><code>[■■■■□□] 64%</code><i></i></div>
+ : slug==='vaporwave' ? <div class="specimen-mall" aria-hidden="true"><span>MALL / 95</span><i></i><i></i><i></i></div>
+ : <div class={`specimen-shapes specimen-${slug}`} aria-hidden="true"><i></i><i></i><i></i><b>01</b></div>}
+</div>

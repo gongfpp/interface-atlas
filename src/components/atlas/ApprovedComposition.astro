@@ -1,0 +1,76 @@
+---
+import {Image, getImage} from 'astro:assets';
+import AtlasSection from './AtlasSection.astro';
+import AtlasArt from './AtlasArt.astro';
+import AtlasControls from './AtlasControls.astro';
+import { APPROVED_ATLAS, type ApprovedStyle } from '@/lib/approved-atlas';
+import {atlasDesign} from '@/lib/atlas-designs';
+import type { Concept } from '@/lib/content';
+import type { Locale } from '@/lib/i18n';
+import paper from '@/assets/approved-atlas/paper-arch.png';
+import editorial from '@/assets/style-scenes/editorial.png';
+import mountains from '@/assets/style-scenes/mountains.png';
+interface Props {concept: Concept; locale: Locale}
+const {concept,locale}=Astro.props;
+const slug=concept.id as ApprovedStyle;
+const direction=APPROVED_ATLAS[slug];
+const d=concept.data;
+const design=atlasDesign(slug);
+const l=(zh:string,en:string)=>locale==='zh'?zh:en;
+const number=String(design.index+1).padStart(2,'0');
+const isRetro=slug==='retro-web';
+const landscape=slug==='glassmorphism' ? await getImage({src:mountains,width:1600,format:'webp'}) : undefined;
+---
+<article class={`approved-composition approved-${slug}`} aria-label={d.name[locale]} style={landscape?`--approved-landscape:url(${landscape.src})`:undefined}>
+  {isRetro && <div class="approved-window-bar"><span>▣ {l('界面图谱','Interface Atlas')}</span><a href="#prompts">{l('提示词.txt','prompt.txt')} ↗</a></div>}
+  <section class="atlas-section atlas-title" id="atlas-title">
+    <p class="atlas-issue">INTERFACE ATLAS / {number}</p>
+    <p class="approved-headline" aria-hidden="true">{slug==='retro-futurism'?'ORBIT / 1962':direction.headline}</p>
+    <h1><span>{number}</span> {d.name[locale]}</h1>
+    {slug==='brutalism' && <p class="approved-brutal-subtitle">BRUTALISM / THIS IS THE INTERFACE.</p>}
+    <p class="atlas-deck">{design[locale]}</p>
+    {slug==='bento-grid' && <span class="approved-bento-number" aria-hidden="true">05</span>}
+  </section>
+  <nav class="approved-index" aria-label={l('本页目录','On this page')}>
+    <h2>{l('目录','Contents')}</h2>
+    <a href="#atlas-notes">01　{l('风格概览','Overview')} ↗</a>
+    <a href="#approved-type">02　{l('字体与材质','Type & materials')} ↗</a>
+    <a href="#atlas-controls">03　{l('组件体验','Components')} ↗</a>
+    <a href="#prompts">04　{l('设计提示词','Design prompt')} ↗</a>
+    {slug==='swiss-style' && <strong class="approved-swiss-number" aria-hidden="true">02<span></span></strong>}
+    {isRetro && <div class="approved-folders" aria-hidden="true">▰　▰　▰</div>}
+  </nav>
+  {!['swiss-style','brutalism','glassmorphism','neobrutalism'].includes(slug) && <section class="atlas-section atlas-art" aria-label={l('视觉与材质','Visual material')}>
+    {slug==='minimalism' && <Image src={paper} alt={l('自然光下弯曲的白色纸张','A white paper arch in natural light')} width={1440} widths={[480,800,1440]} sizes="100vw" format="webp" loading="eager"/>}
+    {slug==='editorial' && <Image src={editorial} alt={l('晨光里的书、咖啡与花枝','Books, coffee and flowers in morning light')} width={800} widths={[480,800]} sizes="(max-width:700px) 100vw, 35vw" format="webp" loading="eager"/>}
+    {slug==='flat-design' ? <div class="clarity-stage"><svg data-flat-scene viewBox="0 0 720 340" role="img" aria-label={l('蓝橙色横向信息服务台','Blue and orange horizontal information desk')}>
+      <g class="clarity-wall"><path d="M510 60 690 0v260H510Z" fill="#ff8000"/></g>
+      <g class="clarity-desk"><path d="M190 210h450v110H190Z" fill="#075ce5"/><path d="M180 197h470v18H180Z" fill="#ff8000"/><rect x="460" y="126" width="90" height="53" fill="#075ce5"/><path d="M500 170v28" stroke="#075ce5" stroke-width="16"/><circle cx="410" cy="264" r="32" fill="white"/><text x="410" y="280" text-anchor="middle" font-size="48" font-family="Georgia" fill="#075ce5">i</text></g>
+      <g class="clarity-plant"><path d="M70 320V190c-60-50-50-95 0-40 50-55 80-45 15 20" fill="#075ce5"/><path d="M30 275h85v45H30Z" fill="#075ce5"/></g>
+      <g class="clarity-sign"><path d="M210 30h240v90H210Z" fill="#075ce5"/><path d="M240 75h170m-20-18 20 18-20 18" stroke="white" stroke-width="10" fill="none"/></g>
+    </svg></div> : (['bento-grid','neumorphism','retro-web'].includes(slug) || design.index>=10) && <AtlasArt slug={slug} locale={locale} variants={d.variants}/>}
+    {slug==='skeuomorphism' && <div class="approved-instrument">
+      <div class="approved-meter"><svg viewBox="0 0 420 230" role="img" aria-label={l('随灯光滑杆变化的仪表','Meter controlled by the light slider')}><path d="M38 170Q210 5 382 170" fill="none" stroke="currentColor" stroke-width="2"/>{Array.from({length:13},(_,i)=><line x1="210" y1="42" x2="210" y2={i%3===0?62:54} stroke="currentColor" stroke-width="2" transform={`rotate(${-60+i*10} 210 220)`}/>)}<text x="210" y="135" text-anchor="middle">VU</text><g class="approved-meter-needle"><path d="M210 218L207 56L214 217Z" fill="#78301d"/></g><circle cx="210" cy="219" r="9" fill="#443421"/></svg><span>−20　−10　−5　0　+3</span></div>
+      <strong>SKEUOMORPHISM /<br/>THE MATERIAL ARCHIVE</strong>
+      <div class="approved-instrument-controls"><label class="approved-power"><input type="checkbox" data-instrument-power checked/>{l('电源','Power')}<i></i></label><div class="approved-metal-knob" aria-hidden="true"></div><span>{l('黄铜 · 胡桃木','Brass · Walnut')}</span></div>
+    </div>}
+  </section>}
+  <AtlasSection kind="notes" concept={concept} locale={locale}/>
+  <section class="atlas-section approved-type" id="approved-type">
+    <h2>{l('字体与材质','Typography & materials')}</h2>
+    <div class="approved-type-layout"><strong class="approved-type-sample">{slug==='brutalism'?'AaBbCc123':slug==='neobrutalism'?'AaBbCc':'Aa'}</strong><p>{direction.font}<br/><span>{l('标题鲜明，正文清晰。','Expressive headings, readable text.')}</span></p></div>
+    <div class="approved-palette">{direction.colors.map(color=><div><span style={`--swatch:${color}`}></span><code>{color.toUpperCase()}</code></div>)}</div>
+  </section>
+  <section class="atlas-section atlas-controls" id="atlas-controls" aria-label={l('组件体验','Component playground')}>
+    {slug==='vaporwave' && <div class="memory-cassette" aria-hidden="true"><span>MEMORY / SIDE A</span><i></i><i></i></div>}
+    <AtlasControls slug={slug} locale={locale}/>
+    <div class="approved-control-specimens">
+      <div class="approved-buttons"><button type="button" class="approved-primary" data-current-example>{l('查看案例','View example')} ↗</button><button type="button" data-approved-guide>{l('阅读指南','Read guide')}</button><button type="button" disabled>{l('暂不可用','Unavailable')}</button></div>
+      <label class="approved-check"><input type="checkbox" data-demo-check/>{l('标记为已理解','Mark as understood')}</label>
+      <label class="approved-example-input">{l('试写标题','Try a heading')}<input type="text" data-specimen-input placeholder={l('输入一行灵感…','Write an idea…')} maxlength="48"/></label>
+      <p class="approved-live-sample" data-specimen-preview aria-live="polite">{l('让界面成为风格的示例。','Let the interface express the style.')}</p>
+    </div>
+  </section>
+  <AtlasSection kind="variants" concept={concept} locale={locale}/>
+  <AtlasSection kind="prompt" concept={concept} locale={locale}/>
+</article>

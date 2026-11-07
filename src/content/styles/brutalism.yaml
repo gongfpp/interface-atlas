@@ -125,71 +125,83 @@ prompts:
   basic:
     zh: 用粗野主义风格（Brutalism）设计界面：黑白硬切、超大字号、可见网格、直角硬边，单一刺眼强调色，反精致。
     en: >-
-      Design an interface in Brutalism style: monochrome cuts, oversized type, visible grid,
-      hard square edges and one harsh accent — deliberately anti-polish.
+      Design an interface in Brutalism style: monochrome cuts, oversized type, visible grid, hard square edges and one
+      harsh accent — deliberately anti-polish.
   design:
-    zh: '粗野主义设计规范：底色纸白 #F5F5F0 或近黑；正文纯黑 #0A0A0A；强调色只用一个刺眼橙红 #FF3B00； 全部圆角 0；标题字号 clamp(2.5rem, 8vw, 6rem)，超粗无衬线或等宽；网格线 1px 实线可见； 按钮用 2px 实线框或纯色块反白，hover 反色即可不做位移；深色模式用近黑底配纸白字，强调色不变。'
+    zh: >-
+      粗野主义设计规范：底色纸白 #F5F5F0 或近黑；正文纯黑 #0A0A0A；强调色只用一个刺眼橙红 #FF3B00； 全部圆角 0；标题字号 clamp(2.5rem, 8vw, 6rem)，超粗无衬线或等宽；网格线 1px
+      实线可见； 按钮用 2px 实线框或纯色块反白，hover 反色即可不做位移；深色模式用近黑底配纸白字，强调色不变。
     en: >-
-      "Brutalism spec: paper white #F5F5F0 or near-black ground; pure black #0A0A0A body; exactly one
-      harsh accent #FF3B00; zero radii everywhere; headings at clamp(2.5rem, 8vw, 6rem) in ultra-bold
-      sans or mono; 1px visible grid rules; buttons as 2px outline or solid inverted blocks, hover just
-      inverts colors; dark mode flips to near-black with paper-white type, accent unchanged."
+      "Brutalism spec: paper white #F5F5F0 or near-black ground; pure black #0A0A0A body; exactly one harsh accent
+      #FF3B00; zero radii everywhere; headings at clamp(2.5rem, 8vw, 6rem) in ultra-bold sans or mono; 1px visible grid
+      rules; buttons as 2px outline or solid inverted blocks, hover just inverts colors; dark mode flips to near-black
+      with paper-white type, accent unchanged."
   implementation:
-    zh: |-
-      用当前风格完成 STUDIO VOID 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。preview.brand 与共享 REFERENCE_BRANDS 保持一致；首屏结构、实际导航与素材以 ReferenceStyleScene 为准。
+    zh: >-
+      以 /styles/brutalism/ 为整页入口。标题表达：THIS IS THE INTERFACE.；页面气质：结构裸露，表达直接。。按最新整页图像提案设计布局、字体、图形、材质与组件；桌面区域构图为 "title
+      title" "notes variants" "art controls" "prompt prompt"，不能只换颜色。
 
-      延续 STUDIO VOID 的 40% / 28% / 29% 三栏（1.5% 间隙）：Atlas Heavy（Anton）压缩大字、工作室说明、黑白混凝土照片；主标题使用原 8.9cqw/.95，导航保留 2px 黑色底线。默认画面是近白与黑的直接对比、直角黑 CTA，而不是橙红背景网格模板。作品案例使用现有黑底白字与粗显示字；600px 以下三栏改单列，照片与白字叠层保持。variants 可用现有 #c52f1b 标题色，dark 不反色照片。
 
-      查看作品进入项目目录，打开项目内容并返回；WORK / ABOUT / NEWS / CONTACT 均有对应内容；联系表单校验后显示本地整理结果，不发送邮件。
+      首页入口固定在左上角，图标加“首页”，点击区域至少 44×44px；手机上不收进菜单。变体只使用 经典粗野、软粗野、排印粗野，切换同步材质、构图或控件与提示词；保留用户已编辑文字。详情通过原生 dialog 打开，支持
+      Escape、焦点归还和浏览器前进后退。保留收藏、语言切换、风格指南与可编辑提示词；复制失败选中文本供手动复制。当前风格过渡基准 0ms，减少动态效果时取消动画。桌面、390px、320px 按内容重排。
 
-      静态封面、详情演示与 /style-scenes/brutalism/（英文 /en/style-scenes/brutalism/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。
 
-      操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。
+      实现入口为 src/components/atlas/AtlasPage.astro；逐风格顺序在 src/lib/atlas-designs.ts；交互在 src/lib/atlas-runtime.ts；整页样式在
+      src/styles/atlas-pages.css。既有 /style-scenes/ 独立案例保留，但不要重新嵌入详情页。
+    en: >-
+      Build the full /en/styles/brutalism/ page. Display direction: THIS IS THE INTERFACE.; Raw structure. Direct
+      expression.. Follow the latest whole-page image proposal for layout, typography, artwork, materials and
+      components. Desktop grid areas: "title title" "notes variants" "art controls" "prompt prompt". Do not just
+      recolour a template.
 
-      提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。
-    en: |-
-      Build a complete STUDIO VOID page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. Keep preview.brand aligned with shared REFERENCE_BRANDS; ReferenceStyleScene defines the hero structure, actual navigation and assets.
 
-      Continue STUDIO VOID’s 40% / 28% / 29% columns with 1.5% gaps: Atlas Heavy (Anton) condensed display, studio copy and monochrome concrete photograph. Keep 8.9cqw/.95 display type and the navigation’s 2px black bottom rule. The default is direct near-white/black contrast with a square black CTA, not an orange-red background-grid template. Cases retain their black/white panels and heavy display; stack below 600px while preserving the photograph and overlaid white lettering. Variants may use the existing #c52f1b display accent; dark mode does not invert photographs.
+      Keep an icon plus Home link fixed at the top left, at least 44×44px, visible on mobile without opening a menu.
+      Variants: Classic brutalism, Soft brutalism, Typographic brutalism. Update the design and prompt without
+      overwriting manual edits. Native dialogs support Escape, focus return and browser Back/Forward. Preserve saves,
+      locale switching, style guide and editable prompts; select text for manual copy when clipboard access fails. Base
+      transition: 0ms, disabled with reduced motion. Reflow at desktop, 390px and 320px.
 
-      View our work opens the project index; inspect a project and return. WORK / ABOUT / NEWS / CONTACT reveal matching content; the contact form validates and shows a local summary without sending email.
 
-      Share one renderer between static covers, the detail experience and /style-scenes/brutalism/ (English /en/style-scenes/brutalism/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.
-
-      Interaction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.
-
-      Provide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion.
+      Use AtlasPage.astro, atlas-designs.ts, atlas-runtime.ts and atlas-pages.css. Keep the legacy /style-scenes/
+      examples separate; do not embed them into the detail page.
   agent:
-    zh: |-
-      用当前风格完成 STUDIO VOID 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。preview.brand 与共享 REFERENCE_BRANDS 保持一致；首屏结构、实际导航与素材以 ReferenceStyleScene 为准。
+    zh: >-
+      以 /styles/brutalism/ 为整页入口。标题表达：THIS IS THE INTERFACE.；页面气质：结构裸露，表达直接。。按最新整页图像提案设计布局、字体、图形、材质与组件；桌面区域构图为 "title
+      title" "notes variants" "art controls" "prompt prompt"，不能只换颜色。
 
-      延续 STUDIO VOID 的 40% / 28% / 29% 三栏（1.5% 间隙）：Atlas Heavy（Anton）压缩大字、工作室说明、黑白混凝土照片；主标题使用原 8.9cqw/.95，导航保留 2px 黑色底线。默认画面是近白与黑的直接对比、直角黑 CTA，而不是橙红背景网格模板。作品案例使用现有黑底白字与粗显示字；600px 以下三栏改单列，照片与白字叠层保持。variants 可用现有 #c52f1b 标题色，dark 不反色照片。
 
-      完整页面操作：
-      查看作品进入项目目录，打开项目内容并返回；WORK / ABOUT / NEWS / CONTACT 均有对应内容；联系表单校验后显示本地整理结果，不发送邮件。
+      首页入口固定在左上角，图标加“首页”，点击区域至少 44×44px；手机上不收进菜单。变体只使用 经典粗野、软粗野、排印粗野，切换同步材质、构图或控件与提示词；保留用户已编辑文字。详情通过原生 dialog 打开，支持
+      Escape、焦点归还和浏览器前进后退。保留收藏、语言切换、风格指南与可编辑提示词；复制失败选中文本供手动复制。当前风格过渡基准 0ms，减少动态效果时取消动画。桌面、390px、320px 按内容重排。
 
-      静态封面、详情演示与 /style-scenes/brutalism/（英文 /en/style-scenes/brutalism/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。
 
-      操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。
+      实现入口为 src/components/atlas/AtlasPage.astro；逐风格顺序在 src/lib/atlas-designs.ts；交互在 src/lib/atlas-runtime.ts；整页样式在
+      src/styles/atlas-pages.css。既有 /style-scenes/ 独立案例保留，但不要重新嵌入详情页。
 
-      提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。
 
-      不新增依赖。检查中英文、原导航与 CTA、具体结果、返回/重置和窄屏重排；报告实际运行的检查与待验项，不将实现要求写成已通过结论。
-    en: |-
-      Build a complete STUDIO VOID page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. Keep preview.brand aligned with shared REFERENCE_BRANDS; ReferenceStyleScene defines the hero structure, actual navigation and assets.
+      先核对设计稿的构图、比例、字体、素材、组件和交互，再修改代码。不要把生成图当成可点击网页或实机截图；素材不含伪按钮与伪文字。验证首页始终可见可点、弹层历史、编辑保留、复制失败、键盘、移动端溢出与减少动态效果。使用
+      tests/atlas-pages.spec.mjs 保存真实浏览器截图与操作结果，报告未达成项。
+    en: >-
+      Build the full /en/styles/brutalism/ page. Display direction: THIS IS THE INTERFACE.; Raw structure. Direct
+      expression.. Follow the latest whole-page image proposal for layout, typography, artwork, materials and
+      components. Desktop grid areas: "title title" "notes variants" "art controls" "prompt prompt". Do not just
+      recolour a template.
 
-      Continue STUDIO VOID’s 40% / 28% / 29% columns with 1.5% gaps: Atlas Heavy (Anton) condensed display, studio copy and monochrome concrete photograph. Keep 8.9cqw/.95 display type and the navigation’s 2px black bottom rule. The default is direct near-white/black contrast with a square black CTA, not an orange-red background-grid template. Cases retain their black/white panels and heavy display; stack below 600px while preserving the photograph and overlaid white lettering. Variants may use the existing #c52f1b display accent; dark mode does not invert photographs.
 
-      Full-page operations:
-      View our work opens the project index; inspect a project and return. WORK / ABOUT / NEWS / CONTACT reveal matching content; the contact form validates and shows a local summary without sending email.
+      Keep an icon plus Home link fixed at the top left, at least 44×44px, visible on mobile without opening a menu.
+      Variants: Classic brutalism, Soft brutalism, Typographic brutalism. Update the design and prompt without
+      overwriting manual edits. Native dialogs support Escape, focus return and browser Back/Forward. Preserve saves,
+      locale switching, style guide and editable prompts; select text for manual copy when clipboard access fails. Base
+      transition: 0ms, disabled with reduced motion. Reflow at desktop, 390px and 320px.
 
-      Share one renderer between static covers, the detail experience and /style-scenes/brutalism/ (English /en/style-scenes/brutalism/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.
 
-      Interaction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.
+      Use AtlasPage.astro, atlas-designs.ts, atlas-runtime.ts and atlas-pages.css. Keep the legacy /style-scenes/
+      examples separate; do not embed them into the detail page.
 
-      Provide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion.
 
-      Add no dependencies. Check both languages, original navigation/CTAs, concrete results, return/reset and narrow reflow; report checks actually run and pending items, never requirements as passed results.
+      Compare composition, proportions, typography, artwork and interactions before changing code. Never treat a
+      generated image as a functional page or runtime screenshot. Verify Home visibility, dialog history, preserved
+      edits, clipboard failure, keyboard, narrow layouts and reduced motion. Capture actual screenshots and outcomes
+      with tests/atlas-pages.spec.mjs and report remaining gaps.
 style_spec:
   typography:
     zh: 超粗无衬线或等宽体，字号断崖式对比

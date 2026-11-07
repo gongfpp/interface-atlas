@@ -17,9 +17,11 @@ interface Props {
   autoOpenSearch?: boolean;
   /** 完整交互视口不应被外层吸顶导航覆盖；其它页面保持默认。 */
   stickyHeader?: boolean;
+  /** 独立风格详情采用自己的导航、排版与颜色，不继承通用内容容器。 */
+  immersiveStyle?: string;
 }
 
-const { title, description, locale, enPath, autoOpenSearch = false, stickyHeader = true } = Astro.props;
+const { title, description, locale, enPath, autoOpenSearch = false, stickyHeader = true, immersiveStyle } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
 const themeScript = `
@@ -76,20 +78,22 @@ const themeScript = `
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
   </head>
-  <body class="min-h-screen bg-paper text-ink">
+  <body class:list={['min-h-screen bg-paper text-ink', immersiveStyle && 'atlas-mode']} data-atlas-style={immersiveStyle}>
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-raised focus:px-3 focus:py-2">{locale === 'zh' ? '跳到主要内容' : 'Skip to content'}</a>
-    <Header locale={locale} sticky={stickyHeader} />
-    <main id="main" tabindex="-1" class="mx-auto w-full max-w-6xl px-5 md:px-8">
+    {!immersiveStyle && <Header locale={locale} sticky={stickyHeader} />}
+    <main id="main" tabindex="-1" class={immersiveStyle ? 'atlas-main' : 'mx-auto w-full max-w-6xl px-5 md:px-8'}>
       <slot />
     </main>
     <Footer locale={locale} />
-    <SearchDialog client:idle locale={locale} autoOpen={autoOpenSearch} />
+    {!immersiveStyle && <SearchDialog client:idle locale={locale} autoOpen={autoOpenSearch} />}
     <script>
       import { startAnalytics } from '@/lib/analytics';
       import { initInteractionMotion, initPageMotion } from '@/lib/interaction-motion';
       startAnalytics();
-      initInteractionMotion();
-      initPageMotion();
+      if (!document.body.hasAttribute('data-atlas-style')) {
+        initInteractionMotion();
+        initPageMotion();
+      }
     </script>
   </body>
 </html>

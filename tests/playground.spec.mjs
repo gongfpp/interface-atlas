@@ -1,6 +1,6 @@
 import { test, expect } from "./helpers/private-browser.mjs";
 import { readdirSync } from "node:fs";
-import { readyStyleFrame, exerciseStyleFlow } from './helpers/style-page-flows.mjs';
+import { exerciseStyleFlow } from './helpers/style-page-flows.mjs';
 
 async function openDemo(page, slug, locale = "") {
   await page.goto(`${locale}/components/${slug}`);
@@ -214,8 +214,8 @@ test("all component pages render on mobile, switch modes and reset without error
 
 for (const slug of ["organic", "art-deco", "neumorphism"])
   test(`${slug} style has a working interactive scene`, async ({ page }) => {
-    await page.goto(`/styles/${slug}`);
-    const { scene } = await readyStyleFrame(page, slug, 'zh');
+    await page.goto(`/style-scenes/${slug}/`);
+    const scene = page.locator(`[data-style-scene="${slug}"]`);
     // 保留收藏、晚宴计划、专注状态这些用户结果，迁移到各品牌真正的业务流程。
     await exerciseStyleFlow(scene, slug, 'zh');
   });

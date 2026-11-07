@@ -80,7 +80,7 @@ export function initInteractionMotion() {
 }
 
 /** Native document transitions keep scripts, forms, history and browser link behavior intact. */
-export function initPageMotion() {
+export function initPageMotion(material?: { enter: (element: HTMLElement) => void; leave: (element: HTMLElement) => Animation | null }) {
   const native = 'CSSViewTransitionRule' in window && 'onpagereveal' in window;
   document.documentElement.dataset.pageMotion = native ? 'native' : 'fallback';
   if (native) return;
@@ -89,9 +89,11 @@ export function initPageMotion() {
   const restore = () => {
     pending++;
     departure?.cancel();
-    revealMotion(document.querySelector('#main'));
+    const main = document.querySelector<HTMLElement>('#main');
+    if (main) { if (material) material.enter(main); else revealMotion(main); }
   };
   window.addEventListener('pageshow', restore);
+  if (document.readyState === 'complete') restore();
   document.addEventListener('click', event => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || reduced()) return;
     const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[href]') : null;
@@ -103,10 +105,12 @@ export function initPageMotion() {
     }
     const main = document.querySelector<HTMLElement>('#main');
     if (!main) return;
-    event.preventDefault();
     const attempt = ++pending;
     departure?.cancel();
-    departure = main.animate([{ opacity: 1 }, { opacity: .65 }], { duration: 140, easing: 'ease-in', fill: 'forwards' });
+    const next = material ? material.leave(main) : main.animate([{ opacity: 1 }, { opacity: .65 }], { duration: 140, easing: 'ease-in', fill: 'forwards' });
+    if (!next) return;
+    departure = next;
+    event.preventDefault();
     void departure.finished.then(() => {
       if (attempt === pending) location.assign(url.href);
     }).catch(() => {});

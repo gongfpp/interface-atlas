@@ -1,0 +1,328 @@
+{
+  "version": 1,
+  "purpose": "25种风格的整页效果稿生成输入；图片是提案，不是实机或交互验收证据",
+  "base_prompt": "Generate ONE exceptionally polished art-direction and interaction design board for 界面图谱 / INTERFACE ATLAS, a Chinese website for learning interface design styles. This is a PROPOSED DESIGN, not a claimed real screenshot. Quality is paramount. Large high-resolution portrait canvas, approximately 1536x2048. About 72% of the width is a COMPLETE DESKTOP WEBPAGE rendered flat, edge-to-edge within its column, from navigation to footer; the remaining 28% is a carefully arranged interaction specification rail. Main webpage must be the design atlas itself, not an unrelated fictional business. It teaches and embodies this one style everywhere. Include branded navigation 界面图谱 / 风格 / 组件 / 灵感, a prominent return-to-styles link, an unforgettable style-specific hero, a visual typography/material/grid specimen, meaningful interactive component examples, a style-variant selector, a compact prompt editor with copy button, and a matching footer. Use concise accurate Chinese labels and large English display type; no lorem ipsum, no endless small prose. Main page should feel like a complete designed website, not a generic SaaS landing page or a UI kit. Strong distinct composition, sophisticated imagery and graphic assets integral to this specific style. Do not merely recolor a repeated template. Main page shows one coherent default state.\nThe narrower specification rail shows REAL DESIGNED STATES of the SAME components: (1) button default / hover / pressed / visible keyboard focus; (2) a dropdown in its OPEN state with selected option and scroll area; (3) input default and validation error plus a clear submit result; (4) a dialog or detail drawer with Close, Back and Next; (5) a miniature mobile reflow showing a readable title, menu and touch controls; (6) a three-keyframe motion strip labeled 0 ms, midpoint and endpoint for the style-specific transition. These are separate cropped state studies, not overlays obscuring the default main page. Compact labels only, legible at high resolution. State rail uses the SAME style. Show animation as keyframes, never claim a still image is a working animation. All controls, icons, active tabs, arrows, checkboxes, toggles, sliders, pagination and modal frames must share the style's visual grammar. Layout, typography personality, color, graphics, materials, density, controls, transitions and navigation must ALL be considered. Designed disabled state remains legible. Realistic implementable UI, purposeful decorative art, strong hierarchy, no device photography, no outer browser chrome, no watermarks, no unintended cropped content. \nPRODUCT ACCURACY: Never invent login, signup, pricing, shopping, social logos, author attribution, statistics, dates or extra languages. Only Chinese and English. The style-variant selector lists ONLY genuine variants of the SAME style, supplied below; other design styles belong only in a clearly labeled '其他风格' link. Examples are design-learning operations. Input validation example: blank project title causes '请输入项目名称'; filled '我的项目' gives an editable prompt preview, not a fabricated search count or remote success. Prompt textarea must be visible. Disabled controls must be visibly distinct and still legible. Keep decorative ornaments separate from clickable controls. The board must visibly include all sections through the footer.",
+  "styles": [
+    {
+      "slug": "minimalism",
+      "name": "极简主义",
+      "order": 1,
+      "headline": "QUIET BY DESIGN",
+      "art_direction": "A museum-quality minimalist design essay. Warm ivory, ink black, one muted stone accent. Huge elegant high-contrast serif headline with very thin hairlines and confident whitespace; precise tiny sans-serif utility type. Hero asymmetrically balances a large sculptural matte white ceramic loop photographed on limestone in soft daylight with left aligned typography. Main page uses generous alternating editorial bands, never uniform cards. Fine rules, understated black pill buttons, restrained product detail zoom, botanical shadow photography. Lower typography specimens use large serif Aa and spacious Chinese text, swatches as small stones. Layout quiet but not empty. Crisp understated outlined icons. Interaction rail is disciplined, off-white sheets with ample air.",
+      "motion_contract": "Buttons darken over 140ms without bounce; image crossfade 220ms; detail sheet fades and moves 8px over 200ms, back reverses it; dropdown 140ms; focus black ring; error small red text plus border.",
+      "variants": [
+        "黑白极简",
+        "扁平极简",
+        "暖调极简"
+      ]
+    },
+    {
+      "slug": "swiss-style",
+      "name": "瑞士国际主义",
+      "order": 2,
+      "headline": "TYPE / GRID / ORDER",
+      "art_direction": "Radically confident Swiss international typography. Paper #F2F1ED, ink #101010, vermilion #E63312. Huge tightly kerned grotesk headline, NOT the earlier bland three equal columns. Hero asymmetric 8/4 modular composition: 'SWISS' large spanning almost width, stacked '02' red block with bold circular black typographic poster. Fine black baseline grid, varying column widths, oversized section numerals, typography is the main art. All edges square, absolutely no shadows, no gradients. Typography specimen as a real powerful poster, not tiny description cards. Lower sections are information-dense editorial strips and a full-width vermilion prompt panel with black typography. Strong Chinese bold sans-serif title.",
+      "motion_contract": "Instant 80ms color inversion; no floating or bounce. Dropdown is ruled rectangular list, active row vermilion. Dialog enters with a hard grid-aligned cut; back/next are large square arrow cells. Motion keyframes show color swaps only, 0/40/80ms.",
+      "variants": [
+        "苏黎世学派",
+        "巴塞尔学派",
+        "新瑞士"
+      ]
+    },
+    {
+      "slug": "editorial",
+      "name": "杂志编辑风",
+      "order": 3,
+      "headline": "THE ART OF SEEING",
+      "art_direction": "A sophisticated independent printed magazine turned into an entire design atlas. Warm uncoated paper, espresso ink, restrained burgundy. Wide literary masthead, enormous elegant italic serif headline crossing a two-column hero, tasteful landscape photo of a modernist concrete gallery and red chair, asymmetric pullquote, folio numerals and thin rules. Long-form article rhythm, image captions, generous margins, a dramatic full-width image followed by multi-column specimens. Do not use UI dashboard card grids. Serif body and high-contrast italic display create an expressive yet rigorous editorial identity. Navigation looks like issue index, tabs like section names, prompt panel like a typeset editorial note.",
+      "motion_contract": "Underlined links animate 160ms; article opens with 180ms opacity fade without fake page curling; back restores article-list scroll. Next/previous use article titles and long fine arrows. Search drawer slides 16px/200ms, dropdown like printed contents.",
+      "variants": [
+        "大报风",
+        "光面杂志",
+        "数字编辑风"
+      ]
+    },
+    {
+      "slug": "glassmorphism",
+      "name": "玻璃拟态",
+      "order": 4,
+      "headline": "THROUGH THE LIGHT",
+      "art_direction": "Immersive full-page luminous frosted GLASS over a stunning real-looking blue violet alpine dawn panorama. Background extends behind navigation, all sections and footer. Large white clean airy sans display, controlled foreground contrast. Hero has offset large overlapping frosted panes, beautiful light behind blurred edges and translucent layered navigation. Genuine frosted diffusion with white hairline rims, clear depth ordering, soft blue shadows; do NOT make shiny liquid-glass lenses or generic purple gradient rectangles. A visual material lab shows background detail before and after frosted glass with blur slider and opacity control. Lower sections stagger wide translucent panels with typography and component specimens. Prompt editor is frosted with opaque readable text area.",
+      "motion_contract": "180ms glass elevation and opacity; backdrop blur slider updates instantly; drawer 240ms ease-out, back reverses; dropdown uses stronger frosting and selected white edge; focus opaque light ring; error coral icon and text, not color alone.",
+      "variants": [
+        "磨砂",
+        "透明玻璃",
+        "有色玻璃"
+      ]
+    },
+    {
+      "slug": "bento-grid",
+      "name": "便当盒网格",
+      "order": 5,
+      "headline": "SMALL PARTS. BIG PICTURE.",
+      "art_direction": "A masterful asymmetric bento mosaic occupying the WHOLE page. Pale cool-grey canvas, white tiles, deep ink, selective vivid violet and warm peach. No conventional hero text-left/image-right: title itself occupies a tall narrow tile beside a huge product specimen tile, a tiny live-calendar tile, bold numeric tile, circular chart and abstract folded-paper image tile. Rigorous common gutters and 20px corners, variable 2x2/1x2/2x1 cells, carefully aligned baselines. Large rounded grotesk numerals. Main page lower regions continue deliberate mosaic with interactive checklist, layout template selector, typography tile and horizontal prompt editor tile. Micro-shadows and crisp subtle borders. This must look like spatial composition, not a uniform dashboard.",
+      "motion_contract": "Card expands into a detail panel over 220ms preserving its origin; back collapses to source and returns focus. Hover lift 2px/160ms; pressed returns to plane. Dropdown aligned inside tile, menu not clipped. Reduced-motion simple fade. Keyframes show small tile→expanded→detail.",
+      "variants": [
+        "发布会式",
+        "仪表盘式",
+        "个人主页式"
+      ]
+    },
+    {
+      "slug": "neumorphism",
+      "name": "新拟物",
+      "order": 6,
+      "headline": "SOFTLY IN CONTROL",
+      "art_direction": "Premium tactile monochromatic soft-UI instrument desk. Entire webpage one continuous light blue-grey #E6ECF2 surface. Deep slate readable typography, restrained cobalt. Broad sculpted recessed circular dial as hero centerpiece with raised rounded rectangular controls arranged like a real calm focus instrument. Pair soft light upper-left and dark lower-right shadows consistently; surfaces same color as background. Distinguish from clay: no floating pastel blobs or playful puffy characters. Typography rounded humanist sans, medium weight, clear hierarchy. Section dividers subtle embossed rules; lower control workbench with recessed inputs, toggle, segmented selector, rotary dial and prompt screen. Plenty of space around shadows.",
+      "motion_contract": "Raised→inset press 170ms; toggle thumb 180ms; knob tracks direct manipulation immediately. Open menu is raised with inset selected row. Dialog appears 180ms opacity, close restores focus. Strong visible cobalt focus outline independent of soft shadows; error text and icon.",
+      "variants": [
+        "凸起表面",
+        "凹陷表面"
+      ]
+    },
+    {
+      "slug": "skeuomorphism",
+      "name": "拟物化",
+      "order": 7,
+      "headline": "MADE TO BE TOUCHED",
+      "art_direction": "An exquisite physical design cabinet translated into usable webpage. Warm walnut workbench backdrop, brushed aluminium navigation rail, ivory textured archival paper, tiny leather pull tabs. Main hero: large tasteful industrial aluminium control panel with beautiful photoreal rotary knob, amber indicator and embossed 'TACTILE' typography, adjacent editorial heading. Unified believable light direction, machined metal edges, screws used sparingly, clear material boundary and realistic contact shadows. Lower sections are paper specimen cards held in metal rails, tactile toggles and a recessed prompt text panel. Restrained adult industrial design, not cartoon wooden UI. Swiss humanist labels and engraved mono small numerals; chrome not Y2K balloon text.",
+      "motion_contract": "Mechanical pushbutton depresses 2px over 150ms and rebounds 180ms; switch flips between detents, knob rotates with pointer. Dropdown resembles a real inset selector with readable rows. Detail panel slides like a drawer 220ms; back retracts. No fake 3D page flips hiding text.",
+      "variants": [
+        "皮革缝线",
+        "拉丝金属",
+        "纸质"
+      ]
+    },
+    {
+      "slug": "brutalism",
+      "name": "粗野主义",
+      "order": 8,
+      "headline": "NO POLISH. ALL SIGNAL.",
+      "art_direction": "A confrontational raw web typography composition with uncompromising structure. Bone-white, pure black, one acid orange-red. Massive ugly-beautiful grotesk title stretches across page and deliberately breaks into staggered lines without losing letters. Exposed thick rules, giant index numbers, raw underlined links, a high-contrast grainy black-and-white concrete architectural image. Asymmetric table-like sections with narrow metadata column and vast dense bold type. Native-looking squared controls upgraded for usable size. No rounded cards, no soft shadows, no cute decorative stickers, no Swiss refinement. Prompt editor feels like a stark published source-code block, huge rectangular copy action.",
+      "motion_contract": "Hard cuts, no animation easing. Hover instant invert, pressed orange block. Dropdown immediate rectangular list; modal immediate full-width panel with giant CLOSE and BACK links. 0/1/2-frame storyboard demonstrates deliberate instant state changes; focus thick black frame.",
+      "variants": [
+        "经典粗野",
+        "软粗野",
+        "排印粗野"
+      ]
+    },
+    {
+      "slug": "neobrutalism",
+      "name": "新粗野主义",
+      "order": 9,
+      "headline": "MAKE SOME NOISE!",
+      "art_direction": "Joyful physical poster-collage UI with cream background, saturated yellow, lilac, coral, black 3px outlines and consistent hard offset 7px shadows. Hero is an outrageously bold rounded-grotesk headline with an oversized original grinning geometric star mascot, angular cutout graphics and big rectangular CTA. Asymmetrical overlapping poster panels, not a tidy SaaS grid. Each lower section resembles a different designed poster but follows common outline and shadow rules; large visual typography and sticker-like controls. Dense color blocks, no gradients or blurred shadows. Good white space around truly expressive bold typography. Main page remains recognizably a learning atlas.",
+      "motion_contract": "Press translates 5px into hard shadow over 100ms; release returns 140ms. Hover lifts 2px with offset shadow. Dropdown is heavy-bordered with solid yellow selected row. Modal slides 12px/160ms without elastic wobble. Error thick coral outline and explicit icon.",
+      "variants": [
+        "经典硬阴影",
+        "糖果色",
+        "粗粝噪点"
+      ]
+    },
+    {
+      "slug": "retro-web",
+      "name": "复古互联网",
+      "order": 10,
+      "headline": "WELCOME TO THE WEB",
+      "art_direction": "A beautifully coherent 1990s personal-web archive in a classic desktop-window idiom. Entire page laid out as a handcrafted small internet portal: deep navy title bar, light grey beveled toolbar with Back Forward Home, white content, serif headings, blue underlined links, compact file-tree sidebar, tasteful tiny pixel folder icons and small 88x31 badges. Main content includes a charming original pixel globe, large 'WELCOME' title, curated design directory, guestbook-like prompt editor, status bar footer. Nostalgic precisely crafted pixel bevels and small dithering, not low-resolution blurred screenshot; readable Chinese body size. No gradients apart from authentic slight titlebar if needed, no modern floating rounded cards. Sidebar collapses as an actual directory toggle on mobile.",
+      "motion_contract": "Immediate navigation with real back/forward disabled states. Buttons reverse bevel when pressed, dotted keyboard focus. Menu opens as classic raised rectangular list; dialog has draggable-style titlebar, explicit close, Cancel/OK. No blinking text or automatic marquee.",
+      "variants": [
+        "个人主页",
+        "旧浏览器窗口"
+      ]
+    },
+    {
+      "slug": "flat-design",
+      "name": "扁平设计",
+      "order": 11,
+      "headline": "CLEAR AT EVERY STEP",
+      "art_direction": "Bold modern flat color design, restrained friendly instructional atlas. Saturated azure, coral, sunflower and white. Hero is broad horizontal color-field composition with huge clear geometric sans headline and original crisp flat vector illustration of stacked interface windows, simple circle and rectangle construction. Zero gradients, zero material texture, zero shadows, not outlined neobrutalist. Generous grid, color bands differentiate sections, readable large labels. Forms and navigation look effortlessly clear; state is conveyed by fill, icon and text. Lower area shows three large flat composition specimens, a tabbed example and prompt block. Design deliberate and vivid, not bland bootstrap.",
+      "motion_contract": "150ms fill transitions only, no spatial movement. Open dropdown solid white with blue selected row; checkbox clear check. Detail panel crossfade 160ms; next/back consistent flat icon buttons. Error coral border + message. Loading is simple progress strip; success visible check.",
+      "variants": [
+        "Metro 磁贴",
+        "Flat UI 撞色",
+        "扁平 2.0"
+      ]
+    },
+    {
+      "slug": "bauhaus",
+      "name": "包豪斯",
+      "order": 12,
+      "headline": "FORM FOLLOWS PLAY",
+      "art_direction": "A compelling constructivist design-school poster made into a whole usable website. Warm cream, bold red, cobalt blue, yellow, black. Oversized geometric lowercase sans headline and a huge architectural composition of circle, semicircle, triangle and square, with text balanced through asymmetric negative space. Grid proportions intentionally different from Swiss: circles intersect rectangular modules; vertical section numerals and spatial counterweights. All shapes crisp flat vector, zero shadows. Lower interactive composition canvas allows red circle blue square yellow triangle placement, with real geometric specimen layout. Navigation and controls use geometric but familiar hit areas. Prompt editor is rectangular inside a yellow structural band.",
+      "motion_contract": "Color swaps 80ms; shape placement snaps instantly to grid without bounce. Undo removes last shape; redo reinstates. Dropdown square blue/red selection; dialog geometric frame with normal rectangular controls. Keyframes show chosen shape→position marker→snapped composition.",
+      "variants": [
+        "魏玛时期",
+        "德绍时期",
+        "当代包豪斯"
+      ]
+    },
+    {
+      "slug": "y2k",
+      "name": "Y2K 千禧美学",
+      "order": 13,
+      "headline": "FUTURE IS A FEELING",
+      "art_direction": "A luxurious expressive turn-of-millennium cyber-pop interface, silver and lilac, electric violet, icy cyan. Huge custom rounded CHROME inflatable typography 'Y2K' with realistic mirrored highlights, orbiting chrome star and translucent candy-blue shell objects; crisp white space and glossy translucent panels. Composition is a playful asymmetrical digital magazine with oval tabs and ellipsoidal utility navigation, bubble silhouettes and CD iridescent photographic crop. Do not resemble synthwave sunset or vaporwave classical columns. Middle shows metallic type and candy-shell material specimen, bottom membership-style customization panel and pearly prompt editor. Body text dark readable purple, large 2000s futuristic rounded sans.",
+      "motion_contract": "Button presses scale .97 and darken 120ms, restrained rebound 220ms. Star ornament rotates only on intentional action. Dropdown opaque pearly rows; dialog zoom from .98 and fade 220ms, back reverses. Violet focus ring, error berry text. Keyframes show translucent panel opening.",
+      "variants": [
+        "糖果塑料",
+        "镀铬金属",
+        "珠光幻彩"
+      ]
+    },
+    {
+      "slug": "cyberpunk",
+      "name": "赛博朋克",
+      "order": 14,
+      "headline": "ENTER THE SIGNAL",
+      "art_direction": "Dark industrial neon interface with dense expertly organized HUD structure, black-blue #0B0F1A, sharp cyan and selective magenta. Huge angular condensed title partially segmented like real stencil typography, small monospaced telemetry labels. Wide hero panorama of a rain-soaked futuristic East Asian alley with red/cyan signage, framed by readable interface overlays and original vector district map. Cut-corner panels, thin luminous rules, utilitarian solid dark inputs. Controlled glow only at active edges, dark negative space, no blanket bloom. Main page a designed command terminal with typography specimen, district selector, equipment toggles and prompt console. Full nav and footer in same system.",
+      "motion_contract": "120ms edge ignition, immediate switch updates. One brief nonflashing scan reveal on navigation; never continuous RGB shake. Back/next angular arrow cells. Dropdown crisp dark opaque with cyan selected line; modal terminal panel with clear disconnect/cancel. Magenta error icon and message.",
+      "variants": [
+        "霓虹都市",
+        "终端黑客",
+        "故障艺术"
+      ]
+    },
+    {
+      "slug": "memphis",
+      "name": "孟菲斯",
+      "order": 15,
+      "headline": "RULES? MAKE YOUR OWN.",
+      "art_direction": "Authentic 1980s Memphis graphic exuberance, bold black-and-white squiggles, terrazzo dot patterns, salmon, teal, lemon, cobalt. Custom expressive geometric display lettering with playful irregular rhythm. Main layout is a daring asymmetrical graphic composition with a huge patterned sculptural totem, separate wavy side band, diagonal stripe patch and lots of cream breathing room. Not neobrutalism: do not use uniform black outlines and offset shadows on every UI block; pattern and shape contrast are the signature. Lower color/pattern workbench, invitation-like example and prompt station laid out as designer poster panels. Straight readable inputs despite exuberant decoration.",
+      "motion_contract": "Pattern accent changes in 140ms; button tilts at most 1deg on hover, returns on press. Panel opens with 180ms slide, no constant wobble. Dropdown stable rectangular white reading area with patterned header. Back/next asymmetric but consistent controls, error red icon and text.",
+      "variants": [
+        "经典孟菲斯",
+        "水磨石",
+        "新孟菲斯"
+      ]
+    },
+    {
+      "slug": "retro-futurism",
+      "name": "复古未来主义",
+      "order": 16,
+      "headline": "TOMORROW / 1984",
+      "art_direction": "SYNTH SUNSET variant as the main art direction: an exquisitely composed 1980s future music instrument web atlas. Deep midnight purple, magenta, amber sunset, horizontal chrome italic display lettering. Huge striped sun behind a crisp vanishing-point grid and elegant silhouetted angular mountain, with a realistically drawn synthesizer control strip anchoring foreground. Avoid Greek busts, Win95 windows, vaporwave mall imagery. Top nav engraved futuristic type; middle typography specimen looks like album sleeve, controls like a high-end synth sequencer, lower prompt console. Include three compact variant tabs SYNTH / CASSETTE / ATOM but do not mix beige cassette into default page.",
+      "motion_contract": "200ms neon warmup after click; playback only on explicit play, clear pause state. Slider responds instantly; track next/back update title and index. Panel reveal 240ms; reduced-motion static. Open dropdown like dark instrument menu with readable rows. Keyframes show play→active waveform→pause.",
+      "variants": [
+        "原子时代",
+        "卡带未来",
+        "合成器落日"
+      ]
+    },
+    {
+      "slug": "claymorphism",
+      "name": "黏土风",
+      "order": 17,
+      "headline": "IDEAS YOU CAN SQUISH",
+      "art_direction": "Delightful premium hand-sculpted matte clay world, powder lavender, butter yellow, peach, cornflower and cream. Bold softly rounded inflated typography, original charming abstract clay creature and little tactile clay staircase in hero, visible subtle handmade surface imperfections with beautifully consistent studio light. UI panels visibly volumetric with soft inner shading and outer contact shadows, thick rounded edges and abundant air. Distinct from neumorphism: colorful separate puffy objects, not a single same-color extruded desk. Lower elements include tactile color knobs, squeezable rounded button, component specimen and a chunky readable prompt pad.",
+      "motion_contract": "Pressed squash .96 over 100ms then soft return 220ms; no perpetual bouncing. Slider thumb is clay bead; open dropdown puffy menu with crisp labels. Dialog rises 12px/220ms; back gently retracts. Focus solid violet outline; errors coral plus icon; keyframes show normal→squashed→released.",
+      "variants": [
+        "软黏土",
+        "糖果黏土",
+        "深色黏土"
+      ]
+    },
+    {
+      "slug": "aurora",
+      "name": "极光渐变",
+      "order": 18,
+      "headline": "LIGHT IN MOTION",
+      "art_direction": "An immersive luminous COLOR FIELD atlas. Entire deep indigo canvas filled with sophisticated broad green teal violet aurora ribbons and cloudlike diffused light; hero features huge elegant clean white type, tiny tracked navigation and an abstract luminous flowing ribbon that moves visually across the whole composition. Foreground is mostly unboxed white typography and restrained solid-dark controls, not stacked frosted-glass cards. Main page uses cinematic wide sections with changing glow composition, spacious typography specimen, spectrum mixer and a narrow prompt console. Background gradients rich and smooth with delicate noise, no cheap rainbow stripes. Emphasis on light, atmosphere and spatial rhythm.",
+      "motion_contract": "Background drift 24s loop only if motion allowed; control response instant. Spectrum change interpolates 400ms; panel fade 240ms, back reverses. Dropdown dark opaque for readable contrast, focus violet-white ring, error coral icon. Keyframes 0/200/400ms show selected palette shifting.",
+      "variants": [
+        "静态网格渐变",
+        "流动光斑",
+        "暗夜极光"
+      ]
+    },
+    {
+      "slug": "organic",
+      "name": "有机自然",
+      "order": 19,
+      "headline": "GROW WITH INTENTION",
+      "art_direction": "Elevated botanical editorial design. Warm linen, moss, terracotta, dark forest text. Large gracious humanist serif display with organic calligraphic details, calm sans body. Hero image an original sculptural green leaf, a handmade ceramic vessel and natural sunlight on limewash, asymmetrically arch-cropped against an irregular but controlled organic backdrop. Broad whitespace and gently flowing section boundaries, tasteful botanical line drawings and paper texture. Lower sections combine herbarium-like specimens, earth palette, softly cornered components and linen prompt journal. No cartoon blobs, no garish gradients, no excessive rounded cards. Mobile reflows image above text preserving deliberate arch.",
+      "motion_contract": "250ms ease-out gentle reveal, hover expands icon 1px and deepens moss; press contracts 1px. Dropdown grounded off-white leaf-green selected row, sheet opens 280ms; back restores scroll. Error terracotta with icon. Keyframes show bud-like section reveal without distorting text.",
+      "variants": [
+        "大地色",
+        "植物形态"
+      ]
+    },
+    {
+      "slug": "art-deco",
+      "name": "装饰艺术",
+      "order": 20,
+      "headline": "AN EXERCISE IN ELEGANCE",
+      "art_direction": "A magnificent Art Deco design atlas, midnight blue-black, muted warm gold, ivory and a small emerald accent. Tall sophisticated geometric display capitals with distinctive 1920s proportions and restrained high-contrast serif Chinese pairing. Strong symmetrical axial hero with huge art-deco title inside stepped architectural frame, a beautiful original golden fan/sunburst and perspective arch arcade. Precise double gold rules, stepped corners, lavish but controlled negative space. Lower sections alternate narrow side numerals, centered typography and luxurious specimen panels with clean readable inputs. No modern generic rounded cards, no noisy gold texture, no illegible ornamental body type. Footer elegant centered colophon.",
+      "motion_contract": "Gold rule reveals outward 260ms; button outline brightens 160ms without bounce. Modal fades 240ms within stepped frame; back reverse fade. Dropdown dark solid with clear gold check. Next/back are symmetric side arrow controls; focus double gold ring; error muted coral text.",
+      "variants": [
+        "午夜黑金",
+        "翡翠金"
+      ]
+    },
+    {
+      "slug": "corporate-memphis",
+      "name": "企业孟菲斯",
+      "order": 21,
+      "headline": "BETTER, TOGETHER.",
+      "art_direction": "An exceptionally art-directed friendly collaborative learning site. White and pale peach broad fields, saturated violet yellow and coral accent. Hero original flat vector scene of diverse abstract elongated human figures collaboratively assembling large typographic letterforms and interface panels; exaggerated limbs, small heads, nonrealistic skin colors, confident editorial illustration. Huge friendly geometric sans headline at left, illustration flows into section below. Absolutely flat fills without outlines or shadows. Asymmetric generous sections, clear controls, lively but professional. Lower learning checklist/calendar specimen, illustration shape anatomy, roomy prompt card. Not 80s Memphis patterns; the signature is human collaboration illustration.",
+      "motion_contract": "160ms flat fill changes without movement; task completion check updates count. Dropdown violet selected row; panel crossfade 180ms. Previous/next lesson buttons clear consistent placement. Empty state uses small original character illustration; error peach icon and text. No bouncing decorative people.",
+      "variants": [
+        "经典人形",
+        "抽象色块",
+        "渐变扁平"
+      ]
+    },
+    {
+      "slug": "hand-drawn",
+      "name": "手绘风",
+      "order": 22,
+      "headline": "THINK WITH YOUR HANDS",
+      "art_direction": "A beautifully authored designer's sketchbook as a complete website. Warm ivory paper with subtle fibers, rich charcoal pencil, cornflower ink and one tomato red mark. Large expressive hand-lettered title, imperfect but intentional strokes, original pencil sketch of an open notebook and oversized doodle arrow threading through layout. Carefully aligned invisible grid underneath organic annotations; readable handwritten headings paired with clean sans body, not illegible handwriting everywhere. Rough outlined nav tabs, hand-drawn circles selecting options, small taped paper specimen thumbnails. Lower interactive note studio, pen/line specimens, prompt handwritten-style page. Avoid cheap scribble borders repeated uniformly.",
+      "motion_contract": "Stroke underline draws 180ms once on hover; checkbox check drawn 160ms; buttons press by 1px. Dropdown looks like ruled paper with hand-circled selection but aligned readable text. Dialog note sheet slides 8px/180ms; back restores. Error red marginal note + icon; no continuous line jitter.",
+      "variants": [
+        "马克笔草图",
+        "笔记本涂鸦",
+        "贴纸乱贴"
+      ]
+    },
+    {
+      "slug": "liquid-glass",
+      "name": "液态玻璃",
+      "order": 23,
+      "headline": "LIGHT, BENT.",
+      "art_direction": "Sophisticated optical instrument design. Pale pearl background, dark ink type, restrained spectral cyan and amber. Main hero an exquisite physically plausible thick clear glass torus/lens refracting a carefully aligned black grid and colored stripe behind it, with crisp specular rims and caustic light. Large razor-clean restrained neo-grotesk headline, abundant white negative space. Navigation a thin clear optical rail, selective lens-like controls with thick edge refraction. Unlike glassmorphism, glass is CLEAR and refracting, not frosted blur; no mountains and no purple tinted panels. Lower material comparator CLEAR/FROST/PRISM, optical diagrams, thickness slider, clean prompt sheet. Text sits on readable stable planes, never distorted with lens art.",
+      "motion_contract": "Refraction responds to pointer within bounded specimen only; thickness slider instant, mode transition 220ms. Press alters rim highlight 160ms; dropdown mostly opaque white to preserve labels. Detail sheet fade/6px 200ms; back reverses. Focus dark visible outline. 0/110/220ms keyframes show clear→prism material.",
+      "variants": [
+        "片状透镜",
+        "胶囊按钮",
+        "全幅面板"
+      ]
+    },
+    {
+      "slug": "pixel-art",
+      "name": "像素风",
+      "order": 24,
+      "headline": "BUILD IN PIXELS",
+      "art_direction": "Exceptionally crafted pixel-art interface as a complete 2D game-like design atlas. Limited six-color palette midnight navy, warm cream, mint, amber, coral and sky blue. Crisp integer pixel edges, no blur, no gradients, no rounded vectors. Hero a beautifully detailed original isometric pixel atelier with tiny computer desk, plants and stairs, combined with a huge bitmap 'PIXEL' title. Clear readable Chinese sans or appropriate bitmap at integer sizing. Entire page pixel-framed navigation, tile-like specimens, pixel cursor icon, palette selector and 8x8 editable art canvas, prompt in a crisp pixel terminal box. Strong spatial composition and delightful handcrafted sprite detail; not a screen filled with tiny illegible text.",
+      "motion_contract": "Step animation only: button shifts 2px on press, tile selection immediate, progress 4 discrete frames. Back/next pixel arrows preserve screen state. Dropdown pixel-frame with obvious active check; modal pixel window close X. Keyboard focus high-contrast pixel rectangle; error icon and readable text.",
+      "variants": [
+        "8位复古",
+        "现代像素",
+        "等距像素"
+      ]
+    },
+    {
+      "slug": "vaporwave",
+      "name": "蒸汽波",
+      "order": 25,
+      "headline": "PLEASE ENJOY YOUR STAY",
+      "art_direction": "A hauntingly beautiful pastel vaporwave virtual museum / abandoned mall design atlas. Dusty pink, aqua, lavender, deep plum text. Hero a surreal but refined empty marble atrium with classical column fragments, checker floor, a solitary palm and soft sunset reflected in cyan pool; dramatic off-center composition, not synthwave neon city. Huge spaced chrome serif 'VAPOR' / 'WAVE', tiny Japanese-inspired geometric accents without random gibberish. UI includes restrained nostalgic window chrome and lilac navigation, dreamlike collage layers with clear readable content planes. Lower material/photo specimens, floor-directory-like component explorer and pale pink prompt terminal. Avoid drowning everything in neon bloom.",
+      "motion_contract": "Slow atmospheric drift only in hero optional 20s; controls responsive 160ms. Floor transition crossfade 320ms; back restores selected floor. Dropdown opaque lilac with plum selected row; dialog retro frame with obvious close. Focus cyan-dark outline; error deep berry. Keyframes 0/160/320 show scene crossfade.",
+      "variants": [
+        "商场软调",
+        "霓虹故障",
+        "全息镀铬"
+      ]
+    }
+  ]
+}

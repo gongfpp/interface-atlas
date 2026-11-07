@@ -1,0 +1,20 @@
+---
+import AtlasVariantArt from './AtlasVariantArt.astro';
+import type {Locale} from '@/lib/i18n';
+interface Props {locale:Locale;slug:string}
+const {locale,slug}=Astro.props;
+const l=(zh:string,en:string)=>locale==='zh'?zh:en;
+---
+<div data-example-preview class="atlas-variant-surface">
+  <article class="atlas-preview-card">
+    <div class="atlas-preview-art"><AtlasVariantArt slug={slug} locale={locale}/></div>
+    <div class="atlas-preview-copy"><small>{l('可交互组件样例','Interactive component specimen')}</small><h3 data-preview-heading></h3><p data-preview-help>{l('修改标题并保存，试试这个变体的字段和反馈。','Edit the title and save to try this variant’s fields and feedback.')}</p></div>
+  </article>
+  <form data-preview-form>
+    <label class="atlas-preview-label">{l('卡片标题','Card title')}<input name="title" data-preview-input data-validated-field required maxlength="48" aria-describedby="atlas-preview-error" data-required-error={l('写一个标题，再保存。','Write a title before saving.')} data-length-error={l('标题最多 48 个字符。','Use at most 48 characters.')} placeholder={l('试写一个标题','Try a title')}/><small id="atlas-preview-error" class="atlas-field-error" role="alert" hidden></small></label>
+    <label class="approved-check"><input type="checkbox" data-preview-help-toggle checked/>{l('显示辅助说明','Show supporting text')}</label>
+    <div class="atlas-preview-actions"><button class="approved-primary" type="submit">{l('保存样例','Save specimen')}</button><button type="button" data-preview-reset>{l('重置','Reset')}</button><button type="button" disabled>{l('暂不可用','Unavailable')}</button></div>
+    <p class="atlas-feedback" data-form-feedback data-preview-status role="status"></p>
+  </form>
+</div>
+<button type="button" data-example-apply>{l('应用这个变体到页面','Apply this variant to the page')} →</button>

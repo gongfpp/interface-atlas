@@ -1,5 +1,6 @@
 ---
 import ConceptDetail from '@/components/ConceptDetail.astro';
+import AtlasPage from '@/components/atlas/AtlasPage.astro';
 import { getConcepts, type Concept } from '@/lib/content';
 import { CONCEPT_TYPES } from '@/content.config';
 
@@ -19,4 +20,4 @@ interface Props {
 const { concept } = Astro.props;
 ---
 
-<ConceptDetail concept={concept} locale="en" />
+{concept.conceptType === 'styles' ? <AtlasPage concept={concept} locale="en" /> : <ConceptDetail concept={concept} locale="en" />}

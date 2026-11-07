@@ -1,0 +1,47 @@
+/* Native navigation keeps Back/Forward, scroll restoration and link semantics. */
+html:has(.atlas-approved){--atlas-enter:atlas-material-fade;--atlas-enter-time:220ms;--atlas-enter-ease:ease-out}
+html:has(.atlas-approved)::view-transition-new(atlas-content){animation:var(--atlas-enter) var(--atlas-enter-time) var(--atlas-enter-ease) both}
+html:has(.atlas-approved)::view-transition-old(atlas-content){animation:var(--atlas-enter) 140ms ease-in reverse both}
+html:has(.atlas-approved[data-slug=minimalism]){--atlas-enter-time:160ms}
+html:has(.atlas-approved:is([data-slug=swiss-style],[data-slug=brutalism],[data-slug=retro-web],[data-slug=bauhaus])){--atlas-enter:none}
+html:has(.atlas-approved:is([data-slug=swiss-style],[data-slug=brutalism],[data-slug=retro-web],[data-slug=bauhaus]))::view-transition-group(*){animation-duration:0s}
+html:has(.atlas-approved[data-slug=editorial]){--atlas-enter:atlas-material-paper;--atlas-enter-time:180ms}
+html:has(.atlas-approved[data-slug=glassmorphism]){--atlas-enter:atlas-material-glass;--atlas-enter-time:240ms}
+html:has(.atlas-approved[data-slug=bento-grid]){--atlas-enter:atlas-material-tile;--atlas-enter-time:220ms}
+html:has(.atlas-approved[data-slug=neumorphism]){--atlas-enter:atlas-material-soft;--atlas-enter-time:170ms}
+html:has(.atlas-approved[data-slug=skeuomorphism]){--atlas-enter:atlas-material-drawer;--atlas-enter-time:220ms}
+html:has(.atlas-approved[data-slug=neobrutalism]){--atlas-enter:atlas-material-stamp;--atlas-enter-time:140ms}
+html:has(.atlas-approved[data-slug=flat-design]){--atlas-enter:atlas-material-slide;--atlas-enter-time:150ms}
+html:has(.atlas-approved[data-slug=y2k]){--atlas-enter:atlas-material-pop;--atlas-enter-time:260ms}
+html:has(.atlas-approved[data-slug=cyberpunk]){--atlas-enter:atlas-material-scan;--atlas-enter-time:180ms;--atlas-enter-ease:steps(4)}
+html:has(.atlas-approved[data-slug=memphis]){--atlas-enter:atlas-material-collage;--atlas-enter-time:240ms}
+html:has(.atlas-approved[data-slug=retro-futurism]){--atlas-enter:atlas-material-scan;--atlas-enter-time:300ms}
+html:has(.atlas-approved[data-slug=claymorphism]){--atlas-enter:atlas-material-squish;--atlas-enter-time:320ms}
+html:has(.atlas-approved[data-slug=aurora]){--atlas-enter:atlas-material-light;--atlas-enter-time:400ms}
+html:has(.atlas-approved[data-slug=organic]){--atlas-enter:atlas-material-drift;--atlas-enter-time:320ms}
+html:has(.atlas-approved[data-slug=art-deco]){--atlas-enter:atlas-material-curtain;--atlas-enter-time:280ms}
+html:has(.atlas-approved[data-slug=corporate-memphis]){--atlas-enter:atlas-material-slide;--atlas-enter-time:200ms}
+html:has(.atlas-approved[data-slug=hand-drawn]){--atlas-enter:atlas-material-note;--atlas-enter-time:200ms}
+html:has(.atlas-approved[data-slug=liquid-glass]){--atlas-enter:atlas-material-glass;--atlas-enter-time:280ms}
+html:has(.atlas-approved[data-slug=pixel-art]){--atlas-enter:atlas-material-slide;--atlas-enter-time:160ms;--atlas-enter-ease:steps(4)}
+html:has(.atlas-approved[data-slug=vaporwave]){--atlas-enter:atlas-material-vapor;--atlas-enter-time:320ms}
+@keyframes atlas-material-fade{from{opacity:0}to{opacity:1}}
+@keyframes atlas-material-paper{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+@keyframes atlas-material-glass{from{opacity:0;filter:blur(4px);transform:translateY(12px)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes atlas-material-tile{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+@keyframes atlas-material-soft{from{opacity:0;transform:scale(.99)}to{opacity:1;transform:none}}
+@keyframes atlas-material-drawer{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes atlas-material-stamp{from{opacity:0;transform:translate(-6px,-6px)}to{opacity:1;transform:none}}
+@keyframes atlas-material-slide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes atlas-material-pop{from{opacity:0;transform:scale(.96) rotate(-.5deg)}to{opacity:1;transform:none}}
+@keyframes atlas-material-scan{from{opacity:0;clip-path:inset(0 0 100%)}to{opacity:1;clip-path:inset(0)}}
+@keyframes atlas-material-collage{from{opacity:0;transform:translateY(12px) rotate(-1deg)}to{opacity:1;transform:none}}
+@keyframes atlas-material-squish{0%{opacity:0;transform:scale(.97,.95)}75%{opacity:1;transform:scale(1.005,.995)}100%{opacity:1;transform:none}}
+@keyframes atlas-material-light{from{opacity:0;filter:blur(8px)}to{opacity:1;filter:blur(0)}}
+@keyframes atlas-material-drift{from{opacity:0;transform:translateY(14px) rotate(-.3deg)}to{opacity:1;transform:none}}
+@keyframes atlas-material-curtain{from{opacity:0;clip-path:inset(0 49%)}to{opacity:1;clip-path:inset(0)}}
+@keyframes atlas-material-note{from{opacity:0;transform:translateY(-10px) rotate(-.7deg)}to{opacity:1;transform:none}}
+@keyframes atlas-material-vapor{from{opacity:0;filter:blur(2px);transform:translateX(16px)}to{opacity:1;filter:blur(0);transform:none}}
+@media(prefers-reduced-motion:reduce){
+ html:has(.atlas-approved)::view-transition-new(atlas-content),html:has(.atlas-approved)::view-transition-old(atlas-content){animation:none!important}
+}

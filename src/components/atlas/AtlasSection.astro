@@ -1,0 +1,48 @@
+---
+import AtlasArt from './AtlasArt.astro';
+import AtlasControls from './AtlasControls.astro';
+import {atlasDesign,type AtlasSection} from '@/lib/atlas-designs';
+import type {Concept} from '@/lib/content';
+import type {Locale} from '@/lib/i18n';
+interface Props {kind:AtlasSection;concept:Concept;locale:Locale}
+const {kind,concept,locale}=Astro.props;
+const d=concept.data;
+const design=atlasDesign(concept.id);
+const l=(zh:string,en:string)=>locale==='zh'?zh:en;
+const examples=d.variants;
+---
+<section class={`atlas-section atlas-${kind}`} id={kind==='prompt'?'prompts':`atlas-${kind}`} aria-label={kind==='title'?undefined:l(({art:'视觉试验',notes:'阅读索引',variants:'风格变体',controls:'交互试验',prompt:'设计提示词'})[kind],kind)}>
+  {kind==='title' && <>
+    <p class="atlas-issue">INTERFACE ATLAS <span>/{String(design.index+1).padStart(2,'0')}</span></p>
+    <h1>{d.name[locale]}</h1>
+    <p class="atlas-display" aria-hidden="true">{design.headline}</p>
+    <p class="atlas-deck">{design[locale]}</p>
+  </>}
+  {kind==='art' && <AtlasArt slug={concept.id} locale={locale} variants={d.variants}/>}
+  {kind==='variants' && <>
+    <label id="atlas-variant-label" for="atlas-variant">{l('风格变体','Style variant')}</label>
+    <div class="atlas-select-wrap">
+      <select id="atlas-variant" data-variant>{examples.map((v,i)=><option value={String(i)}>{v.name[locale]}</option>)}</select>
+      <button id="atlas-variant-trigger" type="button" data-variant-trigger hidden role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-controls="atlas-variant-list" aria-labelledby="atlas-variant-label atlas-variant-value"><span id="atlas-variant-value"></span></button>
+      <ul id="atlas-variant-list" data-variant-list role="listbox" aria-labelledby="atlas-variant-label" hidden>{examples.map((v,i)=><li id={`atlas-option-${i}`} role="option" aria-selected={i===0} data-variant-option={i}>{v.name[locale]}</li>)}</ul>
+    </div>
+    <p class="atlas-variant-note" data-variant-note>{examples[0]?.note?.[locale]}</p>
+    <div class="atlas-variant-tabs" role="group" aria-label={l('变体快捷选择','Quick variant selection')}>{examples.map((v,i)=><button type="button" data-variant-choice={i} aria-pressed={i===0}><span class={`atlas-swatch swatch-${i}`} aria-hidden="true"></span>{v.name[locale]}</button>)}</div>
+  </>}
+  {kind==='notes' && <>
+    <h2>{concept.id==='corporate-memphis'?l('01 理解','01 Understand'):concept.id==='vaporwave'?l('楼层导览','Floor directory'):concept.id==='retro-web'?l('文件目录','Folders'):l('阅读这个风格','Read the style')}</h2>
+    <p class="atlas-intro">{d.description[locale]}</p>
+    <div class="atlas-example-list">{examples.map((v,i)=><button type="button" data-example={i}><span class="atlas-example-number">{String(i+1).padStart(2,'0')}</span><span><strong>{v.name[locale]}</strong><small>{(v.note?.[locale]??'')}</small></span><span aria-hidden="true">↗</span></button>)}</div>
+  </>}
+  {kind==='controls' && <AtlasControls slug={concept.id} locale={locale}/>}
+  {kind==='prompt' && <>
+    <div class="atlas-prompt-heading"><h2>{concept.id==='hand-drawn'?l('写给你的项目','A note to your project'):concept.id==='vaporwave'?'prompt.txt':concept.id==='corporate-memphis'?l('03 应用','03 Apply'):l('带走这个风格','Take this style with you')}</h2><span aria-hidden="true">↗</span></div>
+    <form data-prompt-form>
+      <div class="atlas-prompt-inputs"><label>{l('项目名称','Project name')}<input name="project" data-validated-field data-required-error={l('请输入项目名称，不能只有空格。','Enter a project name, not just spaces.')} data-length-error={l('项目名称最多 100 个字符。','Use at most 100 characters.')} aria-describedby="atlas-project-error" placeholder={l('我的项目','My project')} required maxlength="100"/><small id="atlas-project-error" class="atlas-field-error" role="alert" hidden></small></label><label>{l('界面需求','Your brief')}<input name="brief" placeholder={l('例如：一个阅读应用的主页','e.g. A reading app home page')} maxlength="500"/></label><button type="submit">{l('组合提示词','Compose prompt')} →</button></div>
+      <label class="atlas-prompt-label" for="atlas-prompt">{l('可编辑提示词','Editable prompt')}</label>
+      <textarea id="atlas-prompt" rows="5" data-prompt-output spellcheck="false">{d.prompts.design[locale]}</textarea>
+      <div class="atlas-prompt-actions"><button type="button" data-copy-prompt>{l('复制提示词','Copy prompt')} <span aria-hidden="true">⧉</span></button><button type="button" data-reset-prompt>{l('恢复风格提示词','Restore style prompt')}</button><small data-prompt-notice data-form-feedback class="atlas-feedback" role="status"></small></div>
+    </form>
+    <script type="application/json" data-atlas-prompt-data set:html={JSON.stringify({base:d.prompts.design[locale],variants:examples.map(v=>({id:v.id,name:v.name[locale],note:(v.note?.[locale]??'')}))}).replaceAll('<','\\u003c')}/>
+  </>}
+</section>

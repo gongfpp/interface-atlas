@@ -1,5 +1,10 @@
 # 风格完整页面与参考样张 / Full style pages and reference scenes
 
+最新实现的本机验收结果与视觉差异见 [2026-11-08 浏览器验收记录](atlas-browser-acceptance.md)。以下内容保留各阶段的历史状态。
+
+> 2026-10-30：本文记录原独立案例与 iframe 阶段；新版 `/styles/` 整页候选见 [当前实现与待验收项](atlas-full-page-implementation.md)。下文历史通过记录不代表新版已验收。
+
+
 风格条目共 25 种。首页与列表的静态封面、详情里的交互视口、独立完整页面使用同一套页面 renderer，而不是为详情另做一个无关的控件 demo。原来的十种参考样张仍保留原品牌、首屏文案、照片和构图；交互内容沿同一品牌向下延续。
 
 All 25 styles share a page renderer across static covers, the detail experience and independent pages, rather than mounting an unrelated component demo. The ten original reference scenes retain their brands, hero copy, photos and composition; interactive content continues the same brand.

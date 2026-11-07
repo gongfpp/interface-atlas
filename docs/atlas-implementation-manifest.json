@@ -1,0 +1,355 @@
+{
+  "status": "implemented-awaiting-browser-review",
+  "styles": [
+    {
+      "slug": "minimalism",
+      "headline": "A quieter way.",
+      "grid": "\"title title\" \"art art\" \"notes variants\" \"prompt controls\"",
+      "readingOrder": [
+        "title",
+        "art",
+        "notes",
+        "variants",
+        "controls",
+        "prompt"
+      ],
+      "duration": 200
+    },
+    {
+      "slug": "swiss-style",
+      "headline": "ORDNUNG / 02",
+      "grid": "\"title title variants\" \"art notes controls\" \"prompt prompt prompt\"",
+      "readingOrder": [
+        "title",
+        "variants",
+        "art",
+        "notes",
+        "controls",
+        "prompt"
+      ],
+      "duration": 80
+    },
+    {
+      "slug": "editorial",
+      "headline": "THE INTERFACE REVIEW",
+      "grid": "\"title title title\" \"notes art variants\" \"controls prompt prompt\"",
+      "readingOrder": [
+        "title",
+        "variants",
+        "notes",
+        "art",
+        "controls",
+        "prompt"
+      ],
+      "duration": 180
+    },
+    {
+      "slug": "glassmorphism",
+      "headline": "A WINDOW INTO LIGHT",
+      "grid": "\"title art controls\" \"variants art notes\" \"prompt prompt prompt\"",
+      "readingOrder": [
+        "title",
+        "art",
+        "controls",
+        "variants",
+        "notes",
+        "prompt"
+      ],
+      "duration": 240
+    },
+    {
+      "slug": "bento-grid",
+      "headline": "EVERYTHING IN ITS PLACE",
+      "grid": "\"notes title art controls\" \"variants title art controls\" \"prompt prompt prompt controls\"",
+      "readingOrder": [
+        "notes",
+        "title",
+        "art",
+        "variants",
+        "controls",
+        "prompt"
+      ],
+      "duration": 220
+    },
+    {
+      "slug": "neumorphism",
+      "headline": "A SOFTER CONTROL",
+      "grid": "\"title title variants\" \"controls art notes\" \"prompt prompt prompt\"",
+      "readingOrder": [
+        "title",
+        "variants",
+        "controls",
+        "art",
+        "prompt",
+        "notes"
+      ],
+      "duration": 170
+    },
+    {
+      "slug": "skeuomorphism",
+      "headline": "THE MATERIAL ARCHIVE",
+      "grid": "\"title title controls\" \"art art controls\" \"notes prompt variants\"",
+      "readingOrder": [
+        "title",
+        "variants",
+        "art",
+        "controls",
+        "notes",
+        "prompt"
+      ],
+      "duration": 220
+    },
+    {
+      "slug": "brutalism",
+      "headline": "THIS IS THE INTERFACE.",
+      "grid": "\"title title\" \"notes variants\" \"art controls\" \"prompt prompt\"",
+      "readingOrder": [
+        "title",
+        "notes",
+        "variants",
+        "art",
+        "prompt",
+        "controls"
+      ],
+      "duration": 0
+    },
+    {
+      "slug": "neobrutalism",
+      "headline": "MAKE SOMETHING LOUD.",
+      "grid": "\"title art variants\" \"prompt art controls\" \"notes notes controls\"",
+      "readingOrder": [
+        "title",
+        "art",
+        "variants",
+        "prompt",
+        "controls",
+        "notes"
+      ],
+      "duration": 140
+    },
+    {
+      "slug": "retro-web",
+      "headline": "WELCOME TO MY INTERNET",
+      "grid": "\"title title\" \"controls controls\" \"notes art\" \"variants prompt\"",
+      "readingOrder": [
+        "variants",
+        "title",
+        "controls",
+        "notes",
+        "art",
+        "prompt"
+      ],
+      "duration": 0
+    },
+    {
+      "slug": "flat-design",
+      "headline": "CLARITY IN ACTION",
+      "grid": "\"title title title\" \"notes art variants\" \"notes art controls\" \"notes prompt prompt\"",
+      "readingOrder": [
+        "title",
+        "controls",
+        "art",
+        "variants",
+        "prompt",
+        "notes"
+      ],
+      "duration": 150
+    },
+    {
+      "slug": "bauhaus",
+      "headline": "BAU / HAUS",
+      "grid": "\"title variants variants notes\" \"title art art controls\" \"title prompt prompt prompt\"",
+      "readingOrder": [
+        "title",
+        "variants",
+        "controls",
+        "art",
+        "prompt",
+        "notes"
+      ],
+      "duration": 80
+    },
+    {
+      "slug": "y2k",
+      "headline": "YOUR FUTURE IS LOADING",
+      "grid": "\"title title\" \"notes art\" \"variants art\" \"controls prompt\"",
+      "readingOrder": [
+        "title",
+        "art",
+        "notes",
+        "variants",
+        "prompt",
+        "controls"
+      ],
+      "duration": 220
+    },
+    {
+      "slug": "cyberpunk",
+      "headline": "SIGNAL / ACCESS",
+      "grid": "\"title title title\" \"notes art variants\" \"notes art controls\" \"prompt prompt prompt\"",
+      "readingOrder": [
+        "title",
+        "notes",
+        "art",
+        "variants",
+        "controls",
+        "prompt"
+      ],
+      "duration": 120
+    },
+    {
+      "slug": "memphis",
+      "headline": "BREAK THE GRID.",
+      "grid": "\"title title variants\" \"notes art controls\" \"notes prompt prompt\"",
+      "readingOrder": [
+        "title",
+        "variants",
+        "art",
+        "notes",
+        "controls",
+        "prompt"
+      ],
+      "duration": 180
+    },
+    {
+      "slug": "retro-futurism",
+      "headline": "TOMORROW / 1984",
+      "grid": "\"title title title\" \"art art art\" \"prompt variants controls\" \"notes notes notes\"",
+      "readingOrder": [
+        "title",
+        "art",
+        "variants",
+        "controls",
+        "prompt",
+        "notes"
+      ],
+      "duration": 240
+    },
+    {
+      "slug": "claymorphism",
+      "headline": "SQUISH YOUR IDEAS",
+      "grid": "\"title art\" \"variants art\" \"controls prompt\" \"notes notes\"",
+      "readingOrder": [
+        "title",
+        "art",
+        "variants",
+        "controls",
+        "prompt",
+        "notes"
+      ],
+      "duration": 220
+    },
+    {
+      "slug": "aurora",
+      "headline": "FOLLOW THE LIGHT",
+      "grid": "\"title variants\" \"art art\" \"controls notes\" \"prompt prompt\"",
+      "readingOrder": [
+        "title",
+        "variants",
+        "art",
+        "controls",
+        "notes",
+        "prompt"
+      ],
+      "duration": 400
+    },
+    {
+      "slug": "organic",
+      "headline": "NATURALLY, BY DESIGN",
+      "grid": "\"notes title title\" \"notes art variants\" \"notes controls prompt\"",
+      "readingOrder": [
+        "notes",
+        "title",
+        "art",
+        "variants",
+        "controls",
+        "prompt"
+      ],
+      "duration": 280
+    },
+    {
+      "slug": "art-deco",
+      "headline": "THE GEOMETRY OF ELEGANCE",
+      "grid": "\"title title title\" \"variants art notes\" \"controls prompt prompt\"",
+      "readingOrder": [
+        "title",
+        "variants",
+        "art",
+        "notes",
+        "controls",
+        "prompt"
+      ],
+      "duration": 260
+    },
+    {
+      "slug": "corporate-memphis",
+      "headline": "BUILD IT TOGETHER",
+      "grid": "\"title title title\" \"notes art prompt\" \"notes controls prompt\" \"notes variants variants\"",
+      "readingOrder": [
+        "title",
+        "notes",
+        "art",
+        "controls",
+        "variants",
+        "prompt"
+      ],
+      "duration": 180
+    },
+    {
+      "slug": "hand-drawn",
+      "headline": "PUT IT ON PAPER",
+      "grid": "\"title prompt\" \"art prompt\" \"notes variants\" \"notes controls\"",
+      "readingOrder": [
+        "title",
+        "art",
+        "notes",
+        "prompt",
+        "variants",
+        "controls"
+      ],
+      "duration": 180
+    },
+    {
+      "slug": "liquid-glass",
+      "headline": "LIGHT / REFRACTED",
+      "grid": "\"title title variants\" \"art art controls\" \"art art notes\" \"prompt prompt prompt\"",
+      "readingOrder": [
+        "title",
+        "art",
+        "controls",
+        "variants",
+        "notes",
+        "prompt"
+      ],
+      "duration": 220
+    },
+    {
+      "slug": "pixel-art",
+      "headline": "INTERFACE QUEST",
+      "grid": "\"title title title\" \"controls art variants\" \"controls art notes\" \"prompt prompt prompt\"",
+      "readingOrder": [
+        "title",
+        "controls",
+        "art",
+        "variants",
+        "notes",
+        "prompt"
+      ],
+      "duration": 120
+    },
+    {
+      "slug": "vaporwave",
+      "headline": "THE MALL OF MEMORY",
+      "grid": "\"notes title title\" \"notes art art\" \"prompt art art\" \"prompt controls variants\"",
+      "readingOrder": [
+        "notes",
+        "title",
+        "art",
+        "variants",
+        "prompt",
+        "controls"
+      ],
+      "duration": 320
+    }
+  ]
+}

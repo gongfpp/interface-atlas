@@ -1,0 +1,72 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import AtlasSection from './AtlasSection.astro';
+import ApprovedComposition from './ApprovedComposition.astro';
+import AtlasVariantPreview from './AtlasVariantPreview.astro';
+import {isApprovedStyle} from '@/lib/approved-atlas';
+import ConceptActions from '@/islands/ConceptActions';
+import { ATLAS_DESIGNS, atlasDesign } from '@/lib/atlas-designs';
+import type { Concept } from '@/lib/content';
+import { localePath, type Locale } from '@/lib/i18n';
+import '@/styles/atlas-pages.css';
+import '@/styles/approved-atlas.css';
+import '@/styles/remaining-atlas.css';
+import '@/styles/atlas-component-skins.css';
+import '@/styles/atlas-component-motion.css';
+import '@/styles/atlas-interactions.css';
+import '@/styles/atlas-variant-scenes.css';
+interface Props { concept: Concept; locale: Locale }
+const {concept,locale}=Astro.props;
+const d=concept.data;
+const design=atlasDesign(concept.id);
+const l=(zh:string,en:string)=>locale==='zh'?zh:en;
+const previous=ATLAS_DESIGNS[design.index-1];
+const next=ATLAS_DESIGNS[design.index+1];
+const approved=isApprovedStyle(concept.id);
+---
+<BaseLayout title={`${d.name[locale]} · 界面图谱`} description={d.description[locale]} locale={locale} enPath={`/styles/${concept.id}`} immersiveStyle={concept.id}>
+  <div class:list={['atlas-root', {'atlas-approved':approved, 'atlas-extended':approved && design.index>=10}]} data-atlas-root data-slug={concept.id} data-variant="0" data-variant-id={d.variants[0].id} data-locale={locale} style={`--motion:${design.duration}ms`}>
+    <header class="atlas-nav">
+      <a class="atlas-home" href={localePath('/',locale)} data-track-label="style-home"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m3 10 9-7 9 7v10H3zM9 20v-7h6v7"/></svg><span>{l('首页','Home')}</span></a>
+      {approved && <a class="atlas-return" href={localePath('/styles',locale)}>← {l('返回全部风格','All styles')}</a>}
+      <a class="atlas-brand" href={localePath('/styles',locale)}>{l('界面图谱','INTERFACE ATLAS')}</a>
+      <nav aria-label={l('风格导航','Style navigation')}>
+        {!approved && <a href={localePath('/styles',locale)}>{l('全部风格','All styles')}</a>}
+        <a href="#prompts">{l('提示词','Prompt')}</a>
+        <button type="button" data-open-guide>{l('风格指南','Guide')}</button>
+        <a href={localePath(`/styles/${concept.id}`,locale==='zh'?'en':'zh')} lang={locale==='zh'?'en':'zh'}>{locale==='zh'?'EN':'中文'}</a>
+      </nav>
+      <ConceptActions client:load conceptId={concept.id} locale={locale}/>
+    </header>
+    {approved ? <ApprovedComposition concept={concept} locale={locale}/> : <article class="atlas-composition" aria-label={d.name[locale]}>
+      {design.order.map(kind=><AtlasSection kind={kind} concept={concept} locale={locale}/>)}
+    </article>}
+    <nav class="atlas-pagination" aria-label={l('切换风格','Browse styles')}>
+      {previous ? <a href={localePath(`/styles/${previous[0]}`,locale)} rel="prev">← {l('上一种风格','Previous style')}</a> : <button disabled>← {l('上一种风格','Previous style')}</button>}
+      <a href={localePath('/styles',locale)}>{String(design.index+1).padStart(2,'0')} / 25 · {l('风格目录','Index')}</a>
+      {next ? <a href={localePath(`/styles/${next[0]}`,locale)} rel="next">{l('下一种风格','Next style')} →</a> : <button disabled>{l('下一种风格','Next style')} →</button>}
+    </nav>
+    <p class="atlas-status" role="status" aria-live="polite" data-atlas-status></p>
+    <dialog class="atlas-dialog" data-guide aria-labelledby="atlas-guide-title">
+      <header><h2 id="atlas-guide-title">{d.name[locale]} · {l('风格指南','Style guide')}</h2><button type="button" data-close-dialog aria-label={l('关闭指南','Close guide')}>×</button></header>
+      <div class="atlas-guide-content">
+        <p>{d.description[locale]}</p>
+        <h3>{l('适用场景','When to use it')}</h3><ul>{d.use_when.map(item=><li>{item[locale]}</li>)}</ul>
+        <h3>{l('需要留意','Trade-offs')}</h3><ul>{d.avoid_when.map(item=><li>{item[locale]}</li>)}</ul>
+        <h3>{l('实现要点','Implementation')}</h3><p>{d.implementation?.notes[locale]}</p>
+        <div class="atlas-guide-tokens">{d.style_spec && Object.entries(d.style_spec).map(([key,value])=><p><strong>{key}</strong><br/>{value?.[locale]}</p>)}</div>
+        <h3>{l('延伸阅读','Further reading')}</h3><ul>{d.sources.map(source=><li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.name} ↗</a></li>)}</ul>
+        <a href={localePath(`/styles/${concept.id}.md`,locale)}>{l('下载 Markdown','Download Markdown')} ↗</a>
+      </div>
+    </dialog>
+    <dialog class="atlas-dialog atlas-example-dialog" data-example-dialog aria-labelledby="atlas-example-title">
+      <header><h2 id="atlas-example-title"></h2><button type="button" data-close-dialog aria-label={l('关闭详情','Close details')}>×</button></header>
+      <div class="atlas-example-content"><p data-example-description></p><AtlasVariantPreview locale={locale} slug={concept.id}/></div>
+      <nav><button type="button" data-example-prev>← {l('上一项','Previous')}</button><span data-example-count></span><button type="button" data-example-next>{l('下一项','Next')} →</button></nav>
+    </dialog>
+  </div>
+</BaseLayout>
+<script>
+import {initAtlasPage} from '@/lib/atlas-runtime';
+initAtlasPage();
+</script>

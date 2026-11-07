@@ -1,0 +1,328 @@
+/* 已审批前十页。所有规则限制在 atlas-approved，保留其他十五页的原布局。 */
+.atlas-approved{--ap:#faf8f2;--as:#fffdf8;--ai:#252620;--aa:#667e52;--ab:#d0cec4;--ar:0px;background:var(--ap);color:var(--ai)}
+.atlas-approved .atlas-nav{gap:14px;background:var(--ap);color:var(--ai);border-bottom:1px solid var(--ab)}
+.atlas-approved .atlas-return{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border:1px solid var(--ai);border-radius:var(--ar);font-weight:700;font-size:15px;white-space:nowrap}
+.atlas-approved .atlas-return:hover{background:var(--ai);color:var(--ap)}
+.atlas-approved .atlas-nav .atlas-brand{margin-left:auto}
+.atlas-approved .atlas-nav>nav{margin-left:0;gap:16px}
+.atlas-approved .approved-composition{display:grid;max-width:1480px;padding:48px clamp(20px,4vw,64px);margin:auto;gap:40px;grid-template-columns:repeat(12,minmax(0,1fr));align-items:start}
+.atlas-root.atlas-approved .approved-composition>.atlas-section{min-width:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;overflow:visible;order:initial}
+.atlas-approved .approved-composition h2{font-size:22px;margin:0 0 22px;line-height:1.3}
+.atlas-approved .atlas-title{text-align:left;position:relative}
+.atlas-approved .atlas-title h1{font-size:clamp(24px,2.5vw,38px);font-weight:500;margin:28px 0 18px;letter-spacing:0;line-height:1.3}
+.atlas-approved .atlas-title h1 span{color:var(--aa)}
+.atlas-approved .atlas-issue{font-size:11px;letter-spacing:.16em;justify-content:flex-start;margin:0 0 24px}
+.atlas-approved .approved-headline{font:500 clamp(42px,6.7vw,100px)/1.04 Georgia,serif;letter-spacing:-.045em;white-space:pre-line;overflow-wrap:normal;margin:0}
+.atlas-approved .atlas-deck{font-size:18px;line-height:1.8;margin:0;max-width:42ch}
+.atlas-approved .atlas-art img{width:100%;height:100%;object-fit:cover;display:block}
+.atlas-approved .approved-index{grid-area:index;min-width:0;padding:8px 0 0 24px;border-left:1px solid var(--ab)}
+.atlas-approved .approved-index a{display:flex;align-items:center;min-height:48px;font-size:15px;border-bottom:1px solid var(--ab);padding:12px 0;text-decoration:none}
+.atlas-approved .approved-index a:hover{text-decoration:underline;text-underline-offset:6px}
+.atlas-approved .atlas-intro{font-size:17px;line-height:1.9;max-width:65ch}
+.atlas-approved .atlas-example-list{display:flex;flex-direction:column;gap:0;margin-top:24px}
+.atlas-approved .atlas-example-list button{border:0;border-top:1px solid var(--ab);border-radius:0;background:transparent;box-shadow:none;padding:15px 0;display:grid;grid-template-columns:30px 1fr 20px;gap:14px;text-align:left}
+.atlas-approved .atlas-example-list small{display:none}
+.atlas-approved .approved-type{grid-area:type}
+.atlas-approved .approved-type-layout{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+.atlas-approved .approved-type-layout p{font-size:14px;line-height:1.7}
+.atlas-approved .approved-type-layout p span{font-size:13px;opacity:.75}
+.atlas-approved .approved-type-sample{font:400 clamp(72px,10vw,148px)/1 Georgia,serif;letter-spacing:-.05em}
+.atlas-approved .approved-palette{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+.atlas-approved .approved-palette>div{min-width:64px;flex:1;max-width:120px}
+.atlas-approved .approved-palette span{display:block;min-height:52px;background:var(--swatch);border:1px solid color-mix(in srgb,var(--ai) 20%,transparent);border-radius:var(--ar)}
+.atlas-approved .approved-palette code{display:block;font-size:11px;margin-top:8px;color:var(--ai)}
+.atlas-approved .atlas-controls>h2{font-size:22px}
+.atlas-approved .atlas-range-label{margin-bottom:22px}
+.atlas-approved .approved-control-specimens{margin-top:26px;padding-top:24px;border-top:1px solid var(--ab)}
+.atlas-approved .approved-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.atlas-approved .approved-primary{background:var(--ai);color:var(--ap)}
+.atlas-approved .approved-check{display:flex;gap:10px;align-items:center;font-size:14px;margin-bottom:20px}
+.atlas-approved input[type=checkbox]{width:20px;height:20px;accent-color:var(--aa);flex:none}
+.atlas-approved .approved-example-input{display:grid;gap:9px;font-size:14px}
+.atlas-approved .approved-example-input input{width:100%;background:var(--as);color:var(--ai);border:1px solid var(--ab);border-radius:var(--ar);padding:12px;min-height:44px}
+.atlas-approved .approved-live-sample{margin:18px 0 0;font-size:17px;overflow-wrap:anywhere}
+.atlas-approved .atlas-variants>label{font-size:16px;font-weight:600}
+.atlas-approved .atlas-variants select{width:100%;margin-top:14px;min-height:44px;color:var(--ai);background:var(--as);border-color:var(--ab)}
+.atlas-approved .atlas-variant-note{font-size:14px;line-height:1.7}
+.atlas-approved .atlas-variant-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.atlas-approved .atlas-variant-tabs button{font-size:13px;padding:9px 12px}
+.atlas-approved .atlas-prompt{border-top:1px solid var(--ab)!important;padding-top:30px!important}
+.atlas-approved .atlas-prompt-inputs{grid-template-columns:1fr 1.5fr auto;gap:14px}
+.atlas-approved .atlas-prompt input,.atlas-approved .atlas-prompt textarea{border:1px solid var(--ab);background:var(--as);color:var(--ai)}
+.atlas-approved .atlas-prompt textarea{min-height:150px;font-size:15px;line-height:1.8}
+.atlas-approved .atlas-pagination{max-width:1480px;margin:auto;padding:24px clamp(20px,4vw,64px);border-top:1px solid var(--ab);font-size:15px}
+.atlas-approved .atlas-pagination a{min-height:44px;display:inline-flex;align-items:center}
+.atlas-approved .atlas-dialog{color:var(--ai);background:var(--ap);border-color:var(--ab);border-radius:var(--ar)}
+.atlas-approved .atlas-dialog button{color:var(--ai);background:var(--as)}
+/* 01：左对齐标题、横幅纸雕、左右阅读栏和无卡片组件区。 */
+.atlas-approved[data-slug=minimalism] .approved-composition{grid-template-columns:1fr 1fr 170px;grid-template-areas:'title title index' 'art art art' 'type notes notes' 'controls controls variants' 'prompt prompt prompt';gap:48px}
+.atlas-approved[data-slug=minimalism] .atlas-title{padding-top:20px!important}
+.atlas-approved[data-slug=minimalism] .atlas-title h1{font-family:var(--font-serif)}
+.atlas-approved[data-slug=minimalism] .atlas-art{aspect-ratio:3.7;min-height:170px}
+.atlas-approved[data-slug=minimalism] .atlas-notes{padding-left:30px!important;border-left:1px solid var(--ab)!important}
+.atlas-approved[data-slug=minimalism] .atlas-controls{padding-top:calc(15px + var(--art-unit)*35px)!important;border-top:1px solid var(--ab)!important}
+.atlas-approved[data-slug=minimalism] button:not([data-close-dialog]){border-width:0 0 1px;border-radius:0;background:none;color:var(--ai);box-shadow:none}
+.atlas-approved[data-slug=minimalism] button:hover:not(:disabled){border-color:var(--aa);color:var(--aa);background:none}
+.atlas-approved[data-slug=minimalism] .atlas-home{background:none;color:var(--ai);border:0;font-family:var(--font-serif);font-size:20px}
+.atlas-approved[data-slug=minimalism] .atlas-return{border:0;border-left:1px solid var(--ab);font-family:var(--font-serif);font-size:20px}
+/* 02：有编号的排印网格；字体与组件嵌入不同跨度的横行。 */
+.atlas-approved[data-slug=swiss-style]{--ap:#f7f5ee;--as:#f7f5ee;--ai:#111;--aa:#e0001a;--ab:#222}
+.atlas-approved[data-slug=swiss-style] .approved-composition{grid-template-columns:2fr 1fr;grid-template-areas:'title index' 'notes notes' 'type type' 'controls variants' 'prompt prompt';gap:0}
+.atlas-approved[data-slug=swiss-style] .atlas-section{padding:28px 0!important;border-top:1px solid var(--ab)!important}
+.atlas-approved[data-slug=swiss-style] .atlas-title{border:0!important;padding:0 25px 36px 0!important}
+.atlas-approved[data-slug=swiss-style] .approved-headline{font-family:Arial,sans-serif;font-weight:900;font-size:clamp(50px,7vw,108px);letter-spacing:-.065em}
+.atlas-approved[data-slug=swiss-style] .approved-index{align-self:stretch;padding-left:28px}
+.approved-swiss-number{font:900 clamp(100px,14vw,210px)/1 Arial,sans-serif;color:#e0001a;display:block;margin-top:30px;letter-spacing:-.08em}
+.approved-swiss-number span{display:inline-block;width:38px;height:38px;border-radius:50%;background:currentColor;margin-left:14px}
+.atlas-approved[data-slug=swiss-style] .approved-type{display:grid;grid-template-columns:1fr 2fr 1fr;align-items:center;gap:20px}
+.atlas-approved[data-slug=swiss-style] .approved-type-sample{font-family:Arial,sans-serif;font-weight:800;font-size:calc(75px + var(--art-unit)*65px)}
+.atlas-approved[data-slug=swiss-style] .atlas-notes{display:grid;grid-template-columns:1fr 2fr;gap:28px}
+.atlas-approved[data-slug=swiss-style] .atlas-example-list{grid-column:2;margin:0}
+.atlas-approved[data-slug=swiss-style] .atlas-controls{padding-right:30px!important}
+.atlas-approved[data-slug=swiss-style] .atlas-variants{padding-left:28px!important;border-left:1px solid var(--ab)!important;align-self:stretch}
+.atlas-approved[data-slug=swiss-style] .approved-primary{background:var(--aa);color:white;border:0}
+.atlas-approved[data-slug=swiss-style] button{border-radius:0;box-shadow:none}
+/* 03：期刊刊头、纵向摄影、首字下沉与编辑手记。 */
+.atlas-approved[data-slug=editorial]{--ap:#f7f2e9;--as:#f9f5ee;--ai:#6b1e2a;--aa:#8b3944;--ab:#b79787}
+.atlas-approved[data-slug=editorial] .approved-composition{grid-template-columns:1fr 1fr 1fr;grid-template-areas:'title title art' 'notes notes art' 'type controls controls' 'variants controls controls' 'prompt prompt prompt' 'index index index';gap:32px}
+.atlas-approved[data-slug=editorial] .approved-headline{font-style:italic;font-size:clamp(44px,5.8vw,86px);line-height:1.08}
+.atlas-approved[data-slug=editorial] .atlas-title{padding-top:12px!important;border-top:4px double var(--ai)!important}
+.atlas-approved[data-slug=editorial] .atlas-title h1{font-family:var(--font-serif);font-size:22px}
+.atlas-approved[data-slug=editorial] .atlas-art{align-self:stretch;min-height:400px}
+.atlas-approved[data-slug=editorial] .atlas-art img{object-position:68% center;max-height:720px}
+.atlas-approved[data-slug=editorial] .atlas-intro{font-family:var(--font-serif);font-size:calc(16px + var(--art-unit)*5px)}
+.atlas-approved[data-slug=editorial] .atlas-intro:first-letter{float:left;font-size:72px;line-height:.9;margin:8px 12px 0 0}
+.atlas-approved[data-slug=editorial] .atlas-controls{border-left:1px solid var(--ab)!important;padding-left:28px!important}
+.atlas-approved[data-slug=editorial] .atlas-prompt{background:linear-gradient(100deg,#e8dcc555,#f6ecda55)!important;padding:30px!important;border-top:3px double var(--ab)!important;font-family:var(--font-serif)}
+.atlas-approved[data-slug=editorial] .approved-index{display:flex;gap:20px;flex-wrap:wrap;border-left:0;border-top:3px double var(--ai);padding:20px 0 0}
+.atlas-approved[data-slug=editorial] .approved-index h2{display:none}
+.atlas-approved[data-slug=editorial] .approved-index a{border:0}
+.atlas-approved[data-slug=editorial] .approved-primary{background:transparent;color:var(--ai);border-width:0 0 1px}
+/* 04：照片作空间背景；侧目录与单一磨砂工作平面。 */
+.atlas-approved[data-slug=glassmorphism]{--ap:#d4dfeb;--as:#eef3f7;--ai:#263d58;--aa:#496e94;--ab:#ffffffa8;--ar:16px}
+.atlas-approved[data-slug=glassmorphism] .approved-composition{grid-template-columns:220px 1fr 1fr;grid-template-areas:'index title title' 'index type type' 'index controls variants' 'index notes notes' 'index prompt prompt';gap:0 24px;background:linear-gradient(#adc3d922,#607c9b44),var(--approved-landscape) center/cover;isolation:isolate;position:relative}
+.atlas-approved[data-slug=glassmorphism] .atlas-section{padding:28px!important;background:#edf3f7b5!important;backdrop-filter:blur(calc(8px + var(--art-unit)*20px))!important;border:1px solid #ffffff70!important}
+.atlas-approved[data-slug=glassmorphism] .atlas-title{border-radius:22px 22px 0 0!important}
+.atlas-approved[data-slug=glassmorphism] .atlas-prompt{border-radius:0 0 22px 22px!important}
+.atlas-approved[data-slug=glassmorphism] .approved-headline{font-family:Arial,sans-serif;font-size:clamp(30px,3.9vw,58px);font-weight:650;letter-spacing:-.04em}
+.atlas-approved[data-slug=glassmorphism] .approved-index{align-self:stretch;background:#c3d4e39c;backdrop-filter:blur(14px);padding:26px 20px;border:1px solid #fff8;border-radius:20px}
+.atlas-approved[data-slug=glassmorphism] .approved-type-layout{justify-content:space-between}
+.atlas-approved[data-slug=glassmorphism] .approved-type-sample{font-family:Arial,sans-serif;font-weight:600}
+.atlas-approved[data-slug=glassmorphism] button{border:1px solid #ffffffbc;background:linear-gradient(#f5f8facc,#d2deebaa);box-shadow:0 4px 12px #415d7320;color:var(--ai);border-radius:12px}
+.atlas-approved[data-slug=glassmorphism] button:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 15px #415d7330}
+.atlas-approved[data-slug=glassmorphism] .approved-primary{background:linear-gradient(#7899b8,#486c90);color:white}
+.atlas-approved[data-slug=glassmorphism][data-clear=true] .atlas-section{backdrop-filter:none!important;background:#edf3f7dc!important}
+/* 05：不等分模块；主标题绿色，组件浅绿，变体淡紫。 */
+.atlas-approved[data-slug=bento-grid]{--ap:#faf8ef;--as:#faf8ef;--ai:#163f30;--aa:#315f43;--ab:#d5d8ca;--ar:18px}
+.atlas-approved[data-slug=bento-grid] .approved-composition{grid-template-columns:1.8fr 1fr;grid-template-areas:'title type' 'controls index' 'controls variants' 'notes notes' 'art prompt';gap:calc(12px + var(--art-unit)*20px)}
+.atlas-approved[data-slug=bento-grid] .atlas-section{padding:28px!important;border:1px solid var(--ab)!important;border-radius:24px!important}
+.atlas-approved[data-slug=bento-grid] .atlas-title{background:#1f4d3a!important;color:#fffbed;display:grid;grid-template-columns:120px 1fr;gap:14px}
+.atlas-approved[data-slug=bento-grid] .atlas-title>*{grid-column:2}
+.atlas-approved[data-slug=bento-grid] .atlas-issue{display:none}
+.atlas-approved[data-slug=bento-grid] .approved-headline{font-family:Arial,sans-serif;font-weight:700;font-size:clamp(28px,3.2vw,46px);letter-spacing:-.03em}
+.atlas-approved[data-slug=bento-grid] .atlas-title h1{font-weight:700;font-size:30px;margin:10px 0}
+.atlas-approved[data-slug=bento-grid] .atlas-title h1 span{display:none}
+.atlas-approved[data-slug=bento-grid] .atlas-deck{font-size:16px}
+.atlas-approved[data-slug=bento-grid] .approved-bento-number{grid-column:1;grid-row:1/span 3;font:700 130px/.95 Arial,sans-serif;color:#dff79c;letter-spacing:-.08em}
+.atlas-approved[data-slug=bento-grid] .atlas-controls{background:#edfac7!important}
+.atlas-approved[data-slug=bento-grid] .atlas-variants{background:#ece0f5!important}
+.atlas-approved[data-slug=bento-grid] .approved-index{border:1px solid var(--ab);border-radius:24px;padding:28px}
+.atlas-approved[data-slug=bento-grid] .atlas-art{min-height:220px;align-self:stretch;overflow:hidden!important}
+.atlas-approved[data-slug=bento-grid] .atlas-bento-art{min-height:220px}
+.atlas-approved[data-slug=bento-grid] .atlas-prompt-inputs{grid-template-columns:1fr}
+.atlas-approved[data-slug=bento-grid][data-compact=true] .approved-composition{gap:10px}
+.atlas-approved[data-slug=bento-grid][data-compact=true] .atlas-section{padding:20px!important}
+/* 06：连续的单色表面，左右旋钮与操作，横向凹槽。 */
+.atlas-approved[data-slug=neumorphism]{--ap:#dce6ee;--as:#dce6ee;--ai:#293e4b;--aa:#188f88;--ab:#b4c8d7;--ar:18px}
+.atlas-approved[data-slug=neumorphism] .approved-composition{grid-template-columns:1.1fr 1fr;grid-template-areas:'art title' 'art controls' 'type type' 'notes notes' 'index variants' 'prompt prompt';gap:42px}
+.atlas-approved[data-slug=neumorphism] .approved-headline{font:700 clamp(28px,3.5vw,50px)/1.18 Arial,sans-serif;letter-spacing:-.03em}
+.atlas-approved[data-slug=neumorphism] .atlas-art{align-self:stretch;display:grid;align-items:center}
+.atlas-approved[data-slug=neumorphism] .atlas-dial-stage{background:transparent;min-height:480px}
+.atlas-approved[data-slug=neumorphism] .atlas-dial{width:min(32vw,380px);height:auto;aspect-ratio:1;background:var(--ap);box-shadow:24px 24px 42px #adc0cf,-24px -24px 42px #f5fbff}
+.atlas-approved[data-slug=neumorphism] .atlas-dial strong{font-size:48px;color:var(--aa)}
+.atlas-approved[data-slug=neumorphism] .approved-type,.atlas-approved[data-slug=neumorphism] .atlas-prompt{padding:28px!important;border:0!important;border-radius:24px!important;background:var(--ap)!important;box-shadow:inset 7px 7px 16px #b5c8d7,inset -7px -7px 16px #f5fbff!important}
+.atlas-approved[data-slug=neumorphism] .approved-type{display:flex;gap:32px;align-items:center;flex-wrap:wrap}
+.atlas-approved[data-slug=neumorphism] .approved-type-sample{font-family:Arial,sans-serif;font-weight:700;font-size:90px}
+.atlas-approved[data-slug=neumorphism] .approved-palette{display:none}
+.atlas-approved[data-slug=neumorphism] button{background:var(--ap);border:1px solid #edf4fa;color:var(--ai);box-shadow:5px 5px 10px #b1c4d2,-5px -5px 10px #f4fbff;border-radius:16px}
+.atlas-approved[data-slug=neumorphism] button:active:not(:disabled){box-shadow:inset 4px 4px 7px #aabfcf,inset -4px -4px 7px #f3faff;transform:none}
+.atlas-approved[data-slug=neumorphism] :is(input:not([type=checkbox],[type=range]),textarea,select){box-shadow:inset 3px 3px 8px #b0c3d1,inset -3px -3px 8px #f5fbff;border:0}
+/* 07：胡桃木机柜、可动仪表与纸质阅读区。 */
+.atlas-approved[data-slug=skeuomorphism]{--ap:#342319;--as:#f1e2c5;--ai:#392719;--aa:#8c542c;--ab:#b28c53;--ar:7px;background:repeating-linear-gradient(2deg,#302016 0 3px,#39271a 4px 6px,#463020 7px 9px)}
+.atlas-approved[data-slug=skeuomorphism] .atlas-nav,.atlas-approved[data-slug=skeuomorphism] .atlas-pagination{background:#38271d;color:#f1dfba}
+.atlas-approved[data-slug=skeuomorphism] .atlas-home,.atlas-approved[data-slug=skeuomorphism] .atlas-return{background:linear-gradient(#f1dfb5,#b99454);color:#342316;border:3px ridge #d9bc80;box-shadow:0 3px 2px #160e09}
+.atlas-approved[data-slug=skeuomorphism] .approved-composition{grid-template-columns:190px 1.5fr 1fr;grid-template-areas:'index art title' 'index art notes' 'type type type' 'controls controls variants' 'prompt prompt prompt';gap:24px}
+.atlas-approved[data-slug=skeuomorphism] .atlas-section:not(.atlas-art){padding:28px!important;background:linear-gradient(110deg,#f3e8cd,#e9d5ae)!important;border:3px ridge #b38d58!important;border-radius:8px!important}
+.atlas-approved[data-slug=skeuomorphism] .approved-headline{display:none}
+.atlas-approved[data-slug=skeuomorphism] .atlas-title h1{font:700 34px var(--font-serif);margin:4px 0 20px}
+.atlas-approved[data-slug=skeuomorphism] .atlas-title .atlas-deck{font-family:var(--font-serif);font-size:17px}
+.atlas-approved[data-slug=skeuomorphism] .approved-index{border:3px ridge #825d37;background:#382719;padding:14px;color:#efdbb7;align-self:stretch}
+.atlas-approved[data-slug=skeuomorphism] .approved-index a{border:2px ridge #986e3e;background:linear-gradient(#5a3d27,#352317);margin-top:15px;padding:15px 10px;font:15px var(--font-serif);box-shadow:0 4px 4px #1c120f}
+.atlas-approved[data-slug=skeuomorphism] .approved-type{display:flex;gap:35px;align-items:center;flex-wrap:wrap}
+.atlas-approved[data-slug=skeuomorphism] .approved-palette{flex:1}
+.approved-instrument{background:linear-gradient(135deg,#6b593a,#33291d);padding:24px;border:7px ridge #805d32;border-radius:14px;color:#f5dfb3;min-height:450px;box-shadow:inset 0 0 30px #120e08}
+.approved-instrument>strong{display:block;text-align:center;font:700 clamp(18px,2vw,27px)/1.2 Georgia,serif;border:4px ridge #ba985d;background:linear-gradient(#c7a368,#80633e);color:#20170f;padding:15px 8px;margin-top:22px;text-shadow:0 1px #f3dbaf}
+.approved-meter{background:radial-gradient(ellipse at center,#f6dc9d,#c99c4c);border:8px ridge #9a753c;border-radius:35% 35% 12px 12px;box-shadow:inset 0 0 22px #60411a;position:relative;filter:brightness(calc(.65 + var(--art-unit)*.6));color:#654322;overflow:hidden}
+.approved-meter svg{display:block;width:100%;height:auto}
+.approved-meter text{font:36px Georgia,serif}
+.approved-meter>span{display:block;text-align:center;font-size:11px;margin:0 0 8px}
+.approved-meter-needle{transform-origin:210px 219px;transform:rotate(calc(-50deg + var(--art-unit)*100deg));transition:transform 180ms ease-out}
+.approved-instrument-controls{display:flex;align-items:center;justify-content:space-around;gap:12px;margin-top:24px;font-size:12px}
+.approved-power{display:flex;align-items:center;gap:6px;flex-wrap:wrap;max-width:85px}
+.approved-power i{width:16px;height:16px;border-radius:50%;background:#5c4327;box-shadow:inset 0 0 5px #19110a}
+.approved-power:has(input:checked) i{background:#ffd34b;box-shadow:0 0 15px #f4bd27}
+.approved-metal-knob{width:80px;aspect-ratio:1;border-radius:50%;background:conic-gradient(#9c804e,#f0deb6,#846b40,#e9d29e,#9c804e);border:5px ridge #ac8b4f;box-shadow:3px 5px 8px #17110c}
+.atlas-approved[data-slug=skeuomorphism][data-powered=false] .approved-meter{filter:brightness(.55)}
+.atlas-approved[data-slug=skeuomorphism][data-powered=false] .approved-meter-needle{transform:rotate(-60deg)}
+.atlas-approved[data-slug=skeuomorphism] button{background:linear-gradient(#f0dfb8,#c6a364);border:3px ridge #d7b97b;color:#392719;box-shadow:0 3px 0 #6b4c2b;font-family:var(--font-serif)}
+.atlas-approved[data-slug=skeuomorphism] button:active:not(:disabled){border-style:inset;transform:translateY(2px);box-shadow:none}
+.atlas-approved[data-slug=skeuomorphism] .atlas-dialog{background:#f1e2c5;color:#392719}
+/* 08：黑白索引与横向分栏，不沿用照片。 */
+.atlas-approved[data-slug=brutalism]{--ap:#fff;--as:#fff;--ai:#000;--aa:#000;--ab:#000;--ar:0px}
+.atlas-approved[data-slug=brutalism] .approved-composition{grid-template-columns:2fr 1fr;grid-template-areas:'title title' 'notes index' 'type type' 'controls variants' 'prompt prompt';gap:0}
+.atlas-approved[data-slug=brutalism] .atlas-section{padding:28px 0!important;border-bottom:3px solid #000!important}
+.atlas-approved[data-slug=brutalism] .approved-headline{font:900 clamp(100px,21vw,310px)/.85 Arial,sans-serif;letter-spacing:-.08em}
+.atlas-approved[data-slug=brutalism] .atlas-title h1{font-weight:800}
+.approved-brutal-subtitle{font:bold clamp(20px,3vw,40px)/1.1 Arial,sans-serif;margin:22px 0}
+.atlas-approved[data-slug=brutalism] .approved-index{padding:28px 0 28px 28px;align-self:stretch;border-bottom:3px solid}
+.atlas-approved[data-slug=brutalism] .approved-type{display:grid;grid-template-columns:1fr 3fr;gap:24px;align-items:center}
+.atlas-approved[data-slug=brutalism] .approved-type-layout{background:#000;color:#fff;display:block;padding:24px}
+.atlas-approved[data-slug=brutalism] .approved-type-sample{font:900 clamp(40px,7.4vw,105px)/1 Arial,sans-serif;overflow-wrap:anywhere;letter-spacing:-.065em}
+.atlas-approved[data-slug=brutalism] .approved-palette{display:none}
+.atlas-approved[data-slug=brutalism] .atlas-controls{padding-right:28px!important}
+.atlas-approved[data-slug=brutalism] .atlas-variants{border-left:2px solid!important;padding-left:28px!important;align-self:stretch}
+.atlas-approved[data-slug=brutalism] button{border:2px solid #000;border-radius:0;box-shadow:none;transition:none}
+.atlas-approved[data-slug=brutalism] button:hover:not(:disabled){background:#000;color:#fff}
+/* 09：奶油左栏、粉色字体组件面板、黄色提示词横条。 */
+.atlas-approved[data-slug=neobrutalism]{--ap:#fff8e6;--as:#fffdf7;--ai:#111;--aa:#111;--ab:#111;--ar:0px}
+.atlas-approved[data-slug=neobrutalism] .approved-composition{grid-template-columns:1fr 1.65fr;grid-template-areas:'title type' 'index controls' 'notes controls' 'variants variants' 'prompt prompt';gap:24px 32px}
+.atlas-approved[data-slug=neobrutalism] .approved-headline{font:900 clamp(30px,3.7vw,54px)/1.14 Arial,sans-serif;letter-spacing:-.04em}
+.atlas-approved[data-slug=neobrutalism] .atlas-title h1{display:inline-block;font-size:22px;font-weight:800;background:#ff8fbf;padding:8px 12px;border:2px solid}
+.atlas-approved[data-slug=neobrutalism] .approved-type,.atlas-approved[data-slug=neobrutalism] .atlas-controls{background:#ff8fbf!important;border:3px solid #111!important;padding:26px!important;box-shadow:calc(3px + var(--art-unit)*5px) calc(3px + var(--art-unit)*5px) 0 #111!important}
+.atlas-approved[data-slug=neobrutalism] .approved-type-sample{font:900 clamp(60px,7vw,100px)/1 Arial,sans-serif}
+.atlas-approved[data-slug=neobrutalism] .approved-type h2{background:#fff8e6;display:inline-block;border:2px solid;padding:6px 12px}
+.atlas-approved[data-slug=neobrutalism] .approved-index{border:2px solid;padding:0}
+.atlas-approved[data-slug=neobrutalism] .approved-index h2{background:#111;color:white;margin:0;padding:12px}
+.atlas-approved[data-slug=neobrutalism] .approved-index a{padding:12px}
+.atlas-approved[data-slug=neobrutalism] .atlas-prompt{background:#ffe36b!important;border:3px solid #111!important;padding:28px!important}
+.atlas-approved[data-slug=neobrutalism] button{border:2px solid #111;box-shadow:4px 4px #111;border-radius:0}
+.atlas-approved[data-slug=neobrutalism] button:active:not(:disabled){box-shadow:none;transform:translate(4px,4px)}
+.atlas-approved[data-slug=neobrutalism] .approved-primary{background:#111;color:#ff8fbf}
+/* 10：经典桌面边框；上方阅读、下方文件与提示词。 */
+.atlas-approved[data-slug=retro-web]{--ap:#d7d6ce;--as:#fffdf5;--ai:#191b21;--aa:#132e79;--ab:#85857e;--ar:0px}
+.atlas-approved[data-slug=retro-web] .atlas-nav{background:#132e79;color:#fff}
+.atlas-approved[data-slug=retro-web] .atlas-home,.atlas-approved[data-slug=retro-web] .atlas-return{background:#d7d6ce;color:#191b21;border:3px outset #fff}
+.atlas-approved[data-slug=retro-web] .approved-composition{grid-template-columns:160px 1.2fr 1fr;grid-template-areas:'title title title' 'index bar bar' 'index notes art' 'index type controls' 'index variants prompt';gap:0 26px}
+.approved-window-bar{grid-area:bar;display:flex;justify-content:space-between;gap:16px;align-items:center;background:#132e79;color:#fff;border:3px outset #eee;padding:8px 12px;font-size:15px}
+.approved-window-bar a{min-height:44px;display:flex;align-items:center}
+.atlas-approved[data-slug=retro-web] .atlas-title{padding:0 0 36px!important;color:var(--ai)}
+.atlas-approved[data-slug=retro-web] .approved-headline{font:700 clamp(42px,5.2vw,78px)/1.05 'Times New Roman',serif;letter-spacing:-.03em}
+.atlas-approved[data-slug=retro-web] .atlas-title h1{font-family:var(--font-serif);font-size:30px}
+.atlas-approved[data-slug=retro-web] .atlas-section:not(.atlas-title){padding:24px 20px!important;border:2px ridge #fff!important;background:#deddd5!important}
+.atlas-approved[data-slug=retro-web] .approved-index{border:0;padding:8px 0;align-self:start}
+.atlas-approved[data-slug=retro-web] .approved-index a{display:block;border:0;padding:18px 0;text-align:center;font-family:var(--font-serif)}
+.atlas-approved[data-slug=retro-web] .approved-index a:before{content:'▰';display:block;color:#d5af14;font:40px/1 Arial,sans-serif;text-shadow:1px 1px #635d22}
+.atlas-approved[data-slug=retro-web] .approved-folders{display:none}
+.atlas-approved[data-slug=retro-web] .atlas-retro-window{box-shadow:none;border:2px inset #eee;max-width:100%;font-family:var(--font-serif)}
+.atlas-approved[data-slug=retro-web] .atlas-folder-content{min-height:220px;padding:18px}
+.atlas-approved[data-slug=retro-web] .atlas-window-title{background:#132e79;color:#fff}
+.atlas-approved[data-slug=retro-web] .atlas-window-title button{color:#111}
+.atlas-approved[data-slug=retro-web] .atlas-prompt-inputs{grid-template-columns:1fr}
+.atlas-approved[data-slug=retro-web] button{border:3px outset #eee;background:#d7d6ce;box-shadow:none;border-radius:0;transition:none}
+.atlas-approved[data-slug=retro-web] button:active:not(:disabled){border-style:inset;transform:none}
+.atlas-approved[data-slug=retro-web] input:not([type=range],[type=checkbox]),.atlas-approved[data-slug=retro-web] textarea,.atlas-approved[data-slug=retro-web] select{border:2px inset #ddd;background:#fffdf5}
+/* 审批稿变体保持同一风格，不改成另一种主题。 */
+.atlas-approved[data-variant='1'] .approved-type-sample{font-style:italic}
+.atlas-approved[data-variant='2'] .approved-type-sample{font-weight:800}
+.atlas-approved[data-slug=swiss-style][data-variant='1'] .approved-swiss-number{color:#174b99}
+.atlas-approved[data-slug=swiss-style][data-variant='2'] .approved-type-sample{letter-spacing:-.09em}
+.atlas-approved[data-slug=brutalism][data-variant='1'] .approved-headline{font-weight:500}
+.atlas-approved[data-slug=brutalism][data-variant='2'] .approved-headline{font-size:clamp(100px,23vw,330px)}
+.atlas-approved[data-slug=neobrutalism][data-variant='1'] .approved-type{background:#ffe36b!important}
+.atlas-approved[data-slug=neobrutalism][data-variant='2'] .approved-type{background:#b9ddf2!important}
+.atlas-approved[data-slug=glassmorphism][data-variant='1'] .atlas-section{background:#e7eff5dc!important}
+.atlas-approved[data-slug=glassmorphism][data-variant='2'] .atlas-section{background:#e3e8f4c9!important}
+@media(max-width:1050px){
+.atlas-approved .atlas-nav{flex-wrap:wrap;gap:10px;padding:10px 20px}
+.atlas-approved .atlas-nav>nav{margin-left:auto}
+.atlas-approved .approved-composition{padding:32px 24px;gap:28px}
+.atlas-approved[data-slug=skeuomorphism] .approved-composition{grid-template-columns:150px 1fr;grid-template-areas:'title title' 'index art' 'notes notes' 'type type' 'controls variants' 'prompt prompt'}
+.atlas-approved[data-slug=glassmorphism] .approved-composition{grid-template-columns:170px 1fr;grid-template-areas:'index title' 'index type' 'index controls' 'index variants' 'index notes' 'index prompt'}
+.atlas-approved[data-slug=bento-grid] .atlas-title{grid-template-columns:70px 1fr;padding:22px!important}
+.atlas-approved[data-slug=bento-grid] .approved-bento-number{font-size:86px}
+.atlas-approved[data-slug=retro-web] .approved-composition{grid-template-columns:120px 1fr;grid-template-areas:'title title' 'index bar' 'index notes' 'index art' 'index type' 'index controls' 'index variants' 'index prompt'}
+.atlas-approved .atlas-prompt-inputs{grid-template-columns:1fr 1fr}
+.atlas-approved .atlas-prompt-inputs button{grid-column:1/-1}
+}
+@media(max-width:700px){
+.atlas-root.atlas-approved .atlas-nav{padding:8px 12px;gap:8px;min-height:64px;align-items:center}
+.atlas-approved .atlas-home{order:0;min-width:80px;min-height:44px}
+.atlas-approved .atlas-return{order:1;min-height:44px;font-size:13px;padding:8px 10px}
+.atlas-approved .atlas-nav .atlas-brand{display:none}
+.atlas-approved .atlas-nav>nav{order:3;flex:1 1 100%;gap:10px;justify-content:flex-start;min-width:0;font-size:12px}
+.atlas-approved .atlas-nav astro-island{order:2;margin-left:auto;max-width:90px}
+.atlas-approved .atlas-nav>nav button{min-height:44px}
+.atlas-root.atlas-approved .approved-composition{display:flex;flex-direction:column;gap:26px;padding:26px 18px}
+.atlas-root.atlas-approved .approved-composition>.atlas-section,.atlas-root.atlas-approved .approved-index,.atlas-root.atlas-approved .approved-window-bar{width:100%;min-width:0;flex:none;order:initial}
+.atlas-root.atlas-approved .approved-composition .atlas-title{padding:0!important;border:0!important;text-align:left}
+.atlas-root.atlas-approved .approved-headline{font-size:clamp(31px,8.6vw,60px);white-space:pre-line;overflow-wrap:anywhere;line-height:1.08}
+.atlas-root.atlas-approved .atlas-title h1{font-size:24px;margin:22px 0 16px}
+.atlas-root.atlas-approved .atlas-issue{margin-bottom:20px}
+.atlas-root.atlas-approved .atlas-deck{font-size:16px}
+.atlas-root.atlas-approved .approved-index{padding:18px 0;border:0;border-top:1px solid var(--ab);display:flex;flex-wrap:wrap;gap:4px 18px}
+.atlas-root.atlas-approved .approved-index h2{width:100%;font-size:18px;margin:0}
+.atlas-root.atlas-approved .approved-index a{font-size:13px;padding:8px 0;border:0;min-height:44px}
+.atlas-root.atlas-approved .atlas-intro{font-size:16px}
+.atlas-root.atlas-approved .approved-type-layout{gap:18px}
+.atlas-root.atlas-approved .approved-type-sample{font-size:85px}
+.atlas-root.atlas-approved .approved-palette{gap:10px}
+.atlas-root.atlas-approved .approved-palette>div{min-width:52px}
+.atlas-root.atlas-approved .approved-palette code{font-size:10px}
+.atlas-root.atlas-approved .atlas-controls,.atlas-root.atlas-approved .atlas-variants,.atlas-root.atlas-approved .atlas-notes{padding:22px 0!important;border-left:0!important;display:block}
+.atlas-root.atlas-approved .atlas-prompt{padding:24px 0!important}
+.atlas-root.atlas-approved .atlas-prompt-inputs{grid-template-columns:1fr}
+.atlas-root.atlas-approved .atlas-prompt-inputs button{grid-column:auto}
+.atlas-root.atlas-approved .approved-type{display:block;padding:20px 0!important}
+.atlas-root.atlas-approved .atlas-pagination{display:grid;grid-template-columns:1fr 1fr;padding:20px 18px;gap:14px}
+.atlas-root.atlas-approved .atlas-pagination>a:nth-child(2){grid-row:2;grid-column:1/-1;justify-content:center}
+.atlas-root.atlas-approved .atlas-pagination :is(a,button){font-size:13px;white-space:normal;text-align:left;min-width:0}
+.atlas-root.atlas-approved .atlas-dialog{width:calc(100% - 24px);max-height:85dvh}
+.atlas-root.atlas-approved .atlas-dialog>header{gap:12px}
+.atlas-root.atlas-approved .atlas-dialog h2{font-size:20px}
+.atlas-root.atlas-approved[data-slug=minimalism] .atlas-art{aspect-ratio:2.2;min-height:130px}
+.atlas-root.atlas-approved[data-slug=minimalism] .atlas-home,.atlas-root.atlas-approved[data-slug=minimalism] .atlas-return{font-size:15px}
+.atlas-root.atlas-approved[data-slug=swiss-style] .approved-swiss-number{display:none}
+.atlas-root.atlas-approved[data-slug=swiss-style] .approved-type-layout{display:flex}
+.atlas-root.atlas-approved[data-slug=editorial] .atlas-art{min-height:0;max-height:320px;order:-1}
+.atlas-root.atlas-approved[data-slug=editorial] .atlas-title{order:-2}
+.atlas-root.atlas-approved[data-slug=editorial] .atlas-art img{height:280px}
+.atlas-root.atlas-approved[data-slug=editorial] .atlas-prompt{padding:22px!important}
+.atlas-root.atlas-approved[data-slug=glassmorphism] .approved-composition{gap:14px;background-attachment:scroll}
+.atlas-root.atlas-approved[data-slug=glassmorphism] .approved-composition .atlas-section,.atlas-root.atlas-approved[data-slug=glassmorphism] .approved-index{padding:22px!important;border-radius:16px!important}
+.atlas-root.atlas-approved[data-slug=glassmorphism] .approved-headline{font-size:27px}
+.atlas-root.atlas-approved[data-slug=bento-grid] .approved-composition .atlas-section,.atlas-root.atlas-approved[data-slug=bento-grid] .approved-index{padding:22px!important;border-radius:20px!important}
+.atlas-root.atlas-approved[data-slug=bento-grid] .atlas-title{grid-template-columns:60px 1fr;gap:14px}
+.atlas-root.atlas-approved[data-slug=bento-grid] .approved-headline{font-size:23px;overflow-wrap:normal}
+.atlas-root.atlas-approved[data-slug=bento-grid] .approved-bento-number{font-size:72px}
+.atlas-root.atlas-approved[data-slug=bento-grid] .atlas-title h1{font-size:24px}
+.atlas-root.atlas-approved[data-slug=neumorphism] .atlas-dial-stage{min-height:300px}
+.atlas-root.atlas-approved[data-slug=neumorphism] .atlas-dial{width:220px;min-width:0}
+.atlas-root.atlas-approved[data-slug=neumorphism] .approved-type,.atlas-root.atlas-approved[data-slug=neumorphism] .atlas-prompt{padding:22px!important}
+.atlas-root.atlas-approved[data-slug=skeuomorphism] .approved-composition .atlas-section:not(.atlas-art){padding:22px!important}
+.atlas-root.atlas-approved[data-slug=skeuomorphism] .approved-index{padding:16px!important;background:#382719}
+.atlas-root.atlas-approved[data-slug=skeuomorphism] .approved-index a{font-size:13px;padding:10px}
+.atlas-root.atlas-approved[data-slug=skeuomorphism] .approved-instrument{padding:16px;min-height:0}
+.atlas-root.atlas-approved[data-slug=skeuomorphism] .approved-type-layout{display:block}
+.atlas-root.atlas-approved[data-slug=brutalism] .approved-headline{font-size:clamp(90px,24vw,160px);letter-spacing:-.09em;overflow-wrap:normal}
+.atlas-root.atlas-approved[data-slug=brutalism] .approved-type-sample{font-size:clamp(32px,9.6vw,62px);letter-spacing:-.07em}
+.atlas-root.atlas-approved[data-slug=neobrutalism] .approved-type,.atlas-root.atlas-approved[data-slug=neobrutalism] .atlas-controls,.atlas-root.atlas-approved[data-slug=neobrutalism] .atlas-prompt{padding:20px!important}
+.atlas-root.atlas-approved[data-slug=neobrutalism] .approved-type-sample{font-size:62px}
+.atlas-root.atlas-approved[data-slug=retro-web] .approved-composition .atlas-section:not(.atlas-title){padding:20px!important}
+.atlas-root.atlas-approved[data-slug=retro-web] .approved-index a:before{font-size:30px}
+.atlas-root.atlas-approved[data-slug=retro-web] .atlas-folder-content{padding:14px;min-height:180px}
+}
+@media(prefers-reduced-motion:reduce){.atlas-approved *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.atlas-approved[data-slug=brutalism] .approved-type-sample{font-size:clamp(32px,calc(4vw + var(--art-unit)*5vw),105px)}
+.approved-stickers{min-height:30px;font-size:28px;letter-spacing:8px;margin-top:12px;color:#fff4a8;text-shadow:2px 2px #111}
+
+.atlas-approved .approved-composition [id]{scroll-margin-top:calc(var(--atlas-nav-height,72px) + 24px)}

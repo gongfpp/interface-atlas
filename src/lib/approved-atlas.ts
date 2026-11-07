@@ -1,0 +1,30 @@
+/** 前十张审批稿及用户授权继续实现的后十五张 imggen 整页提案。 */
+export const APPROVED_ATLAS = {
+  minimalism: { headline: 'MINIMALISM /\nLESS, BUT BETTER.', font: 'Georgia / Noto Serif', colors: ['#faf8f2', '#252620', '#667e52'], image: 'exec-b53423e0-193a-4940-8b08-2de51eaf9777.png' },
+  'swiss-style': { headline: 'SWISS STYLE /\nORDNUNG.', font: 'Arial / Helvetica', colors: ['#f7f5ee', '#111111', '#e0001a'], image: 'exec-4174e7f0-5c26-4d8a-896d-9b1f791a8bcc.png' },
+  editorial: { headline: 'EDITORIAL /\nTHE INTERFACE REVIEW', font: 'Georgia / Noto Serif', colors: ['#f7f2e9', '#6b1e2a', '#b86a52', '#e6dbc9'], image: 'exec-a4e5e3d5-05fd-4354-98eb-4905e15bbaf3.png' },
+  glassmorphism: { headline: 'GLASSMORPHISM /\nA WINDOW INTO LIGHT', font: 'Inter / system-ui', colors: ['#4e6b8e', '#d6e0ec', '#f7e2d6', '#ffffff'], image: 'exec-7b75d604-c857-4af7-a913-660927d8bc31.png' },
+  'bento-grid': { headline: 'BENTO GRID /\nEVERYTHING IN ITS PLACE', font: 'Inter / system-ui', colors: ['#1f4d3a', '#dff79c', '#f9f7eb', '#e6d8f4'], image: 'exec-a5732fda-22c2-4be3-981d-7556ed172165.png' },
+  neumorphism: { headline: 'NEUMORPHISM /\nA SOFTER CONTROL', font: 'Inter / system-ui', colors: ['#dce6ee', '#293e4b', '#27a89b'], image: 'exec-1ddae7e3-be39-4b99-84e6-10b90435d825.png' },
+  skeuomorphism: { headline: 'SKEUOMORPHISM /\nTHE MATERIAL ARCHIVE', font: 'Georgia / Noto Serif', colors: ['#563720', '#b99552', '#f3e5c7'], image: 'exec-f04822bb-376b-4cc3-9b42-927b066dfa23.png' },
+  brutalism: { headline: 'INDEX', font: 'Arial / Helvetica', colors: ['#ffffff', '#000000'], image: 'exec-839575bf-9622-47b5-bc24-854089c331da.png' },
+  neobrutalism: { headline: 'NEOBRUTALISM /\nGOOD IDEAS.\nBOLD EDGES.', font: 'Arial / system-ui', colors: ['#ff8fbf', '#ffe36b', '#fff8e6', '#000000'], image: 'exec-6028baeb-422e-4754-b8cf-5e1c79346e0f.png' },
+  'retro-web': { headline: 'RETRO WEB /\nWELCOME BACK.', font: 'Times New Roman / system-ui', colors: ['#132e79', '#d7d6ce', '#fffdf5'], image: 'exec-02fae5a8-fd96-46cd-b64c-c529b6770eb5.png' },
+  bauhaus: { headline: 'BAU /\nHAUS', font: 'Arial / system-ui', colors: ['#f7f2e6', '#121212', '#e10600', '#ffd02a', '#1955cc'], image: 'exec-93ad4ee1-e363-4f29-8294-3be14c5feca6.png' },
+  'flat-design': { headline: 'CLARITY', font: 'Arial / system-ui', colors: ['#075ce5','#ff8000','#ffffff','#16243b'], image: 'exec-853ca5ec-0aee-4733-85f2-086d248a26bb.png' },
+  cyberpunk: { headline: 'SIGNAL_ACCESS', font: 'AtlasTall / monospace', colors: ['#0b100b','#c6ff00','#56693e','#edf5d7'], image: 'exec-6c635efa-abd2-4242-b5ec-92a2c3aaab50.png' },
+  y2k: { headline: 'YOUR FUTURE\nIS LOADING', font: 'Arial Italic / system-ui', colors: ['#e9efff','#91b7ff','#a8acbe','#202749'], image: 'exec-b4a495fd-d682-435b-a9e6-aa5564d2e9d9.png' },
+  claymorphism: { headline: 'SQUISH\nYOUR IDEAS', font: 'Arial Rounded MT Bold / system-ui', colors: ['#ffe2e5','#ed86a5','#fff0d5','#c4a7e9'], image: 'exec-7f116443-66fe-46ad-b313-275170564904.png' },
+  'corporate-memphis': { headline: 'BUILD IT\nTOGETHER', font: 'Arial / system-ui', colors: ['#ffffff','#255eff','#ff6b63','#ffd54a'], image: 'exec-995399b2-98eb-4679-b032-3d29bd8cc2e4.png' },
+  memphis: { headline: 'BREAK\nTHE GRID.', font: 'Arial Black / system-ui', colors: ['#fff6e7','#2546ff','#ff6b7d','#ffdb00'], image: 'exec-94578e6f-2408-447a-90ef-6bedbf2582f0.png' },
+  organic: { headline: 'NATURALLY\nBY DESIGN', font: 'Georgia / Noto Serif', colors: ['#f5efdf','#5f6939','#b47c4d','#c9bda9'], image: 'exec-67074cad-ad10-4464-8e7a-25fcf8ac0443.png' },
+  'pixel-art': { headline: 'INTERFACE\nQUEST', font: 'Courier New / monospace', colors: ['#09261c','#184b35','#8ddf91','#ffe1a1'], image: 'exec-1f725ca7-455e-4188-a6d9-634d89b0f680.png' },
+  aurora: { headline: 'FOLLOW\nTHE LIGHT', font: 'Helvetica Neue / system-ui', colors: ['#061b2c','#37f3a1','#00cddb','#e6fff7'], image: 'exec-21dd3d18-34c6-4414-9d18-3090c275e732.png' },
+  'hand-drawn': { headline: 'PUT IT\nON PAPER', font: 'Comic Sans MS / cursive', colors: ['#fffbea','#3458a4','#ffe17b','#85af7f'], image: 'exec-e5c71ba2-2aee-4b04-9b70-4739cd216787.png' },
+  'art-deco': { headline: 'THE GEOMETRY\nOF ELEGANCE', font: 'Georgia / Noto Serif', colors: ['#0b1d18','#d6b16c','#f5e6bd','#275044'], image: 'exec-c356aec7-011e-4e71-95b4-08f8496d7194.png' },
+  'retro-futurism': { headline: 'TOMORROW / 1984', font: 'AtlasTall / system-ui', colors: ['#190d29','#b750df','#ff8e37','#f8dbfd'], image: 'exec-c737aa53-f3eb-4512-be43-3d763a882fd2.png' },
+  vaporwave: { headline: 'THE MALL\nOF MEMORY', font: 'Georgia Italic / monospace', colors: ['#f7daef','#805095','#a7e7f2','#fdf5e9'], image: 'exec-e6a90b72-a679-43b4-99f3-c0c8869559d8.png' },
+  'liquid-glass': { headline: 'LIGHT\nREFRACTED', font: 'Helvetica Neue / system-ui', colors: ['#eef6ff','#4b6c8b','#6ae1f7','#f2d49a'], image: 'conversation:liquid-glass-2026-11-06' },
+} as const;
+export type ApprovedStyle = keyof typeof APPROVED_ATLAS;
+export function isApprovedStyle(slug: string): slug is ApprovedStyle { return Object.hasOwn(APPROVED_ATLAS, slug); }

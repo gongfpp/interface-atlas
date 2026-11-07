@@ -1,52 +1,7 @@
 import { test, expect } from './helpers/private-browser.mjs';
-import { pathFor, readyStyleFrame, reloadStyleFrame, exerciseStyleFlow, assertUsableGeometry } from './helpers/style-page-flows.mjs';
+import { pathFor, assertUsableGeometry } from './helpers/style-page-flows.mjs';
 
-for(const slug of ['swiss-style','editorial']) for(const locale of ['zh','en']) for(const width of [390,320]) for(const height of [900,600]) {
-  test(`嵌入浮层 ${slug} ${locale} ${width}px 外窗${height}px：完整可见、点击稳定与返回`,async({page})=>{
-    test.setTimeout(60000);
-    await page.setViewportSize({width:1280,height});
-    await page.goto(pathFor(locale,`/styles/${slug}/`));
-    await expect(page.locator('header[data-track-region="header"]')).toHaveCSS('position','relative');
-    const {experience,iframe,frame,scene}=await readyStyleFrame(page,slug,locale);
-    await experience.locator(`[data-scene-width="${width}px"]`).click();
-    for(const mode of ['default','dark','variants']) {
-      await reloadStyleFrame(experience,frame,`[data-style-mode="${mode}"]`);
-      await iframe.evaluate(el=>scrollBy({top:el.getBoundingClientRect().top-440,behavior:'instant'}));
-      await scene.locator(`[data-scene-action="${slug==='swiss-style'?'menu':'story-0'}"]`).first().click();
-      await expect.poll(async()=>{const box=await iframe.boundingBox();return box.y+box.height;}).toBeLessThanOrEqual(height);
-      await expect.poll(async()=>(await iframe.boundingBox()).y).toBeGreaterThanOrEqual(0);
-      if(slug==='swiss-style') {
-        await scene.locator('[data-scene-dialog="menu"] [data-scene-action="nav-3"]').click();
-        await expect(scene.locator('#scene-section-3')).toBeFocused();
-      } else {
-        const save=scene.locator('[data-scene-dialog="story"] [data-scene-action="save-story"]');
-        await save.click();await expect(save).toHaveAttribute('aria-pressed','true');
-        await save.click();await expect(save).toHaveAttribute('aria-pressed','false');
-        await page.keyboard.press('Escape');
-      }
-      await expect(scene.locator('dialog[open]')).toHaveCount(0);
-      // 检查完整项目/文章、关闭、搜索、收藏与返回，不用局部菜单成功代替完整流程。
-      await exerciseStyleFlow(scene,slug,locale);
-    }
-  });
-}
-
-for(const slug of ['swiss-style','editorial']) for(const locale of ['zh','en']) for(const height of [900,600]) {
-  test(`离屏模式 ${slug} ${locale} 外窗${height}px：明确操作后立即加载新文档`,async({page})=>{
-    await page.setViewportSize({width:1280,height});
-    await page.goto(pathFor(locale,`/styles/${slug}/`));
-    const {experience,iframe,frame}=await readyStyleFrame(page,slug,locale);
-    await expect(iframe).toHaveAttribute('loading','lazy');
-    for(const mode of ['dark','variants','default']) {
-      const control=`[data-style-mode="${mode}"]`;
-      await experience.locator(control).evaluate(el=>scrollBy({top:el.getBoundingClientRect().bottom-innerHeight+4,behavior:'instant'}));
-      expect((await iframe.boundingBox()).y).toBeGreaterThan(height);
-      await reloadStyleFrame(experience,frame,control);
-      await expect(iframe).toHaveAttribute('loading','eager');
-      await expect(frame.locator('body')).toHaveAttribute('data-mode',mode);
-    }
-  });
-}
+// Full-page dialogs and sticky navigation: atlas-pages.spec.mjs.
 
 for(const locale of ['zh','en']) {
   test(`非风格详情保留吸顶 ${locale}：首页、列表与组件`,async({page})=>{

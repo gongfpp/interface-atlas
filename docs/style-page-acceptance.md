@@ -1,5 +1,10 @@
 # 风格整页统一：迁移与验收
 
+最新实现的本机验收结果与视觉差异见 [2026-11-08 浏览器验收记录](atlas-browser-acceptance.md)。以下内容保留各阶段的历史状态。
+
+> 2026-10-30：本文记录原独立案例与 iframe 阶段；新版 `/styles/` 整页候选见 [当前实现与待验收项](atlas-full-page-implementation.md)。下文历史通过记录不代表新版已验收。
+
+
 ## 改造入口与原始差异
 
 视觉基线为源码提交 [`9e652dc8`](<https://github.com/gongfpp/interface-atlas/commit/9e652dc8fb1c64b2abf7109b3f3e0bd15111871c>) 的实际预览。本文已入库全部 25 种原始预览与当前页面的中文截图；双语内容、同源 DOM 和操作另外由完整矩阵验证。没有更换五张原始照片或字体资产。

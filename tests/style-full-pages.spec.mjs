@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { load } from 'js-yaml';
 import { test, expect } from './helpers/private-browser.mjs';
-import { STYLE_SLUGS, REFERENCE_STYLES, pathFor, readyStyleFrame, reloadStyleFrame, exerciseStyleFlow, assertNoOverflow, assertUsableGeometry, assertStyleInitial, assertStyleDocumentBoundary } from './helpers/style-page-flows.mjs';
+import { STYLE_SLUGS, REFERENCE_STYLES, pathFor, exerciseStyleFlow, assertNoOverflow, assertUsableGeometry, assertStyleInitial, assertStyleDocumentBoundary } from './helpers/style-page-flows.mjs';
 
 const locales = ['zh', 'en'];
 const widths = [1280, 390, 320];
@@ -74,57 +74,7 @@ for (const locale of locales) for (const width of widths) for (const slug of STY
   });
 }
 
-for (const locale of locales) for (const slug of STYLE_SLUGS) {
-  test(`完整风格详情接口 ${slug} ${locale}：单预览、390/320真实iframe、模式与重置`, async ({ page, baseURL }, testInfo) => {
-    test.setTimeout(60_000);
-    const errors = observeFailures(page, baseURL);
-    await page.setViewportSize({ width: 1280, height: 900 });
-    await page.goto(pathFor(locale, `/styles/${slug}/`));
-    const { experience, iframe, frame, scene } = await readyStyleFrame(page, slug, locale);
-    await expect(page.locator('#playground .demo-content')).toHaveCount(0);
-    for (const width of [390, 320]) {
-      const button = experience.locator(`[data-scene-width="${width}px"]`);
-      await button.click();
-      await expect(button).toHaveAttribute('aria-pressed', 'true');
-      await expect.poll(() => frame.locator('body').evaluate(() => innerWidth)).toBe(width);
-      expect((await iframe.boundingBox()).width).toBe(width);
-      await assertNoOverflow(frame, `${slug} iframe ${width}`);
-    }
-    await experience.locator('[data-scene-width="100%"] ').click();
-    await expect.poll(() => frame.locator('body').evaluate(() => innerWidth)).toBeGreaterThan(600);
-    // 模式不是只改toolbar高亮，独立document必须收到mode，并可继续完成业务流程。
-    const modes = await experience.locator('[data-style-mode]').evaluateAll(buttons => buttons.map(button => button.dataset.styleMode));
-    expect(modes).toEqual(specs[slug].demo.modes);
-    // 形式模式也会改变真实标题、按钮与可打开的弹窗；只采 section 会漏掉这些有效变化。
-    // 仍仅比较 iframe 内页面，外层工具栏高亮不能让断言通过。
-    const visualSignature = () => scene.evaluate(root => [root, ...root.querySelectorAll('*')].map(element => {
-      const styles = getComputedStyle(element);
-      return Object.fromEntries(['backgroundColor', 'backgroundImage', 'color', 'borderTopWidth', 'borderTopStyle', 'borderTopColor', 'borderRadius', 'boxShadow'].map(key => [key, styles[key]]));
-    }));
-    const defaultVisual = await visualSignature();
-    const modeText = await scene.textContent();
-    for (const mode of modes) {
-      await reloadStyleFrame(experience, frame, `[data-style-mode="${mode}"]`);
-      await expect(experience.locator(`[data-style-mode="${mode}"]`)).toHaveAttribute('aria-pressed', 'true');
-      await expect(frame.locator('body')).toHaveAttribute('data-mode', mode);
-      const standalone = new URL(await experience.locator('[data-style-open]').getAttribute('href'), page.url());
-      expect(standalone.pathname).toBe(pathFor(locale, `/style-scenes/${slug}/`));
-      expect(standalone.searchParams.get('mode')).toBe(mode);
-      expect(standalone.href).toBe(await frame.locator('body').evaluate(() => location.href));
-      if (mode !== 'default') expect(await visualSignature(), `${slug} ${mode} 必须改变实际页面样式而非只高亮按钮`).not.toEqual(defaultVisual);
-      await expect(scene).toHaveText(modeText);
-      await assertNoOverflow(frame, `${slug} ${mode}`);
-    }
-    await reloadStyleFrame(experience, frame, '[data-style-mode="default"]');
-    const initial = await scene.textContent();
-    await exerciseStyleFlow(scene, slug, locale);
-    await reloadStyleFrame(experience, frame);
-    await expect(scene).toHaveText(initial);
-    await assertStyleInitial(scene, slug);
-    await attachEvidence(page, testInfo, 'detail-reset', { slug, locale, modes, iframeViewport: await frame.locator('body').evaluate(() => ({ width: innerWidth, height: innerHeight })) });
-    expect(errors).toEqual([]);
-  });
-}
+// Main /styles pages are covered by atlas-pages.spec.mjs; standalone legacy scenes remain below.
 
 const heroParts = {
   'minimalism': '.lumo-body', 'swiss-style': '.vertex-body', editorial: '.paper-body',

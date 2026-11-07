@@ -1,9 +1,9 @@
 import { test, expect } from './helpers/private-browser.mjs';
 
 async function expectContainedHeader(page) {
-  const geometry = await page.locator('article > header').evaluate(header => {
+  const geometry = await page.locator('article > header, .atlas-nav').evaluate(header => {
     const headerRect = header.getBoundingClientRect();
-    const heading = header.querySelector('h1');
+    const heading = header.querySelector('h1') || document.querySelector('.atlas-title h1');
     const titleRect = heading.parentElement.getBoundingClientRect();
     const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
     const headingText = [];
@@ -50,7 +50,7 @@ for (const locale of ['zh', 'en']) {
       test(`详情页收藏按钮 ${locale} ${width}px ${route}：收藏与撤销后仍完整可见`, async ({ page }) => {
         await page.setViewportSize({ width, height: 900 });
         await page.goto(`${locale === 'en' ? '/en' : ''}${route}`);
-        const header = page.locator('article > header');
+        const header = page.locator('article > header, .atlas-nav');
         await expect(header.locator('astro-island[ssr]')).toHaveCount(0);
         const bookmark = header.locator('button[aria-pressed]');
         await expect(bookmark).toHaveAttribute('aria-pressed', 'false');
@@ -80,7 +80,7 @@ for (const locale of ['zh', 'en']) {
       }
     });
     await page.goto(`${locale === 'en' ? '/en' : ''}/components/button`);
-    const header = page.locator('article > header');
+    const header = page.locator('article > header, .atlas-nav');
     const warning = header.getByRole('status');
     await expect(warning).toBeVisible();
     const bookmark = header.locator('button[aria-pressed]');

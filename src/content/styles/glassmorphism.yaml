@@ -109,66 +109,84 @@ implementation:
 prompts:
   basic:
     zh: 用玻璃拟态风格（Glassmorphism）设计界面：半透明磨砂玻璃面板，背景模糊透出底下的渐变或照片，配细白色高光描边。
-    en: '"Design an interface in Glassmorphism style: translucent frosted-glass panels that blur and reveal a gradient or photo beneath, edged with a thin white highlight."'
+    en: >-
+      "Design an interface in Glassmorphism style: translucent frosted-glass panels that blur and reveal a gradient or
+      photo beneath, edged with a thin white highlight."
   design:
-    zh: 玻璃拟态设计规范：页面背景为鲜艳渐变或照片（深色背景效果最佳）；玻璃面板 填充 rgba(255,255,255,0.15) 左右，backdrop-filter blur(16px)；描边用 1px rgba(255,255,255,0.35)，顶部可加内发光高光；圆角 16px+；玻璃上的文字保证 4.5:1 对比度。深色模式用更深的渐变底，玻璃透明度略升。
-    en: '"Glassmorphism design spec: a vivid gradient or photo background (dark works best); panels filled with rgba(255,255,255,0.15) and backdrop-filter blur(16px); 1px rgba(255,255,255,0.35) rims with an optional inner top glow; radii 16px+; text on glass must keep 4.5:1 contrast. Dark mode deepens the backdrop and slightly raises transparency."'
+    zh: >-
+      玻璃拟态设计规范：页面背景为鲜艳渐变或照片（深色背景效果最佳）；玻璃面板 填充 rgba(255,255,255,0.15) 左右，backdrop-filter blur(16px)；描边用 1px
+      rgba(255,255,255,0.35)，顶部可加内发光高光；圆角 16px+；玻璃上的文字保证 4.5:1 对比度。深色模式用更深的渐变底，玻璃透明度略升。
+    en: >-
+      "Glassmorphism design spec: a vivid gradient or photo background (dark works best); panels filled with
+      rgba(255,255,255,0.15) and backdrop-filter blur(16px); 1px rgba(255,255,255,0.35) rims with an optional inner top
+      glow; radii 16px+; text on glass must keep 4.5:1 contrast. Dark mode deepens the backdrop and slightly raises
+      transparency."
   implementation:
-    zh: |-
-      用当前风格完成 Aurora 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。preview.brand 与共享 REFERENCE_BRANDS 保持一致；首屏结构、实际导航与素材以 ReferenceStyleScene 为准。
+    zh: >-
+      以 /styles/glassmorphism/ 为整页入口。标题表达：A WINDOW INTO LIGHT；页面气质：在清晰与朦胧之间，看见层次。。按最新整页图像提案设计布局、字体、图形、材质与组件；桌面区域构图为
+      "title art controls" "variants art notes" "prompt prompt prompt"，不能只换颜色。
 
-      保留 Aurora 的雪山暮色背景照片、半透明蓝紫叠光及 38% / 30% / 26% 三栏（3% 间隙），不是另换通用渐变背景。功能列表使用现有半透明白渐变、1px 白边与 blur(9px)，独立图表面板用 blur(8px)、内高光和粉色柔光；白色 CTA 与无衬线白标题保持原位置。创作延续区使用现有浅蓝紫底与 blur(14px) 分区；600px 以下按内容单列重排。dark/variants 只按已有 CSS 调整表面和叠光，不反色原照片。
 
-      免费开始与立即体验进入创作区，输入想法生成可编辑的本地草稿；灵感助手、演示同步和原「多格式导出」入口解释对应功能，实际支持将当前草稿导出为 .txt；可保存/恢复本页快照并返回编辑。明确 AI 与云同步只是本地模拟。
+      首页入口固定在左上角，图标加“首页”，点击区域至少 44×44px；手机上不收进菜单。变体只使用 磨砂、透明玻璃、有色玻璃，切换同步材质、构图或控件与提示词；保留用户已编辑文字。详情通过原生 dialog 打开，支持
+      Escape、焦点归还和浏览器前进后退。保留收藏、语言切换、风格指南与可编辑提示词；复制失败选中文本供手动复制。当前风格过渡基准 240ms，减少动态效果时取消动画。桌面、390px、320px 按内容重排。
 
-      静态封面、详情演示与 /style-scenes/glassmorphism/（英文 /en/style-scenes/glassmorphism/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。
 
-      操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。
+      实现入口为 src/components/atlas/AtlasPage.astro；逐风格顺序在 src/lib/atlas-designs.ts；交互在 src/lib/atlas-runtime.ts；整页样式在
+      src/styles/atlas-pages.css。既有 /style-scenes/ 独立案例保留，但不要重新嵌入详情页。
+    en: >-
+      Build the full /en/styles/glassmorphism/ page. Display direction: A WINDOW INTO LIGHT; Find depth between clarity
+      and diffusion.. Follow the latest whole-page image proposal for layout, typography, artwork, materials and
+      components. Desktop grid areas: "title art controls" "variants art notes" "prompt prompt prompt". Do not just
+      recolour a template.
 
-      提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。
-    en: |-
-      Build a complete Aurora page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. Keep preview.brand aligned with shared REFERENCE_BRANDS; ReferenceStyleScene defines the hero structure, actual navigation and assets.
 
-      Keep Aurora’s snowy dusk photograph, translucent blue-violet light layer and 38% / 30% / 26% columns with 3% gaps, not a replacement generic gradient. The feature list uses its existing translucent white gradient, 1px white rim and blur(9px); the separate chart uses blur(8px), inset highlights and a pink bloom. Retain white CTAs and sans display placement. The continuation uses its existing pale blue-violet surfaces and blur(14px) sections, stacking below 600px. Dark/variants follow existing surface/light selectors without inverting the photograph.
+      Keep an icon plus Home link fixed at the top left, at least 44×44px, visible on mobile without opening a menu.
+      Variants: Frost, Clear Glass, Tinted Glass. Update the design and prompt without overwriting manual edits. Native
+      dialogs support Escape, focus return and browser Back/Forward. Preserve saves, locale switching, style guide and
+      editable prompts; select text for manual copy when clipboard access fails. Base transition: 240ms, disabled with
+      reduced motion. Reflow at desktop, 390px and 320px.
 
-      Start creating and Try it now open creation. Turn an idea into an editable local draft; assistant, simulated sync and the original Flexible export entry explain the corresponding features. Actual export saves the current draft as .txt; save/restore a page snapshot and return to editing. Label AI and cloud sync as local simulations.
 
-      Share one renderer between static covers, the detail experience and /style-scenes/glassmorphism/ (English /en/style-scenes/glassmorphism/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.
-
-      Interaction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.
-
-      Provide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion.
+      Use AtlasPage.astro, atlas-designs.ts, atlas-runtime.ts and atlas-pages.css. Keep the legacy /style-scenes/
+      examples separate; do not embed them into the detail page.
   agent:
-    zh: |-
-      用当前风格完成 Aurora 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。preview.brand 与共享 REFERENCE_BRANDS 保持一致；首屏结构、实际导航与素材以 ReferenceStyleScene 为准。
+    zh: >-
+      以 /styles/glassmorphism/ 为整页入口。标题表达：A WINDOW INTO LIGHT；页面气质：在清晰与朦胧之间，看见层次。。按最新整页图像提案设计布局、字体、图形、材质与组件；桌面区域构图为
+      "title art controls" "variants art notes" "prompt prompt prompt"，不能只换颜色。
 
-      保留 Aurora 的雪山暮色背景照片、半透明蓝紫叠光及 38% / 30% / 26% 三栏（3% 间隙），不是另换通用渐变背景。功能列表使用现有半透明白渐变、1px 白边与 blur(9px)，独立图表面板用 blur(8px)、内高光和粉色柔光；白色 CTA 与无衬线白标题保持原位置。创作延续区使用现有浅蓝紫底与 blur(14px) 分区；600px 以下按内容单列重排。dark/variants 只按已有 CSS 调整表面和叠光，不反色原照片。
 
-      完整页面操作：
-      免费开始与立即体验进入创作区，输入想法生成可编辑的本地草稿；灵感助手、演示同步和原「多格式导出」入口解释对应功能，实际支持将当前草稿导出为 .txt；可保存/恢复本页快照并返回编辑。明确 AI 与云同步只是本地模拟。
+      首页入口固定在左上角，图标加“首页”，点击区域至少 44×44px；手机上不收进菜单。变体只使用 磨砂、透明玻璃、有色玻璃，切换同步材质、构图或控件与提示词；保留用户已编辑文字。详情通过原生 dialog 打开，支持
+      Escape、焦点归还和浏览器前进后退。保留收藏、语言切换、风格指南与可编辑提示词；复制失败选中文本供手动复制。当前风格过渡基准 240ms，减少动态效果时取消动画。桌面、390px、320px 按内容重排。
 
-      静态封面、详情演示与 /style-scenes/glassmorphism/（英文 /en/style-scenes/glassmorphism/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。
 
-      操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。
+      实现入口为 src/components/atlas/AtlasPage.astro；逐风格顺序在 src/lib/atlas-designs.ts；交互在 src/lib/atlas-runtime.ts；整页样式在
+      src/styles/atlas-pages.css。既有 /style-scenes/ 独立案例保留，但不要重新嵌入详情页。
 
-      提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。
 
-      不新增依赖。检查中英文、原导航与 CTA、具体结果、返回/重置和窄屏重排；报告实际运行的检查与待验项，不将实现要求写成已通过结论。
-    en: |-
-      Build a complete Aurora page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. Keep preview.brand aligned with shared REFERENCE_BRANDS; ReferenceStyleScene defines the hero structure, actual navigation and assets.
+      先核对设计稿的构图、比例、字体、素材、组件和交互，再修改代码。不要把生成图当成可点击网页或实机截图；素材不含伪按钮与伪文字。验证首页始终可见可点、弹层历史、编辑保留、复制失败、键盘、移动端溢出与减少动态效果。使用
+      tests/atlas-pages.spec.mjs 保存真实浏览器截图与操作结果，报告未达成项。
+    en: >-
+      Build the full /en/styles/glassmorphism/ page. Display direction: A WINDOW INTO LIGHT; Find depth between clarity
+      and diffusion.. Follow the latest whole-page image proposal for layout, typography, artwork, materials and
+      components. Desktop grid areas: "title art controls" "variants art notes" "prompt prompt prompt". Do not just
+      recolour a template.
 
-      Keep Aurora’s snowy dusk photograph, translucent blue-violet light layer and 38% / 30% / 26% columns with 3% gaps, not a replacement generic gradient. The feature list uses its existing translucent white gradient, 1px white rim and blur(9px); the separate chart uses blur(8px), inset highlights and a pink bloom. Retain white CTAs and sans display placement. The continuation uses its existing pale blue-violet surfaces and blur(14px) sections, stacking below 600px. Dark/variants follow existing surface/light selectors without inverting the photograph.
 
-      Full-page operations:
-      Start creating and Try it now open creation. Turn an idea into an editable local draft; assistant, simulated sync and the original Flexible export entry explain the corresponding features. Actual export saves the current draft as .txt; save/restore a page snapshot and return to editing. Label AI and cloud sync as local simulations.
+      Keep an icon plus Home link fixed at the top left, at least 44×44px, visible on mobile without opening a menu.
+      Variants: Frost, Clear Glass, Tinted Glass. Update the design and prompt without overwriting manual edits. Native
+      dialogs support Escape, focus return and browser Back/Forward. Preserve saves, locale switching, style guide and
+      editable prompts; select text for manual copy when clipboard access fails. Base transition: 240ms, disabled with
+      reduced motion. Reflow at desktop, 390px and 320px.
 
-      Share one renderer between static covers, the detail experience and /style-scenes/glassmorphism/ (English /en/style-scenes/glassmorphism/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.
 
-      Interaction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.
+      Use AtlasPage.astro, atlas-designs.ts, atlas-runtime.ts and atlas-pages.css. Keep the legacy /style-scenes/
+      examples separate; do not embed them into the detail page.
 
-      Provide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion.
 
-      Add no dependencies. Check both languages, original navigation/CTAs, concrete results, return/reset and narrow reflow; report checks actually run and pending items, never requirements as passed results.
+      Compare composition, proportions, typography, artwork and interactions before changing code. Never treat a
+      generated image as a functional page or runtime screenshot. Verify Home visibility, dialog history, preserved
+      edits, clipboard failure, keyboard, narrow layouts and reduced motion. Capture actual screenshots and outcomes
+      with tests/atlas-pages.spec.mjs and report remaining gaps.
 style_spec:
   typography:
     zh: 无衬线，白色大标题

@@ -1,5 +1,4 @@
 import { test, expect } from './helpers/private-browser.mjs';
-import { readyStyleFrame } from './helpers/style-page-flows.mjs';
 
 // 回归真实业务复位与 label 默认激活；不能只验证首次展开/生成成功。
 for (const slug of ['minimalism', 'skeuomorphism']) {
@@ -235,16 +234,10 @@ for (const slug of genericStyles) {
   });
 }
 
-for (const embedded of [false, true]) {
-  test(`Mellow: ${embedded ? '详情 iframe' : '独立页面'}按住暂停跨计时 tick 不丢失点击`, async ({ page }) => {
-    let root;
-    if (embedded) {
-      await page.goto('/styles/neumorphism/');
-      root = (await readyStyleFrame(page, 'neumorphism', 'zh')).scene;
-    } else {
-      await page.goto('/style-scenes/neumorphism/');
-      root = page.locator('[data-style-scene]');
-    }
+{
+  test('Mellow standalone: held pause survives timer tick', async ({ page }) => {
+    await page.goto('/style-scenes/neumorphism/');
+    const root=page.locator('[data-style-scene]');
     await root.locator('[data-scene-action="primary"]').first().click();
     const toggle = root.locator('[data-scene-action="mellow-toggle"]');
     await toggle.click();

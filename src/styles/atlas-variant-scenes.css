@@ -1,0 +1,74 @@
+@font-face{font-family:AtlasPixel;src:url('../assets/fonts/FusionPixel-12.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+/* 三种未来主义、三种像素场景与弹窗共享实际几何，切换不依赖色相滤镜。 */
+.atlas-semantic-art{width:100%;min-width:0;color:var(--ui-ink,var(--ai))}
+.atlas-semantic-art svg{display:block;width:100%;height:auto;max-height:440px}
+.atlas-variant-hero{position:relative;width:100%;padding:20px;background:var(--ui-surface);border:var(--ui-border);border-radius:var(--ui-radius);box-shadow:var(--ui-shadow)}
+.atlas-variant-hero .atlas-waveform{position:relative;inset:auto;height:40px;margin-top:16px}
+.atlas-root.atlas-approved[data-slug=pixel-art]{font-family:AtlasPixel,monospace;--ui-font:AtlasPixel,monospace}
+.atlas-root.atlas-approved[data-slug=pixel-art] :is(.approved-headline,.approved-type-sample,h1,h2,h3,button,input,textarea){font-family:AtlasPixel,monospace}
+.atlas-root.atlas-approved[data-slug=pixel-art] .approved-headline{font-size:clamp(36px,5vw,72px);line-height:1.15;letter-spacing:0}
+.atlas-root.atlas-approved[data-slug=pixel-art] .atlas-variant-hero{border-radius:0;padding:12px}
+.atlas-root.atlas-approved[data-slug=pixel-art] .atlas-semantic-art svg{image-rendering:pixelated}
+.atlas-root.atlas-approved[data-slug=retro-futurism][data-variant-id=atompunk]{--ap:#e8ddc3;--as:#f4ead5;--ai:#263b34;--aa:#9b492b;--ab:#7d927f;background:#e8ddc3}
+.atlas-root.atlas-approved[data-slug=retro-futurism][data-variant-id=cassette]{--ap:#bdb39f;--as:#dbd1bc;--ai:#2b352a;--aa:#79501c;--ab:#786e5a;background:#bdb39f}
+.atlas-root.atlas-approved[data-slug=retro-futurism]:is([data-variant-id=atompunk],[data-variant-id=cassette]) .approved-headline{color:var(--ai);text-shadow:none}
+.atlas-root.atlas-approved[data-slug=retro-futurism]:is([data-variant-id=atompunk],[data-variant-id=cassette]) :is(.atlas-controls,.approved-type,.atlas-variants){background:var(--as);border-color:var(--ab);box-shadow:inset 0 1px #fff8}
+.atlas-root.atlas-approved[data-slug=retro-futurism] .atlas-prompt{background:var(--as);color:var(--ai)}
+.atlas-root.atlas-approved[data-slug=retro-futurism][data-variant-id=cassette] .atlas-variant-hero{border:5px ridge #b4ad99;border-radius:8px;background:#bdb39f}
+/* 预览按内容组织：纸页、文件窗、仪表、透镜、终端、拼块。 */
+.atlas-variant-surface[data-preview-layout] .atlas-preview-art{display:block;min-height:130px;padding:12px;grid-template-columns:none}
+.atlas-variant-surface[data-preview-layout] .atlas-preview-card{grid-template-columns:minmax(130px,1fr) minmax(0,1.3fr)}
+.atlas-variant-surface[data-preview-layout=poster] .atlas-preview-card{grid-template-columns:1fr}
+.atlas-root:is([data-slug=retro-futurism],[data-slug=pixel-art]) .atlas-variant-surface .atlas-preview-card{grid-template-columns:1fr}
+.atlas-preview-art .atlas-semantic-art :is(i,b){box-sizing:border-box;position:static;display:block;flex:none;width:auto;height:auto;border:0;box-shadow:none;border-radius:0;background:none;transform:none}
+.specimen-page{padding:12px;border:var(--ui-border);background:var(--ui-field);text-align:left}
+.specimen-page>span{font:11px/1.4 var(--ui-font)}
+.specimen-page>strong{display:block;font:700 56px/1.2 var(--ui-font);margin:12px 0}
+.specimen-lines{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px}
+.atlas-preview-art .specimen-lines i{height:3px;background:currentColor;opacity:.4}
+.atlas-root[data-slug=editorial] .specimen-page{border:0;border-block:3px double currentColor}
+.atlas-root[data-slug=editorial] .specimen-page>strong{font-family:Georgia,serif;font-style:italic}
+.atlas-root[data-slug=hand-drawn] .specimen-page{transform:rotate(-2deg);border-style:dashed;background:var(--ui-surface)}
+.atlas-root[data-slug=swiss-style] .specimen-page>strong{font:900 64px/1 Arial,sans-serif;color:var(--ui-primary)}
+.atlas-root[data-slug=brutalism] .specimen-page{border:4px solid currentColor}
+.specimen-files{border:3px outset #ddd;text-align:left;font:13px/1.6 monospace}
+.atlas-preview-art .specimen-files>b{padding:5px 8px;background:#132e79;color:#fff}
+.specimen-files>span{display:block;padding:8px;border-bottom:1px dotted currentColor}
+.specimen-instrument{padding:12px;border:var(--ui-border);border-radius:var(--ui-radius);box-shadow:var(--ui-shadow)}
+.specimen-gauge{position:relative;aspect-ratio:1.6;background:var(--ui-field);border-radius:50% 50% 8% 8%;border:4px double currentColor;overflow:hidden}
+.atlas-preview-art .specimen-gauge>i{position:absolute;bottom:10%;left:50%;width:3px;height:65%;background:var(--ui-primary);transform:rotate(28deg);transform-origin:50% 100%}
+.specimen-gauge>span{position:absolute;inset:15% 0 auto;text-align:center;font:12px monospace}
+.specimen-instrument-rule{height:8px;background:currentColor;margin-top:12px;opacity:.4}
+.specimen-optics{position:relative;min-height:150px;overflow:hidden;background:var(--ui-field)}
+.atlas-preview-art .specimen-optics>i{position:absolute;width:55%;height:130%;top:-20%;background:var(--ui-primary);transform:rotate(30deg);left:5%;border-radius:40%}
+.atlas-preview-art .specimen-optics>i:nth-child(2){left:65%;background:#dbb982}
+.atlas-preview-art .specimen-optics>b{position:absolute;inset:20px;border:var(--ui-border);background:#ffffff42;border-radius:var(--ui-radius);box-shadow:var(--ui-shadow);backdrop-filter:blur(5px)}
+.atlas-root[data-slug=liquid-glass] .specimen-optics>b{border:4px solid #ffffffb8;box-shadow:inset 5px 6px 8px white,inset -6px -6px 8px #72afd477;border-radius:45%}
+.atlas-root[data-slug=aurora] .specimen-optics>i{filter:blur(20px)}
+.specimen-clay{position:relative;width:110px;height:100px;margin:15px auto;border-radius:40%;background:var(--ui-surface);box-shadow:var(--ui-shadow);border:var(--ui-border)}
+.atlas-preview-art .specimen-clay>i{position:absolute;top:32%;left:28%;width:8px;height:10px;background:currentColor;border-radius:50%}
+.atlas-preview-art .specimen-clay>i:nth-child(2){left:64%}
+.atlas-preview-art .specimen-clay>b{position:absolute;left:40%;top:55%;width:20%;height:12%;border-bottom:3px solid currentColor;border-radius:50%}
+.specimen-terminal{display:grid;gap:18px;padding:15px;background:var(--ui-field);border:var(--ui-border);text-align:left;font-family:monospace}
+.specimen-terminal strong{overflow-wrap:anywhere;font-size:20px}
+.atlas-preview-art .specimen-terminal>i{height:5px;background:repeating-linear-gradient(90deg,var(--ui-primary) 0 8px,transparent 8px 11px)}
+.specimen-mall{display:flex;justify-content:center;gap:8px;position:relative;padding:40px 10px 10px;background:var(--ui-field)}
+.specimen-mall>span{position:absolute;top:10px;font:16px Georgia,serif;letter-spacing:.15em}
+.atlas-preview-art .specimen-mall>i{height:100px;width:28px;background:var(--ui-surface);border:4px ridge #d3a6de;border-radius:14px 14px 0 0}
+.specimen-shapes{display:grid;grid-template-columns:1fr 1fr;gap:12px;min-height:130px;align-items:center;padding:10px}
+.atlas-preview-art .specimen-shapes>i{height:50px;background:var(--ui-primary);border:var(--ui-border);border-radius:var(--ui-radius);box-shadow:var(--ui-shadow)}
+.atlas-preview-art .specimen-shapes>i:nth-child(2){border-radius:50%;height:70px}
+.atlas-preview-art .specimen-shapes>b{font:700 32px/1 var(--ui-font);text-align:center}
+.atlas-preview-art .specimen-bauhaus>i:first-child{background:#d92517;border-radius:50%}
+.atlas-preview-art .specimen-bauhaus>i:nth-child(2){background:#1955cc;border-radius:0}
+.atlas-preview-art .specimen-bauhaus>i:nth-child(3){background:#ffd02a;clip-path:polygon(50% 0,100% 100%,0 100%)}
+.atlas-preview-art :is(.specimen-memphis,.specimen-neobrutalism)>i{transform:rotate(-8deg)}
+.atlas-preview-art .specimen-bento-grid{grid-template-columns:2fr 1fr}
+.atlas-preview-art .specimen-bento-grid>i:first-child{grid-row:span 2;height:100%}
+.atlas-preview-art .specimen-corporate-memphis>i{border-radius:50% 50% 15% 15%;background:var(--ui-primary)}
+@media(max-width:600px){.atlas-variant-surface[data-preview-layout] .atlas-preview-card{grid-template-columns:1fr}.atlas-variant-hero{padding:10px}.atlas-semantic-art svg{min-height:0}}
+.atlas-root.atlas-approved[data-slug=pixel-art][data-variant-id=modern-pixel] .atlas-variant-hero{background:#27364b;border-color:#6c8daf}
+.atlas-root.atlas-approved[data-slug=pixel-art][data-variant-id=isometric] .atlas-variant-hero{background:#4b3c60;border-color:#9d81b8}
+.atlas-root.atlas-approved[data-slug] [data-variant-option]{transition:background-color 90ms,box-shadow 90ms}
+@media(prefers-reduced-motion:reduce){.atlas-root.atlas-approved[data-slug] [data-variant-option]{transition:none}}
+.atlas-root.atlas-approved[data-slug=pixel-art]{--ui-hover:translateY(-3px)}

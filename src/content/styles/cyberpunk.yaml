@@ -111,82 +111,84 @@ implementation:
 prompts:
   basic:
     zh: 用赛博朋克风格（Cyberpunk）设计界面：近黑深底、霓虹青与品红发光描边、 切角面板、等宽终端字体，辅以扫描线与故障效果。
-    en: '"Design an interface in Cyberpunk style: near-black ground, glowing neon cyan and magenta edges, corner-cut panels, monospace terminal type, scanlines and glitch accents."'
+    en: >-
+      "Design an interface in Cyberpunk style: near-black ground, glowing neon cyan and magenta edges, corner-cut
+      panels, monospace terminal type, scanlines and glitch accents."
   design:
-    zh: '赛博朋克设计规范：底色 #0d0b14；主霓虹青 #00E5FF、辅品红 #FF2E88，发光 半径 8px 内；面板用 clip-path 切角代替圆角，1px 霓虹描边 + 同色微光； 文字用等宽字体（JetBrains Mono/系统 mono），标题可双层 RGB 错位；扫描线 叠层 opacity 0.05；交互元素 hover 时描边加亮；深浅模式仅做深色（浅色 底违背风格本体）。'
-    en: '"Cyberpunk spec: ground #0d0b14; neon cyan #00E5FF primary, magenta #FF2E88 secondary, glow radius under 8px; corner-cut panels via clip-path with 1px neon borders and faint glow; monospace type (JetBrains Mono/system mono); headings with two-layer RGB offset; scanline overlay at 0.05 opacity; hover brightens borders. Dark only — a light ground contradicts the style."'
+    zh: >-
+      赛博朋克设计规范：底色 #0d0b14；主霓虹青 #00E5FF、辅品红 #FF2E88，发光 半径 8px 内；面板用 clip-path 切角代替圆角，1px 霓虹描边 + 同色微光； 文字用等宽字体（JetBrains
+      Mono/系统 mono），标题可双层 RGB 错位；扫描线 叠层 opacity 0.05；交互元素 hover 时描边加亮；深浅模式仅做深色（浅色 底违背风格本体）。
+    en: >-
+      "Cyberpunk spec: ground #0d0b14; neon cyan #00E5FF primary, magenta #FF2E88 secondary, glow radius under 8px;
+      corner-cut panels via clip-path with 1px neon borders and faint glow; monospace type (JetBrains Mono/system mono);
+      headings with two-layer RGB offset; scanline overlay at 0.05 opacity; hover brightens borders. Dark only — a light
+      ground contradicts the style."
   implementation:
-    zh: |-
-      用当前风格完成 NEON://CITY 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。以当前 YAML preview 为品牌、原导航与 CTA 的事实来源，不替换成通用营销模板。
+    zh: >-
+      以 /styles/cyberpunk/ 为整页入口。标题表达：SIGNAL / ACCESS；页面气质：霓虹之下，界面即城市。。按最新整页图像提案设计布局、字体、图形、材质与组件；桌面区域构图为 "title title
+      title" "notes art variants" "notes art controls" "prompt prompt prompt"，不能只换颜色。
 
-      保留 NEON://CITY 的深夜蓝黑底、青色描边/微光、等宽大写字、右侧柱形图与三张终端卡。面板沿用现有 4px 小圆角，不额外裁切 12px 角或叠扫描线/故障动画。工作台保持离线终端与青色信号柱，状态由真实 HUD 文本和装备复选框表达。
 
-      复用当前 preview.tokens：背景 #0B0F1A；前景 #EAF6FF；强调 #00E5FF / #050810；卡面 rgba(0,229,255,.06)；边框 rgba(0,229,255,.35)；圆角 4px；字体 'SF Mono', Menlo, monospace；卡影 0 0 14px rgba(0,229,255,.25)。
+      首页入口固定在左上角，图标加“首页”，点击区域至少 44×44px；手机上不收进菜单。变体只使用 霓虹都市、终端黑客、故障艺术，切换同步材质、构图或控件与提示词；保留用户已编辑文字。详情通过原生 dialog 打开，支持
+      Escape、焦点归还和浏览器前进后退。保留收藏、语言切换、风格指南与可编辑提示词；复制失败选中文本供手动复制。当前风格过渡基准 120ms，减少动态效果时取消动画。桌面、390px、320px 按内容重排。
 
-      dark 与 variants 复用 generic-style-pages.css 已有工作区选择器，不据通用历史变体重画首屏；保留 renderer 内各视觉面板的局部高光、渐变和投影。
 
-      接入网络按所选街区离线接入并可断开；勾选/取消装备后 HUD 同步显示街区、连接和装备状态。街区、装备、黑市、SYS 状态各有本地内容，不真实联网或交易。
+      实现入口为 src/components/atlas/AtlasPage.astro；逐风格顺序在 src/lib/atlas-designs.ts；交互在 src/lib/atlas-runtime.ts；整页样式在
+      src/styles/atlas-pages.css。既有 /style-scenes/ 独立案例保留，但不要重新嵌入详情页。
+    en: >-
+      Build the full /en/styles/cyberpunk/ page. Display direction: SIGNAL / ACCESS; Beneath the neon, the interface is
+      a city.. Follow the latest whole-page image proposal for layout, typography, artwork, materials and components.
+      Desktop grid areas: "title title title" "notes art variants" "notes art controls" "prompt prompt prompt". Do not
+      just recolour a template.
 
-      静态封面、详情演示与 /style-scenes/cyberpunk/（英文 /en/style-scenes/cyberpunk/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。
 
-      操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。
+      Keep an icon plus Home link fixed at the top left, at least 44×44px, visible on mobile without opening a menu.
+      Variants: Neon City, Terminal Hacker, Glitch Art. Update the design and prompt without overwriting manual edits.
+      Native dialogs support Escape, focus return and browser Back/Forward. Preserve saves, locale switching, style
+      guide and editable prompts; select text for manual copy when clipboard access fails. Base transition: 120ms,
+      disabled with reduced motion. Reflow at desktop, 390px and 320px.
 
-      提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。
-    en: |-
-      Build a complete NEON://CITY page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. The current YAML preview is authoritative for the brand, original navigation and CTAs; never substitute a generic marketing template.
 
-      Keep NEON://CITY’s navy-black ground, cyan rims/glow, uppercase monospace, right-side bar chart and terminal cards. Panels retain their existing 4px radius rather than new 12px cuts, scanlines or glitch overlays. Continue with the offline terminal and cyan signal bars, expressing state through real HUD text and gear checkboxes.
-
-      Reuse current preview.tokens: background #0B0F1A; foreground #EAF6FF; accent #00E5FF / #050810; card rgba(0,229,255,.06); border rgba(0,229,255,.35); radius 4px; font 'SF Mono', Menlo, monospace; card shadow 0 0 14px rgba(0,229,255,.25).
-
-      Use generic-style-pages.css’s existing workspace dark/variants selectors rather than redrawing the hero from generic historical variants; retain each rendered visual panel’s local highlights, gradients and shadows.
-
-      Connect to the network establishes an offline district connection and can disconnect. Toggle gear to update the district, connection and loadout HUD. Districts, Gear, Black market and SYS status reveal local content without real networking or trades.
-
-      Share one renderer between static covers, the detail experience and /style-scenes/cyberpunk/ (English /en/style-scenes/cyberpunk/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.
-
-      Interaction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.
-
-      Provide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion.
+      Use AtlasPage.astro, atlas-designs.ts, atlas-runtime.ts and atlas-pages.css. Keep the legacy /style-scenes/
+      examples separate; do not embed them into the detail page.
   agent:
-    zh: |-
-      用当前风格完成 NEON://CITY 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。以当前 YAML preview 为品牌、原导航与 CTA 的事实来源，不替换成通用营销模板。
+    zh: >-
+      以 /styles/cyberpunk/ 为整页入口。标题表达：SIGNAL / ACCESS；页面气质：霓虹之下，界面即城市。。按最新整页图像提案设计布局、字体、图形、材质与组件；桌面区域构图为 "title title
+      title" "notes art variants" "notes art controls" "prompt prompt prompt"，不能只换颜色。
 
-      NEON://CITY 使用深夜蓝黑、青色实体细线与高对比等宽字。右侧是标有三个街区的原创城市信号图，装饰地图不充当可点击控件；弱化泛光和卡片底色，保留清楚的层级。工作台以真实连接文字、装备复选框和一次性阶梯信号柱反馈状态，不持续闪烁。
 
-      复用当前 preview.tokens：背景 #0B0F1A；前景 #EAF6FF；强调 #00E5FF / #050810；卡面 rgba(0,229,255,.06)；边框 rgba(0,229,255,.35)；圆角 4px；字体 'SF Mono', Menlo, monospace；卡影 0 0 14px rgba(0,229,255,.25)。
+      首页入口固定在左上角，图标加“首页”，点击区域至少 44×44px；手机上不收进菜单。变体只使用 霓虹都市、终端黑客、故障艺术，切换同步材质、构图或控件与提示词；保留用户已编辑文字。详情通过原生 dialog 打开，支持
+      Escape、焦点归还和浏览器前进后退。保留收藏、语言切换、风格指南与可编辑提示词；复制失败选中文本供手动复制。当前风格过渡基准 120ms，减少动态效果时取消动画。桌面、390px、320px 按内容重排。
 
-      dark 与 variants 延续已有工作区模式；style-signatures.css 负责本品牌主视觉、续页和微交互，封面与整页共用同一 renderer。
 
-      完整页面操作：
-      接入网络按所选街区离线接入并可断开；勾选/取消装备后 HUD 同步显示街区、连接和装备状态。街区、装备、黑市、SYS 状态各有本地内容，不真实联网或交易。
+      实现入口为 src/components/atlas/AtlasPage.astro；逐风格顺序在 src/lib/atlas-designs.ts；交互在 src/lib/atlas-runtime.ts；整页样式在
+      src/styles/atlas-pages.css。既有 /style-scenes/ 独立案例保留，但不要重新嵌入详情页。
 
-      静态封面、详情演示与 /style-scenes/cyberpunk/（英文 /en/style-scenes/cyberpunk/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。
 
-      操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。
+      先核对设计稿的构图、比例、字体、素材、组件和交互，再修改代码。不要把生成图当成可点击网页或实机截图；素材不含伪按钮与伪文字。验证首页始终可见可点、弹层历史、编辑保留、复制失败、键盘、移动端溢出与减少动态效果。使用
+      tests/atlas-pages.spec.mjs 保存真实浏览器截图与操作结果，报告未达成项。
+    en: >-
+      Build the full /en/styles/cyberpunk/ page. Display direction: SIGNAL / ACCESS; Beneath the neon, the interface is
+      a city.. Follow the latest whole-page image proposal for layout, typography, artwork, materials and components.
+      Desktop grid areas: "title title title" "notes art variants" "notes art controls" "prompt prompt prompt". Do not
+      just recolour a template.
 
-      提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。
 
-      不新增依赖。检查中英文、原导航与 CTA、具体结果、返回/重置和窄屏重排；报告实际运行的检查与待验项，不将实现要求写成已通过结论。
-    en: |-
-      Build a complete NEON://CITY page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. The current YAML preview is authoritative for the brand, original navigation and CTAs; never substitute a generic marketing template.
+      Keep an icon plus Home link fixed at the top left, at least 44×44px, visible on mobile without opening a menu.
+      Variants: Neon City, Terminal Hacker, Glitch Art. Update the design and prompt without overwriting manual edits.
+      Native dialogs support Escape, focus return and browser Back/Forward. Preserve saves, locale switching, style
+      guide and editable prompts; select text for manual copy when clipboard access fails. Base transition: 120ms,
+      disabled with reduced motion. Reflow at desktop, 390px and 320px.
 
-      NEON://CITY uses midnight blue-black, solid cyan rules and high-contrast monospace type. An original three-district signal map replaces the chart; the decorative map is not an interactive control. Reduce ambient glow and card fills. The terminal exposes real connection text, gear checkboxes and a single stepped signal animation, without perpetual flashing.
 
-      Reuse current preview.tokens: background #0B0F1A; foreground #EAF6FF; accent #00E5FF / #050810; card rgba(0,229,255,.06); border rgba(0,229,255,.35); radius 4px; font 'SF Mono', Menlo, monospace; card shadow 0 0 14px rgba(0,229,255,.25).
+      Use AtlasPage.astro, atlas-designs.ts, atlas-runtime.ts and atlas-pages.css. Keep the legacy /style-scenes/
+      examples separate; do not embed them into the detail page.
 
-      Retain the existing workspace dark and variant modes. style-signatures.css owns this brand’s hero, continuation and microinteractions; covers and full pages share one renderer.
 
-      Full-page operations:
-      Connect to the network establishes an offline district connection and can disconnect. Toggle gear to update the district, connection and loadout HUD. Districts, Gear, Black market and SYS status reveal local content without real networking or trades.
-
-      Share one renderer between static covers, the detail experience and /style-scenes/cyberpunk/ (English /en/style-scenes/cyberpunk/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.
-
-      Interaction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.
-
-      Provide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion.
-
-      Add no dependencies. Check both languages, original navigation/CTAs, concrete results, return/reset and narrow reflow; report checks actually run and pending items, never requirements as passed results.
+      Compare composition, proportions, typography, artwork and interactions before changing code. Never treat a
+      generated image as a functional page or runtime screenshot. Verify Home visibility, dialog history, preserved
+      edits, clipboard failure, keyboard, narrow layouts and reduced motion. Capture actual screenshots and outcomes
+      with tests/atlas-pages.spec.mjs and report remaining gaps.
 style_spec:
   typography:
     zh: 等宽字体 + 霓虹发光标题

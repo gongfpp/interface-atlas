@@ -1,6 +1,6 @@
 import { test, expect } from './helpers/private-browser.mjs';
 
-test('curated task paths link home, named concepts and localized guides', async ({ page }) => {
+test('curated task paths link home, named concepts and localized guides', async ({ page, baseURL }) => {
   await page.goto('/');
   const paths = page.locator('.home-tasks');
   await expect(paths.getByRole('link')).toHaveCount(3);
@@ -11,7 +11,7 @@ test('curated task paths link home, named concepts and localized guides', async 
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Name what you see in a screenshot');
   await expect(page.locator('.task-anatomy-preview a')).toHaveCount(4);
   for (const link of await page.locator('.task-pick').evaluateAll(links => links.map(link => link.href))) {
-    expect(new URL(link).origin).toBe('http://127.0.0.1:4337');
+    expect(new URL(link).origin).toBe(new URL(baseURL).origin);
     expect((await page.request.get(link, { maxRedirects: 0 })).status()).toBe(200);
   }
 });

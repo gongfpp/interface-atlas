@@ -16,12 +16,8 @@ for (const { locale, width, route } of cases) {
       await pill.click();
       await expect(pill).toHaveAttribute('aria-pressed', 'true');
     } else {
-      await page.locator('[data-style-interactive]').scrollIntoViewIfNeeded();
-      const frame = page.frameLocator('[data-style-frame]');
-      await expect(frame.locator('[data-style-scene="brutalism"]')).toBeVisible();
-      const frameGeometry = await frame.locator('body').evaluate(() => ({ viewport: innerWidth, document: document.documentElement.scrollWidth }));
-      expect(frameGeometry.document, '整页iframe文档不得横向溢出').toBeLessThanOrEqual(frameGeometry.viewport + 1);
-      await testInfo.attach('style-frame-geometry.json', { body: JSON.stringify(frameGeometry), contentType: 'application/json' });
+      await expect(page.locator('[data-atlas-root][data-ready]')).toBeVisible();
+      await expect(page.locator('iframe')).toHaveCount(0);
     }
     await page.evaluate(() => document.fonts.ready);
     const geometry = await page.evaluate(() => {
@@ -64,7 +60,7 @@ for (const { locale, width, route } of cases) {
     await page.screenshot({ path: screenshot, fullPage: true, animations: 'disabled' });
     await testInfo.attach('full-page.png', { path: screenshot, contentType: 'image/png' });
     expect(geometry.documentWidth, `${locale} ${route} 页面不得横向溢出`).toBeLessThanOrEqual(geometry.viewport);
-    const header = page.locator('article > header');
+    const header = page.locator('article > header, .atlas-nav');
     const headerRect = await header.boundingBox();
     const bookmarkRect = await header.locator('button[aria-pressed]').boundingBox();
     expect(headerRect).not.toBeNull();

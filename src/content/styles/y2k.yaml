@@ -110,82 +110,84 @@ implementation:
 prompts:
   basic:
     zh: 用 Y2K 千禧美学设计界面：镀铬液态金属、iMac 糖果半透明塑料、粉紫蓝渐变 与闪光星形元素，甜腻闪亮的千禧年质感。
-    en: '"Design an interface in Y2K aesthetic: liquid chrome, iMac candy plastics, pink-purple-blue gradients and sparkle stars — sweet, shiny millennium texture."'
+    en: >-
+      "Design an interface in Y2K aesthetic: liquid chrome, iMac candy plastics, pink-purple-blue gradients and sparkle
+      stars — sweet, shiny millennium texture."
   design:
-    zh: 'Y2K 设计规范：底色粉紫渐变（#FFC8F0 → #C8B8FF → #A8D8FF）或银白；主按钮 用胶囊形 + 铬渐变（灰白四段）+ 白高光内阴影；卡片为半透明糖果色圆角块， 顶部白色内发光；标题用气泡粗字或镀铬字（background-clip: text）；点缀 四角星闪光；深色模式用紫黑底 + 银铬高亮。'
-    en: '"Y2K spec: pink-purple gradient ground (#FFC8F0 → #C8B8FF → #A8D8FF) or silver; pill buttons with a four-stop chrome gradient and white inset highlight; cards as translucent candy rounded blocks with a top inner glow; bubble-bold or chrome headings (background-clip: text); four-point sparkle accents. Dark mode on purple-black with silver chrome highlights."'
+    zh: >-
+      Y2K 设计规范：底色粉紫渐变（#FFC8F0 → #C8B8FF → #A8D8FF）或银白；主按钮 用胶囊形 + 铬渐变（灰白四段）+ 白高光内阴影；卡片为半透明糖果色圆角块，
+      顶部白色内发光；标题用气泡粗字或镀铬字（background-clip: text）；点缀 四角星闪光；深色模式用紫黑底 + 银铬高亮。
+    en: >-
+      "Y2K spec: pink-purple gradient ground (#FFC8F0 → #C8B8FF → #A8D8FF) or silver; pill buttons with a four-stop
+      chrome gradient and white inset highlight; cards as translucent candy rounded blocks with a top inner glow;
+      bubble-bold or chrome headings (background-clip: text); four-point sparkle accents. Dark mode on purple-black with
+      silver chrome highlights."
   implementation:
-    zh: |-
-      用当前风格完成 ☆ CyberDream ☆ 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。以当前 YAML preview 为品牌、原导航与 CTA 的事实来源，不替换成通用营销模板。
+    zh: >-
+      以 /styles/y2k/ 为整页入口。标题表达：YOUR FUTURE IS LOADING；页面气质：来自千禧年的数字浪漫。。按最新整页图像提案设计布局、字体、图形、材质与组件；桌面区域构图为 "title title"
+      "notes art" "variants art" "controls prompt"，不能只换颜色。
 
-      保留 CyberDream 银紫粉浅渐变、圆体字、紫色 CTA、右侧数据图表与三张浅色功能卡，不把原文字替换成强制 background-clip 镀铬字或新增闪星组件。会员卡沿用浅粉蓝渐变、白色 2px 边、28px 圆角与 -2deg 轻倾斜；昵称和装扮属于卡片内容。
 
-      复用当前 preview.tokens：背景 linear-gradient(160deg,#DDE7F5 0%,#EFD3E8 55%,#C9C8F4 100%)；前景 #3A3A55；强调 #7B61FF / #fff；卡面 rgba(255,255,255,.78)；边框 #B8B8E0；圆角 20px；字体 ui-rounded, 'Arial Rounded MT Bold', 'PingFang SC', sans-serif；卡影 0 8px 18px rgba(123,97,255,.18)。
+      首页入口固定在左上角，图标加“首页”，点击区域至少 44×44px；手机上不收进菜单。变体只使用 糖果塑料、镀铬金属、珠光幻彩，切换同步材质、构图或控件与提示词；保留用户已编辑文字。详情通过原生 dialog 打开，支持
+      Escape、焦点归还和浏览器前进后退。保留收藏、语言切换、风格指南与可编辑提示词；复制失败选中文本供手动复制。当前风格过渡基准 220ms，减少动态效果时取消动画。桌面、390px、320px 按内容重排。
 
-      dark 与 variants 复用 generic-style-pages.css 已有工作区选择器，不据通用历史变体重画首屏；保留 renderer 内各视觉面板的局部高光、渐变和投影。
 
-      立即进入后输入昵称、选择装扮生成对应会员卡，可修改后重做；音乐、装扮、星球、会员卡入口均有可查看内容，仅在本地生成身份。
+      实现入口为 src/components/atlas/AtlasPage.astro；逐风格顺序在 src/lib/atlas-designs.ts；交互在 src/lib/atlas-runtime.ts；整页样式在
+      src/styles/atlas-pages.css。既有 /style-scenes/ 独立案例保留，但不要重新嵌入详情页。
+    en: >-
+      Build the full /en/styles/y2k/ page. Display direction: YOUR FUTURE IS LOADING; Digital dreams from the
+      millennium.. Follow the latest whole-page image proposal for layout, typography, artwork, materials and
+      components. Desktop grid areas: "title title" "notes art" "variants art" "controls prompt". Do not just recolour a
+      template.
 
-      静态封面、详情演示与 /style-scenes/y2k/（英文 /en/style-scenes/y2k/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。
 
-      操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。
+      Keep an icon plus Home link fixed at the top left, at least 44×44px, visible on mobile without opening a menu.
+      Variants: Candy Plastic, Liquid Chrome, Iridescent. Update the design and prompt without overwriting manual edits.
+      Native dialogs support Escape, focus return and browser Back/Forward. Preserve saves, locale switching, style
+      guide and editable prompts; select text for manual copy when clipboard access fails. Base transition: 220ms,
+      disabled with reduced motion. Reflow at desktop, 390px and 320px.
 
-      提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。
-    en: |-
-      Build a complete ☆ CyberDream ☆ page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. The current YAML preview is authoritative for the brand, original navigation and CTAs; never substitute a generic marketing template.
 
-      Keep CyberDream’s pale silver/lilac/pink gradient, rounded type, violet CTA, right-side chart and three pale feature cards; do not replace original text with mandatory clipped chrome lettering or new sparkle components. The member card retains its pastel pink/blue gradient, 2px white rim, 28px radius and -2deg tilt, with nickname and outfit as real content.
-
-      Reuse current preview.tokens: background linear-gradient(160deg,#DDE7F5 0%,#EFD3E8 55%,#C9C8F4 100%); foreground #3A3A55; accent #7B61FF / #fff; card rgba(255,255,255,.78); border #B8B8E0; radius 20px; font ui-rounded, 'Arial Rounded MT Bold', 'PingFang SC', sans-serif; card shadow 0 8px 18px rgba(123,97,255,.18).
-
-      Use generic-style-pages.css’s existing workspace dark/variants selectors rather than redrawing the hero from generic historical variants; retain each rendered visual panel’s local highlights, gradients and shadows.
-
-      Enter now, supply a nickname and outfit and generate a matching member card; edit and regenerate it. Music, Outfits, Planet and Member card reveal content; identity is generated locally only.
-
-      Share one renderer between static covers, the detail experience and /style-scenes/y2k/ (English /en/style-scenes/y2k/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.
-
-      Interaction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.
-
-      Provide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion.
+      Use AtlasPage.astro, atlas-designs.ts, atlas-runtime.ts and atlas-pages.css. Keep the legacy /style-scenes/
+      examples separate; do not embed them into the detail page.
   agent:
-    zh: |-
-      用当前风格完成 ☆ CyberDream ☆ 同品牌完整页面，从原首屏延续到内容、具体操作结果和返回路径，而非孤立控件或局部 demo。保留品牌、首屏文案、素材、构图、tokens 与全部 variants。以当前 YAML preview 为品牌、原导航与 CTA 的事实来源，不替换成通用营销模板。
+    zh: >-
+      以 /styles/y2k/ 为整页入口。标题表达：YOUR FUTURE IS LOADING；页面气质：来自千禧年的数字浪漫。。按最新整页图像提案设计布局、字体、图形、材质与组件；桌面区域构图为 "title title"
+      "notes art" "variants art" "controls prompt"，不能只换颜色。
 
-      保留 CyberDream 银紫粉浅渐变、圆体字、紫色 CTA、右侧数据图表与三张浅色功能卡，不把原文字替换成强制 background-clip 镀铬字或新增闪星组件。会员卡沿用浅粉蓝渐变、白色 2px 边、28px 圆角与 -2deg 轻倾斜；昵称和装扮属于卡片内容。
 
-      复用当前 preview.tokens：背景 linear-gradient(160deg,#DDE7F5 0%,#EFD3E8 55%,#C9C8F4 100%)；前景 #3A3A55；强调 #7B61FF / #fff；卡面 rgba(255,255,255,.78)；边框 #B8B8E0；圆角 20px；字体 ui-rounded, 'Arial Rounded MT Bold', 'PingFang SC', sans-serif；卡影 0 8px 18px rgba(123,97,255,.18)。
+      首页入口固定在左上角，图标加“首页”，点击区域至少 44×44px；手机上不收进菜单。变体只使用 糖果塑料、镀铬金属、珠光幻彩，切换同步材质、构图或控件与提示词；保留用户已编辑文字。详情通过原生 dialog 打开，支持
+      Escape、焦点归还和浏览器前进后退。保留收藏、语言切换、风格指南与可编辑提示词；复制失败选中文本供手动复制。当前风格过渡基准 220ms，减少动态效果时取消动画。桌面、390px、320px 按内容重排。
 
-      dark 与 variants 复用 generic-style-pages.css 已有工作区选择器，不据通用历史变体重画首屏；保留 renderer 内各视觉面板的局部高光、渐变和投影。
 
-      完整页面操作：
-      立即进入后输入昵称、选择装扮生成对应会员卡，可修改后重做；音乐、装扮、星球、会员卡入口均有可查看内容，仅在本地生成身份。
+      实现入口为 src/components/atlas/AtlasPage.astro；逐风格顺序在 src/lib/atlas-designs.ts；交互在 src/lib/atlas-runtime.ts；整页样式在
+      src/styles/atlas-pages.css。既有 /style-scenes/ 独立案例保留，但不要重新嵌入详情页。
 
-      静态封面、详情演示与 /style-scenes/y2k/（英文 /en/style-scenes/y2k/）共用 renderer；静态封面不嵌套真实按钮，详情在独立文档中启用同款页面的语义控件与品牌内容延续。原导航和 CTA 必须到达对应内容或工作流，不用占位链接、仅变颜色或一句 toast 代替结果。
 
-      操作状态仅存在当前页面内存；刷新、工具栏重载/重置与模式切换均恢复初始状态，不使用 localStorage 或 sessionStorage。页内清空/重置用于撤销本次操作，不暗示跨页或持久保存。
+      先核对设计稿的构图、比例、字体、素材、组件和交互，再修改代码。不要把生成图当成可点击网页或实机截图；素材不含伪按钮与伪文字。验证首页始终可见可点、弹层历史、编辑保留、复制失败、键盘、移动端溢出与减少动态效果。使用
+      tests/atlas-pages.spec.mjs 保存真实浏览器截图与操作结果，报告未达成项。
+    en: >-
+      Build the full /en/styles/y2k/ page. Display direction: YOUR FUTURE IS LOADING; Digital dreams from the
+      millennium.. Follow the latest whole-page image proposal for layout, typography, artwork, materials and
+      components. Desktop grid areas: "title title" "notes art" "variants art" "controls prompt". Do not just recolour a
+      template.
 
-      提供返回、取消或清空/重置路径，说明仅当前页内存的状态边界；不伪装真实支付、邮件、登录、AI 或云同步。桌面、390px、320px 按内容换行重排，保留可读字号和触控目标，不整体缩小桌面页。控件有可访问名称、键盘操作、可见焦点；弹层支持关闭和焦点返回，表单校验与结果可被辅助技术读到；尊重 prefers-reduced-motion。
 
-      不新增依赖。检查中英文、原导航与 CTA、具体结果、返回/重置和窄屏重排；报告实际运行的检查与待验项，不将实现要求写成已通过结论。
-    en: |-
-      Build a complete ☆ CyberDream ☆ page in this style, extending the original hero into content, concrete operations and return paths rather than isolated controls or a partial demo. Preserve brand, hero copy, assets, composition, tokens and all variants. The current YAML preview is authoritative for the brand, original navigation and CTAs; never substitute a generic marketing template.
+      Keep an icon plus Home link fixed at the top left, at least 44×44px, visible on mobile without opening a menu.
+      Variants: Candy Plastic, Liquid Chrome, Iridescent. Update the design and prompt without overwriting manual edits.
+      Native dialogs support Escape, focus return and browser Back/Forward. Preserve saves, locale switching, style
+      guide and editable prompts; select text for manual copy when clipboard access fails. Base transition: 220ms,
+      disabled with reduced motion. Reflow at desktop, 390px and 320px.
 
-      Keep CyberDream’s pale silver/lilac/pink gradient, rounded type, violet CTA, right-side chart and three pale feature cards; do not replace original text with mandatory clipped chrome lettering or new sparkle components. The member card retains its pastel pink/blue gradient, 2px white rim, 28px radius and -2deg tilt, with nickname and outfit as real content.
 
-      Reuse current preview.tokens: background linear-gradient(160deg,#DDE7F5 0%,#EFD3E8 55%,#C9C8F4 100%); foreground #3A3A55; accent #7B61FF / #fff; card rgba(255,255,255,.78); border #B8B8E0; radius 20px; font ui-rounded, 'Arial Rounded MT Bold', 'PingFang SC', sans-serif; card shadow 0 8px 18px rgba(123,97,255,.18).
+      Use AtlasPage.astro, atlas-designs.ts, atlas-runtime.ts and atlas-pages.css. Keep the legacy /style-scenes/
+      examples separate; do not embed them into the detail page.
 
-      Use generic-style-pages.css’s existing workspace dark/variants selectors rather than redrawing the hero from generic historical variants; retain each rendered visual panel’s local highlights, gradients and shadows.
 
-      Full-page operations:
-      Enter now, supply a nickname and outfit and generate a matching member card; edit and regenerate it. Music, Outfits, Planet and Member card reveal content; identity is generated locally only.
-
-      Share one renderer between static covers, the detail experience and /style-scenes/y2k/ (English /en/style-scenes/y2k/). Static covers contain no nested live buttons; the detail experience enables the same page’s semantic controls and brand continuation in an independent document. Original navigation and CTAs reach actual content or workflows, not placeholder links, color-only changes or one-line toasts.
-
-      Interaction state lives only in this page’s memory. Reload, toolbar reset and mode changes restore initial state; do not use localStorage or sessionStorage. In-page clear/reset undoes this visit’s operations without implying cross-page or persistent saves.
-
-      Provide return, cancel or clear/reset paths and disclose the page-memory state boundary; never fake real payments, email, login, AI or cloud sync. Reflow desktop, 390px and 320px layouts with readable text and usable targets rather than shrinking the desktop page. Give controls accessible names, keyboard access and visible focus; overlays close and return focus, validation/results are announced; respect prefers-reduced-motion.
-
-      Add no dependencies. Check both languages, original navigation/CTAs, concrete results, return/reset and narrow reflow; report checks actually run and pending items, never requirements as passed results.
+      Compare composition, proportions, typography, artwork and interactions before changing code. Never treat a
+      generated image as a functional page or runtime screenshot. Verify Home visibility, dialog history, preserved
+      edits, clipboard failure, keyboard, narrow layouts and reduced motion. Capture actual screenshots and outcomes
+      with tests/atlas-pages.spec.mjs and report remaining gaps.
 style_spec:
   typography:
     zh: 圆体字 + 金属渐变标题

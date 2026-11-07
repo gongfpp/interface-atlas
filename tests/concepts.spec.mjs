@@ -15,6 +15,16 @@ test("every concept renders a registered interactive demo without page errors", 
       .map((x) => x.slice(0, -5));
     for (const id of ids) {
       await page.goto(`/${type}/${id}`);
+      if (type === 'styles') {
+        // 风格详情已是整页 Atlas，不再把旧工作台嵌在 #playground 中。
+        const atlas = page.locator('[data-atlas-root]');
+        await expect(atlas, `${type}/${id}`).toHaveAttribute('data-ready', 'true');
+        await expect(atlas.locator('h1'), `${type}/${id}`).toBeVisible();
+        await expect(atlas.locator('[data-specimen-input]'), `${type}/${id}`).toBeVisible();
+        await expect(atlas.locator('.approved-buttons [data-current-example]'), `${type}/${id}`).toBeVisible();
+        await expect(page.locator('iframe'), `${type}/${id}`).toHaveCount(0);
+        continue;
+      }
       const demo = page.locator("#playground");
       await demo.scrollIntoViewIfNeeded();
       await expect(demo.locator("astro-island[ssr]"), `${type}/${id}`).toHaveCount(0);
