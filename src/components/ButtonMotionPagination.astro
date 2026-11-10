@@ -1,0 +1,30 @@
+---
+import { MOTION_PAGE_COUNT, MOTION_PAGE_SIZE, BUTTON_MOTIONS, buttonMotionPath } from '@/lib/button-motions';
+import { localePath, type Locale } from '@/lib/i18n';
+interface Props { page: number; locale: Locale; position: 'top' | 'bottom' }
+const { page, locale, position } = Astro.props;
+const zh = locale === 'zh';
+const first = (page - 1) * MOTION_PAGE_SIZE + 1;
+const last = Math.min(page * MOTION_PAGE_SIZE, BUTTON_MOTIONS.length);
+---
+<nav class="bm-pagination" aria-label={zh ? `${position === 'top' ? '顶部' : '底部'}按钮动效分页` : `${position === 'top' ? 'Top' : 'Bottom'} button motion pagination`}>
+  <p class="bm-range">{zh ? `第 ${first}–${last} 项，共 ${BUTTON_MOTIONS.length} 项` : `${first}–${last} of ${BUTTON_MOTIONS.length} effects`}</p>
+  <div class="bm-page-links">
+    {page > 1 ? <a rel="prev" href={localePath(buttonMotionPath(page - 1), locale)}>← {zh ? '上一页' : 'Previous'}</a> : <span aria-disabled="true">← {zh ? '上一页' : 'Previous'}</span>}
+    {Array.from({ length: MOTION_PAGE_COUNT }, (_, i) => <a class="bm-page-number" href={localePath(buttonMotionPath(i + 1), locale)} aria-label={zh ? `第 ${i + 1} 页` : `Page ${i + 1}`} aria-current={page === i + 1 ? 'page' : undefined}>{i + 1}</a>)}
+    {page < MOTION_PAGE_COUNT ? <a rel="next" href={localePath(buttonMotionPath(page + 1), locale)}>{zh ? '下一页' : 'Next'} →</a> : <span aria-disabled="true">{zh ? '下一页' : 'Next'} →</span>}
+  </div>
+</nav>
+<style>
+  .bm-pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding-block: 18px; border-block: 1px solid var(--color-line); }
+  .bm-range { font-size: 13px; color: var(--color-ink-secondary); }
+  .bm-page-links { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--color-ink); }
+  .bm-page-links a, .bm-page-links > span { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; padding: 8px 12px; border-radius: 7px; }
+  .bm-page-links a:hover { background: var(--color-paper-raised); color: var(--color-accent); }
+  .bm-page-links a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .bm-page-links .bm-page-number { min-width: 40px; border: 1px solid var(--color-line); }
+  .bm-page-links [aria-current='page'] { background: var(--color-accent); border-color: var(--color-accent); color: white; }
+  .bm-page-links [aria-current='page']:hover { background: var(--color-accent); color: white; }
+  .bm-page-links [aria-disabled] { color: var(--color-ink-tertiary); opacity: .65; }
+  @media(max-width:700px) { .bm-page-links { width: 100%; justify-content: space-between; gap: 4px; font-size: 13px; } .bm-page-links a, .bm-page-links > span { padding: 8px; } .bm-page-links .bm-page-number { min-width: 34px; } }
+</style>

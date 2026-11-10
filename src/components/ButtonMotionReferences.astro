@@ -1,25 +1,41 @@
 ---
 import { withBase, type Locale } from '@/lib/i18n';
-interface Props { sheets?: number[]; locale: Locale; compact?: boolean }
-const { sheets = [1, 2, 3, 4, 5, 6, 7, 8], locale, compact = false } = Astro.props;
+import { BUTTON_MOTIONS } from '@/lib/button-motions';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const zh = locale === 'zh';
 ---
-<div class:list={['bm-references', { compact }]}>
-  {sheets.map(sheet => {
-    const src = withBase(`/images/button-motion/reference-${String(sheet).padStart(2, '0')}.webp`);
-    return <a href={src} target="_blank" rel="noreferrer" aria-label={locale === 'zh' ? `查看按钮动效原图 ${sheet}` : `Open button motion image ${sheet}`}>
-      <img src={src} alt={locale === 'zh' ? `按钮动效原图 ${sheet}` : `Button motion image ${sheet}`} width="1080" height="1440" loading="lazy" decoding="async" />
-    </a>;
-  })}
-</div>
+<details class="bm-source">
+  <summary>{zh ? '设计原图' : 'Design originals'} <span aria-hidden="true">⌄</span></summary>
+  <div id="design-originals" class="bm-source-content">
+    <p>{zh ? '点击图片查看大图' : 'Select an image to view it at full size'}</p>
+    <div class="bm-references">
+      {Array.from({ length: 8 }, (_, index) => {
+        const sheet = index + 1;
+        const src = withBase(`/images/button-motion/reference-${String(sheet).padStart(2, '0')}.webp`);
+        const first = BUTTON_MOTIONS[index * 5];
+        const last = BUTTON_MOTIONS[index * 5 + 4];
+        return <a href={src} target="_blank" rel="noreferrer" aria-label={zh ? `查看设计原图 ${sheet}` : `Open design image ${sheet}`}>
+          <img src={src} alt={zh ? `设计原图 ${sheet}：${first.zh}至${last.zh}` : `Design image ${sheet}: ${first.en} to ${last.en}`} width="1080" height="1440" loading="lazy" decoding="async" />
+          <span>{String(sheet).padStart(2, '0')} · {zh ? first.zh : first.en} — {zh ? last.zh : last.en} ↗</span>
+        </a>;
+      })}
+    </div>
+  </div>
+</details>
 <style>
-  .bm-references { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-  .bm-references a { display: block; border: 1px solid var(--color-line); border-radius: 5px; overflow: hidden; transition: transform 180ms, box-shadow 180ms; }
-  .bm-references a:hover { transform: translateY(-3px); box-shadow: 0 4px 12px #0002; }
+  .bm-source { margin-block: 20px 24px; }
+  .bm-source summary { display: inline-flex; align-items: center; gap: 12px; cursor: pointer; padding: 8px 0; color: var(--color-accent); font-size: 14px; list-style: none; }
+  .bm-source summary::-webkit-details-marker { display: none; }
+  .bm-source summary:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+  .bm-source[open] summary > span { transform: rotate(180deg); }
+  .bm-source-content { padding-top: 12px; scroll-margin-top: 90px; }
+  .bm-source-content > p { margin-bottom: 12px; font-size: 13px; color: var(--color-ink-secondary); }
+  .bm-references { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+  .bm-references a { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--color-line); border-radius: 8px; background: var(--color-paper-raised); }
+  .bm-references a:hover { border-color: var(--color-accent); }
   .bm-references a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
-  .bm-references img { display: block; width: 48px; height: 64px; object-fit: cover; }
-  .compact img { width: 54px; height: 72px; }
-  @media(max-width:700px) {
-    .bm-references { gap: 6px; }
-    .bm-references:not(.compact) img { width: 30px; height: 40px; }
-  }
+  .bm-references img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
+  .bm-references a > span { padding: 10px; font-size: 12px; line-height: 1.6; color: var(--color-ink-secondary); }
+  @media(max-width:700px) { .bm-references { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } }
 </style>

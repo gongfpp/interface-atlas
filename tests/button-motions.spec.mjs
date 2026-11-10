@@ -26,17 +26,26 @@ for (const locale of ['zh', 'en']) {
       await navigate(page, path(number, locale));
       await expect(page.locator('.bm-row')).toHaveCount(10);
       expect(await page.locator('.bm-row').evaluateAll(nodes => nodes.map(node => node.id))).toEqual(groups[number - 1]);
-      await expect(page.locator('nav').filter({ has: page.locator('a[aria-current="page"]').filter({ hasText: /\d+–\d+/ }) }).last()).toBeVisible();
+      const pagination = page.locator('.bm-pagination');
+      await expect(pagination).toHaveCount(2);
+      for (const nav of await pagination.all()) {
+        await expect(nav.locator('[aria-current="page"]')).toHaveText(String(number));
+        await expect(nav.locator('.bm-page-number')).toHaveText(['1', '2', '3', '4']);
+        await expect(nav.locator('.bm-range')).toHaveText(locale === 'zh' ? `第 ${(number - 1) * 10 + 1}–${number * 10} 项，共 40 项` : `${(number - 1) * 10 + 1}–${number * 10} of 40 effects`);
+        await expect(nav.locator('[aria-disabled="true"]')).toHaveCount(number === 1 || number === 4 ? 1 : 0);
+      }
+      await expect(page.locator('.bm-source')).not.toHaveAttribute('open');
+      await expect(page.locator('.bm-references a')).toHaveCount(8);
       await expect(page.locator('.bm-replay, .bm-status, .bm-stages, .bm-demo-toolbar')).toHaveCount(0);
       await expect(page.locator('main')).not.toContainText(/参考 01|Sheets 01|减少动态效果|Reduced-motion|Not just button skins/);
-      for (const [index, id] of groups[number - 1].entries()) {
+      for (const id of groups[number - 1]) {
         const demo = row(page, id);
         await stable(demo);
-        const reference = demo.locator('.bm-references a');
-        const sheet = Math.floor(((number - 1) * 10 + index) / 5) + 1;
-        await expect(reference).toHaveAttribute('href', `/images/button-motion/reference-0${sheet}.webp`);
-        await expect(reference).toHaveAttribute('target', '_blank');
-        await expect.poll(() => reference.locator('img').evaluate(image => image.naturalWidth)).toBe(1080);
+        await expect(demo.locator('.bm-references, img')).toHaveCount(0);
+        await expect(demo.locator('.bm-description')).toBeVisible();
+        expect((await demo.locator('.bm-description').innerText()).trim()).not.toBe('');
+        await expect(demo.locator('.bm-pointer-hint')).toBeVisible();
+        await expect(demo.locator('.bm-parameters')).not.toHaveAttribute('open');
         if (['hold-confirm', 'drag-confirm'].includes(id)) continue;
         await demo.locator('.bm-button').first().press('Enter');
         await expect(demo.locator('.bm-effect')).toHaveAttribute('data-phase', /running|done/);
@@ -45,7 +54,7 @@ for (const locale of ['zh', 'en']) {
       await navigate(page, `${path(number, locale)}#${groups[number - 1][9]}`);
       await expect(row(page, groups[number - 1][9])).toBeInViewport();
       if (number < 4) {
-        await page.locator('a[rel="next"]').click();
+        await page.locator('.bm-pagination').first().locator('a[rel="next"]').click();
         await expect(page).toHaveURL(new RegExp(`${path(number + 1, locale)}/?$`));
       }
       expect(errors).toEqual([]);
@@ -229,6 +238,10 @@ for (const width of [390, 1280]) {
         await page.evaluate(value => document.documentElement.classList.toggle('dark', value), dark);
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
         await expect(page.locator('.bm-row')).toHaveCount(10);
+        if (dark) {
+          await expect(page.locator('.bm-row h2').first()).toHaveCSS('color', 'rgb(236, 235, 230)');
+          await expect(page.locator('.bm-pagination a:not([aria-current])').first()).toHaveCSS('color', 'rgb(236, 235, 230)');
+        }
       }
     }
     await effect(page, 'button-input').getByRole('button', { name: 'SUBSCRIBE', exact: true }).press('Enter');
@@ -248,13 +261,51 @@ for (const width of [390, 1280]) {
   });
 }
 
+test('parameters remain secondary and both pagination controls navigate', async ({ page }) => {
+  await navigate(page, path(2));
+  const parameters = row(page, 'loading-morph').locator('.bm-parameters');
+  await expect(parameters).not.toHaveAttribute('open');
+  await parameters.locator('summary').click();
+  await expect(parameters).toContainText('400 ms');
+  await page.locator('.bm-pagination').last().locator('a[rel="next"]').click();
+  await expect(page).toHaveURL(/\/motion\/buttons\/3\/?$/);
+  await page.locator('.bm-pagination').first().locator('a[rel="prev"]').click();
+  await expect(page).toHaveURL(/\/motion\/buttons\/2\/?$/);
+});
+
+test.describe('touch interaction guidance', () => {
+  test.use({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } });
+  test('touch users see tap instructions rather than mouse-only hints', async ({ page }) => {
+    await navigate(page, path(1));
+    const target = row(page, 'fill-sweep');
+    await expect(target.locator('.bm-touch-hint')).toBeVisible();
+    await expect(target.locator('.bm-touch-hint')).toHaveText('轻点体验');
+    await expect(target.locator('.bm-pointer-hint')).toBeHidden();
+    await target.locator('.bm-button').tap();
+    await expect(target.locator('.bm-effect')).toHaveClass(/is-active/);
+    await navigate(page, path(3));
+    await expect(row(page, 'hold-confirm').locator('.bm-touch-hint')).toContainText('0.9 秒');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  });
+});
+
 test('reference thumbnails open the actual image in a new tab', async ({ page }) => {
   await navigate(page, path(4));
-  const thumbnail = page.locator('nav .bm-references a').first();
+  await page.locator('.bm-source > summary').click();
+  await expect(page.locator('.bm-source')).toHaveAttribute('open', '');
+  const images = page.locator('.bm-references a');
+  await expect(images).toHaveCount(8);
+  for (let i = 0; i < 8; i++) {
+    const thumbnail = images.nth(i);
+    await stable(thumbnail);
+    await expect(thumbnail).toHaveAttribute('href', `/images/button-motion/reference-0${i + 1}.webp`);
+    await expect(thumbnail).toHaveAttribute('target', '_blank');
+    await expect.poll(() => thumbnail.locator('img').evaluate(image => image.naturalWidth)).toBe(1080);
+  }
   const popupPromise = page.waitForEvent('popup');
-  await thumbnail.click();
+  await images.first().click();
   const popup = await popupPromise;
-  await expect(popup).toHaveURL(/\/images\/button-motion\/reference-07\.webp$/);
+  await expect(popup).toHaveURL(/\/images\/button-motion\/reference-01\.webp$/);
   await expect.poll(() => popup.locator('img').evaluate(image => image.naturalWidth)).toBe(1080);
   await popup.close();
 });
@@ -265,8 +316,12 @@ test('catalogue is directly discoverable from home, motion and button pages in b
       await navigate(page, `${locale === 'en' ? '/en' : ''}${source}`);
       await expect(page.locator(`main a[href="${path(1, locale)}"]`).first()).toBeVisible();
       if (source !== '/') {
-        await expect(page.locator('.bm-entry .bm-references a')).toHaveCount(8);
-        await expect(page.locator('.bm-entry')).not.toContainText(/参考|sheet|逐个体验/);
+        await expect(page.locator('.bm-entry .bm-references')).toHaveCount(0);
+        const originals = page.locator('.bm-entry-originals');
+        await expect(originals).toHaveAttribute('href', `${path(1, locale)}#design-originals`);
+        await originals.click();
+        await expect(page.locator('.bm-source')).toHaveAttribute('open', '');
+        await expect(page.locator('.bm-references a')).toHaveCount(8);
       }
     }
   }

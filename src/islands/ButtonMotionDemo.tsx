@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react';
 import type { ButtonMotion } from '@/lib/button-motions';
+import { buttonMotionHint } from '@/lib/button-motion-copy';
 import '@/styles/button-motions.css';
 
 type Phase = 'idle' | 'running' | 'done';
@@ -8,6 +9,7 @@ const timed = new Set(['loading-morph', 'success-morph', 'progress-button', 'tex
 
 export default function ButtonMotionDemo({ motion: m, locale }: Props) {
   const zh = locale === 'zh';
+  const hint = buttonMotionHint(m, locale);
   const [phase, setPhase] = useState<Phase>('idle');
   const expanded = phase !== 'idle';
   const [progress, setProgress] = useState(0);
@@ -181,7 +183,7 @@ export default function ButtonMotionDemo({ motion: m, locale }: Props) {
     {m.id === 'success-morph' && done && <svg key={version} className="bm-check" viewBox="0 0 32 32" aria-hidden="true"><path d="m6 16 7 7L27 8" pathLength="100" /></svg>}
     {m.id === 'explode-rebuild' && <><span className="bm-fragment bm-fragment-a" aria-hidden="true" /><span className="bm-fragment bm-fragment-b" aria-hidden="true" /></>}
   </>;
-  return <div className="bm-demo">
+  return <div className="bm-demo" role="group" aria-label={zh ? `${m.zh}交互预览` : `${m.en} interactive preview`} aria-describedby={`${m.id}-description ${m.id}-hint`}>
     <div className={`bm-stage ${['glow-pulse', 'shine-sweep', 'border-beam', 'text-scramble'].includes(m.id) ? 'bm-stage-dark' : ''}`}>
       <div ref={root} className={`bm-effect ${on ? 'is-active' : ''}`} data-kind={m.id} data-phase={phase} style={style}
         onPointerEnter={enter} onPointerMove={move} onPointerLeave={() => { setActive(false); cancelHold(); }}>
@@ -216,5 +218,6 @@ export default function ButtonMotionDemo({ motion: m, locale }: Props) {
         </>}
       </div>
     </div>
+    <p className="bm-hint" id={`${m.id}-hint`}><span className="bm-pointer-hint">{hint.pointer}</span><span className="bm-touch-hint">{hint.touch}</span></p>
   </div>;
 }
