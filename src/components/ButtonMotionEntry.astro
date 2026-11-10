@@ -1,0 +1,16 @@
+---
+import ButtonMotionReferences from '@/components/ButtonMotionReferences.astro';
+import { localePath, type Locale } from '@/lib/i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+---
+<div class="bm-entry">
+  <a class="bm-entry-link" href={localePath('/motion/buttons', locale)}><strong>{locale === 'zh' ? '40 种按钮动效' : '40 button effects'}</strong><span aria-hidden="true">↗</span></a>
+  <ButtonMotionReferences locale={locale} />
+</div>
+<style>
+  .bm-entry { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; margin-block: 24px 32px; padding: 18px 22px; border: 1px solid var(--color-line); border-radius: 12px; background: var(--color-paper-raised); }
+  .bm-entry-link { display: flex; align-items: center; justify-content: space-between; gap: 24px; color: var(--color-accent); }
+  .bm-entry-link:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+  @media(max-width:700px) { .bm-entry { padding: 16px; } .bm-entry-link { width: 100%; } }
+</style>

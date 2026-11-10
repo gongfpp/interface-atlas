@@ -13,7 +13,8 @@ export default function ButtonMotionDemo({ motion: m, locale }: Props) {
   const [progress, setProgress] = useState(0);
   const [active, setActive] = useState(false);
   const [version, setVersion] = useState(0);
-  const [message, setMessage] = useState('');
+  const [copied, setCopied] = useState<'LINK' | 'MAIL' | 'COPY' | ''>('');
+  const [submitted, setSubmitted] = useState(false);
   const root = useRef<HTMLDivElement>(null);
   const field = useRef<HTMLInputElement>(null);
   const timer = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
@@ -21,7 +22,6 @@ export default function ButtonMotionDemo({ motion: m, locale }: Props) {
   const held = useRef(false);
   const drag = useRef(0);
   const complete = useRef(false);
-  const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function clear() {
     clearInterval(timer.current);
     if (frame.current !== undefined) cancelAnimationFrame(frame.current);
@@ -37,7 +37,7 @@ export default function ButtonMotionDemo({ motion: m, locale }: Props) {
     const focusTimer = setTimeout(() => {
       if (m.id === 'button-input') field.current?.focus();
       else root.current?.querySelector<HTMLButtonElement>('.bm-panel-actions button')?.focus();
-    }, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 32 : 420);
+    }, 420);
     return () => clearTimeout(focusTimer);
   }, [expanded, m.id]);
 
@@ -48,7 +48,8 @@ export default function ButtonMotionDemo({ motion: m, locale }: Props) {
     setPhase('idle');
     setProgress(0);
     setActive(false);
-    setMessage('');
+    setCopied('');
+    setSubmitted(false);
     setVersion(v => v + 1);
   }
   function closeExpanded() {
@@ -61,7 +62,8 @@ export default function ButtonMotionDemo({ motion: m, locale }: Props) {
     setPhase('running');
     setProgress(0);
     setVersion(v => v + 1);
-    setMessage('');
+    setCopied('');
+    setSubmitted(false);
     const duration = timed.has(m.id) ? (m.id === 'text-scramble' ? 520 : 1800) : m.duration;
     const began = performance.now();
     timer.current = setInterval(() => {
@@ -75,9 +77,11 @@ export default function ButtonMotionDemo({ motion: m, locale }: Props) {
     }, 30);
   }
   function beginHold() {
-    if (held.current || complete.current) return;
+    if (held.current) return;
     clear();
+    complete.current = false;
     held.current = true;
+    setProgress(0);
     setPhase('running');
     const began = performance.now();
     timer.current = setInterval(() => {
@@ -110,7 +114,6 @@ export default function ButtonMotionDemo({ motion: m, locale }: Props) {
     }
   }
   function move(event: PointerEvent<HTMLDivElement>) {
-    if (reduced()) return;
     const target = root.current;
     if (!target) return;
     const rect = target.getBoundingClientRect();
@@ -154,11 +157,11 @@ export default function ButtonMotionDemo({ motion: m, locale }: Props) {
                           : m.id === 'directional-hover' ? 'HOVER'
                             : m.id === 'gooey-merge' ? 'PLAY'
                               : ['arrow-loop', 'icon-orbit'].includes(m.id) ? 'NEXT' : 'Explore';
-  const scramble = 'EXPLORE →'.split('').map((c, i) => i < progress / 100 * 9 || !running || reduced() ? c : '#7@?X*%'.charAt((Math.floor(progress) + i * 3) % 7)).join('');
-  const help = m.trigger === 'hold' ? (zh ? '按住 900ms；提前松开取消。键盘：按住空格。' : 'Hold 900ms; release early to cancel. Keyboard: hold Space.')
-    : m.trigger === 'drag' ? (zh ? '拖到右端并松开；不足 92% 自动回弹。键盘：方向键 / End。' : 'Drag past 92% and release. Keyboard: arrows / End.')
-      : m.trigger === 'hover' ? (zh ? '悬停或聚焦；触屏轻点。' : 'Hover or focus; tap on touch screens.')
-        : (zh ? '点击按钮体验；可重播。' : 'Click to try; replay anytime.');
+  const scramble = 'EXPLORE →'.split('').map((c, i) => i < progress / 100 * 9 || !running ? c : '#7@?X*%'.charAt((Math.floor(progress) + i * 3) % 7)).join('');
+  async function copy(value: string, action: 'LINK' | 'COPY') {
+    try { await navigator.clipboard.writeText(value); setCopied(action); }
+    catch { setCopied(''); }
+  }
   const face = <>
     {m.id === 'border-draw' && <svg className="bm-border" viewBox="0 0 160 52" preserveAspectRatio="none" aria-hidden="true"><rect x="1" y="1" width="158" height="50" rx="9" pathLength="100" /></svg>}
     {m.id === 'border-beam' && <svg className="bm-beam" viewBox="0 0 160 52" preserveAspectRatio="none" aria-hidden="true"><rect x="1" y="1" width="158" height="50" rx="9" pathLength="100" /></svg>}
@@ -179,45 +182,39 @@ export default function ButtonMotionDemo({ motion: m, locale }: Props) {
     {m.id === 'explode-rebuild' && <><span className="bm-fragment bm-fragment-a" aria-hidden="true" /><span className="bm-fragment bm-fragment-b" aria-hidden="true" /></>}
   </>;
   return <div className="bm-demo">
-    <div className="bm-demo-toolbar"><span>{help}</span><button type="button" className="bm-replay" onClick={() => {
-      reset();
-      if (m.trigger !== 'hold' && m.trigger !== 'drag') frame.current = requestAnimationFrame(() => { frame.current = requestAnimationFrame(() => start()); });
-    }}>{m.trigger === 'hold' || m.trigger === 'drag' ? (zh ? '↺ 重置' : '↺ Reset') : (zh ? '↻ 重播' : '↻ Replay')}</button></div>
     <div className={`bm-stage ${['glow-pulse', 'shine-sweep', 'border-beam', 'text-scramble'].includes(m.id) ? 'bm-stage-dark' : ''}`}>
       <div ref={root} className={`bm-effect ${on ? 'is-active' : ''}`} data-kind={m.id} data-phase={phase} style={style}
         onPointerEnter={enter} onPointerMove={move} onPointerLeave={() => { setActive(false); cancelHold(); }}>
         {m.id === 'drag-confirm' ? <div className={`bm-drag ${done ? 'bm-confirmed' : ''}`}>
           <span aria-hidden="true">{done ? '✓ CONFIRMED' : 'SLIDE TO CONFIRM →'}</span>
-          <input type="range" min="0" max="100" step="1" value={progress} disabled={done} aria-label={zh ? '拖动确认' : 'Drag to confirm'} aria-valuetext={done ? (zh ? '已确认' : 'Confirmed') : `${Math.round(progress)}%`} onChange={event => { const value = Number(event.target.value); drag.current = value; setProgress(value); setPhase('running'); }} onPointerUp={finishDrag} onPointerCancel={() => { drag.current = 0; finishDrag(); }} onKeyUp={event => { if (drag.current >= 92 || ['Enter', ' '].includes(event.key)) finishDrag(); }} onBlur={finishDrag} />
+          <input type="range" min="0" max="100" step="1" value={progress} onPointerDown={() => { if (complete.current) reset(); }} aria-label={zh ? '拖动确认' : 'Drag to confirm'} aria-valuetext={done ? (zh ? '已确认' : 'Confirmed') : `${Math.round(progress)}%`} onChange={event => { const value = Number(event.target.value); drag.current = value; setProgress(value); setPhase('running'); }} onPointerUp={finishDrag} onPointerCancel={() => { drag.current = 0; finishDrag(); }} onKeyUp={event => { if (drag.current >= 92 || ['Enter', ' ', 'Home'].includes(event.key)) finishDrag(); }} onBlur={finishDrag} />
         </div> : m.id === 'expand-panel' ? <div className={`bm-panel ${open ? 'bm-open' : ''}`}>
           <button type="button" className="bm-button" aria-expanded={open} aria-hidden={open} tabIndex={open ? -1 : undefined} onClick={start}>SHARE</button>
           <div className="bm-panel-actions" inert={!open} aria-hidden={!open}>
             <button type="button" aria-label={zh ? '关闭分享' : 'Close share panel'} onClick={closeExpanded}>×</button>
-            <button type="button" onClick={() => { void navigator.clipboard?.writeText(window.location.href).then(() => setMessage(zh ? '链接已复制' : 'Link copied')).catch(() => setMessage(zh ? '复制失败，请手动复制网址' : 'Copy unavailable')); }}>LINK</button>
-            <button type="button" onClick={() => setMessage(zh ? '演示：邮件分享入口' : 'Demo: mail share action')}>MAIL</button>
-            <button type="button" onClick={() => { void navigator.clipboard?.writeText('Interface Atlas — Button Motion').then(() => setMessage(zh ? '标题已复制' : 'Title copied')).catch(() => setMessage(zh ? '复制失败' : 'Copy unavailable')); }}>COPY</button>
+            <button type="button" aria-label="LINK" onClick={() => { void copy(window.location.href, 'LINK'); }}>{copied === 'LINK' ? '✓' : 'LINK'}</button>
+            <button type="button" aria-label="MAIL" onClick={() => setCopied('MAIL')}>{copied === 'MAIL' ? '✓' : 'MAIL'}</button>
+            <button type="button" aria-label="COPY" onClick={() => { void copy('Interface Atlas — Button Motion', 'COPY'); }}>{copied === 'COPY' ? '✓' : 'COPY'}</button>
           </div>
-        </div> : m.id === 'button-input' ? <form className={`bm-input-form ${open ? 'bm-open' : ''}`} onSubmit={event => { event.preventDefault(); setMessage(zh ? '订阅演示完成，未发送任何数据' : 'Subscription demo complete; no data sent'); }}>
+        </div> : m.id === 'button-input' ? <form className={`bm-input-form ${open ? 'bm-open' : ''} ${submitted ? 'bm-submitted' : ''}`} onSubmit={event => { event.preventDefault(); setSubmitted(true); }}>
           <button type="button" className="bm-button" aria-expanded={open} aria-hidden={open} tabIndex={open ? -1 : undefined} onClick={start}>SUBSCRIBE</button>
-          <div className="bm-input-fields" inert={!open} aria-hidden={!open}><input ref={field} type="email" required placeholder="YOUR EMAIL…" aria-label={zh ? '演示邮箱（不发送）' : 'Demo email (not sent)'} /><button type="submit" aria-label={zh ? '确认订阅演示' : 'Confirm demo subscription'}>→</button><button type="button" aria-label={zh ? '取消订阅演示' : 'Cancel demo subscription'} onClick={closeExpanded}>×</button></div>
+          <div className="bm-input-fields" inert={!open} aria-hidden={!open}><input ref={field} type="email" required placeholder="YOUR EMAIL…" aria-label={zh ? '演示邮箱（不发送）' : 'Demo email (not sent)'} onChange={() => setSubmitted(false)} /><button type="submit" aria-label={zh ? '确认订阅演示' : 'Confirm demo subscription'}>{submitted ? '✓' : '→'}</button><button type="button" aria-label={zh ? '取消订阅演示' : 'Cancel demo subscription'} onClick={closeExpanded}>×</button></div>
         </form> : <>
           {m.id === 'gooey-merge' && <><svg className="bm-filter" aria-hidden="true"><defs><filter id={`goo-${m.id}`}><feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" /><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -9" /></filter></defs></svg><span className="bm-goo" aria-hidden="true"><i /><i /></span></>}
           <button type="button" className="bm-button" data-run={version % 2} aria-label={m.id === 'icon-morph' ? (open ? (zh ? '关闭图标，点击重播' : 'Close icon, replay') : (zh ? '加号变关闭图标' : 'Morph plus to close')) : m.id === 'text-scramble' || m.id === 'character-wave' ? 'Explore' : undefined}
-            aria-pressed={['icon-morph', 'lock-unlock', 'particle-burst'].includes(m.id) ? open : undefined}
+            aria-pressed={['icon-morph', 'lock-unlock', 'particle-burst', '3d-flip'].includes(m.id) ? open : undefined}
             aria-busy={timed.has(m.id) && m.id !== 'text-scramble' ? running : undefined}
             onFocus={() => { setActive(true); if (m.trigger === 'hover' && phase === 'idle') start(); }} onBlur={() => { setActive(false); cancelHold(); }}
             onPointerDown={event => { move(event as unknown as PointerEvent<HTMLDivElement>); if (m.id === 'hold-confirm') { event.currentTarget.setPointerCapture(event.pointerId); beginHold(); } }}
             onPointerUp={cancelHold} onPointerCancel={cancelHold} onLostPointerCapture={cancelHold}
             onKeyDown={event => { if (m.id === 'hold-confirm' && [' ', 'Enter'].includes(event.key)) { event.preventDefault(); if (!event.repeat) beginHold(); } }}
             onKeyUp={event => { if (m.id === 'hold-confirm' && [' ', 'Enter'].includes(event.key)) { event.preventDefault(); cancelHold(); } }}
-            onClick={() => { if (m.id !== 'hold-confirm') { if (['icon-morph', 'lock-unlock', 'particle-burst'].includes(m.id) && open) reset(); else start(); } }}>
+            onClick={() => { if (m.id !== 'hold-confirm') { if (['icon-morph', 'lock-unlock', 'particle-burst', '3d-flip'].includes(m.id) && open) reset(); else start(); } }}>
             <span key={['press-scale', 'elastic-stretch', 'shake-error', 'explode-rebuild'].includes(m.id) ? version : 0} className="bm-face">{face}</span>
           </button>
           {m.id === 'particle-burst' && running && <span key={version} className="bm-particles" aria-hidden="true">{Array.from({ length: 24 }, (_, i) => <i key={i} style={{ '--angle': `${i * 15}deg`, '--distance': `${50 + i % 4 * 10}px` } as CSSProperties} />)}</span>}
         </>}
       </div>
     </div>
-    <div className="bm-stages" aria-label={zh ? '动画阶段' : 'Motion stages'}>{m.stages.map((stage, index) => <span key={stage}><b>{String(index + 1).padStart(2, '0')}</b>{stage}</span>)}</div>
-    <p className="bm-status" role="status">{message || (done ? (m.id === 'shake-error' ? (zh ? '演示：提交失败，可再次点击重试' : 'Demo: submission failed, click to retry') : zh ? '演示完成，可重播' : 'Demo complete; replay to try again') : running && timed.has(m.id) ? (zh ? '演示处理中…' : 'Simulating…') : '')}</p>
   </div>;
 }

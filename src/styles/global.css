@@ -60,9 +60,10 @@ html {
 
 /* 尊重系统减弱动效偏好（PRD §41 全站标准） */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  /* The interactive button catalogue is an always-on motion showcase. */
+  *:not(.bm-catalogue, .bm-catalogue *),
+  *:not(.bm-catalogue, .bm-catalogue *)::before,
+  *:not(.bm-catalogue, .bm-catalogue *)::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

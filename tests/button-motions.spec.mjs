@@ -19,19 +19,25 @@ async function stable(locator) {
 
 for (const locale of ['zh', 'en']) {
   for (let number = 1; number <= 4; number++) {
-    test(`${locale} catalogue page ${number}: ten unique rows, working replay, deep links and pagination`, async ({ page }) => {
+    test(`${locale} catalogue page ${number}: ten unique interactive rows, image links and pagination`, async ({ page }) => {
       const errors = [];
       page.on('pageerror', error => errors.push(error.message));
       await navigate(page, path(number, locale));
       await expect(page.locator('.bm-row')).toHaveCount(10);
       expect(await page.locator('.bm-row').evaluateAll(nodes => nodes.map(node => node.id))).toEqual(groups[number - 1]);
       await expect(page.locator('nav').filter({ has: page.locator('a[aria-current="page"]').filter({ hasText: /\d+–\d+/ }) }).last()).toBeVisible();
-      for (const id of groups[number - 1]) {
+      await expect(page.locator('.bm-replay, .bm-status, .bm-stages, .bm-demo-toolbar')).toHaveCount(0);
+      await expect(page.locator('main')).not.toContainText(/参考 01|Sheets 01|减少动态效果|Reduced-motion|Not just button skins/);
+      for (const [index, id] of groups[number - 1].entries()) {
         const demo = row(page, id);
-        await expect(demo.locator('.bm-stages > span')).toHaveCount(4);
-        if (['hold-confirm', 'drag-confirm'].includes(id)) continue;
         await stable(demo);
-        await demo.locator('.bm-replay').click();
+        const reference = demo.locator('.bm-references a');
+        const sheet = Math.floor(((number - 1) * 10 + index) / 5) + 1;
+        await expect(reference).toHaveAttribute('href', `/images/button-motion/reference-0${sheet}.webp`);
+        await expect(reference).toHaveAttribute('target', '_blank');
+        await expect.poll(() => reference.locator('img').evaluate(image => image.naturalWidth)).toBe(1080);
+        if (['hold-confirm', 'drag-confirm'].includes(id)) continue;
+        await demo.locator('.bm-button').first().press('Enter');
         await expect(demo.locator('.bm-effect')).toHaveAttribute('data-phase', /running|done/);
         await expect(demo.locator('.bm-effect')).toHaveAttribute('data-phase', 'done');
       }
@@ -112,7 +118,7 @@ test('click origin, progress, checked success, particles and 3D flip have actual
   await expect.poll(() => flip.locator('.bm-flipper').evaluate(node => new DOMMatrix(getComputedStyle(node).transform).m11)).toBeCloseTo(-1, 2);
 });
 
-test('hold confirmation supports cancel, pointer hold, reset and keyboard hold', async ({ page }) => {
+test('hold confirmation supports cancel and repeat directly on the button', async ({ page }) => {
   await navigate(page, path(3));
   await page.clock.install();
   const target = effect(page, 'hold-confirm');
@@ -130,8 +136,6 @@ test('hold confirmation supports cancel, pointer hold, reset and keyboard hold',
   await page.clock.fastForward(1000);
   await page.keyboard.up('Space');
   await expect(button).toHaveText('CONFIRMED ✓');
-  await row(page, 'hold-confirm').locator('.bm-replay').click();
-  await expect(target).toHaveAttribute('data-phase', 'idle');
   await button.hover();
   await page.mouse.down();
   await page.clock.fastForward(1000);
@@ -154,16 +158,17 @@ test('drag confirmation returns below threshold and completes with pointer or ke
   await slider.press('Enter');
   await expect(slider).toHaveValue('0');
   await slider.press('End');
-  await expect(slider).toBeDisabled();
+  await expect(target).toHaveAttribute('data-phase', 'done');
   await expect(target).toHaveText('✓ CONFIRMED');
-  await row(page, 'drag-confirm').locator('.bm-replay').click();
+  await slider.press('Home');
+  await expect(target).toHaveAttribute('data-phase', 'idle');
   await stable(slider);
   const box = await slider.boundingBox();
   await page.mouse.move(box.x + 24, box.y + box.height / 2);
   await page.mouse.down();
   await page.mouse.move(box.x + box.width - 23, box.y + box.height / 2, { steps: 15 });
   await page.mouse.up();
-  await expect(slider).toBeDisabled();
+  await expect(target).toHaveAttribute('data-phase', 'done');
 });
 
 test('expanded panel and input are real controls, focusable only when open', async ({ page }) => {
@@ -173,7 +178,7 @@ test('expanded panel and input are real controls, focusable only when open', asy
   await panel.getByRole('button', { name: 'SHARE', exact: true }).press('Enter');
   await expect(panel.getByRole('button', { name: 'MAIL', exact: true })).toBeVisible();
   await panel.getByRole('button', { name: 'MAIL', exact: true }).click();
-  await expect(row(page, 'expand-panel').getByRole('status')).toContainText('邮件分享');
+  await expect(panel.getByRole('button', { name: 'MAIL', exact: true })).toHaveText('✓');
   await panel.getByRole('button', { name: '关闭分享' }).click();
   await expect(panel.locator('.bm-panel-actions')).toHaveAttribute('inert', '');
   await expect(panel.getByRole('button', { name: 'SHARE', exact: true })).toBeFocused();
@@ -182,7 +187,8 @@ test('expanded panel and input are real controls, focusable only when open', asy
   await expect(input.getByRole('textbox')).toBeFocused();
   await input.getByRole('textbox').fill('demo@example.com');
   await input.getByRole('button', { name: '确认订阅演示', exact: true }).click();
-  await expect(row(page, 'button-input').getByRole('status')).toContainText('未发送任何数据');
+  await expect(input.locator('button[type="submit"]')).toHaveText('✓');
+  await expect(input.locator('.bm-input-form')).toHaveClass(/bm-submitted/);
   await input.getByRole('button', { name: '取消订阅演示' }).click();
   await expect(input.getByRole('button', { name: 'SUBSCRIBE', exact: true })).toBeVisible();
   await expect(input.getByRole('button', { name: 'SUBSCRIBE', exact: true })).toBeFocused();
@@ -213,7 +219,7 @@ test('directional hover respects entry edge, gooey filter and scramble are disti
 });
 
 for (const width of [390, 1280]) {
-  test(`${width}px: all four pages fit in light/dark and reduced motion preserves state feedback`, async ({ page }) => {
+  test(`${width}px: all four pages fit in light/dark and full effects ignore OS motion reduction`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.emulateMedia({ reducedMotion: 'reduce' });
     for (let number = 1; number <= 4; number++) {
@@ -228,16 +234,39 @@ for (const width of [390, 1280]) {
     await expect(effect(page, 'button-input').getByRole('textbox')).toBeFocused();
     await navigate(page, path(2));
     await effect(page, 'success-morph').locator('button').press('Enter');
+    await expect(effect(page, 'success-morph').locator('.bm-spinner')).toHaveCSS('animation-duration', '0.65s');
+    await expect(effect(page, 'success-morph').locator('.bm-spinner')).toHaveCSS('animation-iteration-count', 'infinite');
     await expect(effect(page, 'success-morph')).toHaveAttribute('data-phase', 'done');
     await expect(effect(page, 'success-morph').locator('.bm-check')).toHaveCount(1);
+    await navigate(page, path(1));
+    const magnetic = effect(page, 'magnetic-hover');
+    await stable(magnetic);
+    await magnetic.hover({ position: { x: 180, y: 40 } });
+    await expect.poll(() => magnetic.locator('.bm-button').evaluate(node => getComputedStyle(node).transform)).not.toBe('none');
+    await expect(effect(page, 'fill-sweep').locator('.bm-fill')).toHaveCSS('transition-duration', '0.3s');
   });
 }
+
+test('reference thumbnails open the actual image in a new tab', async ({ page }) => {
+  await navigate(page, path(4));
+  const thumbnail = page.locator('nav .bm-references a').first();
+  const popupPromise = page.waitForEvent('popup');
+  await thumbnail.click();
+  const popup = await popupPromise;
+  await expect(popup).toHaveURL(/\/images\/button-motion\/reference-07\.webp$/);
+  await expect.poll(() => popup.locator('img').evaluate(image => image.naturalWidth)).toBe(1080);
+  await popup.close();
+});
 
 test('catalogue is directly discoverable from home, motion and button pages in both locales', async ({ page }) => {
   for (const locale of ['zh', 'en']) {
     for (const source of ['/', '/motion', '/components/button']) {
       await navigate(page, `${locale === 'en' ? '/en' : ''}${source}`);
       await expect(page.locator(`main a[href="${path(1, locale)}"]`).first()).toBeVisible();
+      if (source !== '/') {
+        await expect(page.locator('.bm-entry .bm-references a')).toHaveCount(8);
+        await expect(page.locator('.bm-entry')).not.toContainText(/参考|sheet|逐个体验/);
+      }
     }
   }
 });

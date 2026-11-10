@@ -3,7 +3,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import ConceptListView from '@/components/ConceptListView.astro';
 import StyleRow from '@/components/StyleRow.astro';
 import { getConcepts, type ConceptType } from '@/lib/content';
-import { TYPE_LABELS, TYPE_INTROS, localePath, type Locale } from '@/lib/i18n';
+import { TYPE_LABELS, TYPE_INTROS, type Locale } from '@/lib/i18n';
+import ButtonMotionEntry from '@/components/ButtonMotionEntry.astro';
 import { getStylePreviews } from '@/lib/style-previews';
 
 export async function getStaticPaths() {
@@ -32,7 +33,7 @@ const styleSpecs = isStyles ? await getStylePreviews() : [];
     <p class="mt-2 text-sm text-ink-3">{isStyles ? `${styleSpecs.length} styles · click any to see live component demos` : `${concepts.length} concepts`}</p>
   </section>
 
-  {type === 'motion' && <a href={localePath('/motion/buttons', locale)} class="mb-8 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-accent bg-accent-soft p-5 text-accent"><strong>40 button effects · sheets 01–08</strong><span class="text-sm">Fill sweeps, loading morphs, hold to confirm, explode & rebuild… Try them all →</span></a>}
+  {type === 'motion' && <ButtonMotionEntry locale={locale} />}
 
   {isStyles ? (
     <div class="flex flex-col gap-5 pb-20">

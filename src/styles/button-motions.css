@@ -6,24 +6,17 @@
 .bm-meta h2 { font-size: 19px; font-weight: 650; margin-top: 18px; line-height: 1.35; }
 .bm-meta h2 a:hover { color: var(--bm-blue); }
 .bm-meta .bm-cn { margin-top: 4px; font-size: 16px; }
-.bm-meta .bm-reference { font-size: 11px; color: var(--color-ink-tertiary); margin-top: 24px; letter-spacing: .08em; }
-.bm-meta .bm-params { color: var(--color-ink-secondary); font-size: 12px; line-height: 1.8; margin-top: 8px; overflow-wrap: anywhere; }
-.bm-demo { min-width: 0; padding-left: 28px; }
-.bm-demo-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 12px; color: var(--color-ink-tertiary); min-height: 30px; }
-.bm-replay { flex-shrink: 0; border: 1px solid var(--color-line); border-radius: 6px; padding: 5px 9px; color: var(--color-ink-secondary); background: var(--color-paper); cursor: pointer; }
-.bm-replay:hover { color: var(--bm-blue); border-color: var(--bm-blue); }
-.bm-stage { min-height: 154px; display: flex; align-items: center; justify-content: center; border-radius: 10px; margin-block: 12px 20px; background: linear-gradient(130deg, #f1f5f9, #f8fafc); color: #172033; }
+.bm-meta-bottom { display: flex; align-items: flex-end; gap: 12px; margin-top: 18px; }
+.bm-duration { color: var(--color-ink-tertiary); font-size: 12px; padding-bottom: 3px; }
+.bm-demo { min-width: 0; padding-left: 28px; display: flex; }
+.bm-stage { width: 100%; min-height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 10px; background: linear-gradient(130deg, #f1f5f9, #f8fafc); color: #172033; }
 .dark .bm-stage { background: linear-gradient(130deg, #1e293b, #151e2b); }
 .bm-stage.bm-stage-dark { background: #191e2b; color: #fff; }
 .bm-effect { --x: 50%; --y: 50%; --mx: 0px; --my: 0px; --origin: 0% 50%; position: relative; display: grid; place-items: center; min-width: 230px; min-height: 116px; max-width: 100%; }
 .bm-button { position: relative; width: 160px; height: 52px; border: 1px solid #64748b; border-radius: 10px; background: #fff; color: #172033; font: 500 14px/1 system-ui, sans-serif; cursor: pointer; padding: 0; box-shadow: 0 2px 5px #0f172a0c; transition: transform var(--duration) cubic-bezier(.22,1,.36,1), color var(--duration), background var(--duration), border-radius var(--duration), width var(--duration), box-shadow var(--duration); -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 .bm-face { position: relative; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 100%; border-radius: inherit; }
 .bm-label, .bm-arrow { position: relative; z-index: 2; transition: transform var(--duration); }
-.bm-effect :is(button, input):focus-visible, .bm-replay:focus-visible { outline: 3px solid #60a5fa; outline-offset: 5px; }
-.bm-stages { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; font-size: 10px; color: var(--color-ink-secondary); letter-spacing: .03em; }
-.bm-stages span { display: flex; flex-direction: column; gap: 5px; border-top: 1px solid var(--color-line); padding-top: 9px; }
-.bm-stages b { color: var(--color-ink-tertiary); font-size: 10px; font-weight: 400; }
-.bm-status { min-height: 17px; margin-top: 10px; color: var(--color-ink-secondary); font-size: 11px; }
+.bm-effect :is(button, input):focus-visible { outline: 3px solid #60a5fa; outline-offset: 5px; }
 .bm-fill { position: absolute; inset: 0; background: #3b82f6; transform: scaleX(0); transform-origin: left; transition: transform var(--duration) cubic-bezier(.4,0,.2,1); border-radius: inherit; }
 .bm-effect[data-kind="fill-sweep"] .bm-face, .bm-effect[data-kind="radial-reveal"] .bm-face, .bm-effect[data-kind="directional-hover"] .bm-face { overflow: hidden; }
 .bm-effect:is([data-kind="fill-sweep"],[data-kind="radial-reveal"],[data-kind="directional-hover"]).is-active .bm-fill { transform: scaleX(1); }
@@ -132,7 +125,8 @@
 .bm-drag input::-moz-range-thumb { width: 42px; height: 42px; border: 0; border-radius: 50%; background: #4f6cff; }
 .bm-drag.bm-confirmed { background: #10b981; border-color: #10b981; }
 .bm-drag.bm-confirmed > span { color: white; padding: 0; }
-.bm-drag.bm-confirmed input { opacity: 0; }
+.bm-drag.bm-confirmed input::-webkit-slider-thumb { background: white; }
+.bm-drag.bm-confirmed input::-moz-range-thumb { background: white; }
 .bm-effect[data-kind="shake-error"]:not([data-phase="idle"]) .bm-button { background: #e94b60; border-color: #e94b60; color: white; }
 .bm-effect[data-kind="shake-error"][data-phase="running"] .bm-button { animation: bm-shake 360ms both; }
 .bm-effect[data-kind="shake-error"][data-phase="running"] .bm-button[data-run="1"] { animation-name: bm-shake-alt; }
@@ -181,6 +175,8 @@
 .bm-input-fields { background: white; color: #172033; }
 .bm-input-fields input { min-width: 0; width: 100%; border: 0; outline: none; padding: 6px; background: white; font: 12px system-ui,sans-serif; }
 .bm-input-fields button { color: #2563eb; min-width: 32px; }
+.bm-submitted .bm-input-fields { border-color: #10b981; }
+.bm-submitted .bm-input-fields button[type="submit"] { color: #059669; background: #d1fae5; }
 .bm-effect[data-kind="directional-hover"] .bm-fill { transform-origin: var(--origin); }
 .bm-effect[data-kind="directional-hover"]:is([data-edge="top"],[data-edge="bottom"]) .bm-fill { transform: scaleY(0); }
 .bm-effect[data-kind="directional-hover"].is-active .bm-fill { transform: scale(1); }
@@ -205,16 +201,9 @@
   .bm-number { grid-row: span 2; font-size: 30px; }
   .bm-meta h2 { margin: 0; font-size: 17px; }
   .bm-meta .bm-cn { font-size: 14px; }
-  .bm-meta .bm-reference, .bm-meta .bm-params { grid-column: 1 / -1; margin-top: 8px; }
-  .bm-demo { padding: 12px 0 0; }
-  .bm-demo-toolbar { font-size: 11px; }
+  .bm-meta-bottom { grid-column: 1 / -1; margin-top: 12px; }
+  .bm-demo { padding: 14px 0 0; }
   .bm-stage { min-height: 150px; }
   .bm-effect { min-width: 0; width: 100%; }
   .bm-panel.bm-open, .bm-input-form.bm-open { width: min(300px, 100%); }
-  .bm-stages { gap: 7px; font-size: 9px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .bm-catalogue *, .bm-catalogue *::after, .bm-catalogue *::before { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition: none !important; }
-  .bm-effect[data-kind="magnetic-hover"] .bm-button { transform: none !important; }
-  .bm-spinner { animation: none !important; border-color: #fff; }
 }

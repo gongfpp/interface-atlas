@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ConceptCard from '@/components/ConceptCard.astro';
+import ButtonMotionEntry from '@/components/ButtonMotionEntry.astro';
 import CompareTable from '@/components/CompareTable.astro';
 import StyleExperience from '@/components/StyleExperience.astro';
 import DemoMount from '@/islands/demos/DemoMount';
@@ -78,7 +79,7 @@ const card = 'rounded-xl border border-line bg-raised p-5';
       </div>
     </header>
 
-    {concept.id === 'button' && concept.conceptType === 'components' && <a href={localePath('/motion/buttons', locale)} class="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-accent bg-accent-soft p-5 text-accent"><strong>{locale === 'zh' ? '试试 40 种按钮动效' : 'Try 40 button motion effects'}</strong><span class="text-sm">{locale === 'zh' ? '参考 01–08 · 真实交互 · 每页 10 种 →' : 'Sheets 01–08 · live interactions · 10 per page →'}</span></a>}
+    {concept.id === 'button' && concept.conceptType === 'components' && <ButtonMotionEntry locale={locale} />}
 
     <nav class="detail-nav" style={styleSpec ? 'position:static' : undefined} aria-label={locale === 'zh' ? '本页目录' : 'On this page'}>
       <a href="#overview">{locale === 'zh' ? '概览' : 'Overview'}</a>

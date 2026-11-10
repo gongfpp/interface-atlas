@@ -1,0 +1,25 @@
+---
+import { withBase, type Locale } from '@/lib/i18n';
+interface Props { sheets?: number[]; locale: Locale; compact?: boolean }
+const { sheets = [1, 2, 3, 4, 5, 6, 7, 8], locale, compact = false } = Astro.props;
+---
+<div class:list={['bm-references', { compact }]}>
+  {sheets.map(sheet => {
+    const src = withBase(`/images/button-motion/reference-${String(sheet).padStart(2, '0')}.webp`);
+    return <a href={src} target="_blank" rel="noreferrer" aria-label={locale === 'zh' ? `查看按钮动效原图 ${sheet}` : `Open button motion image ${sheet}`}>
+      <img src={src} alt={locale === 'zh' ? `按钮动效原图 ${sheet}` : `Button motion image ${sheet}`} width="1080" height="1440" loading="lazy" decoding="async" />
+    </a>;
+  })}
+</div>
+<style>
+  .bm-references { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .bm-references a { display: block; border: 1px solid var(--color-line); border-radius: 5px; overflow: hidden; transition: transform 180ms, box-shadow 180ms; }
+  .bm-references a:hover { transform: translateY(-3px); box-shadow: 0 4px 12px #0002; }
+  .bm-references a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+  .bm-references img { display: block; width: 48px; height: 64px; object-fit: cover; }
+  .compact img { width: 54px; height: 72px; }
+  @media(max-width:700px) {
+    .bm-references { gap: 6px; }
+    .bm-references:not(.compact) img { width: 30px; height: 40px; }
+  }
+</style>
