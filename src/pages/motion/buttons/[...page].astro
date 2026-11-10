@@ -1,0 +1,10 @@
+---
+import ButtonMotionCatalogue from '@/components/ButtonMotionCatalogue.astro';
+import { MOTION_PAGE_COUNT } from '@/lib/button-motions';
+export function getStaticPaths() {
+  return Array.from({ length: MOTION_PAGE_COUNT }, (_, i) => ({ params: { page: i === 0 ? undefined : String(i + 1) }, props: { page: i + 1 } }));
+}
+interface Props { page: number }
+const { page } = Astro.props;
+---
+<ButtonMotionCatalogue page={page} locale="zh" />
