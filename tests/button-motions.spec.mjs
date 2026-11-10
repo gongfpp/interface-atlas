@@ -11,7 +11,8 @@ const row = (page, id) => page.locator(`[data-motion-id="${id}"]`);
 const effect = (page, id) => row(page, id).locator('.bm-effect');
 async function navigate(page, url) {
   await page.goto(url);
-  await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
+  // Only the demos must hydrate here; the global search dialog is client:idle.
+  await expect(page.locator('.bm-catalogue astro-island[ssr]')).toHaveCount(0);
 }
 async function stable(locator) {
   await locator.evaluate(node => node.scrollIntoView({ block: 'center', behavior: 'instant' }));
