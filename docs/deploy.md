@@ -14,6 +14,8 @@
 
 `deploy-web.yml` 的 `verify` job 执行 unit / check / lint / build / test:smoke / search:test。`build-and-deploy` 与 `deploy-cloudflare` 都通过 `needs: verify` 依赖它：**同一提交的检查不通过就不会发布**。腾讯云只消费前者生成的成品，因此同样受门禁约束。手动触发等同于三站正式发布。
 
+验收运行在 Playwright 官方镜像 `mcr.microsoft.com/playwright:v1.63.0-noble` 中，镜像已包含对应浏览器及系统依赖，不再现场通过 Ubuntu 软件源安装。升级锁文件中的 `@playwright/test` 时，必须同步更新镜像版本与工作流中的版本检查；版本不匹配会直接阻断验收。完整浏览器测试不变。
+
 ### 预览部署（feature 分支）
 
 `deploy-preview.yml` 手动触发并选择 feature 分支时，把该分支构建到公开仓库的子目录 `/interface-atlas-web/preview/<branch>/`：

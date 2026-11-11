@@ -18,6 +18,11 @@ jobs:
     # 当前参考风格需求仅允许私有验收，不能从手动入口发布。
     if: ${{ github.ref != 'refs/heads/dot/atlas-reference-style-scenes' }}
     runs-on: ubuntu-latest
+    # 固定浏览器与系统依赖，避免 runner 升级或 Ubuntu 软件源 DNS 故障阻断验收。
+    # 更新 @playwright/test 时同步更新此镜像版本。
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
+      options: --ipc=host
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -34,8 +39,9 @@ jobs:
         run: npm run lint
       - name: "Build (prebuild: content check + api layer + search index)"
         run: npm run build
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+      - name: Check Playwright container version
+        run: |
+          node --input-type=module -e "import { createRequire } from 'node:module'; const require = createRequire(import.meta.url); const version = require('@playwright/test/package.json').version; if (version !== '1.63.0') throw new Error('Update the Playwright container to match @playwright/test ' + version);"
       - name: Smoke test
         run: npm run test:smoke
       - name: Golden query regression
