@@ -1,0 +1,28 @@
+# Source: https://github.com/gongfpp/imagegen-skills/tree/da10a19842f154de539f098002ee3c8aaeee6cd9/assets/examples
+# Original web-style-01.jpg ... web-style-08.jpg, full-resolution WebP conversion, quality 92.
+status: published
+name: {zh: 网页设计风格原图集, en: Web Design Style Originals}
+description:
+  zh: 找回的八张网页设计风格海报，以真实页面缩景比较不同视觉语言和布局表达。
+  en: Eight recovered web-design style posters comparing visual languages through realistic page compositions.
+aliases: [网页风格, web design inspiration]
+images:
+  - file: /images/gallery/web-style/01.webp
+    title: {zh: 网页设计风格 01, en: Web Style 01}
+  - file: /images/gallery/web-style/02.webp
+    title: {zh: 网页设计风格 02, en: Web Style 02}
+  - file: /images/gallery/web-style/03.webp
+    title: {zh: 网页设计风格 03, en: Web Style 03}
+  - file: /images/gallery/web-style/04.webp
+    title: {zh: 网页设计风格 04, en: Web Style 04}
+  - file: /images/gallery/web-style/05.webp
+    title: {zh: 网页设计风格 05, en: Web Style 05}
+  - file: /images/gallery/web-style/06.webp
+    title: {zh: 网页设计风格 06, en: Web Style 06}
+  - file: /images/gallery/web-style/07.webp
+    title: {zh: 网页设计风格 07, en: Web Style 07}
+  - file: /images/gallery/web-style/08.webp
+    title: {zh: 网页设计风格 08, en: Web Style 08}
+prompt:
+  zh: 制作竖版网页设计风格参考海报。采用米白背景、严格网格和中英文标题；逐项展示不同网页视觉风格，每个案例包含风格名称、设计关键词、具有完整导航与内容层次的真实网页缩景。让字体、色彩、材质、空间与组件共同表达风格，而不是只替换背景色。
+  en: Create a vertical web-design style reference poster with an off-white background, a strict grid, and bilingual headings. Each case needs its style name, design keywords, and a realistic complete web-page composition. Express the style through typography, color, materials, spacing, and components rather than background changes alone.

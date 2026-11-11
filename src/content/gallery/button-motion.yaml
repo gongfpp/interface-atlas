@@ -1,0 +1,33 @@
+# Originals already preserved in atlas; no duplicate image files.
+status: published
+name:
+  zh: 按钮动效原图集
+  en: Button Motion Originals
+description:
+  zh: 八张按钮动效设计原图，共 40 个效果；对应可直接操作的按钮动效目录。
+  en: Eight original button-motion sheets covering all 40 effects in the interactive catalogue.
+related_component: button
+aliases: [按钮动效, button animation]
+images:
+  - file: /images/button-motion/reference-01.webp
+    title: {zh: 填充与基础反馈, en: Fill Sweep — Arrow Slide}
+  - file: /images/button-motion/reference-02.webp
+    title: {zh: 波纹与悬停层次, en: Ripple Click — Shadow Lift}
+  - file: /images/button-motion/reference-03.webp
+    title: {zh: 加载与状态变形, en: Loading Morph — Text Swap}
+  - file: /images/button-motion/reference-04.webp
+    title: {zh: 弹性与空间反馈, en: Elastic Stretch — Cursor Interaction}
+  - file: /images/button-motion/reference-05.webp
+    title: {zh: 高光与描边动效, en: Shine Sweep — Icon Orbit}
+  - file: /images/button-motion/reference-06.webp
+    title: {zh: 确认与权限交互, en: Hold to Confirm — Lock Unlock}
+  - file: /images/button-motion/reference-07.webp
+    title: {zh: 文字与字符动效, en: Text Scramble — Character Wave}
+  - file: /images/button-motion/reference-08.webp
+    title: {zh: 展开与重构, en: Expand to Panel — Explode Rebuild}
+prompt:
+  zh: 制作竖版「前端按钮动效风格参考」海报。米白背景、黑色粗标题、蓝色强调；每页纵向排列五个案例，左侧为编号、英文名、中文名和动效参数，右侧用四阶段小图展示真实按钮从初始、触发、过渡到完成的变化。准确呈现形变、颜色、描边和操作反馈；保留每个效果的触发方式与时长。
+  en: Create a vertical frontend button-motion design poster. Use an off-white background, bold black heading, and blue accents. Arrange five numbered cases per sheet with bilingual names and motion parameters on the left and four real-looking button stages on the right. Show initial, triggered, transitional, and completed states with accurate shape, color, border, trigger, and duration.
+tips:
+  - zh: 图中的 40 种效果均有可操作的演示，入口位于本页上方。
+    en: All 40 illustrated effects have interactive demos linked above.

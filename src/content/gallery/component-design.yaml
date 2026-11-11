@@ -1,0 +1,13 @@
+# Source: gongfpp/imagegen-skills@da10a19842f154de539f098002ee3c8aaeee6cd9/assets/examples/component-template.png
+status: published
+name: {zh: UI 组件结构总览, en: UI Component Overview}
+description:
+  zh: UI 组件模板原图，展示组件结构、状态与交互关系的设计表达。
+  en: The original UI component template illustrating component anatomy, states, and interaction relationships.
+aliases: [组件模板]
+images:
+  - file: /images/gallery/component-design/overview.webp
+    title: {zh: UI 组件模板原图, en: UI Component Template Original}
+prompt:
+  zh: 制作 UI 组件结构设计总览海报。以中英文标题、编号案例和清晰组件缩景，展示触发入口、选项、反馈和不同状态；在米白背景上采用严格网格、黑色正文与蓝色强调。
+  en: Create a UI component anatomy overview poster with bilingual headings, numbered examples, and realistic component compositions. Show triggers, options, feedback, and states in a strict off-white grid with black text and blue accents.

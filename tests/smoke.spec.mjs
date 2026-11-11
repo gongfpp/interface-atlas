@@ -83,9 +83,15 @@ test('styles page renders style scenes', async ({ page }) => {
 test('homepage shows style wall and gallery', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByText('先看风格')).toBeVisible();
-  await expect(
-    page.getByRole('link', { name: /导航栏参考图集|Navbar Reference Sheets/ }).first(),
-  ).toBeVisible();
+  const gallery = page.locator('section').filter({
+    has: page.getByRole('heading', { name: '灵感图库', exact: true }),
+  });
+  // The homepage features five collections; their identities can change as the gallery grows.
+  const cards = gallery.locator('a[href^="/gallery/"]');
+  await expect(cards).toHaveCount(5);
+  await expect(cards.first()).toBeVisible();
+  await expect(cards.first().locator('img')).toBeVisible();
+  await expect(gallery.locator('a[href="/gallery"]')).toBeVisible();
 });
 
 test('compare: index lists groups, group page renders comparison table', async ({ page }) => {

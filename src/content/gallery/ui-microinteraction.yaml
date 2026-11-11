@@ -1,0 +1,13 @@
+# Source: gongfpp/imagegen-skills@da10a19842f154de539f098002ee3c8aaeee6cd9/assets/examples/ui-microinteraction-01.png
+status: published
+name: {zh: UI 微交互原图, en: UI Microinteraction Original}
+description:
+  zh: 用多阶段界面表达触发、变化与反馈的微交互设计海报。
+  en: A microinteraction design poster illustrating triggers, transitions, and feedback through multiple UI states.
+aliases: [微交互, UI motion]
+images:
+  - file: /images/gallery/ui-microinteraction/01.webp
+    title: {zh: UI 微交互设计, en: UI Microinteraction}
+prompt:
+  zh: 制作竖版 UI 微交互设计参考海报。左侧以中英文名称与关键词说明交互目的，右侧用连续状态图表达真实组件从操作到反馈的变化，包含箭头、选中态、加载与完成状态。以米白背景和清晰网格保持阅读顺序。
+  en: Create a vertical UI microinteraction poster. Pair bilingual names and interaction keywords with sequential component states showing input, transition, and feedback. Use arrows, selected states, loading, and completion states on a clean off-white grid.

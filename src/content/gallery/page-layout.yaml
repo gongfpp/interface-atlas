@@ -1,0 +1,13 @@
+# Source: gongfpp/imagegen-skills@da10a19842f154de539f098002ee3c8aaeee6cd9/assets/examples/layout-template.png
+status: published
+name: {zh: 页面布局总览, en: Page Layout Overview}
+description:
+  zh: 页面布局模板原图，集中展示内容分区、栏位比例与阅读路径。
+  en: The original layout template comparing content regions, column proportions, and reading paths.
+aliases: [布局模板, layout]
+images:
+  - file: /images/gallery/page-layout/overview.webp
+    title: {zh: 页面布局模板原图, en: Page Layout Template Original}
+prompt:
+  zh: 制作页面布局设计总览海报。在纵向网格中比较不同栏位和内容层级，用真实页面缩景展示导航、首屏、正文与辅助区的关系；每例配中英文名称、布局关键词和简洁说明。
+  en: Create a page-layout overview poster comparing columns and content hierarchy. Use realistic page miniatures to show navigation, heroes, primary content, and supporting regions, with bilingual names and concise layout keywords.

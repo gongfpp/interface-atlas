@@ -1,0 +1,15 @@
+# Source: gongfpp/imagegen-skills@da10a19842f154de539f098002ee3c8aaeee6cd9/assets/examples/landing-page-01.png and landing-page-02.png
+status: published
+name: {zh: Landing Page 页面原图集, en: Landing Page Originals}
+description:
+  zh: 两张落地页设计原图，展示首屏、价值说明、内容分区与转化入口的组织方式。
+  en: Two landing-page originals exploring heroes, value propositions, content sections, and conversion actions.
+aliases: [落地页, landing page]
+images:
+  - file: /images/gallery/landing-page/01.webp
+    title: {zh: 落地页设计 01, en: Landing Page 01}
+  - file: /images/gallery/landing-page/02.webp
+    title: {zh: 落地页设计 02, en: Landing Page 02}
+prompt:
+  zh: 制作竖版 Landing Page 设计参考海报，以五个真实页面缩景展示落地页结构。每例包含中英文名称、布局关键词、首屏主视觉、清晰行动按钮与后续内容分区；统一米白画布、黑色标题与蓝色强调，保留完整页面层级。
+  en: Create a vertical landing-page design reference poster with five realistic page compositions, bilingual names, and layout keywords. Include a hero, clear primary action, and subsequent content sections on an off-white canvas with bold black headings and blue accents.

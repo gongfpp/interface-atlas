@@ -1,0 +1,13 @@
+# Source: gongfpp/imagegen-skills@da10a19842f154de539f098002ee3c8aaeee6cd9/assets/examples/visual-style-template.png
+status: published
+name: {zh: 视觉风格总览, en: Visual Style Overview}
+description:
+  zh: 原始视觉风格模板图，以同一画布比较字体、颜色、材质与空间语言。
+  en: The original visual-style template comparing typography, color, material, and spatial treatments.
+aliases: [视觉风格模板]
+images:
+  - file: /images/gallery/visual-style/overview.webp
+    title: {zh: 视觉风格模板原图, en: Visual Style Template Original}
+prompt:
+  zh: 制作界面视觉风格总览海报。在统一网格中放置多个真实 UI 缩景，以中英文名称和关键词标注字体、配色、材质、边框与留白的差异；保持米白背景、黑色标题与清晰分区。
+  en: Create a UI visual-style overview poster. Compare realistic UI compositions in a consistent grid with bilingual labels for typography, palette, materials, borders, and spacing. Use an off-white background, bold black heading, and clear sections.
