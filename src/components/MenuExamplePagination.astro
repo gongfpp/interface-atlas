@@ -1,0 +1,22 @@
+---
+import { MENU_EXAMPLES, MENU_PAGE_COUNT, MENU_PAGE_SIZE, menuExamplePath } from '@/lib/menu-examples';
+import { localePath, type Locale } from '@/lib/i18n';
+interface Props { page: number; locale: Locale; position: 'top'|'bottom' }
+const {page,locale,position}=Astro.props;
+const zh=locale==='zh';
+const first=(page-1)*MENU_PAGE_SIZE+1;
+const last=Math.min(page*MENU_PAGE_SIZE,MENU_EXAMPLES.length);
+---
+<nav class="mc-pagination" aria-label={zh?`${position==='top'?'顶部':'底部'}菜单案例分页`:`${position==='top'?'Top':'Bottom'} menu examples pagination`}>
+  <p>{zh?`第 ${first}–${last} 项，共 ${MENU_EXAMPLES.length} 项`:`${first}–${last} of ${MENU_EXAMPLES.length} examples`}</p>
+  <div>
+    {page>1?<a rel="prev" href={localePath(menuExamplePath(page-1),locale)}>← {zh?'上一页':'Previous'}</a>:<span aria-disabled="true">← {zh?'上一页':'Previous'}</span>}
+    {Array.from({length:MENU_PAGE_COUNT},(_,i)=><a class="mc-page-number" href={localePath(menuExamplePath(i+1),locale)} aria-label={zh?`第 ${i+1} 页`:`Page ${i+1}`} aria-current={page===i+1?'page':undefined}>{i+1}</a>)}
+    {page<MENU_PAGE_COUNT?<a rel="next" href={localePath(menuExamplePath(page+1),locale)}>{zh?'下一页':'Next'} →</a>:<span aria-disabled="true">{zh?'下一页':'Next'} →</span>}
+  </div>
+</nav>
+<style>
+.mc-pagination{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-block:18px;border-block:1px solid var(--color-line);color:var(--color-ink)}
+.mc-pagination p{font-size:13px;color:var(--color-ink-secondary)}.mc-pagination>div{display:flex;align-items:center;gap:6px;font-size:14px}.mc-pagination a,.mc-pagination span{display:inline-flex;min-height:40px;align-items:center;justify-content:center;padding:8px 12px;border-radius:7px}.mc-page-number{min-width:40px;border:1px solid var(--color-line)}.mc-pagination a:hover{background:var(--color-paper-raised);color:var(--color-accent)}.mc-pagination [aria-current=page]{background:var(--color-accent);border-color:var(--color-accent);color:white}.mc-pagination a:focus-visible{outline:2px solid var(--color-accent);outline-offset:2px}.mc-pagination [aria-disabled]{color:var(--color-ink-tertiary);opacity:.65}
+@media(max-width:700px){.mc-pagination>div{width:100%;justify-content:space-between;gap:4px;font-size:13px}.mc-pagination a,.mc-pagination span{padding:8px}.mc-pagination .mc-page-number{min-width:34px}}
+</style>

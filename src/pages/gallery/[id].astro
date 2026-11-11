@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import GalleryBreakdown from '@/components/GalleryBreakdown.astro';
+import ButtonMotionEntry from '@/components/ButtonMotionEntry.astro';
+import MenuExampleEntry from '@/components/MenuExampleEntry.astro';
 import { getCollection } from 'astro:content';
 import { localePath, withBase, type Locale } from '@/lib/i18n';
 
@@ -25,6 +27,8 @@ const locale: Locale = 'zh';
       <p class="mt-4 max-w-3xl leading-relaxed text-ink-2">{d.description.zh}</p>
     </header>
 
+    {entry.id === 'menu-dropdown' && <MenuExampleEntry locale={locale} />}
+    {entry.id === 'button-motion' && <ButtonMotionEntry locale={locale} />}
     <GalleryBreakdown id={entry.id} locale={locale} />
 
     <section class="py-10">

@@ -1,0 +1,8 @@
+---
+import MenuExampleCatalogue from '@/components/MenuExampleCatalogue.astro';
+import { MENU_PAGE_COUNT } from '@/lib/menu-examples';
+export function getStaticPaths() { return Array.from({length:MENU_PAGE_COUNT},(_,i)=>({params:{page:i===0?undefined:String(i+1)},props:{page:i+1}})); }
+interface Props { page:number }
+const {page}=Astro.props;
+---
+<MenuExampleCatalogue page={page} locale="zh"/>

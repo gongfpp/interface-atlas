@@ -1,0 +1,9 @@
+---
+import { localePath, type Locale } from '@/lib/i18n';
+interface Props {locale:Locale}
+const {locale}=Astro.props;const zh=locale==='zh';
+---
+<div class="mc-entry"><a href={localePath('/components/menus',locale)}><div><strong>{zh?'菜单 / 下拉框':'Menus & Dropdowns'}</strong><p>{zh?'40 种可交互案例，逐个体验菜单的结构与行为。':'40 interactive examples of menu structure and behavior.'}</p></div><span aria-hidden="true">→</span></a><a class="mc-entry-originals" href={localePath('/components/menus#menu-design-originals',locale)}>{zh?'设计原图':'Design originals'} ↗</a></div>
+<style>
+.mc-entry{display:flex;align-items:center;gap:20px;flex-wrap:wrap;border:1px solid var(--color-line);border-radius:10px;padding:18px 22px;margin-block:24px;color:var(--color-ink)}.mc-entry>a:first-child{flex:1;min-width:200px;display:flex;align-items:center;justify-content:space-between;gap:16px}.mc-entry strong{font-size:18px}.mc-entry p{font-size:13px;color:var(--color-ink-secondary);margin-top:5px}.mc-entry a:hover strong,.mc-entry-originals:hover{color:var(--color-accent)}.mc-entry-originals{font-size:13px;color:var(--color-ink-secondary)}.mc-entry a:focus-visible{outline:2px solid var(--color-accent);outline-offset:4px}
+</style>
