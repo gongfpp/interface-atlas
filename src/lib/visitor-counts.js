@@ -1,5 +1,8 @@
 const ENDPOINT = 'https://stats.gongfpp.icu/api/journey/v1/public-counts/';
-const SITES = Object.freeze({ kurumi: 'https://fx.gongfpp.icu', atlas: 'https://atlas.gongfpp.icu' });
+const SITES = Object.freeze({
+  kurumi: ['https://fx.gongfpp.icu'],
+  atlas: ['https://atlas.gongfpp.icu', 'https://gongfpp.github.io', 'https://interface-atlas-9po.pages.dev'],
+});
 const mounted = new WeakMap();
 
 /** 只展示已采集的匿名汇总；不读取身份、存储、tracker或任何游戏数据。 */
@@ -13,12 +16,16 @@ export function visitorCounts(payload, site) {
   ]));
 }
 
-/** 唯一轮询owner：只在两个正式origin读取；隐藏、离页和销毁时取消请求与定时器。 */
+/** 唯一轮询 owner：只在已核实的正式站点读取；隐藏、离页和销毁时取消请求与定时器。 */
 export function mountVisitorCounts({ document = globalThis.document, window = globalThis.window,
   location = globalThis.location, fetch: fetcher = globalThis.fetch?.bind(globalThis) } = {}) {
   const root = document?.querySelector('[data-visitor-counts]');
   const site = root?.dataset.visitorCounts;
-  if (!root || !SITES[site] || location?.origin !== SITES[site] || !fetcher) return null;
+  if (!root || !SITES[site]?.includes(location?.origin) || !fetcher) return null;
+  if (document.documentElement.dataset?.analyticsPreview === 'true') return null;
+  if (location.origin === 'https://gongfpp.github.io'
+    && (!/^\/interface-atlas-web(?:\/|$)/.test(location.pathname || '')
+      || /^\/interface-atlas-web\/preview(?:\/|$)/.test(location.pathname || ''))) return null;
   if (mounted.has(root)) return mounted.get(root);
   root.hidden = false;
   const english = document.documentElement.lang.startsWith('en');

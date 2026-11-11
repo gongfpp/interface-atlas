@@ -2,7 +2,7 @@
 import { type Locale, localePath, t } from '@/lib/i18n';
 interface Props { locale: Locale }
 const { locale } = Astro.props;
-const showVisitorCounts = Astro.site?.origin === 'https://atlas.gongfpp.icu' && import.meta.env.PUBLIC_PREVIEW !== 'true';
+const showVisitorCounts = ['https://atlas.gongfpp.icu', 'https://gongfpp.github.io', 'https://interface-atlas-9po.pages.dev'].includes(Astro.site?.origin || '') && import.meta.env.PUBLIC_PREVIEW !== 'true';
 ---
 
 <footer class="mt-24 border-t border-line py-10 text-sm text-ink-3">
@@ -31,7 +31,7 @@ const showVisitorCounts = Astro.site?.origin === 'https://atlas.gongfpp.icu' && 
     <p>{t('footerNote', locale)}</p>
     {showVisitorCounts && (
       <p data-visitor-counts="atlas" hidden class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs tabular-nums" aria-label={locale === 'zh' ? '访问统计' : 'Visitor counts'} aria-busy="true">
-        <span class="whitespace-nowrap">{locale === 'zh' ? '累计' : 'Total'} <span data-visitor-count="total">—</span></span>
+        <span class="whitespace-nowrap">{locale === 'zh' ? '累计访问人数' : 'Total visitors'} <span data-visitor-count="total">—</span></span>
         <span class="whitespace-nowrap">{locale === 'zh' ? '今日' : 'Today'} <span data-visitor-count="today">—</span></span>
         <span class="whitespace-nowrap">{locale === 'zh' ? '当前在线' : 'Online'} <span data-visitor-count="online">—</span></span>
       </p>

@@ -35,14 +35,9 @@
 
 ### GitHub Pages 访客统计
 
-analytics 变量要配在**源仓库** **Settings → Secrets and variables → Actions → Variables**（随 `deploy-web.yml` 注入构建）：
+三个正式站点统一使用 `src/lib/analytics-config.ts` 中的自建统计地址与公开网站 ID。旧 `PUBLIC_UMAMI_SRC` / `PUBLIC_UMAMI_ID` / `PUBLIC_EDGEONE_UMAMI_*` 不再参与构建，避免缺失变量时回退到 Cloud。预览不采集，自动 pageview 排除查询参数与 hash。完整事件和计数口径见 [访问与行为统计](./analytics.md)。
 
-- `PUBLIC_UMAMI_SRC`：Umami 脚本地址，如 `https://cloud.umami.is/script.js`（Umami Cloud）或自建实例 `https://umami.example.com/script.js`
-- `PUBLIC_UMAMI_ID`：Umami 网站 ID
-- 可选 `PUBLIC_CF_BEACON_TOKEN`：Cloudflare Web Analytics token（支持非 Cloudflare 站点，无 cookie）
-
-配好后重新运行 “Deploy site to interface-atlas-web” 工作流即可生效；未配置则自动跳过。访问/时长/退出、全局点击、首页去向、区块曝光、搜索结果与复制事件，以及后台查看方式、指标口径和漏报边界见 [访问与行为统计](./analytics.md)。预览不采集，自动 pageview 排除查询参数与 hash。
-命令行设置：`gh variable set PUBLIC_UMAMI_SRC --body '…'`、`gh variable set PUBLIC_UMAMI_ID --body '…'`。
+可选的 Cloudflare Web Analytics 仍由 `PUBLIC_CF_BEACON_TOKEN` 独立控制。
 
 ## 腾讯云 EdgeOne Makers
 
@@ -63,7 +58,7 @@ analytics 变量要配在**源仓库** **Settings → Secrets and variables → 
 - 在源仓库配置 GitHub Secret `CLOUDFLARE_API_TOKEN`（需本账号 Pages 编辑权限），以及 Variable `CLOUDFLARE_ACCOUNT_ID`。凭据值不入库。
 - `deploy-cloudflare` 在完整检查通过后使用 Node 22、`npm ci`、`npm run build`，然后用固定版本 Wrangler 上传 `dist/`。
 - 构建设置 `PUBLIC_BASE_PATH=/`、`PUBLIC_SITE_URL=https://interface-atlas-9po.pages.dev`、`PUBLIC_LOG_API=off`。
-- 从 `dist/` 内执行上传，仅部署静态成品，不自动启用源码目录中的 Functions 或 KV。三站沿用同一组 Umami / Web Analytics 构建变量。
+- 从 `dist/` 内执行上传，仅部署静态成品，不自动启用源码目录中的 Functions 或 KV。三站沿用同一份自建 Umami 配置和可选 Web Analytics 构建变量。
 
 ### 可选 KV 后端（当前镜像未启用）
 
@@ -77,12 +72,7 @@ analytics 变量要配在**源仓库** **Settings → Secrets and variables → 
 
 ### Umami 埋点（PRD §27a）
 
-当前静态发布在源仓库 GitHub Actions → Variables 配置以下构建变量；Cloudflare 控制台的运行时环境变量不会重新编译已上传的 HTML：
-
-- `PUBLIC_UMAMI_SRC`: 如 `https://analytics.example.com/script.js`
-- `PUBLIC_UMAMI_ID`: Umami 网站 ID
-
-两个都配置后，BaseLayout 自动注入脚本。行为事件直接发给 Umami；`/api/log-*` + sendBeacon 为独立的查询原文/复制聚合落库通道，只有 Cloudflare Functions 部署启用。完整事件清单与指标口径见 [访问与行为统计](./analytics.md)。
+当前静态发布使用源码内的自建 Umami 配置；Cloudflare 控制台运行时变量不参与静态 HTML 编译。行为事件直接发送至 `stats.gongfpp.icu`；`/api/log-*` 为另一个只有启用 Functions 才可用的通道，当前镜像仍关闭。事件和隐私边界见 [访问与行为统计](./analytics.md)。
 
 ### 访客统计（Cloudflare Web Analytics）
 

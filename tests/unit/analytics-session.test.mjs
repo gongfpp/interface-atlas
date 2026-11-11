@@ -131,33 +131,40 @@ test('GPC暂停后BFCache恢复只产生一次新的到达，不同时走两套�
  const arrivals=r.events.slice(before).filter(e=>e.name==='page-arrival');assert.equal(arrivals.length,1);assert.equal(arrivals[0].data.restored,true);assert.equal(r.timers.size,1);
 });
 
-test('新自托管配置只选Atlas正式EdgeOne，GH/CF/旧域保持原配置，生产启用必须精确域和marker',()=>{
- const r=rig(),input={legacySrc:'https://legacy.example/script.js',legacyId:'old-id',edgeOneSrc:'https://stats.gongfpp.icu/script.js',edgeOneId:'00000000-0000-4000-8000-000000000001'};
- for(const origin of ['https://gongfpp.github.io','https://interface-atlas-9po.pages.dev','https://old.edgeone.cool','https://atlas.gongfpp.icu.evil','https://atlas.gongfpp.icu:444','http://atlas.gongfpp.icu']){const config=r.scriptConfig({...input,origin});assert.equal(config.src,input.legacySrc);assert.equal(config.id,input.legacyId);assert.equal(config.upgraded,false);assert.equal(config.domains,undefined);}
- const config=r.scriptConfig({...input,origin:'https://atlas.gongfpp.icu'});assert.equal(config.src,input.edgeOneSrc);assert.equal(config.id,input.edgeOneId);assert.equal(config.domains,'atlas.gongfpp.icu');assert.equal(config.upgraded,true);
- assert.equal(r.scriptConfig({origin:'https://atlas.gongfpp.icu',legacySrc:input.legacySrc,legacyId:input.legacyId}).upgraded,false);
- assert.throws(()=>r.scriptConfig({...input,origin:'https://atlas.gongfpp.icu',edgeOneId:''}),/配置不完整/);
- for(const origin of ['https://gongfpp.github.io/interface-atlas-web/','https://interface-atlas-9po.pages.dev/','https://old.edgeone.cool/']){const x=rig({origin});assert.equal(x.scope(),false);x.start();assert.equal(x.events[0].data.visitor_id,undefined);assert.equal(x.localStorage.values.size,0);}
- const eo=rig({origin:'https://atlas.gongfpp.icu/',upgraded:false});assert.equal(eo.scope(),false);eo.document.documentElement.dataset.analyticsUpgrade='true';assert.equal(eo.scope(),true);
-});
-
-test('GH原会话心跳续期与原配置默认保留，不写新身份、不启用EdgeOne增强',()=>{
- const r=rig({origin:'https://gongfpp.github.io/interface-atlas-web/',upgraded:false});r.start();const first=r.events[0].data;r.advance(31*60000);r.dispatch(r.document,'keydown');
- assert.equal(new Set(r.events.map(e=>e.data.session_id)).size,1);assert.equal(r.events.filter(e=>e.name==='page-arrival').length,1);assert.equal(r.localStorage.values.size,0);assert.equal(r.events[0].data.project,undefined);assert.ok(JSON.parse(r.sessionStorage.getItem('ia:analytics:session:v2')).last>first.event_time);
- r.navigator.globalPrivacyControl=true;assert.equal(r.track.analyticsAllowed(),true); // 未改旧GH的门禁契约。
+test('正式三站固定选自建配置，不因旧 Cloud 变量缺失或残留而回退',()=>{
+ const r=rig();
+ for(const origin of ['https://atlas.gongfpp.icu','https://gongfpp.github.io','https://interface-atlas-9po.pages.dev']) {
+  const config=r.scriptConfig({origin,legacySrc:'https://cloud.umami.is/script.js',legacyId:'old-cloud-id'});
+  assert.equal(config.src,'https://stats.gongfpp.icu/script.js');
+  assert.equal(config.id,'8a45a53d-1a44-40a1-886f-21a7a06e8c4c');
+  assert.equal(config.domains,new URL(origin).hostname);assert.equal(config.upgraded,true);
+ }
+ for(const origin of ['https://old.edgeone.cool','https://atlas.gongfpp.icu.evil','https://atlas.gongfpp.icu:444','http://atlas.gongfpp.icu','http://localhost:4321']) {
+  const config=r.scriptConfig({origin});assert.equal(config.src,undefined);assert.equal(config.upgraded,false);
+ }
  const workflow=readFileSync(new URL('../../.github/workflows/deploy-web.yml',import.meta.url),'utf8');
- assert(!workflow.split('name: Build GitHub Pages')[1].split('name: Build EdgeOne root site')[0].includes('PUBLIC_EDGEONE_UMAMI'));
- assert(workflow.split('name: Build EdgeOne root site')[1].split('name: Publish to ')[0].includes('PUBLIC_EDGEONE_UMAMI_ID'));
- assert(!workflow.split('name: Build Cloudflare root site')[1].includes('PUBLIC_EDGEONE_UMAMI'));
+ assert(!workflow.includes('PUBLIC_UMAMI_'));assert(!workflow.includes('PUBLIC_EDGEONE_UMAMI_'));
 });
 
-test('EO原生发送钩子精确来源和marker拒绝时清理身份，自动/自定义事件均不放行',()=>{
+test('正式三站使用同源去重身份和来源渠道，GPC 生效且长时间无操作换会话',()=>{
+ for(const [origin,channel] of [['https://atlas.gongfpp.icu/','edgeone-pages'],['https://gongfpp.github.io/interface-atlas-web/','github-pages'],['https://interface-atlas-9po.pages.dev/','cloudflare-pages']]) {
+  const r=rig({origin});assert.equal(r.scope(),true);r.start();const first=r.events[0].data;
+  assert(first.visitor_id);assert.equal(first.channel,channel);assert.equal(r.localStorage.values.size,1);
+  r.advance(31*60000);r.dispatch(r.document,'keydown');assert.equal(new Set(r.events.map(e=>e.data.session_id)).size,2);
+  r.navigator.globalPrivacyControl=true;assert.equal(r.track.analyticsAllowed(),false);assert.equal(r.localStorage.values.size,0);
+ }
+ for(const origin of ['https://gongfpp.github.io/other/','https://gongfpp.github.io/interface-atlas-web/preview/feature/','https://old.edgeone.cool/']) {
+  const r=rig({origin});assert.equal(r.scope(),false);assert.equal(r.localStorage.values.size,0);
+ }
+});
+
+test('正式三站原生发送钩子精确来源和marker拒绝时清理身份，自动/自定义事件均不放行',()=>{
  const blocked=[
   ['http://atlas.gongfpp.icu/',{analyticsUpgrade:'true'}],
   ['https://atlas.gongfpp.icu:444/',{analyticsUpgrade:'true'}],
   ['https://atlas.gongfpp.icu.evil.test/',{analyticsUpgrade:'true'}],
-  ['https://interface-atlas-9po.pages.dev/',{analyticsUpgrade:'true'}],
-  ['https://gongfpp.github.io/interface-atlas-web/',{analyticsUpgrade:'true'}],
+  ['https://gongfpp.github.io/other/',{analyticsUpgrade:'true'}],
+  ['https://gongfpp.github.io/interface-atlas-web/preview/branch/',{analyticsUpgrade:'true'}],
   ['https://old.edgeone.cool/',{analyticsUpgrade:'true'}],
   ['https://atlas.gongfpp.icu/',{}],
   ['https://atlas.gongfpp.icu/',{analyticsUpgrade:'false'}],
@@ -176,7 +183,7 @@ test('EO原生发送钩子精确来源和marker拒绝时清理身份，自动/�
    assert.equal(r.localStorage.getItem('ia:analytics:visitor:v1'),null,origin);
   }
  }
- for(const [origin,marker] of [['https://atlas.gongfpp.icu/',{analyticsUpgrade:'true'}],['https://stats.gongfpp.icu/_qa/analytics-20261027/fixture/',{analyticsQa:'true'}]]){
+ for(const [origin,marker] of [['https://atlas.gongfpp.icu/',{analyticsUpgrade:'true'}],['https://gongfpp.github.io/interface-atlas-web/',{analyticsUpgrade:'true'}],['https://interface-atlas-9po.pages.dev/',{analyticsUpgrade:'true'}],['https://stats.gongfpp.icu/_qa/analytics-20261027/fixture/',{analyticsQa:'true'}]]){
   const r=rig();r.window.location=new URL(origin);r.document.documentElement.dataset={...marker};
   const context=r.track.analyticsContext();
   for(const payload of [{url:origin},{name:'page-arrival',data:{...context,schema:2}}])assert.notEqual(r.window.iaAnalyticsBeforeSend('event',payload),null,origin);

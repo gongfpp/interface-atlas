@@ -1,12 +1,12 @@
 # 访问与行为统计
 
-本轮范围仅正式 EdgeOne `https://atlas.gongfpp.icu`；不切 GitHub Pages、旧 edgeone.cool 或 Cloudflare 统计。原 `PUBLIC_UMAMI_SRC`、`PUBLIC_UMAMI_ID` 保留给既有站点，GH/CF原默认会话与隐私路径不变。新增 `PUBLIC_EDGEONE_UMAMI_SRC=https://stats.gongfpp.icu/script.js`、`PUBLIC_EDGEONE_UMAMI_ID` 只在工作流的 EdgeOne 构建步骤传入，且只由该正式 site 构建选择；不修改共享旧变量。未给EO新配置时仍回退原配置，不提前启用增强。
+三个正式入口（`atlas.gongfpp.icu`、`gongfpp.github.io/interface-atlas-web/`、`interface-atlas-9po.pages.dev`）统一使用 `https://stats.gongfpp.icu/script.js` 和既有 Atlas 网站 ID `8a45a53d-1a44-40a1-886f-21a7a06e8c4c`。配置由 `src/lib/analytics-config.ts` 管理，不再依赖旧 Cloud 构建变量，也不回退到 Cloud。历史 Cloud 数据保留，不把其浏览量合并为访客数。
 
-正式增强还须实际运行于精确 HTTPS origin、HTML `data-analytics-upgrade=true`；原生脚本 `data-domains=atlas.gongfpp.icu` 再锁域。下面新增闲置/GPC/90天身份行为仅适用该增强路径。stats.gongfpp.icu 下 `/_qa/analytics-20261027/` 的显式 `data-analytics-qa=true` 只供独立 QA website ID，不是生产通道。自托管接入仍需核实实际网站 ID 与生产接收；不启用第二 tracker，不添加手工 pageview。GitHub Pages 无日志接收端，仍 `PUBLIC_LOG_API=off`。
+正式增强还须实际运行于精确 HTTPS origin、GitHub 项目路径和 HTML `data-analytics-upgrade=true`；预览停采。原生脚本 `data-domains` 再锁域，`data-host-url` 明确指向自建实例。`stats.gongfpp.icu/_qa/analytics-20261027/` 的显式 `data-analytics-qa=true` 只供独立 QA website ID，不是生产通道。不启用第二 tracker，不添加手工 pageview。GitHub Pages 无日志接收端，仍 `PUBLIC_LOG_API=off`。
 
-正式 Atlas 页脚只读 `https://stats.gongfpp.icu/api/journey/v1/public-counts/atlas` 的匿名汇总，展示采集以来累计访客、UTC+8 日界线的今日访客及近 5 分钟有访问或活动迹象的访客估算。它不是实时连接数；部分覆盖标注已知下界。真实 0 显示 0，服务失败、契约不符或过期结果显示 `—`。仅前台每分钟读取，隐藏和离页取消请求，不发送身份、凭据或业务事件。上线仍需后台负责人确认公开接口和生产采集已启用；不能以本地替身响应证明生产计数可用。页脚“问题与建议”链接到公开源码仓库 Issues。
+三站页脚只读 `https://stats.gongfpp.icu/api/journey/v1/public-counts/atlas` 的匿名汇总，以灰色小字展示采集以来累计访客，保留今日访客和近 5 分钟活动访客估算。累计为已记录的同站匿名身份去重，不是页面浏览量或永久唯一自然人数；身份 90 天到期、清除存储或更换浏览器后可能重新计数，不跨域拼接身份。部分覆盖标注已知下界。真实 0 显示 0，服务失败、契约不符或过期结果显示 `—`。仅前台每分钟读取，隐藏和离页取消请求，不发送身份或凭据。页脚“问题与建议”保留公开源码仓库 Issues 链接。
 
-在 [Umami Cloud](https://cloud.umami.is/) 登录已有账号，选择界面图谱对应的网站。网站概览看访问量、访客、来源、设备、地区和热门页面；Events 的 Properties 查看下表中的事件属性分布。Journey 可分析从首页开始的实际页面访问路径及流失，权限和可用报告以账号套餐为准。站点不公开统计后台或访问凭据。
+在 [自建统计后台](https://stats.gongfpp.icu/) 登录已有账号，选择界面图谱。网站概览查看访客、来源、设备和热门页面，Events 属性查看事件分布；通过 `channel` 区分三个发布来源。后台访问凭据不进入公开站点。
 
 | 问题 | 事件与查看方式 |
 | --- | --- |
@@ -28,7 +28,7 @@
 
 `session_id` 为随机匿名编号，仅通过当前标签页的 sessionStorage 跨页面保存，不识别真实人。30 分钟无真实页面操作后，下一次操作或返回前台轮换会话，同时封存旧访问快照、建立新 visit 并重置累计计时；心跳和隐藏快照不能续期。`visit_id` 每次进入页面、闲置会话恢复及 BFCache 恢复时更新，`sequence` 是本次访问内顺序，`session_sequence` 是标签页内跨页面顺序。存储受限时仍上报本页事件，但跨页面关联可能不完整。`embedded=true` 标识设备预览 iframe，分析主浏览路径时应排除它。
 
-2026-10-27 用户批准仅本站使用、90 天到期的随机匿名访客号，随后明确本轮只接正式 EdgeOne。此候选仅在上述增强路径以 `ia:analytics:visitor:v1` 存入当前 origin 的 localStorage；`visitor_id` 和 `visitor_born_at` 成对附带到 schema2 事件。期限从创建时固定计算，不随访问续期；到期、损坏或关闭统计后重新启用时换号，不跨站、跨域、浏览器或设备关联。关闭统计、DNT、GPC、预览时不创建不上报，并尽力清理旧本地统计身份；存储不可读/写时不生成可上报的长期身份，仍保留原有匿名会话能力。无访客号的旧事件或存储受限事件不能当作长期用户留存样本。
+正式三站仅使用当前站点内、90 天到期的随机匿名访客号，在上述增强路径以 `ia:analytics:visitor:v1` 存入当前 origin 的 localStorage；`visitor_id` 和 `visitor_born_at` 成对附带到 schema2 事件。期限从创建时固定计算，不随访问续期；到期、损坏或关闭统计后重新启用时换号，不跨站、跨域、浏览器或设备关联。关闭统计、DNT、GPC、预览时不创建不上报，并尽力清理旧本地统计身份；存储不可读/写时不生成可上报的长期身份，仍保留原有匿名会话能力。无访客号的旧事件或存储受限事件不能当作长期用户留存样本。
 
 head 中的同步身份准备与 Umami `before-send` 共用一个身份读取器，在首个自动 pageview 发出前设置 `payload.id`，自定义事件附带同一个 visitor_id；不增加 identify 请求、第二个 tracker 或手工 pageview。到期边界晚到的旧事件不挂到后来出生的新身份，保留匿名路径。仅新版本实际生效且有成熟 cohort 后才可计算同源 D1/D7，不补造历史留存。
 
@@ -40,7 +40,7 @@ head 中的同步身份准备与 Umami `before-send` 共用一个身份读取器
 
 `pagehide` 每次仅结算一次；BFCache 返回重新建立访问 ID 和计时周期，不重复注册监听。浏览器强退、系统杀进程、断网、拦截插件或服务额度限制仍可能导致漏报，无法从浏览器可靠区分“关闭标签”与“关闭整个浏览器”。`page-hidden` 不是退出。Umami 当前脚本使用 `fetch(..., { keepalive: true })` 发送事件，早期操作在脚本加载前最多暂存 100 条、等待 30 秒，失败不阻塞产品功能。
 
-不读取输入值、按键内容、参考册正文、评论或剪贴板正文；手动复制仅用选区所在 DOM 定位，不读取选中文字。查询参数与 hash 不进入自动 pageview。区块/操作标签由代码明确标记，便于后续给重要入口补充可读名称。页面页脚有统计说明；自定义事件与 Umami `data-before-send` 钩子同时尊重 GPC、Do Not Track 和 `localStorage['umami.disabled']='1'`。隐私关闭时丢弃晚加载队列，不在重新启用时补报。`PUBLIC_PREVIEW=true` 时不注入统计脚本、不采集事件。未配置 Umami 的本地构建不采集，测试通过替身验证，不把自动回归访问送到生产统计。
+不读取输入值、按键内容、参考册正文、评论或剪贴板正文；手动复制仅用选区所在 DOM 定位，不读取选中文字。查询参数与 hash 不进入自动 pageview。区块/操作标签由代码明确标记，便于后续给重要入口补充可读名称。页面页脚有统计说明；自定义事件与 Umami `data-before-send` 钩子同时尊重 GPC、Do Not Track 和 `localStorage['umami.disabled']='1'`。隐私关闭时丢弃晚加载队列，不在重新启用时补报。`PUBLIC_PREVIEW=true` 时不注入统计脚本、不采集事件。非正式域名的本地构建不采集，测试通过替身验证，不把自动回归访问送到生产统计。
 
 ## 验证与发布
 

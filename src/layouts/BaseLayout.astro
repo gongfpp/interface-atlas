@@ -25,10 +25,6 @@ const { title, description, locale, enPath, autoOpenSearch = false, stickyHeader
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const analyticsConfig = analyticsScriptConfig({
   origin: Astro.site?.origin || Astro.url.origin,
-  legacySrc: import.meta.env.PUBLIC_UMAMI_SRC,
-  legacyId: import.meta.env.PUBLIC_UMAMI_ID,
-  edgeOneSrc: import.meta.env.PUBLIC_EDGEONE_UMAMI_SRC,
-  edgeOneId: import.meta.env.PUBLIC_EDGEONE_UMAMI_ID,
 });
 
 const themeScript = `
@@ -61,7 +57,7 @@ const themeScript = `
         event.viewTransition?.ready.catch(() => {});
       });
     </script>
-    {/* Umami 埋点（PRD §27a）：PUBLIC_UMAMI_SRC + PUBLIC_UMAMI_ID 配置后启用 */}
+    {/* Umami 自建埋点：正式三站共用项目 ID，通过 channel 区分来源 */}
     {import.meta.env.PUBLIC_PREVIEW !== 'true' && analyticsConfig.upgraded && <script is:inline set:html={analyticsIdentityScript} />}
     {import.meta.env.PUBLIC_PREVIEW !== 'true' && analyticsConfig.upgraded && (
       <script is:inline>
@@ -72,7 +68,10 @@ const themeScript = `
             try { localStorage.removeItem('ia:analytics:visitor:v1'); } catch { /* 存储受限不影响页面 */ }
           };
           try {
-            const allowedOrigin = window.location.origin === 'https://atlas.gongfpp.icu' && document.documentElement.dataset.analyticsUpgrade === 'true'
+            const allowedOrigin = (window.location.origin === 'https://atlas.gongfpp.icu'
+              || window.location.origin === 'https://interface-atlas-9po.pages.dev'
+              || window.location.origin === 'https://gongfpp.github.io' && /^\/interface-atlas-web(?:\/|$)/.test(window.location.pathname)
+                && !/^\/interface-atlas-web\/preview(?:\/|$)/.test(window.location.pathname)) && document.documentElement.dataset.analyticsUpgrade === 'true'
               || window.location.origin === 'https://stats.gongfpp.icu' && document.documentElement.dataset.analyticsQa === 'true'
                 && window.location.pathname.startsWith('/_qa/analytics-20261027/');
             if (!allowedOrigin || document.documentElement.dataset.analyticsPreview === 'true'
@@ -99,6 +98,7 @@ const themeScript = `
     )}
     {import.meta.env.PUBLIC_PREVIEW !== 'true' && analyticsConfig.src && analyticsConfig.id && (
       <script is:inline defer src={analyticsConfig.src} data-website-id={analyticsConfig.id}
+        data-host-url={analyticsConfig.upgraded ? 'https://stats.gongfpp.icu' : undefined}
         data-before-send={analyticsConfig.upgraded ? 'iaAnalyticsBeforeSend' : undefined} data-domains={analyticsConfig.domains}
         data-exclude-search="true" data-exclude-hash="true" data-do-not-track="true" data-performance="true"
         onload="window.dispatchEvent(new Event('ia:analytics-ready'))"></script>

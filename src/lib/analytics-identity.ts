@@ -1,8 +1,11 @@
 export interface AnalyticsVisitor { id: string; bornAt: number }
 
-/** 正式增强只允许已明确配置的 Atlas EdgeOne；stats 独立 QA 必须显式标注。 */
+/** 正式三站使用同源匿名身份；预览不采集，stats 独立 QA 必须显式标注。 */
 export function analyticsUpgradeEnabled() {
-  return window.location.origin === 'https://atlas.gongfpp.icu' && document.documentElement.dataset.analyticsUpgrade === 'true'
+  return (window.location.origin === 'https://atlas.gongfpp.icu'
+              || window.location.origin === 'https://interface-atlas-9po.pages.dev'
+              || window.location.origin === 'https://gongfpp.github.io' && /^\/interface-atlas-web(?:\/|$)/.test(window.location.pathname)
+                && !/^\/interface-atlas-web\/preview(?:\/|$)/.test(window.location.pathname)) && document.documentElement.dataset.analyticsUpgrade === 'true'
     || window.location.origin === 'https://stats.gongfpp.icu' && document.documentElement.dataset.analyticsQa === 'true'
       && window.location.pathname.startsWith('/_qa/analytics-20261027/');
 }
@@ -16,7 +19,10 @@ declare global {
 
 /** 自包含函数也在 head 同步执行，确保自动首个 pageview 和自定义事件共用身份。 */
 export function installAnalyticsIdentity() {
-  const enabled = window.location.origin === 'https://atlas.gongfpp.icu' && document.documentElement.dataset.analyticsUpgrade === 'true'
+  const enabled = (window.location.origin === 'https://atlas.gongfpp.icu'
+              || window.location.origin === 'https://interface-atlas-9po.pages.dev'
+              || window.location.origin === 'https://gongfpp.github.io' && /^\/interface-atlas-web(?:\/|$)/.test(window.location.pathname)
+                && !/^\/interface-atlas-web\/preview(?:\/|$)/.test(window.location.pathname)) && document.documentElement.dataset.analyticsUpgrade === 'true'
     || window.location.origin === 'https://stats.gongfpp.icu' && document.documentElement.dataset.analyticsQa === 'true'
       && window.location.pathname.startsWith('/_qa/analytics-20261027/');
   if (!enabled) return;

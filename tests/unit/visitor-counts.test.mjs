@@ -7,7 +7,7 @@ const payload = (site = 'kurumi', extra = {}) => ({ version: 1, site, total: 123
   timezone: 'Asia/Taipei', day: '2026-10-28', asOf: '2026-10-28T01:30:00.000Z',
   onlineWindowSeconds: 300, coverage: 'observed', coverageStart: '2026-10-27T00:00:00.000Z', freshness: 'fresh', ...extra });
 const settle = async () => { for (let i = 0; i < 8; i++) await Promise.resolve(); };
-function fixture({ site = 'kurumi', origin = 'https://fx.gongfpp.icu', visible = true, responder } = {}) {
+function fixture({ site = 'kurumi', origin = 'https://fx.gongfpp.icu', pathname = '/', visible = true, responder } = {}) {
   const document = new EventTarget(), window = new EventTarget(), calls = [], timers = new Map();
   let clock = 0, next = 0;
   const fields = Object.fromEntries(['total', 'today', 'online'].map(key => [key, {
@@ -18,7 +18,7 @@ function fixture({ site = 'kurumi', origin = 'https://fx.gongfpp.icu', visible =
   Object.assign(document, { documentElement: { lang: 'zh-CN' }, visibilityState: visible ? 'visible' : 'hidden', querySelector: () => root });
   window.setTimeout = (fn, ms) => { const id = ++next; timers.set(id, { fn, at: clock + ms }); return id; };
   window.clearTimeout = id => timers.delete(id);
-  const options = { document, window, location: { origin }, fetch: async (url, options) => {
+  const options = { document, window, location: { origin, pathname }, fetch: async (url, options) => {
     calls.push({ url, ...options }); return responder ? responder(url, options) : { ok: true, json: async () => payload(site) };
   } };
   const tick = async ms => { clock += ms; for (const [id, t] of [...timers]) if (t.at <= clock) { timers.delete(id); t.fn(); } await settle(); };
@@ -108,4 +108,14 @@ test('页脚问题与建议使用公开源码Issues，不替换既有隐私与�
   assert.match(source, /问题与建议/); assert.match(source, /Issues &amp; suggestions|Issues & suggestions/);
   assert.match(source, /本站使用 Umami 匿名统计访问路径、停留、点击与复制\/粘贴操作/);
   for (const path of ['/explore', '/compare', '/saved', '/gallery', '/board']) assert(source.includes(`localePath('${path}', locale)`));
+});
+
+test('Atlas 三个正式入口共用公开累计计数，GH 其他项目及预览不读取', async () => {
+  for (const [origin, pathname] of [['https://atlas.gongfpp.icu','/'], ['https://interface-atlas-9po.pages.dev','/'], ['https://gongfpp.github.io','/interface-atlas-web/']]) {
+    const r=fixture({site:'atlas',origin,pathname}); const handle=r.mount(); assert(handle); await settle();
+    assert.equal(r.fields.total.textContent,'12,345');assert.equal(r.calls[0].url,'https://stats.gongfpp.icu/api/journey/v1/public-counts/atlas');handle.destroy();
+  }
+  for(const pathname of ['/other/','/interface-atlas-web/preview/feature/','/interface-atlas-web-other/']) {
+    const r=fixture({site:'atlas',origin:'https://gongfpp.github.io',pathname});assert.equal(r.mount(),null);assert.equal(r.calls.length,0);
+  }
 });
