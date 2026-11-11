@@ -45,7 +45,8 @@ for (const locale of ['zh', 'en']) {
         await expect(demo.locator('.bm-description')).toBeVisible();
         expect((await demo.locator('.bm-description').innerText()).trim()).not.toBe('');
         await expect(demo.locator('.bm-pointer-hint')).toBeVisible();
-        await expect(demo.locator('.bm-parameters')).not.toHaveAttribute('open');
+        await expect(demo.locator('.bm-parameters summary, .bm-parameters button')).toHaveCount(0);
+        for (const parameter of await demo.locator('.bm-parameters p').all()) await expect(parameter).toBeVisible();
         if (['hold-confirm', 'drag-confirm'].includes(id)) continue;
         await demo.locator('.bm-button').first().press('Enter');
         await expect(demo.locator('.bm-effect')).toHaveAttribute('data-phase', /running|done/);
@@ -261,11 +262,12 @@ for (const width of [390, 1280]) {
   });
 }
 
-test('parameters remain secondary and both pagination controls navigate', async ({ page }) => {
+test('parameters are visible without a toggle and both pagination controls navigate', async ({ page }) => {
   await navigate(page, path(2));
   const parameters = row(page, 'loading-morph').locator('.bm-parameters');
-  await expect(parameters).not.toHaveAttribute('open');
-  await parameters.locator('summary').click();
+  await expect(parameters.locator('summary, button')).toHaveCount(0);
+  await expect(parameters.locator('p').first()).toBeVisible();
+  await expect(parameters.locator('p').last()).toBeVisible();
   await expect(parameters).toContainText('400 ms');
   await page.locator('.bm-pagination').last().locator('a[rel="next"]').click();
   await expect(page).toHaveURL(/\/motion\/buttons\/3\/?$/);

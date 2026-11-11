@@ -9,9 +9,6 @@
 .bm-en { margin-top: 3px; font-size: 12px; color: var(--color-ink-tertiary); }
 .bm-description { margin-top: 16px; font-size: 14px; line-height: 1.75; color: var(--color-ink-secondary); text-wrap: pretty; }
 .bm-parameters { margin-top: 14px; color: var(--color-ink-tertiary); font-size: 12px; }
-.bm-parameters summary { cursor: pointer; width: fit-content; }
-.bm-parameters summary:hover { color: var(--color-accent); }
-.bm-parameters summary:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
 .bm-parameters p { margin-top: 8px; line-height: 1.6; overflow-wrap: anywhere; }
 .bm-demo { min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
 .bm-hint { color: var(--color-ink-secondary); font-size: 12px; line-height: 1.6; text-align: center; }

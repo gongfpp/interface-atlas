@@ -33,11 +33,11 @@ const title = zh ? '按钮动效' : 'Button Motion';
           </div>
         </div>
         <p class="bm-description" id={`${motion.id}-description`}>{BUTTON_MOTION_DESCRIPTIONS[motion.id][locale]}</p>
-        <details class="bm-parameters">
-          <summary>{zh ? '动效参数' : 'Motion parameters'}</summary>
+        <div class="bm-parameters">
+          <span>{zh ? '动效参数' : 'Motion parameters'}</span>
           <p>{zh ? '过渡时长' : 'Transition'} · {motion.duration} ms</p>
           <p>{motion.params}</p>
-        </details>
+        </div>
       </div>
       <ButtonMotionDemo motion={motion} locale={locale} client:load />
     </article>)}
